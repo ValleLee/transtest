@@ -1,0 +1,8 @@
+schema_version: 1
+runner: harbor
+harbor_version: v0.22.0
+conditions:
+  A: {instruction: original, verifier: original}
+  B: {instruction: retained_harbor_instruction, verifier: original}
+  C: {instruction: retained_harbor_instruction, verifier: functional}
+paired_regrade: true

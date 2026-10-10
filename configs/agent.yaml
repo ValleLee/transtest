@@ -1,0 +1,53 @@
+# Tuned Stage 2 configuration carried forward from the VerifierTrans pilot.
+# Role-specific credentials still come from .env; this file contains budgets and
+# prompt classification only.
+model:
+  backend: openai_compatible
+  model: overridden-by-credentials
+  request_timeout_seconds: 600
+  max_tokens: 6144
+  judge_max_tokens: 16384
+
+prompts:
+  converter: prompts/converter.md
+  semantic_judge: prompts/judges/semantic.md
+  solution_judge: prompts/judges/positive.md
+  mutation_judge: prompts/judges/negative.md
+  positive_generator: prompts/qa/positive_generator.md
+  negative_generator: prompts/qa/negative_generator.md
+
+agent:
+  tool_timeout_seconds: 180
+  max_turns: 160
+  converter_step_cap: 160
+  repair_step_cap: 180
+  solver_step_cap: 100
+  mutation_step_cap: 100
+  converter_turns: 160
+  repair_turns: 180
+  solver_turns: 100
+  mutation_turns: 100
+  save_trajectory: true
+
+experiment:
+  max_verifier_revisions: 4
+  verifier_timeout_seconds: 300
+  qa_timeout_seconds: 300
+  package_smoke_timeout_seconds: 300
+  replay_repeats: 2
+  infra_retry_limit: 1
+  valid_positive_target: 1
+  eligible_mutant_target: 1
+  max_positive_attempts: 3
+  max_mutation_attempts: 5
+
+instruction_policy:
+  normative_source: source/problem_statement.md
+  construction_evidence:
+    - source/requirements.md
+    - source/interface.md
+    - original/tests
+    - original/solution/gold_patch.diff
+  excluded_from_final_instruction:
+    - requirements
+    - interface

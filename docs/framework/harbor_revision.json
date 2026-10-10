@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/laude-institute/harbor.git",
+  "tag": "v0.22.0",
+  "commit": "4407eb5227a2ff4f0d3f16b2eb48849382fdf276",
+  "source_path": "upstream/harbor",
+  "package_version": "0.22.0",
+  "required_python": ">=3.12",
+  "role": "official Harbor execution and Stage 3 evaluation reference",
+  "downloaded_at_utc": "2026-09-28T14:04:19Z"
+}

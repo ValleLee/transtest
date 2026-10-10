@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+.venv/
+.venv-harbor/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+upstream/
+jobs/
+check/stage3/rerun_*/

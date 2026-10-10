@@ -1,0 +1,5 @@
+mini-swe-agent==2.4.6
+PyYAML==6.0.3
+requests==2.34.2
+python-dotenv==1.2.3
+pytest>=8,<9

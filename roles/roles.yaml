@@ -1,0 +1,30 @@
+version: 1
+roles:
+  converter:
+    mode: build_or_repair
+    sees: [problem_statement, requirements, interface, historical_f2p, historical_p2p, gold, repo, environment]
+    writes: [functional_verifier, conversion_trace, revision_manifest]
+  hard_validator:
+    mode: deterministic
+    sees: [revision, original_task, execution_spec]
+    writes: [schema_result, base_result, gold_result, regression_result]
+  positive_generator:
+    mode: mini_session
+    sees: [problem_statement, gold, repo, environment]
+    writes: [candidate_patch]
+  positive_judge:
+    mode: fresh_judge
+    sees: [problem_statement, candidate_patch, gold]
+    writes: [judgment]
+  negative_generator:
+    mode: mini_session
+    sees: [problem_statement, accepted_solution, repo, environment]
+    writes: [mutant_patch]
+  negative_judge:
+    mode: fresh_judge
+    sees: [problem_statement, mutant_patch]
+    writes: [judgment]
+  package:
+    mode: deterministic
+    sees: [accepted_revision, problem_statement, original_task]
+    writes: [final_task]

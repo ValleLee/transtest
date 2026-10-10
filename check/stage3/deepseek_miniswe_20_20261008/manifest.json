@@ -1,0 +1,2689 @@
+{
+  "schema_version": 1,
+  "experiment_id": "deepseek_miniswe_20_20261008",
+  "created_at": "2026-10-07T17:59:58+00:00",
+  "cohort_source": "/lg-home/cog8/lwli6/Swepro_test_trans/check/qualified_tasks.txt",
+  "cohort_source_sha256": "29d6aa2ce8d41cf081531a5f9d0868c903ae0706d39323052c08e162c4d3e02a",
+  "cohort_size": 20,
+  "rollouts_per_condition": 1,
+  "concurrency": 10,
+  "agent": {
+    "name": "mini-swe-agent",
+    "version": "2.4.6",
+    "model": "deepseek-v4-pro-Code-PT-SWE-Pro-o-66",
+    "model_provider": "openai-compatible",
+    "base_url_host": "10.101.56.66",
+    "backend": "openai_compatible",
+    "credential_env": "OPENAI_API_KEY",
+    "credential_resolution": "Harbor mini-swe-agent adapter passes the OpenAI provider variable through to LiteLLM; no key is recorded.",
+    "base_url_scheme": "http",
+    "base_url_port": 4081,
+    "base_url_path": "",
+    "model_service_version": "not advertised by endpoint at run start",
+    "seed_policy": "not set; provider seed support not established"
+  },
+  "harbor": {
+    "expected_version": "0.22.0",
+    "binary": "/tmp/swepro-stage3-venv/bin/harbor",
+    "source_commit": "4407eb5227a2ff4f0d3f16b2eb48849382fdf276"
+  },
+  "patch_capture": "temporary tests/test.sh wrapper saves git diff before the original verifier runs",
+  "qualified_tasks": [
+    {
+      "instance_id": "instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+      "attempt": "attempt_008",
+      "index": 1,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008",
+      "original_task_hash": "2c97651d7a9d6c57bec72b907fc61ff1da325a76da908905dc4b23fddda7992f",
+      "original_instruction_sha256": "c71108dded45080172811819fe0b82538143cd682bb63fa1d5f0e63e62003d07",
+      "final_instruction_sha256": "d09b13c4347a6247fb6286ffa0eb5a565716746299522050406b82b4ec9ce17e",
+      "original_tests_sha256": "18b0ff3140fe5ecd0aaac969d34e1c89ae876adc8d1b4e2117d07a5de0fe13ab",
+      "final_tests_sha256": "867f5d618650edffe59b7778314c60e7654f4c9b3cddbab4671ab81e41fe5ba0",
+      "original_task_config_sha256": "771eb41008cb196ba1cab0c771ba5ddeafb0eb51ee1232c132d1033e301f3501",
+      "final_task_config_sha256": "771eb41008cb196ba1cab0c771ba5ddeafb0eb51ee1232c132d1033e301f3501",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+          "attempt": "attempts/attempt_008",
+          "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_021",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 8,
+            "f2p_accounting": {
+              "source": 8,
+              "accounted": 8,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 5,
+              "trace_count": 5,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 0,
+              "retained": 5,
+              "excluded": 0,
+              "converted_regressions": 5
+            },
+            "emitted_test_sources": {
+              "status": "PASS",
+              "missing": []
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_021",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_008/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-07T15:09:49Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008/final",
+          "instance_id": "instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+          "instruction_sha256": "d09b13c4347a6247fb6286ffa0eb5a565716746299522050406b82b4ec9ce17e",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_008/intermediate/converter/revisions/rev_021/functional_specification.md",
+          "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_021",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/01-instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/01-instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8-converted"
+      },
+      "image_id": "sha256:a3bbca9b15c4da35b421da5a6aaffd6abf45902d94f5c5b47e76c41ddfc2d37c",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:b431b3207e1399420ccf6fe4ad343951a4194dab14fa33bd1a0931e1dad83d87"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/01-instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/01-instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "1a1ba93e18ff680d2efa10c9ae159fb2a43d7e0ad4c42793a9be0cf24ed5fd8d",
+        "converted": "f9292e29c1850898bf29f4c7fa421de194ad636b516bbef84a15947e4ed7edd2"
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "attempt": "attempt_004",
+      "index": 2,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_004/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_004",
+      "original_task_hash": "aa02cb52e0a59448b8143f4b055674d22330f508f45a73fbd6086d7bc4adbb45",
+      "original_instruction_sha256": "1a74bf3668f8ecf08cfdafe74eb520480c04aeccb3916fe2db7a377d6b43dfbb",
+      "final_instruction_sha256": "3787c56f3d2bf8d3487991a77836559f912f36e14c9d5e6581c06bb10972e422",
+      "original_tests_sha256": "087bda068e88e2b09b3bedf124cb4b87e4f06349e7a479824bd690662dced407",
+      "final_tests_sha256": "ee24d9b67afff9358882836b53a1fe4d204e4288b711ed4ca65b77e95865576a",
+      "original_task_config_sha256": "1c04e13901e529fac27af3fc758f4c44a0c8169dd382767b26685a6f1f0c99d4",
+      "final_task_config_sha256": "1c04e13901e529fac27af3fc758f4c44a0c8169dd382767b26685a6f1f0c99d4",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "attempt": "attempts/attempt_004",
+          "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_006",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 7,
+            "f2p_accounting": {
+              "source": 7,
+              "accounted": 7,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 1,
+              "trace_count": 1,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 2,
+              "retained": 3,
+              "excluded": 0,
+              "converted_regressions": 1
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_006",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_004/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-07T01:56:39Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_004/final",
+          "instance_id": "instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "instruction_sha256": "3787c56f3d2bf8d3487991a77836559f912f36e14c9d5e6581c06bb10972e422",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_004/intermediate/converter/revisions/rev_006/functional_specification.md",
+          "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_006",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/02-instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/02-instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59-converted"
+      },
+      "image_id": "sha256:16fe8c88a51e2be9a2df977fdf37fa17d0b2fdaf9c885f3b59e2c95926bda80f",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:4bbb2890557d722e440af44e54eb23e1b3c5dad20e91827e32f04bdb4107433f"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/02-instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/02-instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "8c5b41a58af3d7dc17551e5f8ae1f6244b71e0ad4a2a4cf69888869740ab2f51",
+        "converted": "88723246cea8e57428a56cd3f9a81cae9831501f7ac825f4d59060685c55f7ce"
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "attempt": "attempt_002",
+      "index": 3,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002",
+      "original_task_hash": "dbef92b188cda2dfeed3515c4e086e71245e1c2ce047145b7f766a795e59a052",
+      "original_instruction_sha256": "6544054901e0ae68f9a463157875265b732630c0ce29dd6c77676effdd3e7c91",
+      "final_instruction_sha256": "92b1bf55639651cdaffe6247d046644fbcf76ae0e0ec45062b6d047e2a6dba87",
+      "original_tests_sha256": "ea7febd6520bb0df454fcfdcc5c8f3f1152e8cc68cc9d23858a54b6b7c74cab2",
+      "final_tests_sha256": "c7c0df74e0af11908296cfeef19a84c1df60ff819ad2c57367d6b6171e13a543",
+      "original_task_config_sha256": "49303861e647724851dea422f8be68027258e142916d167d53ba55862e77bb89",
+      "final_task_config_sha256": "49303861e647724851dea422f8be68027258e142916d167d53ba55862e77bb89",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "attempt": "attempts/attempt_002",
+          "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_007",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 2,
+            "f2p_accounting": {
+              "source": 2,
+              "accounted": 2,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 2,
+              "trace_count": 2,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 0,
+              "retained": 0,
+              "excluded": 0,
+              "converted_regressions": 0
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_007",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_002/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-07T04:59:05Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/final",
+          "instance_id": "instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "instruction_sha256": "92b1bf55639651cdaffe6247d046644fbcf76ae0e0ec45062b6d047e2a6dba87",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_002/intermediate/converter/revisions/rev_007/functional_specification.md",
+          "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_007",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/03-instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/03-instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59-converted"
+      },
+      "image_id": "sha256:7a762861861789e0d4fbfd3a04ca2f9d777d5c4309484a0967488ebb6f901b13",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:90b789a96fe48843b61b77087d1512b3d6142a22758c15516a350cf6b37ae44e"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/03-instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/03-instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "8056f686abf34305810ee17c6b4bf8b19a56e62c27a6f80d2195c5d54da513c3",
+        "converted": "865d33723dc0a1ba7d8e7b412088c9af896f61eacf94fab22e8df058049e0008"
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+      "attempt": "attempt_005",
+      "index": 4,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/attempts/attempt_005/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/attempts/attempt_005",
+      "original_task_hash": "ffea4df2266631034dd111d6698cdc3019f5a31e11a9d9bcbd34902e79d1ebaf",
+      "original_instruction_sha256": "e04463573363b101db9e750873f874a2d52cdfb6d067cb4578e1533d8d7dea94",
+      "final_instruction_sha256": "68e953e7d6d995efccd1d24c21832e00c689fb11bc8b2426396f28b3f2fd5397",
+      "original_tests_sha256": "f5952c19f1cc7171bd4b1782309027c4215185e8050e6f1e4bc3a5b51097459e",
+      "final_tests_sha256": "54997a202aafa92bd86c840ac986a27eda485a0d2c48d1cd23d071016d94a36c",
+      "original_task_config_sha256": "114155767364d281d5a9c30de9c2446a6d05d7e0eb504246c06c55858bd85ba8",
+      "final_task_config_sha256": "114155767364d281d5a9c30de9c2446a6d05d7e0eb504246c06c55858bd85ba8",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+          "attempt": "attempts/attempt_005",
+          "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_003",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 3,
+            "f2p_accounting": {
+              "source": 3,
+              "accounted": 3,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 3,
+              "trace_count": 3,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 17,
+              "retained": 17,
+              "excluded": 0,
+              "converted_regressions": 0
+            },
+            "emitted_test_sources": {
+              "status": "PASS",
+              "missing": []
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_003",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_005/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-07T17:14:13Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/attempts/attempt_005/final",
+          "instance_id": "instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+          "instruction_sha256": "68e953e7d6d995efccd1d24c21832e00c689fb11bc8b2426396f28b3f2fd5397",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_005/intermediate/converter/revisions/rev_003/functional_specification.md",
+          "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_003",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/04-instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/04-instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2-converted"
+      },
+      "image_id": "sha256:5af802cda73ea45fcb0f1e14cae50ebf1e37816e15624e15d5832c94543dca76",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:7a9a8fd8d8a648dfa7e4e9b91fc7c6a86160df259aae7f1a7a0231344d227487"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/04-instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/04-instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "0061a4b29cab690150cefe6cd55bb804202932ada38c941b4c3f93c26e5b6e7d",
+        "converted": "34092a9870d5fe02c928c14ddf8b7d4db1d3d7ea51357948edc2cd6b94cc3aa7"
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+      "attempt": "attempt_005",
+      "index": 5,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/attempts/attempt_005/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/attempts/attempt_005",
+      "original_task_hash": "4bebc947915ff07061657f168ed10d7f20be309571157fbec3822e04ba9d9866",
+      "original_instruction_sha256": "8d695ecdc508a6f6d8e122687160d7e6e3990eee3ed10e2c9bcf8c66df020eb4",
+      "final_instruction_sha256": "9b05f53a568603f79ff30fdfdec89f617040c356011b096e367516bfbc2b6af5",
+      "original_tests_sha256": "2339a30633d43da19fc585079d0f958a6a0cdc405ba81db6c790d4a717641ac7",
+      "final_tests_sha256": "231836e1dfb6109ff6a6292c7a0953b0b8c6c1fcd58666ee0149d5ece74929bd",
+      "original_task_config_sha256": "4403fa4aa2ad36eab0aa5fb5c29f499b37de2e92f63879590c7efe1df5099025",
+      "final_task_config_sha256": "4403fa4aa2ad36eab0aa5fb5c29f499b37de2e92f63879590c7efe1df5099025",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+          "attempt": "attempts/attempt_005",
+          "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_002",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 4,
+            "f2p_accounting": {
+              "source": 4,
+              "accounted": 4,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 4,
+              "trace_count": 4,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 5,
+              "retained": 5,
+              "excluded": 0,
+              "converted_regressions": 0
+            },
+            "emitted_test_sources": {
+              "status": "PASS",
+              "missing": []
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_002",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_005/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-07T14:48:31Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/attempts/attempt_005/final",
+          "instance_id": "instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+          "instruction_sha256": "9b05f53a568603f79ff30fdfdec89f617040c356011b096e367516bfbc2b6af5",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_005/intermediate/converter/revisions/rev_002/functional_specification.md",
+          "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_002",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/05-instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/05-instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86-converted"
+      },
+      "image_id": "sha256:5f6713ce8c2674b7928353e46075b1008568ae9ce4259f4d522a1b5b091d6a64",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:0d2923fd7845796f47d8d1012bb0e258f64e9cf00d69eefc6ef4ef1614ac65af"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/05-instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/05-instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "e319b069ed6cba292857100d9b7a4d1a474a9ecd13e273ae78c634093a3b2896",
+        "converted": "776b6caa25c809cbd8b488428d3b3c62f16cc4b321beecb1310de2e425d4c51a"
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+      "attempt": "attempt_007",
+      "index": 6,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/attempts/attempt_007/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/attempts/attempt_007",
+      "original_task_hash": "ab5913654aaf5cacb72ddf8bffeacba766212d0a420657d458a0177ad8e15cb6",
+      "original_instruction_sha256": "a3a46f239b6adad17f7a42c2103fa16d35b7e6dee1dfcce9a3652525863ce941",
+      "final_instruction_sha256": "6fd0c815ac3208c51f4defe1cb352078a0edfc0e39293ad5895fe1b81aa8e074",
+      "original_tests_sha256": "dba5377df75fa5d7571685ebd643bacaffe50a7c647035f0ea6a2d35f76fb4ac",
+      "final_tests_sha256": "2475bbdbfa21ed96e003aee7a6bd12d74ef571ef3dfdbab8e4d6cf21698b44bb",
+      "original_task_config_sha256": "82473385060f4a44ad7b81f56376a6dac2ea47818254284b7c2982767a1abf9e",
+      "final_task_config_sha256": "82473385060f4a44ad7b81f56376a6dac2ea47818254284b7c2982767a1abf9e",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+          "attempt": "attempts/attempt_007",
+          "revision": "attempts/attempt_007/intermediate/converter/revisions/rev_007",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 17,
+            "f2p_accounting": {
+              "source": 17,
+              "accounted": 17,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 17,
+              "trace_count": 17,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 30,
+              "retained": 30,
+              "excluded": 0,
+              "converted_regressions": 0
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_007/intermediate/converter/revisions/rev_007",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_007/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-07T04:32:19Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/attempts/attempt_007/final",
+          "instance_id": "instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+          "instruction_sha256": "6fd0c815ac3208c51f4defe1cb352078a0edfc0e39293ad5895fe1b81aa8e074",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_007/intermediate/converter/revisions/rev_007/functional_specification.md",
+          "revision": "attempts/attempt_007/intermediate/converter/revisions/rev_007",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/06-instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/06-instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5-converted"
+      },
+      "image_id": "sha256:bf102e0b14f7210d079f9541bb9bc63b53ed2a5c1f9a1e136880d8b6719f0328",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:9b98928353e3e1038cde6b4af2c07caa554b2aebc28084fd160a89ebe3b797ee"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/06-instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/06-instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "71121e5477815c8c31b022c7ec4baab33e69cdb89c00c07292261822d1e3558c",
+        "converted": "2d345eb8fa9a7880c9b9a8e34c78d261cd2fca14aff34a7c110eb5325a3cc872"
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "attempt": "attempt_002",
+      "index": 7,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002",
+      "original_task_hash": "e660d9dfe782efe51964c138add1eb3f2f5fb6e4385cf74698ca72fd11259a2b",
+      "original_instruction_sha256": "e8538e435727e8f24bed64ba8ae84878fe6c876509d5176568c057777a8950b6",
+      "final_instruction_sha256": "3c7ed319fe7acfd76bad34e72030ba7ca2cf528b9a4482a99fe3b9c33f9f6aa7",
+      "original_tests_sha256": "05a8ffdba26922bc9f224f71898af0aeaf631b4aa07bccd575305e3a8738180c",
+      "final_tests_sha256": "da9b3d6229f5a46dd1ff6e1d58b41be0ffc6fb4b1d832285ed1fc6b7465f3ca3",
+      "original_task_config_sha256": "55393fa8edc09c1a4ed7b7db00bfae191e56d89ddab430f0212578be206a7d80",
+      "final_task_config_sha256": "55393fa8edc09c1a4ed7b7db00bfae191e56d89ddab430f0212578be206a7d80",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "attempt": "attempts/attempt_002",
+          "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_003",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 22,
+            "f2p_accounting": {
+              "source": 22,
+              "accounted": 22,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 1,
+              "trace_count": 1,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 92,
+              "retained": 92,
+              "excluded": 0,
+              "converted_regressions": 0
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_003",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_002/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-06T16:00:47Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/final",
+          "instance_id": "instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "instruction_sha256": "3c7ed319fe7acfd76bad34e72030ba7ca2cf528b9a4482a99fe3b9c33f9f6aa7",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_002/intermediate/converter/revisions/rev_003/functional_specification.md",
+          "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_003",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/07-instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/07-instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59-converted"
+      },
+      "image_id": "sha256:f216de9cbf248940111e34f1c50a097f1034ccd759c5c11d610e1000597290c4",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:2c6d53c235a04be7c6f188bf7004a9bc3b94a1f7ad058ae43b786259dbe0123f"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/07-instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/07-instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "5abbbb2552c8beb4ed4a3120e845d766508435810887ebe62ffa7981f73d5c2c",
+        "converted": "9f7d83001aa2fba8489486985c985372d4a9c4da29add46586f09bd223d721eb"
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "attempt": "attempt_009",
+      "index": 8,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009",
+      "original_task_hash": "00513b4068e2dd736c12a826095f4671f82e90d03dc5759da17b58ce9ef7611c",
+      "original_instruction_sha256": "d0523849c905bec097b09b6a57e0ba46964db25b540ffea2cc135f4aab74259d",
+      "final_instruction_sha256": "0682cbc6f58230c14a9e57d25b3c43a78a02d1ad9687f42e43cd4d827d60c171",
+      "original_tests_sha256": "06235e909c208a1a0523dae32517aa2fb9f5703c484afbf9a7b5169201bd8209",
+      "final_tests_sha256": "7376f3b4e0ffb1ea2a0787ef4808887befae328754826d72d7dc014ae4af8f71",
+      "original_task_config_sha256": "c941290bdc6f4b60907e30eec41948d9b3e31a640ae2707ec6580f0a3b6d0684",
+      "final_task_config_sha256": "c941290bdc6f4b60907e30eec41948d9b3e31a640ae2707ec6580f0a3b6d0684",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "attempt": "attempts/attempt_009",
+          "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 5,
+            "f2p_accounting": {
+              "source": 5,
+              "accounted": 5,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 1,
+              "trace_count": 1,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 1,
+              "retained": 5,
+              "excluded": 0,
+              "converted_regressions": 4
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_009/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-07T06:32:50Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_009/final",
+          "instance_id": "instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "instruction_sha256": "0682cbc6f58230c14a9e57d25b3c43a78a02d1ad9687f42e43cd4d827d60c171",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_009/intermediate/converter/revisions/rev_001/functional_specification.md",
+          "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/08-instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/08-instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59-converted"
+      },
+      "image_id": "sha256:f76b179b975545eca3ab41df4972c377130be15d44e99cb5d388da38fb3523c3",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:fdf992955806b982e0cff01e0867c99ddaa2113995cd98113ac8f99df1d1f4ef"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/08-instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/08-instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "95ff4d75ab64a91f3af27900e1fefdb6c99f896138f31764b88da941c95940e0",
+        "converted": "e5e784d63a796f4a8afa7882486174d091fb5f90c183aaeedf5e64b95bb95b33"
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+      "attempt": "attempt_001",
+      "index": 9,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/attempts/attempt_001/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/attempts/attempt_001",
+      "original_task_hash": "05e03850cde601c709cd2159b97eb7c42dfad2deaefe7313e90a67c009ee30ad",
+      "original_instruction_sha256": "a45af577fe6f15631ac7aec4833f8486293e0ea37cffd203cd49c1b688abc920",
+      "final_instruction_sha256": "e3908f54b648c581699fe550470caa5ff02245eeacbdef7f7665dc8af53a0558",
+      "original_tests_sha256": "f20c590e7919627f8901e1e97cca95a1bc201367e7d52cca80e85de42a4ca050",
+      "final_tests_sha256": "07a1711f90ae8542bbd13bd3cb2e3a4d323d0682a8043b7afc7a522849932c88",
+      "original_task_config_sha256": "de413e370676af2f2e63b3c91e5e4f2e7bef266bbcabdb70954bb8b83321b160",
+      "final_task_config_sha256": "de413e370676af2f2e63b3c91e5e4f2e7bef266bbcabdb70954bb8b83321b160",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+          "attempt": "attempts/attempt_001",
+          "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_004",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 6,
+            "f2p_accounting": {
+              "source": 6,
+              "accounted": 6,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 2,
+              "trace_count": 2,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 55,
+              "retained": 59,
+              "excluded": 0,
+              "converted_regressions": 4
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": "legacy_unversioned"
+          },
+          "errors": [],
+          "warnings": [
+            "semantic review predates verifier evidence fingerprint contract"
+          ]
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_004",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_001/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-04T18:56:56Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/attempts/attempt_001/final",
+          "instance_id": "instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+          "instruction_sha256": "e3908f54b648c581699fe550470caa5ff02245eeacbdef7f7665dc8af53a0558",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_001/intermediate/converter/revisions/rev_004/functional_specification.md",
+          "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_004",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/09-instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/09-instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59-converted"
+      },
+      "image_id": "sha256:0003189c04b4dd80352f9fd604e978c11299885b1519fc1732d3661d48e384a6",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:8780cafe8ec369b6138b9fef049d5cfff1a3729364692ad5c5b1c0666cd0411d"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/09-instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/09-instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "cbfef14e8932fe700ba6d0e375cb7b3d70302b6af1b0f4b51ce82b2c6b842d78",
+        "converted": "623fd6840a41fd173d5603afb16891ca3b2e691b646962a5d2b026f9b4b88a50"
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+      "attempt": "attempt_001",
+      "index": 10,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001",
+      "original_task_hash": "94d449db77d74e44d860137531f3abbc1706bd851b4ceff94ca9f4eb035f4045",
+      "original_instruction_sha256": "8b274a88530535dd5299e756094a214793304c176afe5e2e707d8b8fc7f390b4",
+      "final_instruction_sha256": "c4c4dee8493c0212589c00d086a5d0cca03b87fff868f78e51cdab1b81ec0d7a",
+      "original_tests_sha256": "c1e097adfe1d697cd49bf828aeb45fca1e4c204059fba4e1f9bc28e987c6a521",
+      "final_tests_sha256": "2ca64b918186592a441b684c236b64d5fcb0db1c4f4a590f341aaca0e3a6f559",
+      "original_task_config_sha256": "1093526e024b10738d53b5b44a04f0c34e1b5464a2b62cf4a73c01fd268d8c8a",
+      "final_task_config_sha256": "1093526e024b10738d53b5b44a04f0c34e1b5464a2b62cf4a73c01fd268d8c8a",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+          "attempt": "attempts/attempt_001",
+          "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 14,
+            "f2p_accounting": {
+              "source": 14,
+              "accounted": 14,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 1,
+              "trace_count": 1,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 0,
+              "retained": 13,
+              "excluded": 0,
+              "converted_regressions": 13
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_001/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-06T16:41:46Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/final",
+          "instance_id": "instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+          "instruction_sha256": "c4c4dee8493c0212589c00d086a5d0cca03b87fff868f78e51cdab1b81ec0d7a",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_001/intermediate/converter/revisions/rev_003/functional_specification.md",
+          "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/10-instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/10-instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4-converted"
+      },
+      "image_id": "sha256:50f18426da8ffd1cbdc7e42a23bd3bccfa9c50869b59b6a7825ffbfaa7c40aae",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:db0b2ffdf0efba1586a7fbcb70d43c9fad192de0dee6d185f36de5344eb5dc6c"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/10-instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/10-instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "9069d151091e9b2ac9615d07cac6f532b78b166bf55394a43ef119ebd3978362",
+        "converted": "463dccd5f219fc7d3f8b1bf186a5df9729e15d5860e0542efd35d31e4a53f4d3"
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+      "attempt": "attempt_004",
+      "index": 11,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/attempts/attempt_004/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/attempts/attempt_004",
+      "original_task_hash": "916f834710596cb040e48d579676d39c1d3bb6d58993e06bf1b32ce8eaf0a69d",
+      "original_instruction_sha256": "95896c2a4099d61000fbddbe38e07e3bd96ca609110bc0a73e48aa27c887265b",
+      "final_instruction_sha256": "3b98be5d66f59558e0fb88c53eb45867bb867c5c75ec9889311ed6f79a879913",
+      "original_tests_sha256": "d28d209083104bf7798e2a3d0894ce5a3d1e5a94ba42247d1e4fd1042d6cc151",
+      "final_tests_sha256": "7e62c9c00575fc520160ca87be8b0ad092e77237d105b715432c3db4935b9277",
+      "original_task_config_sha256": "fce2df6ec54ffb41a67aa73ed8ad59f3c2d80cec0f2afc066d6cb34b36482aee",
+      "final_task_config_sha256": "fce2df6ec54ffb41a67aa73ed8ad59f3c2d80cec0f2afc066d6cb34b36482aee",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+          "attempt": "attempts/attempt_004",
+          "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_003",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 4,
+            "f2p_accounting": {
+              "source": 4,
+              "accounted": 4,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 4,
+              "trace_count": 4,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 20,
+              "retained": 21,
+              "excluded": 0,
+              "converted_regressions": 1
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_003",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_004/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-06T20:30:57Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/attempts/attempt_004/final",
+          "instance_id": "instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+          "instruction_sha256": "3b98be5d66f59558e0fb88c53eb45867bb867c5c75ec9889311ed6f79a879913",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_004/intermediate/converter/revisions/rev_003/functional_specification.md",
+          "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_003",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/11-instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/11-instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26-converted"
+      },
+      "image_id": "sha256:59d26fb8bc215f3eb51ccf44827c9dc042629313cd5b01a74c299cd2708db9a9",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:df9a9f72419f58075f0ec111be4df45ba7c2d3f9cfe952eaee00e814a7f28c2d"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/11-instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/11-instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "c6790007d5e4d45ea1972f0c8499608657bf064472d54423a0264d45731286f7",
+        "converted": "68e515423aba908d71f4df2041cdd28d0435caff04ac9c48d6dee05a5b9a7fa3"
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "attempt": "attempt_009",
+      "index": 12,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009",
+      "original_task_hash": "68ece1e66ab3f648eb477af262c1e8d9d1b275d8ed4ec1a0f6c6d5e2d22f99bb",
+      "original_instruction_sha256": "3ccb825ad4927fd6298c1029585a645b57bc95df06aa53bb88183a139c943c13",
+      "final_instruction_sha256": "2a94a71c0c403dec4058d659609f410666a710cfdd140f02b254d3e82d683ddc",
+      "original_tests_sha256": "ac6776ffa024e0c9a10b58c627d19fff2ca0d7d4c1fd67115347c6efee502b7d",
+      "final_tests_sha256": "d96bee5115eff2ad1518ada2e65ca8d9222b66c9f4d26c54bfd2e430e9b13873",
+      "original_task_config_sha256": "75ad0d67515b38ea3e901ce61f74e010fd972db0deeb50cbe7f73acec0d244c3",
+      "final_task_config_sha256": "75ad0d67515b38ea3e901ce61f74e010fd972db0deeb50cbe7f73acec0d244c3",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+          "attempt": "attempts/attempt_009",
+          "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 4,
+            "f2p_accounting": {
+              "source": 4,
+              "accounted": 4,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 4,
+              "trace_count": 4,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 7,
+              "retained": 7,
+              "excluded": 0,
+              "converted_regressions": 0
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_009/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-07T10:31:12Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_009/final",
+          "instance_id": "instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+          "instruction_sha256": "2a94a71c0c403dec4058d659609f410666a710cfdd140f02b254d3e82d683ddc",
+          "instruction_source": [
+            "source/problem_statement.md",
+            "attempts/attempt_009/intermediate/specification_addendum.md"
+          ],
+          "proposal_record": "attempts/attempt_009/intermediate/converter/revisions/rev_003/functional_specification.md",
+          "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+          "specification_addendum": "attempts/attempt_009/intermediate/specification_addendum.md",
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/12-instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/12-instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4-converted"
+      },
+      "image_id": "sha256:014c5cd336e027384bba02291d72dc4e3d0a53f40a9d5572d3bf5077e7ec99d0",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:96561bde85e7d968b8aa5ddc66157c4d35fafdde93072e7343d7d5ea23f27786"
+      ],
+      "instruction_change_class": "deletion_plus_behavior_clarification",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/12-instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/12-instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "b17f47a6156d7919124ff1d8f34c77c8f37a8fb0fa30732dfdbbf73dac31e741",
+        "converted": "b6069a33c71aa1660d9c4c01fde3f241148ebbb461b1961b0ae11de24134f836"
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "attempt": "attempt_001",
+      "index": 13,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_001/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_001",
+      "original_task_hash": "47ee2be0f314994626025deaf73b4755ccea4003f74e108986523b80908b32f4",
+      "original_instruction_sha256": "b5812b7c7f4d9683ecacf708c975eaa50e66e6de5657ef565d23004fb9bc1ccc",
+      "final_instruction_sha256": "9c8b35dc4b99204e33653192252fc92d04a411c491c8bb97b1345e34416eab9b",
+      "original_tests_sha256": "4ca9a9ca5c6bd8d8604dccc3d109e80c9edbf6406d9a477609c9a0fe0fd523c4",
+      "final_tests_sha256": "e594368b5cd74158cc38374d3805f67f41887b6d7a5f99733650d4a055555fdf",
+      "original_task_config_sha256": "d236370434919c0efa1651d4d84262c65be9390b8d34f5679c92a0f1a2af689f",
+      "final_task_config_sha256": "d236370434919c0efa1651d4d84262c65be9390b8d34f5679c92a0f1a2af689f",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+          "attempt": "attempts/attempt_001",
+          "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_007",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 1,
+            "f2p_accounting": {
+              "source": 1,
+              "accounted": 1,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 3,
+              "trace_count": 3,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 0,
+              "retained": 1,
+              "excluded": 0,
+              "converted_regressions": 1
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": "legacy_unversioned"
+          },
+          "errors": [],
+          "warnings": [
+            "semantic review predates verifier evidence fingerprint contract"
+          ]
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_007",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_001/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-04T19:46:25Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_001/final",
+          "instance_id": "instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+          "instruction_sha256": "9c8b35dc4b99204e33653192252fc92d04a411c491c8bb97b1345e34416eab9b",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_001/intermediate/converter/revisions/rev_007/functional_specification.md",
+          "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_007",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/13-instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/13-instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4-converted"
+      },
+      "image_id": "sha256:d0d31a7c193d816d9ab11b1e25def2b36b286454b26b35059184c1a56856c983",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:c029ba553fb30164ffdf16c14b561629f10bf891ef6e6aecfaef4f541eb6a885"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/13-instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/13-instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "c4740cfc11ed7d39407dcd9c848b2542df953d0ebd6d485d6d9cd8f20dadf9f2",
+        "converted": "71b9e4ea9ce682114ae73ebc5c11885223437772214aa5880fff93d072215c02"
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+      "attempt": "attempt_003",
+      "index": 14,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003",
+      "original_task_hash": "7ad8d04a2d697832f7e531c9be142714d6258709d65b2c7ef02b4bd5186d8dbf",
+      "original_instruction_sha256": "5330546df51f867f4f3b864e93b98f58d340201c25d9ecf25e85ac22bb0bd1e6",
+      "final_instruction_sha256": "82ab649aded46bff5078b2f051968363ff9b33e06fa67f5ad1599dea40343103",
+      "original_tests_sha256": "a2ffa49debd9d2769740865554c98c60413cf20f1fb29bc6a391a4bd7dadabdc",
+      "final_tests_sha256": "21a73bcf664573588aedf8e66e087c62ae699f32d0a2ff5841ff60197d1e2e95",
+      "original_task_config_sha256": "e232e91ae9dde165c6fb55baa8483ebbffa383ffafa160d832c0df20587be441",
+      "final_task_config_sha256": "e232e91ae9dde165c6fb55baa8483ebbffa383ffafa160d832c0df20587be441",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+          "attempt": "attempts/attempt_003",
+          "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_006",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 2,
+            "f2p_accounting": {
+              "source": 2,
+              "accounted": 2,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 2,
+              "trace_count": 2,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 0,
+              "retained": 5,
+              "excluded": 0,
+              "converted_regressions": 5
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_006",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_003/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-06T20:52:57Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/final",
+          "instance_id": "instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+          "instruction_sha256": "82ab649aded46bff5078b2f051968363ff9b33e06fa67f5ad1599dea40343103",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_003/intermediate/converter/revisions/rev_006/functional_specification.md",
+          "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_006",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/14-instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/14-instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c-converted"
+      },
+      "image_id": "sha256:5e6e57563c7b1c78591db75bee8dd4e05657b90b76c3e33b0807bbf22f0e3d41",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:47d0c6723c4797823a74425ba3a7fd79c1f1557bf63b986d24c14c581a187c24"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/14-instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/14-instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "a81f674cb4008b3a7968619a84db01c6386fe596216f3bf5bdab8e8430d66705",
+        "converted": "9c20496cce4ad7d41388fb310a495c28960770630269c9825f5d63c05dc6052f"
+      }
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "attempt": "attempt_005",
+      "index": 15,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_005/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_005",
+      "original_task_hash": "826c02b6a6221c75f9546e7cc4f81e66776b25624b9703e66ff635474f6a2838",
+      "original_instruction_sha256": "d9f57cd0bd50522c63ed58ee52cd98fe01117000c829fc4af722b739b7276910",
+      "final_instruction_sha256": "b5b8e9fe112a9b3e658553732385e190ae668ea62473aa572b1e1d6946beac44",
+      "original_tests_sha256": "a39c0f1f3a225452ead979c1cb75693eea6e5fed3f07be47949d7b771dcce7cf",
+      "final_tests_sha256": "a32f381dd6d2ab6a66d1c4ba21a429fc9791e68bb9018ee85d1f3b3861a7966e",
+      "original_task_config_sha256": "9290b506613969e49aa257d3c23e9464c9bca2b783ac1ea3b0eafbaf4a20e243",
+      "final_task_config_sha256": "9290b506613969e49aa257d3c23e9464c9bca2b783ac1ea3b0eafbaf4a20e243",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+          "attempt": "attempts/attempt_005",
+          "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_008",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 3,
+            "f2p_accounting": {
+              "source": 3,
+              "accounted": 3,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 3,
+              "trace_count": 3,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 119,
+              "retained": 119,
+              "excluded": 0,
+              "converted_regressions": 0
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_008",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_005/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-07T03:47:03Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_005/final",
+          "instance_id": "instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+          "instruction_sha256": "b5b8e9fe112a9b3e658553732385e190ae668ea62473aa572b1e1d6946beac44",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_005/intermediate/converter/revisions/rev_008/functional_specification.md",
+          "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_008",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/15-instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/15-instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d-converted"
+      },
+      "image_id": "sha256:5d5f5af40c8c4ac33e743ffa96c9dd467b6805bbf34a050dfedbfc3267c46ee6",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:18204c7a72f24660639eb445422bfea4b0067c31b7854994b08e994d2e0bf624"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/15-instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/15-instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "a545f54b615ab6c6e4ca5313db21dcb5f0a403c523eab418a556862d0ba07638",
+        "converted": "726950501657fb0dfa67d1d84c8a994e99d24e4fcaf7ffebc693531b4496531d"
+      }
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "attempt": "attempt_023",
+      "index": 16,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_023/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_023",
+      "original_task_hash": "3156ffa0dadfef443cfa1094692bd1b5e2ca102486a3057de487dbe76bc49868",
+      "original_instruction_sha256": "fa520eaf4c0f7f1375c03562299be539198ebd16df52c021811d6a6a39ff1025",
+      "final_instruction_sha256": "32e94ff91bf1937fb18502f2aa901667db10700953dcb847e8c10947e571e4f5",
+      "original_tests_sha256": "0e214f63fed4fca26741ede9225fc359af5b1aa21344fb7d2e7434ebac098d83",
+      "final_tests_sha256": "064cae1cea068a106e3e02f1d54aad7db941bd9b552844766ab46ee91e280b29",
+      "original_task_config_sha256": "e85da98adee154dc5af745f215247431080a54a8559d97d1bee530876505f807",
+      "final_task_config_sha256": "e85da98adee154dc5af745f215247431080a54a8559d97d1bee530876505f807",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+          "attempt": "attempts/attempt_023",
+          "revision": "attempts/attempt_023/intermediate/converter/revisions/rev_001",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 11,
+            "f2p_accounting": {
+              "source": 11,
+              "accounted": 11,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 11,
+              "trace_count": 11,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 46,
+              "retained": 46,
+              "excluded": 0,
+              "converted_regressions": 0
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_023/intermediate/converter/revisions/rev_001",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_023/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-05T21:27:04Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_023/final",
+          "instance_id": "instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+          "instruction_sha256": "32e94ff91bf1937fb18502f2aa901667db10700953dcb847e8c10947e571e4f5",
+          "instruction_source": [
+            "source/problem_statement.md",
+            "attempts/attempt_023/intermediate/specification_addendum.md"
+          ],
+          "proposal_record": "attempts/attempt_023/intermediate/converter/revisions/rev_001/functional_specification.md",
+          "revision": "attempts/attempt_023/intermediate/converter/revisions/rev_001",
+          "specification_addendum": "attempts/attempt_023/intermediate/specification_addendum.md",
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/16-instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/16-instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d-converted"
+      },
+      "image_id": "sha256:77ddfb33deefad5bbd446f1b52cc71690dd0fb25d5173c9473290f1f77237df9",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:72e2ef58cefde8ca7a6d70de13c04bc2df9d5f9b3365bd5e28a23a5e4cbfaef6"
+      ],
+      "instruction_change_class": "deletion_plus_behavior_clarification",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/16-instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/16-instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "3cd5106a586d2c3ecfd28cdababe3f2f54661e0e23f39ca43ff72d19b2b02c08",
+        "converted": "bc969a0316a87f0ec904e05de91b0a5b884528b13eb3216fc01f854881429464"
+      }
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+      "attempt": "attempt_003",
+      "index": 17,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/attempts/attempt_003/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/attempts/attempt_003",
+      "original_task_hash": "16d1d5b66aadbd90af89d4ddbc5047bc99e6fc3f422756887891acd76da5a835",
+      "original_instruction_sha256": "822803e202957e0df1c6cea0797820b59953170026a6c9c5f0987ca6f3205ff0",
+      "final_instruction_sha256": "dfb532a443ab5d8ebad2baadc12541370faa70d05cc48275761bddfb9fa62b60",
+      "original_tests_sha256": "c57e2a8f6598a8e44cc841b1206d5884b9ba424749e5c17940489f61aa214362",
+      "final_tests_sha256": "d463a173332d3800d2c6422825cd1a6780d15c6bbf03ce1512cab0c067925053",
+      "original_task_config_sha256": "99a18ef49466255482b567a5a21010cd2e460aeb91ff95e372c7412611bad491",
+      "final_task_config_sha256": "99a18ef49466255482b567a5a21010cd2e460aeb91ff95e372c7412611bad491",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+          "attempt": "attempts/attempt_003",
+          "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_003",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 1,
+            "f2p_accounting": {
+              "source": 1,
+              "accounted": 1,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 1,
+              "trace_count": 1,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 18,
+              "retained": 18,
+              "excluded": 0,
+              "converted_regressions": 0
+            },
+            "emitted_test_sources": {
+              "status": "PASS",
+              "missing": []
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_003",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_003/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-07T15:23:34Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/attempts/attempt_003/final",
+          "instance_id": "instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+          "instruction_sha256": "dfb532a443ab5d8ebad2baadc12541370faa70d05cc48275761bddfb9fa62b60",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_003/intermediate/converter/revisions/rev_003/functional_specification.md",
+          "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_003",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/17-instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/17-instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367-converted"
+      },
+      "image_id": "sha256:07ac8c348146c4832341d7a71ead8f0aca63275cc6e121b25cd0e7ce22366ab2",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:d27e0417c1c066b2ebcce7c6c9698c188a72076902e5b1259dfe116d84ad1efb"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/17-instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/17-instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "cf881c12ff0ab08a4bdc372d3d9d80a52ed7fdfdc8847ed5d9d2c1ef34132025",
+        "converted": "ac7a9b89b0b480cc102ba2c903ef6126ac185c24c32f863ec4f3de05d59855b4"
+      }
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+      "attempt": "attempt_002",
+      "index": 18,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002",
+      "original_task_hash": "2d7c9448f431d107731f673dc8eea3de0e92420498f6187568e006ccae1881f9",
+      "original_instruction_sha256": "c365a6a6d3e504a66fddfd52613e3368f429c3819ef73e5e92145b5557ef6f9e",
+      "final_instruction_sha256": "5772dfb04309ae7180f186a040ba76aad534fd32b16e516465fb1213d06582e0",
+      "original_tests_sha256": "fb38172305ce96e7578f402bdd9f59049ba4bef4d3a351a246a6770bfb0b9f9c",
+      "final_tests_sha256": "0c88e39040839380f8a75868299ff300151900b45fc20429e16647b588532523",
+      "original_task_config_sha256": "fce974438b1d7d1df272c4f43dc698f870e713a450d1e99366cc728f3ad0f35f",
+      "final_task_config_sha256": "fce974438b1d7d1df272c4f43dc698f870e713a450d1e99366cc728f3ad0f35f",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+          "attempt": "attempts/attempt_002",
+          "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 25,
+            "f2p_accounting": {
+              "source": 25,
+              "accounted": 25,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 4,
+              "trace_count": 4,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 0,
+              "retained": 16,
+              "excluded": 0,
+              "converted_regressions": 16
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_002/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-06T20:33:37Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/final",
+          "instance_id": "instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+          "instruction_sha256": "5772dfb04309ae7180f186a040ba76aad534fd32b16e516465fb1213d06582e0",
+          "instruction_source": [
+            "source/problem_statement.md",
+            "attempts/attempt_002/intermediate/specification_addendum.md"
+          ],
+          "proposal_record": "attempts/attempt_002/intermediate/converter/revisions/rev_008/functional_specification.md",
+          "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+          "specification_addendum": "attempts/attempt_002/intermediate/specification_addendum.md",
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/18-instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/18-instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271-converted"
+      },
+      "image_id": "sha256:8ec2987773a12e692afef4d43406db62f03c13963cec90d76b4da283f1b621b0",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:b78147aab8c5ab3e0c4570cf374085eb5cbac181fe2b4ffecf30979f3aec8761"
+      ],
+      "instruction_change_class": "deletion_plus_behavior_clarification",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/18-instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/18-instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "c2a5dbcd793928b4425571343391dc367b26158fe3aeca2012ef6a7dac5c480a",
+        "converted": "5743b4456854cc1f762867bc2c9ec6c96f9c99eb0a993ebe9a54cfad01e9b98c"
+      }
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "attempt": "attempt_006",
+      "index": 19,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_006/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_006",
+      "original_task_hash": "887674e9f7ed80de2112c1a44ebb3d4d66fc79dbb430b5179482dac4fdd8306e",
+      "original_instruction_sha256": "ec21d4640003950aa3863c8e6555d56b5a1871660bfe5d0fb3cdddc8905d3fe4",
+      "final_instruction_sha256": "b5f82a300d88034bc17dabcfb687d547fc6201159173750e8f91af09cea6a980",
+      "original_tests_sha256": "255044c46cbce28a3f275206834b7771263f4f150434e3a5f1c841b4cb855bba",
+      "final_tests_sha256": "2c2c063c17b13d27ef5ff0bbbcfd8c0ebc953f5cb50b29ac5067b5ff81bec7eb",
+      "original_task_config_sha256": "e6480bf3c21136bbb43a2f639115e8721bcff0749cc915eb7651730c9ae30694",
+      "final_task_config_sha256": "e6480bf3c21136bbb43a2f639115e8721bcff0749cc915eb7651730c9ae30694",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+          "attempt": "attempts/attempt_006",
+          "revision": "attempts/attempt_006/intermediate/converter/revisions/rev_004",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 364,
+            "f2p_accounting": {
+              "source": 364,
+              "accounted": 364,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 1,
+              "trace_count": 1,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 1,
+              "retained": 8,
+              "excluded": 0,
+              "converted_regressions": 7
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_006/intermediate/converter/revisions/rev_004",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_006/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-07T08:08:38Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_006/final",
+          "instance_id": "instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+          "instruction_sha256": "b5f82a300d88034bc17dabcfb687d547fc6201159173750e8f91af09cea6a980",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_006/intermediate/converter/revisions/rev_004/functional_specification.md",
+          "revision": "attempts/attempt_006/intermediate/converter/revisions/rev_004",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/19-instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/19-instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d-converted"
+      },
+      "image_id": "sha256:9cf7407ae738e196ca67a8d9e8c96ffc86b2370e098d83093fee5d5641573e49",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:0b1787e9b1776e154fc401be1634db50f1cbdb324eeb4fbca8ffe6625c6cb1e3"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/19-instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/19-instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "cc7054f8d2aa5938617c92bdef523b81f209881a9c0a2aba7a481f288ce15a17",
+        "converted": "1560583cbeadd9142e50537185857b60c643905801c60f5dd4615a902846ced1"
+      }
+    },
+    {
+      "instance_id": "instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+      "attempt": "attempt_005",
+      "index": 20,
+      "original_root": "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/original",
+      "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/attempts/attempt_005/final",
+      "attempt_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/attempts/attempt_005",
+      "original_task_hash": "144e677114d1d677a314b19ed8dd28f7836498f81099e650db7c495f7035805c",
+      "original_instruction_sha256": "0ebf40baf8e9f6e3a0e04da2d0c0c8c799a1f4c89aa3151cb2fe97ff5b009ced",
+      "final_instruction_sha256": "6a9356f2cdad522e6ec5c8cac3628cd457c39ce4532ee3ce3f3779d6cf80a6ae",
+      "original_tests_sha256": "764528ea2f7a9af9276ecbd482749d10f130bce34170efea4090ccc7add1551c",
+      "final_tests_sha256": "0d699cc083773fa9119a1f1b40ac930765de143fe7b4caa492b715b2799ef852",
+      "original_task_config_sha256": "305b8af561c83edbb8dca8751a6ee5f3619d246d80f473894f8b2579d8a69a32",
+      "final_task_config_sha256": "305b8af561c83edbb8dca8751a6ee5f3619d246d80f473894f8b2579d8a69a32",
+      "instruction_text_equal": false,
+      "original_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+      "final_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+      "network": {
+        "agent_original": "no-network",
+        "agent_final": "no-network",
+        "verifier_original": "public",
+        "verifier_final": "public"
+      },
+      "acceptance_evidence": {
+        "review/final_audit.json": {
+          "status": "PASS",
+          "instance_id": "instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+          "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+          "attempt": "attempts/attempt_005",
+          "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_001",
+          "checks": {
+            "attempt_status": "accepted",
+            "independent_audit": "PASS",
+            "final_artifact": "PASS",
+            "source_f2p_count": 2,
+            "f2p_accounting": {
+              "source": 2,
+              "accounted": 2,
+              "missing": [],
+              "extra": [],
+              "duplicates": []
+            },
+            "conversion_schema": "current",
+            "classification": "PASS",
+            "task_disposition": {
+              "value": "convertible",
+              "errors": []
+            },
+            "functional_selector_provenance": {
+              "config_count": 1,
+              "trace_count": 1,
+              "config_only": [],
+              "trace_only": []
+            },
+            "p2p_policy": {
+              "original": 0,
+              "retained": 0,
+              "excluded": 0,
+              "converted_regressions": 0
+            },
+            "instruction_leakage": "PASS",
+            "recorded_acceptance": "accepted",
+            "replay_expectation": {
+              "expected_from_trace": "base_fail_gold_pass",
+              "recorded": "base_fail_gold_pass"
+            },
+            "semantic": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "positive_qa": "pass",
+            "negative_qa": "pass",
+            "semantic_evidence_current": true
+          },
+          "errors": [],
+          "warnings": []
+        },
+        "intermediate/validation/acceptance.json": {
+          "status": "accepted",
+          "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_001",
+          "checks": {
+            "artifact_contract": "PASS",
+            "hard_replay": "pass",
+            "behavior_role_audit": "PASS",
+            "stability": "pass",
+            "semantic_review": "PASS",
+            "positive_qa": "pass",
+            "negative_qa": "pass"
+          },
+          "errors": []
+        },
+        "intermediate/packaging/package_report.json": {
+          "acceptance": "attempts/attempt_005/intermediate/validation/acceptance.json",
+          "created_at_utc": "2026-10-05T19:53:03Z",
+          "excluded_fields": [
+            "requirements",
+            "interface",
+            "functional_specification.md"
+          ],
+          "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/attempts/attempt_005/final",
+          "instance_id": "instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+          "instruction_sha256": "6a9356f2cdad522e6ec5c8cac3628cd457c39ce4532ee3ce3f3779d6cf80a6ae",
+          "instruction_source": [
+            "source/problem_statement.md"
+          ],
+          "proposal_record": "attempts/attempt_005/intermediate/converter/revisions/rev_001/functional_specification.md",
+          "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_001",
+          "specification_addendum": null,
+          "status": "packaged"
+        }
+      },
+      "variants": {
+        "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/20-instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1-original",
+        "converted": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/20-instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1-converted"
+      },
+      "image_id": "sha256:12ef8d462f4493fb0e0be619ca8b853342ac40c17a84a7e6acac99f8601ef429",
+      "repo_digests": [
+        "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:f0c1d1561d3fe50a845212497843831b6b1fc9535c88751edc3cb6fda8a425b4"
+      ],
+      "instruction_change_class": "deletion_only",
+      "verifiers": {
+        "original_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/20-instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/original_tests",
+        "functional_tests": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/20-instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/functional_tests"
+      },
+      "variant_task_config_sha256": {
+        "original": "f03d4d82f61ff93e3fd3b5a74c7f0226f9aef93119f73ca3225c9ced6eaa2fba",
+        "converted": "b99d51af1b6f385f10e185bb02e1700b4ceb2d8e9eb1cbf674ef02e7eca0fa2e"
+      }
+    }
+  ],
+  "preflight_notices": [],
+  "status": "prepared",
+  "agent_dependency_constraint": {
+    "path": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/runtime/constraints.txt",
+    "sha256": "47a72a5718d4650d804d3421517978038a56159a8c5d460551b599f8e1f7fd55",
+    "litellm_version": "1.83.0",
+    "reason": "Avoid source Rust compilation of unpinned latest LiteLLM during agent setup"
+  },
+  "preflight_amendment": "2026-10-08: pinned a compatible LiteLLM wheel for all 40 temporary tasks after first agent setup timed out; original and final source tasks unchanged.",
+  "docker_image_inspection": {
+    "missing": [],
+    "all_images_present": true
+  },
+  "official_task_source": {
+    "path": "/lg-home/cog8/lwli6/Swepro_test_trans/upstream/SWE-bench_Pro-os",
+    "commit": "66f92766bba642462d4bbe5479e83f91f9211862"
+  },
+  "instruction_change_audit": {
+    "deletion_only_task_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      13,
+      14,
+      15,
+      17,
+      19,
+      20
+    ],
+    "additional_or_modified_task_indices": [],
+    "method": "Compare original prefix before ## Requirements with final PR body before </pr_description>, ignoring surrounding whitespace.",
+    "deletion_plus_behavior_clarification_task_indices": [
+      12,
+      16,
+      18
+    ]
+  },
+  "network_sidecar": {
+    "tag": "harbor-prebuilt:harbor-docker-egress-control-sidecar--b1e6760734a9e6f6",
+    "image_id": "sha256:4c5c7f669c99db7d2e764643c34ade7806e45c0b644bc30f48feb88d4f7cc77a",
+    "base_image_digest": "sha256:afc0137758ab4ce399d47a299f9abbacbf522b52a17e59cbb4b4e7a1a66e9196",
+    "base_image_cache": "mirror.gcr.io/gogost/gost",
+    "build_note": "Same pinned base digest and upstream Harbor sidecar files; base registry changed in a temporary Dockerfile because Docker Hub returned 403.",
+    "agent_runtime_policy": "task no-network plus only model endpoint host in Harbor allowlist"
+  }
+}

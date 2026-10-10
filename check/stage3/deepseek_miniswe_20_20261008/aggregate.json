@@ -1,0 +1,3138 @@
+{
+  "schema_version": 2,
+  "experiment_id": "deepseek_miniswe_20_20261008",
+  "generated_at": "2026-10-07T19:57:38+00:00",
+  "cohort_size": 20,
+  "rollouts_per_condition": 1,
+  "solver_statuses": {
+    "complete": 40
+  },
+  "cohorts": {
+    "original": {
+      "counts": {
+        "planned": 20,
+        "solver_complete": 20,
+        "nonempty_patches": 20,
+        "dual_valid": 20,
+        "no_patch": 0,
+        "regrade_error": 0,
+        "original_valid": 20,
+        "original_pass": 19,
+        "functional_valid": 20,
+        "functional_pass": 17,
+        "agent_usage_available": 20,
+        "input_tokens": 59609625,
+        "cache_tokens": 58695040,
+        "output_tokens": 536184,
+        "agent_execution_seconds": 10994.05431,
+        "agent_setup_seconds": 1378.913312,
+        "initial_verifier_valid": 20,
+        "initial_verifier_pass": 19,
+        "native_original_comparable": 20,
+        "native_original_disagree": 0
+      },
+      "paired_verifier_matrix": {
+        "both_pass": 16,
+        "original_fail_functional_pass": 1,
+        "original_pass_functional_fail": 3,
+        "both_fail": 0
+      },
+      "rates": {
+        "patch_generation": 1.0,
+        "dual_regrade_coverage_per_planned": 1.0,
+        "dual_regrade_coverage_per_patch": 1.0,
+        "original_pass_per_valid": 0.95,
+        "functional_pass_per_valid": 0.85
+      }
+    },
+    "converted": {
+      "counts": {
+        "planned": 20,
+        "solver_complete": 20,
+        "nonempty_patches": 20,
+        "dual_valid": 20,
+        "no_patch": 0,
+        "regrade_error": 0,
+        "original_valid": 20,
+        "original_pass": 3,
+        "functional_valid": 20,
+        "functional_pass": 13,
+        "agent_usage_available": 20,
+        "input_tokens": 108441069,
+        "cache_tokens": 107098624,
+        "output_tokens": 651276,
+        "agent_execution_seconds": 13269.846864000003,
+        "agent_setup_seconds": 1370.8660920000002,
+        "initial_verifier_valid": 20,
+        "initial_verifier_pass": 3,
+        "native_original_comparable": 20,
+        "native_original_disagree": 0
+      },
+      "paired_verifier_matrix": {
+        "both_pass": 3,
+        "original_fail_functional_pass": 10,
+        "original_pass_functional_fail": 0,
+        "both_fail": 7
+      },
+      "rates": {
+        "patch_generation": 1.0,
+        "dual_regrade_coverage_per_planned": 1.0,
+        "dual_regrade_coverage_per_patch": 1.0,
+        "original_pass_per_valid": 0.15,
+        "functional_pass_per_valid": 0.65
+      }
+    }
+  },
+  "totals": {
+    "planned": 40,
+    "solver_complete": 40,
+    "nonempty_patches": 40,
+    "dual_valid": 40,
+    "no_patch": 0,
+    "regrade_error": 0,
+    "original_valid": 40,
+    "original_pass": 22,
+    "functional_valid": 40,
+    "functional_pass": 30,
+    "agent_usage_available": 40,
+    "input_tokens": 168050694,
+    "cache_tokens": 165793664,
+    "output_tokens": 1187460,
+    "agent_execution_seconds": 24263.901174,
+    "agent_setup_seconds": 2749.7794039999994,
+    "initial_verifier_valid": 40,
+    "initial_verifier_pass": 22,
+    "native_original_comparable": 40,
+    "native_original_disagree": 0
+  },
+  "paired_verifier_matrix": {
+    "both_pass": 19,
+    "original_fail_functional_pass": 11,
+    "original_pass_functional_fail": 3,
+    "both_fail": 7
+  },
+  "rates": {
+    "patch_generation": 1.0,
+    "dual_regrade_coverage_per_planned": 1.0,
+    "dual_regrade_coverage_per_patch": 1.0,
+    "original_pass_per_valid": 0.55,
+    "functional_pass_per_valid": 0.75
+  },
+  "paired_instruction": {
+    "original_verifier": {
+      "paired_tasks": 20,
+      "original_instruction_pass": 19,
+      "converted_instruction_pass": 3,
+      "both_pass": 3,
+      "original_only_pass": 16,
+      "converted_only_pass": 0,
+      "both_fail": 1,
+      "converted_minus_original_pass_rate": -0.8
+    },
+    "functional_verifier": {
+      "paired_tasks": 20,
+      "original_instruction_pass": 17,
+      "converted_instruction_pass": 13,
+      "both_pass": 12,
+      "original_only_pass": 5,
+      "converted_only_pass": 1,
+      "both_fail": 2,
+      "converted_minus_original_pass_rate": -0.2
+    },
+    "deletion_only_original_verifier": {
+      "paired_tasks": 17,
+      "original_instruction_pass": 16,
+      "converted_instruction_pass": 2,
+      "both_pass": 2,
+      "original_only_pass": 14,
+      "converted_only_pass": 0,
+      "both_fail": 1,
+      "converted_minus_original_pass_rate": -0.8235294117647058
+    },
+    "deletion_only_functional_verifier": {
+      "paired_tasks": 17,
+      "original_instruction_pass": 15,
+      "converted_instruction_pass": 12,
+      "both_pass": 11,
+      "original_only_pass": 4,
+      "converted_only_pass": 1,
+      "both_fail": 1,
+      "converted_minus_original_pass_rate": -0.17647058823529413
+    },
+    "clarification_original_verifier": {
+      "paired_tasks": 3,
+      "original_instruction_pass": 3,
+      "converted_instruction_pass": 1,
+      "both_pass": 1,
+      "original_only_pass": 2,
+      "converted_only_pass": 0,
+      "both_fail": 0,
+      "converted_minus_original_pass_rate": -0.6666666666666666
+    },
+    "clarification_functional_verifier": {
+      "paired_tasks": 3,
+      "original_instruction_pass": 2,
+      "converted_instruction_pass": 1,
+      "both_pass": 1,
+      "original_only_pass": 1,
+      "converted_only_pass": 0,
+      "both_fail": 1,
+      "converted_minus_original_pass_rate": -0.3333333333333333
+    }
+  },
+  "semantic_review": {
+    "candidate_disagreements": 14,
+    "original_fail_functional_pass": 11,
+    "original_pass_functional_fail": 3,
+    "reviewed": 14,
+    "confirmed_rescues": 10,
+    "confirmed_false_rejections": 1,
+    "incorrect_patch": 3,
+    "uncertain": 0,
+    "unreviewed": 0,
+    "status": "complete"
+  },
+  "cost_note": "Harbor reports 0 USD for the custom model; actual API billing is not measured here.",
+  "tasks": [
+    {
+      "instance_id": "instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+      "attempt": "attempt_008",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 4,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+            "attempt": "attempt_008",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-01-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/01-original-r001/attempt_04",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/01-original-r001/attempt_04/deepseek_miniswe_20_20261008-01-original-r001/01-instance_ansible__ansible-395__bxdpa2o",
+            "started_at": "2026-10-07T18:26:52+00:00",
+            "finished_at": "2026-10-07T18:33:51+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+            "attempt": "attempt_008",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "b0ffb9ae1eb42ce745f1c6860a2d0df7ae9a414da9d0042ec16696c9a2986577",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:51:14+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/01-original-r001/attempt_04/deepseek_miniswe_20_20261008-01-original-r001/01-instance_ansible__ansible-395__bxdpa2o/result.json",
+            "agent_usage": {
+              "n_input_tokens": 2413327,
+              "n_cache_tokens": 2356480,
+              "n_output_tokens": 23751,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.412202,
+              "agent_setup": 76.547603,
+              "agent_execution": 270.547191,
+              "verifier": 40.291639
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+            "attempt": "attempt_008",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-01-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/01-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/01-converted-r001/attempt_01/deepseek_miniswe_20_20261008-01-converted-r001/01-instance_ansible__ansible-395__9VyZ8FL",
+            "started_at": "2026-10-07T18:34:20+00:00",
+            "finished_at": "2026-10-07T18:46:41+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+            "attempt": "attempt_008",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "1a7c53f6068170f0a89c75644a76fb4be4072bfbfb7a3afcb6aba1e18a47ae47",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:51:13+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/01-converted-r001/attempt_01/deepseek_miniswe_20_20261008-01-converted-r001/01-instance_ansible__ansible-395__9VyZ8FL/result.json",
+            "agent_usage": {
+              "n_input_tokens": 4188683,
+              "n_cache_tokens": 4126336,
+              "n_output_tokens": 31400,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 4.93944,
+              "agent_setup": 205.331528,
+              "agent_execution": 457.345112,
+              "verifier": 45.678176
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "attempt": "attempt_004",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_004",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-02-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/02-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/02-original-r001/attempt_01/deepseek_miniswe_20_20261008-02-original-r001/02-instance_ansible__ansible-5e3__o3MxbaD",
+            "started_at": "2026-10-07T18:34:20+00:00",
+            "finished_at": "2026-10-07T18:52:33+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_004",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "9f4ebb9badcf4f85825ed3f5d0f98c9dc7a3da96a7dfecc9080642e732f9b6eb",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:50:54+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/02-original-r001/attempt_01/deepseek_miniswe_20_20261008-02-original-r001/02-instance_ansible__ansible-5e3__o3MxbaD/result.json",
+            "agent_usage": {
+              "n_input_tokens": 3029398,
+              "n_cache_tokens": 2989184,
+              "n_output_tokens": 35038,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 4.224208,
+              "agent_setup": 161.099022,
+              "agent_execution": 851.234703,
+              "verifier": 46.032396
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_004",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-02-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/02-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/02-converted-r001/attempt_01/deepseek_miniswe_20_20261008-02-converted-r001/02-instance_ansible__ansible-5e3__7c4AmCb",
+            "started_at": "2026-10-07T18:34:20+00:00",
+            "finished_at": "2026-10-07T18:57:22+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_004",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "6918d84ff41b88e3a9d06b86cff5762c7abc80d5bd5bfe691830982e55a20428",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:50:54+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/02-converted-r001/attempt_01/deepseek_miniswe_20_20261008-02-converted-r001/02-instance_ansible__ansible-5e3__7c4AmCb/result.json",
+            "agent_usage": {
+              "n_input_tokens": 8712630,
+              "n_cache_tokens": 8643072,
+              "n_output_tokens": 48888,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 5.265305,
+              "agent_setup": 162.137665,
+              "agent_execution": 1139.225204,
+              "verifier": 47.149222
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "attempt": "attempt_002",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_002",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-03-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/03-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/03-original-r001/attempt_01/deepseek_miniswe_20_20261008-03-original-r001/03-instance_ansible__ansible-a6e__BUSWqKX",
+            "started_at": "2026-10-07T18:34:20+00:00",
+            "finished_at": "2026-10-07T18:41:50+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_002",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "6decf84c3a945b1e0f7da5eb0cb565a70eb57197500d7aef87cbdc52183841bf",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:50:53+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/03-original-r001/attempt_01/deepseek_miniswe_20_20261008-03-original-r001/03-instance_ansible__ansible-a6e__BUSWqKX/result.json",
+            "agent_usage": {
+              "n_input_tokens": 668901,
+              "n_cache_tokens": 637696,
+              "n_output_tokens": 9523,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 4.159097,
+              "agent_setup": 161.48154,
+              "agent_execution": 209.720053,
+              "verifier": 44.391385
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_002",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-03-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/03-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/03-converted-r001/attempt_01/deepseek_miniswe_20_20261008-03-converted-r001/03-instance_ansible__ansible-a6e__NJxXCyC",
+            "started_at": "2026-10-07T18:34:20+00:00",
+            "finished_at": "2026-10-07T18:42:37+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_002",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "4e3138aa6b39a7c406a09c3e8ccd13ee542ee961a205e792ee68ee295a1212d9",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:50:53+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/03-converted-r001/attempt_01/deepseek_miniswe_20_20261008-03-converted-r001/03-instance_ansible__ansible-a6e__NJxXCyC/result.json",
+            "agent_usage": {
+              "n_input_tokens": 745742,
+              "n_cache_tokens": 714496,
+              "n_output_tokens": 12908,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 4.906252,
+              "agent_setup": 162.728278,
+              "agent_execution": 256.163746,
+              "verifier": 45.497325
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+      "attempt": "attempt_005",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+            "attempt": "attempt_005",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-04-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/04-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/04-original-r001/attempt_01/deepseek_miniswe_20_20261008-04-original-r001/04-instance_ansible__ansible-bec__UdnASLy",
+            "started_at": "2026-10-07T18:34:20+00:00",
+            "finished_at": "2026-10-07T18:45:41+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+            "attempt": "attempt_005",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "db47496f43ac1081157af0ded08ad18cf5e34750171626346e3b89fd5a25dccf",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:51:09+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/04-original-r001/attempt_01/deepseek_miniswe_20_20261008-04-original-r001/04-instance_ansible__ansible-bec__UdnASLy/result.json",
+            "agent_usage": {
+              "n_input_tokens": 2883717,
+              "n_cache_tokens": 2829952,
+              "n_output_tokens": 22142,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 5.124978,
+              "agent_setup": 161.295889,
+              "agent_execution": 427.225915,
+              "verifier": 59.494302
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+            "attempt": "attempt_005",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-04-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/04-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/04-converted-r001/attempt_01/deepseek_miniswe_20_20261008-04-converted-r001/04-instance_ansible__ansible-bec__rA3tVXQ",
+            "started_at": "2026-10-07T18:34:20+00:00",
+            "finished_at": "2026-10-07T18:47:52+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+            "attempt": "attempt_005",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "1b54e24f851e56c85fea91761c59e26c595b5be4446b7154b323be5486cd5ff5",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:51:09+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/04-converted-r001/attempt_01/deepseek_miniswe_20_20261008-04-converted-r001/04-instance_ansible__ansible-bec__rA3tVXQ/result.json",
+            "agent_usage": {
+              "n_input_tokens": 7309815,
+              "n_cache_tokens": 7225472,
+              "n_output_tokens": 36152,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 6.066963,
+              "agent_setup": 156.803999,
+              "agent_execution": 563.439465,
+              "verifier": 59.446055
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+      "attempt": "attempt_005",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+            "attempt": "attempt_005",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-05-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/05-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/05-original-r001/attempt_01/deepseek_miniswe_20_20261008-05-original-r001/05-instance_ansible__ansible-bf9__jWwyfZZ",
+            "started_at": "2026-10-07T18:34:20+00:00",
+            "finished_at": "2026-10-07T18:51:35+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+            "attempt": "attempt_005",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "4421f284f04d72736a212c3a74da804e826e4b0cf76d27bfb86c057f8f70f7e7",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:51:52+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/05-original-r001/attempt_01/deepseek_miniswe_20_20261008-05-original-r001/05-instance_ansible__ansible-bf9__jWwyfZZ/result.json",
+            "agent_usage": {
+              "n_input_tokens": 4356428,
+              "n_cache_tokens": 4317312,
+              "n_output_tokens": 41140,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 4.986042,
+              "agent_setup": 157.60402,
+              "agent_execution": 797.641987,
+              "verifier": 46.613961
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+            "attempt": "attempt_005",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-05-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/05-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/05-converted-r001/attempt_01/deepseek_miniswe_20_20261008-05-converted-r001/05-instance_ansible__ansible-bf9__iCfpAyv",
+            "started_at": "2026-10-07T18:34:20+00:00",
+            "finished_at": "2026-10-07T18:45:11+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+            "attempt": "attempt_005",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "6d9b5d3a42c41b54160190853b7e1e5cf6abe3fbec3d757de146f98efa314aac",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:51:53+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/05-converted-r001/attempt_01/deepseek_miniswe_20_20261008-05-converted-r001/05-instance_ansible__ansible-bf9__iCfpAyv/result.json",
+            "agent_usage": {
+              "n_input_tokens": 3385308,
+              "n_cache_tokens": 3326720,
+              "n_output_tokens": 26954,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 5.541679,
+              "agent_setup": 153.849486,
+              "agent_execution": 416.511399,
+              "verifier": 47.20008
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+      "attempt": "attempt_007",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+            "attempt": "attempt_007",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-06-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/06-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/06-original-r001/attempt_01/deepseek_miniswe_20_20261008-06-original-r001/06-instance_ansible__ansible-cd4__UUvFong",
+            "started_at": "2026-10-07T18:34:21+00:00",
+            "finished_at": "2026-10-07T18:48:12+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+            "attempt": "attempt_007",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "0b3782c4a5db8cabbf20d5820938458d5167ffe84527644682ccce844fd7df43",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:36+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/06-original-r001/attempt_01/deepseek_miniswe_20_20261008-06-original-r001/06-instance_ansible__ansible-cd4__UUvFong/result.json",
+            "agent_usage": {
+              "n_input_tokens": 2390655,
+              "n_cache_tokens": 2348672,
+              "n_output_tokens": 24811,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 5.409238,
+              "agent_setup": 157.253039,
+              "agent_execution": 595.013787,
+              "verifier": 45.633682
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+            "attempt": "attempt_007",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-06-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/06-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/06-converted-r001/attempt_01/deepseek_miniswe_20_20261008-06-converted-r001/06-instance_ansible__ansible-cd4__h4oZ8Jc",
+            "started_at": "2026-10-07T18:41:51+00:00",
+            "finished_at": "2026-10-07T18:49:31+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+            "attempt": "attempt_007",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "413f14f70b784ab517808133183d60362cd3a21a792e78fcad5d42e59f9ec9ca",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:38+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/06-converted-r001/attempt_01/deepseek_miniswe_20_20261008-06-converted-r001/06-instance_ansible__ansible-cd4__h4oZ8Jc/result.json",
+            "agent_usage": {
+              "n_input_tokens": 2314638,
+              "n_cache_tokens": 2264960,
+              "n_output_tokens": 21883,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.84451,
+              "agent_setup": 64.51477,
+              "agent_execution": 311.461511,
+              "verifier": 48.20785
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "attempt": "attempt_002",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_002",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-07-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/07-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/07-original-r001/attempt_01/deepseek_miniswe_20_20261008-07-original-r001/07-instance_ansible__ansible-d62__VZJ65Kk",
+            "started_at": "2026-10-07T18:42:37+00:00",
+            "finished_at": "2026-10-07T18:58:21+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_002",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "ec3033e070c3bc173755264901208e62a4bc73d57032ca2766d7630d6ac72ab1",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:11+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/07-original-r001/attempt_01/deepseek_miniswe_20_20261008-07-original-r001/07-instance_ansible__ansible-d62__VZJ65Kk/result.json",
+            "agent_usage": {
+              "n_input_tokens": 3233020,
+              "n_cache_tokens": 3192192,
+              "n_output_tokens": 42632,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.566156,
+              "agent_setup": 36.639817,
+              "agent_execution": 826.51475,
+              "verifier": 52.023307
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_002",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-07-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/07-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/07-converted-r001/attempt_01/deepseek_miniswe_20_20261008-07-converted-r001/07-instance_ansible__ansible-d62__WPHgED5",
+            "started_at": "2026-10-07T18:45:11+00:00",
+            "finished_at": "2026-10-07T19:00:50+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_002",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "d7affd53eec0bcc9b92333370189860eeed989994ef262ef971f12e354bad551",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:12+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/07-converted-r001/attempt_01/deepseek_miniswe_20_20261008-07-converted-r001/07-instance_ansible__ansible-d62__WPHgED5/result.json",
+            "agent_usage": {
+              "n_input_tokens": 4534036,
+              "n_cache_tokens": 4480768,
+              "n_output_tokens": 43855,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.561385,
+              "agent_setup": 64.627507,
+              "agent_execution": 782.476986,
+              "verifier": 58.167587
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+      "attempt": "attempt_009",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_009",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-08-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/08-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/08-original-r001/attempt_01/deepseek_miniswe_20_20261008-08-original-r001/08-instance_ansible__ansible-e64__uUjD7XZ",
+            "started_at": "2026-10-07T18:45:41+00:00",
+            "finished_at": "2026-10-07T18:49:59+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_009",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "686edc3b45c209b083f5a50e2e364ae623f07bb325fae5e3427ee6ee0a6ef3fc",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:17+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/08-original-r001/attempt_01/deepseek_miniswe_20_20261008-08-original-r001/08-instance_ansible__ansible-e64__uUjD7XZ/result.json",
+            "agent_usage": {
+              "n_input_tokens": 474378,
+              "n_cache_tokens": 452224,
+              "n_output_tokens": 11962,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.540749,
+              "agent_setup": 38.747211,
+              "agent_execution": 138.286864,
+              "verifier": 52.288571
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_009",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-08-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/08-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/08-converted-r001/attempt_01/deepseek_miniswe_20_20261008-08-converted-r001/08-instance_ansible__ansible-e64__RqPLSzm",
+            "started_at": "2026-10-07T18:46:41+00:00",
+            "finished_at": "2026-10-07T18:56:06+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "attempt": "attempt_009",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "427a749965766873b3b94eebe5f2a76bd3da9f05fd04f0a77cc3f42118de5a87",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:17+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/08-converted-r001/attempt_01/deepseek_miniswe_20_20261008-08-converted-r001/08-instance_ansible__ansible-e64__RqPLSzm/result.json",
+            "agent_usage": {
+              "n_input_tokens": 2401519,
+              "n_cache_tokens": 2357888,
+              "n_output_tokens": 27480,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 4.919384,
+              "agent_setup": 32.182308,
+              "agent_execution": 452.648928,
+              "verifier": 49.757265
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+      "attempt": "attempt_001",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+            "attempt": "attempt_001",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-09-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/09-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/09-original-r001/attempt_01/deepseek_miniswe_20_20261008-09-original-r001/09-instance_internetarchive__ope__RWWDVtZ",
+            "started_at": "2026-10-07T18:47:52+00:00",
+            "finished_at": "2026-10-07T19:13:04+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+            "attempt": "attempt_001",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "117d4a1ba714875db90ebbd82b27492f78e49a3c4b4200bfd51cbeccca5018f7",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:01+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/09-original-r001/attempt_01/deepseek_miniswe_20_20261008-09-original-r001/09-instance_internetarchive__ope__RWWDVtZ/result.json",
+            "agent_usage": {
+              "n_input_tokens": 7252192,
+              "n_cache_tokens": 7186432,
+              "n_output_tokens": 52118,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.741982,
+              "agent_setup": 19.28884,
+              "agent_execution": 1458.624972,
+              "verifier": 3.059329
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+            "attempt": "attempt_001",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-09-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/09-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/09-converted-r001/attempt_01/deepseek_miniswe_20_20261008-09-converted-r001/09-instance_internetarchive__ope__ECPza3j",
+            "started_at": "2026-10-07T18:48:12+00:00",
+            "finished_at": "2026-10-07T19:02:33+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+            "attempt": "attempt_001",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "b5b6e37ba341d8e9990a931eb721d852dafd851517c8360fec29abceaf77b4bb",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:02+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/09-converted-r001/attempt_01/deepseek_miniswe_20_20261008-09-converted-r001/09-instance_internetarchive__ope__ECPza3j/result.json",
+            "agent_usage": {
+              "n_input_tokens": 8773417,
+              "n_cache_tokens": 8671232,
+              "n_output_tokens": 47138,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.501987,
+              "agent_setup": 21.460331,
+              "agent_execution": 806.886467,
+              "verifier": 2.886871
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+      "attempt": "attempt_001",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+            "attempt": "attempt_001",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-10-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/10-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/10-original-r001/attempt_01/deepseek_miniswe_20_20261008-10-original-r001/10-instance_internetarchive__ope__2c9NEP7",
+            "started_at": "2026-10-07T18:49:31+00:00",
+            "finished_at": "2026-10-07T18:59:47+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+            "attempt": "attempt_001",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "4926b459f99fef809f61f7131fc17359962f27710c01ecdc509fc64ede652cb0",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:32+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/10-original-r001/attempt_01/deepseek_miniswe_20_20261008-10-original-r001/10-instance_internetarchive__ope__2c9NEP7/result.json",
+            "agent_usage": {
+              "n_input_tokens": 1984921,
+              "n_cache_tokens": 1946112,
+              "n_output_tokens": 28603,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.628284,
+              "agent_setup": 17.547815,
+              "agent_execution": 566.306656,
+              "verifier": 4.173472
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+            "attempt": "attempt_001",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-10-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/10-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/10-converted-r001/attempt_01/deepseek_miniswe_20_20261008-10-converted-r001/10-instance_internetarchive__ope__mAcFzxb",
+            "started_at": "2026-10-07T18:49:59+00:00",
+            "finished_at": "2026-10-07T18:56:20+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+            "attempt": "attempt_001",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "ea12ef6399b0d713afd3a3ac148e598b9f337f2c6b5f6b6967adc88c4c990c3d",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:32+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/10-converted-r001/attempt_01/deepseek_miniswe_20_20261008-10-converted-r001/10-instance_internetarchive__ope__mAcFzxb/result.json",
+            "agent_usage": {
+              "n_input_tokens": 838743,
+              "n_cache_tokens": 816000,
+              "n_output_tokens": 17675,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.534364,
+              "agent_setup": 19.034806,
+              "agent_execution": 330.517141,
+              "verifier": 3.768868
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+      "attempt": "attempt_004",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+            "attempt": "attempt_004",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-11-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/11-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/11-original-r001/attempt_01/deepseek_miniswe_20_20261008-11-original-r001/11-instance_internetarchive__ope__ua47mxg",
+            "started_at": "2026-10-07T18:51:35+00:00",
+            "finished_at": "2026-10-07T18:56:14+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+            "attempt": "attempt_004",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "7e8f7cd81b3c35cb1564f4fb82993974a733ae97575fe603a4a6dd5978f78208",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:53:07+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/11-original-r001/attempt_01/deepseek_miniswe_20_20261008-11-original-r001/11-instance_internetarchive__ope__ua47mxg/result.json",
+            "agent_usage": {
+              "n_input_tokens": 914773,
+              "n_cache_tokens": 870912,
+              "n_output_tokens": 13350,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.690149,
+              "agent_setup": 18.239264,
+              "agent_execution": 227.049129,
+              "verifier": 3.840277
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+            "attempt": "attempt_004",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-11-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/11-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/11-converted-r001/attempt_01/deepseek_miniswe_20_20261008-11-converted-r001/11-instance_internetarchive__ope__3JFmcVP",
+            "started_at": "2026-10-07T18:52:33+00:00",
+            "finished_at": "2026-10-07T18:59:11+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+            "attempt": "attempt_004",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "c34a8b73a075618958d6ee6c544ed294fd4f270bb6f2aea00824f0fdb6e5e70c",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:53:10+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/11-converted-r001/attempt_01/deepseek_miniswe_20_20261008-11-converted-r001/11-instance_internetarchive__ope__3JFmcVP/result.json",
+            "agent_usage": {
+              "n_input_tokens": 4413493,
+              "n_cache_tokens": 4331648,
+              "n_output_tokens": 21933,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.44915,
+              "agent_setup": 17.693869,
+              "agent_execution": 347.411327,
+              "verifier": 3.888149
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-2abe28b472ffed563a87cfe83685b161b35263b0-v13642507b4fc1f8d234172bf8129942da2c2ca26/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "attempt": "attempt_009",
+      "instruction_change_class": "deletion_plus_behavior_clarification",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "attempt": "attempt_009",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-12-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/12-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/12-original-r001/attempt_01/deepseek_miniswe_20_20261008-12-original-r001/12-instance_internetarchive__ope__5i8nGvP",
+            "started_at": "2026-10-07T18:56:06+00:00",
+            "finished_at": "2026-10-07T19:01:23+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "attempt": "attempt_009",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "f73072a36650e3c535c80935350bed0e48a13d23ca60666d115faf55f2899697",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:30+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/12-original-r001/attempt_01/deepseek_miniswe_20_20261008-12-original-r001/12-instance_internetarchive__ope__5i8nGvP/result.json",
+            "agent_usage": {
+              "n_input_tokens": 302963,
+              "n_cache_tokens": 289152,
+              "n_output_tokens": 10963,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.693819,
+              "agent_setup": 26.028381,
+              "agent_execution": 258.241914,
+              "verifier": 4.090626
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "attempt": "attempt_009",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-12-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/12-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/12-converted-r001/attempt_01/deepseek_miniswe_20_20261008-12-converted-r001/12-instance_internetarchive__ope__TLNbq5G",
+            "started_at": "2026-10-07T18:56:14+00:00",
+            "finished_at": "2026-10-07T19:10:16+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "attempt": "attempt_009",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "25a845bcf9bf60845a23c98547de5ecbc6a33353d450f51cf4a41c52e07a1ec3",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:30+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/12-converted-r001/attempt_01/deepseek_miniswe_20_20261008-12-converted-r001/12-instance_internetarchive__ope__TLNbq5G/result.json",
+            "agent_usage": {
+              "n_input_tokens": 7753466,
+              "n_cache_tokens": 7662080,
+              "n_output_tokens": 43601,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 4.061337,
+              "agent_setup": 17.011617,
+              "agent_execution": 790.881768,
+              "verifier": 4.87906
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-5fb312632097be7e9ac6ab657964af115224d15d-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+      "attempt": "attempt_001",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "attempt": "attempt_001",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-13-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/13-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/13-original-r001/attempt_01/deepseek_miniswe_20_20261008-13-original-r001/13-instance_internetarchive__ope__3fka7sj",
+            "started_at": "2026-10-07T18:56:20+00:00",
+            "finished_at": "2026-10-07T19:00:07+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "attempt": "attempt_001",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "c529af33a2fc3922a50afbc44d21277c67eff1252c366fe04e32d61e258bcd2e",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:40+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/13-original-r001/attempt_01/deepseek_miniswe_20_20261008-13-original-r001/13-instance_internetarchive__ope__3fka7sj/result.json",
+            "agent_usage": {
+              "n_input_tokens": 968378,
+              "n_cache_tokens": 929792,
+              "n_output_tokens": 12185,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.782994,
+              "agent_setup": 26.218112,
+              "agent_execution": 167.849531,
+              "verifier": 3.968365
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "attempt": "attempt_001",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-13-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/13-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/13-converted-r001/attempt_01/deepseek_miniswe_20_20261008-13-converted-r001/13-instance_internetarchive__ope__7jmFLYr",
+            "started_at": "2026-10-07T18:57:22+00:00",
+            "finished_at": "2026-10-07T19:09:29+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "attempt": "attempt_001",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "a23e18b2031d326f0716153ee9154ebd42378c1bcba6a262814917bc7a6cce7b",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:41+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/13-converted-r001/attempt_01/deepseek_miniswe_20_20261008-13-converted-r001/13-instance_internetarchive__ope__7jmFLYr/result.json",
+            "agent_usage": {
+              "n_input_tokens": 3776470,
+              "n_cache_tokens": 3720064,
+              "n_output_tokens": 32367,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.567145,
+              "agent_setup": 15.617949,
+              "agent_execution": 675.948456,
+              "verifier": 3.678868
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+      "attempt": "attempt_003",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+            "attempt": "attempt_003",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-14-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/14-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/14-original-r001/attempt_01/deepseek_miniswe_20_20261008-14-original-r001/14-instance_internetarchive__ope__fCZQtzz",
+            "started_at": "2026-10-07T18:58:21+00:00",
+            "finished_at": "2026-10-07T19:12:38+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+            "attempt": "attempt_003",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "ba36905de623f8ebb19317c9daa33cfc94455822ad06e4c40327ae9d81f88146",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:43+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/14-original-r001/attempt_01/deepseek_miniswe_20_20261008-14-original-r001/14-instance_internetarchive__ope__fCZQtzz/result.json",
+            "agent_usage": {
+              "n_input_tokens": 5351216,
+              "n_cache_tokens": 5284608,
+              "n_output_tokens": 44767,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.676487,
+              "agent_setup": 22.556642,
+              "agent_execution": 800.56902,
+              "verifier": 5.642957
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+            "attempt": "attempt_003",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-14-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/14-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/14-converted-r001/attempt_01/deepseek_miniswe_20_20261008-14-converted-r001/14-instance_internetarchive__ope__b6xRuC2",
+            "started_at": "2026-10-07T18:59:11+00:00",
+            "finished_at": "2026-10-07T19:15:30+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+            "attempt": "attempt_003",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "8a790d14b1c06d3ef87cf302c7d853ab582b1cd8b74503f2bb3f12b20a6fc4f9",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:43+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/14-converted-r001/attempt_01/deepseek_miniswe_20_20261008-14-converted-r001/14-instance_internetarchive__ope__b6xRuC2/result.json",
+            "agent_usage": {
+              "n_input_tokens": 2287313,
+              "n_cache_tokens": 2240128,
+              "n_output_tokens": 24590,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.572742,
+              "agent_setup": 16.201956,
+              "agent_execution": 930.3063,
+              "verifier": 5.467962
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "attempt": "attempt_005",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "attempt": "attempt_005",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-15-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/15-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/15-original-r001/attempt_01/deepseek_miniswe_20_20261008-15-original-r001/15-instance_qutebrowser__qutebro__WKawHH3",
+            "started_at": "2026-10-07T18:59:47+00:00",
+            "finished_at": "2026-10-07T19:03:16+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "attempt": "attempt_005",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "c2356ba96b41cbf0bc1a5f298449c2803aac277e76603cf3d9f494ef91ec1025",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:55+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/15-original-r001/attempt_01/deepseek_miniswe_20_20261008-15-original-r001/15-instance_qutebrowser__qutebro__WKawHH3/result.json",
+            "agent_usage": {
+              "n_input_tokens": 536359,
+              "n_cache_tokens": 509056,
+              "n_output_tokens": 8374,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 4.244582,
+              "agent_setup": 35.611169,
+              "agent_execution": 137.556561,
+              "verifier": 6.549532
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "attempt": "attempt_005",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-15-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/15-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/15-converted-r001/attempt_01/deepseek_miniswe_20_20261008-15-converted-r001/15-instance_qutebrowser__qutebro__tmYrxEj",
+            "started_at": "2026-10-07T19:00:07+00:00",
+            "finished_at": "2026-10-07T19:05:42+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "attempt": "attempt_005",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "8d42f56f331d170a5dc62ff63d278813a384021ef2c05ace4ba22290f90a02e5",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:52:58+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/15-converted-r001/attempt_01/deepseek_miniswe_20_20261008-15-converted-r001/15-instance_qutebrowser__qutebro__tmYrxEj/result.json",
+            "agent_usage": {
+              "n_input_tokens": 2357467,
+              "n_cache_tokens": 2297216,
+              "n_output_tokens": 14189,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.602484,
+              "agent_setup": 31.709342,
+              "agent_execution": 267.941489,
+              "verifier": 5.687233
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "attempt": "attempt_023",
+      "instruction_change_class": "deletion_plus_behavior_clarification",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "attempt": "attempt_023",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-16-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/16-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/16-original-r001/attempt_01/deepseek_miniswe_20_20261008-16-original-r001/16-instance_qutebrowser__qutebro__wPjNe7T",
+            "started_at": "2026-10-07T19:00:50+00:00",
+            "finished_at": "2026-10-07T19:17:59+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "attempt": "attempt_023",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "1893b7e56c6b9bc2d85be27550e361003653ee0c7f4bb0e3b42905852de2f962",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:53:04+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/16-original-r001/attempt_01/deepseek_miniswe_20_20261008-16-original-r001/16-instance_qutebrowser__qutebro__wPjNe7T/result.json",
+            "agent_usage": {
+              "n_input_tokens": 5172613,
+              "n_cache_tokens": 5110400,
+              "n_output_tokens": 34655,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.679573,
+              "agent_setup": 27.877554,
+              "agent_execution": 963.561042,
+              "verifier": 9.066952
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "attempt": "attempt_023",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-16-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/16-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/16-converted-r001/attempt_01/deepseek_miniswe_20_20261008-16-converted-r001/16-instance_qutebrowser__qutebro__aU9TPZU",
+            "started_at": "2026-10-07T19:01:23+00:00",
+            "finished_at": "2026-10-07T19:25:43+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "attempt": "attempt_023",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "251c9deb00cd58c2cc528c1794b84c3ba87ab5b4166966158ef00404b686afd4",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:53:33+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/16-converted-r001/attempt_01/deepseek_miniswe_20_20261008-16-converted-r001/16-instance_qutebrowser__qutebro__aU9TPZU/result.json",
+            "agent_usage": {
+              "n_input_tokens": 16572877,
+              "n_cache_tokens": 16456064,
+              "n_output_tokens": 60762,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.615013,
+              "agent_setup": 27.700659,
+              "agent_execution": 1389.636727,
+              "verifier": 15.136742
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+      "attempt": "attempt_003",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+            "attempt": "attempt_003",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-17-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/17-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/17-original-r001/attempt_01/deepseek_miniswe_20_20261008-17-original-r001/17-instance_qutebrowser__qutebro__ye48JC8",
+            "started_at": "2026-10-07T19:02:33+00:00",
+            "finished_at": "2026-10-07T19:10:03+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+            "attempt": "attempt_003",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "0f829aeb2d42fd9d2beb2c8eaa003c286e8cecc90c6ec731deb6438b8d80644e",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:54:18+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/17-original-r001/attempt_01/deepseek_miniswe_20_20261008-17-original-r001/17-instance_qutebrowser__qutebro__ye48JC8/result.json",
+            "agent_usage": {
+              "n_input_tokens": 1284301,
+              "n_cache_tokens": 1256320,
+              "n_output_tokens": 16819,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.630998,
+              "agent_setup": 94.624082,
+              "agent_execution": 280.728041,
+              "verifier": 45.943516
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+            "attempt": "attempt_003",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-17-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/17-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/17-converted-r001/attempt_01/deepseek_miniswe_20_20261008-17-converted-r001/17-instance_qutebrowser__qutebro__Dk3oL3e",
+            "started_at": "2026-10-07T19:03:16+00:00",
+            "finished_at": "2026-10-07T19:11:03+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+            "attempt": "attempt_003",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "d310f50f452b0fb848bd526985af55a91ed80523f31eb11995559c5751381d29",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:54:19+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/17-converted-r001/attempt_01/deepseek_miniswe_20_20261008-17-converted-r001/17-instance_qutebrowser__qutebro__Dk3oL3e/result.json",
+            "agent_usage": {
+              "n_input_tokens": 2139888,
+              "n_cache_tokens": 2092288,
+              "n_output_tokens": 16737,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.65418,
+              "agent_setup": 79.245006,
+              "agent_execution": 312.140821,
+              "verifier": 47.428177
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-6dd402c0d0f7665d32a74c43c5b4cf5dc8aff28d-v5fc38aaf22415ab0b70567368332beee7955b367/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+      "attempt": "attempt_002",
+      "instruction_change_class": "deletion_plus_behavior_clarification",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+            "attempt": "attempt_002",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-18-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/18-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/18-original-r001/attempt_01/deepseek_miniswe_20_20261008-18-original-r001/18-instance_qutebrowser__qutebro__bE2QeWm",
+            "started_at": "2026-10-07T19:05:42+00:00",
+            "finished_at": "2026-10-07T19:19:31+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+            "attempt": "attempt_002",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "36f51894b56c3a5d0a6a9e93c2cd772b128a20dea8c3a62aeef980c2d8542005",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:53:16+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/18-original-r001/attempt_01/deepseek_miniswe_20_20261008-18-original-r001/18-instance_qutebrowser__qutebro__bE2QeWm/result.json",
+            "agent_usage": {
+              "n_input_tokens": 6167318,
+              "n_cache_tokens": 6091520,
+              "n_output_tokens": 29851,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.67647,
+              "agent_setup": 34.671116,
+              "agent_execution": 757.060074,
+              "verifier": 7.939239
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+            "attempt": "attempt_002",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-18-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/18-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/18-converted-r001/attempt_01/deepseek_miniswe_20_20261008-18-converted-r001/18-instance_qutebrowser__qutebro__S44HHMu",
+            "started_at": "2026-10-07T19:09:29+00:00",
+            "finished_at": "2026-10-07T19:18:33+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+            "attempt": "attempt_002",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "35c01eea06c09be1a5af244bf16f2f4150c5fc04d24ae41555d7b9b174104436",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:53:19+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/18-converted-r001/attempt_01/deepseek_miniswe_20_20261008-18-converted-r001/18-instance_qutebrowser__qutebro__S44HHMu/result.json",
+            "agent_usage": {
+              "n_input_tokens": 4551871,
+              "n_cache_tokens": 4483968,
+              "n_output_tokens": 31154,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.576486,
+              "agent_setup": 33.615575,
+              "agent_execution": 471.009797,
+              "verifier": 9.486331
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+      "attempt": "attempt_006",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "attempt": "attempt_006",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-19-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/19-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/19-original-r001/attempt_01/deepseek_miniswe_20_20261008-19-original-r001/19-instance_qutebrowser__qutebro__aAMverL",
+            "started_at": "2026-10-07T19:10:04+00:00",
+            "finished_at": "2026-10-07T19:24:39+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "attempt": "attempt_006",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "9249b2d824850c91198269283204664534a4a7b469e7cb8eb99b77cbae7b4020",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:53:22+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/19-original-r001/attempt_01/deepseek_miniswe_20_20261008-19-original-r001/19-instance_qutebrowser__qutebro__aAMverL/result.json",
+            "agent_usage": {
+              "n_input_tokens": 8217934,
+              "n_cache_tokens": 8141056,
+              "n_output_tokens": 56835,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.687139,
+              "agent_setup": 43.306537,
+              "agent_execution": 795.626994,
+              "verifier": 6.938226
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "attempt": "attempt_006",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-19-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/19-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/19-converted-r001/attempt_01/deepseek_miniswe_20_20261008-19-converted-r001/19-instance_qutebrowser__qutebro__QM9KML2",
+            "started_at": "2026-10-07T19:10:16+00:00",
+            "finished_at": "2026-10-07T19:18:59+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "attempt": "attempt_006",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "f97f3e6c4b970f82e621294a711d324d1543eaa934860b5fdc05cfc9ddc4fe4d",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:54:17+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/19-converted-r001/attempt_01/deepseek_miniswe_20_20261008-19-converted-r001/19-instance_qutebrowser__qutebro__QM9KML2/result.json",
+            "agent_usage": {
+              "n_input_tokens": 4065097,
+              "n_cache_tokens": 3989888,
+              "n_output_tokens": 21040,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.493923,
+              "agent_setup": 29.703365,
+              "agent_execution": 405.606948,
+              "verifier": 58.189567
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_qutebrowser__qutebrowser-ef5ba1a0360b39f9eff027fbdc57f363597c3c3b-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    },
+    {
+      "instance_id": "instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+      "attempt": "attempt_005",
+      "instruction_change_class": "deletion_only",
+      "cohorts": {
+        "original": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+            "attempt": "attempt_005",
+            "cohort": "original",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-20-original-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/20-original-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/20-original-r001/attempt_01/deepseek_miniswe_20_20261008-20-original-r001/20-instance_tutao__tutanota-de49__xeV9U4M",
+            "started_at": "2026-10-07T19:11:03+00:00",
+            "finished_at": "2026-10-07T19:22:30+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/original/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/original/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+            "attempt": "attempt_005",
+            "cohort": "original",
+            "rollout": 1,
+            "patch_sha256": "57b46cc149e9f0fa04518550b429b4810ed04dadd47e088aee0a53c4a6929332",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+            "original": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/original/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/original/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:55:02+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/20-original-r001/attempt_01/deepseek_miniswe_20_20261008-20-original-r001/20-instance_tutao__tutanota-de49__xeV9U4M/result.json",
+            "agent_usage": {
+              "n_input_tokens": 2006833,
+              "n_cache_tokens": 1955968,
+              "n_output_tokens": 16665,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 3.7543,
+              "agent_setup": 62.275659,
+              "agent_execution": 464.695126,
+              "verifier": 132.997907
+            },
+            "initial_verifier_pass": true
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/original/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        },
+        "converted": {
+          "solver": {
+            "status": "complete",
+            "execution_attempt": 1,
+            "returncode": 0,
+            "patch_captured": true,
+            "patch_nonempty": true,
+            "instance_id": "instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+            "attempt": "attempt_005",
+            "cohort": "converted",
+            "rollout": 1,
+            "job_name": "deepseek_miniswe_20_20261008-20-converted-r001",
+            "job_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/20-converted-r001/attempt_01",
+            "trial_dir": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/20-converted-r001/attempt_01/deepseek_miniswe_20_20261008-20-converted-r001/20-instance_tutao__tutanota-de49__xuDvQHA",
+            "started_at": "2026-10-07T19:12:38+00:00",
+            "finished_at": "2026-10-07T19:52:24+00:00",
+            "stdout": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/converted/rollout_001/harbor.stdout.log",
+            "stderr": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/converted/rollout_001/harbor.stderr.log"
+          },
+          "regrade": {
+            "status": "complete",
+            "instance_id": "instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+            "attempt": "attempt_005",
+            "cohort": "converted",
+            "rollout": 1,
+            "patch_sha256": "a3e85e2c5e1b71f4e41c84e30083c855bdb82701e4ff14a62006fb58a977930b",
+            "patch_nonempty": true,
+            "network": {
+              "docker": "bridge",
+              "harbor_declared": "public"
+            },
+            "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1",
+            "original": {
+              "valid_verdict": true,
+              "pass": false,
+              "returncode": 1,
+              "patch_applied": true
+            },
+            "functional": {
+              "valid_verdict": true,
+              "pass": true,
+              "returncode": 0,
+              "patch_applied": true,
+              "test_patch_applied": true
+            },
+            "logs": {
+              "original": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/converted/rollout_001/regrade/original",
+              "functional": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/converted/rollout_001/regrade/functional"
+            },
+            "finished_at": "2026-10-07T19:55:11+00:00"
+          },
+          "harbor": {
+            "trial_result": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/harbor_jobs/20-converted-r001/attempt_01/deepseek_miniswe_20_20261008-20-converted-r001/20-instance_tutao__tutanota-de49__xuDvQHA/result.json",
+            "agent_usage": {
+              "n_input_tokens": 17318596,
+              "n_cache_tokens": 17198336,
+              "n_output_tokens": 70570,
+              "cost_usd": 0.0
+            },
+            "timing_seconds": {
+              "environment_setup": 4.540893,
+              "agent_setup": 59.696076,
+              "agent_execution": 2162.287272,
+              "verifier": 129.095831
+            },
+            "initial_verifier_pass": false
+          },
+          "patch": "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_tutao__tutanota-de49d486feef842101506adf040a0f00ded59519-v10a26bfb45a064b93f4fc044a0254925037b88f1/converted/rollout_001/candidate.patch",
+          "patch_nonempty": true
+        }
+      }
+    }
+  ]
+}

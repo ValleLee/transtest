@@ -1,0 +1,2 @@
+rc=0
+PASS: startup hook appends --lang=en-US and preserves existing flags

